@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MyInvestCycle Regime</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">MyInvestCycle</p>
+          <h1>A股牛熊周期状态</h1>
+        </div>
+        <button class="refresh-button" id="refreshButton" type="button">刷新</button>
+      </header>
+
+      <section class="status-grid" aria-live="polite">
+        <article class="regime-panel" id="regimePanel">
+          <div class="panel-label">当前状态</div>
+          <div class="regime-name" id="regimeName">--</div>
+          <div class="as-of" id="asOf">--</div>
+        </article>
+        <article class="metric-panel">
+          <div class="panel-label">置信度</div>
+          <div class="metric-value" id="confidenceValue">--</div>
+        </article>
+        <article class="metric-panel">
+          <div class="panel-label">综合分</div>
+          <div class="metric-value" id="regimeScoreValue">--</div>
+        </article>
+        <article class="metric-panel compact-scores" id="scoreList"></article>
+      </section>
+
+      <section class="visual-grid">
+        <article class="chart-panel radar-panel">
+          <div class="panel-heading">
+            <h2>四维评分</h2>
+          </div>
+          <div class="chart-box" id="radarChart"></div>
+        </article>
+        <article class="chart-panel timeline-panel">
+          <div class="panel-heading">
+            <h2>状态时间轴</h2>
+          </div>
+          <div class="chart-box" id="timelineChart"></div>
+        </article>
+        <article class="chart-panel index-panel">
+          <div class="panel-heading">
+            <h2>指数与 MA120</h2>
+          </div>
+          <div class="chart-box large" id="indexChart"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="/static/charts.js"></script>
+    <script src="/static/dashboard.js"></script>
+  </body>
+</html>

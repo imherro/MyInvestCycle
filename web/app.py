@@ -6,6 +6,8 @@ from pathlib import Path
 
 import pandas as pd
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
@@ -14,11 +16,13 @@ if str(ROOT_DIR) not in sys.path:
 from config import BREADTH_HISTORY_SAMPLE_SIZE, DEFAULT_INDEX_CODE, WEB_PORT
 from core.breadth import get_market_daily, get_market_history_sample
 from core.data_loader import get_index_daily, normalize_trade_date
+from core.features import build_feature_frame
 from core.liquidity import get_moneyflow_hsgt
 from engine.market_engine import analyze_index_regime
 
 
 app = FastAPI(title="MyInvestCycle Regime API", version="0.3")
+app.mount("/static", StaticFiles(directory=ROOT_DIR / "web" / "static"), name="static")
 
 
 def _calendar_shift(date_text: str, days: int) -> str:
@@ -71,6 +75,11 @@ def _current_regime_payload() -> dict:
 @app.get("/api/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.get("/", response_class=HTMLResponse)
+def dashboard():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "dashboard.html")
 
 
 @app.get("/api/regime/current")
@@ -136,6 +145,7 @@ def regime_history(
             market_history_df=market_history,
             hsgt_df=hsgt,
         )
+        feature_row = build_feature_frame(index_slice).iloc[-1]
         series.append(
             {
                 "as_of": result["as_of"],
@@ -143,6 +153,10 @@ def regime_history(
                 "confidence": result["confidence"],
                 "regime_score": result["regime_score"],
                 "sub_scores": result["sub_scores"],
+                "index": {
+                    "close": round(float(feature_row["close"]), 4),
+                    "ma120": None if pd.isna(feature_row["ma120"]) else round(float(feature_row["ma120"]), 4),
+                },
             }
         )
 
