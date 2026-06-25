@@ -127,11 +127,17 @@ python scripts/full_history_backfill.py --start 20200101 --end 20260624
 Fetch missing market breadth cache incrementally:
 
 ```powershell
-python scripts/full_history_backfill.py --start 20200101 --end 20260624 --execute --limit 50
+python scripts/full_history_backfill.py --start 20200101 --end 20260624 --execute --limit 50 --batch-size 50 --retries 2
 ```
 
 Default coverage output:
 
 ```text
 data/regime_coverage_audit.json
+```
+
+Default backfill log:
+
+```text
+data/backfill_log.json
 ```

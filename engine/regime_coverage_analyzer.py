@@ -158,13 +158,18 @@ def build_coverage_audit(
     if skipped:
         warnings.append("regime_sequence_skipped_dates")
 
+    coverage_status = "pass" if coverage_ratio >= coverage_threshold else "fail"
+    label_warnings = {"missing_regime_labels", "transition_overconcentration"}
+    label_status = "fail" if any(warning in label_warnings for warning in warnings) else "pass"
     return {
         "total_days": total_days,
         "covered_days": covered_days,
         "missing_days": int(cache_coverage["missing_days"]),
         "coverage_ratio": coverage_ratio,
         "coverage_threshold": coverage_threshold,
-        "coverage_status": "pass" if not warnings else "fail",
+        "coverage_status": coverage_status,
+        "label_status": label_status,
+        "audit_status": "pass" if not warnings else "fail",
         "regime_distribution": distribution["regime_distribution"],
         "regime_counts": distribution["regime_counts"],
         "missing_regimes": missing_regimes,
