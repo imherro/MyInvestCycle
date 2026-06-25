@@ -61,3 +61,10 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/regime/current`
 - `GET http://127.0.0.1:8021/api/regime/history?start=20260601&end=20260624`
 - `GET http://127.0.0.1:8021/api/features/latest`
+
+Validation scripts:
+
+```powershell
+python scripts/regime_stability_test.py --runs 20
+python scripts/regime_drift_detector.py --window 30
+```
