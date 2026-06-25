@@ -174,7 +174,7 @@ function setCycleBlocks(blocks) {
     <div class="cycle-blocks-head">
       <div>
         <h2>主要周期切块</h2>
-        <p>重点看每轮牛市的主线主题、扩散方式和风险偏好特征。</p>
+        <p>按市场主周期切分，重点看每轮牛市的主线主题、扩散方式和风险偏好特征。</p>
       </div>
     </div>
     <div class="cycle-block-list">${majorBlocks.map(cycleBlockHtml).join("")}</div>

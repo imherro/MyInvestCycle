@@ -14,6 +14,9 @@ engine foundation requested by the design review.
 - Market regime engine returning `regime`, `confidence`, and four sub-scores.
 - Web dashboard on port `8021` with current-cycle tracking, probability outlook,
   long-term cycle view, and historical cycle theme blocks.
+- Long-term bull/bear blocks use market-consensus major turning points and
+  narrative themes; MA120/MA250 are retained as observation overlays rather than
+  the segmentation trigger.
 
 ## Run
 

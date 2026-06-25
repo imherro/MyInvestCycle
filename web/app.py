@@ -45,7 +45,7 @@ def _load_index_window(start_date: str, end_date: str):
 
 @lru_cache(maxsize=2)
 def _load_cycle_index(end_date: str):
-    return get_index_daily(DEFAULT_INDEX_CODE, "20100101", end_date)
+    return get_index_daily(DEFAULT_INDEX_CODE, "19940101", end_date)
 
 
 def _load_hsgt_for_index(index_df, as_of: str):

@@ -3,6 +3,163 @@ from __future__ import annotations
 import pandas as pd
 
 
+CONSENSUS_CYCLE_DEFINITIONS = [
+    {
+        "state": "bull",
+        "start_date": "19940729",
+        "end_date": "20010614",
+        "theme_title": "制度建设与科技网络牛市",
+        "themes": ["制度建设", "绩优股", "科技网络", "519行情", "直接融资扩容"],
+        "features": [
+            "从 325 点附近启动，到 2001 年 2245 点附近结束，是 A 股早期最重要的长牛。",
+            "政策规范化、上市公司扩容和 1999 年 519 行情共同推升风险偏好。",
+            "周期很长，中间有多次大震荡，更适合作为一轮制度红利长牛观察。",
+        ],
+    },
+    {
+        "state": "bear",
+        "start_date": "20010615",
+        "end_date": "20050606",
+        "theme_title": "国有股减持与估值重构熊市",
+        "themes": ["国有股减持", "估值压缩", "流动性退潮", "998点"],
+        "features": [
+            "从 2245 点后进入长熊，直到 2005 年 998 点附近完成大级别出清。",
+            "制度不确定性、估值回落和赚钱效应消失是主要特征。",
+            "这轮熊市是后续股权分置改革牛市的低位基础。",
+        ],
+    },
+    {
+        "state": "bull",
+        "start_date": "20050607",
+        "end_date": "20071016",
+        "theme_title": "股权分置改革与人民币资产重估牛市",
+        "themes": ["股权分置改革", "人民币升值", "金融地产", "周期资源", "全民入市"],
+        "features": [
+            "从 998 点附近启动，到 6124 点附近见顶，是 A 股最典型的全面大牛市。",
+            "股改、经济高增长、人民币资产重估和流动性共同推动指数主升。",
+            "金融、地产、资源和权重蓝筹是核心指数贡献。",
+        ],
+    },
+    {
+        "state": "bear",
+        "start_date": "20071017",
+        "end_date": "20081028",
+        "theme_title": "估值泡沫破裂与全球金融危机熊市",
+        "themes": ["估值泡沫", "金融危机", "流动性收缩", "去杠杆"],
+        "features": [
+            "6124 点之后快速下跌，全球金融危机放大了估值和盈利双杀。",
+            "指数跌幅深、速度快，是典型的泡沫破裂式熊市。",
+        ],
+    },
+    {
+        "state": "bull",
+        "start_date": "20081029",
+        "end_date": "20090804",
+        "theme_title": "四万亿刺激与信贷扩张政策牛",
+        "themes": ["四万亿", "信贷扩张", "基建地产链", "周期资源"],
+        "features": [
+            "政策刺激和信贷扩张推动市场从危机低点快速修复。",
+            "周期、基建、地产链和资源品弹性明显。",
+            "持续时间短，属于政策强刺激下的快速估值修复牛。",
+        ],
+    },
+    {
+        "state": "bear",
+        "start_date": "20090805",
+        "end_date": "20140721",
+        "theme_title": "经济换挡与估值消化熊市",
+        "themes": ["经济换挡", "创业板分化", "钱荒", "1849点", "长期筑底"],
+        "features": [
+            "2009 年政策牛结束后，主板进入长时间估值消化和中枢下移。",
+            "2013 年钱荒和 1849 点是重要底部记忆，结构上创业板先行活跃。",
+            "这段不应被 MA250 的反复穿越切碎，更适合看作一轮长熊/筑底期。",
+        ],
+    },
+    {
+        "state": "bull",
+        "start_date": "20140722",
+        "end_date": "20150612",
+        "theme_title": "杠杆资金与改革预期牛市",
+        "themes": ["券商", "互联网金融", "国企改革", "一带一路", "创业板成长"],
+        "features": [
+            "金融股先启动，融资融券和场外杠杆快速推升风险偏好。",
+            "改革预期、互联网金融和创业板成长扩散为全民行情。",
+            "指数涨幅大、斜率陡，见顶后波动显著放大。",
+        ],
+    },
+    {
+        "state": "bear",
+        "start_date": "20150615",
+        "end_date": "20160127",
+        "theme_title": "股灾与杠杆出清熊市",
+        "themes": ["股灾", "杠杆出清", "流动性冲击", "2638点"],
+        "features": [
+            "杠杆牛结束后，市场进入快速去杠杆和信心修复阶段。",
+            "多轮急跌和流动性冲击构成这轮熊市的主要记忆。",
+        ],
+    },
+    {
+        "state": "bull",
+        "start_date": "20160128",
+        "end_date": "20180129",
+        "theme_title": "供给侧改革与蓝筹白马结构牛",
+        "themes": ["核心消费", "金融地产", "周期资源", "外资定价", "漂亮50"],
+        "features": [
+            "指数整体温和修复，结构上以蓝筹白马和供给侧周期龙头为主线。",
+            "外资定价权提升，消费、金融和周期龙头持续重估。",
+            "它不是全面牛市，但作为 2016-2018 的结构牛单独观察更符合市场记忆。",
+        ],
+    },
+    {
+        "state": "bear",
+        "start_date": "20180130",
+        "end_date": "20190104",
+        "theme_title": "去杠杆与外部冲击熊市",
+        "themes": ["去杠杆", "贸易摩擦", "盈利下修", "2440点"],
+        "features": [
+            "金融去杠杆、外部冲击和盈利预期下修压制市场风险偏好。",
+            "2440 点成为后续结构牛的起点。",
+        ],
+    },
+    {
+        "state": "bull",
+        "start_date": "20190107",
+        "end_date": "20210218",
+        "theme_title": "核心资产与科技赛道结构牛",
+        "themes": ["核心资产", "半导体", "新能源", "医药消费", "机构抱团"],
+        "features": [
+            "2019 年估值修复后，2020-2021 年演化为核心资产和赛道股结构牛。",
+            "科技、消费、医药、新能源和机构抱团是主要特征。",
+            "上证涨幅不如成长和赛道指数，但市场主线清晰且持续时间较长。",
+        ],
+    },
+    {
+        "state": "bear",
+        "start_date": "20210219",
+        "end_date": "20240923",
+        "theme_title": "核心资产杀估值与信心重建熊市",
+        "themes": ["核心资产杀估值", "地产压力", "消费降级", "红利防御", "政策等待"],
+        "features": [
+            "核心资产和赛道估值回落，地产链压力与经济弱修复压制风险偏好。",
+            "高股息、红利和防御资产阶段占优，市场赚钱效应偏弱。",
+            "2024 年 2 月形成低点，但真正的风险偏好切换发生在 9·24 政策组合之后。",
+        ],
+    },
+    {
+        "state": "bull",
+        "start_date": "20240924",
+        "end_date": None,
+        "theme_title": "9·24政策转向后的估值修复牛市",
+        "themes": ["政策组合拳", "券商金融", "科技成长", "高股息", "央国企重估"],
+        "features": [
+            "9·24 政策组合拳改变风险偏好，市场从低估值和低仓位状态快速修复。",
+            "初期是普涨和金融搭台，随后需要观察科技成长、盈利和成交能否接力。",
+            "当前仍在运行中，后续确认重点是成交、主线扩散和回撤是否守住关键中枢。",
+        ],
+    },
+]
+
+
 def _state_from_close(close: float, ma250: float | None) -> str | None:
     if ma250 is None or pd.isna(ma250):
         return None
@@ -96,7 +253,7 @@ def detect_major_cycles(index_df: pd.DataFrame, *, confirm_days: int = 20) -> di
 
     latest_index = len(df) - 1
     latest_row = df.iloc[latest_index]
-    current_cycle = _cycle_summary(
+    technical_current_cycle = _cycle_summary(
         df,
         current_start_index,
         latest_index,
@@ -105,27 +262,111 @@ def detect_major_cycles(index_df: pd.DataFrame, *, confirm_days: int = 20) -> di
         latest_row,
         ongoing=True,
     )
-    cycle_blocks = [_cycle_block(cycle) for cycle in [*cycles, current_cycle]]
+    cycle_blocks = _consensus_cycle_blocks(df, str(latest_row["trade_date"]))
+    current_cycle = cycle_blocks[-1] if cycle_blocks and cycle_blocks[-1].get("ongoing") else technical_current_cycle
+    consensus_series = _consensus_series(df, cycle_blocks)
 
     return {
         "as_of": str(latest_row["trade_date"]),
-        "method": f"close_vs_ma250_confirm_{confirm_days}d",
+        "method": "market_consensus_major_cycles_with_ma250_overlay",
+        "technical_method": f"current_cycle_close_vs_ma250_confirm_{confirm_days}d",
+        "segmentation_note": (
+            "长期牛熊周期采用公开市场复盘中常见的大低点/高点和行情主线叙事切分；"
+            "上证指数价格只用于计算起止收盘、持续时间和涨跌幅，MA120/MA250 作为辅助观察线。"
+        ),
         "current_cycle": current_cycle,
+        "technical_current_cycle": technical_current_cycle,
         "recent_cycles": cycles[-8:],
         "cycle_blocks": cycle_blocks,
-        "series": [
+        "series": consensus_series,
+    }
+
+
+def _consensus_cycle_blocks(df: pd.DataFrame, latest_date: str) -> list[dict]:
+    blocks = []
+    for definition in CONSENSUS_CYCLE_DEFINITIONS:
+        start_index = _index_on_or_after(df, definition["start_date"])
+        if start_index is None:
+            continue
+        ongoing = definition["end_date"] is None or definition["end_date"] >= latest_date
+        end_index = len(df) - 1 if ongoing else _index_on_or_before(df, definition["end_date"])
+        if end_index is None or end_index < start_index:
+            continue
+
+        cycle = _cycle_summary(
+            df,
+            start_index,
+            end_index,
+            definition["state"],
+            df.iloc[start_index],
+            df.iloc[end_index],
+            ongoing=ongoing,
+        )
+        basis = (
+            "切分口径为市场主周期：参考公开复盘中反复出现的大低点/高点、政策转折和行情主线；"
+            "涨跌幅、持续时间和收盘价由本地上证指数数据计算。"
+        )
+        blocks.append(
             {
-                "as_of": str(row["trade_date"]),
-                "regime": row["cycle_state"],
+                **cycle,
+                "label": _cycle_label(cycle),
+                "short_label": _cycle_short_label(cycle),
+                "major": True,
+                "theme_title": definition["theme_title"],
+                "themes": definition["themes"],
+                "features": definition["features"],
+                "theme_basis": basis,
+            }
+        )
+    return blocks
+
+
+def _consensus_series(df: pd.DataFrame, blocks: list[dict]) -> list[dict]:
+    result = []
+    for _, row in df.iterrows():
+        trade_date = str(row["trade_date"])
+        block = _block_for_date(blocks, trade_date)
+        if block is None:
+            continue
+        result.append(
+            {
+                "as_of": trade_date,
+                "regime": block["state"],
                 "index": {
                     "close": round(float(row["close"]), 4),
                     "ma120": None if pd.isna(row["ma120"]) else round(float(row["ma120"]), 4),
                     "ma250": None if pd.isna(row["ma250"]) else round(float(row["ma250"]), 4),
                 },
             }
-            for _, row in df.dropna(subset=["cycle_state"]).iterrows()
-        ],
-    }
+        )
+    return result
+
+
+def _block_for_date(blocks: list[dict], trade_date: str) -> dict | None:
+    for block in blocks:
+        start = str(block["start_date"])
+        end = str(block["end_date"] or "99991231")
+        if start <= trade_date <= end:
+            return block
+    return None
+
+
+def _index_on_or_after(df: pd.DataFrame, trade_date: str) -> int | None:
+    dates = df["trade_date"].astype(str)
+    matches = dates[dates >= trade_date]
+    if matches.empty:
+        return None
+    return int(matches.index[0])
+
+
+def _index_on_or_before(df: pd.DataFrame, trade_date: str | None) -> int | None:
+    if trade_date is None:
+        return len(df) - 1
+    dates = df["trade_date"].astype(str)
+    matches = dates[dates <= trade_date]
+    if matches.empty:
+        return None
+    return int(matches.index[-1])
 
 
 def _cycle_block(cycle: dict) -> dict:
