@@ -138,6 +138,17 @@ function executionModeLabel(value) {
   return labels[value] || value || "--";
 }
 
+function boundaryLabel(value) {
+  const labels = {
+    no_stock_selection: "不选股",
+    no_trade_execution: "不执行交易",
+    no_real_orders: "无真实订单",
+    no_broker_connection: "无券商连接",
+    simulation_only: "仅模拟",
+  };
+  return labels[value] || value || "--";
+}
+
 function strategyLabel(value) {
   const labels = {
     trend: "趋势",
@@ -172,6 +183,7 @@ function setResultsPanel(results) {
   const portfolio = (results.portfolio || {}).allocation || {};
   const route = (results.strategy_route || {}).route || {};
   const execution = (results.execution || {}).simulation || {};
+  const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
   const validation = results.model_validation || {};
@@ -282,6 +294,27 @@ function setResultsPanel(results) {
     execution.constraints?.no_real_orders
       ? "R3.1 只生成执行意图和模拟指令，不连接券商，不产生真实订单。"
       : "执行约束需要检查。"
+  );
+
+  setText("systemStatus", system.status === "stable" ? "稳定" : "需复核");
+  setText("systemLayers", integerText(system.layers));
+  setText("systemExecutionMode", system.execution_mode === "simulation" ? "模拟层" : system.execution_mode || "--");
+  setText("systemPolicyLocked", system.policy_locked ? "已锁定" : "未锁定");
+  document.getElementById("systemBoundaryList").innerHTML = Object.entries(system.boundaries || {})
+    .map(
+      ([key, passed]) => `
+        <div class="boundary-row">
+          <span>${boundaryLabel(key)}</span>
+          <strong>${passed ? "通过" : "需检查"}</strong>
+        </div>
+      `
+    )
+    .join("");
+  setText(
+    "systemConclusion",
+    system.status === "stable"
+      ? "FINAL 已冻结为 5 层机构级决策模拟系统，所有边界保持只读与模拟。"
+      : "系统冻结条件未完全满足，请运行完整性检查。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

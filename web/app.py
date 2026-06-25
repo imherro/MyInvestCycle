@@ -246,6 +246,48 @@ def _current_portfolio_snapshot() -> dict[str, object]:
     }
 
 
+def _system_snapshot_payload(snapshot: dict[str, object]) -> dict[str, object]:
+    portfolio = snapshot["portfolio_allocation"]
+    strategy_route = snapshot["strategy_route"]
+    execution = snapshot["execution"]
+    boundaries = {
+        "no_stock_selection": portfolio["constraints"]["no_stock_selection"] is True,
+        "no_trade_execution": strategy_route["constraints"]["no_trade_execution"] is True,
+        "no_real_orders": execution["constraints"]["no_real_orders"] is True,
+        "no_broker_connection": execution["constraints"]["no_broker_connection"] is True,
+        "simulation_only": execution["constraints"]["simulated_only"] is True,
+    }
+    policy_locked = (ROOT_DIR / "rules" / "LOCKED_POLICY.md").exists()
+    freeze_doc_present = (ROOT_DIR / "docs" / "system_architecture_freeze.md").exists()
+    decision_trace_present = (ROOT_DIR / "logs" / "decision_trace.json").exists()
+    stable = all(boundaries.values()) and policy_locked and freeze_doc_present and decision_trace_present
+    return {
+        "status": "stable" if stable else "review_required",
+        "as_of": snapshot["current"]["as_of"],
+        "layers": 5,
+        "execution_mode": "simulation",
+        "risk_engine": "active",
+        "policy_locked": policy_locked,
+        "freeze_doc_present": freeze_doc_present,
+        "decision_trace_present": decision_trace_present,
+        "boundaries": boundaries,
+        "current": {
+            "regime": snapshot["risk_signal"]["regime"],
+            "risk_level": snapshot["risk_decision"]["risk_level"],
+            "total_exposure": portfolio["total_exposure"],
+            "enabled_strategies": strategy_route["enabled_strategies"],
+            "execution_mode": execution["strategy_mode"],
+            "simulated_order_count": execution["constraints"]["order_count"],
+        },
+        "artifacts": {
+            "architecture_freeze": "docs/system_architecture_freeze.md",
+            "decision_trace": "logs/decision_trace.json",
+            "policy_lock": "rules/LOCKED_POLICY.md",
+            "integrity_check": "scripts/system_integrity_check.py",
+        },
+    }
+
+
 @app.get("/api/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
@@ -353,6 +395,17 @@ def execution_current() -> dict:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
 
+@app.get("/api/system/snapshot")
+def system_snapshot() -> dict:
+    try:
+        snapshot = _current_portfolio_snapshot()
+        return _system_snapshot_payload(snapshot)
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
 @app.get("/api/results/summary")
 def results_summary() -> dict:
     try:
@@ -367,6 +420,7 @@ def results_summary() -> dict:
         strategy_route = snapshot["strategy_route"]
         execution_policy = snapshot["execution_policy"]
         execution = snapshot["execution"]
+        system_snapshot_payload = _system_snapshot_payload(snapshot)
 
         hazard_rows = _read_data_json("hazard_dataset.json") or []
         structural_hazard_rows = _read_data_json("structural_hazard_dataset.json") or []
@@ -399,6 +453,7 @@ def results_summary() -> dict:
                 "simulation": execution,
                 "policy": _execution_policy_summary(execution_policy),
             },
+            "system": system_snapshot_payload,
             "hazard": {
                 "raw": {
                     **hazard_raw,
@@ -425,6 +480,7 @@ def results_summary() -> dict:
                 "sensitivity": (model_sensitivity or {}).get("summary", {}),
             },
             "conclusions": [
+                "FINAL 已冻结系统边界：5 层决策链稳定，策略已锁定，执行层保持 simulation-only。",
                 "R3.1 已把策略路由转成执行意图和模拟指令，但不连接券商、不生成真实订单。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",
                 "R2.1 已把风险引擎输出落到组合层，页面展示总仓位、现金比例和策略资金分配。",

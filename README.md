@@ -23,6 +23,9 @@ engine foundation requested by the design review.
   strategies, disabled reasons, and strategy budgets; no trade execution is done.
 - R3.1 execution simulation layer converts strategy routing into execution
   intent and simulated orders; no broker connection or real order is created.
+- FINAL system boundary freeze locks the five-layer decision simulation pipeline
+  with architecture documentation, policy lock, decision trace, integrity check,
+  and a final system snapshot API.
 - Long-term bull/bear blocks use market-consensus major turning points and
   narrative themes; MA120/MA250 are retained as observation overlays rather than
   the segmentation trigger.
@@ -84,6 +87,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/portfolio/current`
 - `GET http://127.0.0.1:8021/api/strategy/current`
 - `GET http://127.0.0.1:8021/api/execution/current`
+- `GET http://127.0.0.1:8021/api/system/snapshot`
 - `GET http://127.0.0.1:8021/api/results/summary`
 
 Validation scripts:
@@ -307,4 +311,18 @@ The execution simulator consumes the R2.2 strategy route and returns:
 execution_intent
 simulated_orders
 constraints
+```
+
+Run the FINAL system integrity check:
+
+```powershell
+python scripts/system_integrity_check.py --date 20260624 --cache-only
+```
+
+Frozen audit artifacts:
+
+```text
+docs/system_architecture_freeze.md
+logs/decision_trace.json
+rules/LOCKED_POLICY.md
 ```

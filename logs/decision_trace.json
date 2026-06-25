@@ -1,0 +1,70 @@
+{
+  "status": "stable",
+  "generated_at": "2026-06-25",
+  "as_of": "20260625",
+  "pipeline": {
+    "regime_input": {
+      "regime": "range",
+      "confidence": 0.78,
+      "trend": 0.49,
+      "breadth": 0.35,
+      "liquidity": 0.77,
+      "volatility": 0.68,
+      "regime_score": 0.53
+    },
+    "risk_output": {
+      "risk_score": 0.4365,
+      "risk_level": "medium",
+      "recommended_exposure": 0.28175,
+      "action": "reduce",
+      "alert": "risk within policy band"
+    },
+    "portfolio_decision": {
+      "total_exposure": 0.3381,
+      "cash_ratio": 0.6619,
+      "strategy_allocation": {
+        "mean_reversion": 0.8,
+        "trend": 0.2
+      }
+    },
+    "strategy_routing": {
+      "enabled_strategies": ["mean_reversion", "trend"],
+      "disabled_strategies": ["breakout"],
+      "strategy_budget": {
+        "mean_reversion": 0.817204,
+        "trend": 0.182796
+      },
+      "disabled_reason": {
+        "breakout": "range regime"
+      }
+    },
+    "execution_simulation": {
+      "execution_mode": "rebalance_strategy",
+      "allowed_actions": ["rebalance_strategy", "trim_overweight"],
+      "forbidden_actions": ["open_new_position", "increase_leverage"],
+      "simulated_orders": [
+        {
+          "action": "rebalance_strategy",
+          "asset_class": "strategy_budget",
+          "strategy": "mean_reversion",
+          "target_weight": 0.276297,
+          "simulated": true
+        },
+        {
+          "action": "rebalance_strategy",
+          "asset_class": "strategy_budget",
+          "strategy": "trend",
+          "target_weight": 0.061803,
+          "simulated": true
+        }
+      ]
+    }
+  },
+  "audit": {
+    "no_stock_selection": true,
+    "no_trade_execution": true,
+    "no_real_orders": true,
+    "no_broker_connection": true,
+    "web_display_required": true
+  }
+}

@@ -11,8 +11,8 @@ bull:
 range:
   execution_mode: rebalance_strategy
   reference_exposure: 0.60
-  allow: [rebalance_strategy, trim_overweight, open_new_position]
-  forbid: [increase_leverage]
+  allow: [rebalance_strategy, trim_overweight]
+  forbid: [open_new_position, increase_leverage]
 
 bear:
   execution_mode: defensive_only

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260625-r31-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260625-final-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -176,6 +176,33 @@
           <p class="result-note" id="executionConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel system-freeze-panel">
+          <div class="panel-heading">
+            <h2>系统冻结</h2>
+            <span class="panel-kicker">FINAL</span>
+          </div>
+          <div class="system-headline">
+            <div>
+              <span>状态</span>
+              <strong id="systemStatus">--</strong>
+            </div>
+            <div>
+              <span>层数</span>
+              <strong id="systemLayers">--</strong>
+            </div>
+          </div>
+          <div class="result-row">
+            <span>执行边界</span>
+            <strong id="systemExecutionMode">--</strong>
+          </div>
+          <div class="result-row">
+            <span>策略锁定</span>
+            <strong id="systemPolicyLocked">--</strong>
+          </div>
+          <div class="boundary-list" id="systemBoundaryList"></div>
+          <p class="result-note" id="systemConclusion">--</p>
+        </article>
+
         <article class="chart-panel result-panel">
           <div class="panel-heading">
             <h2>结构事件标签</h2>
@@ -316,8 +343,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260625-r31-1"></script>
-    <script src="/static/dashboard.js?v=20260625-r31-1"></script>
+    <script src="/static/charts.js?v=20260625-final-1"></script>
+    <script src="/static/dashboard.js?v=20260625-final-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
