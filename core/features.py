@@ -82,6 +82,23 @@ def calc_breadth_proxy(
     return positive_ratio.fillna(0.5).clip(lower=0.0, upper=1.0)
 
 
+def normalize_all_scores(
+    df: pd.DataFrame,
+    specs: dict[str, tuple[float, float, bool]],
+) -> pd.DataFrame:
+    """Normalize columns to 0-1 using {column: (low, high, invert)} specs."""
+    result = df.copy()
+    for column, (low, high, invert) in specs.items():
+        if column not in result.columns:
+            raise KeyError(f"Missing column for normalization: {column}")
+        if high <= low:
+            raise ValueError(f"Invalid range for {column}: high must be greater than low")
+        normalized = (pd.to_numeric(result[column], errors="coerce") - low) / (high - low)
+        normalized = normalized.clip(lower=0.0, upper=1.0)
+        result[f"{column}_score"] = 1.0 - normalized if invert else normalized
+    return result
+
+
 def build_feature_frame(df: pd.DataFrame) -> pd.DataFrame:
     result = df.copy()
     result["ma20"] = calc_ma(result, 20)

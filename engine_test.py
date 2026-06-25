@@ -7,7 +7,9 @@ import numpy as np
 import pandas as pd
 
 from config import DEFAULT_INDEX_CODE
+from core.breadth import get_market_daily
 from core.data_loader import get_index_daily
+from core.liquidity import get_moneyflow_hsgt
 from engine.market_engine import analyze_index_regime
 
 
@@ -42,6 +44,46 @@ def build_sample_index_daily(rows: int = 180) -> pd.DataFrame:
     )
 
 
+def build_sample_market_daily(trade_date: str = "20260624", rows: int = 500) -> pd.DataFrame:
+    idx = np.arange(rows)
+    pct_chg = np.sin(idx / 8.0) * 1.8 + 0.45
+    pct_chg[idx % 37 == 0] = 9.8
+    close = 10 + idx * 0.01 + pct_chg * 0.05
+    high = close * (1 + np.maximum(pct_chg, 0) / 1000)
+
+    return pd.DataFrame(
+        {
+            "ts_code": [f"{i:06d}.SZ" for i in range(rows)],
+            "trade_date": trade_date,
+            "open": close * 0.995,
+            "high": high,
+            "low": close * 0.990,
+            "close": close,
+            "pre_close": close / (1 + pct_chg / 100),
+            "change": close - close / (1 + pct_chg / 100),
+            "pct_chg": pct_chg,
+            "vol": 1000 + idx,
+            "amount": 10000 + idx * 10,
+        }
+    )
+
+
+def build_sample_hsgt(trade_dates: pd.Series) -> pd.DataFrame:
+    dates = pd.Series(trade_dates).tail(20).reset_index(drop=True)
+    step = np.arange(len(dates))
+    return pd.DataFrame(
+        {
+            "trade_date": dates,
+            "ggt_ss": 0.0,
+            "ggt_sz": 0.0,
+            "hgt": 0.0,
+            "sgt": 0.0,
+            "north_money": 25 + step * 2.5,
+            "south_money": 0.0,
+        }
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run the Task 1 regime engine smoke test.")
     parser.add_argument("--live", action="store_true", help="Fetch live Tushare index data before analysis.")
@@ -52,23 +94,36 @@ def main() -> None:
 
     if args.live:
         df = get_index_daily(args.ts_code, args.start_date, args.end_date)
+        if df.empty:
+            raise RuntimeError("No live index rows returned from Tushare.")
+        market_daily = get_market_daily(str(df["trade_date"].iloc[-1]))
+        hsgt = get_moneyflow_hsgt(str(df["trade_date"].iloc[-30]), str(df["trade_date"].iloc[-1]))
         source = "tushare"
     else:
         df = build_sample_index_daily()
+        market_daily = build_sample_market_daily(str(df["trade_date"].iloc[-1]))
+        hsgt = build_sample_hsgt(df["trade_date"])
         source = "sample"
 
-    result = analyze_index_regime(df)
+    result = analyze_index_regime(df, market_daily_df=market_daily, hsgt_df=hsgt)
     print(f"source: {source}")
     print(f"as_of: {result['as_of']}")
     print(f"regime: {result['regime']}")
+    print(f"confidence: {result['confidence']:.2f}")
     print(f"trend_score: {result['trend_score']:.2f}")
+    print(f"breadth_score: {result['breadth_score']:.2f}")
+    print(f"liquidity_score: {result['liquidity_score']:.2f}")
     print(f"volatility_score: {result['volatility_score']:.2f}")
-    print(f"mock_breadth_score: {result['mock_breadth_score']:.2f}")
+    print(f"regime_score: {result['regime_score']:.2f}")
 
     assert result["regime"] in {"bull", "bear", "range", "transition"}
+    assert 0.0 <= result["confidence"] <= 1.0
     assert 0.0 <= result["trend_score"] <= 1.0
+    assert 0.0 <= result["breadth_score"] <= 1.0
+    assert 0.0 <= result["liquidity_score"] <= 1.0
     assert 0.0 <= result["volatility_score"] <= 1.0
-    assert 0.0 <= result["mock_breadth_score"] <= 1.0
+    assert all(not key.endswith("_breadth_score") for key in result)
+    assert result["liquidity_score"] > 0.0
 
 
 if __name__ == "__main__":

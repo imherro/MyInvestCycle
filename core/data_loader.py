@@ -115,7 +115,7 @@ def _combine_frames(frames: Iterable[pd.DataFrame]) -> pd.DataFrame:
     return _coerce_index_daily(pd.concat(valid_frames, ignore_index=True))
 
 
-def _tushare_pro(token: str | None = None):
+def get_tushare_pro(token: str | None = None):
     resolved_token = token or TUSHARE_TOKEN
     if not resolved_token:
         raise RuntimeError("TUSHARE_TOKEN is not configured. Add it to .env or the environment.")
@@ -142,7 +142,7 @@ def fetch_index_daily(
     if start > end:
         raise ValueError("start_date must be earlier than or equal to end_date.")
 
-    pro = _tushare_pro(token)
+    pro = get_tushare_pro(token)
     raw = pro.index_daily(ts_code=ts_code, start_date=start, end_date=end)
     return _coerce_index_daily(raw)
 

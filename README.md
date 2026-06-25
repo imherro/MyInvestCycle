@@ -7,12 +7,13 @@ engine foundation requested by the design review.
 
 - Tushare index daily loader with local CSV cache.
 - Reusable feature functions for moving averages, slope, volatility, drawdown,
-  and placeholder breadth.
-- Basic market regime engine returning `bull`, `bear`, `range`, or
-  `transition`.
+  and score normalization.
+- Real market breadth scoring from all-stock daily distribution.
+- Liquidity scoring from index turnover expansion and optional northbound flow.
+- Market regime engine returning `regime`, `confidence`, and four sub-scores.
 - Reserved Web port: `8021`.
 
-Task 1 intentionally does not include a Web UI or charts.
+Current tasks intentionally do not include a Web UI or charts.
 
 ## Run
 
@@ -26,6 +27,18 @@ Live Tushare test, using `TUSHARE_TOKEN` from `.env`:
 
 ```powershell
 python engine_test.py --live --ts-code 000001.SH --start-date 20240101
+```
+
+Expected output fields:
+
+```text
+regime
+confidence
+trend_score
+breadth_score
+liquidity_score
+volatility_score
+regime_score
 ```
 
 Update local cache only:
