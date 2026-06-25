@@ -164,7 +164,7 @@ function cycleBlockHtml(block) {
 
 function setCycleBlocks(blocks) {
   const target = document.getElementById("cycleBlocks");
-  const majorBlocks = (blocks || []).filter((block) => block.major);
+  const majorBlocks = (blocks || []).filter((block) => block.major).reverse();
   if (!majorBlocks.length) {
     target.innerHTML = '<div class="cycle-blocks-empty">暂无足够长的周期切块。</div>';
     return;
