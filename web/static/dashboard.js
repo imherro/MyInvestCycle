@@ -150,6 +150,35 @@ function boundaryLabel(value) {
   return labels[value] || value || "--";
 }
 
+function metaEdgeLevelLabel(value) {
+  const labels = {
+    quiet: "平静",
+    low: "轻微矛盾",
+    medium: "矛盾升温",
+    high: "高矛盾",
+  };
+  return labels[value] || value || "--";
+}
+
+function metaSignalLabel(value) {
+  const labels = {
+    regime_risk_divergence: "状态-风险分歧",
+    hazard_mismatch: "结构风险加速",
+    portfolio_gap: "组合-策略错位",
+    regime_age: "周期年龄异常",
+  };
+  return labels[value] || value || "--";
+}
+
+function metaEdgeInterpretationText(metaEdge) {
+  const level = metaEdge.meta_edge_level;
+  const activeSignals = metaEdge.signals || [];
+  if (level === "high") return "系统内部矛盾较高，多层输出正在相互冲突";
+  if (level === "medium") return "系统内部矛盾正在升温，提高风险前应先复核触发信号";
+  if (activeSignals.length) return "存在局部系统矛盾，但还不是主导信号";
+  return "系统各层整体一致，当前没有显著 Meta Edge 信号";
+}
+
 function strategyLabel(value) {
   const labels = {
     trend: "趋势",
@@ -226,6 +255,7 @@ function setResultsPanel(results) {
   const portfolio = (results.portfolio || {}).allocation || {};
   const route = (results.strategy_route || {}).route || {};
   const execution = (results.execution || {}).simulation || {};
+  const metaEdge = results.meta_edge || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -358,6 +388,33 @@ function setResultsPanel(results) {
     system.status === "stable"
       ? "FINAL 已冻结为 5 层机构级决策模拟系统，所有边界保持只读与模拟。"
       : "系统冻结条件未完全满足，请运行完整性检查。"
+  );
+
+  const activeMetaSignals = metaEdge.signals || [];
+  const metaSignalStrengths = metaEdge.signal_strengths || {};
+  setText("metaEdgeScore", percentText(metaEdge.meta_edge_score));
+  setText("metaEdgeLevel", metaEdgeLevelLabel(metaEdge.meta_edge_level));
+  document.getElementById("metaEdgeLevel").className = `meta-edge-level meta-${metaEdge.meta_edge_level || "quiet"}`;
+  setText("metaEdgeActiveCount", activeMetaSignals.length ? `${integerText(activeMetaSignals.length)} 个` : "无触发");
+  document.getElementById("metaEdgeSignalList").innerHTML = activeMetaSignals.length
+    ? activeMetaSignals.map((signal) => `<span>${metaSignalLabel(signal)}</span>`).join("")
+    : "<em>当前无显著矛盾信号</em>";
+  document.getElementById("metaEdgeStrengthList").innerHTML = Object.entries(metaSignalStrengths)
+    .map(
+      ([signal, strength]) => `
+        <div class="meta-strength-row">
+          <span>${metaSignalLabel(signal)}</span>
+          <strong>${percentText(strength)}</strong>
+          <i style="width:${typeof strength === "number" ? Math.round(strength * 100) : 0}%"></i>
+        </div>
+      `
+    )
+    .join("");
+  setText(
+    "metaEdgeConclusion",
+    metaEdge.meta_edge_level
+      ? `${metaEdgeInterpretationText(metaEdge)}；该层只检测系统内部矛盾，不预测收益、不选股、不下单。`
+      : "M1.1 只检测系统内部矛盾，不改变既有风控链路。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

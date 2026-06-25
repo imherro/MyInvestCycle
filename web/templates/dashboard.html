@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260625-confidence-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260625-meta-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -203,6 +203,30 @@
           <p class="result-note" id="systemConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel meta-edge-panel">
+          <div class="panel-heading">
+            <h2>Meta Edge</h2>
+            <span class="panel-kicker">M1.1</span>
+          </div>
+          <div class="meta-edge-headline">
+            <div>
+              <span>矛盾强度</span>
+              <strong id="metaEdgeScore">--</strong>
+            </div>
+            <div>
+              <span>等级</span>
+              <strong id="metaEdgeLevel">--</strong>
+            </div>
+          </div>
+          <div class="result-row">
+            <span>触发信号</span>
+            <strong id="metaEdgeActiveCount">--</strong>
+          </div>
+          <div class="meta-signal-list" id="metaEdgeSignalList"></div>
+          <div class="meta-strength-list" id="metaEdgeStrengthList"></div>
+          <p class="result-note" id="metaEdgeConclusion">--</p>
+        </article>
+
         <article class="chart-panel result-panel">
           <div class="panel-heading">
             <h2>结构事件标签</h2>
@@ -373,8 +397,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260625-confidence-1"></script>
-    <script src="/static/dashboard.js?v=20260625-confidence-1"></script>
+    <script src="/static/charts.js?v=20260625-meta-1"></script>
+    <script src="/static/dashboard.js?v=20260625-meta-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

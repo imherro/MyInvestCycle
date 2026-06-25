@@ -26,6 +26,7 @@ from core.liquidity import get_moneyflow_hsgt
 from core.capital_controller import load_portfolio_policy
 from core.execution_policy import load_execution_policy
 from core.execution_simulator import simulate_execution_layer
+from core.meta_signal_engine import build_meta_edge_signal, load_meta_edge_rules
 from core.portfolio_allocator import build_portfolio_allocation
 from core.regime_adapter import adapt_regime_payload
 from core.risk_score_engine import load_risk_policy
@@ -288,6 +289,18 @@ def _system_snapshot_payload(snapshot: dict[str, object]) -> dict[str, object]:
     }
 
 
+def _meta_edge_payload(snapshot: dict[str, object]) -> dict[str, object]:
+    return build_meta_edge_signal(
+        regime_signal=snapshot["risk_signal"],
+        risk_decision=snapshot["risk_decision"],
+        portfolio=snapshot["portfolio_allocation"],
+        strategy_route=snapshot["strategy_route"],
+        hazard_rows=_read_data_json("structural_hazard_dataset.json") or [],
+        survival_rows=_read_data_json("structural_survival_dataset.json") or [],
+        rules=load_meta_edge_rules(),
+    )
+
+
 def _api_endpoint(
     method: str,
     path: str,
@@ -359,6 +372,13 @@ def _api_catalog_payload() -> dict[str, object]:
             ],
         },
         {
+            "name": "Small Edge Meta Signal",
+            "description": "检测风控、组合、策略和结构风险之间的内部矛盾，不预测收益、不选股。",
+            "endpoints": [
+                _api_endpoint("GET", "/api/meta-edge/current", "当前 Meta Signal Engine v1 快照。", "meta edge signal"),
+            ],
+        },
+        {
             "name": "系统成果总览",
             "description": "系统冻结状态、完整成果和研究验证摘要。",
             "endpoints": [
@@ -386,6 +406,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/system/snapshot", "description": "读取系统冻结边界与稳定状态。"},
             {"path": "/api/regime/current", "description": "读取当前牛熊状态与四维评分。"},
             {"path": "/api/regime/cycle/track", "description": "读取本轮周期位置和概率展望。"},
+            {"path": "/api/meta-edge/current", "description": "读取系统内部矛盾信号。"},
         ],
         "safety": {
             "read_only": True,
@@ -512,6 +533,17 @@ def execution_current() -> dict:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
 
+@app.get("/api/meta-edge/current")
+def meta_edge_current() -> dict:
+    try:
+        snapshot = _current_portfolio_snapshot()
+        return _meta_edge_payload(snapshot)
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
 @app.get("/api/system/snapshot")
 def system_snapshot() -> dict:
     try:
@@ -538,6 +570,7 @@ def results_summary() -> dict:
         execution_policy = snapshot["execution_policy"]
         execution = snapshot["execution"]
         system_snapshot_payload = _system_snapshot_payload(snapshot)
+        meta_edge = _meta_edge_payload(snapshot)
 
         hazard_rows = _read_data_json("hazard_dataset.json") or []
         structural_hazard_rows = _read_data_json("structural_hazard_dataset.json") or []
@@ -570,6 +603,7 @@ def results_summary() -> dict:
                 "simulation": execution,
                 "policy": _execution_policy_summary(execution_policy),
             },
+            "meta_edge": meta_edge,
             "system": system_snapshot_payload,
             "hazard": {
                 "raw": {
@@ -599,6 +633,7 @@ def results_summary() -> dict:
             "conclusions": [
                 "FINAL 已冻结系统边界：5 层决策链稳定，策略已锁定，执行层保持 simulation-only。",
                 "R3.1 已把策略路由转成执行意图和模拟指令，但不连接券商、不生成真实订单。",
+                "M1.1 已新增 Meta Signal Engine，只检测系统内部矛盾信号，不预测收益、不选股、不改变既有风控链路。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",
                 "R2.1 已把风险引擎输出落到组合层，页面展示总仓位、现金比例和策略资金分配。",
                 "结构化事件标签把原始频繁跳变压缩为更接近主周期切换的样本，适合做风险观察而不是短线交易信号。",

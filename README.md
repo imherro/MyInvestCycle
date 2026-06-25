@@ -27,6 +27,9 @@ engine foundation requested by the design review.
   strategies, disabled reasons, and strategy budgets; no trade execution is done.
 - R3.1 execution simulation layer converts strategy routing into execution
   intent and simulated orders; no broker connection or real order is created.
+- M1.1 Meta Signal Engine detects internal contradictions between regime, risk,
+  hazard, portfolio, and strategy layers; it does not predict returns, select
+  stocks, or execute trades.
 - FINAL system boundary freeze locks the five-layer decision simulation pipeline
   with architecture documentation, policy lock, decision trace, integrity check,
   and a final system snapshot API.
@@ -95,6 +98,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/portfolio/current`
 - `GET http://127.0.0.1:8021/api/strategy/current`
 - `GET http://127.0.0.1:8021/api/execution/current`
+- `GET http://127.0.0.1:8021/api/meta-edge/current`
 - `GET http://127.0.0.1:8021/api/system/snapshot`
 - `GET http://127.0.0.1:8021/api/results/summary`
 
@@ -319,6 +323,29 @@ The execution simulator consumes the R2.2 strategy route and returns:
 execution_intent
 simulated_orders
 constraints
+```
+
+Run the M1.1 Meta Signal Engine:
+
+```powershell
+python scripts/run_meta_edge_snapshot.py --date 20260624 --cache-only
+```
+
+Rules are stored in:
+
+```text
+rules/meta_edge_rules.yaml
+```
+
+The meta engine consumes existing regime, risk, portfolio, strategy, and hazard
+outputs and returns:
+
+```text
+meta_edge_score
+signals
+signal_strengths
+signal_details
+interpretation
 ```
 
 Run the FINAL system integrity check:
