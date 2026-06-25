@@ -95,11 +95,11 @@ h2 {
 
 .cycle-panel {
   display: grid;
-  grid-template-columns: minmax(220px, 0.75fr) minmax(420px, 1.35fr);
-  align-items: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
   align-self: start;
-  gap: 18px;
-  padding: 16px 18px;
+  overflow: hidden;
+  padding: 0;
 }
 
 .cycle-score-row {
@@ -118,20 +118,28 @@ h2 {
   text-transform: uppercase;
 }
 
-.cycle-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+.cycle-cell {
+  min-width: 0;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
 }
 
-.cycle-grid span {
+.cycle-cell:nth-child(odd) {
+  border-right: 1px solid var(--line);
+}
+
+.cycle-cell:nth-child(n + 3) {
+  border-bottom: 0;
+}
+
+.cycle-cell span {
   display: block;
   color: var(--muted);
   font-size: 12px;
   font-weight: 700;
 }
 
-.cycle-grid strong {
+.cycle-cell strong {
   display: block;
   margin-top: 7px;
   font-size: 18px;
@@ -573,8 +581,17 @@ h2 {
     font-size: 34px;
   }
 
-  .cycle-grid {
-    grid-template-columns: 1fr;
+  .cycle-cell,
+  .cycle-cell:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .cycle-cell:nth-child(n + 3) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cycle-cell:last-child {
+    border-bottom: 0;
   }
 
   .cycle-score-row {
