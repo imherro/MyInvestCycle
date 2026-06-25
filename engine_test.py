@@ -9,8 +9,10 @@ import pandas as pd
 from config import DEFAULT_INDEX_CODE
 from core.breadth import get_market_daily, get_market_history_sample
 from core.data_loader import get_index_daily
+from core.exposure_controller import build_exposure_decision
 from core.liquidity import get_moneyflow_hsgt
 from core.regime_adapter import adapt_regime_payload, validate_risk_signal
+from core.risk_score_engine import load_risk_policy, score_risk_signal
 from engine.market_engine import analyze_index_regime
 from engine.regime_duration_builder import build_survival_dataset, validate_survival_dataset
 from engine.regime_hazard_labeler import build_hazard_dataset, hazard_label_distribution, validate_hazard_dataset
@@ -156,6 +158,13 @@ def main() -> None:
     assert risk_signal["trend"] == result["trend_score"]
     assert risk_signal["breadth"] == result["breadth_score"]
     assert "recommended_exposure" not in risk_signal
+
+    policy = load_risk_policy()
+    scored_signal = score_risk_signal(risk_signal, policy=policy)
+    assert 0.0 <= scored_signal["risk_score"] <= 1.0
+    decision = build_exposure_decision(risk_signal, policy=policy)
+    assert 0.0 <= decision["recommended_exposure"] <= 1.0
+    assert decision["strategy_mode"]
 
     hazard_samples = build_hazard_dataset(
         [

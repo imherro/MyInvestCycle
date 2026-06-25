@@ -214,3 +214,15 @@ python scripts/test_risk_adapter.py --date 20260624 --cache-only
 
 Adapter output is a normalized risk input signal only; it does not score risk,
 choose a strategy, or recommend exposure.
+
+Run the R1.2 risk scoring and exposure engine:
+
+```powershell
+python scripts/test_risk_engine.py --date 20260624 --cache-only
+```
+
+Policy is stored in:
+
+```text
+rules/risk_policy.yaml
+```
