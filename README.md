@@ -193,3 +193,15 @@ Default output:
 ```text
 data/survival_dataset.json
 ```
+
+Build the H2.1.1 structural regime survival dataset:
+
+```powershell
+python scripts/build_structural_survival_dataset.py --start 20200101 --end 20260624 --cache-only
+```
+
+Default output:
+
+```text
+data/structural_survival_dataset.json
+```

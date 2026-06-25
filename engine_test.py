@@ -14,6 +14,10 @@ from engine.market_engine import analyze_index_regime
 from engine.regime_duration_builder import build_survival_dataset, validate_survival_dataset
 from engine.regime_hazard_labeler import build_hazard_dataset, hazard_label_distribution, validate_hazard_dataset
 from engine.regime_hazard_labeler_v2 import build_structural_hazard_dataset, validate_structural_hazard_dataset
+from engine.structural_survival_builder import (
+    build_structural_survival_dataset,
+    validate_structural_survival_dataset,
+)
 
 
 def build_sample_index_daily(rows: int = 180) -> pd.DataFrame:
@@ -249,6 +253,35 @@ def main() -> None:
     assert [sample["duration"] for sample in survival_samples] == [1, 2]
     assert [sample["event"] for sample in survival_samples] == [0, 1]
     assert survival_samples[1]["features"]["regime_age"] == 2
+
+    structural_survival_input = []
+    structural_survival_regimes = ["range", "range", "bull", "bull", "bull", "bear", "bear"]
+    for offset, regime in enumerate(structural_survival_regimes, start=1):
+        structural_survival_input.append(
+            {
+                "trade_date": f"2026020{offset}",
+                "regime": regime,
+                "trend_score": 0.40 + offset * 0.02,
+                "breadth_score": 0.50,
+                "liquidity_score": 0.55,
+                "volatility_score": 0.70,
+                "regime_score": 0.52,
+                "confidence": 0.60,
+            }
+        )
+    structural_survival_samples = build_structural_survival_dataset(
+        structural_survival_input,
+        smooth_radius=0,
+        persistence_days=2,
+        min_break_gap=0,
+    )
+    validate_structural_survival_dataset(
+        structural_survival_samples,
+        max_event_rate=0.50,
+        min_bull_duration=2,
+    )
+    assert [sample["duration"] for sample in structural_survival_samples] == [1, 2, 1, 2, 3, 1]
+    assert [sample["event"] for sample in structural_survival_samples] == [0, 1, 0, 0, 1, 0]
 
 
 if __name__ == "__main__":
