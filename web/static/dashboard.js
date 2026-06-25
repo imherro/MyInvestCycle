@@ -147,6 +147,7 @@ function setResultsPanel(results) {
   const risk = results.risk || {};
   const decision = risk.decision || {};
   const portfolio = (results.portfolio || {}).allocation || {};
+  const route = (results.strategy_route || {}).route || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
   const validation = results.model_validation || {};
@@ -201,6 +202,34 @@ function setResultsPanel(results) {
   setText(
     "portfolioConclusion",
     `R2.1 使用当前 ${regimeLabel(portfolio.regime)} 状态和风险评分 ${fixedText(portfolio.risk_score, 3)}，将风险资产仓位控制在 ${percentText(portfolio.total_exposure)}，其余保持现金。`
+  );
+
+  const enabledStrategies = route.enabled_strategies || [];
+  const disabledStrategies = route.disabled_strategies || [];
+  setText("routeEnabledCount", integerText(enabledStrategies.length));
+  setText("routeDisabledCount", integerText(disabledStrategies.length));
+  document.getElementById("routeEnabledList").innerHTML = enabledStrategies.length
+    ? enabledStrategies.map((strategy) => `<span>${strategyLabel(strategy)}</span>`).join("")
+    : "<em>无启用策略</em>";
+  document.getElementById("routeBudgetList").innerHTML = Object.entries(route.strategy_budget || {})
+    .map(
+      ([strategy, weight]) => `
+        <div class="allocation-row route-budget-row">
+          <span>${strategyLabel(strategy)}</span>
+          <strong>${percentText(weight)}</strong>
+          <i style="width:${typeof weight === "number" ? Math.round(weight * 100) : 0}%"></i>
+        </div>
+      `
+    )
+    .join("");
+  setText("routeExecutionStatus", route.constraints?.no_trade_execution ? "仅约束，不执行" : "需检查");
+  const disabledReason = route.disabled_reason || {};
+  const disabledText = disabledStrategies.length
+    ? disabledStrategies.map((strategy) => `${strategyLabel(strategy)}: ${disabledReason[strategy] || "policy"}`).join("；")
+    : "无禁用策略";
+  setText(
+    "routeConclusion",
+    `R2.2 将组合资金路由到 ${enabledStrategies.map(strategyLabel).join("、") || "无"}；禁用原因：${disabledText}。`
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

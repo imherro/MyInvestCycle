@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260625-r21-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260625-r22-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -121,6 +121,30 @@
           </div>
           <div class="allocation-list" id="strategyAllocation"></div>
           <p class="result-note" id="portfolioConclusion">--</p>
+        </article>
+
+        <article class="chart-panel result-panel strategy-route-panel">
+          <div class="panel-heading">
+            <h2>策略路由</h2>
+            <span class="panel-kicker">R2.2</span>
+          </div>
+          <div class="route-summary">
+            <div>
+              <span>启用策略</span>
+              <strong id="routeEnabledCount">--</strong>
+            </div>
+            <div>
+              <span>禁用策略</span>
+              <strong id="routeDisabledCount">--</strong>
+            </div>
+          </div>
+          <div class="route-pill-list" id="routeEnabledList"></div>
+          <div class="route-budget-list" id="routeBudgetList"></div>
+          <div class="result-row">
+            <span>执行状态</span>
+            <strong id="routeExecutionStatus">--</strong>
+          </div>
+          <p class="result-note" id="routeConclusion">--</p>
         </article>
 
         <article class="chart-panel result-panel">
@@ -263,8 +287,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260625-r21-1"></script>
-    <script src="/static/dashboard.js?v=20260625-r21-1"></script>
+    <script src="/static/charts.js?v=20260625-r22-1"></script>
+    <script src="/static/dashboard.js?v=20260625-r22-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

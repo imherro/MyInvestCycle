@@ -19,6 +19,8 @@ engine foundation requested by the design review.
   through the full-results overview section.
 - R2.1 portfolio allocation engine maps risk-engine output into total exposure,
   cash ratio, and policy-driven strategy allocation; no stock selection is done.
+- R2.2 strategy routing layer converts portfolio allocation into enabled
+  strategies, disabled reasons, and strategy budgets; no trade execution is done.
 - Long-term bull/bear blocks use market-consensus major turning points and
   narrative themes; MA120/MA250 are retained as observation overlays rather than
   the segmentation trigger.
@@ -78,6 +80,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/regime/cycle`
 - `GET http://127.0.0.1:8021/api/regime/cycle/track`
 - `GET http://127.0.0.1:8021/api/portfolio/current`
+- `GET http://127.0.0.1:8021/api/strategy/current`
 - `GET http://127.0.0.1:8021/api/results/summary`
 
 Validation scripts:
@@ -259,4 +262,26 @@ total_exposure
 cash_ratio
 strategy_allocation
 strategy_capital_allocation
+```
+
+Run the R2.2 strategy routing layer:
+
+```powershell
+python scripts/test_strategy_router.py --date 20260624 --cache-only
+```
+
+Strategy policy is stored in:
+
+```text
+rules/strategy_policy.yaml
+```
+
+The strategy router consumes the R2.1 portfolio allocation and returns:
+
+```text
+enabled_strategies
+disabled_strategies
+strategy_budget
+strategy_capital_budget
+disabled_reason
 ```

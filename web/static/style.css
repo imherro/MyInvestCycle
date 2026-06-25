@@ -274,8 +274,17 @@ h2 {
   border-bottom: 1px solid var(--line);
 }
 
+.route-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 10px 0 14px;
+  border-bottom: 1px solid var(--line);
+}
+
 .risk-headline span,
 .portfolio-headline span,
+.route-summary span,
 .result-row span,
 .component-row span,
 .allocation-row span,
@@ -295,6 +304,13 @@ h2 {
 }
 
 .portfolio-headline strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.route-summary strong {
   display: block;
   margin-top: 8px;
   font-size: 28px;
@@ -347,6 +363,38 @@ h2 {
   margin-top: 14px;
 }
 
+.route-pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  min-height: 31px;
+  margin-top: 14px;
+}
+
+.route-pill-list span,
+.route-pill-list em {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 750;
+}
+
+.route-pill-list em {
+  color: var(--muted);
+}
+
+.route-budget-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
 .component-row {
   position: relative;
   display: grid;
@@ -385,6 +433,10 @@ h2 {
 
 .allocation-row i {
   background: var(--transition);
+}
+
+.route-budget-row i {
+  background: var(--bear);
 }
 
 .component-row::after,
@@ -825,6 +877,7 @@ h2 {
 
   .risk-headline,
   .portfolio-headline,
+  .route-summary,
   .conclusion-list {
     grid-template-columns: 1fr;
   }

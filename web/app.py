@@ -27,6 +27,8 @@ from core.capital_controller import load_portfolio_policy
 from core.portfolio_allocator import build_portfolio_allocation
 from core.regime_adapter import adapt_regime_payload
 from core.risk_score_engine import load_risk_policy
+from core.strategy_filter import load_strategy_policy
+from core.strategy_router import build_strategy_route
 from engine.cycle_detector import detect_current_cycle_track, detect_major_cycles
 from engine.market_engine import analyze_index_regime
 from engine.regime_explainer import explain_regime
@@ -163,6 +165,20 @@ def _portfolio_policy_summary(policy: dict[str, dict[str, object]]) -> dict[str,
     return {"regimes": regimes}
 
 
+def _strategy_policy_summary(policy: dict[str, dict[str, object]]) -> dict[str, object]:
+    regimes = {}
+    for regime in ("bull", "range", "bear", "transition"):
+        regime_policy = policy.get(regime, {})
+        regimes[regime] = {
+            "enabled": regime_policy.get("enabled", []),
+            "disabled": regime_policy.get("disabled", []),
+        }
+    return {
+        "risk": policy.get("risk", {}),
+        "regimes": regimes,
+    }
+
+
 def _current_regime_payload() -> dict:
     end_date = _today_text()
     start_date = _calendar_shift(end_date, -540)
@@ -195,6 +211,8 @@ def _current_portfolio_snapshot() -> dict[str, object]:
         {"input": risk_signal, "decision": exposure_decision},
         policy=portfolio_policy,
     )
+    strategy_policy = load_strategy_policy()
+    strategy_route = build_strategy_route(portfolio_allocation, policy=strategy_policy)
     return {
         "current": current,
         "risk_signal": risk_signal,
@@ -202,6 +220,8 @@ def _current_portfolio_snapshot() -> dict[str, object]:
         "risk_decision": exposure_decision,
         "portfolio_policy": portfolio_policy,
         "portfolio_allocation": portfolio_allocation,
+        "strategy_policy": strategy_policy,
+        "strategy_route": strategy_route,
     }
 
 
@@ -270,7 +290,24 @@ def portfolio_current() -> dict:
             "input": snapshot["risk_signal"],
             "risk_decision": snapshot["risk_decision"],
             "portfolio": snapshot["portfolio_allocation"],
+            "strategy_route": snapshot["strategy_route"],
             "policy": _portfolio_policy_summary(snapshot["portfolio_policy"]),
+        }
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
+@app.get("/api/strategy/current")
+def strategy_current() -> dict:
+    try:
+        snapshot = _current_portfolio_snapshot()
+        return {
+            "as_of": snapshot["current"]["as_of"],
+            "portfolio": snapshot["portfolio_allocation"],
+            "strategy_route": snapshot["strategy_route"],
+            "policy": _strategy_policy_summary(snapshot["strategy_policy"]),
         }
     except HTTPException:
         raise
@@ -288,6 +325,8 @@ def results_summary() -> dict:
         policy = snapshot["risk_policy"]
         portfolio_policy = snapshot["portfolio_policy"]
         portfolio_allocation = snapshot["portfolio_allocation"]
+        strategy_policy = snapshot["strategy_policy"]
+        strategy_route = snapshot["strategy_route"]
 
         hazard_rows = _read_data_json("hazard_dataset.json") or []
         structural_hazard_rows = _read_data_json("structural_hazard_dataset.json") or []
@@ -311,6 +350,10 @@ def results_summary() -> dict:
             "portfolio": {
                 "allocation": portfolio_allocation,
                 "policy": _portfolio_policy_summary(portfolio_policy),
+            },
+            "strategy_route": {
+                "route": strategy_route,
+                "policy": _strategy_policy_summary(strategy_policy),
             },
             "hazard": {
                 "raw": {
@@ -338,6 +381,7 @@ def results_summary() -> dict:
                 "sensitivity": (model_sensitivity or {}).get("summary", {}),
             },
             "conclusions": [
+                "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",
                 "R2.1 已把风险引擎输出落到组合层，页面展示总仓位、现金比例和策略资金分配。",
                 "结构化事件标签把原始频繁跳变压缩为更接近主周期切换的样本，适合做风险观察而不是短线交易信号。",
                 "默认结构化模型相对随机基准有正向识别力，但敏感性测试不稳定，不能直接解释为确定性预测。",
