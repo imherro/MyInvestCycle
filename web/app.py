@@ -19,6 +19,7 @@ from core.data_loader import get_index_daily, normalize_trade_date
 from core.features import build_feature_frame
 from core.liquidity import get_moneyflow_hsgt
 from engine.market_engine import analyze_index_regime
+from engine.regime_explainer import explain_regime
 
 
 app = FastAPI(title="MyInvestCycle Regime API", version="0.3")
@@ -103,6 +104,11 @@ def features_latest() -> dict:
         "volatility_score": payload["volatility_score"],
         "sub_scores": payload["sub_scores"],
     }
+
+
+@app.get("/api/regime/explain")
+def regime_explain() -> dict:
+    return explain_regime(regime_current())
 
 
 @app.get("/api/regime/history")
