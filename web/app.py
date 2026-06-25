@@ -23,6 +23,8 @@ from core.data_loader import get_index_daily, normalize_trade_date
 from core.exposure_controller import build_exposure_decision
 from core.features import build_feature_frame
 from core.liquidity import get_moneyflow_hsgt
+from core.capital_controller import load_portfolio_policy
+from core.portfolio_allocator import build_portfolio_allocation
 from core.regime_adapter import adapt_regime_payload
 from core.risk_score_engine import load_risk_policy
 from engine.cycle_detector import detect_current_cycle_track, detect_major_cycles
@@ -148,6 +150,19 @@ def _policy_summary(policy: dict[str, dict[str, object]]) -> dict[str, object]:
     return {"risk": policy.get("risk", {}), "regimes": regimes}
 
 
+def _portfolio_policy_summary(policy: dict[str, dict[str, object]]) -> dict[str, object]:
+    regimes = {}
+    for regime in ("bull", "range", "bear", "transition"):
+        regime_policy = policy.get(regime, {})
+        regimes[regime] = {
+            "base_exposure": regime_policy.get("base_exposure"),
+            "max_exposure": regime_policy.get("max_exposure"),
+            "min_cash": regime_policy.get("min_cash"),
+            "strategy_allocation": regime_policy.get("strategy_allocation", {}),
+        }
+    return {"regimes": regimes}
+
+
 def _current_regime_payload() -> dict:
     end_date = _today_text()
     start_date = _calendar_shift(end_date, -540)
@@ -168,6 +183,26 @@ def _current_regime_payload() -> dict:
         market_history_df=market_history,
         hsgt_df=hsgt,
     )
+
+
+def _current_portfolio_snapshot() -> dict[str, object]:
+    current = _current_regime_payload()
+    risk_signal = adapt_regime_payload(current)
+    risk_policy = load_risk_policy()
+    exposure_decision = build_exposure_decision(risk_signal, policy=risk_policy)
+    portfolio_policy = load_portfolio_policy()
+    portfolio_allocation = build_portfolio_allocation(
+        {"input": risk_signal, "decision": exposure_decision},
+        policy=portfolio_policy,
+    )
+    return {
+        "current": current,
+        "risk_signal": risk_signal,
+        "risk_policy": risk_policy,
+        "risk_decision": exposure_decision,
+        "portfolio_policy": portfolio_policy,
+        "portfolio_allocation": portfolio_allocation,
+    }
 
 
 @app.get("/api/health")
@@ -226,13 +261,33 @@ def regime_cycle_track() -> dict:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
 
+@app.get("/api/portfolio/current")
+def portfolio_current() -> dict:
+    try:
+        snapshot = _current_portfolio_snapshot()
+        return {
+            "as_of": snapshot["current"]["as_of"],
+            "input": snapshot["risk_signal"],
+            "risk_decision": snapshot["risk_decision"],
+            "portfolio": snapshot["portfolio_allocation"],
+            "policy": _portfolio_policy_summary(snapshot["portfolio_policy"]),
+        }
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
 @app.get("/api/results/summary")
 def results_summary() -> dict:
     try:
-        current = _current_regime_payload()
-        risk_signal = adapt_regime_payload(current)
-        exposure_decision = build_exposure_decision(risk_signal)
-        policy = load_risk_policy()
+        snapshot = _current_portfolio_snapshot()
+        current = snapshot["current"]
+        risk_signal = snapshot["risk_signal"]
+        exposure_decision = snapshot["risk_decision"]
+        policy = snapshot["risk_policy"]
+        portfolio_policy = snapshot["portfolio_policy"]
+        portfolio_allocation = snapshot["portfolio_allocation"]
 
         hazard_rows = _read_data_json("hazard_dataset.json") or []
         structural_hazard_rows = _read_data_json("structural_hazard_dataset.json") or []
@@ -252,6 +307,10 @@ def results_summary() -> dict:
                 "signal": risk_signal,
                 "decision": exposure_decision,
                 "policy": _policy_summary(policy),
+            },
+            "portfolio": {
+                "allocation": portfolio_allocation,
+                "policy": _portfolio_policy_summary(portfolio_policy),
             },
             "hazard": {
                 "raw": {
@@ -279,6 +338,7 @@ def results_summary() -> dict:
                 "sensitivity": (model_sensitivity or {}).get("summary", {}),
             },
             "conclusions": [
+                "R2.1 已把风险引擎输出落到组合层，页面展示总仓位、现金比例和策略资金分配。",
                 "结构化事件标签把原始频繁跳变压缩为更接近主周期切换的样本，适合做风险观察而不是短线交易信号。",
                 "默认结构化模型相对随机基准有正向识别力，但敏感性测试不稳定，不能直接解释为确定性预测。",
                 "波动单因子在默认切分中强于多因子逻辑模型，说明当前阶段的风险提示主要来自波动与市场宽度压力。",

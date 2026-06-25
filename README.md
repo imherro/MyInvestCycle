@@ -17,6 +17,8 @@ engine foundation requested by the design review.
   long-term cycle view, and historical cycle theme blocks.
 - Completed research and risk-control outputs are surfaced on the Web dashboard
   through the full-results overview section.
+- R2.1 portfolio allocation engine maps risk-engine output into total exposure,
+  cash ratio, and policy-driven strategy allocation; no stock selection is done.
 - Long-term bull/bear blocks use market-consensus major turning points and
   narrative themes; MA120/MA250 are retained as observation overlays rather than
   the segmentation trigger.
@@ -75,6 +77,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/regime/explain`
 - `GET http://127.0.0.1:8021/api/regime/cycle`
 - `GET http://127.0.0.1:8021/api/regime/cycle/track`
+- `GET http://127.0.0.1:8021/api/portfolio/current`
 - `GET http://127.0.0.1:8021/api/results/summary`
 
 Validation scripts:
@@ -235,4 +238,25 @@ Policy is stored in:
 
 ```text
 rules/risk_policy.yaml
+```
+
+Run the R2.1 portfolio allocation engine:
+
+```powershell
+python scripts/test_portfolio_allocator.py --date 20260624 --cache-only
+```
+
+Portfolio policy is stored in:
+
+```text
+rules/portfolio_policy.yaml
+```
+
+The portfolio allocator consumes the R1 risk decision and returns:
+
+```text
+total_exposure
+cash_ratio
+strategy_allocation
+strategy_capital_allocation
 ```

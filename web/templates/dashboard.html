@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260625-results-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260625-r21-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -98,6 +98,29 @@
             </div>
           </div>
           <div class="component-list" id="riskComponents"></div>
+        </article>
+
+        <article class="chart-panel result-panel portfolio-result-panel">
+          <div class="panel-heading">
+            <h2>组合配置</h2>
+            <span class="panel-kicker">R2.1</span>
+          </div>
+          <div class="portfolio-headline">
+            <div>
+              <span>总仓位</span>
+              <strong id="portfolioExposure">--</strong>
+            </div>
+            <div>
+              <span>现金比例</span>
+              <strong id="portfolioCash">--</strong>
+            </div>
+          </div>
+          <div class="result-row">
+            <span>约束状态</span>
+            <strong id="portfolioConstraint">--</strong>
+          </div>
+          <div class="allocation-list" id="strategyAllocation"></div>
+          <p class="result-note" id="portfolioConclusion">--</p>
         </article>
 
         <article class="chart-panel result-panel">
@@ -240,8 +263,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260625-results-1"></script>
-    <script src="/static/dashboard.js?v=20260625-results-1"></script>
+    <script src="/static/charts.js?v=20260625-r21-1"></script>
+    <script src="/static/dashboard.js?v=20260625-r21-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

@@ -117,6 +117,9 @@ function actionLabel(value) {
 
 function strategyLabel(value) {
   const labels = {
+    trend: "趋势",
+    breakout: "突破",
+    defensive: "防御",
     trend_following: "趋势跟随",
     mean_reversion: "均值回归",
     defensive_cash: "防御现金",
@@ -143,6 +146,7 @@ function setText(id, value) {
 function setResultsPanel(results) {
   const risk = results.risk || {};
   const decision = risk.decision || {};
+  const portfolio = (results.portfolio || {}).allocation || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
   const validation = results.model_validation || {};
@@ -173,6 +177,31 @@ function setResultsPanel(results) {
       `
     )
     .join("");
+
+  setText("portfolioExposure", percentText(portfolio.total_exposure));
+  setText("portfolioCash", percentText(portfolio.cash_ratio));
+  const constraints = portfolio.constraints || {};
+  const constraintOk =
+    constraints.cash_plus_exposure === 1 &&
+    constraints.min_cash_satisfied === true &&
+    constraints.max_exposure_satisfied === true &&
+    constraints.strategy_allocation_sum === 1;
+  setText("portfolioConstraint", constraintOk ? "通过" : "需检查");
+  document.getElementById("strategyAllocation").innerHTML = Object.entries(portfolio.strategy_allocation || {})
+    .map(
+      ([strategy, weight]) => `
+        <div class="allocation-row">
+          <span>${strategyLabel(strategy)}</span>
+          <strong>${percentText(weight)}</strong>
+          <i style="width:${typeof weight === "number" ? Math.round(weight * 100) : 0}%"></i>
+        </div>
+      `
+    )
+    .join("");
+  setText(
+    "portfolioConclusion",
+    `R2.1 使用当前 ${regimeLabel(portfolio.regime)} 状态和风险评分 ${fixedText(portfolio.risk_score, 3)}，将风险资产仓位控制在 ${percentText(portfolio.total_exposure)}，其余保持现金。`
+  );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
   setText("hazardStructuralRate", percentText(structuralHazard.event_rate));
