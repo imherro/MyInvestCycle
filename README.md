@@ -165,3 +165,19 @@ Default output:
 ```text
 data/structural_hazard_dataset.json
 ```
+
+Train and evaluate the H1.3 structural hazard model:
+
+```powershell
+python scripts/train_hazard_model.py --start 20200101 --end 20260624 --model logistic
+python scripts/evaluate_hazard_model.py --start 20200101 --end 20260624
+python scripts/evaluate_hazard_sensitivity.py
+```
+
+Default outputs:
+
+```text
+data/hazard_model_logistic.json
+data/hazard_model_evaluation.json
+data/hazard_model_sensitivity.json
+```

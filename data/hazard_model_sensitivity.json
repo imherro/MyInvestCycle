@@ -1,0 +1,358 @@
+{
+  "metadata": {
+    "raw_dataset": "data/hazard_dataset.json",
+    "train_end": "20241231",
+    "smooth_radius": 3,
+    "persistence_days": 3,
+    "forward_windows": [
+      5,
+      10
+    ],
+    "min_break_gaps": [
+      10,
+      20,
+      30
+    ]
+  },
+  "summary": {
+    "runs": 6,
+    "auc_min": 0.459666,
+    "auc_max": 0.718792,
+    "lift_min": 0.918421,
+    "lift_max": 2.247082,
+    "all_auc_above_0_55": false,
+    "all_lift_above_1_1": false
+  },
+  "results": [
+    {
+      "parameters": {
+        "smooth_radius": 3,
+        "persistence_days": 3,
+        "forward_window": 5,
+        "min_break_gap": 10
+      },
+      "label_distribution": {
+        "observations": 1561,
+        "transition_events": 316,
+        "continuation_events": 1245,
+        "transition_rate": 0.202434,
+        "continuation_rate": 0.797566
+      },
+      "split": {
+        "train_end": "20241231",
+        "train_observations": 1212,
+        "test_observations": 349,
+        "train_positive_rate": 0.20297,
+        "test_positive_rate": 0.200573,
+        "train_positive_count": 246,
+        "test_positive_count": 70
+      },
+      "model": {
+        "roc_auc": 0.718792,
+        "precision": 0.450704,
+        "recall": 0.457143,
+        "lift_vs_random": 2.247082
+      },
+      "baselines": {
+        "random": {
+          "roc_auc": 0.5,
+          "precision": 0.200573,
+          "recall": 0.20297,
+          "lift_vs_random": 1.0
+        },
+        "always_zero": {
+          "roc_auc": 0.5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "lift_vs_random": 0.0
+        },
+        "volatility_only": {
+          "roc_auc": 0.587711,
+          "precision": 0.323944,
+          "recall": 0.328571,
+          "lift_vs_random": 1.615091
+        }
+      },
+      "baseline_gap": {
+        "auc_vs_random": 0.218792,
+        "auc_vs_volatility_only": 0.131081,
+        "precision_lift_vs_random": 2.247082
+      }
+    },
+    {
+      "parameters": {
+        "smooth_radius": 3,
+        "persistence_days": 3,
+        "forward_window": 5,
+        "min_break_gap": 20
+      },
+      "label_distribution": {
+        "observations": 1561,
+        "transition_events": 211,
+        "continuation_events": 1350,
+        "transition_rate": 0.13517,
+        "continuation_rate": 0.86483
+      },
+      "split": {
+        "train_end": "20241231",
+        "train_observations": 1212,
+        "test_observations": 349,
+        "train_positive_rate": 0.132838,
+        "test_positive_rate": 0.143266,
+        "train_positive_count": 161,
+        "test_positive_count": 50
+      },
+      "model": {
+        "roc_auc": 0.630903,
+        "precision": 0.26087,
+        "recall": 0.24,
+        "lift_vs_random": 1.82087
+      },
+      "baselines": {
+        "random": {
+          "roc_auc": 0.5,
+          "precision": 0.143266,
+          "recall": 0.132838,
+          "lift_vs_random": 1.0
+        },
+        "always_zero": {
+          "roc_auc": 0.5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "lift_vs_random": 0.0
+        },
+        "volatility_only": {
+          "roc_auc": 0.646522,
+          "precision": 0.391304,
+          "recall": 0.36,
+          "lift_vs_random": 2.731304
+        }
+      },
+      "baseline_gap": {
+        "auc_vs_random": 0.130903,
+        "auc_vs_volatility_only": -0.015619,
+        "precision_lift_vs_random": 1.82087
+      }
+    },
+    {
+      "parameters": {
+        "smooth_radius": 3,
+        "persistence_days": 3,
+        "forward_window": 5,
+        "min_break_gap": 30
+      },
+      "label_distribution": {
+        "observations": 1561,
+        "transition_events": 161,
+        "continuation_events": 1400,
+        "transition_rate": 0.103139,
+        "continuation_rate": 0.896861
+      },
+      "split": {
+        "train_end": "20241231",
+        "train_observations": 1212,
+        "test_observations": 349,
+        "train_positive_rate": 0.108086,
+        "test_positive_rate": 0.08596,
+        "train_positive_count": 131,
+        "test_positive_count": 30
+      },
+      "model": {
+        "roc_auc": 0.459666,
+        "precision": 0.078947,
+        "recall": 0.1,
+        "lift_vs_random": 0.918421
+      },
+      "baselines": {
+        "random": {
+          "roc_auc": 0.5,
+          "precision": 0.08596,
+          "recall": 0.108086,
+          "lift_vs_random": 1.0
+        },
+        "always_zero": {
+          "roc_auc": 0.5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "lift_vs_random": 0.0
+        },
+        "volatility_only": {
+          "roc_auc": 0.412278,
+          "precision": 0.078947,
+          "recall": 0.1,
+          "lift_vs_random": 0.918421
+        }
+      },
+      "baseline_gap": {
+        "auc_vs_random": -0.040334,
+        "auc_vs_volatility_only": 0.047388,
+        "precision_lift_vs_random": 0.918421
+      }
+    },
+    {
+      "parameters": {
+        "smooth_radius": 3,
+        "persistence_days": 3,
+        "forward_window": 10,
+        "min_break_gap": 10
+      },
+      "label_distribution": {
+        "observations": 1556,
+        "transition_events": 628,
+        "continuation_events": 928,
+        "transition_rate": 0.403599,
+        "continuation_rate": 0.596401
+      },
+      "split": {
+        "train_end": "20241231",
+        "train_observations": 1212,
+        "test_observations": 344,
+        "train_positive_rate": 0.408416,
+        "test_positive_rate": 0.386628,
+        "train_positive_count": 495,
+        "test_positive_count": 133
+      },
+      "model": {
+        "roc_auc": 0.709938,
+        "precision": 0.571429,
+        "recall": 0.601504,
+        "lift_vs_random": 1.477981
+      },
+      "baselines": {
+        "random": {
+          "roc_auc": 0.5,
+          "precision": 0.386628,
+          "recall": 0.408416,
+          "lift_vs_random": 1.0
+        },
+        "always_zero": {
+          "roc_auc": 0.5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "lift_vs_random": 0.0
+        },
+        "volatility_only": {
+          "roc_auc": 0.628283,
+          "precision": 0.528571,
+          "recall": 0.556391,
+          "lift_vs_random": 1.367132
+        }
+      },
+      "baseline_gap": {
+        "auc_vs_random": 0.209938,
+        "auc_vs_volatility_only": 0.081655,
+        "precision_lift_vs_random": 1.477981
+      }
+    },
+    {
+      "parameters": {
+        "smooth_radius": 3,
+        "persistence_days": 3,
+        "forward_window": 10,
+        "min_break_gap": 20
+      },
+      "label_distribution": {
+        "observations": 1556,
+        "transition_events": 418,
+        "continuation_events": 1138,
+        "transition_rate": 0.268638,
+        "continuation_rate": 0.731362
+      },
+      "split": {
+        "train_end": "20241231",
+        "train_observations": 1212,
+        "test_observations": 344,
+        "train_positive_rate": 0.268152,
+        "test_positive_rate": 0.270349,
+        "train_positive_count": 325,
+        "test_positive_count": 93
+      },
+      "model": {
+        "roc_auc": 0.546588,
+        "precision": 0.282609,
+        "recall": 0.27957,
+        "lift_vs_random": 1.045348
+      },
+      "baselines": {
+        "random": {
+          "roc_auc": 0.5,
+          "precision": 0.270349,
+          "recall": 0.268152,
+          "lift_vs_random": 1.0
+        },
+        "always_zero": {
+          "roc_auc": 0.5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "lift_vs_random": 0.0
+        },
+        "volatility_only": {
+          "roc_auc": 0.746798,
+          "precision": 0.608696,
+          "recall": 0.602151,
+          "lift_vs_random": 2.251519
+        }
+      },
+      "baseline_gap": {
+        "auc_vs_random": 0.046588,
+        "auc_vs_volatility_only": -0.20021,
+        "precision_lift_vs_random": 1.045348
+      }
+    },
+    {
+      "parameters": {
+        "smooth_radius": 3,
+        "persistence_days": 3,
+        "forward_window": 10,
+        "min_break_gap": 30
+      },
+      "label_distribution": {
+        "observations": 1556,
+        "transition_events": 318,
+        "continuation_events": 1238,
+        "transition_rate": 0.20437,
+        "continuation_rate": 0.79563
+      },
+      "split": {
+        "train_end": "20241231",
+        "train_observations": 1212,
+        "test_observations": 344,
+        "train_positive_rate": 0.215347,
+        "test_positive_rate": 0.165698,
+        "train_positive_count": 261,
+        "test_positive_count": 57
+      },
+      "model": {
+        "roc_auc": 0.520936,
+        "precision": 0.175676,
+        "recall": 0.22807,
+        "lift_vs_random": 1.060218
+      },
+      "baselines": {
+        "random": {
+          "roc_auc": 0.5,
+          "precision": 0.165698,
+          "recall": 0.215347,
+          "lift_vs_random": 1.0
+        },
+        "always_zero": {
+          "roc_auc": 0.5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "lift_vs_random": 0.0
+        },
+        "volatility_only": {
+          "roc_auc": 0.513357,
+          "precision": 0.175676,
+          "recall": 0.22807,
+          "lift_vs_random": 1.060218
+        }
+      },
+      "baseline_gap": {
+        "auc_vs_random": 0.020936,
+        "auc_vs_volatility_only": 0.007579,
+        "precision_lift_vs_random": 1.060218
+      }
+    }
+  ]
+}
