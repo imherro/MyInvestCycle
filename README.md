@@ -181,3 +181,15 @@ data/hazard_model_logistic.json
 data/hazard_model_evaluation.json
 data/hazard_model_sensitivity.json
 ```
+
+Build the H2.1 regime survival dataset:
+
+```powershell
+python scripts/build_survival_dataset.py --start 20200101 --end 20260624 --cache-only
+```
+
+Default output:
+
+```text
+data/survival_dataset.json
+```

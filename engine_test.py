@@ -11,6 +11,7 @@ from core.breadth import get_market_daily, get_market_history_sample
 from core.data_loader import get_index_daily
 from core.liquidity import get_moneyflow_hsgt
 from engine.market_engine import analyze_index_regime
+from engine.regime_duration_builder import build_survival_dataset, validate_survival_dataset
 from engine.regime_hazard_labeler import build_hazard_dataset, hazard_label_distribution, validate_hazard_dataset
 from engine.regime_hazard_labeler_v2 import build_structural_hazard_dataset, validate_structural_hazard_dataset
 
@@ -209,6 +210,45 @@ def main() -> None:
     validate_structural_hazard_dataset(structural_samples, max_hazard_rate=0.50)
     assert [sample["label"] for sample in structural_samples] == [0, 1, 1, 0, 0]
     assert all(sample["label_type"] == "structural_break" for sample in structural_samples)
+
+    survival_samples = build_survival_dataset(
+        [
+            {
+                "trade_date": "20260101",
+                "regime": "range",
+                "trend_score": 0.45,
+                "breadth_score": 0.50,
+                "liquidity_score": 0.55,
+                "volatility_score": 0.70,
+                "regime_score": 0.52,
+                "confidence": 0.60,
+            },
+            {
+                "trade_date": "20260102",
+                "regime": "range",
+                "trend_score": 0.46,
+                "breadth_score": 0.49,
+                "liquidity_score": 0.54,
+                "volatility_score": 0.69,
+                "regime_score": 0.51,
+                "confidence": 0.61,
+            },
+            {
+                "trade_date": "20260105",
+                "regime": "transition",
+                "trend_score": 0.62,
+                "breadth_score": 0.40,
+                "liquidity_score": 0.50,
+                "volatility_score": 0.65,
+                "regime_score": 0.54,
+                "confidence": 0.66,
+            },
+        ]
+    )
+    validate_survival_dataset(survival_samples)
+    assert [sample["duration"] for sample in survival_samples] == [1, 2]
+    assert [sample["event"] for sample in survival_samples] == [0, 1]
+    assert survival_samples[1]["features"]["regime_age"] == 2
 
 
 if __name__ == "__main__":
