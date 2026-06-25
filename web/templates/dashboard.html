@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260625-cycle-ui-11" />
+    <link rel="stylesheet" href="/static/style.css?v=20260625-results-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -60,6 +60,122 @@
           </div>
           <div class="compact-scores" id="scoreList"></div>
           <div class="chart-box radar-box" id="radarChart"></div>
+        </article>
+      </section>
+
+      <section class="results-overview" aria-live="polite">
+        <article class="chart-panel result-panel risk-result-panel">
+          <div class="panel-heading">
+            <h2>全部成果展示</h2>
+            <span class="panel-kicker" id="resultsAsOf">--</span>
+          </div>
+          <div class="risk-headline">
+            <div>
+              <span>风险等级</span>
+              <strong id="riskLevel">--</strong>
+            </div>
+            <div>
+              <span>建议仓位</span>
+              <strong id="recommendedExposure">--</strong>
+            </div>
+            <div>
+              <span>执行动作</span>
+              <strong id="riskAction">--</strong>
+            </div>
+          </div>
+          <div class="risk-detail">
+            <div class="result-row">
+              <span>风险评分</span>
+              <strong id="riskScore">--</strong>
+            </div>
+            <div class="result-row">
+              <span>策略模式</span>
+              <strong id="strategyMode">--</strong>
+            </div>
+            <div class="result-row">
+              <span>风控提示</span>
+              <strong id="riskAlert">--</strong>
+            </div>
+          </div>
+          <div class="component-list" id="riskComponents"></div>
+        </article>
+
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2>结构事件标签</h2>
+            <span class="panel-kicker">H1.1 / H1.2</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>原始跳变率</span>
+              <strong id="hazardRawRate">--</strong>
+            </div>
+            <div class="result-row">
+              <span>结构跳变率</span>
+              <strong id="hazardStructuralRate">--</strong>
+            </div>
+            <div class="result-row">
+              <span>样本规模</span>
+              <strong id="hazardRows">--</strong>
+            </div>
+          </div>
+          <p class="result-note" id="hazardConclusion">--</p>
+        </article>
+
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2>模型验证</h2>
+            <span class="panel-kicker">H1.3</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>默认 AUC</span>
+              <strong id="modelAuc">--</strong>
+            </div>
+            <div class="result-row">
+              <span>默认 Lift</span>
+              <strong id="modelLift">--</strong>
+            </div>
+            <div class="result-row">
+              <span>波动单因子 AUC</span>
+              <strong id="volatilityAuc">--</strong>
+            </div>
+            <div class="result-row">
+              <span>敏感性区间</span>
+              <strong id="sensitivityRange">--</strong>
+            </div>
+          </div>
+          <p class="result-note" id="modelConclusion">--</p>
+        </article>
+
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2>生命周期与策略规则</h2>
+            <span class="panel-kicker">H2.1 / R1.2</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>结构事件率</span>
+              <strong id="survivalEventRate">--</strong>
+            </div>
+            <div class="result-row">
+              <span>结构事件数</span>
+              <strong id="survivalEvents">--</strong>
+            </div>
+            <div class="result-row">
+              <span>观察样本</span>
+              <strong id="survivalRows">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="durationList"></div>
+        </article>
+
+        <article class="chart-panel result-panel conclusions-panel">
+          <div class="panel-heading">
+            <h2>结论口径</h2>
+            <span class="panel-kicker">页面展示口径</span>
+          </div>
+          <ul class="conclusion-list" id="conclusionList"></ul>
         </article>
       </section>
 
@@ -124,8 +240,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260625-cycle-ui-11"></script>
-    <script src="/static/dashboard.js?v=20260625-cycle-ui-11"></script>
+    <script src="/static/charts.js?v=20260625-results-1"></script>
+    <script src="/static/dashboard.js?v=20260625-results-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

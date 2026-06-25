@@ -2,6 +2,7 @@ const state = {
   current: null,
   cycle: null,
   track: null,
+  results: null,
 };
 
 function setRegimePanel(current) {
@@ -76,6 +77,16 @@ function signedPercentText(value) {
   return `${sign}${value.toFixed(2)}%`;
 }
 
+function fixedText(value, digits = 3) {
+  if (typeof value !== "number") return "--";
+  return value.toFixed(digits);
+}
+
+function integerText(value) {
+  if (typeof value !== "number") return "--";
+  return value.toLocaleString("zh-CN");
+}
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -92,6 +103,118 @@ function setProbability(id, barId, value) {
 
 function listHtml(items) {
   return (items || []).map((item) => `<li>${item}</li>`).join("");
+}
+
+function riskLevelLabel(value) {
+  const labels = { low: "低风险", medium: "中风险", high: "高风险" };
+  return labels[value] || value || "--";
+}
+
+function actionLabel(value) {
+  const labels = { reduce: "降低", increase: "提高", hold: "维持" };
+  return labels[value] || value || "--";
+}
+
+function strategyLabel(value) {
+  const labels = {
+    trend_following: "趋势跟随",
+    mean_reversion: "均值回归",
+    defensive_cash: "防御现金",
+    reduce_trading: "降低交易频率",
+  };
+  return labels[value] || value || "--";
+}
+
+function componentLabel(value) {
+  const labels = {
+    volatility_stress: "波动压力",
+    breadth_weakness: "市场宽度偏弱",
+    trend_weakness: "趋势偏弱",
+    liquidity_weakness: "流动性偏弱",
+  };
+  return labels[value] || value;
+}
+
+function setText(id, value) {
+  const node = document.getElementById(id);
+  if (node) node.textContent = value;
+}
+
+function setResultsPanel(results) {
+  const risk = results.risk || {};
+  const decision = risk.decision || {};
+  const hazard = results.hazard || {};
+  const survival = results.survival || {};
+  const validation = results.model_validation || {};
+  const defaultModel = validation.default || {};
+  const model = defaultModel.model || {};
+  const volatility = defaultModel.volatility_only || {};
+  const sensitivity = validation.sensitivity || {};
+  const structuralHazard = hazard.structural || {};
+  const rawHazard = hazard.raw || {};
+  const structuralSurvival = survival.structural || {};
+
+  setText("resultsAsOf", `截至 ${toIsoDate(results.as_of)}`);
+  setText("riskLevel", riskLevelLabel(decision.risk_level));
+  document.getElementById("riskLevel").className = `risk-level-text risk-${decision.risk_level || "medium"}`;
+  setText("recommendedExposure", percentText(decision.recommended_exposure));
+  setText("riskAction", actionLabel(decision.action));
+  setText("riskScore", fixedText(decision.risk_score, 3));
+  setText("strategyMode", strategyLabel(decision.strategy_mode));
+  setText("riskAlert", decision.alert || "--");
+  document.getElementById("riskComponents").innerHTML = Object.entries(decision.risk_components || {})
+    .map(
+      ([key, value]) => `
+        <div class="component-row">
+          <span>${componentLabel(key)}</span>
+          <strong>${percentText(value)}</strong>
+          <i style="width:${typeof value === "number" ? Math.round(value * 100) : 0}%"></i>
+        </div>
+      `
+    )
+    .join("");
+
+  setText("hazardRawRate", percentText(rawHazard.event_rate));
+  setText("hazardStructuralRate", percentText(structuralHazard.event_rate));
+  setText("hazardRows", integerText(structuralHazard.observations));
+  setText(
+    "hazardConclusion",
+    `结构化切分把跳变事件从 ${integerText(rawHazard.events)} 次压缩到 ${integerText(structuralHazard.events)} 次，减少日内噪声后更适合观察主周期风险。`
+  );
+
+  setText("modelAuc", fixedText(model.roc_auc, 3));
+  setText("modelLift", fixedText(model.lift_vs_random, 2));
+  setText("volatilityAuc", fixedText(volatility.roc_auc, 3));
+  setText("sensitivityRange", `${fixedText(sensitivity.auc_min, 3)} - ${fixedText(sensitivity.auc_max, 3)}`);
+  const modelGap = typeof volatility.roc_auc === "number" && typeof model.roc_auc === "number"
+    ? model.roc_auc - volatility.roc_auc
+    : null;
+  const modelDirection = typeof modelGap === "number" && modelGap < 0 ? "弱于" : "强于";
+  setText(
+    "modelConclusion",
+    `默认模型相对随机基准有正向识别力，但敏感性并非全部通过；默认口径下多因子模型${modelDirection}波动单因子。`
+  );
+
+  setText("survivalEventRate", percentText(structuralSurvival.event_rate));
+  setText("survivalEvents", integerText(structuralSurvival.events));
+  setText("survivalRows", integerText(structuralSurvival.observations));
+  const durationOrder = ["bull", "range", "bear", "transition"];
+  const durations = structuralSurvival.durations || {};
+  document.getElementById("durationList").innerHTML = durationOrder
+    .filter((key) => durations[key])
+    .map((key) => {
+      const item = durations[key];
+      return `
+        <div class="duration-row">
+          <span>${regimeLabel(key)}</span>
+          <strong>最长 ${integerText(item.max_duration)} 日</strong>
+          <em>平均 ${fixedText(item.avg_duration, 1)} 日</em>
+        </div>
+      `;
+    })
+    .join("");
+
+  document.getElementById("conclusionList").innerHTML = listHtml(results.conclusions || []);
 }
 
 function setForecastPanel(track) {
@@ -187,19 +310,22 @@ async function loadDashboard() {
   button.disabled = true;
   button.textContent = "刷新中";
   try {
-    const [current, cycle, track] = await Promise.all([
+    const [current, cycle, track, results] = await Promise.all([
       getJson("/api/regime/current"),
       getJson("/api/regime/cycle"),
       getJson("/api/regime/cycle/track"),
+      getJson("/api/results/summary"),
     ]);
     state.current = current;
     state.cycle = cycle;
     state.track = track;
+    state.results = results;
     const phase = phaseFromMajorCycle(cycle);
 
     setRegimePanel(current);
     setScoreList(current.sub_scores);
     setCyclePanel(phase);
+    setResultsPanel(results);
     setForecastPanel(track);
     setCycleBlocks(cycle.cycle_blocks || []);
     renderRadar("radarChart", current.sub_scores);

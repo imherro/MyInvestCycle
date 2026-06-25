@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+import json
 import sys
+from collections import Counter, defaultdict
 from datetime import date
 from functools import lru_cache
 from pathlib import Path
+from statistics import mean
 
 import pandas as pd
 from fastapi import FastAPI, HTTPException, Query
@@ -17,8 +20,11 @@ if str(ROOT_DIR) not in sys.path:
 from config import BREADTH_HISTORY_SAMPLE_SIZE, DEFAULT_INDEX_CODE, WEB_PORT
 from core.breadth import get_market_daily, get_market_history_sample
 from core.data_loader import get_index_daily, normalize_trade_date
+from core.exposure_controller import build_exposure_decision
 from core.features import build_feature_frame
 from core.liquidity import get_moneyflow_hsgt
+from core.regime_adapter import adapt_regime_payload
+from core.risk_score_engine import load_risk_policy
 from engine.cycle_detector import detect_current_cycle_track, detect_major_cycles
 from engine.market_engine import analyze_index_regime
 from engine.regime_explainer import explain_regime
@@ -56,6 +62,90 @@ def _load_hsgt_for_index(index_df, as_of: str):
         return get_moneyflow_hsgt(str(window["trade_date"].iloc[0]), as_of)
     except Exception:
         return None
+
+
+def _read_data_json(file_name: str):
+    path = ROOT_DIR / "data" / file_name
+    if not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _event_summary(rows: list[dict], event_key: str = "label") -> dict[str, object]:
+    observations = len(rows)
+    events = sum(1 for row in rows if int(row.get(event_key, 0)) == 1)
+    return {
+        "observations": observations,
+        "events": events,
+        "non_events": observations - events,
+        "event_rate": round(events / observations, 6) if observations else None,
+    }
+
+
+def _regime_counts(rows: list[dict], regime_key: str) -> dict[str, int]:
+    return dict(Counter(str(row.get(regime_key, "unknown")) for row in rows))
+
+
+def _duration_summary(rows: list[dict], regime_key: str) -> dict[str, object]:
+    grouped: dict[str, list[int]] = defaultdict(list)
+    for row in rows:
+        regime = str(row.get(regime_key, "unknown"))
+        grouped[regime].append(int(row.get("duration", 0)))
+
+    regimes = {}
+    for regime, durations in sorted(grouped.items()):
+        regimes[regime] = {
+            "observations": len(durations),
+            "max_duration": max(durations) if durations else 0,
+            "avg_duration": round(mean(durations), 2) if durations else 0,
+        }
+    return regimes
+
+
+def _model_validation_summary(report: dict | None) -> dict[str, object] | None:
+    if not report:
+        return None
+    evaluation = report.get("evaluation", {})
+    model = evaluation.get("model", {})
+    baselines = evaluation.get("baselines", {})
+    volatility = baselines.get("volatility_only", {})
+    random_baseline = baselines.get("random", {})
+    baseline_gap = evaluation.get("baseline_gap", {})
+    return {
+        "metadata": report.get("metadata", {}),
+        "split": report.get("split", {}),
+        "model": {
+            "roc_auc": model.get("roc_auc"),
+            "precision": model.get("precision"),
+            "recall": model.get("recall"),
+            "lift_vs_random": model.get("lift_vs_random"),
+        },
+        "random_baseline": {
+            "roc_auc": random_baseline.get("roc_auc"),
+            "precision": random_baseline.get("precision"),
+        },
+        "volatility_only": {
+            "roc_auc": volatility.get("roc_auc"),
+            "precision": volatility.get("precision"),
+            "recall": volatility.get("recall"),
+            "lift_vs_random": volatility.get("lift_vs_random"),
+        },
+        "baseline_gap": baseline_gap,
+    }
+
+
+def _policy_summary(policy: dict[str, dict[str, object]]) -> dict[str, object]:
+    regimes = {}
+    for regime in ("bull", "range", "bear", "transition"):
+        regime_policy = policy.get(regime, {})
+        regimes[regime] = {
+            "base_exposure": regime_policy.get("base_exposure"),
+            "min_exposure": regime_policy.get("min_exposure"),
+            "max_exposure": regime_policy.get("max_exposure"),
+            "leverage_allowed": regime_policy.get("leverage_allowed"),
+            "strategy_mode": regime_policy.get("strategy_mode"),
+        }
+    return {"risk": policy.get("risk", {}), "regimes": regimes}
 
 
 def _current_regime_payload() -> dict:
@@ -132,6 +222,71 @@ def regime_cycle_track() -> dict:
     try:
         index_df = _load_cycle_index(_today_text())
         return detect_current_cycle_track(index_df)
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
+@app.get("/api/results/summary")
+def results_summary() -> dict:
+    try:
+        current = _current_regime_payload()
+        risk_signal = adapt_regime_payload(current)
+        exposure_decision = build_exposure_decision(risk_signal)
+        policy = load_risk_policy()
+
+        hazard_rows = _read_data_json("hazard_dataset.json") or []
+        structural_hazard_rows = _read_data_json("structural_hazard_dataset.json") or []
+        survival_rows = _read_data_json("survival_dataset.json") or []
+        structural_survival_rows = _read_data_json("structural_survival_dataset.json") or []
+        model_evaluation = _read_data_json("hazard_model_evaluation.json")
+        model_sensitivity = _read_data_json("hazard_model_sensitivity.json")
+
+        hazard_raw = _event_summary(hazard_rows)
+        hazard_structural = _event_summary(structural_hazard_rows)
+        survival_raw = _event_summary(survival_rows, event_key="event")
+        survival_structural = _event_summary(structural_survival_rows, event_key="event")
+
+        return {
+            "as_of": current["as_of"],
+            "risk": {
+                "signal": risk_signal,
+                "decision": exposure_decision,
+                "policy": _policy_summary(policy),
+            },
+            "hazard": {
+                "raw": {
+                    **hazard_raw,
+                    "regime_counts": _regime_counts(hazard_rows, "regime"),
+                },
+                "structural": {
+                    **hazard_structural,
+                    "regime_counts": _regime_counts(structural_hazard_rows, "structural_regime"),
+                    "label_types": dict(Counter(str(row.get("label_type", "unknown")) for row in structural_hazard_rows)),
+                },
+            },
+            "survival": {
+                "raw": {
+                    **survival_raw,
+                    "durations": _duration_summary(survival_rows, "regime"),
+                },
+                "structural": {
+                    **survival_structural,
+                    "durations": _duration_summary(structural_survival_rows, "structural_regime"),
+                },
+            },
+            "model_validation": {
+                "default": _model_validation_summary(model_evaluation),
+                "sensitivity": (model_sensitivity or {}).get("summary", {}),
+            },
+            "conclusions": [
+                "结构化事件标签把原始频繁跳变压缩为更接近主周期切换的样本，适合做风险观察而不是短线交易信号。",
+                "默认结构化模型相对随机基准有正向识别力，但敏感性测试不稳定，不能直接解释为确定性预测。",
+                "波动单因子在默认切分中强于多因子逻辑模型，说明当前阶段的风险提示主要来自波动与市场宽度压力。",
+                "最终落地结果是按牛熊状态调节仓位与交易模式的风控层，而不是自动买卖或收益承诺。",
+            ],
+        }
+    except HTTPException:
+        raise
     except Exception as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
