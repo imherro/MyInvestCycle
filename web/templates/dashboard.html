@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260625-cycle-ui-2" />
+    <link rel="stylesheet" href="/static/style.css?v=20260625-cycle-ui-4" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -63,24 +63,49 @@
           </div>
           <div class="chart-box" id="radarChart"></div>
         </article>
-        <article class="chart-panel timeline-panel">
-          <div class="panel-heading">
-            <h2>状态时间轴</h2>
-          </div>
-          <div class="chart-box" id="timelineChart"></div>
-        </article>
         <article class="chart-panel index-panel">
           <div class="panel-heading">
-            <h2>指数与 MA120/MA250</h2>
+            <h2>长期牛熊周期观察</h2>
           </div>
-          <div class="chart-box large" id="indexChart"></div>
+          <div class="chart-box" id="indexChart"></div>
+        </article>
+        <article class="chart-panel focus-panel">
+          <div class="panel-heading">
+            <h2>本轮周期跟踪与概率展望</h2>
+            <span class="panel-kicker" id="trackRange">--</span>
+          </div>
+          <div class="focus-layout">
+            <div class="chart-box xlarge" id="cycleTrackChart"></div>
+            <aside class="forecast-panel">
+              <div class="forecast-head">
+                <span>未来 <strong id="forecastHorizon">--</strong> 交易日</span>
+                <em id="forecastSample">--</em>
+              </div>
+              <div class="prob-list">
+                <div class="prob-row">
+                  <div><span>牛市延续</span><strong id="probContinue">--</strong></div>
+                  <div class="prob-track"><i id="barContinue"></i></div>
+                </div>
+                <div class="prob-row">
+                  <div><span>震荡整理</span><strong id="probRange">--</strong></div>
+                  <div class="prob-track"><i id="barRange"></i></div>
+                </div>
+                <div class="prob-row">
+                  <div><span>转弱确认</span><strong id="probWeaken">--</strong></div>
+                  <div class="prob-track"><i id="barWeaken"></i></div>
+                </div>
+              </div>
+              <div class="projection-list" id="projectionList"></div>
+              <div class="key-levels" id="keyLevels"></div>
+            </aside>
+          </div>
         </article>
       </section>
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260625-cycle-ui-2"></script>
-    <script src="/static/dashboard.js?v=20260625-cycle-ui-2"></script>
+    <script src="/static/charts.js?v=20260625-cycle-ui-4"></script>
+    <script src="/static/dashboard.js?v=20260625-cycle-ui-4"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

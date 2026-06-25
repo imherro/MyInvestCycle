@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 from datetime import date
+from functools import lru_cache
 from pathlib import Path
 
 import pandas as pd
@@ -18,7 +19,7 @@ from core.breadth import get_market_daily, get_market_history_sample
 from core.data_loader import get_index_daily, normalize_trade_date
 from core.features import build_feature_frame
 from core.liquidity import get_moneyflow_hsgt
-from engine.cycle_detector import detect_major_cycles
+from engine.cycle_detector import detect_current_cycle_track, detect_major_cycles
 from engine.market_engine import analyze_index_regime
 from engine.regime_explainer import explain_regime
 
@@ -40,6 +41,11 @@ def _load_index_window(start_date: str, end_date: str):
     if df.empty:
         raise HTTPException(status_code=503, detail="No index data returned from Tushare.")
     return df
+
+
+@lru_cache(maxsize=2)
+def _load_cycle_index(end_date: str):
+    return get_index_daily(DEFAULT_INDEX_CODE, "20100101", end_date)
 
 
 def _load_hsgt_for_index(index_df, as_of: str):
@@ -115,8 +121,17 @@ def regime_explain() -> dict:
 @app.get("/api/regime/cycle")
 def regime_cycle() -> dict:
     try:
-        index_df = get_index_daily(DEFAULT_INDEX_CODE, "20100101", _today_text())
+        index_df = _load_cycle_index(_today_text())
         return detect_major_cycles(index_df)
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
+@app.get("/api/regime/cycle/track")
+def regime_cycle_track() -> dict:
+    try:
+        index_df = _load_cycle_index(_today_text())
+        return detect_current_cycle_track(index_df)
     except Exception as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 

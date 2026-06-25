@@ -73,34 +73,10 @@ function renderRadar(elementId, scores) {
   );
 }
 
-function renderTimeline(elementId, items) {
-  const x = items.map((item) => toIsoDate(item.as_of));
-  const colors = items.map((item) => REGIME_COLORS[item.regime] || REGIME_COLORS.range);
-  Plotly.react(
-    elementId,
-    [
-      {
-        type: "bar",
-        x,
-        y: items.map(() => 1),
-        marker: { color: colors },
-        customdata: items.map((item) => [regimeLabel(item.regime), item.confidence, item.regime_score]),
-        hovertemplate:
-          "%{x}<br>%{customdata[0]}<br>confidence %{customdata[1]:.2f}<br>score %{customdata[2]:.2f}<extra></extra>",
-      },
-    ],
-    {
-      ...baseLayout(310),
-      yaxis: { visible: false, fixedrange: true },
-      xaxis: { tickformat: "%m-%d", gridcolor: "#edf0f5" },
-      bargap: 0.08,
-      showlegend: false,
-    },
-    { responsive: true, displayModeBar: false }
-  );
-}
-
-function buildRegimeShapes(items) {
+function buildRegimeShapes(items, options = {}) {
+  const y0 = options.y0 ?? 0;
+  const y1 = options.y1 ?? 1;
+  const xEnd = options.xEnd || null;
   const ranges = [];
   for (const item of items) {
     const last = ranges[ranges.length - 1];
@@ -117,14 +93,29 @@ function buildRegimeShapes(items) {
       xref: "x",
       yref: "paper",
       x0: toIsoDate(range.start),
-      x1: toIsoDate(nextRange?.start || range.end),
-      y0: 0,
-      y1: 1,
+      x1: toIsoDate(nextRange?.start || xEnd || range.end),
+      y0,
+      y1,
       fillcolor: SHADE_COLORS[range.regime] || SHADE_COLORS.range,
       line: { width: 0 },
       layer: "below",
     };
   });
+}
+
+function forecastWindowShape(x0, x1) {
+  return {
+    type: "rect",
+    xref: "x",
+    yref: "paper",
+    x0,
+    x1,
+    y0: 0,
+    y1: 1,
+    fillcolor: "rgba(38, 99, 235, 0.06)",
+    line: { width: 0 },
+    layer: "below",
+  };
 }
 
 function markerLine(x, color, label, yPosition) {
@@ -153,6 +144,105 @@ function markerLine(x, color, label, yPosition) {
       font: { color, size: 12 },
     },
   };
+}
+
+function renderCycleTrackChart(elementId, track) {
+  const items = track.items || [];
+  const forecast = track.forecast || {};
+  const paths = forecast.paths || [];
+  const x = items.map((item) => toIsoDate(item.as_of));
+  const close = items.map((item) => item.index?.close ?? null);
+  const ma120 = items.map((item) => item.index?.ma120 ?? null);
+  const ma250 = items.map((item) => item.index?.ma250 ?? null);
+  const latest = items[items.length - 1];
+  const latestDate = toIsoDate(latest?.as_of);
+  const latestClose = latest?.index?.close ?? null;
+  const futureX = paths.map((path) => toIsoDate(path.as_of));
+  const futureEnd = futureX[futureX.length - 1];
+  const projectionX = latestDate ? [latestDate, ...futureX] : futureX;
+  const projectionTrace = (name, key, color) => ({
+    type: "scatter",
+    mode: "lines+markers",
+    name,
+    x: projectionX,
+    y: latestClose === null ? paths.map((path) => path[key]) : [latestClose, ...paths.map((path) => path[key])],
+    line: { color, width: 2, dash: "dash" },
+    marker: { size: 6, color },
+    hovertemplate: `%{x}<br>${name} %{y:.2f}<extra></extra>`,
+  });
+  const markers = [];
+  if (track.cycle?.start_date) {
+    markers.push(markerLine(toIsoDate(track.cycle.start_date), "#17201b", "本轮开始", 1.03));
+  }
+  if (latestDate) {
+    markers.push(markerLine(latestDate, "#2663eb", "当前", 0.93));
+  }
+  const shapes = [
+    ...buildRegimeShapes(items, { y0: 0, y1: 0.12, xEnd: latestDate }),
+    ...(latestDate && futureEnd ? [forecastWindowShape(latestDate, futureEnd)] : []),
+    ...markers.map((marker) => marker.shape),
+  ];
+  Plotly.react(
+    elementId,
+    [
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "上证收盘",
+        x,
+        y: close,
+        line: { color: "#2663eb", width: 2.6 },
+        hovertemplate: "%{x}<br>收盘 %{y:.2f}<extra></extra>",
+      },
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "MA120",
+        x,
+        y: ma120,
+        line: { color: "#c69214", width: 1.8, dash: "dot" },
+        hovertemplate: "%{x}<br>MA120 %{y:.2f}<extra></extra>",
+      },
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "MA250",
+        x,
+        y: ma250,
+        line: { color: "#697386", width: 1.8, dash: "dash" },
+        hovertemplate: "%{x}<br>MA250 %{y:.2f}<extra></extra>",
+      },
+      ...(paths.length
+        ? [
+            projectionTrace("谨慎", "cautious", "#17885b"),
+            projectionTrace("中性", "neutral", "#697386"),
+            projectionTrace("乐观", "optimistic", "#c73d3d"),
+          ]
+        : []),
+    ],
+    {
+      ...baseLayout(440),
+      margin: { l: 48, r: 18, t: 24, b: 44 },
+      shapes,
+      annotations: [
+        ...markers.map((marker) => marker.annotation),
+        {
+          x: x[0],
+          y: 0.06,
+          xref: "x",
+          yref: "paper",
+          text: "状态带",
+          showarrow: false,
+          xanchor: "left",
+          font: { color: "#667085", size: 12 },
+        },
+      ],
+      xaxis: { tickformat: "%Y-%m", gridcolor: "#edf0f5", range: futureEnd ? [x[0], futureEnd] : undefined },
+      yaxis: { gridcolor: "#edf0f5", zeroline: false },
+      legend: { orientation: "h", x: 0, y: 1.12 },
+    },
+    { responsive: true, displayModeBar: false }
+  );
 }
 
 function renderIndexChart(elementId, items, phase) {

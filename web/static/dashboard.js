@@ -1,6 +1,7 @@
 const state = {
   current: null,
-  history: [],
+  cycle: null,
+  track: null,
 };
 
 function setRegimePanel(current) {
@@ -26,40 +27,12 @@ function setScoreList(scores) {
     .join("");
 }
 
-function yyyymmddFromDate(date) {
-  const y = String(date.getFullYear());
-  const m = String(date.getMonth() + 1).padStart(2, "0");
-  const d = String(date.getDate()).padStart(2, "0");
-  return `${y}${m}${d}`;
-}
-
-function fallbackHistoryStarts(asOf) {
-  return [110, 90, 60, 45].map((days) => {
-    const date = new Date(toIsoDate(asOf));
-    date.setDate(date.getDate() - days);
-    return yyyymmddFromDate(date);
-  });
-}
-
 async function getJson(url) {
   const response = await fetch(url, { headers: { Accept: "application/json" } });
   if (!response.ok) {
     throw new Error(`${response.status} ${response.statusText}`);
   }
   return response.json();
-}
-
-async function getHistory(asOf) {
-  const starts = fallbackHistoryStarts(asOf);
-  let lastError;
-  for (const start of starts) {
-    try {
-      return await getJson(`/api/regime/history?start=${start}&end=${asOf}`);
-    } catch (error) {
-      lastError = error;
-    }
-  }
-  throw lastError;
 }
 
 function setCyclePanel(phase) {
@@ -87,26 +60,77 @@ function phaseFromMajorCycle(cycle) {
   };
 }
 
+function percentText(value) {
+  if (typeof value !== "number") return "--";
+  return `${Math.round(value * 100)}%`;
+}
+
+function priceText(value) {
+  if (typeof value !== "number") return "--";
+  return value.toFixed(2);
+}
+
+function setProbability(id, barId, value) {
+  document.getElementById(id).textContent = percentText(value);
+  document.getElementById(barId).style.width = typeof value === "number" ? `${Math.round(value * 100)}%` : "0";
+}
+
+function setForecastPanel(track) {
+  const forecast = track.forecast || {};
+  const probabilities = forecast.probabilities || {};
+  const levels = forecast.key_levels || {};
+  document.getElementById("trackRange").textContent =
+    `${toIsoDate(track.cycle.start_date)} 至 ${toIsoDate(track.as_of)}`;
+  document.getElementById("forecastHorizon").textContent = forecast.basis_horizon_sessions || "--";
+  document.getElementById("forecastSample").textContent = forecast.sample_size ? `样本 ${forecast.sample_size}` : "样本不足";
+  setProbability("probContinue", "barContinue", probabilities.continue);
+  setProbability("probRange", "barRange", probabilities.range);
+  setProbability("probWeaken", "barWeaken", probabilities.weaken);
+  document.getElementById("projectionList").innerHTML = (forecast.paths || [])
+    .map(
+      (path) => `
+        <div class="projection-row">
+          <span>${path.horizon_sessions}日</span>
+          <div>
+            <strong>${priceText(path.neutral)}</strong>
+            <small>谨慎 ${priceText(path.cautious)} / 乐观 ${priceText(path.optimistic)} · 中性 ${path.median_return_pct}%</small>
+          </div>
+        </div>
+      `
+    )
+    .join("");
+  document.getElementById("keyLevels").innerHTML = [
+    ["当前收盘", priceText(levels.current_close)],
+    ["MA120", priceText(levels.ma120)],
+    ["MA250", priceText(levels.ma250)],
+    ["60日回撤", typeof levels.drawdown_60_pct === "number" ? `${levels.drawdown_60_pct}%` : "--"],
+  ]
+    .map(([label, value]) => `<div class="level-row"><span>${label}</span><strong>${value}</strong></div>`)
+    .join("");
+}
+
 async function loadDashboard() {
   const button = document.getElementById("refreshButton");
   button.disabled = true;
   button.textContent = "刷新中";
   try {
-    const current = await getJson("/api/regime/current");
-    const cycle = await getJson("/api/regime/cycle");
-    const history = await getHistory(current.as_of);
-    const features = await getJson("/api/features/latest");
+    const [current, cycle, track] = await Promise.all([
+      getJson("/api/regime/current"),
+      getJson("/api/regime/cycle"),
+      getJson("/api/regime/cycle/track"),
+    ]);
     state.current = current;
-    state.history = history.items || [];
     state.cycle = cycle;
+    state.track = track;
     const phase = phaseFromMajorCycle(cycle);
 
     setRegimePanel(current);
-    setScoreList(features.sub_scores || current.sub_scores);
+    setScoreList(current.sub_scores);
     setCyclePanel(phase);
-    renderRadar("radarChart", features.sub_scores || current.sub_scores);
-    renderTimeline("timelineChart", state.history);
+    setForecastPanel(track);
+    renderRadar("radarChart", current.sub_scores);
     renderIndexChart("indexChart", cycle.series || [], phase);
+    renderCycleTrackChart("cycleTrackChart", track);
   } finally {
     button.disabled = false;
     button.textContent = "刷新";

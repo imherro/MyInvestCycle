@@ -12,10 +12,8 @@ engine foundation requested by the design review.
 - Lightweight 52-week high approximation from cached high-turnover stock history.
 - Liquidity scoring from index turnover expansion and optional northbound flow.
 - Market regime engine returning `regime`, `confidence`, and four sub-scores.
-- Reserved Web port: `8021`.
-
-The current Web layer is JSON-only. It intentionally does not include HTML,
-charts, or rendered pages.
+- Web dashboard on port `8021` with long-term cycle view, current-cycle tracking,
+  and probability outlook.
 
 ## Run
 
@@ -63,6 +61,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/features/latest`
 - `GET http://127.0.0.1:8021/api/regime/explain`
 - `GET http://127.0.0.1:8021/api/regime/cycle`
+- `GET http://127.0.0.1:8021/api/regime/cycle/track`
 
 Validation scripts:
 

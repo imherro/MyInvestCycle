@@ -202,6 +202,10 @@ h2 {
 }
 
 .index-panel {
+  grid-column: auto;
+}
+
+.focus-panel {
   grid-column: 1 / -1;
 }
 
@@ -213,6 +217,12 @@ h2 {
   margin-bottom: 6px;
 }
 
+.panel-kicker {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
 .chart-box {
   width: 100%;
   height: 310px;
@@ -220,6 +230,126 @@ h2 {
 
 .chart-box.large {
   height: 390px;
+}
+
+.chart-box.xlarge {
+  height: 440px;
+}
+
+.focus-layout {
+  display: grid;
+  grid-template-columns: minmax(560px, 1fr) 330px;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.forecast-panel {
+  min-width: 0;
+  padding-left: 4px;
+}
+
+.forecast-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.forecast-head span,
+.forecast-head em {
+  color: var(--muted);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.forecast-head strong {
+  color: var(--ink);
+  font-size: 20px;
+}
+
+.prob-list {
+  display: grid;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.prob-row > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 7px;
+}
+
+.prob-row span,
+.projection-row span,
+.projection-row small,
+.level-row span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.prob-row strong,
+.projection-row strong,
+.level-row strong {
+  color: var(--ink);
+  font-size: 18px;
+}
+
+.prob-track {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #edf0f5;
+}
+
+.prob-track i {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+}
+
+#barContinue {
+  background: var(--bull);
+}
+
+#barRange {
+  background: var(--range);
+}
+
+#barWeaken {
+  background: var(--bear);
+}
+
+.projection-list,
+.key-levels {
+  display: grid;
+  gap: 0;
+}
+
+.projection-row,
+.level-row {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.projection-row small {
+  display: block;
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+.level-row {
+  grid-template-columns: 1fr auto;
 }
 
 @media (max-width: 980px) {
@@ -231,6 +361,7 @@ h2 {
   .topbar,
   .status-grid,
   .cycle-panel,
+  .focus-layout,
   .visual-grid {
     grid-template-columns: 1fr;
   }
@@ -247,7 +378,8 @@ h2 {
   }
 
   .chart-box,
-  .chart-box.large {
+  .chart-box.large,
+  .chart-box.xlarge {
     height: 330px;
   }
 
