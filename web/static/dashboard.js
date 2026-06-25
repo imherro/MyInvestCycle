@@ -3,6 +3,7 @@ const state = {
   cycle: null,
   track: null,
   results: null,
+  apiCatalog: null,
 };
 
 function setRegimePanel(current) {
@@ -175,6 +176,48 @@ function componentLabel(value) {
 function setText(id, value) {
   const node = document.getElementById(id);
   if (node) node.textContent = value;
+}
+
+function setApiCatalogPanel(catalog) {
+  const docs = catalog.docs || {};
+  const groups = catalog.groups || [];
+  const recommended = catalog.recommended_entrypoints || [];
+  const safety = catalog.safety || {};
+  const safetyOk = Object.values(safety).every((value) => value === true);
+
+  setText("apiEndpointCount", integerText(catalog.total_endpoints));
+  setText("apiDocsStatus", docs.interactive ? `已开放 ${docs.interactive}` : "--");
+  document.getElementById("apiRecommendedList").innerHTML = recommended.length
+    ? recommended
+        .map(
+          (item) => `
+            <div class="api-link-row">
+              <span>${escapeHtml(item.path)}</span>
+              <strong>${escapeHtml(item.description)}</strong>
+            </div>
+          `
+        )
+        .join("")
+    : '<div class="api-empty-row">暂无推荐入口</div>';
+  document.getElementById("apiGroupList").innerHTML = groups.length
+    ? groups
+        .map(
+          (group) => `
+            <div class="api-group-row">
+              <span>${escapeHtml(group.name)}</span>
+              <strong>${integerText((group.endpoints || []).length)} 个</strong>
+              <em>${escapeHtml(group.description || "")}</em>
+            </div>
+          `
+        )
+        .join("")
+    : '<div class="api-empty-row">暂无接口分组</div>';
+  setText(
+    "apiCatalogConclusion",
+    safetyOk
+      ? "GET /api 已统一输出接口目录；当前系统接口保持只读、模拟、无真实交易边界。"
+      : "接口目录已开放，但系统边界需要复核。"
+  );
 }
 
 function setResultsPanel(results) {
@@ -453,22 +496,25 @@ async function loadDashboard() {
   button.disabled = true;
   button.textContent = "刷新中";
   try {
-    const [current, cycle, track, results] = await Promise.all([
+    const [current, cycle, track, results, apiCatalog] = await Promise.all([
       getJson("/api/regime/current"),
       getJson("/api/regime/cycle"),
       getJson("/api/regime/cycle/track"),
       getJson("/api/results/summary"),
+      getJson("/api"),
     ]);
     state.current = current;
     state.cycle = cycle;
     state.track = track;
     state.results = results;
+    state.apiCatalog = apiCatalog;
     const phase = phaseFromMajorCycle(cycle);
 
     setRegimePanel(current);
     setScoreList(current.sub_scores);
     setCyclePanel(phase);
     setResultsPanel(results);
+    setApiCatalogPanel(apiCatalog);
     setForecastPanel(track);
     setCycleBlocks(cycle.cycle_blocks || []);
     renderRadar("radarChart", current.sub_scores);

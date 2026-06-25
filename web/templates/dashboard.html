@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260625-final-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260625-api-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -203,6 +203,26 @@
           <p class="result-note" id="systemConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel api-catalog-panel">
+          <div class="panel-heading">
+            <h2>接口说明</h2>
+            <span class="panel-kicker">/api</span>
+          </div>
+          <div class="api-headline">
+            <div>
+              <span>已说明接口</span>
+              <strong id="apiEndpointCount">--</strong>
+            </div>
+            <div>
+              <span>文档入口</span>
+              <strong id="apiDocsStatus">--</strong>
+            </div>
+          </div>
+          <div class="api-link-list" id="apiRecommendedList"></div>
+          <div class="api-group-list" id="apiGroupList"></div>
+          <p class="result-note" id="apiCatalogConclusion">--</p>
+        </article>
+
         <article class="chart-panel result-panel">
           <div class="panel-heading">
             <h2>结构事件标签</h2>
@@ -343,8 +363,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260625-final-1"></script>
-    <script src="/static/dashboard.js?v=20260625-final-1"></script>
+    <script src="/static/charts.js?v=20260625-api-1"></script>
+    <script src="/static/dashboard.js?v=20260625-api-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

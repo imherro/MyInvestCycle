@@ -288,6 +288,123 @@ def _system_snapshot_payload(snapshot: dict[str, object]) -> dict[str, object]:
     }
 
 
+def _api_endpoint(
+    method: str,
+    path: str,
+    description: str,
+    returns: str,
+    params: list[dict[str, str]] | None = None,
+    freshness: str = "current",
+    safety: str = "read-only",
+) -> dict[str, object]:
+    return {
+        "method": method,
+        "path": path,
+        "description": description,
+        "params": params or [],
+        "returns": returns,
+        "freshness": freshness,
+        "safety": safety,
+    }
+
+
+def _api_catalog_payload() -> dict[str, object]:
+    groups = [
+        {
+            "name": "Web 与接口文档",
+            "description": "页面入口、接口目录和自动生成文档。",
+            "endpoints": [
+                _api_endpoint("GET", "/", "打开当前系统首页。", "HTML dashboard", freshness="page"),
+                _api_endpoint("GET", "/api", "返回当前系统所有主要接口、用途、参数和边界说明。", "API catalog"),
+                _api_endpoint("GET", "/docs", "打开 FastAPI 交互式接口文档。", "Swagger UI", freshness="docs"),
+                _api_endpoint("GET", "/redoc", "打开 ReDoc 接口文档。", "ReDoc HTML", freshness="docs"),
+                _api_endpoint("GET", "/openapi.json", "返回机器可读 OpenAPI 规范。", "OpenAPI schema", freshness="docs"),
+                _api_endpoint("GET", "/api/health", "服务健康检查。", "status"),
+            ],
+        },
+        {
+            "name": "市场状态识别",
+            "description": "读取当前市场状态、四维评分、解释和历史序列。",
+            "endpoints": [
+                _api_endpoint("GET", "/api/regime/current", "当前 A 股牛熊状态、置信度和四维评分。", "current regime"),
+                _api_endpoint("GET", "/api/features/latest", "当前最新四维特征分数。", "latest feature scores"),
+                _api_endpoint("GET", "/api/regime/explain", "当前状态识别的文字解释。", "regime explanation"),
+                _api_endpoint(
+                    "GET",
+                    "/api/regime/history",
+                    "指定时间段内的状态序列，最多 80 个交易日。",
+                    "history items",
+                    params=[
+                        {"name": "start", "required": "true", "format": "YYYYMMDD"},
+                        {"name": "end", "required": "true", "format": "YYYYMMDD"},
+                    ],
+                ),
+            ],
+        },
+        {
+            "name": "牛熊周期观察",
+            "description": "长期周期切分、本轮周期跟踪和概率展望。",
+            "endpoints": [
+                _api_endpoint("GET", "/api/regime/cycle", "长期牛熊主周期、指数序列和周期主题块。", "major cycle analysis"),
+                _api_endpoint("GET", "/api/regime/cycle/track", "本轮周期起点、当前位置、关键均线和概率展望。", "current cycle track"),
+            ],
+        },
+        {
+            "name": "组合与策略模拟",
+            "description": "从风险状态到组合、策略路由和执行模拟的只读决策链。",
+            "endpoints": [
+                _api_endpoint("GET", "/api/portfolio/current", "当前组合仓位、现金比例和策略资金分配。", "portfolio allocation"),
+                _api_endpoint("GET", "/api/strategy/current", "当前可启用策略、禁用策略和策略预算。", "strategy route"),
+                _api_endpoint("GET", "/api/execution/current", "执行意图和模拟指令，不产生真实订单。", "execution simulation"),
+            ],
+        },
+        {
+            "name": "系统成果总览",
+            "description": "系统冻结状态、完整成果和研究验证摘要。",
+            "endpoints": [
+                _api_endpoint("GET", "/api/system/snapshot", "系统边界、冻结文档、策略锁定和当前状态快照。", "system snapshot"),
+                _api_endpoint("GET", "/api/results/summary", "页面使用的完整成果汇总，包括风控、组合、策略、执行和验证结论。", "results summary"),
+            ],
+        },
+    ]
+    total_endpoints = sum(len(group["endpoints"]) for group in groups)
+    return {
+        "name": "MyInvestCycle API",
+        "version": app.version,
+        "status": "stable",
+        "description": "A股牛熊周期识别、风险控制、组合配置、策略路由与执行模拟的只读接口目录。",
+        "base_url": "http://127.0.0.1:8021",
+        "web_dashboard": "/",
+        "docs": {
+            "interactive": "/docs",
+            "redoc": "/redoc",
+            "openapi": "/openapi.json",
+        },
+        "recommended_entrypoints": [
+            {"path": "/api", "description": "先看接口目录。"},
+            {"path": "/api/results/summary", "description": "读取系统全部成果汇总。"},
+            {"path": "/api/system/snapshot", "description": "读取系统冻结边界与稳定状态。"},
+            {"path": "/api/regime/current", "description": "读取当前牛熊状态与四维评分。"},
+            {"path": "/api/regime/cycle/track", "description": "读取本轮周期位置和概率展望。"},
+        ],
+        "safety": {
+            "read_only": True,
+            "no_stock_selection": True,
+            "no_trade_execution": True,
+            "no_real_orders": True,
+            "no_broker_connection": True,
+            "simulation_only": True,
+        },
+        "groups": groups,
+        "total_endpoints": total_endpoints,
+    }
+
+
+@app.get("/api")
+def api_catalog() -> dict:
+    return _api_catalog_payload()
+
+
 @app.get("/api/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}

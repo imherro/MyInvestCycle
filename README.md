@@ -15,6 +15,8 @@ engine foundation requested by the design review.
 - Regime transition matrix builder for predictive-power validation.
 - Web dashboard on port `8021` with current-cycle tracking, probability outlook,
   long-term cycle view, and historical cycle theme blocks.
+- `GET /api` exposes the full interface catalog, documentation links,
+  recommended entrypoints, and read-only simulation boundary.
 - Completed research and risk-control outputs are surfaced on the Web dashboard
   through the full-results overview section.
 - R2.1 portfolio allocation engine maps risk-engine output into total exposure,
@@ -77,6 +79,10 @@ python web/app.py
 
 Endpoints:
 
+- `GET http://127.0.0.1:8021/api`
+- `GET http://127.0.0.1:8021/docs`
+- `GET http://127.0.0.1:8021/redoc`
+- `GET http://127.0.0.1:8021/openapi.json`
 - `GET http://127.0.0.1:8021/api/health`
 - `GET http://127.0.0.1:8021/api/regime/current`
 - `GET http://127.0.0.1:8021/api/regime/history?start=20260601&end=20260624`
