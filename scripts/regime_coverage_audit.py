@@ -16,13 +16,12 @@ from config import CACHE_DIR, DATA_DIR, DEFAULT_INDEX_CODE
 from core.breadth import get_market_daily, get_market_history_sample
 from core.data_loader import get_index_daily, normalize_trade_date
 from core.liquidity import get_moneyflow_hsgt
-from engine.regime_forward_returns import (
-    DEFAULT_HORIZONS,
-    build_forward_return_frame,
-    save_forward_return_summary,
-    summarize_forward_returns,
+from engine.regime_coverage_analyzer import (
+    build_coverage_audit,
+    expected_trade_dates,
+    market_daily_cache_coverage,
+    save_coverage_audit,
 )
-from engine.regime_predictive_score import evaluate_predictive_power
 from engine.regime_transition_matrix import build_daily_regime_sequence
 
 
@@ -42,30 +41,23 @@ def _market_daily_cache_path(trade_date: str) -> Path:
     return CACHE_DIR / f"market_daily_{trade_date}.csv"
 
 
-def _parse_horizons(value: str) -> tuple[int, ...]:
-    horizons = tuple(int(part.strip()) for part in value.split(",") if part.strip())
-    if not horizons or any(horizon <= 0 for horizon in horizons):
-        raise argparse.ArgumentTypeError("--horizons must contain positive integers")
-    return horizons
-
-
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Validate forward outcomes by current regime.")
+    parser = argparse.ArgumentParser(description="Audit historical cache coverage and regime label balance.")
     parser.add_argument("--start", required=True, help="Start trade date, YYYYMMDD.")
     parser.add_argument("--end", default=date.today().strftime("%Y%m%d"), help="End trade date, YYYYMMDD.")
     parser.add_argument("--ts-code", default=DEFAULT_INDEX_CODE)
-    parser.add_argument("--horizons", type=_parse_horizons, default=DEFAULT_HORIZONS)
-    parser.add_argument("--output", default=str(DATA_DIR / "regime_forward_test.json"))
-    parser.add_argument("--refresh", action="store_true")
+    parser.add_argument("--output", default=str(DATA_DIR / "regime_coverage_audit.json"))
+    parser.add_argument("--coverage-threshold", type=float, default=0.90)
+    parser.add_argument("--refresh-index", action="store_true")
     parser.add_argument(
-        "--cache-only",
+        "--fetch-missing",
         action="store_true",
-        help="Use local market_daily cache only; missing dates are skipped.",
+        help="Fetch missing market_daily cache while auditing. Default only reads local cache.",
     )
     parser.add_argument(
         "--strict",
         action="store_true",
-        help="Fail on the first missing or invalid daily input instead of skipping it.",
+        help="Fail on the first missing or invalid daily input instead of recording skipped dates.",
     )
     parser.add_argument("--include-hsgt", action="store_true")
     parser.add_argument("--history-sample-size", type=int, default=0)
@@ -80,18 +72,18 @@ def main() -> None:
         raise ValueError("--start must be earlier than or equal to --end")
 
     warmup_start = _calendar_shift(start, -540)
-    index_df = get_index_daily(args.ts_code, warmup_start, end, refresh=args.refresh)
-    if index_df.empty:
-        raise RuntimeError("No index rows available for forward return test.")
+    index_df = get_index_daily(args.ts_code, warmup_start, end, refresh=args.refresh_index)
+    dates = expected_trade_dates(index_df, start_date=start, end_date=end)
+    cache_coverage = market_daily_cache_coverage(dates, cache_dir=CACHE_DIR)
 
     hsgt_df = None
     if args.include_hsgt:
-        hsgt_df = get_moneyflow_hsgt(_calendar_shift(start, -60), end, refresh=args.refresh)
+        hsgt_df = get_moneyflow_hsgt(_calendar_shift(start, -60), end)
 
     def market_daily_loader(trade_date: str) -> pd.DataFrame:
-        if args.cache_only and not _market_daily_cache_path(trade_date).exists():
+        if not args.fetch_missing and not _market_daily_cache_path(trade_date).exists():
             raise FileNotFoundError(f"market_daily cache missing for {trade_date}")
-        return get_market_daily(trade_date, refresh=args.refresh)
+        return get_market_daily(trade_date)
 
     market_history_loader = None
     if args.history_sample_size > 0:
@@ -115,32 +107,25 @@ def main() -> None:
         market_history_loader=market_history_loader,
         skip_errors=not args.strict,
     )
-    if not sequence.items:
-        raise RuntimeError("No valid regime observations were available.")
-
-    forward_frame = build_forward_return_frame(sequence.items, index_df, horizons=args.horizons)
-    forward_summary = summarize_forward_returns(forward_frame, horizons=args.horizons)
-    predictive_score = evaluate_predictive_power(forward_frame, horizons=args.horizons)
-    output = {
-        "metadata": {
-            "start": start,
-            "end": end,
-            "ts_code": args.ts_code,
-            "horizons": list(args.horizons),
-            "observations": int(len(sequence.items)),
-            "skipped": int(len(sequence.skipped)),
-            "skipped_sample": sequence.skipped[:10],
-            "cache_only": bool(args.cache_only),
-            "include_hsgt": bool(args.include_hsgt),
-            "history_sample_size": int(args.history_sample_size),
-        },
-        "forward_returns": forward_summary,
-        "predictive_score": predictive_score,
+    audit = build_coverage_audit(
+        expected_dates=dates,
+        cache_coverage=cache_coverage,
+        regime_items=sequence.items,
+        skipped=sequence.skipped,
+        coverage_threshold=args.coverage_threshold,
+    )
+    audit["metadata"] = {
+        "start": start,
+        "end": end,
+        "ts_code": args.ts_code,
+        "fetch_missing": bool(args.fetch_missing),
+        "include_hsgt": bool(args.include_hsgt),
+        "history_sample_size": int(args.history_sample_size),
     }
-    output_path = save_forward_return_summary(output, args.output)
-    output["metadata"]["output"] = _display_path(output_path)
-    output_path.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps(output, ensure_ascii=False, indent=2))
+    output_path = save_coverage_audit(audit, args.output)
+    audit["metadata"]["output"] = _display_path(output_path)
+    output_path.write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(audit, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

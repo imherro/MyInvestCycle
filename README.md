@@ -111,3 +111,27 @@ Default output:
 ```text
 data/regime_forward_test.json
 ```
+
+Run the Task 8 data coverage audit:
+
+```powershell
+python scripts/regime_coverage_audit.py --start 20200101 --end 20260624
+```
+
+Preview full-history `market_daily` backfill without fetching:
+
+```powershell
+python scripts/full_history_backfill.py --start 20200101 --end 20260624
+```
+
+Fetch missing market breadth cache incrementally:
+
+```powershell
+python scripts/full_history_backfill.py --start 20200101 --end 20260624 --execute --limit 50
+```
+
+Default coverage output:
+
+```text
+data/regime_coverage_audit.json
+```

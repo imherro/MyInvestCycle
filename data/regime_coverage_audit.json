@@ -1,0 +1,132 @@
+{
+  "total_days": 1567,
+  "covered_days": 74,
+  "missing_days": 1493,
+  "coverage_ratio": 0.047224,
+  "coverage_threshold": 0.9,
+  "coverage_status": "fail",
+  "regime_distribution": {
+    "bull": 0.0,
+    "bear": 0.216216,
+    "range": 0.243243,
+    "transition": 0.540541
+  },
+  "regime_counts": {
+    "bull": 0,
+    "bear": 16,
+    "range": 18,
+    "transition": 40
+  },
+  "missing_regimes": [
+    "bull"
+  ],
+  "duration_summary": {
+    "bull": {
+      "segments": 0,
+      "max_duration": 0,
+      "avg_duration": 0.0
+    },
+    "bear": {
+      "segments": 5,
+      "max_duration": 8,
+      "avg_duration": 3.2
+    },
+    "range": {
+      "segments": 11,
+      "max_duration": 4,
+      "avg_duration": 1.6364
+    },
+    "transition": {
+      "segments": 14,
+      "max_duration": 8,
+      "avg_duration": 2.8571
+    }
+  },
+  "label_imbalance": {
+    "max_share": 0.540541,
+    "min_nonzero_share": 0.216216,
+    "transition_share": 0.540541
+  },
+  "expected_sample": [
+    "20200102",
+    "20200103",
+    "20200106",
+    "20200107",
+    "20200108",
+    "20200109",
+    "20200110",
+    "20200113",
+    "20200114",
+    "20200115"
+  ],
+  "missing_cache_sample": [
+    "20200102",
+    "20200103",
+    "20200106",
+    "20200107",
+    "20200108",
+    "20200109",
+    "20200110",
+    "20200113",
+    "20200114",
+    "20200115"
+  ],
+  "skipped_days": 1493,
+  "skipped_sample": [
+    {
+      "trade_date": "20200102",
+      "reason": "market_daily cache missing for 20200102"
+    },
+    {
+      "trade_date": "20200103",
+      "reason": "market_daily cache missing for 20200103"
+    },
+    {
+      "trade_date": "20200106",
+      "reason": "market_daily cache missing for 20200106"
+    },
+    {
+      "trade_date": "20200107",
+      "reason": "market_daily cache missing for 20200107"
+    },
+    {
+      "trade_date": "20200108",
+      "reason": "market_daily cache missing for 20200108"
+    },
+    {
+      "trade_date": "20200109",
+      "reason": "market_daily cache missing for 20200109"
+    },
+    {
+      "trade_date": "20200110",
+      "reason": "market_daily cache missing for 20200110"
+    },
+    {
+      "trade_date": "20200113",
+      "reason": "market_daily cache missing for 20200113"
+    },
+    {
+      "trade_date": "20200114",
+      "reason": "market_daily cache missing for 20200114"
+    },
+    {
+      "trade_date": "20200115",
+      "reason": "market_daily cache missing for 20200115"
+    }
+  ],
+  "warnings": [
+    "coverage_below_threshold",
+    "missing_regime_labels",
+    "transition_overconcentration",
+    "regime_sequence_skipped_dates"
+  ],
+  "metadata": {
+    "start": "20200101",
+    "end": "20260624",
+    "ts_code": "000001.SH",
+    "fetch_missing": false,
+    "include_hsgt": false,
+    "history_sample_size": 0,
+    "output": "data/regime_coverage_audit.json"
+  }
+}
