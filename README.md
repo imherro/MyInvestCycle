@@ -153,3 +153,15 @@ Default output:
 ```text
 data/hazard_dataset.json
 ```
+
+Build the H1.2 structural hazard dataset:
+
+```powershell
+python scripts/build_structural_hazard_dataset.py --start 20200101 --end 20260624 --cache-only
+```
+
+Default output:
+
+```text
+data/structural_hazard_dataset.json
+```

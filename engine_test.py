@@ -12,6 +12,7 @@ from core.data_loader import get_index_daily
 from core.liquidity import get_moneyflow_hsgt
 from engine.market_engine import analyze_index_regime
 from engine.regime_hazard_labeler import build_hazard_dataset, hazard_label_distribution, validate_hazard_dataset
+from engine.regime_hazard_labeler_v2 import build_structural_hazard_dataset, validate_structural_hazard_dataset
 
 
 def build_sample_index_daily(rows: int = 180) -> pd.DataFrame:
@@ -182,6 +183,32 @@ def main() -> None:
     assert hazard_samples[0]["features"]["pressure"] == 0.05
     assert hazard_samples[1]["features"]["regime_persistence"] == 2
     assert hazard_label_distribution(hazard_samples)["transition_events"] == 1
+
+    structural_input = []
+    structural_regimes = ["range", "range", "range", "bull", "bull", "bull", "bull"]
+    for offset, regime in enumerate(structural_regimes, start=1):
+        structural_input.append(
+            {
+                "trade_date": f"2026010{offset}",
+                "regime": regime,
+                "trend_score": 0.40 + offset * 0.02,
+                "breadth_score": 0.50,
+                "liquidity_score": 0.55,
+                "volatility_score": 0.70,
+                "regime_score": 0.52,
+                "confidence": 0.60,
+            }
+        )
+    structural_samples = build_structural_hazard_dataset(
+        structural_input,
+        smooth_radius=0,
+        persistence_days=2,
+        forward_window=2,
+        min_break_gap=0,
+    )
+    validate_structural_hazard_dataset(structural_samples, max_hazard_rate=0.50)
+    assert [sample["label"] for sample in structural_samples] == [0, 1, 1, 0, 0]
+    assert all(sample["label_type"] == "structural_break" for sample in structural_samples)
 
 
 if __name__ == "__main__":

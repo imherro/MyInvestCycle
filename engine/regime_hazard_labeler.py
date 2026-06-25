@@ -43,6 +43,10 @@ def _ordered_items(regime_items: Sequence[Mapping[str, object]]) -> list[dict[st
     return sorted(ordered, key=lambda item: str(item["trade_date"]))
 
 
+def ordered_regime_items(regime_items: Sequence[Mapping[str, object]]) -> list[dict[str, object]]:
+    return _ordered_items(regime_items)
+
+
 def _feature_snapshot(
     ordered: Sequence[Mapping[str, object]],
     index: int,
@@ -86,6 +90,14 @@ def _feature_snapshot(
         features["confidence"] = _round(float(item["confidence"]))
 
     return features
+
+
+def build_hazard_feature_snapshot(
+    ordered: Sequence[Mapping[str, object]],
+    index: int,
+    persistence: int,
+) -> dict[str, float | int]:
+    return _feature_snapshot(ordered, index, persistence)
 
 
 def build_hazard_dataset(regime_items: Sequence[Mapping[str, object]]) -> list[dict[str, object]]:
