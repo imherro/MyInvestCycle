@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260625-api-2" />
+    <link rel="stylesheet" href="/static/style.css?v=20260625-confidence-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -295,6 +295,14 @@
                 <span>未来 <strong id="forecastHorizon">--</strong> 交易日</span>
                 <em id="forecastSample">--</em>
               </div>
+              <div class="forecast-confidence" id="forecastConfidenceBox">
+                <div>
+                  <span>展望置信度</span>
+                  <strong id="forecastConfidence">--</strong>
+                </div>
+                <em id="forecastConfidenceLabel">--</em>
+                <p id="forecastConfidenceReason">--</p>
+              </div>
               <div class="prob-list">
                 <div class="prob-row">
                   <div><span>牛市延续</span><strong id="probContinue">--</strong></div>
@@ -365,8 +373,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260625-api-1"></script>
-    <script src="/static/dashboard.js?v=20260625-api-1"></script>
+    <script src="/static/charts.js?v=20260625-confidence-1"></script>
+    <script src="/static/dashboard.js?v=20260625-confidence-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

@@ -406,12 +406,17 @@ function setResultsPanel(results) {
 function setForecastPanel(track) {
   const forecast = track.forecast || {};
   const probabilities = forecast.probabilities || {};
+  const confidence = forecast.confidence || {};
   const levels = forecast.key_levels || {};
   const explanation = forecast.explanation || {};
   document.getElementById("trackRange").textContent =
     `${toIsoDate(track.cycle.start_date)} 至 ${toIsoDate(track.as_of)}`;
   document.getElementById("forecastHorizon").textContent = forecast.basis_horizon_sessions || "--";
   document.getElementById("forecastSample").textContent = forecast.sample_size ? `样本 ${forecast.sample_size}` : "样本不足";
+  setText("forecastConfidence", percentText(confidence.score));
+  setText("forecastConfidenceLabel", confidence.level_label || "--");
+  document.getElementById("forecastConfidenceLabel").className = `confidence-level confidence-${confidence.level || "insufficient"}`;
+  setText("forecastConfidenceReason", confidence.reason || "样本不足，暂不输出展望置信度。");
   setProbability("probContinue", "barContinue", probabilities.continue);
   setProbability("probRange", "barRange", probabilities.range);
   setProbability("probWeaken", "barWeaken", probabilities.weaken);

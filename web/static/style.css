@@ -770,6 +770,66 @@ h2 {
   font-size: 20px;
 }
 
+.forecast-confidence {
+  padding: 12px 0 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.forecast-confidence > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.forecast-confidence span,
+.forecast-confidence p {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.forecast-confidence strong {
+  color: var(--ink);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.forecast-confidence em {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  margin-top: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f0f3f8;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.forecast-confidence em.confidence-medium_low,
+.forecast-confidence em.confidence-medium {
+  background: rgba(198, 146, 20, 0.12);
+  color: var(--transition);
+}
+
+.forecast-confidence em.confidence-high {
+  background: rgba(23, 136, 91, 0.12);
+  color: var(--bear);
+}
+
+.forecast-confidence em.confidence-low {
+  background: rgba(199, 61, 61, 0.12);
+  color: var(--bull);
+}
+
+.forecast-confidence p {
+  margin: 8px 0 0;
+}
+
 .prob-list {
   display: grid;
   gap: 14px;

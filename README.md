@@ -15,6 +15,8 @@ engine foundation requested by the design review.
 - Regime transition matrix builder for predictive-power validation.
 - Web dashboard on port `8021` with current-cycle tracking, probability outlook,
   long-term cycle view, and historical cycle theme blocks.
+- The probability outlook includes a forecast confidence score based on sample
+  support and probability concentration.
 - `GET /api` exposes the full interface catalog, documentation links,
   recommended entrypoints, and read-only simulation boundary.
 - Completed research and risk-control outputs are surfaced on the Web dashboard

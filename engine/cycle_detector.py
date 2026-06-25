@@ -658,12 +658,14 @@ def _similar_forecast(df: pd.DataFrame, latest_index: int, current_state: str, h
         "range": range_count / total,
         "weaken": weaken / total,
     }
+    confidence = _forecast_confidence(probabilities, total)
 
     return {
         "basis": "historical_similar_samples",
         "basis_horizon_sessions": basis_horizon,
         "sample_size": int(total),
         "probabilities": probabilities,
+        "confidence": confidence,
         "paths": paths,
         "key_levels": {
             "current_close": round(float(latest["close"]), 4),
@@ -677,7 +679,64 @@ def _similar_forecast(df: pd.DataFrame, latest_index: int, current_state: str, h
             sample_size=total,
             basis_horizon=basis_horizon,
             probabilities=probabilities,
+            confidence=confidence,
             paths=paths,
+        ),
+    }
+
+
+def _forecast_confidence(probabilities: dict[str, float | None], sample_size: int) -> dict[str, object]:
+    labels = {
+        "continue": "牛市延续",
+        "range": "震荡整理",
+        "weaken": "转弱确认",
+    }
+    valid = [(key, value) for key, value in probabilities.items() if isinstance(value, (int, float))]
+    if len(valid) < 2 or sample_size <= 0:
+        return {
+            "score": None,
+            "level": "insufficient",
+            "level_label": "样本不足",
+            "dominant_outcome": None,
+            "dominant_probability": None,
+            "runner_up_probability": None,
+            "probability_gap": None,
+            "sample_support": 0.0,
+            "reason": "历史相似样本不足，无法给出展望置信度。",
+        }
+
+    ordered = sorted(valid, key=lambda item: item[1], reverse=True)
+    dominant_key, dominant_probability = ordered[0]
+    _, runner_up_probability = ordered[1]
+    probability_gap = max(dominant_probability - runner_up_probability, 0.0)
+    sample_support = min(sample_size / 160.0, 1.0)
+    score = min(sample_support * (dominant_probability + probability_gap), 0.95)
+
+    if score < 0.45:
+        level = "low"
+        level_label = "偏低"
+    elif score < 0.60:
+        level = "medium_low"
+        level_label = "中等偏低"
+    elif score < 0.75:
+        level = "medium"
+        level_label = "中等"
+    else:
+        level = "high"
+        level_label = "较高"
+
+    return {
+        "score": round(float(score), 4),
+        "level": level,
+        "level_label": level_label,
+        "dominant_outcome": labels.get(dominant_key, dominant_key),
+        "dominant_probability": round(float(dominant_probability), 4),
+        "runner_up_probability": round(float(runner_up_probability), 4),
+        "probability_gap": round(float(probability_gap), 4),
+        "sample_support": round(float(sample_support), 4),
+        "reason": (
+            f"样本支撑度 {sample_support:.0%}，最高概率 {dominant_probability:.1%}，"
+            f"领先第二种情形 {probability_gap:.1%}。"
         ),
     }
 
@@ -688,6 +747,7 @@ def _empty_forecast(latest: pd.Series, horizons: tuple[int, ...]) -> dict:
         "basis_horizon_sessions": 60 if 60 in horizons else max(horizons),
         "sample_size": 0,
         "probabilities": {"continue": None, "range": None, "weaken": None},
+        "confidence": _forecast_confidence({"continue": None, "range": None, "weaken": None}, 0),
         "paths": [],
         "key_levels": {
             "current_close": round(float(latest["close"]), 4),
@@ -714,6 +774,7 @@ def _forecast_explanation(
     sample_size: int,
     basis_horizon: int,
     probabilities: dict,
+    confidence: dict,
     paths: list[dict],
 ) -> dict:
     dominant = max(
@@ -730,10 +791,14 @@ def _forecast_explanation(
         if neutral_path
         else f"{basis_horizon} 个交易日中性路径暂无可用区间"
     )
+    confidence_text = "--" if confidence.get("score") is None else f"{float(confidence['score']):.1%}"
+    confidence_reason = str(confidence.get("reason", "")).rstrip("。")
     return {
         "summary": (
             f"当前展望来自历史相似样本统计，不是确定预测。按未来 {basis_horizon} 个交易日观察，"
-            f"概率最高的是{dominant[0]}，占比约 {dominant[1]:.0%}。"
+            f"概率最高的是{dominant[0]}，占比约 {dominant[1]:.0%}；"
+            f"展望置信度约 {confidence_text}，"
+            f"属于{confidence.get('level_label', '--')}。"
         ),
         "facts": _forecast_fact_lines(latest),
         "method": [
@@ -741,11 +806,12 @@ def _forecast_explanation(
             "相似度比较 5 个事实特征：距 MA250 的位置、近 60 日涨跌幅、20 日波动率、近 60 日最大回撤、本轮已运行交易日数。",
             f"取距离最近的 {sample_size} 个历史交易日作为样本，逐个观察之后 {basis_horizon} 个交易日的结果。",
             "若样本期后仍站上 MA250 且涨幅不低于 3%，记为牛市延续；若跌幅超过 8% 或跌破 MA250，记为转弱确认；其余记为震荡整理。",
+            "展望置信度按“样本支撑度 ×（最高概率 + 领先第二名的概率差）”估算，用来提示结论是否集中，而不是收益承诺。",
         ],
         "result": (
             f"统计结果为：牛市延续 {probabilities['continue']:.1%}，"
             f"震荡整理 {probabilities['range']:.1%}，转弱确认 {probabilities['weaken']:.1%}；"
-            f"{neutral_text}。"
+            f"展望置信度 {confidence.get('score', 0):.1%}，{confidence_reason}；{neutral_text}。"
         ),
     }
 
