@@ -9,11 +9,13 @@ engine foundation requested by the design review.
 - Reusable feature functions for moving averages, slope, volatility, drawdown,
   and score normalization.
 - Real market breadth scoring from all-stock daily distribution.
+- Lightweight 52-week high approximation from cached high-turnover stock history.
 - Liquidity scoring from index turnover expansion and optional northbound flow.
 - Market regime engine returning `regime`, `confidence`, and four sub-scores.
 - Reserved Web port: `8021`.
 
-Current tasks intentionally do not include a Web UI or charts.
+The current Web layer is JSON-only. It intentionally does not include HTML,
+charts, or rendered pages.
 
 ## Run
 
@@ -46,3 +48,16 @@ Update local cache only:
 ```powershell
 python scripts/update_daily.py --ts-code 000001.SH --start-date 20150101
 ```
+
+Run the JSON API:
+
+```powershell
+python web/app.py
+```
+
+Endpoints:
+
+- `GET http://127.0.0.1:8021/api/health`
+- `GET http://127.0.0.1:8021/api/regime/current`
+- `GET http://127.0.0.1:8021/api/regime/history?start=20260601&end=20260624`
+- `GET http://127.0.0.1:8021/api/features/latest`

@@ -57,6 +57,7 @@ class MarketEngine:
         index_df: pd.DataFrame,
         *,
         market_daily_df: pd.DataFrame,
+        market_history_df: pd.DataFrame | None = None,
         hsgt_df: pd.DataFrame | None = None,
     ) -> MarketRegimeResult:
         if index_df.empty:
@@ -85,7 +86,7 @@ class MarketEngine:
         )
         volatility_risk = _clip(float(latest["volatility_20"]) / 0.45)
         volatility_score = _clip(1.0 - volatility_risk)
-        breadth_metrics = calculate_breadth_metrics(market_daily_df)
+        breadth_metrics = calculate_breadth_metrics(market_daily_df, market_history_df=market_history_df)
         liquidity_metrics = calculate_liquidity_metrics(index_df, hsgt_df=hsgt_df)
         breadth_score = _clip(float(breadth_metrics["strength_score"]))
         liquidity_score = _clip(float(liquidity_metrics["liquidity_score"]))
@@ -159,6 +160,12 @@ def analyze_index_regime(
     index_df: pd.DataFrame,
     *,
     market_daily_df: pd.DataFrame,
+    market_history_df: pd.DataFrame | None = None,
     hsgt_df: pd.DataFrame | None = None,
 ) -> dict[str, float | str | None | dict[str, float]]:
-    return MarketEngine().analyze(index_df, market_daily_df=market_daily_df, hsgt_df=hsgt_df).to_dict()
+    return MarketEngine().analyze(
+        index_df,
+        market_daily_df=market_daily_df,
+        market_history_df=market_history_df,
+        hsgt_df=hsgt_df,
+    ).to_dict()

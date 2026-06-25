@@ -21,3 +21,4 @@ DEFAULT_INDEX_CODE = os.getenv("DEFAULT_INDEX_CODE", "000001.SH")
 
 # Reserved for the Web phase. The current Task 1 intentionally has no Web UI.
 WEB_PORT = int(os.getenv("MYINVEST_WEB_PORT", "8021"))
+BREADTH_HISTORY_SAMPLE_SIZE = int(os.getenv("BREADTH_HISTORY_SAMPLE_SIZE", "30"))

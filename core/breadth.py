@@ -27,6 +27,11 @@ def _cache_path(trade_date: str, cache_dir: Path = CACHE_DIR) -> Path:
     return cache_dir / f"market_daily_{trade_date}.csv"
 
 
+def _stock_cache_path(ts_code: str, start_date: str, end_date: str, cache_dir: Path = CACHE_DIR) -> Path:
+    safe_code = ts_code.replace(".", "_")
+    return cache_dir / "stock_daily" / f"{safe_code}_{start_date}_{end_date}.csv"
+
+
 def _coerce_market_daily(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
         return pd.DataFrame(columns=MARKET_DAILY_COLUMNS)
@@ -68,6 +73,78 @@ def get_market_daily(
     path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(path, index=False, encoding="utf-8")
     return df
+
+
+def fetch_stock_daily(
+    ts_code: str,
+    start_date: str,
+    end_date: str,
+    *,
+    token: str | None = None,
+) -> pd.DataFrame:
+    start = normalize_trade_date(start_date)
+    end = normalize_trade_date(end_date)
+    pro = get_tushare_pro(token)
+    raw = pro.daily(ts_code=ts_code, start_date=start, end_date=end)
+    return _coerce_market_daily(raw)
+
+
+def get_stock_daily(
+    ts_code: str,
+    start_date: str,
+    end_date: str,
+    *,
+    refresh: bool = False,
+    token: str | None = None,
+    cache_dir: Path = CACHE_DIR,
+) -> pd.DataFrame:
+    start = normalize_trade_date(start_date)
+    end = normalize_trade_date(end_date)
+    path = _stock_cache_path(ts_code, start, end, cache_dir)
+    if path.exists() and not refresh:
+        return _coerce_market_daily(pd.read_csv(path, dtype={"trade_date": str}))
+
+    df = fetch_stock_daily(ts_code, start, end, token=token)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(path, index=False, encoding="utf-8")
+    return df
+
+
+def get_market_history_sample(
+    market_daily_df: pd.DataFrame,
+    start_date: str,
+    end_date: str,
+    *,
+    sample_size: int = 30,
+    token: str | None = None,
+    cache_dir: Path = CACHE_DIR,
+) -> pd.DataFrame:
+    """Build a lightweight 52-week breadth sample from high-turnover stocks."""
+    start = normalize_trade_date(start_date)
+    end = normalize_trade_date(end_date)
+    daily = _coerce_market_daily(market_daily_df)
+    if daily.empty or sample_size <= 0:
+        return pd.DataFrame(columns=MARKET_DAILY_COLUMNS)
+
+    ranked = daily.sort_values("amount", ascending=False).head(sample_size)
+    frames: list[pd.DataFrame] = []
+    for ts_code in ranked["ts_code"].dropna().astype(str):
+        try:
+            stock_df = get_stock_daily(
+                ts_code,
+                start,
+                end,
+                token=token,
+                cache_dir=cache_dir,
+            )
+        except Exception:
+            continue
+        if not stock_df.empty:
+            frames.append(stock_df)
+
+    if not frames:
+        return pd.DataFrame(columns=MARKET_DAILY_COLUMNS)
+    return _coerce_market_daily(pd.concat(frames, ignore_index=True))
 
 
 def calc_52_week_high_ratio(

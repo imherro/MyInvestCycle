@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 from config import DEFAULT_INDEX_CODE
-from core.breadth import get_market_daily
+from core.breadth import get_market_daily, get_market_history_sample
 from core.data_loader import get_index_daily
 from core.liquidity import get_moneyflow_hsgt
 from engine.market_engine import analyze_index_regime
@@ -90,13 +90,25 @@ def main() -> None:
     parser.add_argument("--ts-code", default=DEFAULT_INDEX_CODE)
     parser.add_argument("--start-date", default="20240101")
     parser.add_argument("--end-date", default=date.today().strftime("%Y%m%d"))
+    parser.add_argument("--history-sample-size", type=int, default=0)
     args = parser.parse_args()
 
+    market_history = None
     if args.live:
         df = get_index_daily(args.ts_code, args.start_date, args.end_date)
         if df.empty:
             raise RuntimeError("No live index rows returned from Tushare.")
         market_daily = get_market_daily(str(df["trade_date"].iloc[-1]))
+        if args.history_sample_size > 0:
+            history_start = (
+                pd.to_datetime(str(df["trade_date"].iloc[-1]), format="%Y%m%d") - pd.Timedelta(days=370)
+            ).strftime("%Y%m%d")
+            market_history = get_market_history_sample(
+                market_daily,
+                history_start,
+                str(df["trade_date"].iloc[-1]),
+                sample_size=args.history_sample_size,
+            )
         hsgt = get_moneyflow_hsgt(str(df["trade_date"].iloc[-30]), str(df["trade_date"].iloc[-1]))
         source = "tushare"
     else:
@@ -105,7 +117,12 @@ def main() -> None:
         hsgt = build_sample_hsgt(df["trade_date"])
         source = "sample"
 
-    result = analyze_index_regime(df, market_daily_df=market_daily, hsgt_df=hsgt)
+    result = analyze_index_regime(
+        df,
+        market_daily_df=market_daily,
+        market_history_df=market_history,
+        hsgt_df=hsgt,
+    )
     print(f"source: {source}")
     print(f"as_of: {result['as_of']}")
     print(f"regime: {result['regime']}")
