@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260625-r22-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260625-r31-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -147,6 +147,35 @@
           <p class="result-note" id="routeConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel execution-panel">
+          <div class="panel-heading">
+            <h2>执行模拟</h2>
+            <span class="panel-kicker">R3.1</span>
+          </div>
+          <div class="execution-headline">
+            <div>
+              <span>执行模式</span>
+              <strong id="executionMode">--</strong>
+            </div>
+            <div>
+              <span>模拟指令</span>
+              <strong id="executionOrderCount">--</strong>
+            </div>
+          </div>
+          <div class="action-list">
+            <div>
+              <span>允许动作</span>
+              <p id="allowedActions">--</p>
+            </div>
+            <div>
+              <span>禁止动作</span>
+              <p id="forbiddenActions">--</p>
+            </div>
+          </div>
+          <div class="simulated-order-list" id="simulatedOrders"></div>
+          <p class="result-note" id="executionConclusion">--</p>
+        </article>
+
         <article class="chart-panel result-panel">
           <div class="panel-heading">
             <h2>结构事件标签</h2>
@@ -287,8 +316,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260625-r22-1"></script>
-    <script src="/static/dashboard.js?v=20260625-r22-1"></script>
+    <script src="/static/charts.js?v=20260625-r31-1"></script>
+    <script src="/static/dashboard.js?v=20260625-r31-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

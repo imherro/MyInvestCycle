@@ -115,6 +115,29 @@ function actionLabel(value) {
   return labels[value] || value || "--";
 }
 
+function executionActionLabel(value) {
+  const labels = {
+    reduce_exposure: "降低仓位",
+    rebalance_strategy: "策略再平衡",
+    open_new_position: "新开仓",
+    increase_exposure: "提高仓位",
+    increase_leverage: "增加杠杆",
+    trim_overweight: "削减超配",
+    hedge: "对冲",
+  };
+  return labels[value] || value || "--";
+}
+
+function executionModeLabel(value) {
+  const labels = {
+    expand_or_rebalance: "扩张/再平衡",
+    rebalance_strategy: "策略再平衡",
+    defensive_only: "仅防御",
+    reduce_risk: "降低风险",
+  };
+  return labels[value] || value || "--";
+}
+
 function strategyLabel(value) {
   const labels = {
     trend: "趋势",
@@ -148,6 +171,7 @@ function setResultsPanel(results) {
   const decision = risk.decision || {};
   const portfolio = (results.portfolio || {}).allocation || {};
   const route = (results.strategy_route || {}).route || {};
+  const execution = (results.execution || {}).simulation || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
   const validation = results.model_validation || {};
@@ -230,6 +254,34 @@ function setResultsPanel(results) {
   setText(
     "routeConclusion",
     `R2.2 将组合资金路由到 ${enabledStrategies.map(strategyLabel).join("、") || "无"}；禁用原因：${disabledText}。`
+  );
+
+  const intent = execution.execution_intent || {};
+  const simulatedOrders = execution.simulated_orders || [];
+  setText("executionMode", executionModeLabel(intent.execution_mode));
+  setText("executionOrderCount", integerText(simulatedOrders.length));
+  setText("allowedActions", (intent.allowed_actions || []).map(executionActionLabel).join("、") || "--");
+  setText("forbiddenActions", (intent.forbidden_actions || []).map(executionActionLabel).join("、") || "--");
+  document.getElementById("simulatedOrders").innerHTML = simulatedOrders
+    .map((order) => {
+      const size = typeof order.weight_change === "number"
+        ? signedPercentText(order.weight_change * 100)
+        : percentText(order.target_weight);
+      const target = order.strategy ? ` · ${strategyLabel(order.strategy)}` : "";
+      return `
+        <div class="simulated-order-row">
+          <span>${executionActionLabel(order.action)}${target}</span>
+          <strong>${size}</strong>
+          <em>${escapeHtml(order.reason || "")}</em>
+        </div>
+      `;
+    })
+    .join("");
+  setText(
+    "executionConclusion",
+    execution.constraints?.no_real_orders
+      ? "R3.1 只生成执行意图和模拟指令，不连接券商，不产生真实订单。"
+      : "执行约束需要检查。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

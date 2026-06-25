@@ -24,6 +24,8 @@ from core.exposure_controller import build_exposure_decision
 from core.features import build_feature_frame
 from core.liquidity import get_moneyflow_hsgt
 from core.capital_controller import load_portfolio_policy
+from core.execution_policy import load_execution_policy
+from core.execution_simulator import simulate_execution_layer
 from core.portfolio_allocator import build_portfolio_allocation
 from core.regime_adapter import adapt_regime_payload
 from core.risk_score_engine import load_risk_policy
@@ -179,6 +181,21 @@ def _strategy_policy_summary(policy: dict[str, dict[str, object]]) -> dict[str, 
     }
 
 
+def _execution_policy_summary(policy: dict[str, dict[str, object]]) -> dict[str, object]:
+    regimes = {}
+    for regime in ("bull", "range", "bear", "transition"):
+        regime_policy = policy.get(regime, {})
+        regimes[regime] = {
+            "execution_mode": regime_policy.get("execution_mode"),
+            "allow": regime_policy.get("allow", []),
+            "forbid": regime_policy.get("forbid", []),
+        }
+    return {
+        "risk": policy.get("risk", {}),
+        "regimes": regimes,
+    }
+
+
 def _current_regime_payload() -> dict:
     end_date = _today_text()
     start_date = _calendar_shift(end_date, -540)
@@ -213,6 +230,8 @@ def _current_portfolio_snapshot() -> dict[str, object]:
     )
     strategy_policy = load_strategy_policy()
     strategy_route = build_strategy_route(portfolio_allocation, policy=strategy_policy)
+    execution_policy = load_execution_policy()
+    execution = simulate_execution_layer(strategy_route, policy=execution_policy)
     return {
         "current": current,
         "risk_signal": risk_signal,
@@ -222,6 +241,8 @@ def _current_portfolio_snapshot() -> dict[str, object]:
         "portfolio_allocation": portfolio_allocation,
         "strategy_policy": strategy_policy,
         "strategy_route": strategy_route,
+        "execution_policy": execution_policy,
+        "execution": execution,
     }
 
 
@@ -307,7 +328,24 @@ def strategy_current() -> dict:
             "as_of": snapshot["current"]["as_of"],
             "portfolio": snapshot["portfolio_allocation"],
             "strategy_route": snapshot["strategy_route"],
+            "execution": snapshot["execution"],
             "policy": _strategy_policy_summary(snapshot["strategy_policy"]),
+        }
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
+@app.get("/api/execution/current")
+def execution_current() -> dict:
+    try:
+        snapshot = _current_portfolio_snapshot()
+        return {
+            "as_of": snapshot["current"]["as_of"],
+            "strategy_route": snapshot["strategy_route"],
+            "execution": snapshot["execution"],
+            "policy": _execution_policy_summary(snapshot["execution_policy"]),
         }
     except HTTPException:
         raise
@@ -327,6 +365,8 @@ def results_summary() -> dict:
         portfolio_allocation = snapshot["portfolio_allocation"]
         strategy_policy = snapshot["strategy_policy"]
         strategy_route = snapshot["strategy_route"]
+        execution_policy = snapshot["execution_policy"]
+        execution = snapshot["execution"]
 
         hazard_rows = _read_data_json("hazard_dataset.json") or []
         structural_hazard_rows = _read_data_json("structural_hazard_dataset.json") or []
@@ -355,6 +395,10 @@ def results_summary() -> dict:
                 "route": strategy_route,
                 "policy": _strategy_policy_summary(strategy_policy),
             },
+            "execution": {
+                "simulation": execution,
+                "policy": _execution_policy_summary(execution_policy),
+            },
             "hazard": {
                 "raw": {
                     **hazard_raw,
@@ -381,6 +425,7 @@ def results_summary() -> dict:
                 "sensitivity": (model_sensitivity or {}).get("summary", {}),
             },
             "conclusions": [
+                "R3.1 已把策略路由转成执行意图和模拟指令，但不连接券商、不生成真实订单。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",
                 "R2.1 已把风险引擎输出落到组合层，页面展示总仓位、现金比例和策略资金分配。",
                 "结构化事件标签把原始频繁跳变压缩为更接近主周期切换的样本，适合做风险观察而不是短线交易信号。",

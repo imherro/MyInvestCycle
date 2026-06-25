@@ -21,6 +21,8 @@ engine foundation requested by the design review.
   cash ratio, and policy-driven strategy allocation; no stock selection is done.
 - R2.2 strategy routing layer converts portfolio allocation into enabled
   strategies, disabled reasons, and strategy budgets; no trade execution is done.
+- R3.1 execution simulation layer converts strategy routing into execution
+  intent and simulated orders; no broker connection or real order is created.
 - Long-term bull/bear blocks use market-consensus major turning points and
   narrative themes; MA120/MA250 are retained as observation overlays rather than
   the segmentation trigger.
@@ -81,6 +83,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/regime/cycle/track`
 - `GET http://127.0.0.1:8021/api/portfolio/current`
 - `GET http://127.0.0.1:8021/api/strategy/current`
+- `GET http://127.0.0.1:8021/api/execution/current`
 - `GET http://127.0.0.1:8021/api/results/summary`
 
 Validation scripts:
@@ -284,4 +287,24 @@ disabled_strategies
 strategy_budget
 strategy_capital_budget
 disabled_reason
+```
+
+Run the R3.1 execution simulation layer:
+
+```powershell
+python scripts/test_execution_layer.py --date 20260624 --cache-only
+```
+
+Execution policy is stored in:
+
+```text
+rules/execution_policy.yaml
+```
+
+The execution simulator consumes the R2.2 strategy route and returns:
+
+```text
+execution_intent
+simulated_orders
+constraints
 ```
