@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260625-cycle-ui-6" />
+    <link rel="stylesheet" href="/static/style.css?v=20260625-cycle-ui-7" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -32,43 +32,40 @@
           <div class="panel-label">综合分</div>
           <div class="metric-value" id="regimeScoreValue">--</div>
         </article>
-        <article class="metric-panel compact-scores" id="scoreList"></article>
       </section>
 
-      <section class="cycle-panel" aria-live="polite">
-        <div>
-          <div class="panel-label">当前阶段定位</div>
-          <div class="cycle-title" id="cycleTitle">--</div>
-        </div>
-        <div class="cycle-grid">
+      <section class="cycle-score-row">
+        <section class="cycle-panel" aria-live="polite">
           <div>
-            <span>开始</span>
-            <strong id="cycleStart">--</strong>
+            <div class="panel-label">当前阶段定位</div>
+            <div class="cycle-title" id="cycleTitle">--</div>
           </div>
-          <div>
-            <span>结束</span>
-            <strong id="cycleEnd">--</strong>
+          <div class="cycle-grid">
+            <div>
+              <span>开始</span>
+              <strong id="cycleStart">--</strong>
+            </div>
+            <div>
+              <span>结束</span>
+              <strong id="cycleEnd">--</strong>
+            </div>
+            <div>
+              <span>当前位置</span>
+              <strong id="cyclePosition">--</strong>
+            </div>
           </div>
-          <div>
-            <span>当前位置</span>
-            <strong id="cyclePosition">--</strong>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="visual-grid">
         <article class="chart-panel radar-panel">
           <div class="panel-heading">
             <h2>四维评分</h2>
           </div>
-          <div class="chart-box" id="radarChart"></div>
+          <div class="compact-scores" id="scoreList"></div>
+          <div class="chart-box radar-box" id="radarChart"></div>
         </article>
-        <article class="chart-panel index-panel">
-          <div class="panel-heading">
-            <h2>长期牛熊周期观察</h2>
-          </div>
-          <div class="chart-box" id="indexChart"></div>
-        </article>
+      </section>
+
+      <section class="visual-grid">
         <article class="chart-panel focus-panel">
           <div class="panel-heading">
             <h2>本轮周期跟踪与概率展望</h2>
@@ -117,12 +114,20 @@
             </div>
           </section>
         </article>
+        <article class="chart-panel index-panel">
+          <div class="panel-heading">
+            <h2>长期牛熊周期观察</h2>
+            <span class="panel-kicker">按 MA250 确认切分</span>
+          </div>
+          <div class="chart-box long-index-box" id="indexChart"></div>
+          <section class="cycle-blocks" id="cycleBlocks" aria-live="polite"></section>
+        </article>
       </section>
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260625-cycle-ui-6"></script>
-    <script src="/static/dashboard.js?v=20260625-cycle-ui-6"></script>
+    <script src="/static/charts.js?v=20260625-cycle-ui-7"></script>
+    <script src="/static/dashboard.js?v=20260625-cycle-ui-7"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

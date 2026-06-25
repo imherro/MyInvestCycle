@@ -61,7 +61,7 @@ function renderRadar(elementId, scores) {
       },
     ],
     {
-      ...baseLayout(310),
+      ...baseLayout(260),
       polar: {
         bgcolor: "rgba(0,0,0,0)",
         radialaxis: { range: [0, 1], tickvals: [0, 0.5, 1], gridcolor: "#dde3ec" },
@@ -245,15 +245,15 @@ function renderCycleTrackChart(elementId, track) {
   );
 }
 
-function renderIndexChart(elementId, items, phase) {
+function renderIndexChart(elementId, items, phase, blocks = []) {
   const x = items.map((item) => toIsoDate(item.as_of));
   const close = items.map((item) => item.index?.close ?? null);
   const ma120 = items.map((item) => item.index?.ma120 ?? null);
   const ma250 = items.map((item) => item.index?.ma250 ?? null);
-  const markers = [];
-  if (phase?.startDate) {
-    markers.push(markerLine(toIsoDate(phase.startDate), "#17201b", "周期开始", 1.03));
-  }
+  const bullBlocks = blocks.filter((block) => block.major && block.state === "bull");
+  const markers = bullBlocks.map((block, index) =>
+    markerLine(toIsoDate(block.start_date), REGIME_COLORS.bull, block.short_label || `${String(block.start_date).slice(0, 4)} 牛市`, index % 2 ? 0.95 : 1.05)
+  );
   if (phase?.currentDate) {
     markers.push(markerLine(toIsoDate(phase.currentDate), "#2663eb", "当前", 0.93));
   }
@@ -290,6 +290,7 @@ function renderIndexChart(elementId, items, phase) {
     ],
     {
       ...baseLayout(390),
+      margin: { l: 48, r: 18, t: 34, b: 44 },
       shapes: [...buildRegimeShapes(items), ...markers.map((marker) => marker.shape)],
       annotations: markers.map((marker) => marker.annotation),
       xaxis: { tickformat: "%Y", gridcolor: "#edf0f5" },

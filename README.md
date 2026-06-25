@@ -12,8 +12,8 @@ engine foundation requested by the design review.
 - Lightweight 52-week high approximation from cached high-turnover stock history.
 - Liquidity scoring from index turnover expansion and optional northbound flow.
 - Market regime engine returning `regime`, `confidence`, and four sub-scores.
-- Web dashboard on port `8021` with long-term cycle view, current-cycle tracking,
-  and probability outlook.
+- Web dashboard on port `8021` with current-cycle tracking, probability outlook,
+  long-term cycle view, and historical cycle theme blocks.
 
 ## Run
 

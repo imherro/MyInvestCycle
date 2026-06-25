@@ -70,6 +70,21 @@ function priceText(value) {
   return value.toFixed(2);
 }
 
+function signedPercentText(value) {
+  if (typeof value !== "number") return "--";
+  const sign = value > 0 ? "+" : "";
+  return `${sign}${value.toFixed(2)}%`;
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function setProbability(id, barId, value) {
   document.getElementById(id).textContent = percentText(value);
   document.getElementById(barId).style.width = typeof value === "number" ? `${Math.round(value * 100)}%` : "0";
@@ -118,6 +133,55 @@ function setForecastPanel(track) {
   document.getElementById("explanationResult").textContent = explanation.result || "--";
 }
 
+function cycleBlockMeta(block) {
+  const start = toIsoDate(block.start_date);
+  const end = block.ongoing ? "至今" : toIsoDate(block.end_date);
+  const duration = typeof block.elapsed_years === "number" ? `约 ${block.elapsed_years} 年` : "--";
+  return `${start} - ${end} · ${duration} · ${signedPercentText(block.return_pct)}`;
+}
+
+function cycleBlockHtml(block) {
+  const stateClass = block.state === "bull" ? "bull" : "bear";
+  const features = (block.features || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  const themes = (block.themes || [])
+    .map((theme) => `<span class="theme-chip">${escapeHtml(theme)}</span>`)
+    .join("");
+  return `
+    <article class="cycle-block cycle-block-${stateClass}">
+      <div class="cycle-block-main">
+        <span>${escapeHtml(regimeLabel(block.state))}</span>
+        <strong>${escapeHtml(block.label)}</strong>
+        <em>${escapeHtml(cycleBlockMeta(block))}</em>
+      </div>
+      <div class="cycle-block-detail">
+        <h3>${escapeHtml(block.theme_title)}</h3>
+        <div class="theme-chips">${themes}</div>
+        <ul>${features}</ul>
+      </div>
+    </article>
+  `;
+}
+
+function setCycleBlocks(blocks) {
+  const target = document.getElementById("cycleBlocks");
+  const majorBlocks = (blocks || []).filter((block) => block.major);
+  if (!majorBlocks.length) {
+    target.innerHTML = '<div class="cycle-blocks-empty">暂无足够长的周期切块。</div>';
+    return;
+  }
+  const basis = majorBlocks.find((block) => block.theme_basis)?.theme_basis || "";
+  target.innerHTML = `
+    <div class="cycle-blocks-head">
+      <div>
+        <h2>主要周期切块</h2>
+        <p>重点看每轮牛市的主线主题、扩散方式和风险偏好特征。</p>
+      </div>
+    </div>
+    <div class="cycle-block-list">${majorBlocks.map(cycleBlockHtml).join("")}</div>
+    <p class="cycle-block-basis">${escapeHtml(basis)}</p>
+  `;
+}
+
 async function loadDashboard() {
   const button = document.getElementById("refreshButton");
   button.disabled = true;
@@ -137,8 +201,9 @@ async function loadDashboard() {
     setScoreList(current.sub_scores);
     setCyclePanel(phase);
     setForecastPanel(track);
+    setCycleBlocks(cycle.cycle_blocks || []);
     renderRadar("radarChart", current.sub_scores);
-    renderIndexChart("indexChart", cycle.series || [], phase);
+    renderIndexChart("indexChart", cycle.series || [], phase, cycle.cycle_blocks || []);
     renderCycleTrackChart("cycleTrackChart", track);
   } finally {
     button.disabled = false;

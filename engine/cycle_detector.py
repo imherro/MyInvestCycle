@@ -105,12 +105,14 @@ def detect_major_cycles(index_df: pd.DataFrame, *, confirm_days: int = 20) -> di
         latest_row,
         ongoing=True,
     )
+    cycle_blocks = [_cycle_block(cycle) for cycle in [*cycles, current_cycle]]
 
     return {
         "as_of": str(latest_row["trade_date"]),
         "method": f"close_vs_ma250_confirm_{confirm_days}d",
         "current_cycle": current_cycle,
         "recent_cycles": cycles[-8:],
+        "cycle_blocks": cycle_blocks,
         "series": [
             {
                 "as_of": str(row["trade_date"]),
@@ -123,6 +125,147 @@ def detect_major_cycles(index_df: pd.DataFrame, *, confirm_days: int = 20) -> di
             }
             for _, row in df.dropna(subset=["cycle_state"]).iterrows()
         ],
+    }
+
+
+def _cycle_block(cycle: dict) -> dict:
+    theme = _cycle_theme(cycle)
+    return {
+        **cycle,
+        "label": _cycle_label(cycle),
+        "short_label": _cycle_short_label(cycle),
+        "major": _is_major_cycle(cycle),
+        "theme_title": theme["title"],
+        "themes": theme["themes"],
+        "features": theme["features"],
+        "theme_basis": theme["basis"],
+    }
+
+
+def _is_major_cycle(cycle: dict) -> bool:
+    return bool(cycle.get("ongoing")) or int(cycle["elapsed_sessions"]) >= 120 or abs(float(cycle["return_pct"])) >= 8
+
+
+def _cycle_label(cycle: dict) -> str:
+    start_year = str(cycle["start_date"])[:4]
+    end = cycle.get("end_date")
+    end_year = "至今" if end is None else str(end)[:4]
+    state = _cycle_state_label(cycle["state"])
+    if start_year == end_year:
+        return f"{start_year} {state}"
+    return f"{start_year}-{end_year} {state}"
+
+
+def _cycle_short_label(cycle: dict) -> str:
+    return f"{str(cycle['start_date'])[:4]} {_cycle_state_label(cycle['state'])}"
+
+
+def _cycle_theme(cycle: dict) -> dict:
+    start = str(cycle["start_date"])
+    state = cycle["state"]
+    basis = "主题为内置历史行情标签，价格和持续时间来自上证指数数据；后续可接行业/主题指数做量化验证。"
+
+    if state == "bull":
+        if "20140724" <= start <= "20150831":
+            return {
+                "title": "杠杆资金与改革预期牛市",
+                "themes": ["券商", "互联网金融", "国企改革", "一带一路", "创业板成长"],
+                "features": [
+                    "融资融券扩张推动风险偏好快速抬升。",
+                    "金融股先启动，随后扩散到成长股和主题投资。",
+                    "指数涨幅大、斜率陡，后段波动明显放大。",
+                ],
+                "basis": basis,
+            }
+        if "20161001" <= start <= "20180331":
+            return {
+                "title": "供给侧改革与蓝筹白马行情",
+                "themes": ["核心消费", "金融地产", "周期资源", "外资定价"],
+                "features": [
+                    "盈利改善和供给侧改革支撑周期与龙头公司重估。",
+                    "市场更偏向低估值蓝筹、白马和稳定现金流资产。",
+                    "指数上行较温和，结构性行情特征强。",
+                ],
+                "basis": basis,
+            }
+        if "20190201" <= start <= "20200331":
+            return {
+                "title": "估值修复与科技成长反弹",
+                "themes": ["券商", "5G", "半导体", "科创板预期", "消费电子"],
+                "features": [
+                    "经历 2018 年下跌后估值修复，券商和科技成长先行。",
+                    "科创板、5G 和半导体提升成长风格关注度。",
+                    "上证整体涨幅有限，但主题活跃度明显提升。",
+                ],
+                "basis": basis,
+            }
+        if "20200601" <= start <= "20220131":
+            return {
+                "title": "流动性宽松与赛道股牛市",
+                "themes": ["新能源车", "锂电", "光伏", "半导体", "核心资产"],
+                "features": [
+                    "流动性宽松和产业景气推动高景气赛道持续重估。",
+                    "新能源、光伏、半导体等成长板块成为主要弹性来源。",
+                    "核心资产与赛道股轮动，上证表现弱于部分成长指数。",
+                ],
+                "basis": basis,
+            }
+        if "20230101" <= start <= "20230831":
+            return {
+                "title": "疫后修复与主题轮动行情",
+                "themes": ["AI", "数字经济", "中特估", "消费修复"],
+                "features": [
+                    "经济修复预期与主题催化并存，指数涨幅有限。",
+                    "AI、数字经济和中特估成为阶段性主线。",
+                    "主线轮动快，持续性弱于典型主升牛市。",
+                ],
+                "basis": basis,
+            }
+        if start >= "20240901":
+            return {
+                "title": "政策转向后的估值修复行情",
+                "themes": ["政策预期", "券商金融", "科技成长", "高股息", "央国企重估"],
+                "features": [
+                    "政策转向和流动性预期改善推动低位估值修复。",
+                    "金融与科技成长共同抬升风险偏好。",
+                    "当前仍需观察成交、盈利和主线扩散能否继续确认。",
+                ],
+                "basis": basis,
+            }
+        return {
+            "title": "阶段性估值修复行情",
+            "themes": ["估值修复", "风险偏好回升"],
+            "features": ["价格重新站上长期均线，但缺少明确可验证的主线标签。"],
+            "basis": basis,
+        }
+
+    if "20110501" <= start <= "20121231":
+        title = "经济下行与估值压缩"
+        features = ["盈利和经济预期走弱，指数持续低于长期均线。"]
+    elif "20150801" <= start <= "20161031":
+        title = "杠杆出清与股灾后修复"
+        features = ["前期杠杆牛市结束后，市场进入去杠杆和信心修复阶段。"]
+    elif "20180301" <= start <= "20190228":
+        title = "去杠杆与外部冲击调整"
+        features = ["去杠杆、盈利预期下修和外部不确定性压制风险偏好。"]
+    elif "20220101" <= start <= "20230131":
+        title = "疫情扰动与地产压力调整"
+        features = ["疫情扰动、地产链压力和成长估值回落共同拖累指数。"]
+    elif "20230801" <= start <= "20240430":
+        title = "弱修复与信心不足调整"
+        features = ["经济弱修复、资金风险偏好不足，指数震荡下行。"]
+    elif "20240601" <= start <= "20240930":
+        title = "弱修复尾段与政策预期等待"
+        features = ["指数处在政策转向前的低位整理阶段。"]
+    else:
+        title = "阶段性熊市或整理"
+        features = ["价格低于长期均线，风险偏好偏弱。"]
+
+    return {
+        "title": title,
+        "themes": ["防御", "现金流", "高股息", "低估值"],
+        "features": features,
+        "basis": basis,
     }
 
 
