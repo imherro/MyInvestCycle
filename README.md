@@ -205,3 +205,12 @@ Default output:
 ```text
 data/structural_survival_dataset.json
 ```
+
+Run the R1.1 Regime Risk Adapter bridge:
+
+```powershell
+python scripts/test_risk_adapter.py --date 20260624 --cache-only
+```
+
+Adapter output is a normalized risk input signal only; it does not score risk,
+choose a strategy, or recommend exposure.
