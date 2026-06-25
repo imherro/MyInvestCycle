@@ -1,0 +1,26 @@
+{
+  "bull": {
+    "bull": 0.0,
+    "bear": 0.0,
+    "range": 0.0,
+    "transition": 0.0
+  },
+  "bear": {
+    "bull": 0.0,
+    "bear": 0.6875,
+    "range": 0.0625,
+    "transition": 0.25
+  },
+  "range": {
+    "bull": 0.0,
+    "bear": 0.055556,
+    "range": 0.388889,
+    "transition": 0.555555
+  },
+  "transition": {
+    "bull": 0.0,
+    "bear": 0.102564,
+    "range": 0.230769,
+    "transition": 0.666667
+  }
+}

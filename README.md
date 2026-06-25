@@ -12,6 +12,7 @@ engine foundation requested by the design review.
 - Lightweight 52-week high approximation from cached high-turnover stock history.
 - Liquidity scoring from index turnover expansion and optional northbound flow.
 - Market regime engine returning `regime`, `confidence`, and four sub-scores.
+- Regime transition matrix builder for predictive-power validation.
 - Web dashboard on port `8021` with current-cycle tracking, probability outlook,
   long-term cycle view, and historical cycle theme blocks.
 - Long-term bull/bear blocks use market-consensus major turning points and
@@ -72,4 +73,23 @@ Validation scripts:
 python scripts/regime_stability_test.py --runs 20
 python scripts/regime_drift_detector.py --window 30
 python scripts/regime_explainer_test.py
+```
+
+Build the Task 7.1 transition matrix:
+
+```powershell
+python scripts/build_transition_matrix.py --start 20200101 --end 20260624
+```
+
+Use local cached market breadth only, skipping dates that have no cached
+`market_daily` file:
+
+```powershell
+python scripts/build_transition_matrix.py --start 20200101 --end 20260624 --cache-only
+```
+
+Default output:
+
+```text
+data/transition_matrix.json
 ```
