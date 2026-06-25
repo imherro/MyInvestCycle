@@ -15,9 +15,18 @@ engine foundation requested by the design review.
 - Regime transition matrix builder for predictive-power validation.
 - Web dashboard on port `8021` with current-cycle tracking, probability outlook,
   long-term cycle view, and historical cycle theme blocks.
+- Completed research and risk-control outputs are surfaced on the Web dashboard
+  through the full-results overview section.
 - Long-term bull/bear blocks use market-consensus major turning points and
   narrative themes; MA120/MA250 are retained as observation overlays rather than
   the segmentation trigger.
+
+## Development Rule
+
+Every new feature, research output, validation result, or risk-control capability
+must have a visible Web dashboard entry before the work is considered complete.
+If a feature produces data or a decision, the page should show the current value,
+the supporting evidence, and the practical interpretation for users.
 
 ## Run
 
@@ -66,6 +75,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/regime/explain`
 - `GET http://127.0.0.1:8021/api/regime/cycle`
 - `GET http://127.0.0.1:8021/api/regime/cycle/track`
+- `GET http://127.0.0.1:8021/api/results/summary`
 
 Validation scripts:
 
