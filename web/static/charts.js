@@ -1,16 +1,27 @@
 const REGIME_COLORS = {
-  bull: "#17885b",
-  bear: "#c73d3d",
+  bull: "#c73d3d",
+  bear: "#17885b",
   range: "#697386",
   transition: "#c69214",
 };
 
+const REGIME_LABELS = {
+  bull: "牛市",
+  bear: "熊市",
+  range: "震荡",
+  transition: "过渡",
+};
+
 const SHADE_COLORS = {
-  bull: "rgba(23, 136, 91, 0.12)",
-  bear: "rgba(199, 61, 61, 0.12)",
+  bull: "rgba(199, 61, 61, 0.12)",
+  bear: "rgba(23, 136, 91, 0.12)",
   range: "rgba(105, 115, 134, 0.11)",
   transition: "rgba(198, 146, 20, 0.14)",
 };
+
+function regimeLabel(regime) {
+  return REGIME_LABELS[regime] || regime || "--";
+}
 
 function toIsoDate(value) {
   if (!value || value.length !== 8) return value;
@@ -73,7 +84,7 @@ function renderTimeline(elementId, items) {
         x,
         y: items.map(() => 1),
         marker: { color: colors },
-        customdata: items.map((item) => [item.regime, item.confidence, item.regime_score]),
+        customdata: items.map((item) => [regimeLabel(item.regime), item.confidence, item.regime_score]),
         hovertemplate:
           "%{x}<br>%{customdata[0]}<br>confidence %{customdata[1]:.2f}<br>score %{customdata[2]:.2f}<extra></extra>",
       },
@@ -90,35 +101,79 @@ function renderTimeline(elementId, items) {
 }
 
 function buildRegimeShapes(items) {
-  return items.map((item, index) => {
-    const x0 = toIsoDate(item.as_of);
-    const x1 = toIsoDate(items[index + 1]?.as_of || item.as_of);
+  const ranges = [];
+  for (const item of items) {
+    const last = ranges[ranges.length - 1];
+    if (last && last.regime === item.regime) {
+      last.end = item.as_of;
+    } else {
+      ranges.push({ regime: item.regime, start: item.as_of, end: item.as_of });
+    }
+  }
+  return ranges.map((range, index) => {
+    const nextRange = ranges[index + 1];
     return {
       type: "rect",
       xref: "x",
       yref: "paper",
-      x0,
-      x1,
+      x0: toIsoDate(range.start),
+      x1: toIsoDate(nextRange?.start || range.end),
       y0: 0,
       y1: 1,
-      fillcolor: SHADE_COLORS[item.regime] || SHADE_COLORS.range,
+      fillcolor: SHADE_COLORS[range.regime] || SHADE_COLORS.range,
       line: { width: 0 },
       layer: "below",
     };
   });
 }
 
-function renderIndexChart(elementId, items) {
+function markerLine(x, color, label, yPosition) {
+  return {
+    shape: {
+      type: "line",
+      xref: "x",
+      yref: "paper",
+      x0: x,
+      x1: x,
+      y0: 0,
+      y1: 1,
+      line: { color, width: 2, dash: "dash" },
+      layer: "above",
+    },
+    annotation: {
+      x,
+      y: yPosition,
+      xref: "x",
+      yref: "paper",
+      text: label,
+      showarrow: false,
+      bgcolor: "rgba(255,255,255,0.88)",
+      bordercolor: color,
+      borderwidth: 1,
+      font: { color, size: 12 },
+    },
+  };
+}
+
+function renderIndexChart(elementId, items, phase) {
   const x = items.map((item) => toIsoDate(item.as_of));
   const close = items.map((item) => item.index?.close ?? null);
   const ma120 = items.map((item) => item.index?.ma120 ?? null);
+  const ma250 = items.map((item) => item.index?.ma250 ?? null);
+  const markers = [];
+  if (phase?.startDate) {
+    markers.push(markerLine(toIsoDate(phase.startDate), "#17201b", "周期开始", 1.03));
+  }
+  if (phase?.currentDate) {
+    markers.push(markerLine(toIsoDate(phase.currentDate), "#2663eb", "当前", 0.93));
+  }
   Plotly.react(
     elementId,
     [
       {
         type: "scatter",
         mode: "lines",
-        name: "Close",
+        name: "上证收盘",
         x,
         y: close,
         line: { color: "#2663eb", width: 2.5 },
@@ -133,11 +188,21 @@ function renderIndexChart(elementId, items) {
         line: { color: "#c69214", width: 2, dash: "dot" },
         hovertemplate: "%{x}<br>MA120 %{y:.2f}<extra></extra>",
       },
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "MA250",
+        x,
+        y: ma250,
+        line: { color: "#697386", width: 2, dash: "dash" },
+        hovertemplate: "%{x}<br>MA250 %{y:.2f}<extra></extra>",
+      },
     ],
     {
       ...baseLayout(390),
-      shapes: buildRegimeShapes(items),
-      xaxis: { tickformat: "%m-%d", gridcolor: "#edf0f5" },
+      shapes: [...buildRegimeShapes(items), ...markers.map((marker) => marker.shape)],
+      annotations: markers.map((marker) => marker.annotation),
+      xaxis: { tickformat: "%Y", gridcolor: "#edf0f5" },
       yaxis: { gridcolor: "#edf0f5", zeroline: false },
       legend: { orientation: "h", x: 0, y: 1.12 },
     },

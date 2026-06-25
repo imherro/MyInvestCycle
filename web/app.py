@@ -18,6 +18,7 @@ from core.breadth import get_market_daily, get_market_history_sample
 from core.data_loader import get_index_daily, normalize_trade_date
 from core.features import build_feature_frame
 from core.liquidity import get_moneyflow_hsgt
+from engine.cycle_detector import detect_major_cycles
 from engine.market_engine import analyze_index_regime
 from engine.regime_explainer import explain_regime
 
@@ -109,6 +110,15 @@ def features_latest() -> dict:
 @app.get("/api/regime/explain")
 def regime_explain() -> dict:
     return explain_regime(regime_current())
+
+
+@app.get("/api/regime/cycle")
+def regime_cycle() -> dict:
+    try:
+        index_df = get_index_daily(DEFAULT_INDEX_CODE, "20100101", _today_text())
+        return detect_major_cycles(index_df)
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
 
 
 @app.get("/api/regime/history")

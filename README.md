@@ -62,6 +62,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/regime/history?start=20260601&end=20260624`
 - `GET http://127.0.0.1:8021/api/features/latest`
 - `GET http://127.0.0.1:8021/api/regime/explain`
+- `GET http://127.0.0.1:8021/api/regime/cycle`
 
 Validation scripts:
 
