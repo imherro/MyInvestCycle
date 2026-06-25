@@ -141,3 +141,15 @@ Default backfill log:
 ```text
 data/backfill_log.json
 ```
+
+Build the H1.1 regime hazard dataset:
+
+```powershell
+python scripts/build_hazard_dataset.py --start 20200101 --end 20260624 --cache-only
+```
+
+Default output:
+
+```text
+data/hazard_dataset.json
+```

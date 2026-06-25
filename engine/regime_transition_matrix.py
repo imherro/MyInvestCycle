@@ -173,6 +173,10 @@ def build_daily_regime_sequence(
                     "trade_date": trade_date,
                     "regime": str(result["regime"]),
                     "confidence": float(result["confidence"]),
+                    "trend_score": float(result["trend_score"]),
+                    "breadth_score": float(result["breadth_score"]),
+                    "liquidity_score": float(result["liquidity_score"]),
+                    "volatility_score": float(result["volatility_score"]),
                     "regime_score": float(result["regime_score"]),
                 }
             )
