@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260625-cycle-ui-4" />
+    <link rel="stylesheet" href="/static/style.css?v=20260625-cycle-ui-6" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -99,13 +99,30 @@
               <div class="key-levels" id="keyLevels"></div>
             </aside>
           </div>
+          <section class="outlook-explanation" id="outlookExplanation" aria-live="polite">
+            <div class="explanation-summary" id="explanationSummary">--</div>
+            <div class="explanation-grid">
+              <div>
+                <h3>事实数据</h3>
+                <ul id="explanationFacts"></ul>
+              </div>
+              <div>
+                <h3>论证过程</h3>
+                <ul id="explanationMethod"></ul>
+              </div>
+              <div>
+                <h3>结果解释</h3>
+                <p id="explanationResult">--</p>
+              </div>
+            </div>
+          </section>
         </article>
       </section>
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260625-cycle-ui-4"></script>
-    <script src="/static/dashboard.js?v=20260625-cycle-ui-4"></script>
+    <script src="/static/charts.js?v=20260625-cycle-ui-6"></script>
+    <script src="/static/dashboard.js?v=20260625-cycle-ui-6"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

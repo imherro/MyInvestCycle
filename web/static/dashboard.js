@@ -62,7 +62,7 @@ function phaseFromMajorCycle(cycle) {
 
 function percentText(value) {
   if (typeof value !== "number") return "--";
-  return `${Math.round(value * 100)}%`;
+  return `${(value * 100).toFixed(1)}%`;
 }
 
 function priceText(value) {
@@ -75,10 +75,15 @@ function setProbability(id, barId, value) {
   document.getElementById(barId).style.width = typeof value === "number" ? `${Math.round(value * 100)}%` : "0";
 }
 
+function listHtml(items) {
+  return (items || []).map((item) => `<li>${item}</li>`).join("");
+}
+
 function setForecastPanel(track) {
   const forecast = track.forecast || {};
   const probabilities = forecast.probabilities || {};
   const levels = forecast.key_levels || {};
+  const explanation = forecast.explanation || {};
   document.getElementById("trackRange").textContent =
     `${toIsoDate(track.cycle.start_date)} 至 ${toIsoDate(track.as_of)}`;
   document.getElementById("forecastHorizon").textContent = forecast.basis_horizon_sessions || "--";
@@ -107,6 +112,10 @@ function setForecastPanel(track) {
   ]
     .map(([label, value]) => `<div class="level-row"><span>${label}</span><strong>${value}</strong></div>`)
     .join("");
+  document.getElementById("explanationSummary").textContent = explanation.summary || "--";
+  document.getElementById("explanationFacts").innerHTML = listHtml(explanation.facts);
+  document.getElementById("explanationMethod").innerHTML = listHtml(explanation.method);
+  document.getElementById("explanationResult").textContent = explanation.result || "--";
 }
 
 async function loadDashboard() {

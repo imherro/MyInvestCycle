@@ -71,12 +71,22 @@ def _prepare_cycle_frame(index_df: pd.DataFrame, confirm_days: int) -> tuple[pd.
 
         states.append(current_state)
 
-    df["cycle_state"] = states
     if current_state is None or current_start_index is None:
         raise ValueError("Not enough index history for major-cycle detection.")
-    df["cycle_group"] = df["cycle_state"].ne(df["cycle_state"].shift()).cumsum()
+    df["cycle_state"] = pd.NA
+    df["cycle_elapsed_sessions"] = pd.NA
+    for cycle in cycles:
+        mask = (df["trade_date"].astype(str) >= cycle["start_date"]) & (
+            df["trade_date"].astype(str) <= cycle["end_date"]
+        )
+        df.loc[mask, "cycle_state"] = cycle["state"]
+        df.loc[mask, "cycle_elapsed_sessions"] = range(1, int(mask.sum()) + 1)
+    current_mask = df.index >= current_start_index
+    df.loc[current_mask, "cycle_state"] = current_state
+    df.loc[current_mask, "cycle_elapsed_sessions"] = range(1, int(current_mask.sum()) + 1)
+    state_for_group = df["cycle_state"].fillna("__none__")
+    df["cycle_group"] = state_for_group.ne(state_for_group.shift()).cumsum()
     df.loc[df["cycle_state"].isna(), "cycle_group"] = pd.NA
-    df["cycle_elapsed_sessions"] = df.groupby("cycle_group").cumcount() + 1
 
     return df, cycles, current_start_index, current_state
 
@@ -259,16 +269,17 @@ def _similar_forecast(df: pd.DataFrame, latest_index: int, current_state: str, h
     continuation = sum(1 for value, above in zip(returns, above_ma250) if value >= 0.03 and above)
     total = len(returns)
     range_count = max(total - continuation - weaken, 0)
+    probabilities = {
+        "continue": continuation / total,
+        "range": range_count / total,
+        "weaken": weaken / total,
+    }
 
     return {
         "basis": "historical_similar_samples",
         "basis_horizon_sessions": basis_horizon,
         "sample_size": int(total),
-        "probabilities": {
-            "continue": round(continuation / total, 2),
-            "range": round(range_count / total, 2),
-            "weaken": round(weaken / total, 2),
-        },
+        "probabilities": probabilities,
         "paths": paths,
         "key_levels": {
             "current_close": round(float(latest["close"]), 4),
@@ -276,6 +287,14 @@ def _similar_forecast(df: pd.DataFrame, latest_index: int, current_state: str, h
             "ma250": None if pd.isna(latest["ma250"]) else round(float(latest["ma250"]), 4),
             "drawdown_60_pct": None if pd.isna(latest["drawdown_60"]) else round(float(latest["drawdown_60"]) * 100, 2),
         },
+        "explanation": _forecast_explanation(
+            latest=latest,
+            state=current_state,
+            sample_size=total,
+            basis_horizon=basis_horizon,
+            probabilities=probabilities,
+            paths=paths,
+        ),
     }
 
 
@@ -292,7 +311,88 @@ def _empty_forecast(latest: pd.Series, horizons: tuple[int, ...]) -> dict:
             "ma250": None if pd.isna(latest["ma250"]) else round(float(latest["ma250"]), 4),
             "drawdown_60_pct": None if pd.isna(latest["drawdown_60"]) else round(float(latest["drawdown_60"]) * 100, 2),
         },
+        "explanation": {
+            "summary": "历史相似样本不足，当前只展示关键位置，不输出概率结论。",
+            "facts": _forecast_fact_lines(latest),
+            "method": [
+                "先确认当前所处的大周期状态，再在历史数据中寻找同状态且形态接近的交易日。",
+                "如果相似样本数量不足，则不强行给出走势概率。",
+            ],
+            "result": "样本不足，概率应暂时视为不可用。",
+        },
     }
+
+
+def _forecast_explanation(
+    *,
+    latest: pd.Series,
+    state: str,
+    sample_size: int,
+    basis_horizon: int,
+    probabilities: dict,
+    paths: list[dict],
+) -> dict:
+    dominant = max(
+        [
+            ("牛市延续", probabilities["continue"]),
+            ("震荡整理", probabilities["range"]),
+            ("转弱确认", probabilities["weaken"]),
+        ],
+        key=lambda item: item[1],
+    )
+    neutral_path = next((path for path in paths if path["horizon_sessions"] == basis_horizon), None)
+    neutral_text = (
+        f"{basis_horizon} 个交易日中性路径约 {neutral_path['neutral']:.2f}"
+        if neutral_path
+        else f"{basis_horizon} 个交易日中性路径暂无可用区间"
+    )
+    return {
+        "summary": (
+            f"当前展望来自历史相似样本统计，不是确定预测。按未来 {basis_horizon} 个交易日观察，"
+            f"概率最高的是{dominant[0]}，占比约 {dominant[1]:.0%}。"
+        ),
+        "facts": _forecast_fact_lines(latest),
+        "method": [
+            f"先用 MA250 的 20 日确认规则判定当前仍处在{_cycle_state_label(state)}大周期，再只在相同大周期状态中找样本。",
+            "相似度比较 5 个事实特征：距 MA250 的位置、近 60 日涨跌幅、20 日波动率、近 60 日最大回撤、本轮已运行交易日数。",
+            f"取距离最近的 {sample_size} 个历史交易日作为样本，逐个观察之后 {basis_horizon} 个交易日的结果。",
+            "若样本期后仍站上 MA250 且涨幅不低于 3%，记为牛市延续；若跌幅超过 8% 或跌破 MA250，记为转弱确认；其余记为震荡整理。",
+        ],
+        "result": (
+            f"统计结果为：牛市延续 {probabilities['continue']:.1%}，"
+            f"震荡整理 {probabilities['range']:.1%}，转弱确认 {probabilities['weaken']:.1%}；"
+            f"{neutral_text}。"
+        ),
+    }
+
+
+def _forecast_fact_lines(latest: pd.Series) -> list[str]:
+    close = float(latest["close"])
+    ma120 = None if pd.isna(latest["ma120"]) else float(latest["ma120"])
+    ma250 = None if pd.isna(latest["ma250"]) else float(latest["ma250"])
+    ma250_distance = None if pd.isna(latest["ma250_distance"]) else float(latest["ma250_distance"]) * 100
+    return_60 = None if pd.isna(latest["return_60"]) else float(latest["return_60"]) * 100
+    volatility = None if pd.isna(latest["volatility_20"]) else float(latest["volatility_20"]) * 100
+    drawdown = None if pd.isna(latest["drawdown_60"]) else float(latest["drawdown_60"]) * 100
+    elapsed = int(latest["cycle_elapsed_sessions"]) if not pd.isna(latest["cycle_elapsed_sessions"]) else None
+    return [
+        f"当前交易日：{latest['trade_date']}；上证收盘 {close:.2f}。",
+        f"MA120：{_number_text(ma120)}；MA250：{_number_text(ma250)}；相对 MA250：{_pct_text(ma250_distance)}。",
+        f"本轮大周期已运行 {elapsed or '--'} 个交易日；近 60 日涨跌幅 {_pct_text(return_60)}，近 60 日最大回撤 {_pct_text(drawdown)}。",
+        f"20 日年化波动率约 {_pct_text(volatility)}。",
+    ]
+
+
+def _cycle_state_label(state: str) -> str:
+    return {"bull": "牛市", "bear": "熊市"}.get(state, state)
+
+
+def _number_text(value: float | None) -> str:
+    return "--" if value is None else f"{value:.2f}"
+
+
+def _pct_text(value: float | None) -> str:
+    return "--" if value is None else f"{value:.2f}%"
 
 
 def _future_business_date(trade_date: str, sessions: int) -> str:
