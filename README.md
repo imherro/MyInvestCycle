@@ -93,3 +93,21 @@ Default output:
 ```text
 data/transition_matrix.json
 ```
+
+Run the Task 7.2 forward-outcome validation:
+
+```powershell
+python scripts/regime_forward_test.py --start 20200101 --end 20260624
+```
+
+Use local cached market breadth only:
+
+```powershell
+python scripts/regime_forward_test.py --start 20200101 --end 20260624 --cache-only
+```
+
+Default output:
+
+```text
+data/regime_forward_test.json
+```
