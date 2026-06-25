@@ -213,6 +213,10 @@ h2 {
   gap: 14px;
 }
 
+.api-section {
+  margin-top: 14px;
+}
+
 .results-overview {
   display: grid;
   grid-template-columns: minmax(360px, 1.15fr) repeat(3, minmax(240px, 1fr));
