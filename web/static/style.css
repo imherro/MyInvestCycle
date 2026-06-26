@@ -317,8 +317,8 @@ h2 {
 
 .wide-panel-layout {
   display: grid;
-  grid-template-columns: minmax(330px, 0.36fr) minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: 1fr;
+  gap: 16px;
   align-items: stretch;
 }
 
@@ -970,7 +970,7 @@ h2 {
 
 .metric-card-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 10px;
   padding: 12px 0;
   border-bottom: 1px solid var(--line);
@@ -1192,13 +1192,194 @@ h2 {
 }
 
 .chart-box.shadow-equity-box {
-  height: 330px;
+  height: 360px;
   margin-top: 0;
 }
 
 .chart-box.rotation-backtest-box {
-  height: 370px;
+  height: 420px;
   margin-top: 0;
+}
+
+.detail-nav-section {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.detail-nav-card {
+  display: block;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.detail-nav-card span {
+  display: block;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.detail-nav-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.detail-nav-card em {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.detail-nav-card:hover {
+  border-color: var(--accent);
+}
+
+.detail-page {
+  display: grid;
+  gap: 14px;
+}
+
+.detail-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.detail-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.summary-tile {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.summary-tile span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.summary-tile strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 21px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.history-table-wrap,
+.api-table-wrap {
+  overflow-x: auto;
+}
+
+.history-table,
+.api-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 980px;
+}
+
+.history-table th,
+.history-table td,
+.api-table th,
+.api-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.history-table th,
+.api-table th {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.weight-list-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.weight-list-inline span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 2px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.detail-chart-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.detail-chart-card .chart-box {
+  height: 520px;
+}
+
+.detail-two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.34fr);
+  gap: 14px;
+}
+
+.detail-list {
+  display: grid;
+  gap: 0;
 }
 
 .chart-box.long-index-box {
@@ -1547,6 +1728,9 @@ h2 {
   .topbar,
     .status-grid,
     .cycle-score-row,
+    .detail-nav-section,
+    .detail-summary-grid,
+    .detail-two-column,
     .results-overview,
     .cycle-panel,
     .dashboard-section-heading,

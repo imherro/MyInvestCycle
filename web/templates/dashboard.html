@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260626-layout-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260626-detail-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -516,99 +516,33 @@
         </article>
       </section>
 
-      <section class="visual-grid">
-        <article class="chart-panel focus-panel">
-          <div class="panel-heading">
-            <h2>本轮周期跟踪与概率展望</h2>
-            <span class="panel-kicker" id="trackRange">--</span>
-          </div>
-          <div class="focus-layout">
-            <div class="chart-box xlarge" id="cycleTrackChart"></div>
-            <aside class="forecast-panel">
-              <div class="forecast-head">
-                <span>未来 <strong id="forecastHorizon">--</strong> 交易日</span>
-                <em id="forecastSample">--</em>
-              </div>
-              <div class="forecast-confidence" id="forecastConfidenceBox">
-                <div>
-                  <span>展望置信度</span>
-                  <strong id="forecastConfidence">--</strong>
-                </div>
-                <em id="forecastConfidenceLabel">--</em>
-                <p id="forecastConfidenceReason">--</p>
-              </div>
-              <div class="prob-list">
-                <div class="prob-row">
-                  <div><span>牛市延续</span><strong id="probContinue">--</strong></div>
-                  <div class="prob-track"><i id="barContinue"></i></div>
-                </div>
-                <div class="prob-row">
-                  <div><span>震荡整理</span><strong id="probRange">--</strong></div>
-                  <div class="prob-track"><i id="barRange"></i></div>
-                </div>
-                <div class="prob-row">
-                  <div><span>转弱确认</span><strong id="probWeaken">--</strong></div>
-                  <div class="prob-track"><i id="barWeaken"></i></div>
-                </div>
-              </div>
-              <div class="projection-list" id="projectionList"></div>
-              <div class="key-levels" id="keyLevels"></div>
-            </aside>
-          </div>
-          <section class="outlook-explanation" id="outlookExplanation" aria-live="polite">
-            <div class="explanation-summary" id="explanationSummary">--</div>
-            <div class="explanation-grid">
-              <div>
-                <h3>事实数据</h3>
-                <ul id="explanationFacts"></ul>
-              </div>
-              <div>
-                <h3>论证过程</h3>
-                <ul id="explanationMethod"></ul>
-              </div>
-              <div>
-                <h3>结果解释</h3>
-                <p id="explanationResult">--</p>
-              </div>
-            </div>
-          </section>
-        </article>
-        <article class="chart-panel index-panel">
-          <div class="panel-heading">
-            <h2>长期牛熊周期观察</h2>
-            <span class="panel-kicker">市场主周期切分</span>
-          </div>
-          <div class="chart-box long-index-box" id="indexChart"></div>
-          <section class="cycle-blocks" id="cycleBlocks" aria-live="polite"></section>
-        </article>
-      </section>
-
-      <section class="api-section" aria-live="polite">
-        <article class="chart-panel result-panel api-catalog-panel">
-          <div class="panel-heading">
-            <h2>接口说明</h2>
-            <span class="panel-kicker">/api</span>
-          </div>
-          <div class="api-headline">
-            <div>
-              <span>已说明接口</span>
-              <strong id="apiEndpointCount">--</strong>
-            </div>
-            <div>
-              <span>文档入口</span>
-              <strong id="apiDocsStatus">--</strong>
-            </div>
-          </div>
-          <div class="api-link-list" id="apiRecommendedList"></div>
-          <div class="api-group-list" id="apiGroupList"></div>
-          <p class="result-note" id="apiCatalogConclusion">--</p>
-        </article>
+      <section class="detail-nav-section" aria-label="详情页面入口">
+        <a class="detail-nav-card" href="/rotation-history">
+          <span>ETF Rotation</span>
+          <strong>调仓历史</strong>
+          <em>查看每次再平衡日期、轮动方向、目标 ETF 权重和换手。</em>
+        </a>
+        <a class="detail-nav-card" href="/cycle-track">
+          <span>Current Cycle</span>
+          <strong>本轮周期跟踪</strong>
+          <em>查看本轮周期折线、概率展望、关键均线和事实解释。</em>
+        </a>
+        <a class="detail-nav-card" href="/cycle-observation">
+          <span>Long Cycle</span>
+          <strong>长期牛熊观察</strong>
+          <em>查看长期主周期切分、牛市主题和上证指数走势。</em>
+        </a>
+        <a class="detail-nav-card" href="/api-docs">
+          <span>API</span>
+          <strong>接口说明</strong>
+          <em>查看当前系统全部接口、返回内容和只读边界。</em>
+        </a>
       </section>
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260626-layout-1"></script>
-    <script src="/static/dashboard.js?v=20260626-layout-1"></script>
+    <script src="/static/charts.js?v=20260626-detail-1"></script>
+    <script src="/static/dashboard.js?v=20260626-detail-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

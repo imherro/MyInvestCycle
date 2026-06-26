@@ -413,6 +413,10 @@ def _api_catalog_payload() -> dict[str, object]:
             "description": "页面入口、接口目录和自动生成文档。",
             "endpoints": [
                 _api_endpoint("GET", "/", "打开当前系统首页。", "HTML dashboard", freshness="page"),
+                _api_endpoint("GET", "/rotation-history", "打开 ETF 轮动调仓历史表格页面。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/cycle-track", "打开本轮周期跟踪与概率展望页面。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/cycle-observation", "打开长期牛熊周期观察页面。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/api-docs", "打开接口说明页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/api", "返回当前系统所有主要接口、用途、参数和边界说明。", "API catalog"),
                 _api_endpoint("GET", "/docs", "打开 FastAPI 交互式接口文档。", "Swagger UI", freshness="docs"),
                 _api_endpoint("GET", "/redoc", "打开 ReDoc 接口文档。", "ReDoc HTML", freshness="docs"),
@@ -569,6 +573,26 @@ def health() -> dict[str, str]:
 @app.get("/", response_class=HTMLResponse)
 def dashboard():
     return FileResponse(ROOT_DIR / "web" / "templates" / "dashboard.html")
+
+
+@app.get("/rotation-history", response_class=HTMLResponse)
+def rotation_history_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "rotation_history.html")
+
+
+@app.get("/cycle-track", response_class=HTMLResponse)
+def cycle_track_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "cycle_track.html")
+
+
+@app.get("/cycle-observation", response_class=HTMLResponse)
+def cycle_observation_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "cycle_observation.html")
+
+
+@app.get("/api-docs", response_class=HTMLResponse)
+def api_docs_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "api_docs.html")
 
 
 @app.get("/api/regime/current")

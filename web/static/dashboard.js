@@ -1,9 +1,7 @@
 const state = {
   current: null,
   cycle: null,
-  track: null,
   results: null,
-  apiCatalog: null,
 };
 
 function setRegimePanel(current) {
@@ -787,32 +785,23 @@ async function loadDashboard() {
   button.disabled = true;
   button.textContent = "刷新中";
   try {
-    const [current, cycle, track, results, apiCatalog] = await Promise.all([
+    const [current, cycle, results] = await Promise.all([
       getJson("/api/regime/current"),
       getJson("/api/regime/cycle"),
-      getJson("/api/regime/cycle/track"),
       getJson("/api/results/summary"),
-      getJson("/api"),
     ]);
     state.current = current;
     state.cycle = cycle;
-    state.track = track;
     state.results = results;
-    state.apiCatalog = apiCatalog;
     const phase = phaseFromMajorCycle(cycle);
 
     setRegimePanel(current);
     setScoreList(current.sub_scores);
     setCyclePanel(phase);
     setResultsPanel(results);
-    setApiCatalogPanel(apiCatalog);
-    setForecastPanel(track);
-    setCycleBlocks(cycle.cycle_blocks || []);
     renderRadar("radarChart", current.sub_scores);
     renderShadowEquityChart("shadowEquityChart", results.shadow_backtest || {});
     renderEtfRotationBacktestChart("rotationBacktestChart", results.etf_rotation_backtest || {});
-    renderIndexChart("indexChart", cycle.series || [], phase, cycle.cycle_blocks || []);
-    renderCycleTrackChart("cycleTrackChart", track);
   } finally {
     button.disabled = false;
     button.textContent = "刷新";

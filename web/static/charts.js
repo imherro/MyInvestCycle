@@ -107,7 +107,7 @@ function renderShadowEquityChart(elementId, shadowBacktest) {
       },
     ],
     {
-      ...baseLayout(330),
+      ...baseLayout(360),
       margin: { l: 44, r: 14, t: 22, b: 40 },
       xaxis: { tickformat: "%Y", gridcolor: "#edf0f5" },
       yaxis: { gridcolor: "#edf0f5", zeroline: false },
@@ -165,7 +165,7 @@ function renderEtfRotationBacktestChart(elementId, backtest) {
       },
     ],
     {
-      ...baseLayout(370),
+      ...baseLayout(420),
       margin: { l: 48, r: 18, t: 26, b: 42 },
       xaxis: { tickformat: "%Y", gridcolor: "#edf0f5" },
       yaxis: { gridcolor: "#edf0f5", zeroline: false },

@@ -4,16 +4,16 @@
   "regime": "range",
   "top_styles": [
     "value",
-    "small_cap",
-    "growth"
+    "low_vol",
+    "small_cap"
   ],
   "style_signal_score": {
-    "growth": 0.382405,
-    "value": 0.516673,
-    "low_vol": 0.302011,
-    "dividend": 0.325864,
-    "small_cap": 0.482024,
-    "cash_proxy": 0.32528
+    "growth": 0.392292,
+    "value": 0.556876,
+    "low_vol": 0.509632,
+    "dividend": 0.286698,
+    "small_cap": 0.492808,
+    "cash_proxy": 0.30653
   },
   "top_candidates": [
     {
@@ -24,10 +24,10 @@
       "regime_eligible": true,
       "regime_condition_adjustment": 1.0,
       "candidate_score": 0.475595,
-      "relative_strength_score": 0.727273,
-      "ranking_stability": 0.304167,
+      "relative_strength_score": 0.75,
+      "ranking_stability": 0.23,
       "return_quality": 0.847782,
-      "signal_score": 0.572641,
+      "signal_score": 0.564626,
       "price_metrics": {
         "latest_date": "20260625",
         "latest_close": 9.085,
@@ -47,10 +47,10 @@
       "regime_eligible": true,
       "regime_condition_adjustment": 1.0,
       "candidate_score": 0.54374,
-      "relative_strength_score": 0.545455,
-      "ranking_stability": 0.504167,
+      "relative_strength_score": 0.5,
+      "ranking_stability": 0.42,
       "return_quality": 0.737259,
-      "signal_score": 0.565368,
+      "signal_score": 0.534898,
       "price_metrics": {
         "latest_date": "20260625",
         "latest_close": 5.048,
@@ -63,75 +63,6 @@
       }
     },
     {
-      "code": "512100.SH",
-      "name": "中证1000ETF",
-      "primary_style": "small_cap",
-      "risk_tier": "aggressive",
-      "regime_eligible": true,
-      "regime_condition_adjustment": 1.0,
-      "candidate_score": 0.371812,
-      "relative_strength_score": 0.636364,
-      "ranking_stability": 0.2875,
-      "return_quality": 0.812566,
-      "signal_score": 0.500428,
-      "price_metrics": {
-        "latest_date": "20260625",
-        "latest_close": 3.569,
-        "sessions": 210,
-        "return_20": 0.038324,
-        "return_60": 0.167395,
-        "volatility_60": 0.244643,
-        "max_drawdown_60": -0.094528,
-        "return_quality": 0.812566
-      }
-    },
-    {
-      "code": "515000.SH",
-      "name": "科技ETF",
-      "primary_style": "growth",
-      "risk_tier": "aggressive",
-      "regime_eligible": false,
-      "regime_condition_adjustment": 0.65,
-      "candidate_score": 0.327591,
-      "relative_strength_score": 1.0,
-      "ranking_stability": 0.9125,
-      "return_quality": 0.887509,
-      "signal_score": 0.474684,
-      "price_metrics": {
-        "latest_date": "20260625",
-        "latest_close": 1.672,
-        "sessions": 210,
-        "return_20": 0.185779,
-        "return_60": 0.700862,
-        "volatility_60": 0.398733,
-        "max_drawdown_60": -0.079746,
-        "return_quality": 0.887509
-      }
-    },
-    {
-      "code": "510050.SH",
-      "name": "上证50ETF",
-      "primary_style": "value",
-      "risk_tier": "defensive",
-      "regime_eligible": true,
-      "regime_condition_adjustment": 1.0,
-      "candidate_score": 0.557474,
-      "relative_strength_score": 0.454545,
-      "ranking_stability": 0.208333,
-      "return_quality": 0.587164,
-      "signal_score": 0.461221,
-      "price_metrics": {
-        "latest_date": "20260625",
-        "latest_close": 3.059,
-        "sessions": 210,
-        "return_20": 0.016783,
-        "return_60": 0.055741,
-        "volatility_60": 0.162029,
-        "max_drawdown_60": -0.071254,
-        "return_quality": 0.587164
-      }
-    },
-    {
       "code": "159915.SZ",
       "name": "创业板ETF",
       "primary_style": "growth",
@@ -139,10 +70,10 @@
       "regime_eligible": false,
       "regime_condition_adjustment": 0.65,
       "candidate_score": 0.325799,
-      "relative_strength_score": 0.909091,
+      "relative_strength_score": 1.0,
       "ranking_stability": 0.7,
       "return_quality": 0.873683,
-      "signal_score": 0.427576,
+      "signal_score": 0.445303,
       "price_metrics": {
         "latest_date": "20260625",
         "latest_close": 4.395,
@@ -153,23 +84,69 @@
         "max_drawdown_60": -0.076743,
         "return_quality": 0.873683
       }
+    },
+    {
+      "code": "511880.SH",
+      "name": "银华日利ETF",
+      "primary_style": "cash_proxy",
+      "risk_tier": "cash_defensive",
+      "regime_eligible": true,
+      "regime_condition_adjustment": 1.0,
+      "candidate_score": 0.321042,
+      "relative_strength_score": 0.25,
+      "ranking_stability": 0.35,
+      "return_quality": 0.441832,
+      "signal_score": 0.323639,
+      "price_metrics": {
+        "latest_date": "20260625",
+        "latest_close": 100.545,
+        "sessions": 210,
+        "return_20": 0.0006,
+        "return_60": 0.00235,
+        "volatility_60": 0.001494,
+        "max_drawdown_60": -0.000418,
+        "return_quality": 0.441832
+      }
+    },
+    {
+      "code": "510880.SH",
+      "name": "红利ETF",
+      "primary_style": "dividend",
+      "risk_tier": "defensive",
+      "regime_eligible": true,
+      "regime_condition_adjustment": 1.0,
+      "candidate_score": 0.482569,
+      "relative_strength_score": 0.0,
+      "ranking_stability": 0.3,
+      "return_quality": 0.149145,
+      "signal_score": 0.251271,
+      "price_metrics": {
+        "latest_date": "20260625",
+        "latest_close": 3.006,
+        "sessions": 210,
+        "return_20": -0.051679,
+        "return_60": -0.080117,
+        "volatility_60": 0.146167,
+        "max_drawdown_60": -0.10183,
+        "return_quality": 0.149145
+      }
     }
   ],
   "etf_target_weights": {
-    "510500.SH": 0.272731,
-    "510300.SH": 0.269267,
-    "512100.SH": 0.238338,
-    "510050.SH": 0.219665
+    "510500.SH": 0.337204,
+    "510300.SH": 0.31945,
+    "511880.SH": 0.193283,
+    "510880.SH": 0.150063
   },
   "rebalance_signal": "rotate_to_value",
   "confidence": {
-    "score": 0.785974,
+    "score": 0.725573,
     "level": "high",
-    "reason": "覆盖 12/12 个 ETF，Top 组合稳定度 0.50，分数集中度 0.64。"
+    "reason": "覆盖 5/5 个 ETF，Top 组合稳定度 0.42，分数集中度 0.48。"
   },
   "data_coverage": {
-    "candidate_count": 12,
-    "priced_candidates": 12,
+    "candidate_count": 5,
+    "priced_candidates": 5,
     "missing_price_candidates": []
   },
   "constraints": {
