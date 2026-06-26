@@ -1537,8 +1537,17 @@ h2 {
 
 .allocation-segment {
   display: block;
+  box-sizing: border-box;
   min-width: 2px;
   height: 100%;
+}
+
+.allocation-segment + .allocation-segment {
+  border-left: 1px solid rgba(255, 255, 255, 0.86);
+}
+
+.allocation-segment.is-empty {
+  opacity: 0.52;
 }
 
 .allocation-asset-list {

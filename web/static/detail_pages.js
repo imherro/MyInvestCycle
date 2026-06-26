@@ -78,11 +78,11 @@ function rotationSignalLabel(value) {
 }
 
 const ETF_ASSET_ORDER = [
-  { code: "159915.SZ", style: "成长/科技", name: "创业板ETF", color: "#7c3aed" },
-  { code: "510500.SH", style: "中小盘", name: "中证500ETF", color: "#697386" },
-  { code: "510300.SH", style: "价值/大盘", name: "沪深300ETF", color: "#c69214" },
-  { code: "510880.SH", style: "红利/低波", name: "红利ETF", color: "#c73d3d" },
-  { code: "511880.SH", style: "现金/债券代理", name: "银华日利ETF", color: "#17885b" },
+  { code: "159915.SZ", style: "成长/科技", name: "创业板ETF", color: "#ef4444" },
+  { code: "510500.SH", style: "中小盘", name: "中证500ETF", color: "#f97316" },
+  { code: "510300.SH", style: "价值/大盘", name: "沪深300ETF", color: "#eab308" },
+  { code: "510880.SH", style: "红利/低波", name: "红利ETF", color: "#64748b" },
+  { code: "511880.SH", style: "现金/债券代理", name: "银华日利ETF", color: "#cbd5e1" },
 ];
 
 function setSummaryTiles(items) {
@@ -103,19 +103,22 @@ function setSummaryTiles(items) {
 function weightsHtml(weights, reason) {
   const weightMap = weights || {};
   const changeMap = new Map((reason?.weight_changes || []).map((item) => [item.code, item.change]));
-  const totalWeight = ETF_ASSET_ORDER.reduce((sum, asset) => sum + Math.max(0, Number(weightMap[asset.code] || 0)), 0);
-  const denominator = totalWeight > 0 ? totalWeight : 1;
+  const visualFloor = 0.012;
+  const visualWeights = ETF_ASSET_ORDER.map((asset) => {
+    const weight = Math.max(0, Number(weightMap[asset.code] || 0));
+    return { ...asset, weight, visualWeight: weight > 0 ? weight : visualFloor };
+  });
+  const visualTotal = visualWeights.reduce((sum, asset) => sum + asset.visualWeight, 0) || 1;
   return `
     <div class="allocation-cell">
       <div class="allocation-stack" aria-label="本次目标仓位横向分配图">
-        ${ETF_ASSET_ORDER.map((asset) => {
-          const weight = Math.max(0, Number(weightMap[asset.code] || 0));
-          if (weight <= 0) return "";
+        ${visualWeights.map((asset) => {
+          const emptyClass = asset.weight > 0 ? "" : " is-empty";
           return `
             <span
-              class="allocation-segment"
-              title="${escapeHtml(asset.style)} ${escapeHtml(asset.code)} ${percentText(weight)}"
-              style="width:${(weight / denominator) * 100}%; background:${asset.color}"
+              class="allocation-segment${emptyClass}"
+              title="${escapeHtml(asset.style)} ${escapeHtml(asset.code)} ${percentText(asset.weight)}${asset.weight > 0 ? "" : "（观察标记）"}"
+              style="width:${(asset.visualWeight / visualTotal) * 100}%; background:${asset.color}"
             ></span>
           `;
         }).join("")}
