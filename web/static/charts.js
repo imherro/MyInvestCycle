@@ -90,11 +90,11 @@ function renderShadowEquityChart(elementId, shadowBacktest) {
       {
         type: "scatter",
         mode: "lines",
-        name: "影子账户",
+        name: "风控仓位策略",
         x,
         y: shadow,
         line: { color: "#2663eb", width: 2.3 },
-        hovertemplate: "%{x}<br>影子账户 %{y:.3f}<extra></extra>",
+        hovertemplate: "%{x}<br>风控仓位策略 %{y:.3f}<extra></extra>",
       },
       {
         type: "scatter",

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260626-home-2" />
+    <link rel="stylesheet" href="/static/style.css?v=20260626-home-3" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -407,13 +407,13 @@
             <span>Validation</span>
             <h2>验证归因</h2>
           </div>
-          <p>用影子账户、Regime 归因、结构事件和模型验证来判断系统是否可靠。</p>
+          <p>用仓位风控回测、Regime 归因、结构事件和模型验证来判断系统是否可靠。</p>
         </div>
 
         <article class="chart-panel result-panel shadow-panel wide-analysis-panel">
           <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="用系统历史仓位模拟一个影子账户，和基准对比收益、回撤与长期 Alpha。">影子账户评估</h2>
-            <span class="panel-kicker">S1.1 / 510500</span>
+            <h2 class="help-title" tabindex="0" data-help="按市场状态生成目标仓位：牛市偏进攻，震荡半仓，熊市低仓防守，过渡期降低交易；再用风险分数下调仓位，并滞后 1 个交易日应用到 510500.SH 日收益，和满仓持有 510500 对比收益、回撤与 Alpha。不做选股，不代表真实交易账户。">仓位风控回测</h2>
+            <span class="panel-kicker">R2 动态仓位 / 510500 基准</span>
           </div>
           <div class="wide-panel-layout">
             <div class="wide-panel-metrics">
@@ -429,7 +429,7 @@
               </div>
               <div class="metric-card-grid">
                 <div>
-                  <span>影子收益</span>
+                  <span>策略收益</span>
                   <strong id="shadowTotalReturn">--</strong>
                 </div>
                 <div>
@@ -437,7 +437,7 @@
                   <strong id="benchmarkTotalReturn">--</strong>
                 </div>
                 <div>
-                  <span>影子权益</span>
+                  <span>策略权益</span>
                   <strong id="shadowFinalEquity">--</strong>
                 </div>
                 <div>
@@ -465,7 +465,7 @@
 
         <article class="chart-panel result-panel attribution-panel">
           <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="把影子账户相对基准的差异拆到牛市、熊市、震荡和过渡状态，判断收益来源和拖累来源。">Regime 归因</h2>
+            <h2 class="help-title" tabindex="0" data-help="把风控仓位策略相对基准的差异拆到牛市、熊市、震荡和过渡状态，判断收益来源和拖累来源。">Regime 归因</h2>
             <span class="panel-kicker">S1.2</span>
           </div>
           <div class="attribution-headline">
@@ -597,8 +597,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260626-home-2"></script>
-    <script src="/static/dashboard.js?v=20260626-home-2"></script>
+    <script src="/static/charts.js?v=20260626-home-3"></script>
+    <script src="/static/dashboard.js?v=20260626-home-3"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

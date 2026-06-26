@@ -28,7 +28,12 @@ function setScoreList(scores) {
 }
 
 async function getJson(url) {
-  const response = await fetch(url, { headers: { Accept: "application/json" } });
+  const requestUrl = new URL(url, window.location.origin);
+  requestUrl.searchParams.set("_t", Date.now().toString());
+  const response = await fetch(requestUrl.toString(), {
+    cache: "no-store",
+    headers: { Accept: "application/json", "Cache-Control": "no-cache" },
+  });
   if (!response.ok) {
     throw new Error(`${response.status} ${response.statusText}`);
   }
@@ -653,8 +658,8 @@ function setResultsPanel(results) {
   setText(
     "shadowConclusion",
     shadowSummary.sessions
-      ? `S1.1 覆盖 ${integerText(shadowSummary.sessions)} 个交易日，使用 ${shadowSummary.benchmark_code || "510500.SH"} 作为基准，并按 ${integerText(shadowMetadata.execution_lag_sessions || 0)} 个交易日滞后应用 R2 仓位；收益口径同样优先采用 Tushare pct_chg/pre_close。`
-      : "S1.1 影子账户结果尚未生成。"
+      ? `S1.1 覆盖 ${integerText(shadowSummary.sessions)} 个交易日，使用 ${shadowSummary.benchmark_code || "510500.SH"} 作为基准，并按 ${integerText(shadowMetadata.execution_lag_sessions || 0)} 个交易日滞后应用 R2 仓位；这是仓位风控回测，不做选股，也不代表真实交易账户。收益口径同样优先采用 Tushare pct_chg/pre_close。`
+      : "S1.1 仓位风控回测结果尚未生成。"
   );
 
   setText("regimeAttributionTotalAlpha", signedRatioText(attributionSummary.total_alpha));
@@ -670,7 +675,7 @@ function setResultsPanel(results) {
         <div class="attribution-regime-row">
           <span>${regimeLabel(regime)}</span>
           <strong>${signedRatioText(item.alpha)}</strong>
-          <em>影子 ${signedRatioText(item.shadow_return)} / 基准 ${signedRatioText(item.benchmark_return)}</em>
+          <em>策略 ${signedRatioText(item.shadow_return)} / 基准 ${signedRatioText(item.benchmark_return)}</em>
         </div>
       `;
     })

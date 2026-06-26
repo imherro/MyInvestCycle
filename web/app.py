@@ -9,7 +9,7 @@ from pathlib import Path
 from statistics import mean
 
 import pandas as pd
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -43,6 +43,15 @@ from engine.regime_explainer import explain_regime
 
 app = FastAPI(title="MyInvestCycle Regime API", version="0.7")
 app.mount("/static", StaticFiles(directory=ROOT_DIR / "web" / "static"), name="static")
+
+
+@app.middleware("http")
+async def no_store_api_cache(request: Request, call_next):
+    response = await call_next(request)
+    if request.url.path.startswith("/api"):
+        response.headers["Cache-Control"] = "no-store, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+    return response
 
 
 def _calendar_shift(date_text: str, days: int) -> str:
@@ -494,13 +503,13 @@ def _api_catalog_payload() -> dict[str, object]:
             ],
         },
         {
-            "name": "影子账户评估",
-            "description": "用历史 R2 仓位信号回放 510500 基准收益，评估系统相对基准的收益、回撤和 Alpha。",
+            "name": "仓位风控回测",
+            "description": "用历史 R2 动态仓位回放 510500 基准收益，评估风控仓位策略相对满仓基准的收益、回撤和 Alpha。",
             "endpoints": [
                 _api_endpoint(
                     "GET",
                     "/api/shadow/current",
-                    "返回 S1.1 影子账户与 510500 基准的完整权益曲线、收益序列和 Alpha；收益口径优先使用 fund_daily pct_chg/pre_close。",
+                    "返回 S1.1 仓位风控回测与 510500 基准的完整权益曲线、收益序列和 Alpha；收益口径优先使用 fund_daily pct_chg/pre_close。",
                     "shadow portfolio backtest",
                     freshness="generated artifact",
                 ),
@@ -545,7 +554,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/style/current", "description": "读取风格评分与 ETF 候选池。"},
             {"path": "/api/style/rotation-signal", "description": "读取 ETF 轮动信号与目标权重建议。"},
             {"path": "/api/style/rotation-backtest", "description": "读取 ETF 轮动 Alpha 验证结果。"},
-            {"path": "/api/shadow/current", "description": "读取影子账户与 510500 基准评估。"},
+            {"path": "/api/shadow/current", "description": "读取仓位风控回测与 510500 基准评估。"},
         ],
         "safety": {
             "read_only": True,
@@ -862,8 +871,8 @@ def results_summary() -> dict:
                 "A1.1 已新增风格评分与 ETF universe 层，把 regime、风险评分、宽度、流动性和波动稳定度映射到 ETF 候选池。",
                 "A1.2 已新增 ETF 轮动信号层，把风格评分、ETF 相对强弱和排名稳定性转成 simulation-only 目标权重建议。",
                 "A1.3 已新增 ETF 轮动回测与 Alpha 验证层，用历史回放检验轮动信号是否跑赢 510500、510300 和等权 ETF basket。",
-                "S1.1 已新增影子账户评估，用历史 R2 仓位回放 510500 基准收益，输出权益曲线、Alpha 和回撤。",
-                "S1.2 已按牛熊状态拆解影子账户收益来源，识别牛市参与不足是主要拖累，熊市防守是主要正贡献。",
+                "S1.1 已新增仓位风控回测，用历史 R2 动态仓位回放 510500 基准收益，输出权益曲线、Alpha 和回撤。",
+                "S1.2 已按牛熊状态拆解风控仓位策略收益来源，识别牛市参与不足是主要拖累，熊市防守是主要正贡献。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",
                 "R2.1 已把风险引擎输出落到组合层，页面展示总仓位、现金比例和策略资金分配。",
                 "结构化事件标签把原始频繁跳变压缩为更接近主周期切换的样本，适合做风险观察而不是短线交易信号。",

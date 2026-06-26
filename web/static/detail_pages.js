@@ -1,5 +1,10 @@
 async function getJson(url) {
-  const response = await fetch(url, { headers: { Accept: "application/json" } });
+  const requestUrl = new URL(url, window.location.origin);
+  requestUrl.searchParams.set("_t", Date.now().toString());
+  const response = await fetch(requestUrl.toString(), {
+    cache: "no-store",
+    headers: { Accept: "application/json", "Cache-Control": "no-cache" },
+  });
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
   return response.json();
 }
