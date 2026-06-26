@@ -86,6 +86,14 @@ def _read_shadow_backtest_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_regime_attribution_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "regime_performance_attribution.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _event_summary(rows: list[dict], event_key: str = "label") -> dict[str, object]:
     observations = len(rows)
     events = sum(1 for row in rows if int(row.get(event_key, 0)) == 1)
@@ -397,6 +405,13 @@ def _api_catalog_payload() -> dict[str, object]:
                     "shadow portfolio backtest",
                     freshness="generated artifact",
                 ),
+                _api_endpoint(
+                    "GET",
+                    "/api/shadow/regime-attribution",
+                    "返回 S1.2 按牛熊状态拆解的收益、回撤、Alpha 拖累项和保护项。",
+                    "regime performance attribution",
+                    freshness="generated artifact",
+                ),
             ],
         },
         {
@@ -577,6 +592,17 @@ def shadow_current() -> dict:
     return payload
 
 
+@app.get("/api/shadow/regime-attribution")
+def shadow_regime_attribution() -> dict:
+    payload = _read_regime_attribution_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="regime attribution artifact missing; run scripts/run_regime_attribution.py first.",
+        )
+    return payload
+
+
 @app.get("/api/system/snapshot")
 def system_snapshot() -> dict:
     try:
@@ -605,6 +631,7 @@ def results_summary() -> dict:
         system_snapshot_payload = _system_snapshot_payload(snapshot)
         meta_edge = _meta_edge_payload(snapshot)
         shadow_backtest = _read_shadow_backtest_payload()
+        regime_attribution = _read_regime_attribution_payload()
 
         hazard_rows = _read_data_json("hazard_dataset.json") or []
         structural_hazard_rows = _read_data_json("structural_hazard_dataset.json") or []
@@ -639,6 +666,7 @@ def results_summary() -> dict:
             },
             "meta_edge": meta_edge,
             "shadow_backtest": shadow_backtest,
+            "regime_attribution": regime_attribution,
             "system": system_snapshot_payload,
             "hazard": {
                 "raw": {
@@ -670,6 +698,7 @@ def results_summary() -> dict:
                 "R3.1 已把策略路由转成执行意图和模拟指令，但不连接券商、不生成真实订单。",
                 "M1.1 已新增 Meta Signal Engine，只检测系统内部矛盾信号，不预测收益、不选股、不改变既有风控链路。",
                 "S1.1 已新增影子账户评估，用历史 R2 仓位回放 510500 基准收益，输出权益曲线、Alpha 和回撤。",
+                "S1.2 已按牛熊状态拆解影子账户收益来源，识别牛市参与不足是主要拖累，熊市防守是主要正贡献。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",
                 "R2.1 已把风险引擎输出落到组合层，页面展示总仓位、现金比例和策略资金分配。",
                 "结构化事件标签把原始频繁跳变压缩为更接近主周期切换的样本，适合做风险观察而不是短线交易信号。",

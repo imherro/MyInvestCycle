@@ -34,6 +34,9 @@ engine foundation requested by the design review.
   `510500.SH` benchmark to evaluate equity curve, Alpha, and drawdown; it is a
   pure evaluation layer and does not predict returns, select stocks, or execute
   trades.
+- S1.2 Regime-Based Performance Attribution decomposes shadow-versus-benchmark
+  performance by market regime, identifying the regimes that create drag or
+  downside protection.
 - FINAL system boundary freeze locks the five-layer decision simulation pipeline
   with architecture documentation, policy lock, decision trace, integrity check,
   and a final system snapshot API.
@@ -104,6 +107,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/execution/current`
 - `GET http://127.0.0.1:8021/api/meta-edge/current`
 - `GET http://127.0.0.1:8021/api/shadow/current`
+- `GET http://127.0.0.1:8021/api/shadow/regime-attribution`
 - `GET http://127.0.0.1:8021/api/system/snapshot`
 - `GET http://127.0.0.1:8021/api/results/summary`
 
@@ -378,6 +382,29 @@ alpha_series
 final_alpha
 max_drawdown_shadow
 max_drawdown_benchmark
+```
+
+Run the S1.2 Regime-Based Performance Attribution:
+
+```powershell
+python scripts/run_regime_attribution.py --start 20200102 --end 20260623
+```
+
+Default output:
+
+```text
+data/regime_performance_attribution.json
+```
+
+The attribution layer consumes `data/shadow_equity_curve.json` and returns:
+
+```text
+regime_performance
+ranked_contributions
+alpha_decomposition
+largest_drag_regime
+largest_positive_regime
+drawdown_reduction
 ```
 
 Run the FINAL system integrity check:

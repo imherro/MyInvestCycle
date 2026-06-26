@@ -175,6 +175,20 @@ function metaSignalLabel(value) {
   return labels[value] || value || "--";
 }
 
+function alphaSourceLabel(value) {
+  const labels = {
+    bull_support: "牛市支持",
+    bull_drag: "牛市拖累",
+    range_support: "震荡支持",
+    range_cost: "震荡成本",
+    bear_protection: "熊市保护",
+    bear_cost: "熊市成本",
+    transition_support: "过渡支持",
+    transition_cost: "过渡成本",
+  };
+  return labels[value] || value || "--";
+}
+
 function metaEdgeInterpretationText(metaEdge) {
   const level = metaEdge.meta_edge_level;
   const activeSignals = metaEdge.signals || [];
@@ -264,6 +278,10 @@ function setResultsPanel(results) {
   const shadowBacktest = results.shadow_backtest || {};
   const shadowSummary = shadowBacktest.summary || {};
   const shadowMetadata = shadowBacktest.metadata || {};
+  const regimeAttribution = results.regime_attribution || {};
+  const attributionSummary = regimeAttribution.summary || {};
+  const regimePerformance = regimeAttribution.regime_performance || {};
+  const alphaDecomposition = regimeAttribution.alpha_decomposition || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -438,6 +456,41 @@ function setResultsPanel(results) {
     shadowSummary.sessions
       ? `S1.1 覆盖 ${integerText(shadowSummary.sessions)} 个交易日，使用 ${shadowSummary.benchmark_code || "510500.SH"} 作为基准，并按 ${integerText(shadowMetadata.execution_lag_sessions || 0)} 个交易日滞后应用 R2 仓位；该层只评估权益曲线、Alpha 和回撤，不预测、不选股、不下单。`
       : "S1.1 影子账户结果尚未生成。"
+  );
+
+  setText("regimeAttributionTotalAlpha", signedRatioText(attributionSummary.total_alpha));
+  setText("regimeAttributionDrawdownReduction", percentText(attributionSummary.drawdown_reduction));
+  setText("largestDragRegime", regimeLabel(attributionSummary.largest_drag_regime));
+  setText("largestPositiveRegime", regimeLabel(attributionSummary.largest_positive_regime));
+  const regimeOrder = ["bull", "range", "bear", "transition"];
+  document.getElementById("regimeAttributionList").innerHTML = regimeOrder
+    .filter((regime) => regimePerformance[regime])
+    .map((regime) => {
+      const item = regimePerformance[regime];
+      return `
+        <div class="attribution-regime-row">
+          <span>${regimeLabel(regime)}</span>
+          <strong>${signedRatioText(item.alpha)}</strong>
+          <em>影子 ${signedRatioText(item.shadow_return)} / 基准 ${signedRatioText(item.benchmark_return)}</em>
+        </div>
+      `;
+    })
+    .join("");
+  document.getElementById("alphaSourceList").innerHTML = Object.entries(alphaDecomposition.sources || {})
+    .map(
+      ([source, value]) => `
+        <div class="alpha-source-row">
+          <span>${alphaSourceLabel(source)}</span>
+          <strong>${signedRatioText(value)}</strong>
+        </div>
+      `
+    )
+    .join("");
+  setText(
+    "regimeAttributionConclusion",
+    attributionSummary.sessions
+      ? `S1.2 显示主要拖累来自${regimeLabel(attributionSummary.largest_drag_regime)}，主要正贡献来自${regimeLabel(attributionSummary.largest_positive_regime)}；系统更像风险保护层，而不是原始收益 Alpha 生成器。`
+      : "S1.2 regime 归因结果尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

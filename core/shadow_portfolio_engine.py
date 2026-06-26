@@ -108,7 +108,7 @@ def _max_drawdown(equity: pd.Series) -> float:
         return 0.0
     running_max = equity.cummax()
     drawdown = equity / running_max - 1.0
-    return round(abs(float(drawdown.min())), 6)
+    return round(float(drawdown.min()), 6)
 
 
 def _curve_records(frame: pd.DataFrame, value_column: str) -> list[dict[str, object]]:

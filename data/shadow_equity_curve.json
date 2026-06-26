@@ -20,8 +20,8 @@
     "final_alpha": -0.337749,
     "shadow_total_return": 0.17868,
     "benchmark_total_return": 0.516429,
-    "max_drawdown_shadow": 0.106745,
-    "max_drawdown_benchmark": 0.473145,
+    "max_drawdown_shadow": -0.106745,
+    "max_drawdown_benchmark": -0.473145,
     "average_applied_exposure": 0.197797,
     "execution_lag_sessions": 1,
     "regime_field": "raw_regime"
@@ -65258,6 +65258,6 @@
     }
   ],
   "final_alpha": -0.337749,
-  "max_drawdown_shadow": 0.106745,
-  "max_drawdown_benchmark": 0.473145
+  "max_drawdown_shadow": -0.106745,
+  "max_drawdown_benchmark": -0.473145
 }

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260626-shadow-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260626-s12-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -258,6 +258,34 @@
           <p class="result-note" id="shadowConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel attribution-panel">
+          <div class="panel-heading">
+            <h2>Regime 归因</h2>
+            <span class="panel-kicker">S1.2</span>
+          </div>
+          <div class="attribution-headline">
+            <div>
+              <span>累计 Alpha</span>
+              <strong id="regimeAttributionTotalAlpha">--</strong>
+            </div>
+            <div>
+              <span>回撤减少</span>
+              <strong id="regimeAttributionDrawdownReduction">--</strong>
+            </div>
+          </div>
+          <div class="result-row">
+            <span>最大拖累</span>
+            <strong id="largestDragRegime">--</strong>
+          </div>
+          <div class="result-row">
+            <span>最大正贡献</span>
+            <strong id="largestPositiveRegime">--</strong>
+          </div>
+          <div class="attribution-regime-list" id="regimeAttributionList"></div>
+          <div class="alpha-source-list" id="alphaSourceList"></div>
+          <p class="result-note" id="regimeAttributionConclusion">--</p>
+        </article>
+
         <article class="chart-panel result-panel">
           <div class="panel-heading">
             <h2>结构事件标签</h2>
@@ -428,8 +456,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260626-shadow-1"></script>
-    <script src="/static/dashboard.js?v=20260626-shadow-1"></script>
+    <script src="/static/charts.js?v=20260626-s12-1"></script>
+    <script src="/static/dashboard.js?v=20260626-s12-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

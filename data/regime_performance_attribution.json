@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "engine": "Regime-Based Performance Attribution S1.2",
+    "source": "data/shadow_equity_curve.json",
+    "evaluation_only": true,
+    "no_prediction": true,
+    "no_stock_selection": true,
+    "no_trade_execution": true,
+    "method": "Group S1.1 shadow and benchmark daily returns by regime and compare compounded return, drawdown, and daily alpha contribution."
+  },
+  "summary": {
+    "start_date": "20200102",
+    "end_date": "20260623",
+    "sessions": 1566,
+    "total_alpha": -0.337749,
+    "additive_daily_alpha": -0.3985,
+    "shadow_total_return": 0.17868,
+    "benchmark_total_return": 0.516429,
+    "max_drawdown_shadow": -0.106745,
+    "max_drawdown_benchmark": -0.473145,
+    "drawdown_reduction": 0.3664,
+    "largest_drag_regime": "bull",
+    "largest_positive_regime": "bear"
+  },
+  "regime_performance": {
+    "bull": {
+      "regime": "bull",
+      "sessions": 59,
+      "shadow_return": 0.439375,
+      "benchmark_return": 1.930671,
+      "alpha": -1.491296,
+      "daily_alpha_contribution": -0.723454,
+      "daily_alpha_share": 1.815441,
+      "avg_applied_exposure": 0.334189,
+      "avg_risk_score": 0.287602,
+      "max_drawdown_shadow": 0.0,
+      "max_drawdown_benchmark": 0.0,
+      "shadow_return_drawdown_ratio": null,
+      "benchmark_return_drawdown_ratio": null,
+      "role": "upside_participation_drag"
+    },
+    "range": {
+      "regime": "range",
+      "sessions": 307,
+      "shadow_return": 0.16039,
+      "benchmark_return": 0.908388,
+      "alpha": -0.747998,
+      "daily_alpha_contribution": -0.52913,
+      "daily_alpha_share": 1.327805,
+      "avg_applied_exposure": 0.222772,
+      "avg_risk_score": 0.460443,
+      "max_drawdown_shadow": -0.07688,
+      "max_drawdown_benchmark": -0.345133,
+      "shadow_return_drawdown_ratio": 2.086236,
+      "benchmark_return_drawdown_ratio": 2.63199,
+      "role": "defensive_cost"
+    },
+    "bear": {
+      "regime": "bear",
+      "sessions": 378,
+      "shadow_return": -0.217301,
+      "benchmark_return": -0.833004,
+      "alpha": 0.615702,
+      "daily_alpha_contribution": 1.516189,
+      "daily_alpha_share": -3.804738,
+      "avg_applied_exposure": 0.10696,
+      "avg_risk_score": 0.625173,
+      "max_drawdown_shadow": -0.206757,
+      "max_drawdown_benchmark": -0.81824,
+      "shadow_return_drawdown_ratio": -1.050998,
+      "benchmark_return_drawdown_ratio": -1.018043,
+      "role": "downside_protection"
+    },
+    "transition": {
+      "regime": "transition",
+      "sessions": 822,
+      "shadow_return": -0.09838,
+      "benchmark_return": 0.623608,
+      "alpha": -0.721988,
+      "daily_alpha_contribution": -0.662105,
+      "daily_alpha_share": 1.661492,
+      "avg_applied_exposure": 0.220451,
+      "avg_risk_score": 0.434751,
+      "max_drawdown_shadow": -0.186741,
+      "max_drawdown_benchmark": -0.511695,
+      "shadow_return_drawdown_ratio": -0.526828,
+      "benchmark_return_drawdown_ratio": 1.21871,
+      "role": "defensive_cost"
+    }
+  },
+  "ranked_contributions": [
+    {
+      "regime": "bull",
+      "daily_alpha_contribution": -0.723454,
+      "alpha": -1.491296,
+      "role": "upside_participation_drag"
+    },
+    {
+      "regime": "transition",
+      "daily_alpha_contribution": -0.662105,
+      "alpha": -0.721988,
+      "role": "defensive_cost"
+    },
+    {
+      "regime": "range",
+      "daily_alpha_contribution": -0.52913,
+      "alpha": -0.747998,
+      "role": "defensive_cost"
+    },
+    {
+      "regime": "bear",
+      "daily_alpha_contribution": 1.516189,
+      "alpha": 0.615702,
+      "role": "downside_protection"
+    }
+  ],
+  "alpha_decomposition": {
+    "total_alpha": -0.337749,
+    "additive_daily_alpha": -0.3985,
+    "sources": {
+      "bull_drag": -0.723454,
+      "range_cost": -0.52913,
+      "bear_protection": 1.516189,
+      "transition_cost": -0.662105
+    },
+    "positive_sources": {
+      "bear_protection": 1.516189
+    },
+    "negative_sources": {
+      "bull_drag": -0.723454,
+      "range_cost": -0.52913,
+      "transition_cost": -0.662105
+    },
+    "largest_positive_source": {
+      "source": "bear_protection",
+      "contribution": 1.516189
+    },
+    "largest_negative_source": {
+      "source": "bull_drag",
+      "contribution": -0.723454
+    },
+    "risk_adjusted": {
+      "max_drawdown_shadow": -0.106745,
+      "max_drawdown_benchmark": -0.473145,
+      "drawdown_reduction": 0.3664
+    },
+    "interpretation": [
+      "The shadow system underperformed the 510500 benchmark on cumulative alpha.",
+      "The largest drag came from bull regime exposure.",
+      "The largest positive contribution came from bear regime exposure.",
+      "The system's measurable value is drawdown reduction rather than raw return alpha."
+    ]
+  }
+}
