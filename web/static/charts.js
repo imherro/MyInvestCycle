@@ -1,8 +1,10 @@
 const REGIME_COLORS = {
   bull: "#c73d3d",
   bear: "#17885b",
-  range: "#697386",
-  transition: "#c69214",
+  range: "#eab308",
+  transition: "#8b95a5",
+  recovery: "#eab308",
+  contraction: "#8b95a5",
 };
 
 const REGIME_LABELS = {
@@ -10,13 +12,17 @@ const REGIME_LABELS = {
   bear: "熊市",
   range: "震荡",
   transition: "过渡",
+  recovery: "修复",
+  contraction: "收缩",
 };
 
 const SHADE_COLORS = {
   bull: "rgba(199, 61, 61, 0.12)",
   bear: "rgba(23, 136, 91, 0.12)",
-  range: "rgba(105, 115, 134, 0.11)",
-  transition: "rgba(198, 146, 20, 0.14)",
+  range: "rgba(234, 179, 8, 0.13)",
+  transition: "rgba(139, 149, 165, 0.13)",
+  recovery: "rgba(234, 179, 8, 0.13)",
+  contraction: "rgba(139, 149, 165, 0.13)",
 };
 
 const STATUS_BAND_COLORS = {
@@ -31,6 +37,8 @@ const STATUS_BAND_VALUES = {
   bear: 1,
   range: 2,
   transition: 3,
+  recovery: 2,
+  contraction: 3,
 };
 
 function regimeLabel(regime) {
@@ -280,14 +288,16 @@ function renderMacroStyleEtfBacktestChart(elementId, backtest) {
   const x = items.map((item) => toIsoDate(item.date));
   const statusBandTrace = {
     type: "heatmap",
-    name: "宏观状态色带",
+    name: "状态对比色带",
     x,
-    y: ["宏观状态"],
+    y: ["M2.1 宏观", "回看确认"],
     z: [
       items.map((item) => STATUS_BAND_VALUES[item.macro_regime] ?? STATUS_BAND_VALUES.transition),
+      items.map((item) => STATUS_BAND_VALUES[item.hindsight_regime || item.model_regime || item.macro_regime] ?? STATUS_BAND_VALUES.transition),
     ],
     customdata: [
       items.map((item) => regimeLabel(item.macro_regime)),
+      items.map((item) => regimeLabel(item.hindsight_regime || item.model_regime || item.macro_regime)),
     ],
     xaxis: "x",
     yaxis: "y2",
@@ -309,8 +319,8 @@ function renderMacroStyleEtfBacktestChart(elementId, backtest) {
   const statusLegendTraces = [
     ["牛市", STATUS_BAND_COLORS.bull],
     ["熊市", STATUS_BAND_COLORS.bear],
-    ["震荡", STATUS_BAND_COLORS.range],
-    ["过渡", STATUS_BAND_COLORS.transition],
+    ["修复/震荡", STATUS_BAND_COLORS.range],
+    ["收缩/过渡", STATUS_BAND_COLORS.transition],
   ].map(([name, color]) => ({
     type: "scatter",
     mode: "markers",
@@ -391,7 +401,7 @@ function renderMacroStyleEtfBacktestChart(elementId, backtest) {
         spikethickness: 1,
       },
       yaxis: {
-        domain: [0.18, 1],
+        domain: [0.2, 1],
         gridcolor: "#edf0f5",
         zeroline: false,
         showspikes: true,
@@ -402,7 +412,7 @@ function renderMacroStyleEtfBacktestChart(elementId, backtest) {
         spikethickness: 1,
       },
       yaxis2: {
-        domain: [0, 0.1],
+        domain: [0, 0.13],
         fixedrange: true,
         showgrid: false,
         zeroline: false,

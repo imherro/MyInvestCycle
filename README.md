@@ -467,6 +467,8 @@ The hierarchical backtest keeps the layer contract explicit:
 
 ```text
 macro_regime
+model_regime
+hindsight_regime
 exposure_ceiling
 target_exposure
 risk_overlay
@@ -478,6 +480,14 @@ alpha_vs_510500
 alpha_vs_equal_weight
 alpha_vs_current_a1
 macro_regime_breakdown
+```
+
+State-band fields in `equity_curve` and `daily_returns`:
+
+```text
+macro_regime: M2.1 macro layer state actually applied to exposure and style allocation
+model_regime: visible structural state from the selected regime field
+hindsight_regime: future-confirmed structural state for visual comparison only
 ```
 
 The web page `/macro-style-history` displays every M2.1 rebalance signal in reverse chronological order, including macro regime, exposure cap, target exposure, risk overlay, turnover, style weights, ETF target weights, and page-level rebalance reason.
