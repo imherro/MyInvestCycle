@@ -278,6 +278,48 @@ function renderMacroStyleEtfBacktestChart(elementId, backtest) {
     return;
   }
   const x = items.map((item) => toIsoDate(item.date));
+  const statusBandTrace = {
+    type: "heatmap",
+    name: "宏观状态色带",
+    x,
+    y: ["宏观状态"],
+    z: [
+      items.map((item) => STATUS_BAND_VALUES[item.macro_regime] ?? STATUS_BAND_VALUES.transition),
+    ],
+    customdata: [
+      items.map((item) => regimeLabel(item.macro_regime)),
+    ],
+    xaxis: "x",
+    yaxis: "y2",
+    zmin: 0,
+    zmax: 3,
+    colorscale: [
+      [0, STATUS_BAND_COLORS.bull],
+      [0.1666, STATUS_BAND_COLORS.bull],
+      [0.1667, STATUS_BAND_COLORS.bear],
+      [0.5, STATUS_BAND_COLORS.bear],
+      [0.5001, STATUS_BAND_COLORS.range],
+      [0.8333, STATUS_BAND_COLORS.range],
+      [0.8334, STATUS_BAND_COLORS.transition],
+      [1, STATUS_BAND_COLORS.transition],
+    ],
+    showscale: false,
+    hovertemplate: "%{x}<br>%{y}: %{customdata}<extra></extra>",
+  };
+  const statusLegendTraces = [
+    ["牛市", STATUS_BAND_COLORS.bull],
+    ["熊市", STATUS_BAND_COLORS.bear],
+    ["震荡", STATUS_BAND_COLORS.range],
+    ["过渡", STATUS_BAND_COLORS.transition],
+  ].map(([name, color]) => ({
+    type: "scatter",
+    mode: "markers",
+    name,
+    x: [null],
+    y: [null],
+    marker: { color, size: 9, symbol: "square" },
+    hoverinfo: "skip",
+  }));
   Plotly.react(
     elementId,
     [
@@ -302,6 +344,15 @@ function renderMacroStyleEtfBacktestChart(elementId, backtest) {
       {
         type: "scatter",
         mode: "lines",
+        name: "510300",
+        x,
+        y: items.map((item) => item.benchmark_510300_equity ?? null),
+        line: { color: "#c69214", width: 1.8, dash: "dot" },
+        hovertemplate: "%{x}<br>510300 %{y:.3f}<extra></extra>",
+      },
+      {
+        type: "scatter",
+        mode: "lines",
         name: "510500",
         x,
         y: items.map((item) => item.benchmark_510500_equity ?? null),
@@ -317,16 +368,21 @@ function renderMacroStyleEtfBacktestChart(elementId, backtest) {
         line: { color: "#64748b", width: 1.8 },
         hovertemplate: "%{x}<br>等权 ETF %{y:.3f}<extra></extra>",
       },
+      statusBandTrace,
+      ...statusLegendTraces,
     ],
     {
-      ...baseLayout(340),
+      ...baseLayout(470),
       dragmode: "zoom",
-      hovermode: "x unified",
-      margin: { l: 50, r: 16, t: 38, b: 40 },
+      hovermode: "closest",
+      hoverdistance: 80,
+      spikedistance: -1,
+      margin: { l: 72, r: 18, t: 74, b: 46 },
       xaxis: {
         tickformat: "%Y",
         hoverformat: "%Y-%m-%d",
         gridcolor: "#edf0f5",
+        anchor: "y2",
         showspikes: true,
         spikecolor: "#4b5563",
         spikedash: "solid",
@@ -335,6 +391,7 @@ function renderMacroStyleEtfBacktestChart(elementId, backtest) {
         spikethickness: 1,
       },
       yaxis: {
+        domain: [0.18, 1],
         gridcolor: "#edf0f5",
         zeroline: false,
         showspikes: true,
@@ -344,7 +401,14 @@ function renderMacroStyleEtfBacktestChart(elementId, backtest) {
         spikesnap: "cursor",
         spikethickness: 1,
       },
-      legend: { orientation: "h", x: 0, y: 1.16, font: { size: 11 } },
+      yaxis2: {
+        domain: [0, 0.1],
+        fixedrange: true,
+        showgrid: false,
+        zeroline: false,
+        tickfont: { size: 11, color: "#697386" },
+      },
+      legend: { orientation: "h", x: 0, y: 1.26, font: { size: 11 } },
     },
     { responsive: true, displayModeBar: false }
   );

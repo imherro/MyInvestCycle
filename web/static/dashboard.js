@@ -94,8 +94,8 @@ function fixedText(value, digits = 3) {
 function drawdownReductionText(value) {
   if (typeof value !== "number") return "--";
   const percent = Math.abs(value * 100).toFixed(1);
-  if (value > 0) return `轮动少 ${percent}pct`;
-  if (value < 0) return `轮动多 ${percent}pct`;
+  if (value > 0) return `策略少 ${percent}pct`;
+  if (value < 0) return `策略多 ${percent}pct`;
   return "持平";
 }
 
@@ -269,21 +269,9 @@ function setText(id, value) {
   if (node) node.textContent = value;
 }
 
-function setBacktestComparisonTable(summary) {
-  const target = document.getElementById("backtestEtfComparison");
+function setBacktestComparisonTable(targetId, rows) {
+  const target = document.getElementById(targetId);
   if (!target) return;
-  const comparisonEtfs = summary.comparison_etfs || [];
-  const rows = [
-    {
-      label: "轮动策略",
-      total_return: summary.rotation_total_return,
-      max_drawdown: summary.max_drawdown,
-      rotation_return_advantage: null,
-      rotation_drawdown_reduction: null,
-      isStrategy: true,
-    },
-    ...comparisonEtfs,
-  ];
   target.innerHTML = `
     <div class="backtest-comparison-row backtest-comparison-head">
       <span>标的</span>
@@ -299,13 +287,76 @@ function setBacktestComparisonTable(summary) {
             <strong>${escapeHtml(item.label || item.code || "--")}</strong>
             <span>${signedRatioText(item.total_return)}</span>
             <span>${percentText(item.max_drawdown)}</span>
-            <span>${item.isStrategy ? "--" : signedRatioText(item.rotation_return_advantage)}</span>
-            <span>${item.isStrategy ? "--" : drawdownReductionText(item.rotation_drawdown_reduction)}</span>
+            <span>${item.isStrategy ? "--" : signedRatioText(item.return_advantage)}</span>
+            <span>${item.isStrategy ? "--" : drawdownReductionText(item.drawdown_reduction)}</span>
           </div>
         `
       )
       .join("")}
   `;
+}
+
+function setEtfBacktestComparisonTable(summary) {
+  const comparisonEtfs = (summary.comparison_etfs || []).map((item) => ({
+    ...item,
+    return_advantage: item.rotation_return_advantage,
+    drawdown_reduction: item.rotation_drawdown_reduction,
+  }));
+  setBacktestComparisonTable("backtestEtfComparison", [
+    {
+      label: "轮动策略",
+      total_return: summary.rotation_total_return,
+      max_drawdown: summary.max_drawdown,
+      isStrategy: true,
+    },
+    ...comparisonEtfs,
+  ]);
+}
+
+function setMacroStyleComparisonTable(summary) {
+  const strategyReturn = summary.hierarchical_total_return;
+  const strategyDrawdown = summary.max_drawdown;
+  const comparisonRows = [
+    {
+      label: "当前 A1 轮动",
+      total_return: summary.current_a1_return,
+      max_drawdown: summary.current_a1_max_drawdown,
+    },
+    {
+      label: "价值/大盘 510300 沪深300ETF",
+      total_return: summary.benchmark_510300_return,
+      max_drawdown: summary.benchmark_510300_max_drawdown,
+    },
+    {
+      label: "中小盘 510500 中证500ETF",
+      total_return: summary.benchmark_510500_return,
+      max_drawdown: summary.benchmark_510500_max_drawdown,
+    },
+    {
+      label: "等权 ETF Basket",
+      total_return: summary.equal_weight_basket_return,
+      max_drawdown: summary.equal_weight_basket_max_drawdown,
+    },
+  ].map((item) => ({
+    ...item,
+    return_advantage:
+      typeof strategyReturn === "number" && typeof item.total_return === "number"
+        ? strategyReturn - item.total_return
+        : null,
+    drawdown_reduction:
+      typeof strategyDrawdown === "number" && typeof item.max_drawdown === "number"
+        ? Math.abs(item.max_drawdown) - Math.abs(strategyDrawdown)
+        : null,
+  }));
+  setBacktestComparisonTable("macroStyleComparison", [
+    {
+      label: "M2.1 分层组合",
+      total_return: strategyReturn,
+      max_drawdown: strategyDrawdown,
+      isStrategy: true,
+    },
+    ...comparisonRows,
+  ]);
 }
 
 function setApiCatalogPanel(catalog) {
@@ -628,7 +679,7 @@ function setResultsPanel(results) {
   setText("backtestSharpe", fixedText(backtestSummary.sharpe, 2));
   setText("backtestSessions", integerText(backtestSummary.sessions));
   setText("backtestRebalanceCount", integerText(backtestSummary.rebalance_count));
-  setBacktestComparisonTable(backtestSummary);
+  setEtfBacktestComparisonTable(backtestSummary);
   setText(
     "backtestDrawdown",
     `轮动 ${percentText(backtestSummary.max_drawdown)} / 等权 ${percentText(backtestSummary.equal_weight_basket_max_drawdown)}`
@@ -646,14 +697,20 @@ function setResultsPanel(results) {
       : "A1.3 ETF 轮动回测结果尚未生成。"
   );
 
-  setText("macroStyleAlphaA1", signedRatioText(macroStyleSummary.alpha_vs_current_a1));
   setText("macroStyleAlpha510500", signedRatioText(macroStyleSummary.alpha_vs_510500));
+  setText("macroStyleAlphaEqual", signedRatioText(macroStyleSummary.alpha_vs_equal_weight));
   setText("macroStyleReturn", signedRatioText(macroStyleSummary.hierarchical_total_return));
-  setText("macroStyleA1Return", signedRatioText(macroStyleSummary.current_a1_return));
+  setText("macroStyle510500Return", signedRatioText(macroStyleSummary.benchmark_510500_return));
   setText("macroStyleEqualReturn", signedRatioText(macroStyleSummary.equal_weight_basket_return));
-  setText("macroStyleExposure", percentText(macroStyleSummary.average_target_exposure));
-  setText("macroStyleDrawdown", percentText(macroStyleSummary.max_drawdown));
+  setText("macroStyleSharpe", fixedText(macroStyleSummary.sharpe, 2));
+  setText("macroStyleSessions", integerText(macroStyleSummary.sessions));
   setText("macroStyleRebalance", integerText(macroStyleSummary.rebalance_count));
+  setMacroStyleComparisonTable(macroStyleSummary);
+  setText(
+    "macroStyleDrawdown",
+    `分层 ${percentText(macroStyleSummary.max_drawdown)} / A1 ${percentText(macroStyleSummary.current_a1_max_drawdown)}`
+  );
+  setText("macroStyleHitRate", percentText(macroStyleSummary.hit_rate_vs_510500));
   const macroStyleVerdict = macroStyleValidation.alpha_positive_vs_equal_weight
     ? "分层组合跑赢等权 ETF basket，具备继续验证价值"
     : macroStyleValidation.alpha_positive_vs_current_a1
@@ -888,5 +945,8 @@ async function loadDashboard() {
 document.getElementById("refreshButton").addEventListener("click", loadDashboard);
 document.getElementById("rotationBacktestReset")?.addEventListener("click", () => {
   resetEtfRotationBacktestChart("rotationBacktestChart");
+});
+document.getElementById("macroStyleReset")?.addEventListener("click", () => {
+  resetEtfRotationBacktestChart("macroStyleEtfChart");
 });
 loadDashboard();

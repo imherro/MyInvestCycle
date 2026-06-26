@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260626-home-4" />
+    <link rel="stylesheet" href="/static/style.css?v=20260626-home-7" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -404,18 +404,21 @@
         <article class="chart-panel result-panel macro-style-etf-panel wide-analysis-panel">
           <div class="panel-heading">
             <h2 class="help-title" tabindex="0" data-help="M2.1 把宏观周期、风格分配、ETF 映射三层解耦：宏观只控制仓位上限，风格只分配成长/价值/小盘/红利/低波，ETF 只负责执行映射。">Macro-Style-ETF 分层回测</h2>
-            <span class="panel-kicker">M2.1</span>
+            <div class="panel-actions">
+              <span class="panel-kicker">M2.1</span>
+              <button class="panel-link panel-button" id="macroStyleReset" type="button">还原图表</button>
+            </div>
           </div>
           <div class="wide-panel-layout">
             <div class="wide-panel-metrics">
               <div class="backtest-headline">
                 <div>
-                  <span>Alpha vs A1</span>
-                  <strong id="macroStyleAlphaA1">--</strong>
-                </div>
-                <div>
                   <span>Alpha vs 510500</span>
                   <strong id="macroStyleAlpha510500">--</strong>
+                </div>
+                <div>
+                  <span>Alpha vs 等权</span>
+                  <strong id="macroStyleAlphaEqual">--</strong>
                 </div>
               </div>
               <div class="metric-card-grid">
@@ -424,25 +427,34 @@
                   <strong id="macroStyleReturn">--</strong>
                 </div>
                 <div>
-                  <span>A1 收益</span>
-                  <strong id="macroStyleA1Return">--</strong>
+                  <span>510500收益</span>
+                  <strong id="macroStyle510500Return">--</strong>
                 </div>
                 <div>
                   <span>等权收益</span>
                   <strong id="macroStyleEqualReturn">--</strong>
                 </div>
                 <div>
-                  <span>平均仓位</span>
-                  <strong id="macroStyleExposure">--</strong>
+                  <span>夏普</span>
+                  <strong id="macroStyleSharpe">--</strong>
                 </div>
                 <div>
-                  <span>最大回撤</span>
-                  <strong id="macroStyleDrawdown">--</strong>
+                  <span>样本</span>
+                  <strong id="macroStyleSessions">--</strong>
                 </div>
                 <div>
                   <span>再平衡</span>
                   <strong id="macroStyleRebalance">--</strong>
                 </div>
+              </div>
+              <div class="backtest-comparison-table" id="macroStyleComparison"></div>
+              <div class="result-row">
+                <span>最大回撤</span>
+                <strong id="macroStyleDrawdown">--</strong>
+              </div>
+              <div class="result-row">
+                <span>命中率</span>
+                <strong id="macroStyleHitRate">--</strong>
               </div>
               <p class="result-note" id="macroStyleConclusion">--</p>
             </div>
@@ -647,8 +659,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260626-home-6"></script>
-    <script src="/static/dashboard.js?v=20260626-home-6"></script>
+    <script src="/static/charts.js?v=20260626-home-7"></script>
+    <script src="/static/dashboard.js?v=20260626-home-7"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
