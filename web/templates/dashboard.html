@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260625-meta-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260626-shadow-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -227,6 +227,37 @@
           <p class="result-note" id="metaEdgeConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel shadow-panel">
+          <div class="panel-heading">
+            <h2>影子账户评估</h2>
+            <span class="panel-kicker">S1.1 / 510500</span>
+          </div>
+          <div class="shadow-headline">
+            <div>
+              <span>累计 Alpha</span>
+              <strong id="shadowFinalAlpha">--</strong>
+            </div>
+            <div>
+              <span>平均仓位</span>
+              <strong id="shadowAverageExposure">--</strong>
+            </div>
+          </div>
+          <div class="result-row">
+            <span>影子收益</span>
+            <strong id="shadowTotalReturn">--</strong>
+          </div>
+          <div class="result-row">
+            <span>基准收益</span>
+            <strong id="benchmarkTotalReturn">--</strong>
+          </div>
+          <div class="result-row">
+            <span>最大回撤</span>
+            <strong id="shadowDrawdown">--</strong>
+          </div>
+          <div class="chart-box shadow-equity-box" id="shadowEquityChart"></div>
+          <p class="result-note" id="shadowConclusion">--</p>
+        </article>
+
         <article class="chart-panel result-panel">
           <div class="panel-heading">
             <h2>结构事件标签</h2>
@@ -397,8 +428,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260625-meta-1"></script>
-    <script src="/static/dashboard.js?v=20260625-meta-1"></script>
+    <script src="/static/charts.js?v=20260626-shadow-1"></script>
+    <script src="/static/dashboard.js?v=20260626-shadow-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

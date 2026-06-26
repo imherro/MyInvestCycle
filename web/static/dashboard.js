@@ -78,6 +78,11 @@ function signedPercentText(value) {
   return `${sign}${value.toFixed(2)}%`;
 }
 
+function signedRatioText(value) {
+  if (typeof value !== "number") return "--";
+  return signedPercentText(value * 100);
+}
+
 function fixedText(value, digits = 3) {
   if (typeof value !== "number") return "--";
   return value.toFixed(digits);
@@ -256,6 +261,9 @@ function setResultsPanel(results) {
   const route = (results.strategy_route || {}).route || {};
   const execution = (results.execution || {}).simulation || {};
   const metaEdge = results.meta_edge || {};
+  const shadowBacktest = results.shadow_backtest || {};
+  const shadowSummary = shadowBacktest.summary || {};
+  const shadowMetadata = shadowBacktest.metadata || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -415,6 +423,21 @@ function setResultsPanel(results) {
     metaEdge.meta_edge_level
       ? `${metaEdgeInterpretationText(metaEdge)}；该层只检测系统内部矛盾，不预测收益、不选股、不下单。`
       : "M1.1 只检测系统内部矛盾，不改变既有风控链路。"
+  );
+
+  setText("shadowFinalAlpha", signedRatioText(shadowSummary.final_alpha));
+  setText("shadowAverageExposure", percentText(shadowSummary.average_applied_exposure));
+  setText("shadowTotalReturn", signedRatioText(shadowSummary.shadow_total_return));
+  setText("benchmarkTotalReturn", signedRatioText(shadowSummary.benchmark_total_return));
+  setText(
+    "shadowDrawdown",
+    `${percentText(shadowSummary.max_drawdown_shadow)} / 基准 ${percentText(shadowSummary.max_drawdown_benchmark)}`
+  );
+  setText(
+    "shadowConclusion",
+    shadowSummary.sessions
+      ? `S1.1 覆盖 ${integerText(shadowSummary.sessions)} 个交易日，使用 ${shadowSummary.benchmark_code || "510500.SH"} 作为基准，并按 ${integerText(shadowMetadata.execution_lag_sessions || 0)} 个交易日滞后应用 R2 仓位；该层只评估权益曲线、Alpha 和回撤，不预测、不选股、不下单。`
+      : "S1.1 影子账户结果尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
@@ -580,6 +603,7 @@ async function loadDashboard() {
     setForecastPanel(track);
     setCycleBlocks(cycle.cycle_blocks || []);
     renderRadar("radarChart", current.sub_scores);
+    renderShadowEquityChart("shadowEquityChart", results.shadow_backtest || {});
     renderIndexChart("indexChart", cycle.series || [], phase, cycle.cycle_blocks || []);
     renderCycleTrackChart("cycleTrackChart", track);
   } finally {

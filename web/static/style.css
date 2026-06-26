@@ -310,6 +310,14 @@ h2 {
   border-bottom: 1px solid var(--line);
 }
 
+.shadow-headline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 10px 0 14px;
+  border-bottom: 1px solid var(--line);
+}
+
 .api-headline {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -324,6 +332,7 @@ h2 {
 .execution-headline span,
 .system-headline span,
 .meta-edge-headline span,
+.shadow-headline span,
 .api-headline span,
 .action-list span,
 .result-row span,
@@ -376,6 +385,13 @@ h2 {
 }
 
 .meta-edge-headline strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+.shadow-headline strong {
   display: block;
   margin-top: 8px;
   font-size: 26px;
@@ -831,6 +847,11 @@ h2 {
   height: 260px;
 }
 
+.chart-box.shadow-equity-box {
+  height: 170px;
+  margin-top: 12px;
+}
+
 .chart-box.long-index-box {
   height: 410px;
 }
@@ -1231,12 +1252,13 @@ h2 {
 
   .risk-headline,
   .portfolio-headline,
-  .route-summary,
-  .execution-headline,
-  .system-headline,
-  .meta-edge-headline,
-  .api-headline,
-  .conclusion-list {
+    .route-summary,
+    .execution-headline,
+    .system-headline,
+    .meta-edge-headline,
+    .shadow-headline,
+    .api-headline,
+    .conclusion-list {
     grid-template-columns: 1fr;
   }
 

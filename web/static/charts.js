@@ -73,6 +73,50 @@ function renderRadar(elementId, scores) {
   );
 }
 
+function renderShadowEquityChart(elementId, shadowBacktest) {
+  const shadowCurve = shadowBacktest?.shadow_equity_curve || [];
+  const benchmarkCurve = shadowBacktest?.benchmark_equity_curve || [];
+  const x = shadowCurve.map((item) => toIsoDate(item.date));
+  const shadow = shadowCurve.map((item) => item.value);
+  const benchmarkByDate = new Map(benchmarkCurve.map((item) => [item.date, item.value]));
+  const benchmark = shadowCurve.map((item) => benchmarkByDate.get(item.date) ?? null);
+  if (!shadowCurve.length) {
+    Plotly.purge(elementId);
+    return;
+  }
+  Plotly.react(
+    elementId,
+    [
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "影子账户",
+        x,
+        y: shadow,
+        line: { color: "#2663eb", width: 2.3 },
+        hovertemplate: "%{x}<br>影子账户 %{y:.3f}<extra></extra>",
+      },
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "510500 基准",
+        x,
+        y: benchmark,
+        line: { color: "#c73d3d", width: 2, dash: "dot" },
+        hovertemplate: "%{x}<br>510500 %{y:.3f}<extra></extra>",
+      },
+    ],
+    {
+      ...baseLayout(170),
+      margin: { l: 36, r: 8, t: 12, b: 34 },
+      xaxis: { tickformat: "%Y", gridcolor: "#edf0f5" },
+      yaxis: { gridcolor: "#edf0f5", zeroline: false },
+      legend: { orientation: "h", x: 0, y: 1.18, font: { size: 11 } },
+    },
+    { responsive: true, displayModeBar: false }
+  );
+}
+
 function buildRegimeShapes(items, options = {}) {
   const y0 = options.y0 ?? 0;
   const y1 = options.y1 ?? 1;

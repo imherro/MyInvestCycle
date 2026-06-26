@@ -17,7 +17,7 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
-from config import BREADTH_HISTORY_SAMPLE_SIZE, DEFAULT_INDEX_CODE, WEB_PORT
+from config import BREADTH_HISTORY_SAMPLE_SIZE, DATA_DIR, DEFAULT_INDEX_CODE, WEB_PORT
 from core.breadth import get_market_daily, get_market_history_sample
 from core.data_loader import get_index_daily, normalize_trade_date
 from core.exposure_controller import build_exposure_decision
@@ -37,7 +37,7 @@ from engine.market_engine import analyze_index_regime
 from engine.regime_explainer import explain_regime
 
 
-app = FastAPI(title="MyInvestCycle Regime API", version="0.3")
+app = FastAPI(title="MyInvestCycle Regime API", version="0.4")
 app.mount("/static", StaticFiles(directory=ROOT_DIR / "web" / "static"), name="static")
 
 
@@ -76,6 +76,14 @@ def _read_data_json(file_name: str):
     if not path.exists():
         return None
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _read_shadow_backtest_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "shadow_equity_curve.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
 
 
 def _event_summary(rows: list[dict], event_key: str = "label") -> dict[str, object]:
@@ -379,6 +387,19 @@ def _api_catalog_payload() -> dict[str, object]:
             ],
         },
         {
+            "name": "影子账户评估",
+            "description": "用历史 R2 仓位信号回放 510500 基准收益，评估系统相对基准的收益、回撤和 Alpha。",
+            "endpoints": [
+                _api_endpoint(
+                    "GET",
+                    "/api/shadow/current",
+                    "返回 S1.1 影子账户与 510500 基准的完整权益曲线、收益序列和 Alpha。",
+                    "shadow portfolio backtest",
+                    freshness="generated artifact",
+                ),
+            ],
+        },
+        {
             "name": "系统成果总览",
             "description": "系统冻结状态、完整成果和研究验证摘要。",
             "endpoints": [
@@ -407,6 +428,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/regime/current", "description": "读取当前牛熊状态与四维评分。"},
             {"path": "/api/regime/cycle/track", "description": "读取本轮周期位置和概率展望。"},
             {"path": "/api/meta-edge/current", "description": "读取系统内部矛盾信号。"},
+            {"path": "/api/shadow/current", "description": "读取影子账户与 510500 基准评估。"},
         ],
         "safety": {
             "read_only": True,
@@ -544,6 +566,17 @@ def meta_edge_current() -> dict:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
 
+@app.get("/api/shadow/current")
+def shadow_current() -> dict:
+    payload = _read_shadow_backtest_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="shadow backtest artifact missing; run scripts/run_shadow_backtest.py first.",
+        )
+    return payload
+
+
 @app.get("/api/system/snapshot")
 def system_snapshot() -> dict:
     try:
@@ -571,6 +604,7 @@ def results_summary() -> dict:
         execution = snapshot["execution"]
         system_snapshot_payload = _system_snapshot_payload(snapshot)
         meta_edge = _meta_edge_payload(snapshot)
+        shadow_backtest = _read_shadow_backtest_payload()
 
         hazard_rows = _read_data_json("hazard_dataset.json") or []
         structural_hazard_rows = _read_data_json("structural_hazard_dataset.json") or []
@@ -604,6 +638,7 @@ def results_summary() -> dict:
                 "policy": _execution_policy_summary(execution_policy),
             },
             "meta_edge": meta_edge,
+            "shadow_backtest": shadow_backtest,
             "system": system_snapshot_payload,
             "hazard": {
                 "raw": {
@@ -634,6 +669,7 @@ def results_summary() -> dict:
                 "FINAL 已冻结系统边界：5 层决策链稳定，策略已锁定，执行层保持 simulation-only。",
                 "R3.1 已把策略路由转成执行意图和模拟指令，但不连接券商、不生成真实订单。",
                 "M1.1 已新增 Meta Signal Engine，只检测系统内部矛盾信号，不预测收益、不选股、不改变既有风控链路。",
+                "S1.1 已新增影子账户评估，用历史 R2 仓位回放 510500 基准收益，输出权益曲线、Alpha 和回撤。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",
                 "R2.1 已把风险引擎输出落到组合层，页面展示总仓位、现金比例和策略资金分配。",
                 "结构化事件标签把原始频繁跳变压缩为更接近主周期切换的样本，适合做风险观察而不是短线交易信号。",

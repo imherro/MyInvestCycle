@@ -30,6 +30,10 @@ engine foundation requested by the design review.
 - M1.1 Meta Signal Engine detects internal contradictions between regime, risk,
   hazard, portfolio, and strategy layers; it does not predict returns, select
   stocks, or execute trades.
+- S1.1 Shadow Portfolio Engine replays historical R2 exposure against the
+  `510500.SH` benchmark to evaluate equity curve, Alpha, and drawdown; it is a
+  pure evaluation layer and does not predict returns, select stocks, or execute
+  trades.
 - FINAL system boundary freeze locks the five-layer decision simulation pipeline
   with architecture documentation, policy lock, decision trace, integrity check,
   and a final system snapshot API.
@@ -99,6 +103,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/strategy/current`
 - `GET http://127.0.0.1:8021/api/execution/current`
 - `GET http://127.0.0.1:8021/api/meta-edge/current`
+- `GET http://127.0.0.1:8021/api/shadow/current`
 - `GET http://127.0.0.1:8021/api/system/snapshot`
 - `GET http://127.0.0.1:8021/api/results/summary`
 
@@ -346,6 +351,33 @@ signals
 signal_strengths
 signal_details
 interpretation
+```
+
+Run the S1.1 Shadow Portfolio Engine:
+
+```powershell
+python scripts/run_shadow_backtest.py --start 20200102 --end 20260623
+```
+
+Default output:
+
+```text
+data/shadow_equity_curve.json
+```
+
+The shadow engine consumes `data/structural_survival_dataset.json` and
+`510500.SH` fund daily returns. It applies prior-session R2 exposure to the next
+benchmark return, then outputs:
+
+```text
+shadow_equity_curve
+benchmark_equity_curve
+shadow_returns
+benchmark_returns
+alpha_series
+final_alpha
+max_drawdown_shadow
+max_drawdown_benchmark
 ```
 
 Run the FINAL system integrity check:
