@@ -186,11 +186,8 @@ def _rebalance_reason(
         drivers.append(f"方向：{_signal_label(current_rotation)}")
     if changes:
         drivers.append(
-            "主要权重变化："
-            + "，".join(
-                f"{item['code']} {float(item['change']) * 100:+.1f}pct"
-                for item in changes
-            )
+            "相对上期仓位变化："
+            + "，".join(f"{item['code']} {float(item['change']) * 100:+.1f}pct" for item in changes)
         )
 
     return {

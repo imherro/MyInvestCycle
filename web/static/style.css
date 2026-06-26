@@ -1479,7 +1479,7 @@ h2 {
 .api-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 1180px;
+  min-width: 1380px;
 }
 
 .history-table th,
@@ -1517,6 +1517,108 @@ h2 {
   font-size: 12px;
   font-weight: 750;
   white-space: nowrap;
+}
+
+.allocation-cell {
+  display: grid;
+  gap: 8px;
+  min-width: 360px;
+}
+
+.allocation-stack {
+  display: flex;
+  width: 100%;
+  height: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #edf0f5;
+}
+
+.allocation-segment {
+  display: block;
+  min-width: 2px;
+  height: 100%;
+}
+
+.allocation-asset-list {
+  display: grid;
+  gap: 5px;
+}
+
+.allocation-asset-row {
+  display: grid;
+  grid-template-columns: 8px minmax(190px, 1fr) 54px 64px;
+  gap: 7px;
+  align-items: center;
+}
+
+.allocation-asset-row i {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.allocation-asset-row span,
+.allocation-asset-row strong,
+.allocation-asset-row em {
+  color: var(--ink);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.allocation-asset-row span {
+  color: var(--muted);
+}
+
+.allocation-asset-row strong,
+.allocation-asset-row em {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.allocation-asset-row em.is-up {
+  color: var(--bull);
+}
+
+.allocation-asset-row em.is-down {
+  color: var(--bear);
+}
+
+.allocation-asset-row em.is-flat {
+  color: var(--muted);
+}
+
+.candidate-score-list {
+  display: grid;
+  min-width: 150px;
+  gap: 5px;
+}
+
+.candidate-score-list div {
+  display: grid;
+  grid-template-columns: minmax(78px, 1fr) auto;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.candidate-score-list span,
+.candidate-score-list strong {
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.candidate-score-list span {
+  color: var(--muted);
+}
+
+.candidate-score-list strong {
+  color: var(--ink);
+  font-family: Consolas, "Courier New", monospace;
 }
 
 .reason-cell {

@@ -31,6 +31,18 @@ function integerText(value) {
   return value.toLocaleString("zh-CN");
 }
 
+function scoreText(value) {
+  if (typeof value !== "number") return "--";
+  return value.toFixed(3);
+}
+
+function signedPointText(value) {
+  if (typeof value !== "number") return "--";
+  const percent = value * 100;
+  const sign = percent > 0 ? "+" : "";
+  return `${sign}${percent.toFixed(1)}pct`;
+}
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -60,6 +72,14 @@ function rotationSignalLabel(value) {
   return value;
 }
 
+const ETF_ASSET_ORDER = [
+  { code: "510300.SH", style: "价值/大盘", name: "沪深300ETF", color: "#c69214" },
+  { code: "510880.SH", style: "红利/低波", name: "红利ETF", color: "#c73d3d" },
+  { code: "510500.SH", style: "中小盘", name: "中证500ETF", color: "#697386" },
+  { code: "159915.SZ", style: "成长/科技", name: "创业板ETF", color: "#7c3aed" },
+  { code: "511880.SH", style: "现金/债券代理", name: "银华日利ETF", color: "#17885b" },
+];
+
 function setSummaryTiles(items) {
   const target = document.getElementById("summaryTiles");
   if (!target) return;
@@ -75,16 +95,57 @@ function setSummaryTiles(items) {
     .join("");
 }
 
-function weightsHtml(weights) {
-  return `<div class="weight-list-inline">${Object.entries(weights || {})
-    .map(([code, weight]) => `<span>${escapeHtml(code)} ${percentText(weight)}</span>`)
-    .join("")}</div>`;
+function weightsHtml(weights, reason) {
+  const weightMap = weights || {};
+  const changeMap = new Map((reason?.weight_changes || []).map((item) => [item.code, item.change]));
+  const totalWeight = ETF_ASSET_ORDER.reduce((sum, asset) => sum + Math.max(0, Number(weightMap[asset.code] || 0)), 0);
+  const denominator = totalWeight > 0 ? totalWeight : 1;
+  return `
+    <div class="allocation-cell">
+      <div class="allocation-stack" aria-label="本次目标仓位横向分配图">
+        ${ETF_ASSET_ORDER.map((asset) => {
+          const weight = Math.max(0, Number(weightMap[asset.code] || 0));
+          if (weight <= 0) return "";
+          return `
+            <span
+              class="allocation-segment"
+              title="${escapeHtml(asset.style)} ${escapeHtml(asset.code)} ${percentText(weight)}"
+              style="width:${(weight / denominator) * 100}%; background:${asset.color}"
+            ></span>
+          `;
+        }).join("")}
+      </div>
+      <div class="allocation-asset-list">
+        ${ETF_ASSET_ORDER.map((asset) => {
+          const weight = Number(weightMap[asset.code] || 0);
+          const change = changeMap.get(asset.code);
+          const changeText = typeof change === "number" ? signedPointText(change) : "0.0pct";
+          const changeClass = change > 0 ? "is-up" : change < 0 ? "is-down" : "is-flat";
+          return `
+            <div class="allocation-asset-row">
+              <i style="background:${asset.color}"></i>
+              <span>${escapeHtml(asset.style)} · ${escapeHtml(asset.code)} ${escapeHtml(asset.name)}</span>
+              <strong>${percentText(weight)}</strong>
+              <em class="${changeClass}">${escapeHtml(changeText)}</em>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    </div>
+  `;
 }
 
 function topCandidatesHtml(candidates) {
-  return `<div class="weight-list-inline">${(candidates || [])
+  return `<div class="candidate-score-list">${(candidates || [])
     .slice(0, 4)
-    .map((item) => `<span>${escapeHtml(item.code || "--")} ${percentText(item.signal_score)}</span>`)
+    .map(
+      (item) => `
+        <div>
+          <span>${escapeHtml(item.code || "--")}</span>
+          <strong>${scoreText(item.signal_score)}</strong>
+        </div>
+      `
+    )
     .join("")}</div>`;
 }
 
@@ -122,7 +183,7 @@ async function renderRotationHistoryPage() {
           <td>${rotationSignalLabel(item.rebalance_signal)}</td>
           <td>${percentText(item.turnover_to_target)}</td>
           <td>${rebalanceReasonHtml(item.rebalance_reason)}</td>
-          <td>${weightsHtml(item.target_weights)}</td>
+          <td>${weightsHtml(item.target_weights, item.rebalance_reason)}</td>
           <td>${topCandidatesHtml(item.top_candidates)}</td>
         </tr>
       `
