@@ -57,6 +57,19 @@ function baseLayout(height) {
   };
 }
 
+function resetEtfRotationBacktestChart(elementId = "rotationBacktestChart") {
+  const chart = document.getElementById(elementId);
+  if (!chart) return;
+  Plotly.relayout(chart, {
+    "xaxis.autorange": true,
+    "yaxis.autorange": true,
+  });
+}
+
+if (typeof window !== "undefined") {
+  window.resetEtfRotationBacktestChart = resetEtfRotationBacktestChart;
+}
+
 function renderRadar(elementId, scores) {
   const labels = ["趋势", "宽度", "流动性", "波动稳定"];
   const values = [scores.trend, scores.breadth, scores.liquidity, scores.volatility];
@@ -218,9 +231,33 @@ function renderEtfRotationBacktestChart(elementId, backtest) {
     ],
     {
       ...baseLayout(470),
+      dragmode: "zoom",
+      hovermode: "closest",
+      hoverdistance: 80,
+      spikedistance: -1,
       margin: { l: 72, r: 18, t: 74, b: 46 },
-      xaxis: { tickformat: "%Y", gridcolor: "#edf0f5", anchor: "y2" },
-      yaxis: { domain: [0.2, 1], gridcolor: "#edf0f5", zeroline: false },
+      xaxis: {
+        tickformat: "%Y",
+        gridcolor: "#edf0f5",
+        anchor: "y2",
+        showspikes: true,
+        spikecolor: "#4b5563",
+        spikedash: "solid",
+        spikemode: "across",
+        spikesnap: "cursor",
+        spikethickness: 1,
+      },
+      yaxis: {
+        domain: [0.2, 1],
+        gridcolor: "#edf0f5",
+        zeroline: false,
+        showspikes: true,
+        spikecolor: "#4b5563",
+        spikedash: "solid",
+        spikemode: "across",
+        spikesnap: "cursor",
+        spikethickness: 1,
+      },
       yaxis2: {
         domain: [0, 0.13],
         fixedrange: true,

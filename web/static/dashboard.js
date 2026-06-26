@@ -862,4 +862,7 @@ async function loadDashboard() {
 }
 
 document.getElementById("refreshButton").addEventListener("click", loadDashboard);
+document.getElementById("rotationBacktestReset")?.addEventListener("click", () => {
+  resetEtfRotationBacktestChart("rotationBacktestChart");
+});
 loadDashboard();
