@@ -219,9 +219,41 @@ h2 {
 
 .results-overview {
   display: grid;
-  grid-template-columns: minmax(360px, 1.15fr) repeat(3, minmax(240px, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 14px;
   margin-bottom: 14px;
+}
+
+.dashboard-section-heading {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 8px 0 0;
+  padding: 4px 2px 2px;
+}
+
+.dashboard-section-heading span {
+  display: block;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.dashboard-section-heading h2 {
+  margin-top: 3px;
+  font-size: 19px;
+}
+
+.dashboard-section-heading p {
+  max-width: 520px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: right;
 }
 
 .chart-panel {
@@ -249,17 +281,49 @@ h2 {
 
 .result-panel {
   display: flex;
+  grid-column: span 3;
   min-height: 250px;
   flex-direction: column;
 }
 
 .risk-result-panel {
-  grid-row: span 2;
+  grid-column: span 6;
+  grid-row: auto;
+}
+
+.portfolio-result-panel,
+.strategy-route-panel,
+.execution-panel,
+.system-freeze-panel,
+.meta-edge-panel {
+  grid-column: span 3;
+}
+
+.style-rotation-panel,
+.etf-rotation-panel,
+.attribution-panel {
+  grid-column: span 4;
+}
+
+.wide-analysis-panel {
+  grid-column: 1 / -1;
+  min-height: 430px;
 }
 
 .conclusions-panel {
   grid-column: 1 / -1;
   min-height: auto;
+}
+
+.wide-panel-layout {
+  display: grid;
+  grid-template-columns: minmax(330px, 0.36fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.wide-panel-metrics {
+  min-width: 0;
 }
 
 .risk-headline {
@@ -904,6 +968,34 @@ h2 {
   font-weight: 800;
 }
 
+.metric-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.metric-card-grid div {
+  min-width: 0;
+}
+
+.metric-card-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.metric-card-grid strong {
+  display: block;
+  margin-top: 7px;
+  font-size: 19px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
 .api-group-row strong {
   color: var(--accent);
   font-size: 13px;
@@ -1100,13 +1192,13 @@ h2 {
 }
 
 .chart-box.shadow-equity-box {
-  height: 170px;
-  margin-top: 12px;
+  height: 330px;
+  margin-top: 0;
 }
 
 .chart-box.rotation-backtest-box {
-  height: 250px;
-  margin-top: 12px;
+  height: 370px;
+  margin-top: 0;
 }
 
 .chart-box.long-index-box {
@@ -1457,6 +1549,8 @@ h2 {
     .cycle-score-row,
     .results-overview,
     .cycle-panel,
+    .dashboard-section-heading,
+    .wide-panel-layout,
     .focus-layout,
     .visual-grid,
     .cycle-block {
@@ -1502,9 +1596,27 @@ h2 {
   }
 
   .risk-result-panel,
+  .portfolio-result-panel,
+  .strategy-route-panel,
+  .execution-panel,
+  .system-freeze-panel,
+  .meta-edge-panel,
+  .style-rotation-panel,
+  .etf-rotation-panel,
+  .wide-analysis-panel,
+  .attribution-panel,
   .conclusions-panel {
     grid-column: auto;
     grid-row: auto;
+  }
+
+  .dashboard-section-heading {
+    align-items: start;
+  }
+
+  .dashboard-section-heading p {
+    max-width: none;
+    text-align: left;
   }
 
   .risk-headline,
@@ -1519,6 +1631,7 @@ h2 {
     .shadow-headline,
     .attribution-headline,
     .api-headline,
+    .metric-card-grid,
     .conclusion-list {
     grid-template-columns: 1fr;
   }

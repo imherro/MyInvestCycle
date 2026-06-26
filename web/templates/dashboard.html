@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260626-s12-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260626-layout-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -64,6 +64,14 @@
       </section>
 
       <section class="results-overview" aria-live="polite">
+        <div class="dashboard-section-heading">
+          <div>
+            <span>Decision</span>
+            <h2>决策总览</h2>
+          </div>
+          <p>先看当前风险、仓位、策略路由和系统一致性。</p>
+        </div>
+
         <article class="chart-panel result-panel risk-result-panel">
           <div class="panel-heading">
             <h2>全部成果展示</h2>
@@ -227,6 +235,14 @@
           <p class="result-note" id="metaEdgeConclusion">--</p>
         </article>
 
+        <div class="dashboard-section-heading">
+          <div>
+            <span>ETF Validation</span>
+            <h2>ETF 轮动与回测验证</h2>
+          </div>
+          <p>把风格信号、轮动权重、历史回测和影子账户放在同一组里观察。</p>
+        </div>
+
         <article class="chart-panel result-panel style-rotation-panel">
           <div class="panel-heading">
             <h2>风格轮动基础</h2>
@@ -275,62 +291,114 @@
           <p class="result-note" id="rotationConclusion">--</p>
         </article>
 
-        <article class="chart-panel result-panel etf-backtest-panel">
+        <article class="chart-panel result-panel etf-backtest-panel wide-analysis-panel">
           <div class="panel-heading">
             <h2>ETF 轮动回测</h2>
             <span class="panel-kicker">A1.3</span>
           </div>
-          <div class="backtest-headline">
-            <div>
-              <span>Alpha vs 510500</span>
-              <strong id="backtestAlpha510500">--</strong>
+          <div class="wide-panel-layout">
+            <div class="wide-panel-metrics">
+              <div class="backtest-headline">
+                <div>
+                  <span>Alpha vs 510500</span>
+                  <strong id="backtestAlpha510500">--</strong>
+                </div>
+                <div>
+                  <span>Alpha vs 等权</span>
+                  <strong id="backtestAlphaEqual">--</strong>
+                </div>
+              </div>
+              <div class="metric-card-grid">
+                <div>
+                  <span>轮动收益</span>
+                  <strong id="backtestRotationReturn">--</strong>
+                </div>
+                <div>
+                  <span>510500收益</span>
+                  <strong id="backtestBenchmark510500Return">--</strong>
+                </div>
+                <div>
+                  <span>等权收益</span>
+                  <strong id="backtestEqualReturn">--</strong>
+                </div>
+                <div>
+                  <span>夏普</span>
+                  <strong id="backtestSharpe">--</strong>
+                </div>
+                <div>
+                  <span>样本</span>
+                  <strong id="backtestSessions">--</strong>
+                </div>
+                <div>
+                  <span>再平衡</span>
+                  <strong id="backtestRebalanceCount">--</strong>
+                </div>
+              </div>
+              <div class="result-row">
+                <span>最大回撤</span>
+                <strong id="backtestDrawdown">--</strong>
+              </div>
+              <div class="result-row">
+                <span>命中率</span>
+                <strong id="backtestHitRate">--</strong>
+              </div>
+              <p class="result-note" id="backtestConclusion">--</p>
             </div>
-            <div>
-              <span>Alpha vs 等权</span>
-              <strong id="backtestAlphaEqual">--</strong>
-            </div>
+            <div class="chart-box rotation-backtest-box" id="rotationBacktestChart"></div>
           </div>
-          <div class="result-row">
-            <span>最大回撤</span>
-            <strong id="backtestDrawdown">--</strong>
-          </div>
-          <div class="result-row">
-            <span>命中率</span>
-            <strong id="backtestHitRate">--</strong>
-          </div>
-          <div class="chart-box rotation-backtest-box" id="rotationBacktestChart"></div>
-          <p class="result-note" id="backtestConclusion">--</p>
         </article>
 
-        <article class="chart-panel result-panel shadow-panel">
+        <article class="chart-panel result-panel shadow-panel wide-analysis-panel">
           <div class="panel-heading">
             <h2>影子账户评估</h2>
             <span class="panel-kicker">S1.1 / 510500</span>
           </div>
-          <div class="shadow-headline">
-            <div>
-              <span>累计 Alpha</span>
-              <strong id="shadowFinalAlpha">--</strong>
+          <div class="wide-panel-layout">
+            <div class="wide-panel-metrics">
+              <div class="shadow-headline">
+                <div>
+                  <span>累计 Alpha</span>
+                  <strong id="shadowFinalAlpha">--</strong>
+                </div>
+                <div>
+                  <span>平均仓位</span>
+                  <strong id="shadowAverageExposure">--</strong>
+                </div>
+              </div>
+              <div class="metric-card-grid">
+                <div>
+                  <span>影子收益</span>
+                  <strong id="shadowTotalReturn">--</strong>
+                </div>
+                <div>
+                  <span>基准收益</span>
+                  <strong id="benchmarkTotalReturn">--</strong>
+                </div>
+                <div>
+                  <span>影子权益</span>
+                  <strong id="shadowFinalEquity">--</strong>
+                </div>
+                <div>
+                  <span>基准权益</span>
+                  <strong id="benchmarkFinalEquity">--</strong>
+                </div>
+                <div>
+                  <span>样本</span>
+                  <strong id="shadowSessions">--</strong>
+                </div>
+                <div>
+                  <span>基准</span>
+                  <strong id="shadowBenchmarkCode">--</strong>
+                </div>
+              </div>
+              <div class="result-row">
+                <span>最大回撤</span>
+                <strong id="shadowDrawdown">--</strong>
+              </div>
+              <p class="result-note" id="shadowConclusion">--</p>
             </div>
-            <div>
-              <span>平均仓位</span>
-              <strong id="shadowAverageExposure">--</strong>
-            </div>
+            <div class="chart-box shadow-equity-box" id="shadowEquityChart"></div>
           </div>
-          <div class="result-row">
-            <span>影子收益</span>
-            <strong id="shadowTotalReturn">--</strong>
-          </div>
-          <div class="result-row">
-            <span>基准收益</span>
-            <strong id="benchmarkTotalReturn">--</strong>
-          </div>
-          <div class="result-row">
-            <span>最大回撤</span>
-            <strong id="shadowDrawdown">--</strong>
-          </div>
-          <div class="chart-box shadow-equity-box" id="shadowEquityChart"></div>
-          <p class="result-note" id="shadowConclusion">--</p>
         </article>
 
         <article class="chart-panel result-panel attribution-panel">
@@ -360,6 +428,14 @@
           <div class="alpha-source-list" id="alphaSourceList"></div>
           <p class="result-note" id="regimeAttributionConclusion">--</p>
         </article>
+
+        <div class="dashboard-section-heading">
+          <div>
+            <span>Model & Boundary</span>
+            <h2>模型验证与系统边界</h2>
+          </div>
+          <p>这些模块用于解释模型可靠性、生命周期标签、执行边界和接口目录。</p>
+        </div>
 
         <article class="chart-panel result-panel">
           <div class="panel-heading">
@@ -531,8 +607,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260626-a13-1"></script>
-    <script src="/static/dashboard.js?v=20260626-a13-1"></script>
+    <script src="/static/charts.js?v=20260626-layout-1"></script>
+    <script src="/static/dashboard.js?v=20260626-layout-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

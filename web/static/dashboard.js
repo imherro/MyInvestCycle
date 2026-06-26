@@ -569,6 +569,12 @@ function setResultsPanel(results) {
 
   setText("backtestAlpha510500", signedRatioText(backtestSummary.alpha_vs_510500));
   setText("backtestAlphaEqual", signedRatioText(backtestSummary.alpha_vs_equal_weight));
+  setText("backtestRotationReturn", signedRatioText(backtestSummary.rotation_total_return));
+  setText("backtestBenchmark510500Return", signedRatioText(backtestSummary.benchmark_510500_return));
+  setText("backtestEqualReturn", signedRatioText(backtestSummary.equal_weight_basket_return));
+  setText("backtestSharpe", fixedText(backtestSummary.sharpe, 2));
+  setText("backtestSessions", integerText(backtestSummary.sessions));
+  setText("backtestRebalanceCount", integerText(backtestSummary.rebalance_count));
   setText(
     "backtestDrawdown",
     `${percentText(backtestSummary.max_drawdown)} / 510500 ${percentText(backtestSummary.benchmark_510500_max_drawdown)} / 等权 ${percentText(backtestSummary.equal_weight_basket_max_drawdown)}`
@@ -590,6 +596,10 @@ function setResultsPanel(results) {
   setText("shadowAverageExposure", percentText(shadowSummary.average_applied_exposure));
   setText("shadowTotalReturn", signedRatioText(shadowSummary.shadow_total_return));
   setText("benchmarkTotalReturn", signedRatioText(shadowSummary.benchmark_total_return));
+  setText("shadowFinalEquity", fixedText(shadowSummary.final_shadow_equity, 3));
+  setText("benchmarkFinalEquity", fixedText(shadowSummary.final_benchmark_equity, 3));
+  setText("shadowSessions", integerText(shadowSummary.sessions));
+  setText("shadowBenchmarkCode", shadowSummary.benchmark_code || "--");
   setText(
     "shadowDrawdown",
     `${percentText(shadowSummary.max_drawdown_shadow)} / 基准 ${percentText(shadowSummary.max_drawdown_benchmark)}`

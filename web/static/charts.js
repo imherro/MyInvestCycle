@@ -107,11 +107,11 @@ function renderShadowEquityChart(elementId, shadowBacktest) {
       },
     ],
     {
-      ...baseLayout(170),
-      margin: { l: 36, r: 8, t: 12, b: 34 },
+      ...baseLayout(330),
+      margin: { l: 44, r: 14, t: 22, b: 40 },
       xaxis: { tickformat: "%Y", gridcolor: "#edf0f5" },
       yaxis: { gridcolor: "#edf0f5", zeroline: false },
-      legend: { orientation: "h", x: 0, y: 1.18, font: { size: 11 } },
+      legend: { orientation: "h", x: 0, y: 1.12, font: { size: 12 } },
     },
     { responsive: true, displayModeBar: false }
   );
@@ -165,8 +165,8 @@ function renderEtfRotationBacktestChart(elementId, backtest) {
       },
     ],
     {
-      ...baseLayout(250),
-      margin: { l: 42, r: 16, t: 16, b: 36 },
+      ...baseLayout(370),
+      margin: { l: 48, r: 18, t: 26, b: 42 },
       xaxis: { tickformat: "%Y", gridcolor: "#edf0f5" },
       yaxis: { gridcolor: "#edf0f5", zeroline: false },
       legend: { orientation: "h", x: 0, y: 1.18 },
