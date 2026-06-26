@@ -25,6 +25,9 @@
     "alpha_vs_equal_weight": -0.072845,
     "sharpe": 0.599316,
     "max_drawdown": -0.190484,
+    "benchmark_510500_max_drawdown": -0.394852,
+    "benchmark_510300_max_drawdown": -0.421567,
+    "equal_weight_basket_max_drawdown": -0.254986,
     "hit_rate_vs_510500": 0.502236,
     "average_turnover": 0.023079,
     "cumulative_turnover": 36.118655

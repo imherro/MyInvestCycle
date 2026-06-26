@@ -569,7 +569,10 @@ function setResultsPanel(results) {
 
   setText("backtestAlpha510500", signedRatioText(backtestSummary.alpha_vs_510500));
   setText("backtestAlphaEqual", signedRatioText(backtestSummary.alpha_vs_equal_weight));
-  setText("backtestDrawdown", percentText(backtestSummary.max_drawdown));
+  setText(
+    "backtestDrawdown",
+    `${percentText(backtestSummary.max_drawdown)} / 510500 ${percentText(backtestSummary.benchmark_510500_max_drawdown)} / 等权 ${percentText(backtestSummary.equal_weight_basket_max_drawdown)}`
+  );
   setText("backtestHitRate", percentText(backtestSummary.hit_rate_vs_510500));
   const alphaVerdict = backtestValidation.alpha_positive_vs_equal_weight
     ? "跑赢 510500、510300 和等权 ETF basket，存在初步 alpha 证据"
