@@ -10,12 +10,12 @@
   },
   "summary": {
     "start_date": "20200102",
-    "end_date": "20260623",
-    "sessions": 1566,
-    "total_alpha": -0.577249,
-    "additive_daily_alpha": -0.523205,
-    "shadow_total_return": 0.229691,
-    "benchmark_total_return": 0.80694,
+    "end_date": "20260625",
+    "sessions": 1568,
+    "total_alpha": -0.618748,
+    "additive_daily_alpha": -0.54206,
+    "shadow_total_return": 0.243509,
+    "benchmark_total_return": 0.862258,
     "max_drawdown_shadow": -0.073359,
     "max_drawdown_benchmark": -0.394852,
     "drawdown_reduction": 0.321493,
@@ -25,14 +25,14 @@
   "regime_performance": {
     "bull": {
       "regime": "bull",
-      "sessions": 59,
-      "shadow_return": 0.439375,
-      "benchmark_return": 1.930669,
-      "alpha": -1.491294,
-      "daily_alpha_contribution": -0.723453,
-      "daily_alpha_share": 1.382733,
-      "avg_applied_exposure": 0.334189,
-      "avg_risk_score": 0.287602,
+      "sessions": 74,
+      "shadow_return": 0.535602,
+      "benchmark_return": 2.8688,
+      "alpha": -2.333198,
+      "daily_alpha_contribution": -0.939702,
+      "daily_alpha_share": 1.733575,
+      "avg_applied_exposure": 0.318861,
+      "avg_risk_score": 0.288642,
       "max_drawdown_shadow": 0.0,
       "max_drawdown_benchmark": 0.0,
       "shadow_return_drawdown_ratio": null,
@@ -41,103 +41,103 @@
     },
     "range": {
       "regime": "range",
-      "sessions": 307,
-      "shadow_return": 0.208834,
-      "benchmark_return": 1.257159,
-      "alpha": -1.048325,
-      "daily_alpha_contribution": -0.647886,
-      "daily_alpha_share": 1.238301,
-      "avg_applied_exposure": 0.222772,
-      "avg_risk_score": 0.460443,
+      "sessions": 299,
+      "shadow_return": 0.161295,
+      "benchmark_return": 0.775433,
+      "alpha": -0.614138,
+      "daily_alpha_contribution": -0.445345,
+      "daily_alpha_share": 0.821579,
+      "avg_applied_exposure": 0.225744,
+      "avg_risk_score": 0.461727,
       "max_drawdown_shadow": -0.042378,
       "max_drawdown_benchmark": -0.249975,
-      "shadow_return_drawdown_ratio": 4.927887,
-      "benchmark_return_drawdown_ratio": 5.029148,
+      "shadow_return_drawdown_ratio": 3.806087,
+      "benchmark_return_drawdown_ratio": 3.102047,
       "role": "defensive_cost"
     },
     "bear": {
       "regime": "bear",
-      "sessions": 378,
-      "shadow_return": -0.217309,
-      "benchmark_return": -0.833018,
-      "alpha": 0.615709,
-      "daily_alpha_contribution": 1.516263,
-      "daily_alpha_share": -2.898028,
-      "avg_applied_exposure": 0.10696,
-      "avg_risk_score": 0.625173,
-      "max_drawdown_shadow": -0.206765,
-      "max_drawdown_benchmark": -0.818255,
-      "shadow_return_drawdown_ratio": -1.050995,
-      "benchmark_return_drawdown_ratio": -1.018041,
+      "sessions": 366,
+      "shadow_return": -0.21459,
+      "benchmark_return": -0.829404,
+      "alpha": 0.614815,
+      "daily_alpha_contribution": 1.499717,
+      "daily_alpha_share": -2.766699,
+      "avg_applied_exposure": 0.108444,
+      "avg_risk_score": 0.623512,
+      "max_drawdown_shadow": -0.204009,
+      "max_drawdown_benchmark": -0.814323,
+      "shadow_return_drawdown_ratio": -1.051864,
+      "benchmark_return_drawdown_ratio": -1.01852,
       "role": "downside_protection"
     },
     "transition": {
       "regime": "transition",
-      "sessions": 822,
-      "shadow_return": -0.097048,
-      "benchmark_return": 0.635852,
-      "alpha": -0.7329,
-      "daily_alpha_contribution": -0.668129,
-      "daily_alpha_share": 1.276993,
-      "avg_applied_exposure": 0.220451,
-      "avg_risk_score": 0.434751,
-      "max_drawdown_shadow": -0.185548,
-      "max_drawdown_benchmark": -0.508039,
-      "shadow_return_drawdown_ratio": -0.523033,
-      "benchmark_return_drawdown_ratio": 1.251582,
+      "sessions": 829,
+      "shadow_return": -0.112167,
+      "benchmark_return": 0.589247,
+      "alpha": -0.701414,
+      "daily_alpha_contribution": -0.65673,
+      "daily_alpha_share": 1.211545,
+      "avg_applied_exposure": 0.22713,
+      "avg_risk_score": 0.430321,
+      "max_drawdown_shadow": -0.212369,
+      "max_drawdown_benchmark": -0.553347,
+      "shadow_return_drawdown_ratio": -0.528168,
+      "benchmark_return_drawdown_ratio": 1.064879,
       "role": "defensive_cost"
     }
   },
   "ranked_contributions": [
     {
       "regime": "bull",
-      "daily_alpha_contribution": -0.723453,
-      "alpha": -1.491294,
+      "daily_alpha_contribution": -0.939702,
+      "alpha": -2.333198,
       "role": "upside_participation_drag"
     },
     {
       "regime": "transition",
-      "daily_alpha_contribution": -0.668129,
-      "alpha": -0.7329,
+      "daily_alpha_contribution": -0.65673,
+      "alpha": -0.701414,
       "role": "defensive_cost"
     },
     {
       "regime": "range",
-      "daily_alpha_contribution": -0.647886,
-      "alpha": -1.048325,
+      "daily_alpha_contribution": -0.445345,
+      "alpha": -0.614138,
       "role": "defensive_cost"
     },
     {
       "regime": "bear",
-      "daily_alpha_contribution": 1.516263,
-      "alpha": 0.615709,
+      "daily_alpha_contribution": 1.499717,
+      "alpha": 0.614815,
       "role": "downside_protection"
     }
   ],
   "alpha_decomposition": {
-    "total_alpha": -0.577249,
-    "additive_daily_alpha": -0.523205,
+    "total_alpha": -0.618748,
+    "additive_daily_alpha": -0.54206,
     "sources": {
-      "bull_drag": -0.723453,
-      "range_cost": -0.647886,
-      "bear_protection": 1.516263,
-      "transition_cost": -0.668129
+      "bull_drag": -0.939702,
+      "range_cost": -0.445345,
+      "bear_protection": 1.499717,
+      "transition_cost": -0.65673
     },
     "positive_sources": {
-      "bear_protection": 1.516263
+      "bear_protection": 1.499717
     },
     "negative_sources": {
-      "bull_drag": -0.723453,
-      "range_cost": -0.647886,
-      "transition_cost": -0.668129
+      "bull_drag": -0.939702,
+      "range_cost": -0.445345,
+      "transition_cost": -0.65673
     },
     "largest_positive_source": {
       "source": "bear_protection",
-      "contribution": 1.516263
+      "contribution": 1.499717
     },
     "largest_negative_source": {
       "source": "bull_drag",
-      "contribution": -0.723453
+      "contribution": -0.939702
     },
     "risk_adjusted": {
       "max_drawdown_shadow": -0.073359,

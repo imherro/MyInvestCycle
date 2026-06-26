@@ -1,6 +1,6 @@
 {
   "engine": "ETF Rotation Signal Engine A1.2",
-  "as_of": "20260625",
+  "as_of": "20260626",
   "regime": "range",
   "top_styles": [
     "value",
@@ -8,12 +8,12 @@
     "small_cap"
   ],
   "style_signal_score": {
-    "growth": 0.392292,
-    "value": 0.556876,
-    "low_vol": 0.509632,
-    "dividend": 0.286698,
-    "small_cap": 0.492808,
-    "cash_proxy": 0.30653
+    "growth": 0.312507,
+    "value": 0.561086,
+    "low_vol": 0.532556,
+    "dividend": 0.299723,
+    "small_cap": 0.516707,
+    "cash_proxy": 0.347791
   },
   "top_candidates": [
     {
@@ -23,20 +23,20 @@
       "risk_tier": "moderate",
       "regime_eligible": true,
       "regime_condition_adjustment": 1.0,
-      "candidate_score": 0.475595,
-      "relative_strength_score": 0.75,
-      "ranking_stability": 0.23,
-      "return_quality": 0.847782,
-      "signal_score": 0.564626,
+      "candidate_score": 0.409918,
+      "relative_strength_score": 1.0,
+      "ranking_stability": 0.24,
+      "return_quality": 0.721156,
+      "signal_score": 0.599645,
       "price_metrics": {
-        "latest_date": "20260625",
-        "latest_close": 9.085,
-        "sessions": 210,
-        "return_20": 0.054545,
-        "return_60": 0.17972,
-        "volatility_60": 0.255017,
+        "latest_date": "20260626",
+        "latest_close": 8.861,
+        "sessions": 211,
+        "return_20": 0.024298,
+        "return_60": 0.135392,
+        "volatility_60": 0.260212,
         "max_drawdown_60": -0.104452,
-        "return_quality": 0.847782
+        "return_quality": 0.721156
       }
     },
     {
@@ -46,20 +46,20 @@
       "risk_tier": "moderate",
       "regime_eligible": true,
       "regime_condition_adjustment": 1.0,
-      "candidate_score": 0.54374,
+      "candidate_score": 0.524548,
       "relative_strength_score": 0.5,
-      "ranking_stability": 0.42,
-      "return_quality": 0.737259,
-      "signal_score": 0.534898,
+      "ranking_stability": 0.41,
+      "return_quality": 0.589647,
+      "signal_score": 0.504039,
       "price_metrics": {
-        "latest_date": "20260625",
-        "latest_close": 5.048,
-        "sessions": 210,
-        "return_20": 0.023566,
-        "return_60": 0.124828,
-        "volatility_60": 0.184992,
+        "latest_date": "20260626",
+        "latest_close": 4.907,
+        "sessions": 211,
+        "return_20": -0.004992,
+        "return_60": 0.088594,
+        "volatility_60": 0.194803,
         "max_drawdown_60": -0.055478,
-        "return_quality": 0.737259
+        "return_quality": 0.589647
       }
     },
     {
@@ -69,20 +69,20 @@
       "risk_tier": "aggressive",
       "regime_eligible": false,
       "regime_condition_adjustment": 0.65,
-      "candidate_score": 0.325799,
-      "relative_strength_score": 1.0,
-      "ranking_stability": 0.7,
-      "return_quality": 0.873683,
-      "signal_score": 0.445303,
+      "candidate_score": 0.233242,
+      "relative_strength_score": 0.75,
+      "ranking_stability": 0.69,
+      "return_quality": 0.704695,
+      "signal_score": 0.35772,
       "price_metrics": {
-        "latest_date": "20260625",
-        "latest_close": 4.395,
-        "sessions": 210,
-        "return_20": 0.083637,
-        "return_60": 0.34699,
-        "volatility_60": 0.346075,
+        "latest_date": "20260626",
+        "latest_close": 4.215,
+        "sessions": 211,
+        "return_20": 0.018632,
+        "return_60": 0.279995,
+        "volatility_60": 0.358665,
         "max_drawdown_60": -0.076743,
-        "return_quality": 0.873683
+        "return_quality": 0.704695
       }
     },
     {
@@ -92,20 +92,20 @@
       "risk_tier": "cash_defensive",
       "regime_eligible": true,
       "regime_condition_adjustment": 1.0,
-      "candidate_score": 0.321042,
+      "candidate_score": 0.40465,
       "relative_strength_score": 0.25,
-      "ranking_stability": 0.35,
-      "return_quality": 0.441832,
-      "signal_score": 0.323639,
+      "ranking_stability": 0.36,
+      "return_quality": 0.442765,
+      "signal_score": 0.355042,
       "price_metrics": {
-        "latest_date": "20260625",
-        "latest_close": 100.545,
-        "sessions": 210,
-        "return_20": 0.0006,
-        "return_60": 0.00235,
-        "volatility_60": 0.001494,
+        "latest_date": "20260626",
+        "latest_close": 100.562,
+        "sessions": 211,
+        "return_20": 0.0008,
+        "return_60": 0.002571,
+        "volatility_60": 0.001525,
         "max_drawdown_60": -0.000418,
-        "return_quality": 0.441832
+        "return_quality": 0.442765
       }
     },
     {
@@ -115,34 +115,34 @@
       "risk_tier": "defensive",
       "regime_eligible": true,
       "regime_condition_adjustment": 1.0,
-      "candidate_score": 0.482569,
+      "candidate_score": 0.525832,
       "relative_strength_score": 0.0,
       "ranking_stability": 0.3,
-      "return_quality": 0.149145,
-      "signal_score": 0.251271,
+      "return_quality": 0.077414,
+      "signal_score": 0.255653,
       "price_metrics": {
-        "latest_date": "20260625",
-        "latest_close": 3.006,
-        "sessions": 210,
-        "return_20": -0.051679,
-        "return_60": -0.080117,
-        "volatility_60": 0.146167,
-        "max_drawdown_60": -0.10183,
-        "return_quality": 0.149145
+        "latest_date": "20260626",
+        "latest_close": 2.954,
+        "sessions": 211,
+        "return_20": -0.068085,
+        "return_60": -0.095754,
+        "volatility_60": 0.149754,
+        "max_drawdown_60": -0.117368,
+        "return_quality": 0.077414
       }
     }
   ],
   "etf_target_weights": {
-    "510500.SH": 0.337204,
-    "510300.SH": 0.31945,
-    "511880.SH": 0.193283,
-    "510880.SH": 0.150063
+    "510500.SH": 0.349774,
+    "510300.SH": 0.294007,
+    "511880.SH": 0.207097,
+    "510880.SH": 0.149123
   },
   "rebalance_signal": "rotate_to_value",
   "confidence": {
-    "score": 0.725573,
+    "score": 0.848175,
     "level": "high",
-    "reason": "覆盖 5/5 个 ETF，Top 组合稳定度 0.42，分数集中度 0.48。"
+    "reason": "覆盖 5/5 个 ETF，Top 组合稳定度 0.42，分数集中度 0.97。"
   },
   "data_coverage": {
     "candidate_count": 5,
@@ -162,8 +162,8 @@
     "ranking_stability": "Recent persistence of ETF ranking within the candidate set."
   },
   "price_history": {
-    "start_date": "20250809",
-    "end_date": "20260625",
+    "start_date": "20250810",
+    "end_date": "20260626",
     "errors": {}
   }
 }
