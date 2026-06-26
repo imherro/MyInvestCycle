@@ -88,6 +88,18 @@ function topCandidatesHtml(candidates) {
     .join("")}</div>`;
 }
 
+function rebalanceReasonHtml(reason) {
+  if (!reason) return "--";
+  const drivers = Array.isArray(reason.drivers) ? reason.drivers.slice(0, 3) : [];
+  return `
+    <div class="reason-cell">
+      <strong>${escapeHtml(reason.label || "--")}</strong>
+      <span>${escapeHtml(reason.detail || "")}</span>
+      ${drivers.map((item) => `<em>${escapeHtml(item)}</em>`).join("")}
+    </div>
+  `;
+}
+
 async function renderRotationHistoryPage() {
   const payload = await getJson("/api/style/rotation-backtest");
   const summary = payload.summary || {};
@@ -109,6 +121,7 @@ async function renderRotationHistoryPage() {
           <td>${regimeLabel(item.regime)}</td>
           <td>${rotationSignalLabel(item.rebalance_signal)}</td>
           <td>${percentText(item.turnover_to_target)}</td>
+          <td>${rebalanceReasonHtml(item.rebalance_reason)}</td>
           <td>${weightsHtml(item.target_weights)}</td>
           <td>${topCandidatesHtml(item.top_candidates)}</td>
         </tr>

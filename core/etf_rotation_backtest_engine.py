@@ -15,6 +15,39 @@ from core.style_factor_engine import build_style_factor_snapshot
 
 
 BENCHMARK_CODES = ("510500.SH", "510300.SH")
+REGIME_LABELS = {
+    "bull": "牛市",
+    "bear": "熊市",
+    "range": "震荡",
+    "transition": "过渡",
+}
+
+
+def _regime_label(value: object) -> str:
+    return REGIME_LABELS.get(str(value), str(value or "--"))
+
+
+def _style_label(value: str) -> str:
+    labels = {
+        "growth": "成长/科技",
+        "value": "价值/大盘",
+        "low_vol": "红利/低波",
+        "dividend": "红利/低波",
+        "small_cap": "中小盘",
+        "cash_proxy": "现金/债券代理",
+    }
+    return labels.get(value, value or "--")
+
+
+def _signal_label(value: object) -> str:
+    text = str(value or "")
+    if text == "hold_universe":
+        return "保持观察池"
+    if text == "insufficient_data":
+        return "样本不足"
+    if text.startswith("rotate_to_"):
+        return f"转向{_style_label(text.replace('rotate_to_', ''))}"
+    return text or "--"
 
 
 def _coerce_price_frame(frame: pd.DataFrame) -> pd.DataFrame:
@@ -50,6 +83,86 @@ def _target_turnover(previous: Mapping[str, float], current: Mapping[str, float]
     turnover = abs(previous_cash - current_cash)
     turnover += sum(abs(float(current.get(key, 0.0)) - float(previous.get(key, 0.0))) for key in keys)
     return round(turnover / 2.0, 6)
+
+
+def _largest_weight_changes(previous: Mapping[str, float], current: Mapping[str, float]) -> list[dict[str, object]]:
+    changes = []
+    for code in sorted(set(previous) | set(current)):
+        previous_weight = float(previous.get(code, 0.0))
+        current_weight = float(current.get(code, 0.0))
+        change = current_weight - previous_weight
+        if abs(change) < 0.0005:
+            continue
+        changes.append(
+            {
+                "code": code,
+                "previous_weight": round(previous_weight, 6),
+                "current_weight": round(current_weight, 6),
+                "change": round(change, 6),
+            }
+        )
+    return sorted(changes, key=lambda item: abs(float(item["change"])), reverse=True)[:3]
+
+
+def _rebalance_reason(
+    previous_weights: Mapping[str, float],
+    current_weights: Mapping[str, float],
+    previous_signal: Mapping[str, object] | None,
+    current_signal: Mapping[str, object],
+    turnover: float,
+) -> dict[str, object]:
+    previous_regime = previous_signal.get("regime") if previous_signal else None
+    current_regime = current_signal.get("regime")
+    previous_rotation = previous_signal.get("rebalance_signal") if previous_signal else None
+    current_rotation = current_signal.get("rebalance_signal")
+    changes = _largest_weight_changes(previous_weights, current_weights)
+
+    if previous_signal is None:
+        category = "initial_position"
+        label = "首次建仓"
+        detail = "首个可用轮动信号，建立 ETF 目标组合。"
+    elif previous_regime != current_regime:
+        category = "regime_change"
+        label = "状态切换"
+        detail = f"市场状态由{_regime_label(previous_regime)}切到{_regime_label(current_regime)}，目标 ETF 池同步调整。"
+    elif turnover >= 0.20:
+        category = "same_regime_major_rebalance"
+        label = "同状态大幅再平衡"
+        detail = "市场状态未变，但 ETF 相对强弱、稳定性或风险权重变化较大。"
+    elif turnover >= 0.05:
+        category = "same_regime_rebalance"
+        label = "同状态再平衡"
+        detail = "市场状态未变，按最近 ETF 强弱和风险分数调整权重。"
+    else:
+        category = "same_regime_minor_adjustment"
+        label = "同状态微调"
+        detail = "市场状态未变，仅做小幅权重修正。"
+
+    drivers = []
+    if previous_signal is not None:
+        drivers.append(f"状态：{_regime_label(previous_regime)} -> {_regime_label(current_regime)}")
+    else:
+        drivers.append(f"状态：{_regime_label(current_regime)}")
+    if previous_rotation != current_rotation:
+        drivers.append(f"方向：{_signal_label(previous_rotation)} -> {_signal_label(current_rotation)}")
+    else:
+        drivers.append(f"方向：{_signal_label(current_rotation)}")
+    if changes:
+        drivers.append(
+            "主要权重变化："
+            + "，".join(
+                f"{item['code']} {float(item['change']) * 100:+.1f}pct"
+                for item in changes
+            )
+        )
+
+    return {
+        "category": category,
+        "label": label,
+        "detail": detail,
+        "drivers": drivers,
+        "weight_changes": changes,
+    }
 
 
 def _row_signal(
@@ -170,6 +283,13 @@ def run_etf_rotation_backtest(
             new_weights = {str(code): float(weight) for code, weight in signal.get("etf_target_weights", {}).items()}
             if new_weights:
                 pending_turnover = _target_turnover(current_weights, new_weights)
+                rebalance_reason = _rebalance_reason(
+                    current_weights,
+                    new_weights,
+                    current_signal,
+                    signal,
+                    pending_turnover,
+                )
                 current_weights = new_weights
                 current_signal = signal
                 last_rebalance_index = index
@@ -183,6 +303,7 @@ def run_etf_rotation_backtest(
                         "target_weights": new_weights,
                         "top_candidates": signal.get("top_candidates", [])[:4],
                         "turnover_to_target": pending_turnover,
+                        "rebalance_reason": rebalance_reason,
                     }
                 )
 

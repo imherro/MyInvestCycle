@@ -26838,7 +26838,37 @@
           }
         }
       ],
-      "turnover_to_target": 1.0
+      "turnover_to_target": 1.0,
+      "rebalance_reason": {
+        "category": "initial_position",
+        "label": "首次建仓",
+        "detail": "首个可用轮动信号，建立 ETF 目标组合。",
+        "drivers": [
+          "状态：牛市",
+          "方向：-- -> 转向成长/科技",
+          "主要权重变化：159915.SZ +42.3pct，510500.SH +35.1pct，510300.SH +22.6pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.0,
+            "current_weight": 0.423222,
+            "change": 0.423222
+          },
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.351278,
+            "change": 0.351278
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.2255,
+            "change": 0.2255
+          }
+        ]
+      }
     },
     {
       "date": "20200207",
@@ -26949,7 +26979,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.7745
+      "turnover_to_target": 0.7745,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由牛市切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：牛市 -> 过渡",
+          "方向：转向成长/科技 -> 转向红利/低波",
+          "主要权重变化：511880.SH +47.8pct，159915.SZ -42.3pct，510500.SH -35.1pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.477563,
+            "change": 0.477563
+          },
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.423222,
+            "current_weight": 0.0,
+            "change": -0.423222
+          },
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.351278,
+            "current_weight": 0.0,
+            "change": -0.351278
+          }
+        ]
+      }
     },
     {
       "date": "20200306",
@@ -27060,7 +27120,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.16562
+      "turnover_to_target": 0.16562,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波",
+          "主要权重变化：511880.SH -16.6pct，510880.SH +9.0pct，510300.SH +7.6pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.477563,
+            "current_weight": 0.311943,
+            "change": -0.16562
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.228031,
+            "current_weight": 0.317862,
+            "change": 0.089831
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.294406,
+            "current_weight": 0.370195,
+            "change": 0.075789
+          }
+        ]
+      }
     },
     {
       "date": "20200403",
@@ -27170,7 +27260,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.370195
+      "turnover_to_target": 0.370195,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到熊市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 熊市",
+          "方向：转向红利/低波 -> 转向现金/债券代理",
+          "主要权重变化：510300.SH -37.0pct，511880.SH +28.2pct，510880.SH +8.8pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.370195,
+            "current_weight": 0.0,
+            "change": -0.370195
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.311943,
+            "current_weight": 0.594278,
+            "change": 0.282335
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.317862,
+            "current_weight": 0.405722,
+            "change": 0.08786
+          }
+        ]
+      }
     },
     {
       "date": "20200507",
@@ -27280,7 +27400,31 @@
           }
         }
       ],
-      "turnover_to_target": 0.033441
+      "turnover_to_target": 0.033441,
+      "rebalance_reason": {
+        "category": "same_regime_minor_adjustment",
+        "label": "同状态微调",
+        "detail": "市场状态未变，仅做小幅权重修正。",
+        "drivers": [
+          "状态：熊市 -> 熊市",
+          "方向：转向现金/债券代理 -> 转向红利/低波",
+          "主要权重变化：510880.SH +3.3pct，511880.SH -3.3pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.405722,
+            "current_weight": 0.439163,
+            "change": 0.033441
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.594278,
+            "current_weight": 0.560837,
+            "change": -0.033441
+          }
+        ]
+      }
     },
     {
       "date": "20200604",
@@ -27391,7 +27535,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.347125
+      "turnover_to_target": 0.347125,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由熊市切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：熊市 -> 过渡",
+          "方向：转向红利/低波 -> 转向现金/债券代理",
+          "主要权重变化：510300.SH +34.7pct，510880.SH -24.1pct，511880.SH -10.6pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.347125,
+            "change": 0.347125
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.439163,
+            "current_weight": 0.19801,
+            "change": -0.241153
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.560837,
+            "current_weight": 0.454865,
+            "change": -0.105972
+          }
+        ]
+      }
     },
     {
       "date": "20200706",
@@ -27502,7 +27676,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.707367
+      "turnover_to_target": 0.707367,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到牛市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 牛市",
+          "方向：转向现金/债券代理 -> 转向中小盘",
+          "主要权重变化：511880.SH -45.5pct，510500.SH +38.1pct，159915.SZ +32.6pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.454865,
+            "current_weight": 0.0,
+            "change": -0.454865
+          },
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.381312,
+            "change": 0.381312
+          },
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.0,
+            "current_weight": 0.326055,
+            "change": 0.326055
+          }
+        ]
+      }
     },
     {
       "date": "20200803",
@@ -27614,7 +27818,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.339609
+      "turnover_to_target": 0.339609,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由牛市切到震荡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：牛市 -> 震荡",
+          "方向：转向中小盘",
+          "主要权重变化：159915.SZ -32.6pct，510880.SH +20.7pct，511880.SH +10.2pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.326055,
+            "current_weight": 0.0,
+            "change": -0.326055
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.206668,
+            "change": 0.206668
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.102179,
+            "change": 0.102179
+          }
+        ]
+      }
     },
     {
       "date": "20200831",
@@ -27725,7 +27959,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.367759
+      "turnover_to_target": 0.367759,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由震荡切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：震荡 -> 过渡",
+          "方向：转向中小盘 -> 转向红利/低波",
+          "主要权重变化：510500.SH -36.8pct，510880.SH +20.1pct，511880.SH +9.9pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.367758,
+            "current_weight": 0.0,
+            "change": -0.367758
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.206668,
+            "current_weight": 0.407894,
+            "change": 0.201226
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.102179,
+            "current_weight": 0.200765,
+            "change": 0.098586
+          }
+        ]
+      }
     },
     {
       "date": "20200928",
@@ -27835,7 +28099,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.391342
+      "turnover_to_target": 0.391342,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到熊市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 熊市",
+          "方向：转向红利/低波 -> 转向现金/债券代理",
+          "主要权重变化：510300.SH -39.1pct，511880.SH +34.1pct，510880.SH +5.0pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.391342,
+            "current_weight": 0.0,
+            "change": -0.391342
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.200765,
+            "current_weight": 0.541797,
+            "change": 0.341032
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.407894,
+            "current_weight": 0.458203,
+            "change": 0.050309
+          }
+        ]
+      }
     },
     {
       "date": "20201103",
@@ -27946,7 +28240,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.424811
+      "turnover_to_target": 0.424811,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由熊市切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：熊市 -> 过渡",
+          "方向：转向现金/债券代理 -> 转向价值/大盘",
+          "主要权重变化：510300.SH +42.5pct，510880.SH -21.6pct，511880.SH -20.9pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.424811,
+            "change": 0.424811
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.458203,
+            "current_weight": 0.242123,
+            "change": -0.21608
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.541797,
+            "current_weight": 0.333066,
+            "change": -0.208731
+          }
+        ]
+      }
     },
     {
       "date": "20201201",
@@ -28057,7 +28381,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.585924
+      "turnover_to_target": 0.585924,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到牛市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 牛市",
+          "方向：转向价值/大盘 -> 转向中小盘",
+          "主要权重变化：510500.SH +33.7pct，511880.SH -33.3pct，159915.SZ +24.9pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.336571,
+            "change": 0.336571
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.333066,
+            "current_weight": 0.0,
+            "change": -0.333066
+          },
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.0,
+            "current_weight": 0.249353,
+            "change": 0.249353
+          }
+        ]
+      }
     },
     {
       "date": "20201229",
@@ -28168,7 +28522,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.585924
+      "turnover_to_target": 0.585924,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由牛市切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：牛市 -> 过渡",
+          "方向：转向中小盘 -> 转向红利/低波",
+          "主要权重变化：511880.SH +36.5pct，510500.SH -33.7pct，159915.SZ -24.9pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.365203,
+            "change": 0.365203
+          },
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.336571,
+            "current_weight": 0.0,
+            "change": -0.336571
+          },
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.249353,
+            "current_weight": 0.0,
+            "change": -0.249353
+          }
+        ]
+      }
     },
     {
       "date": "20210127",
@@ -28279,7 +28663,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.082268
+      "turnover_to_target": 0.082268,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波 -> 转向价值/大盘",
+          "主要权重变化：510300.SH +8.2pct，511880.SH -7.9pct，510880.SH -0.3pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.445432,
+            "current_weight": 0.5277,
+            "change": 0.082268
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.365203,
+            "current_weight": 0.28628,
+            "change": -0.078923
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.189365,
+            "current_weight": 0.18602,
+            "change": -0.003345
+          }
+        ]
+      }
     },
     {
       "date": "20210303",
@@ -28391,7 +28805,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.353044
+      "turnover_to_target": 0.353044,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到震荡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 震荡",
+          "方向：转向价值/大盘",
+          "主要权重变化：510300.SH -23.0pct，510500.SH +22.8pct，510880.SH +12.5pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.5277,
+            "current_weight": 0.297535,
+            "change": -0.230165
+          },
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.228276,
+            "change": 0.228276
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.18602,
+            "current_weight": 0.310788,
+            "change": 0.124768
+          }
+        ]
+      }
     },
     {
       "date": "20210331",
@@ -28503,7 +28947,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.151322
+      "turnover_to_target": 0.151322,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：震荡 -> 震荡",
+          "方向：转向价值/大盘 -> 转向红利/低波",
+          "主要权重变化：510300.SH -13.5pct，511880.SH +10.4pct，510880.SH +4.7pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.297535,
+            "current_weight": 0.162972,
+            "change": -0.134563
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.163401,
+            "current_weight": 0.267739,
+            "change": 0.104338
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.310788,
+            "current_weight": 0.357772,
+            "change": 0.046984
+          }
+        ]
+      }
     },
     {
       "date": "20210429",
@@ -28615,7 +29089,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.121775
+      "turnover_to_target": 0.121775,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：震荡 -> 震荡",
+          "方向：转向红利/低波",
+          "主要权重变化：510500.SH +11.3pct，511880.SH -11.2pct，510300.SH -1.0pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.211518,
+            "current_weight": 0.324217,
+            "change": 0.112699
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.267739,
+            "current_weight": 0.156201,
+            "change": -0.111538
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.162972,
+            "current_weight": 0.152735,
+            "change": -0.010237
+          }
+        ]
+      }
     },
     {
       "date": "20210601",
@@ -28726,7 +29230,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.324217
+      "turnover_to_target": 0.324217,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由震荡切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：震荡 -> 过渡",
+          "方向：转向红利/低波 -> 转向红利/低波",
+          "主要权重变化：510500.SH -32.4pct，510300.SH +18.3pct，511880.SH +9.2pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.324217,
+            "current_weight": 0.0,
+            "change": -0.324217
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.152735,
+            "current_weight": 0.336155,
+            "change": 0.18342
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.156201,
+            "current_weight": 0.248284,
+            "change": 0.092083
+          }
+        ]
+      }
     },
     {
       "date": "20210630",
@@ -28837,7 +29371,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.030596
+      "turnover_to_target": 0.030596,
+      "rebalance_reason": {
+        "category": "same_regime_minor_adjustment",
+        "label": "同状态微调",
+        "detail": "市场状态未变，仅做小幅权重修正。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波",
+          "主要权重变化：510300.SH -3.1pct，510880.SH +2.0pct，511880.SH +1.1pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.336155,
+            "current_weight": 0.30556,
+            "change": -0.030595
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.41556,
+            "current_weight": 0.435518,
+            "change": 0.019958
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.248284,
+            "current_weight": 0.258922,
+            "change": 0.010638
+          }
+        ]
+      }
     },
     {
       "date": "20210728",
@@ -28947,7 +29511,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.316139
+      "turnover_to_target": 0.316139,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到熊市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 熊市",
+          "方向：转向红利/低波 -> 转向现金/债券代理",
+          "主要权重变化：511880.SH +31.6pct，510300.SH -30.6pct，510880.SH -1.1pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.258922,
+            "current_weight": 0.575061,
+            "change": 0.316139
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.30556,
+            "current_weight": 0.0,
+            "change": -0.30556
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.435518,
+            "current_weight": 0.424939,
+            "change": -0.010579
+          }
+        ]
+      }
     },
     {
       "date": "20210825",
@@ -29059,7 +29653,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.498037
+      "turnover_to_target": 0.498037,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由熊市切到震荡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：熊市 -> 震荡",
+          "方向：转向现金/债券代理 -> 转向中小盘",
+          "主要权重变化：511880.SH -36.1pct，510500.SH +36.1pct，510300.SH +13.7pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.575061,
+            "current_weight": 0.214126,
+            "change": -0.360935
+          },
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.360699,
+            "change": 0.360699
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.137338,
+            "change": 0.137338
+          }
+        ]
+      }
     },
     {
       "date": "20210924",
@@ -29170,7 +29794,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.360699
+      "turnover_to_target": 0.360699,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由震荡切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：震荡 -> 过渡",
+          "方向：转向中小盘 -> 转向红利/低波",
+          "主要权重变化：510500.SH -36.1pct，510880.SH +20.4pct，511880.SH +9.5pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.360699,
+            "current_weight": 0.0,
+            "change": -0.360699
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.287837,
+            "current_weight": 0.492258,
+            "change": 0.204421
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.214126,
+            "current_weight": 0.309488,
+            "change": 0.095362
+          }
+        ]
+      }
     },
     {
       "date": "20211029",
@@ -29281,7 +29935,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.801746
+      "turnover_to_target": 0.801746,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到牛市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 牛市",
+          "方向：转向红利/低波 -> 转向成长/科技",
+          "主要权重变化：510880.SH -49.2pct，159915.SZ +44.7pct，511880.SH -30.9pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.492258,
+            "current_weight": 0.0,
+            "change": -0.492258
+          },
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.0,
+            "current_weight": 0.446851,
+            "change": 0.446851
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.309488,
+            "current_weight": 0.0,
+            "change": -0.309488
+          }
+        ]
+      }
     },
     {
       "date": "20211126",
@@ -29393,7 +30077,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.533042
+      "turnover_to_target": 0.533042,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由牛市切到震荡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：牛市 -> 震荡",
+          "方向：转向成长/科技 -> 转向红利/低波",
+          "主要权重变化：159915.SZ -44.7pct，511880.SH +26.7pct，510880.SH +14.7pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.446851,
+            "current_weight": 0.0,
+            "change": -0.446851
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.267139,
+            "change": 0.267139
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.146911,
+            "change": 0.146911
+          }
+        ]
+      }
     },
     {
       "date": "20211224",
@@ -29504,7 +30218,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.349755
+      "turnover_to_target": 0.349755,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由震荡切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：震荡 -> 过渡",
+          "方向：转向红利/低波 -> 转向价值/大盘",
+          "主要权重变化：510500.SH -35.0pct，510300.SH +17.5pct，511880.SH +9.3pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.349755,
+            "current_weight": 0.0,
+            "change": -0.349755
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.236195,
+            "current_weight": 0.411125,
+            "change": 0.17493
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.267139,
+            "current_weight": 0.36025,
+            "change": 0.093111
+          }
+        ]
+      }
     },
     {
       "date": "20220124",
@@ -29614,7 +30358,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.411126
+      "turnover_to_target": 0.411126,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到熊市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 熊市",
+          "方向：转向价值/大盘 -> 转向红利/低波",
+          "主要权重变化：510300.SH -41.1pct，510880.SH +33.3pct，511880.SH +7.8pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.411125,
+            "current_weight": 0.0,
+            "change": -0.411125
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.228624,
+            "current_weight": 0.561367,
+            "change": 0.332743
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.36025,
+            "current_weight": 0.438633,
+            "change": 0.078383
+          }
+        ]
+      }
     },
     {
       "date": "20220228",
@@ -29724,7 +30498,31 @@
           }
         }
       ],
-      "turnover_to_target": 0.024604
+      "turnover_to_target": 0.024604,
+      "rebalance_reason": {
+        "category": "same_regime_minor_adjustment",
+        "label": "同状态微调",
+        "detail": "市场状态未变，仅做小幅权重修正。",
+        "drivers": [
+          "状态：熊市 -> 熊市",
+          "方向：转向红利/低波",
+          "主要权重变化：510880.SH -2.5pct，511880.SH +2.5pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.561367,
+            "current_weight": 0.536763,
+            "change": -0.024604
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.438633,
+            "current_weight": 0.463237,
+            "change": 0.024604
+          }
+        ]
+      }
     },
     {
       "date": "20220328",
@@ -29834,7 +30632,31 @@
           }
         }
       ],
-      "turnover_to_target": 0.011228
+      "turnover_to_target": 0.011228,
+      "rebalance_reason": {
+        "category": "same_regime_minor_adjustment",
+        "label": "同状态微调",
+        "detail": "市场状态未变，仅做小幅权重修正。",
+        "drivers": [
+          "状态：熊市 -> 熊市",
+          "方向：转向红利/低波",
+          "主要权重变化：510880.SH -1.1pct，511880.SH +1.1pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.536763,
+            "current_weight": 0.525535,
+            "change": -0.011228
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.463237,
+            "current_weight": 0.474465,
+            "change": 0.011228
+          }
+        ]
+      }
     },
     {
       "date": "20220427",
@@ -29945,7 +30767,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.210381
+      "turnover_to_target": 0.210381,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由熊市切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：熊市 -> 过渡",
+          "方向：转向红利/低波 -> 转向现金/债券代理",
+          "主要权重变化：510300.SH +21.0pct，510880.SH -17.2pct，511880.SH -3.8pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.210381,
+            "change": 0.210381
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.525535,
+            "current_weight": 0.353339,
+            "change": -0.172196
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.474465,
+            "current_weight": 0.43628,
+            "change": -0.038185
+          }
+        ]
+      }
     },
     {
       "date": "20220530",
@@ -30055,7 +30907,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.210381
+      "turnover_to_target": 0.210381,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到熊市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 熊市",
+          "方向：转向现金/债券代理",
+          "主要权重变化：510300.SH -21.0pct，510880.SH +14.6pct，511880.SH +6.5pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.210381,
+            "current_weight": 0.0,
+            "change": -0.210381
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.353339,
+            "current_weight": 0.498987,
+            "change": 0.145648
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.43628,
+            "current_weight": 0.501013,
+            "change": 0.064733
+          }
+        ]
+      }
     },
     {
       "date": "20220628",
@@ -30166,7 +31048,37 @@
           }
         }
       ],
-      "turnover_to_target": 1.0
+      "turnover_to_target": 1.0,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由熊市切到牛市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：熊市 -> 牛市",
+          "方向：转向现金/债券代理 -> 转向成长/科技",
+          "主要权重变化：511880.SH -50.1pct，510880.SH -49.9pct，159915.SZ +37.5pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.501013,
+            "current_weight": 0.0,
+            "change": -0.501013
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.498987,
+            "current_weight": 0.0,
+            "change": -0.498987
+          },
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.0,
+            "current_weight": 0.375143,
+            "change": 0.375143
+          }
+        ]
+      }
     },
     {
       "date": "20220726",
@@ -30278,7 +31190,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.414722
+      "turnover_to_target": 0.414722,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由牛市切到震荡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：牛市 -> 震荡",
+          "方向：转向成长/科技 -> 转向中小盘",
+          "主要权重变化：159915.SZ -37.5pct，510880.SH +20.9pct，511880.SH +12.7pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.375143,
+            "current_weight": 0.0,
+            "change": -0.375143
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.20934,
+            "change": 0.20934
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.127149,
+            "change": 0.127149
+          }
+        ]
+      }
     },
     {
       "date": "20220823",
@@ -30390,7 +31332,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.111634
+      "turnover_to_target": 0.111634,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：震荡 -> 震荡",
+          "方向：转向中小盘",
+          "主要权重变化：510300.SH -9.3pct，510880.SH +7.5pct，511880.SH +3.7pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.287602,
+            "current_weight": 0.194721,
+            "change": -0.092881
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.20934,
+            "current_weight": 0.283992,
+            "change": 0.074652
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.127149,
+            "current_weight": 0.16413,
+            "change": 0.036981
+          }
+        ]
+      }
     },
     {
       "date": "20220921",
@@ -30500,7 +31472,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.551878
+      "turnover_to_target": 0.551878,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由震荡切到熊市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：震荡 -> 熊市",
+          "方向：转向中小盘 -> 转向红利/低波",
+          "主要权重变化：510500.SH -35.7pct，511880.SH +28.8pct，510880.SH +26.4pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.357157,
+            "current_weight": 0.0,
+            "change": -0.357157
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.16413,
+            "current_weight": 0.452023,
+            "change": 0.287893
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.283992,
+            "current_weight": 0.547977,
+            "change": 0.263985
+          }
+        ]
+      }
     },
     {
       "date": "20221026",
@@ -30611,7 +31613,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.213493
+      "turnover_to_target": 0.213493,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由熊市切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：熊市 -> 过渡",
+          "方向：转向红利/低波 -> 转向现金/债券代理",
+          "主要权重变化：510880.SH -21.3pct，510300.SH +13.5pct，511880.SH +7.9pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.547977,
+            "current_weight": 0.334484,
+            "change": -0.213493
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.134907,
+            "change": 0.134907
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.452023,
+            "current_weight": 0.530609,
+            "change": 0.078586
+          }
+        ]
+      }
     },
     {
       "date": "20221123",
@@ -30721,7 +31753,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.134907
+      "turnover_to_target": 0.134907,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到熊市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 熊市",
+          "方向：转向现金/债券代理",
+          "主要权重变化：510300.SH -13.5pct，510880.SH +11.0pct，511880.SH +2.5pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.134907,
+            "current_weight": 0.0,
+            "change": -0.134907
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.334484,
+            "current_weight": 0.44483,
+            "change": 0.110346
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.530609,
+            "current_weight": 0.55517,
+            "change": 0.024561
+          }
+        ]
+      }
     },
     {
       "date": "20221221",
@@ -30831,7 +31893,17 @@
           }
         }
       ],
-      "turnover_to_target": 0.000314
+      "turnover_to_target": 0.000314,
+      "rebalance_reason": {
+        "category": "same_regime_minor_adjustment",
+        "label": "同状态微调",
+        "detail": "市场状态未变，仅做小幅权重修正。",
+        "drivers": [
+          "状态：熊市 -> 熊市",
+          "方向：转向现金/债券代理"
+        ],
+        "weight_changes": []
+      }
     },
     {
       "date": "20230119",
@@ -30942,7 +32014,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.51053
+      "turnover_to_target": 0.51053,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由熊市切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：熊市 -> 过渡",
+          "方向：转向现金/债券代理 -> 转向价值/大盘",
+          "主要权重变化：510300.SH +51.1pct，511880.SH -31.5pct，510880.SH -19.6pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.51053,
+            "change": 0.51053
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.555484,
+            "current_weight": 0.24088,
+            "change": -0.314604
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.444516,
+            "current_weight": 0.24859,
+            "change": -0.195926
+          }
+        ]
+      }
     },
     {
       "date": "20230223",
@@ -31053,7 +32155,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.200059
+      "turnover_to_target": 0.200059,
+      "rebalance_reason": {
+        "category": "same_regime_major_rebalance",
+        "label": "同状态大幅再平衡",
+        "detail": "市场状态未变，但 ETF 相对强弱、稳定性或风险权重变化较大。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向价值/大盘 -> 转向红利/低波",
+          "主要权重变化：510300.SH -20.0pct，510880.SH +19.4pct，511880.SH +0.6pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.51053,
+            "current_weight": 0.310471,
+            "change": -0.200059
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.24859,
+            "current_weight": 0.442644,
+            "change": 0.194054
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.24088,
+            "current_weight": 0.246885,
+            "change": 0.006005
+          }
+        ]
+      }
     },
     {
       "date": "20230323",
@@ -31164,7 +32296,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.047085
+      "turnover_to_target": 0.047085,
+      "rebalance_reason": {
+        "category": "same_regime_minor_adjustment",
+        "label": "同状态微调",
+        "detail": "市场状态未变，仅做小幅权重修正。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波",
+          "主要权重变化：510300.SH -4.7pct，511880.SH +3.0pct，510880.SH +1.8pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.310471,
+            "current_weight": 0.263386,
+            "change": -0.047085
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.246885,
+            "current_weight": 0.276455,
+            "change": 0.02957
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.442644,
+            "current_weight": 0.460159,
+            "change": 0.017515
+          }
+        ]
+      }
     },
     {
       "date": "20230421",
@@ -31275,7 +32437,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.075692
+      "turnover_to_target": 0.075692,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波",
+          "主要权重变化：511880.SH +7.6pct，510300.SH -3.9pct，510880.SH -3.7pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.276455,
+            "current_weight": 0.352147,
+            "change": 0.075692
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.263386,
+            "current_weight": 0.224833,
+            "change": -0.038553
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.460159,
+            "current_weight": 0.42302,
+            "change": -0.037139
+          }
+        ]
+      }
     },
     {
       "date": "20230524",
@@ -31385,7 +32577,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.224833
+      "turnover_to_target": 0.224833,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到熊市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 熊市",
+          "方向：转向红利/低波",
+          "主要权重变化：510300.SH -22.5pct，510880.SH +12.5pct，511880.SH +10.0pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.224833,
+            "current_weight": 0.0,
+            "change": -0.224833
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.42302,
+            "current_weight": 0.547546,
+            "change": 0.124526
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.352147,
+            "current_weight": 0.452454,
+            "change": 0.100307
+          }
+        ]
+      }
     },
     {
       "date": "20230621",
@@ -31495,7 +32717,31 @@
           }
         }
       ],
-      "turnover_to_target": 0.174281
+      "turnover_to_target": 0.174281,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：熊市 -> 熊市",
+          "方向：转向红利/低波 -> 转向现金/债券代理",
+          "主要权重变化：510880.SH -17.4pct，511880.SH +17.4pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.547546,
+            "current_weight": 0.373265,
+            "change": -0.174281
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.452454,
+            "current_weight": 0.626735,
+            "change": 0.174281
+          }
+        ]
+      }
     },
     {
       "date": "20230721",
@@ -31605,7 +32851,31 @@
           }
         }
       ],
-      "turnover_to_target": 0.143379
+      "turnover_to_target": 0.143379,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：熊市 -> 熊市",
+          "方向：转向现金/债券代理 -> 转向红利/低波",
+          "主要权重变化：510880.SH +14.3pct，511880.SH -14.3pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.373265,
+            "current_weight": 0.516644,
+            "change": 0.143379
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.626735,
+            "current_weight": 0.483356,
+            "change": -0.143379
+          }
+        ]
+      }
     },
     {
       "date": "20230818",
@@ -31715,7 +32985,31 @@
           }
         }
       ],
-      "turnover_to_target": 0.059021
+      "turnover_to_target": 0.059021,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：熊市 -> 熊市",
+          "方向：转向红利/低波",
+          "主要权重变化：510880.SH +5.9pct，511880.SH -5.9pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.516644,
+            "current_weight": 0.575665,
+            "change": 0.059021
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.483356,
+            "current_weight": 0.424335,
+            "change": -0.059021
+          }
+        ]
+      }
     },
     {
       "date": "20230915",
@@ -31825,7 +33119,31 @@
           }
         }
       ],
-      "turnover_to_target": 0.041102
+      "turnover_to_target": 0.041102,
+      "rebalance_reason": {
+        "category": "same_regime_minor_adjustment",
+        "label": "同状态微调",
+        "detail": "市场状态未变，仅做小幅权重修正。",
+        "drivers": [
+          "状态：熊市 -> 熊市",
+          "方向：转向红利/低波",
+          "主要权重变化：510880.SH -4.1pct，511880.SH +4.1pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.575665,
+            "current_weight": 0.534563,
+            "change": -0.041102
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.424335,
+            "current_weight": 0.465437,
+            "change": 0.041102
+          }
+        ]
+      }
     },
     {
       "date": "20231023",
@@ -31935,7 +33253,31 @@
           }
         }
       ],
-      "turnover_to_target": 0.052699
+      "turnover_to_target": 0.052699,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：熊市 -> 熊市",
+          "方向：转向红利/低波 -> 转向现金/债券代理",
+          "主要权重变化：510880.SH -5.3pct，511880.SH +5.3pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.534563,
+            "current_weight": 0.481864,
+            "change": -0.052699
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.465437,
+            "current_weight": 0.518136,
+            "change": 0.052699
+          }
+        ]
+      }
     },
     {
       "date": "20231120",
@@ -32046,7 +33388,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.215046
+      "turnover_to_target": 0.215046,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由熊市切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：熊市 -> 过渡",
+          "方向：转向现金/债券代理",
+          "主要权重变化：510300.SH +21.5pct，510880.SH -17.6pct，511880.SH -3.9pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.215046,
+            "change": 0.215046
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.481864,
+            "current_weight": 0.306175,
+            "change": -0.175689
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.518136,
+            "current_weight": 0.478779,
+            "change": -0.039357
+          }
+        ]
+      }
     },
     {
       "date": "20231218",
@@ -32156,7 +33528,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.215046
+      "turnover_to_target": 0.215046,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到熊市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 熊市",
+          "方向：转向现金/债券代理",
+          "主要权重变化：510300.SH -21.5pct，510880.SH +17.3pct，511880.SH +4.2pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.215046,
+            "current_weight": 0.0,
+            "change": -0.215046
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.306175,
+            "current_weight": 0.478853,
+            "change": 0.172678
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.478779,
+            "current_weight": 0.521147,
+            "change": 0.042368
+          }
+        ]
+      }
     },
     {
       "date": "20240116",
@@ -32266,7 +33668,31 @@
           }
         }
       ],
-      "turnover_to_target": 0.054363
+      "turnover_to_target": 0.054363,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：熊市 -> 熊市",
+          "方向：转向现金/债券代理 -> 转向红利/低波",
+          "主要权重变化：510880.SH +5.4pct，511880.SH -5.4pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.478853,
+            "current_weight": 0.533216,
+            "change": 0.054363
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.521147,
+            "current_weight": 0.466784,
+            "change": -0.054363
+          }
+        ]
+      }
     },
     {
       "date": "20240221",
@@ -32377,7 +33803,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.282041
+      "turnover_to_target": 0.282041,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由熊市切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：熊市 -> 过渡",
+          "方向：转向红利/低波",
+          "主要权重变化：510300.SH +28.2pct，511880.SH -15.6pct，510880.SH -12.6pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.282041,
+            "change": 0.282041
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.466784,
+            "current_weight": 0.310932,
+            "change": -0.155852
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.533216,
+            "current_weight": 0.407028,
+            "change": -0.126188
+          }
+        ]
+      }
     },
     {
       "date": "20240320",
@@ -32488,7 +33944,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.169127
+      "turnover_to_target": 0.169127,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波 -> 转向红利/低波",
+          "主要权重变化：510300.SH +16.9pct，511880.SH -9.8pct，510880.SH -7.2pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.282041,
+            "current_weight": 0.451167,
+            "change": 0.169126
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.310932,
+            "current_weight": 0.21338,
+            "change": -0.097552
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.407028,
+            "current_weight": 0.335453,
+            "change": -0.071575
+          }
+        ]
+      }
     },
     {
       "date": "20240419",
@@ -32599,7 +34085,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.142274
+      "turnover_to_target": 0.142274,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波 -> 转向红利/低波",
+          "主要权重变化：510300.SH -14.2pct，511880.SH +8.1pct，510880.SH +6.2pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.451167,
+            "current_weight": 0.308893,
+            "change": -0.142274
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.21338,
+            "current_weight": 0.29392,
+            "change": 0.08054
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.335453,
+            "current_weight": 0.397187,
+            "change": 0.061734
+          }
+        ]
+      }
     },
     {
       "date": "20240522",
@@ -32710,7 +34226,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.137821
+      "turnover_to_target": 0.137821,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波 -> 转向红利/低波",
+          "主要权重变化：510300.SH +13.8pct，510880.SH -7.2pct，511880.SH -6.6pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.308893,
+            "current_weight": 0.446714,
+            "change": 0.137821
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.397187,
+            "current_weight": 0.325482,
+            "change": -0.071705
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.29392,
+            "current_weight": 0.227804,
+            "change": -0.066116
+          }
+        ]
+      }
     },
     {
       "date": "20240620",
@@ -32820,7 +34366,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.446714
+      "turnover_to_target": 0.446714,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到熊市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 熊市",
+          "方向：转向红利/低波 -> 转向红利/低波",
+          "主要权重变化：510300.SH -44.7pct，510880.SH +22.4pct，511880.SH +22.2pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.446714,
+            "current_weight": 0.0,
+            "change": -0.446714
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.325482,
+            "current_weight": 0.549734,
+            "change": 0.224252
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.227804,
+            "current_weight": 0.450266,
+            "change": 0.222462
+          }
+        ]
+      }
     },
     {
       "date": "20240718",
@@ -32930,7 +34506,31 @@
           }
         }
       ],
-      "turnover_to_target": 0.129047
+      "turnover_to_target": 0.129047,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：熊市 -> 熊市",
+          "方向：转向红利/低波 -> 转向现金/债券代理",
+          "主要权重变化：510880.SH -12.9pct，511880.SH +12.9pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.549734,
+            "current_weight": 0.420687,
+            "change": -0.129047
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.450266,
+            "current_weight": 0.579313,
+            "change": 0.129047
+          }
+        ]
+      }
     },
     {
       "date": "20240815",
@@ -33040,7 +34640,31 @@
           }
         }
       ],
-      "turnover_to_target": 0.005616
+      "turnover_to_target": 0.005616,
+      "rebalance_reason": {
+        "category": "same_regime_minor_adjustment",
+        "label": "同状态微调",
+        "detail": "市场状态未变，仅做小幅权重修正。",
+        "drivers": [
+          "状态：熊市 -> 熊市",
+          "方向：转向现金/债券代理",
+          "主要权重变化：510880.SH +0.6pct，511880.SH -0.6pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.420687,
+            "current_weight": 0.426303,
+            "change": 0.005616
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.579313,
+            "current_weight": 0.573697,
+            "change": -0.005616
+          }
+        ]
+      }
     },
     {
       "date": "20240912",
@@ -33150,7 +34774,31 @@
           }
         }
       ],
-      "turnover_to_target": 0.111439
+      "turnover_to_target": 0.111439,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：熊市 -> 熊市",
+          "方向：转向现金/债券代理",
+          "主要权重变化：510880.SH -11.1pct，511880.SH +11.1pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.426303,
+            "current_weight": 0.314864,
+            "change": -0.111439
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.573697,
+            "current_weight": 0.685136,
+            "change": 0.111439
+          }
+        ]
+      }
     },
     {
       "date": "20241021",
@@ -33261,7 +34909,37 @@
           }
         }
       ],
-      "turnover_to_target": 1.0
+      "turnover_to_target": 1.0,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由熊市切到牛市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：熊市 -> 牛市",
+          "方向：转向现金/债券代理 -> 转向中小盘",
+          "主要权重变化：511880.SH -68.5pct，510500.SH +37.9pct，159915.SZ +33.4pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.685136,
+            "current_weight": 0.0,
+            "change": -0.685136
+          },
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.379013,
+            "change": 0.379013
+          },
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.0,
+            "current_weight": 0.334178,
+            "change": 0.334178
+          }
+        ]
+      }
     },
     {
       "date": "20241118",
@@ -33372,7 +35050,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.713191
+      "turnover_to_target": 0.713191,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由牛市切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：牛市 -> 过渡",
+          "方向：转向中小盘 -> 转向红利/低波",
+          "主要权重变化：510500.SH -37.9pct，159915.SZ -33.4pct，511880.SH +31.5pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.379013,
+            "current_weight": 0.0,
+            "change": -0.379013
+          },
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.334178,
+            "current_weight": 0.0,
+            "change": -0.334178
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.3147,
+            "change": 0.3147
+          }
+        ]
+      }
     },
     {
       "date": "20241216",
@@ -33483,7 +35191,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.230188
+      "turnover_to_target": 0.230188,
+      "rebalance_reason": {
+        "category": "same_regime_major_rebalance",
+        "label": "同状态大幅再平衡",
+        "detail": "市场状态未变，但 ETF 相对强弱、稳定性或风险权重变化较大。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波 -> 转向红利/低波",
+          "主要权重变化：510880.SH +23.0pct，510300.SH -15.4pct，511880.SH -7.6pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.239907,
+            "current_weight": 0.470095,
+            "change": 0.230188
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.445393,
+            "current_weight": 0.29141,
+            "change": -0.153983
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.3147,
+            "current_weight": 0.238495,
+            "change": -0.076205
+          }
+        ]
+      }
     },
     {
       "date": "20250114",
@@ -33594,7 +35332,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.172111
+      "turnover_to_target": 0.172111,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波 -> 转向现金/债券代理",
+          "主要权重变化：510880.SH -17.2pct，511880.SH +16.0pct，510300.SH +1.2pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.470095,
+            "current_weight": 0.297984,
+            "change": -0.172111
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.238495,
+            "current_weight": 0.398423,
+            "change": 0.159928
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.29141,
+            "current_weight": 0.303593,
+            "change": 0.012183
+          }
+        ]
+      }
     },
     {
       "date": "20250219",
@@ -33705,7 +35473,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.092425
+      "turnover_to_target": 0.092425,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向现金/债券代理 -> 转向红利/低波",
+          "主要权重变化：510300.SH +9.2pct，510880.SH -6.0pct，511880.SH -3.3pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.303593,
+            "current_weight": 0.396018,
+            "change": 0.092425
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.297984,
+            "current_weight": 0.238467,
+            "change": -0.059517
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.398423,
+            "current_weight": 0.365515,
+            "change": -0.032908
+          }
+        ]
+      }
     },
     {
       "date": "20250319",
@@ -33816,7 +35614,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.024298
+      "turnover_to_target": 0.024298,
+      "rebalance_reason": {
+        "category": "same_regime_minor_adjustment",
+        "label": "同状态微调",
+        "detail": "市场状态未变，仅做小幅权重修正。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波",
+          "主要权重变化：510300.SH +2.4pct，510880.SH -2.3pct，511880.SH -0.2pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.396018,
+            "current_weight": 0.420316,
+            "change": 0.024298
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.238467,
+            "current_weight": 0.215716,
+            "change": -0.022751
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.365515,
+            "current_weight": 0.363968,
+            "change": -0.001547
+          }
+        ]
+      }
     },
     {
       "date": "20250417",
@@ -33926,7 +35754,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.420316
+      "turnover_to_target": 0.420316,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到熊市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 熊市",
+          "方向：转向红利/低波 -> 转向红利/低波",
+          "主要权重变化：510300.SH -42.0pct，510880.SH +31.5pct，511880.SH +10.6pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.420316,
+            "current_weight": 0.0,
+            "change": -0.420316
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.215716,
+            "current_weight": 0.53033,
+            "change": 0.314614
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.363968,
+            "current_weight": 0.46967,
+            "change": 0.105702
+          }
+        ]
+      }
     },
     {
       "date": "20250520",
@@ -34038,7 +35896,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.485322
+      "turnover_to_target": 0.485322,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由熊市切到震荡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：熊市 -> 震荡",
+          "方向：转向红利/低波 -> 转向价值/大盘",
+          "主要权重变化：510300.SH +29.4pct，511880.SH -27.0pct，510880.SH -21.5pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.294022,
+            "change": 0.294022
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.46967,
+            "current_weight": 0.199808,
+            "change": -0.269862
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.53033,
+            "current_weight": 0.31487,
+            "change": -0.21546
+          }
+        ]
+      }
     },
     {
       "date": "20250618",
@@ -34149,7 +36037,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.218469
+      "turnover_to_target": 0.218469,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由震荡切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：震荡 -> 过渡",
+          "方向：转向价值/大盘 -> 转向红利/低波",
+          "主要权重变化：510500.SH -19.1pct，511880.SH +11.5pct，510880.SH +10.3pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.1913,
+            "current_weight": 0.0,
+            "change": -0.1913
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.199808,
+            "current_weight": 0.315076,
+            "change": 0.115268
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.31487,
+            "current_weight": 0.41807,
+            "change": 0.1032
+          }
+        ]
+      }
     },
     {
       "date": "20250716",
@@ -34260,7 +36178,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.148143
+      "turnover_to_target": 0.148143,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波 -> 转向红利/低波",
+          "主要权重变化：510300.SH +14.8pct，511880.SH -8.4pct，510880.SH -6.4pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.266853,
+            "current_weight": 0.414996,
+            "change": 0.148143
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.315076,
+            "current_weight": 0.231115,
+            "change": -0.083961
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.41807,
+            "current_weight": 0.353889,
+            "change": -0.064181
+          }
+        ]
+      }
     },
     {
       "date": "20250813",
@@ -34371,7 +36319,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.030584
+      "turnover_to_target": 0.030584,
+      "rebalance_reason": {
+        "category": "same_regime_minor_adjustment",
+        "label": "同状态微调",
+        "detail": "市场状态未变，仅做小幅权重修正。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波",
+          "主要权重变化：510300.SH +3.1pct，510880.SH -2.4pct，511880.SH -0.6pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.414996,
+            "current_weight": 0.44558,
+            "change": 0.030584
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.353889,
+            "current_weight": 0.329691,
+            "change": -0.024198
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.231115,
+            "current_weight": 0.224729,
+            "change": -0.006386
+          }
+        ]
+      }
     },
     {
       "date": "20250910",
@@ -34482,7 +36460,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.113626
+      "turnover_to_target": 0.113626,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波",
+          "主要权重变化：510880.SH -11.4pct，511880.SH +8.1pct，510300.SH +3.3pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.329691,
+            "current_weight": 0.216065,
+            "change": -0.113626
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.224729,
+            "current_weight": 0.305344,
+            "change": 0.080615
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.44558,
+            "current_weight": 0.478591,
+            "change": 0.033011
+          }
+        ]
+      }
     },
     {
       "date": "20251016",
@@ -34593,7 +36601,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.074881
+      "turnover_to_target": 0.074881,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波",
+          "主要权重变化：510880.SH +7.5pct，511880.SH -6.0pct，510300.SH -1.4pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.216065,
+            "current_weight": 0.290946,
+            "change": 0.074881
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.305344,
+            "current_weight": 0.244957,
+            "change": -0.060387
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.478591,
+            "current_weight": 0.464097,
+            "change": -0.014494
+          }
+        ]
+      }
     },
     {
       "date": "20251113",
@@ -34704,7 +36742,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.066633
+      "turnover_to_target": 0.066633,
+      "rebalance_reason": {
+        "category": "same_regime_rebalance",
+        "label": "同状态再平衡",
+        "detail": "市场状态未变，按最近 ETF 强弱和风险分数调整权重。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波",
+          "主要权重变化：510880.SH +6.7pct，510300.SH -3.9pct，511880.SH -2.8pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.290946,
+            "current_weight": 0.357579,
+            "change": 0.066633
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.464097,
+            "current_weight": 0.425191,
+            "change": -0.038906
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.244957,
+            "current_weight": 0.21723,
+            "change": -0.027727
+          }
+        ]
+      }
     },
     {
       "date": "20251211",
@@ -34815,7 +36883,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.240671
+      "turnover_to_target": 0.240671,
+      "rebalance_reason": {
+        "category": "same_regime_major_rebalance",
+        "label": "同状态大幅再平衡",
+        "detail": "市场状态未变，但 ETF 相对强弱、稳定性或风险权重变化较大。",
+        "drivers": [
+          "状态：过渡 -> 过渡",
+          "方向：转向红利/低波 -> 转向现金/债券代理",
+          "主要权重变化：511880.SH +24.1pct，510300.SH -12.1pct，510880.SH -12.0pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.21723,
+            "current_weight": 0.4579,
+            "change": 0.24067
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.425191,
+            "current_weight": 0.304447,
+            "change": -0.120744
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.357579,
+            "current_weight": 0.237652,
+            "change": -0.119927
+          }
+        ]
+      }
     },
     {
       "date": "20260112",
@@ -34926,7 +37024,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.77079
+      "turnover_to_target": 0.77079,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到牛市，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 牛市",
+          "方向：转向现金/债券代理 -> 转向中小盘",
+          "主要权重变化：511880.SH -45.8pct，510500.SH +39.3pct，159915.SZ +37.8pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.4579,
+            "current_weight": 0.0,
+            "change": -0.4579
+          },
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.392845,
+            "change": 0.392845
+          },
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.0,
+            "current_weight": 0.377945,
+            "change": 0.377945
+          }
+        ]
+      }
     },
     {
       "date": "20260209",
@@ -35038,7 +37166,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.431852
+      "turnover_to_target": 0.431852,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由牛市切到震荡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：牛市 -> 震荡",
+          "方向：转向中小盘",
+          "主要权重变化：159915.SZ -37.8pct，510880.SH +21.8pct，511880.SH +19.1pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "159915.SZ",
+            "previous_weight": 0.377945,
+            "current_weight": 0.0,
+            "change": -0.377945
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.218057,
+            "change": 0.218057
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.191111,
+            "change": 0.191111
+          }
+        ]
+      }
     },
     {
       "date": "20260317",
@@ -35149,7 +37307,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.415529
+      "turnover_to_target": 0.415529,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由震荡切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：震荡 -> 过渡",
+          "方向：转向中小盘 -> 转向红利/低波",
+          "主要权重变化：510500.SH -41.6pct，510880.SH +31.8pct，511880.SH +9.3pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.415528,
+            "current_weight": 0.0,
+            "change": -0.415528
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.218057,
+            "current_weight": 0.535996,
+            "change": 0.317939
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.191111,
+            "current_weight": 0.284243,
+            "change": 0.093132
+          }
+        ]
+      }
     },
     {
       "date": "20260415",
@@ -35261,7 +37449,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.184839
+      "turnover_to_target": 0.184839,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到震荡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 震荡",
+          "方向：转向红利/低波",
+          "主要权重变化：510880.SH -18.5pct，510500.SH +12.8pct，510300.SH +5.2pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.535996,
+            "current_weight": 0.351157,
+            "change": -0.184839
+          },
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.128088,
+            "change": 0.128088
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.179761,
+            "current_weight": 0.232196,
+            "change": 0.052435
+          }
+        ]
+      }
     },
     {
       "date": "20260518",
@@ -35372,7 +37590,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.195524
+      "turnover_to_target": 0.195524,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由震荡切到过渡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：震荡 -> 过渡",
+          "方向：转向红利/低波 -> 转向红利/低波",
+          "主要权重变化：510300.SH +19.6pct，510500.SH -12.8pct，511880.SH -4.1pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.232196,
+            "current_weight": 0.42772,
+            "change": 0.195524
+          },
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.128088,
+            "current_weight": 0.0,
+            "change": -0.128088
+          },
+          {
+            "code": "511880.SH",
+            "previous_weight": 0.288559,
+            "current_weight": 0.248006,
+            "change": -0.040553
+          }
+        ]
+      }
     },
     {
       "date": "20260615",
@@ -35484,7 +37732,37 @@
           }
         }
       ],
-      "turnover_to_target": 0.284629
+      "turnover_to_target": 0.284629,
+      "rebalance_reason": {
+        "category": "regime_change",
+        "label": "状态切换",
+        "detail": "市场状态由过渡切到震荡，目标 ETF 池同步调整。",
+        "drivers": [
+          "状态：过渡 -> 震荡",
+          "方向：转向红利/低波 -> 转向价值/大盘",
+          "主要权重变化：510500.SH +28.5pct，510880.SH -15.5pct，510300.SH -6.8pct"
+        ],
+        "weight_changes": [
+          {
+            "code": "510500.SH",
+            "previous_weight": 0.0,
+            "current_weight": 0.284629,
+            "change": 0.284629
+          },
+          {
+            "code": "510880.SH",
+            "previous_weight": 0.324274,
+            "current_weight": 0.169107,
+            "change": -0.155167
+          },
+          {
+            "code": "510300.SH",
+            "previous_weight": 0.42772,
+            "current_weight": 0.36019,
+            "change": -0.06753
+          }
+        ]
+      }
     }
   ],
   "validation": {

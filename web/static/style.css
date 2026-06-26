@@ -1319,7 +1319,7 @@ h2 {
 .api-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 980px;
+  min-width: 1180px;
 }
 
 .history-table th,
@@ -1357,6 +1357,33 @@ h2 {
   font-size: 12px;
   font-weight: 750;
   white-space: nowrap;
+}
+
+.reason-cell {
+  display: grid;
+  gap: 5px;
+  min-width: 230px;
+  max-width: 360px;
+}
+
+.reason-cell strong {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.reason-cell span,
+.reason-cell em {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.reason-cell em {
+  overflow-wrap: anywhere;
 }
 
 .detail-chart-card {
