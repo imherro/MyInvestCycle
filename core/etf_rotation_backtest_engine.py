@@ -220,6 +220,9 @@ def _row_signal(
 def _curve_records(frame: pd.DataFrame) -> list[dict[str, object]]:
     columns = [
         "date",
+        "regime",
+        "model_regime",
+        "hindsight_regime",
         "rotation_equity",
         *[_benchmark_equity_column(str(item["code"])) for item in ETF_COMPARISON_BENCHMARKS],
         "equal_weight_basket_equity",
@@ -227,7 +230,7 @@ def _curve_records(frame: pd.DataFrame) -> list[dict[str, object]]:
     ]
     return [
         {
-            key: (str(row[key]) if key == "date" else round(float(row[key]), 6))
+            key: (str(row[key]) if key in {"date", "regime", "model_regime", "hindsight_regime"} else round(float(row[key]), 6))
             for key in columns
             if key in row
         }
@@ -239,6 +242,8 @@ def _return_records(frame: pd.DataFrame) -> list[dict[str, object]]:
     columns = [
         "date",
         "regime",
+        "model_regime",
+        "hindsight_regime",
         "rotation_return",
         *[_benchmark_return_column(str(item["code"])) for item in ETF_COMPARISON_BENCHMARKS],
         "equal_weight_basket_return",
@@ -246,7 +251,7 @@ def _return_records(frame: pd.DataFrame) -> list[dict[str, object]]:
     ]
     return [
         {
-            key: (str(row[key]) if key in {"date", "regime"} else round(float(row[key]), 8))
+            key: (str(row[key]) if key in {"date", "regime", "model_regime", "hindsight_regime"} else round(float(row[key]), 8))
             for key in columns
             if key in row
         }
@@ -288,6 +293,20 @@ def run_etf_rotation_backtest(
     signal_records: list[dict[str, object]] = []
 
     for index, date_text in enumerate(dates):
+        source_row = rows_by_date[date_text]
+        model_regime = str(
+            source_row.get(regime_field)
+            or source_row.get("raw_regime")
+            or source_row.get("regime")
+            or source_row.get("structural_regime")
+            or ""
+        )
+        hindsight_regime = str(
+            source_row.get("structural_regime")
+            or source_row.get("regime")
+            or source_row.get("raw_regime")
+            or model_regime
+        )
         day_returns = returns.loc[date_text].fillna(0.0)
         if current_weights and current_signal is not None:
             rotation_return = sum(float(weight) * float(day_returns.get(code, 0.0)) for code, weight in current_weights.items())
@@ -295,6 +314,8 @@ def run_etf_rotation_backtest(
             record = {
                 "date": date_text,
                 "regime": current_signal.get("regime"),
+                "model_regime": model_regime,
+                "hindsight_regime": hindsight_regime,
                 "rotation_return": rotation_return,
                 "equal_weight_basket_return": equal_weight_return,
                 "turnover": pending_turnover,
@@ -311,7 +332,7 @@ def run_etf_rotation_backtest(
         should_rebalance = index - last_rebalance_index >= max(1, rebalance_every_sessions)
         if should_rebalance:
             signal = _row_signal(
-                rows_by_date[date_text],
+                source_row,
                 price_history,
                 risk_policy=risk_policy,
                 regime_field=regime_field,
@@ -429,6 +450,11 @@ def run_etf_rotation_backtest(
             "return_source": "Tushare fund_daily ETF quote returns; prefer pct_chg, then close/pre_close, with close pct_change only as fallback.",
             "no_lookahead_bias": True,
             "signal_timing": "Signal is generated after close on date t and applied starting t+1.",
+            "state_band_fields": {
+                "applied_signal_regime": "regime",
+                "model_visible_regime": "model_regime",
+                "hindsight_confirmed_regime": "hindsight_regime",
+            },
             "evaluation_only": True,
             "no_stock_selection": True,
             "no_trade_execution": True,

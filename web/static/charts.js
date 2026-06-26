@@ -19,6 +19,20 @@ const SHADE_COLORS = {
   transition: "rgba(198, 146, 20, 0.14)",
 };
 
+const STATUS_BAND_COLORS = {
+  bull: "#c73d3d",
+  bear: "#17885b",
+  range: "#eab308",
+  transition: "#8b95a5",
+};
+
+const STATUS_BAND_VALUES = {
+  bull: 0,
+  bear: 1,
+  range: 2,
+  transition: 3,
+};
+
 function regimeLabel(regime) {
   return REGIME_LABELS[regime] || regime || "--";
 }
@@ -142,6 +156,50 @@ function renderEtfRotationBacktestChart(elementId, backtest) {
       hovertemplate: `%{x}<br>${label} %{y:.3f}<extra></extra>`,
     };
   });
+  const statusBandTrace = {
+    type: "heatmap",
+    name: "市场状态色带",
+    x,
+    y: ["预测状态", "回看确认"],
+    z: [
+      items.map((item) => STATUS_BAND_VALUES[item.model_regime || item.regime] ?? STATUS_BAND_VALUES.transition),
+      items.map((item) => STATUS_BAND_VALUES[item.hindsight_regime || item.model_regime || item.regime] ?? STATUS_BAND_VALUES.transition),
+    ],
+    customdata: [
+      items.map((item) => regimeLabel(item.model_regime || item.regime)),
+      items.map((item) => regimeLabel(item.hindsight_regime || item.model_regime || item.regime)),
+    ],
+    xaxis: "x",
+    yaxis: "y2",
+    zmin: 0,
+    zmax: 3,
+    colorscale: [
+      [0, STATUS_BAND_COLORS.bull],
+      [0.1666, STATUS_BAND_COLORS.bull],
+      [0.1667, STATUS_BAND_COLORS.bear],
+      [0.5, STATUS_BAND_COLORS.bear],
+      [0.5001, STATUS_BAND_COLORS.range],
+      [0.8333, STATUS_BAND_COLORS.range],
+      [0.8334, STATUS_BAND_COLORS.transition],
+      [1, STATUS_BAND_COLORS.transition],
+    ],
+    showscale: false,
+    hovertemplate: "%{x}<br>%{y}: %{customdata}<extra></extra>",
+  };
+  const statusLegendTraces = [
+    ["牛市", STATUS_BAND_COLORS.bull],
+    ["熊市", STATUS_BAND_COLORS.bear],
+    ["震荡", STATUS_BAND_COLORS.range],
+    ["过渡", STATUS_BAND_COLORS.transition],
+  ].map(([name, color]) => ({
+    type: "scatter",
+    mode: "markers",
+    name,
+    x: [null],
+    y: [null],
+    marker: { color, size: 9, symbol: "square" },
+    hoverinfo: "skip",
+  }));
   Plotly.react(
     elementId,
     [
@@ -155,13 +213,22 @@ function renderEtfRotationBacktestChart(elementId, backtest) {
         hovertemplate: "%{x}<br>轮动 %{y:.3f}<extra></extra>",
       },
       ...benchmarkTraces,
+      statusBandTrace,
+      ...statusLegendTraces,
     ],
     {
-      ...baseLayout(420),
-      margin: { l: 48, r: 18, t: 58, b: 42 },
-      xaxis: { tickformat: "%Y", gridcolor: "#edf0f5" },
-      yaxis: { gridcolor: "#edf0f5", zeroline: false },
-      legend: { orientation: "h", x: 0, y: 1.26, font: { size: 12 } },
+      ...baseLayout(470),
+      margin: { l: 72, r: 18, t: 74, b: 46 },
+      xaxis: { tickformat: "%Y", gridcolor: "#edf0f5", anchor: "y2" },
+      yaxis: { domain: [0.2, 1], gridcolor: "#edf0f5", zeroline: false },
+      yaxis2: {
+        domain: [0, 0.13],
+        fixedrange: true,
+        showgrid: false,
+        zeroline: false,
+        tickfont: { size: 11, color: "#697386" },
+      },
+      legend: { orientation: "h", x: 0, y: 1.26, font: { size: 11 } },
     },
     { responsive: true, displayModeBar: false }
   );
