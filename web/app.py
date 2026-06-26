@@ -26,10 +26,12 @@ from core.liquidity import get_moneyflow_hsgt
 from core.capital_controller import load_portfolio_policy
 from core.execution_policy import load_execution_policy
 from core.execution_simulator import simulate_execution_layer
+from core.etf_universe_builder import build_etf_universe
 from core.meta_signal_engine import build_meta_edge_signal, load_meta_edge_rules
 from core.portfolio_allocator import build_portfolio_allocation
 from core.regime_adapter import adapt_regime_payload
 from core.risk_score_engine import load_risk_policy
+from core.style_factor_engine import build_style_factor_snapshot
 from core.strategy_filter import load_strategy_policy
 from core.strategy_router import build_strategy_route
 from engine.cycle_detector import detect_current_cycle_track, detect_major_cycles
@@ -37,7 +39,7 @@ from engine.market_engine import analyze_index_regime
 from engine.regime_explainer import explain_regime
 
 
-app = FastAPI(title="MyInvestCycle Regime API", version="0.4")
+app = FastAPI(title="MyInvestCycle Regime API", version="0.5")
 app.mount("/static", StaticFiles(directory=ROOT_DIR / "web" / "static"), name="static")
 
 
@@ -317,6 +319,30 @@ def _meta_edge_payload(snapshot: dict[str, object]) -> dict[str, object]:
     )
 
 
+def _style_rotation_payload(snapshot: dict[str, object]) -> dict[str, object]:
+    style_factor = build_style_factor_snapshot(
+        regime_signal=snapshot["risk_signal"],
+        risk_decision=snapshot["risk_decision"],
+    )
+    etf_universe = build_etf_universe(style_factor)
+    return {
+        "as_of": snapshot["current"]["as_of"],
+        "task": "A1.1",
+        "style_factor": style_factor,
+        "etf_universe": etf_universe,
+        "interpretation": {
+            "primary_style": (style_factor["top_styles"][0]["style"] if style_factor["top_styles"] else None),
+            "primary_candidate": (
+                etf_universe["top_candidates"][0] if etf_universe["top_candidates"] else None
+            ),
+            "summary": (
+                "当前层把市场状态、风险评分、宽度、流动性和波动稳定度转成风格倾向，"
+                "再映射到 ETF 候选池；它只做资产风格与 ETF universe 生成，不做个股选择或真实交易。"
+            ),
+        },
+    }
+
+
 def _api_endpoint(
     method: str,
     path: str,
@@ -395,6 +421,18 @@ def _api_catalog_payload() -> dict[str, object]:
             ],
         },
         {
+            "name": "风格轮动 Alpha",
+            "description": "把当前状态与风险输入映射为风格评分和 ETF 候选池；只做 universe 生成，不选股、不下单。",
+            "endpoints": [
+                _api_endpoint(
+                    "GET",
+                    "/api/style/current",
+                    "返回 A1.1 风格评分、Top 风格、ETF universe 和候选 ETF 排名。",
+                    "style factor and ETF universe",
+                ),
+            ],
+        },
+        {
             "name": "影子账户评估",
             "description": "用历史 R2 仓位信号回放 510500 基准收益，评估系统相对基准的收益、回撤和 Alpha。",
             "endpoints": [
@@ -443,6 +481,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/regime/current", "description": "读取当前牛熊状态与四维评分。"},
             {"path": "/api/regime/cycle/track", "description": "读取本轮周期位置和概率展望。"},
             {"path": "/api/meta-edge/current", "description": "读取系统内部矛盾信号。"},
+            {"path": "/api/style/current", "description": "读取风格评分与 ETF 候选池。"},
             {"path": "/api/shadow/current", "description": "读取影子账户与 510500 基准评估。"},
         ],
         "safety": {
@@ -581,6 +620,17 @@ def meta_edge_current() -> dict:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
 
+@app.get("/api/style/current")
+def style_current() -> dict:
+    try:
+        snapshot = _current_portfolio_snapshot()
+        return _style_rotation_payload(snapshot)
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
 @app.get("/api/shadow/current")
 def shadow_current() -> dict:
     payload = _read_shadow_backtest_payload()
@@ -630,6 +680,7 @@ def results_summary() -> dict:
         execution = snapshot["execution"]
         system_snapshot_payload = _system_snapshot_payload(snapshot)
         meta_edge = _meta_edge_payload(snapshot)
+        style_rotation = _style_rotation_payload(snapshot)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -665,6 +716,7 @@ def results_summary() -> dict:
                 "policy": _execution_policy_summary(execution_policy),
             },
             "meta_edge": meta_edge,
+            "style_rotation": style_rotation,
             "shadow_backtest": shadow_backtest,
             "regime_attribution": regime_attribution,
             "system": system_snapshot_payload,
@@ -697,6 +749,7 @@ def results_summary() -> dict:
                 "FINAL 已冻结系统边界：5 层决策链稳定，策略已锁定，执行层保持 simulation-only。",
                 "R3.1 已把策略路由转成执行意图和模拟指令，但不连接券商、不生成真实订单。",
                 "M1.1 已新增 Meta Signal Engine，只检测系统内部矛盾信号，不预测收益、不选股、不改变既有风控链路。",
+                "A1.1 已新增风格评分与 ETF universe 层，把 regime、风险评分、宽度、流动性和波动稳定度映射到 ETF 候选池。",
                 "S1.1 已新增影子账户评估，用历史 R2 仓位回放 510500 基准收益，输出权益曲线、Alpha 和回撤。",
                 "S1.2 已按牛熊状态拆解影子账户收益来源，识别牛市参与不足是主要拖累，熊市防守是主要正贡献。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",

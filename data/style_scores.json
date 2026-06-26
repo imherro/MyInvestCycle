@@ -1,0 +1,65 @@
+{
+  "engine": "Style Factor Engine A1.1",
+  "as_of": "20260625",
+  "regime": "range",
+  "risk_score": 0.456,
+  "input": {
+    "trend": 0.49,
+    "breadth": 0.35,
+    "liquidity": 0.64,
+    "volatility": 0.68,
+    "regime_score": 0.51,
+    "confidence": 0.78
+  },
+  "base_scores": {
+    "growth": 0.45,
+    "value": 0.65,
+    "low_vol": 0.55,
+    "dividend": 0.45,
+    "small_cap": 0.4,
+    "cash_proxy": 0.35
+  },
+  "adjustments": {
+    "growth": 0.018,
+    "value": 0.00038,
+    "low_vol": -0.02592,
+    "dividend": -0.0028,
+    "small_cap": 0.01788,
+    "cash_proxy": -0.0422
+  },
+  "style_scores": {
+    "growth": 0.468,
+    "value": 0.65038,
+    "low_vol": 0.52408,
+    "dividend": 0.4472,
+    "small_cap": 0.41788,
+    "cash_proxy": 0.3078
+  },
+  "top_styles": [
+    {
+      "style": "value",
+      "score": 0.65038
+    },
+    {
+      "style": "low_vol",
+      "score": 0.52408
+    },
+    {
+      "style": "growth",
+      "score": 0.468
+    }
+  ],
+  "reasoning": [
+    "range regime sets the base style preference.",
+    "Risk score 0.46 shifts weight toward defensive styles when elevated.",
+    "Breadth 0.35, liquidity 0.64, and volatility stability 0.68 adjust growth versus defensive preference.",
+    "Top styles are value, low_vol, growth."
+  ],
+  "constraints": {
+    "asset_selection_layer": true,
+    "etf_only": true,
+    "no_single_stock_selection": true,
+    "no_trade_execution": true,
+    "no_prediction_of_market_direction": true
+  }
+}

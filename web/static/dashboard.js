@@ -189,6 +189,18 @@ function alphaSourceLabel(value) {
   return labels[value] || value || "--";
 }
 
+function styleLabel(value) {
+  const labels = {
+    growth: "成长",
+    value: "价值",
+    low_vol: "低波",
+    dividend: "红利",
+    small_cap: "小盘",
+    cash_proxy: "现金代理",
+  };
+  return labels[value] || value || "--";
+}
+
 function metaEdgeInterpretationText(metaEdge) {
   const level = metaEdge.meta_edge_level;
   const activeSignals = metaEdge.signals || [];
@@ -275,6 +287,10 @@ function setResultsPanel(results) {
   const route = (results.strategy_route || {}).route || {};
   const execution = (results.execution || {}).simulation || {};
   const metaEdge = results.meta_edge || {};
+  const styleRotation = results.style_rotation || {};
+  const styleFactor = styleRotation.style_factor || {};
+  const etfUniverse = styleRotation.etf_universe || {};
+  const styleInterpretation = styleRotation.interpretation || {};
   const shadowBacktest = results.shadow_backtest || {};
   const shadowSummary = shadowBacktest.summary || {};
   const shadowMetadata = shadowBacktest.metadata || {};
@@ -441,6 +457,48 @@ function setResultsPanel(results) {
     metaEdge.meta_edge_level
       ? `${metaEdgeInterpretationText(metaEdge)}；该层只检测系统内部矛盾，不预测收益、不选股、不下单。`
       : "M1.1 只检测系统内部矛盾，不改变既有风控链路。"
+  );
+
+  const topStyles = styleFactor.top_styles || [];
+  const topStyle = topStyles[0] || {};
+  const topCandidate = styleInterpretation.primary_candidate || (etfUniverse.top_candidates || [])[0] || {};
+  setText("styleRegime", regimeLabel(styleFactor.regime));
+  setText(
+    "styleTopStyle",
+    topStyle.style ? `${styleLabel(topStyle.style)} ${percentText(topStyle.score)}` : "--"
+  );
+  setText(
+    "styleTopCandidate",
+    topCandidate.code ? `${topCandidate.name} · ${topCandidate.code}` : "--"
+  );
+  document.getElementById("styleScoreList").innerHTML = Object.entries(styleFactor.style_scores || {})
+    .map(
+      ([style, score]) => `
+        <div class="style-score-row">
+          <span>${styleLabel(style)}</span>
+          <strong>${percentText(score)}</strong>
+          <i style="width:${typeof score === "number" ? Math.round(score * 100) : 0}%"></i>
+        </div>
+      `
+    )
+    .join("");
+  document.getElementById("styleCandidateList").innerHTML = (etfUniverse.top_candidates || [])
+    .slice(0, 4)
+    .map(
+      (candidate) => `
+        <div class="style-candidate-row">
+          <span>${escapeHtml(candidate.name || "--")}</span>
+          <strong>${escapeHtml(candidate.code || "--")}</strong>
+          <em>${styleLabel(candidate.primary_style)} · ${percentText(candidate.candidate_score)}</em>
+        </div>
+      `
+    )
+    .join("");
+  setText(
+    "styleConclusion",
+    styleFactor.engine
+      ? `${styleInterpretation.summary || "A1.1 已把当前状态映射为风格评分与 ETF 候选池。"} 当前候选数 ${integerText(etfUniverse.candidate_count)}，仅生成 universe，不选股、不下单。`
+      : "A1.1 风格轮动基础结果尚未生成。"
   );
 
   setText("shadowFinalAlpha", signedRatioText(shadowSummary.final_alpha));
