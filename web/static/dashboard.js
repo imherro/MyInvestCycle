@@ -366,6 +366,9 @@ function setResultsPanel(results) {
   const etfBacktest = results.etf_rotation_backtest || {};
   const backtestSummary = etfBacktest.summary || {};
   const backtestValidation = etfBacktest.validation || {};
+  const macroStyleBacktest = results.macro_style_etf_backtest || {};
+  const macroStyleSummary = macroStyleBacktest.summary || {};
+  const macroStyleValidation = macroStyleBacktest.validation || {};
   const shadowBacktest = results.shadow_backtest || {};
   const shadowSummary = shadowBacktest.summary || {};
   const shadowMetadata = shadowBacktest.metadata || {};
@@ -643,6 +646,26 @@ function setResultsPanel(results) {
       : "A1.3 ETF 轮动回测结果尚未生成。"
   );
 
+  setText("macroStyleAlphaA1", signedRatioText(macroStyleSummary.alpha_vs_current_a1));
+  setText("macroStyleAlpha510500", signedRatioText(macroStyleSummary.alpha_vs_510500));
+  setText("macroStyleReturn", signedRatioText(macroStyleSummary.hierarchical_total_return));
+  setText("macroStyleA1Return", signedRatioText(macroStyleSummary.current_a1_return));
+  setText("macroStyleEqualReturn", signedRatioText(macroStyleSummary.equal_weight_basket_return));
+  setText("macroStyleExposure", percentText(macroStyleSummary.average_target_exposure));
+  setText("macroStyleDrawdown", percentText(macroStyleSummary.max_drawdown));
+  setText("macroStyleRebalance", integerText(macroStyleSummary.rebalance_count));
+  const macroStyleVerdict = macroStyleValidation.alpha_positive_vs_equal_weight
+    ? "分层组合跑赢等权 ETF basket，具备继续验证价值"
+    : macroStyleValidation.alpha_positive_vs_current_a1
+      ? "分层组合优于当前 A1，但仍未跑赢 510500 和等权 ETF basket"
+      : "分层组合未优于当前 A1，暂未证明新增 alpha";
+  setText(
+    "macroStyleConclusion",
+    macroStyleBacktest.metadata
+      ? `M2.1 覆盖 ${integerText(macroStyleSummary.sessions)} 个交易日，平均权益仓位 ${percentText(macroStyleSummary.average_target_exposure)}；${macroStyleVerdict}。宏观层只管仓位，风格层只管权重，ETF 层只做映射。`
+      : "M2.1 Macro-Style-ETF 分层回测结果尚未生成。"
+  );
+
   setText("shadowFinalAlpha", signedRatioText(shadowSummary.final_alpha));
   setText("shadowAverageExposure", percentText(shadowSummary.average_applied_exposure));
   setText("shadowTotalReturn", signedRatioText(shadowSummary.shadow_total_return));
@@ -855,6 +878,7 @@ async function loadDashboard() {
     renderRadar("radarChart", current.sub_scores);
     renderShadowEquityChart("shadowEquityChart", results.shadow_backtest || {});
     renderEtfRotationBacktestChart("rotationBacktestChart", results.etf_rotation_backtest || {});
+    renderMacroStyleEtfBacktestChart("macroStyleEtfChart", results.macro_style_etf_backtest || {});
   } finally {
     button.disabled = false;
     button.textContent = "刷新";

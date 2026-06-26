@@ -1367,6 +1367,11 @@ h2 {
   margin-top: 0;
 }
 
+.chart-box.macro-style-etf-box {
+  height: 340px;
+  margin-top: 0;
+}
+
 .detail-nav-section {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

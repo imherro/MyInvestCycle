@@ -400,6 +400,55 @@
             <div class="chart-box rotation-backtest-box" id="rotationBacktestChart"></div>
           </div>
         </article>
+
+        <article class="chart-panel result-panel macro-style-etf-panel wide-analysis-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="M2.1 把宏观周期、风格分配、ETF 映射三层解耦：宏观只控制仓位上限，风格只分配成长/价值/小盘/红利/低波，ETF 只负责执行映射。">Macro-Style-ETF 分层回测</h2>
+            <span class="panel-kicker">M2.1</span>
+          </div>
+          <div class="wide-panel-layout">
+            <div class="wide-panel-metrics">
+              <div class="backtest-headline">
+                <div>
+                  <span>Alpha vs A1</span>
+                  <strong id="macroStyleAlphaA1">--</strong>
+                </div>
+                <div>
+                  <span>Alpha vs 510500</span>
+                  <strong id="macroStyleAlpha510500">--</strong>
+                </div>
+              </div>
+              <div class="metric-card-grid">
+                <div>
+                  <span>分层收益</span>
+                  <strong id="macroStyleReturn">--</strong>
+                </div>
+                <div>
+                  <span>A1 收益</span>
+                  <strong id="macroStyleA1Return">--</strong>
+                </div>
+                <div>
+                  <span>等权收益</span>
+                  <strong id="macroStyleEqualReturn">--</strong>
+                </div>
+                <div>
+                  <span>平均仓位</span>
+                  <strong id="macroStyleExposure">--</strong>
+                </div>
+                <div>
+                  <span>最大回撤</span>
+                  <strong id="macroStyleDrawdown">--</strong>
+                </div>
+                <div>
+                  <span>再平衡</span>
+                  <strong id="macroStyleRebalance">--</strong>
+                </div>
+              </div>
+              <p class="result-note" id="macroStyleConclusion">--</p>
+            </div>
+            <div class="chart-box macro-style-etf-box" id="macroStyleEtfChart"></div>
+          </div>
+        </article>
       </section>
 
       <section class="results-overview" id="validation-channel" aria-live="polite">
@@ -598,8 +647,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260626-home-5"></script>
-    <script src="/static/dashboard.js?v=20260626-home-5"></script>
+    <script src="/static/charts.js?v=20260626-home-6"></script>
+    <script src="/static/dashboard.js?v=20260626-home-6"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

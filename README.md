@@ -39,6 +39,10 @@ engine foundation requested by the design review.
 - A1.3 ETF Rotation Backtest & Alpha Validation replays historical A1.2-style
   signals with one-session lag, compares against `510500.SH`, `510300.SH`, and
   an equal-weight ETF basket, and reports whether the alpha evidence is real.
+- M2.1 Macro-Style-ETF Hierarchical Allocation separates macro exposure,
+  style allocation, and ETF implementation, then backtests the layered portfolio
+  against `510300.SH`, `510500.SH`, the equal-weight ETF basket, and the current
+  A1 rotation system.
 - S1.1 Shadow Portfolio Engine replays historical R2 exposure against the
   `510500.SH` benchmark to evaluate equity curve, Alpha, and drawdown; it is a
   pure evaluation layer and does not predict returns, select stocks, or execute
@@ -118,6 +122,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/style/current`
 - `GET http://127.0.0.1:8021/api/style/rotation-signal`
 - `GET http://127.0.0.1:8021/api/style/rotation-backtest`
+- `GET http://127.0.0.1:8021/api/style/macro-style-etf-backtest`
 - `GET http://127.0.0.1:8021/api/shadow/current`
 - `GET http://127.0.0.1:8021/api/shadow/regime-attribution`
 - `GET http://127.0.0.1:8021/api/system/snapshot`
@@ -442,6 +447,33 @@ max_drawdown
 hit_rate
 turnover
 regime_breakdown
+```
+
+Run the M2.1 Macro-Style-ETF Hierarchical Allocation Backtest:
+
+```powershell
+python scripts/run_macro_style_etf_backtest.py --start 20200101 --end 20260625
+```
+
+Default output:
+
+```text
+data/macro_style_etf_backtest.json
+```
+
+The hierarchical backtest keeps the layer contract explicit:
+
+```text
+macro_regime
+exposure_ceiling
+target_exposure
+style_allocation
+etf_allocation
+alpha_vs_510300
+alpha_vs_510500
+alpha_vs_equal_weight
+alpha_vs_current_a1
+macro_regime_breakdown
 ```
 
 Run the S1.1 Shadow Portfolio Engine:

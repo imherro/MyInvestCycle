@@ -271,6 +271,85 @@ function renderEtfRotationBacktestChart(elementId, backtest) {
   );
 }
 
+function renderMacroStyleEtfBacktestChart(elementId, backtest) {
+  const items = backtest?.equity_curve || [];
+  if (!items.length) {
+    Plotly.purge(elementId);
+    return;
+  }
+  const x = items.map((item) => toIsoDate(item.date));
+  Plotly.react(
+    elementId,
+    [
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "M2.1 分层组合",
+        x,
+        y: items.map((item) => item.hierarchical_equity ?? null),
+        line: { color: "#0f766e", width: 2.5 },
+        hovertemplate: "%{x}<br>M2.1 %{y:.3f}<extra></extra>",
+      },
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "当前 A1 轮动",
+        x,
+        y: items.map((item) => item.current_a1_equity ?? null),
+        line: { color: "#2663eb", width: 2, dash: "dot" },
+        hovertemplate: "%{x}<br>A1 %{y:.3f}<extra></extra>",
+      },
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "510500",
+        x,
+        y: items.map((item) => item.benchmark_510500_equity ?? null),
+        line: { color: "#c73d3d", width: 1.8 },
+        hovertemplate: "%{x}<br>510500 %{y:.3f}<extra></extra>",
+      },
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "等权 ETF",
+        x,
+        y: items.map((item) => item.equal_weight_basket_equity ?? null),
+        line: { color: "#64748b", width: 1.8 },
+        hovertemplate: "%{x}<br>等权 ETF %{y:.3f}<extra></extra>",
+      },
+    ],
+    {
+      ...baseLayout(340),
+      dragmode: "zoom",
+      hovermode: "x unified",
+      margin: { l: 50, r: 16, t: 38, b: 40 },
+      xaxis: {
+        tickformat: "%Y",
+        hoverformat: "%Y-%m-%d",
+        gridcolor: "#edf0f5",
+        showspikes: true,
+        spikecolor: "#4b5563",
+        spikedash: "solid",
+        spikemode: "across",
+        spikesnap: "cursor",
+        spikethickness: 1,
+      },
+      yaxis: {
+        gridcolor: "#edf0f5",
+        zeroline: false,
+        showspikes: true,
+        spikecolor: "#4b5563",
+        spikedash: "solid",
+        spikemode: "across",
+        spikesnap: "cursor",
+        spikethickness: 1,
+      },
+      legend: { orientation: "h", x: 0, y: 1.16, font: { size: 11 } },
+    },
+    { responsive: true, displayModeBar: false }
+  );
+}
+
 function buildRegimeShapes(items, options = {}) {
   const y0 = options.y0 ?? 0;
   const y1 = options.y1 ?? 1;
