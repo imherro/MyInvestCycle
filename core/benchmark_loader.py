@@ -7,6 +7,7 @@ import pandas as pd
 
 from config import CACHE_DIR
 from core.data_loader import get_tushare_pro, normalize_trade_date
+from core.etf_return_utils import daily_return_series
 
 
 DEFAULT_BENCHMARK_CODE = "510500.SH"
@@ -186,6 +187,8 @@ def benchmark_returns_frame(benchmark_daily: pd.DataFrame) -> pd.DataFrame:
             "benchmark_close": df["close"].astype(float),
         }
     )
-    result["benchmark_return"] = result["benchmark_close"].pct_change().fillna(0.0)
+    result["benchmark_return"] = daily_return_series(df).reset_index(drop=True).fillna(0.0)
+    if not result.empty:
+        result.loc[result.index[0], "benchmark_return"] = 0.0
     result["benchmark_equity"] = (1.0 + result["benchmark_return"]).cumprod()
     return result.reset_index(drop=True)

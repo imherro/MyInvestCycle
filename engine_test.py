@@ -9,6 +9,7 @@ import pandas as pd
 from config import DEFAULT_INDEX_CODE
 from core.breadth import get_market_daily, get_market_history_sample
 from core.data_loader import get_index_daily
+from core.etf_return_utils import daily_return_series
 from core.exposure_controller import build_exposure_decision
 from core.liquidity import get_moneyflow_hsgt
 from core.regime_adapter import adapt_regime_payload, validate_risk_signal
@@ -231,6 +232,17 @@ def main() -> None:
     validate_structural_hazard_dataset(structural_samples, max_hazard_rate=0.50)
     assert [sample["label"] for sample in structural_samples] == [0, 1, 1, 0, 0]
     assert all(sample["label_type"] == "structural_break" for sample in structural_samples)
+
+    discontinuous_etf = pd.DataFrame(
+        {
+            "trade_date": ["20220901", "20220905"],
+            "close": [0.982, 2.713],
+            "pre_close": [0.988, 2.711],
+            "pct_chg": [-0.6073, 0.0738],
+        }
+    )
+    discontinuous_returns = daily_return_series(discontinuous_etf)
+    assert abs(float(discontinuous_returns.loc["20220905"]) - 0.000738) < 1e-9
 
     survival_samples = build_survival_dataset(
         [

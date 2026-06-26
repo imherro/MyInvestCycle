@@ -483,7 +483,7 @@ def _api_catalog_payload() -> dict[str, object]:
                 _api_endpoint(
                     "GET",
                     "/api/style/rotation-backtest",
-                    "返回 A1.3 ETF 轮动回测、Alpha 验证、benchmark 对比和分状态拆解。",
+                    "返回 A1.3 ETF 轮动回测、Alpha 验证、benchmark 对比和分状态拆解；收益口径优先使用 fund_daily pct_chg/pre_close。",
                     "ETF rotation backtest",
                     freshness="generated artifact",
                 ),
@@ -496,7 +496,7 @@ def _api_catalog_payload() -> dict[str, object]:
                 _api_endpoint(
                     "GET",
                     "/api/shadow/current",
-                    "返回 S1.1 影子账户与 510500 基准的完整权益曲线、收益序列和 Alpha。",
+                    "返回 S1.1 影子账户与 510500 基准的完整权益曲线、收益序列和 Alpha；收益口径优先使用 fund_daily pct_chg/pre_close。",
                     "shadow portfolio backtest",
                     freshness="generated artifact",
                 ),

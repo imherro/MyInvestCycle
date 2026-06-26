@@ -5,6 +5,7 @@ from typing import Mapping
 import pandas as pd
 
 from core.alpha_validation_engine import benchmark_comparison, compound_return, max_drawdown, performance_metrics, regime_breakdown
+from core.etf_return_utils import coerce_price_frame, daily_return_series
 from core.etf_rotation_signal_engine import build_etf_rotation_signal
 from core.etf_universe_builder import build_etf_universe
 from core.exposure_controller import build_exposure_decision
@@ -17,13 +18,7 @@ BENCHMARK_CODES = ("510500.SH", "510300.SH")
 
 
 def _coerce_price_frame(frame: pd.DataFrame) -> pd.DataFrame:
-    if frame.empty:
-        return pd.DataFrame(columns=["trade_date", "close"])
-    result = frame.copy()
-    result["trade_date"] = result["trade_date"].astype(str).str.replace(r"\.0$", "", regex=True)
-    result["close"] = pd.to_numeric(result["close"], errors="coerce")
-    result = result.dropna(subset=["trade_date", "close"])
-    return result.sort_values("trade_date").reset_index(drop=True)
+    return coerce_price_frame(frame)
 
 
 def _returns_matrix(price_history: Mapping[str, pd.DataFrame]) -> pd.DataFrame:
@@ -32,8 +27,7 @@ def _returns_matrix(price_history: Mapping[str, pd.DataFrame]) -> pd.DataFrame:
         prices = _coerce_price_frame(frame)
         if prices.empty:
             continue
-        series = prices.set_index("trade_date")["close"].astype(float).pct_change()
-        returns[code] = series
+        returns[code] = daily_return_series(prices)
     if not returns:
         raise ValueError("no ETF price history available for backtest")
     return pd.DataFrame(returns).sort_index()
@@ -252,6 +246,7 @@ def run_etf_rotation_backtest(
         "metadata": {
             "engine": "ETF Rotation Backtest & Alpha Validation A1.3",
             "regime_field": regime_field,
+            "return_source": "Tushare fund_daily ETF quote returns; prefer pct_chg, then close/pre_close, with close pct_change only as fallback.",
             "no_lookahead_bias": True,
             "signal_timing": "Signal is generated after close on date t and applied starting t+1.",
             "evaluation_only": True,

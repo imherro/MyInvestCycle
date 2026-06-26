@@ -208,6 +208,7 @@ def run_shadow_backtest(
             "benchmark_code": benchmark_code,
             "regime_source": regime_field,
             "execution_lag_sessions": lag,
+            "return_source": "Tushare fund_daily ETF quote returns; prefer pct_chg, then close/pre_close, with close pct_change only as fallback.",
             "evaluation_only": True,
             "no_prediction": True,
             "no_stock_selection": True,

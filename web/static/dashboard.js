@@ -579,7 +579,7 @@ function setResultsPanel(results) {
   setText(
     "backtestConclusion",
     etfBacktest.metadata
-      ? `A1.3 覆盖 ${integerText(backtestSummary.sessions)} 个交易日，${alphaVerdict}；该层只做历史真伪验证，不生成交易。`
+      ? `A1.3 覆盖 ${integerText(backtestSummary.sessions)} 个交易日，${alphaVerdict}；收益口径优先采用 Tushare pct_chg/pre_close，避免 ETF 价格断点被误算为收益。`
       : "A1.3 ETF 轮动回测结果尚未生成。"
   );
 
@@ -594,7 +594,7 @@ function setResultsPanel(results) {
   setText(
     "shadowConclusion",
     shadowSummary.sessions
-      ? `S1.1 覆盖 ${integerText(shadowSummary.sessions)} 个交易日，使用 ${shadowSummary.benchmark_code || "510500.SH"} 作为基准，并按 ${integerText(shadowMetadata.execution_lag_sessions || 0)} 个交易日滞后应用 R2 仓位；该层只评估权益曲线、Alpha 和回撤，不预测、不选股、不下单。`
+      ? `S1.1 覆盖 ${integerText(shadowSummary.sessions)} 个交易日，使用 ${shadowSummary.benchmark_code || "510500.SH"} 作为基准，并按 ${integerText(shadowMetadata.execution_lag_sessions || 0)} 个交易日滞后应用 R2 仓位；收益口径同样优先采用 Tushare pct_chg/pre_close。`
       : "S1.1 影子账户结果尚未生成。"
   );
 

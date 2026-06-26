@@ -5,6 +5,7 @@ from typing import Mapping
 
 import pandas as pd
 
+from core.etf_return_utils import coerce_price_frame, compound_recent_return, daily_return_series
 from core.risk_score_engine import _clip
 
 
@@ -19,38 +20,27 @@ def _round(value: float | None, digits: int = 6) -> float | None:
 
 
 def _coerce_price_frame(frame: pd.DataFrame) -> pd.DataFrame:
-    if frame.empty:
-        return pd.DataFrame(columns=["trade_date", "close"])
-    result = frame.copy()
-    result["trade_date"] = result["trade_date"].astype(str).str.replace(r"\.0$", "", regex=True)
-    result["close"] = pd.to_numeric(result["close"], errors="coerce")
-    result = result.dropna(subset=["trade_date", "close"])
-    return result.sort_values("trade_date").reset_index(drop=True)
+    return coerce_price_frame(frame)
 
 
 def _window_return(frame: pd.DataFrame, window: int) -> float | None:
-    if len(frame) <= window:
-        return None
-    current = float(frame["close"].iloc[-1])
-    previous = float(frame["close"].iloc[-window - 1])
-    if previous <= 0:
-        return None
-    return current / previous - 1.0
+    return compound_recent_return(frame, window)
 
 
 def _recent_volatility(frame: pd.DataFrame, window: int = 60) -> float | None:
-    returns = frame["close"].pct_change().dropna().tail(window)
+    returns = daily_return_series(frame).dropna().tail(window)
     if len(returns) < max(10, window // 3):
         return None
     return float(returns.std() * (252 ** 0.5))
 
 
 def _recent_drawdown(frame: pd.DataFrame, window: int = 60) -> float | None:
-    closes = frame["close"].tail(window)
-    if len(closes) < 10:
+    returns = daily_return_series(frame).dropna().tail(window)
+    if len(returns) < 10:
         return None
-    peak = closes.cummax()
-    drawdown = closes / peak - 1.0
+    equity = (1.0 + returns).cumprod()
+    peak = equity.cummax()
+    drawdown = equity / peak - 1.0
     return float(drawdown.min())
 
 
@@ -104,20 +94,21 @@ def _percentile_scores(values: Mapping[str, float]) -> dict[str, float]:
 
 
 def _ranking_stability(price_history: Mapping[str, pd.DataFrame], codes: list[str], window: int = 20) -> dict[str, float]:
-    closes = {}
+    daily_returns = {}
     for code in codes:
         frame = _coerce_price_frame(price_history.get(code, pd.DataFrame()))
         if len(frame) > window:
-            closes[code] = frame.set_index("trade_date")["close"].astype(float)
-    if len(closes) < 2:
+            daily_returns[code] = daily_return_series(frame)
+    if len(daily_returns) < 2:
         return {code: 0.5 for code in codes}
 
-    close_matrix = pd.DataFrame(closes).sort_index().dropna(how="all")
-    returns = close_matrix.pct_change(window).tail(window).dropna(how="all")
-    if returns.empty:
+    returns_matrix = pd.DataFrame(daily_returns).sort_index().dropna(how="all").fillna(0.0)
+    rolling_returns = (1.0 + returns_matrix).rolling(window=window).apply(lambda values: float(values.prod() - 1.0), raw=True)
+    rolling_returns = rolling_returns.tail(window).dropna(how="all")
+    if rolling_returns.empty:
         return {code: 0.5 for code in codes}
 
-    rank_matrix = returns.rank(axis=1, ascending=False, pct=True)
+    rank_matrix = rolling_returns.rank(axis=1, ascending=False, pct=True)
     stability: dict[str, float] = {}
     for code in codes:
         if code not in rank_matrix:
