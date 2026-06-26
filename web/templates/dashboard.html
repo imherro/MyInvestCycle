@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260626-detail-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260626-home-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -34,7 +34,39 @@
         </article>
       </section>
 
-      <section class="cycle-score-row">
+      <nav class="channel-nav-section" aria-label="首页频道导航">
+        <a href="#cycle-channel">
+          <span>Cycle</span>
+          <strong>周期判断</strong>
+        </a>
+        <a href="#execution-channel">
+          <span>Risk</span>
+          <strong>风控执行</strong>
+        </a>
+        <a href="#etf-channel">
+          <span>ETF</span>
+          <strong>ETF 轮动</strong>
+        </a>
+        <a href="#validation-channel">
+          <span>Validation</span>
+          <strong>验证归因</strong>
+        </a>
+        <a href="#api-channel">
+          <span>API</span>
+          <strong>接口说明</strong>
+        </a>
+      </nav>
+
+      <section class="channel-section" id="cycle-channel">
+        <div class="dashboard-section-heading">
+          <div>
+            <span>Cycle</span>
+            <h2>周期判断</h2>
+          </div>
+          <p>先判断当前牛熊阶段、本轮周期位置和长期主周期。</p>
+        </div>
+
+        <section class="cycle-score-row">
         <section class="cycle-panel" aria-live="polite">
           <div class="cycle-cell cycle-state-cell">
             <div class="panel-label">当前阶段定位</div>
@@ -56,25 +88,39 @@
 
         <article class="chart-panel radar-panel">
           <div class="panel-heading">
-            <h2>四维评分</h2>
+            <h2 class="help-title" tabindex="0" data-help="把趋势、宽度、流动性和波动稳定性合成当前市场状态的基础证据。">四维评分</h2>
           </div>
           <div class="compact-scores" id="scoreList"></div>
           <div class="chart-box radar-box" id="radarChart"></div>
         </article>
+        </section>
+
+        <section class="channel-link-row" aria-label="周期详情入口">
+          <a class="detail-nav-card" href="/cycle-track">
+            <span>Current Cycle</span>
+            <strong class="help-title help-title-inline" tabindex="0" data-help="进入只观察本轮周期的页面，查看从本轮开始到当前的指数走势和概率展望。">本轮周期跟踪</strong>
+            <em>查看本轮周期折线、概率展望、关键均线和事实解释。</em>
+          </a>
+          <a class="detail-nav-card" href="/cycle-observation">
+            <span>Long Cycle</span>
+            <strong class="help-title help-title-inline" tabindex="0" data-help="进入长期牛熊切分页面，查看历史主周期、牛市主题和上证指数走势。">长期牛熊观察</strong>
+            <em>查看长期主周期切分、牛市主题和上证指数走势。</em>
+          </a>
+        </section>
       </section>
 
-      <section class="results-overview" aria-live="polite">
+      <section class="results-overview" id="execution-channel" aria-live="polite">
         <div class="dashboard-section-heading">
           <div>
-            <span>Decision</span>
-            <h2>决策总览</h2>
+            <span>Risk Execution</span>
+            <h2>风控执行</h2>
           </div>
-          <p>先看当前风险、仓位、策略路由和系统一致性。</p>
+          <p>把风险评分、仓位、策略路由、执行模拟和系统边界放在一起。</p>
         </div>
 
         <article class="chart-panel result-panel risk-result-panel">
           <div class="panel-heading">
-            <h2>全部成果展示</h2>
+            <h2 class="help-title" tabindex="0" data-help="汇总当前风险等级、建议仓位和主要风控动作，是首页最先看的执行摘要。">风险总览</h2>
             <span class="panel-kicker" id="resultsAsOf">--</span>
           </div>
           <div class="risk-headline">
@@ -110,7 +156,7 @@
 
         <article class="chart-panel result-panel portfolio-result-panel">
           <div class="panel-heading">
-            <h2>组合配置</h2>
+            <h2 class="help-title" tabindex="0" data-help="把系统建议的总仓位、现金比例和策略分配拆开，检查仓位是否符合风险约束。">组合配置</h2>
             <span class="panel-kicker">R2.1</span>
           </div>
           <div class="portfolio-headline">
@@ -133,7 +179,7 @@
 
         <article class="chart-panel result-panel strategy-route-panel">
           <div class="panel-heading">
-            <h2>策略路由</h2>
+            <h2 class="help-title" tabindex="0" data-help="显示当前允许启用哪些策略、禁用哪些策略，以及资金在策略之间如何分配。">策略路由</h2>
             <span class="panel-kicker">R2.2</span>
           </div>
           <div class="route-summary">
@@ -157,7 +203,7 @@
 
         <article class="chart-panel result-panel execution-panel">
           <div class="panel-heading">
-            <h2>执行模拟</h2>
+            <h2 class="help-title" tabindex="0" data-help="只展示模拟执行意图和模拟指令，用来检查系统会如何调整仓位，不会下真实订单。">执行模拟</h2>
             <span class="panel-kicker">R3.1</span>
           </div>
           <div class="execution-headline">
@@ -186,7 +232,7 @@
 
         <article class="chart-panel result-panel system-freeze-panel">
           <div class="panel-heading">
-            <h2>系统冻结</h2>
+            <h2 class="help-title" tabindex="0" data-help="检查系统是否保持只读、模拟、无真实交易、无券商连接等边界。">系统冻结</h2>
             <span class="panel-kicker">FINAL</span>
           </div>
           <div class="system-headline">
@@ -213,7 +259,7 @@
 
         <article class="chart-panel result-panel meta-edge-panel">
           <div class="panel-heading">
-            <h2>Meta Edge</h2>
+            <h2 class="help-title" tabindex="0" data-help="检测系统内部是否出现状态、风险、组合、周期之间的矛盾，用于提醒复核。">Meta Edge</h2>
             <span class="panel-kicker">M1.1</span>
           </div>
           <div class="meta-edge-headline">
@@ -234,18 +280,20 @@
           <div class="meta-strength-list" id="metaEdgeStrengthList"></div>
           <p class="result-note" id="metaEdgeConclusion">--</p>
         </article>
+      </section>
 
+      <section class="results-overview" id="etf-channel" aria-live="polite">
         <div class="dashboard-section-heading">
           <div>
-            <span>ETF Validation</span>
-            <h2>ETF 轮动与回测验证</h2>
+            <span>ETF Rotation</span>
+            <h2>ETF 轮动</h2>
           </div>
-          <p>把风格信号、轮动权重、历史回测和影子账户放在同一组里观察。</p>
+          <p>从风格信号到 ETF 权重，再到回测曲线和调仓历史，集中观察轮动系统本身。</p>
         </div>
 
         <article class="chart-panel result-panel style-rotation-panel">
           <div class="panel-heading">
-            <h2>风格轮动基础</h2>
+            <h2 class="help-title" tabindex="0" data-help="把当前市场状态映射到价值、成长、红利、低波、现金等风格分数，生成 ETF 候选池。">风格轮动基础</h2>
             <span class="panel-kicker">A1.1</span>
           </div>
           <div class="style-headline">
@@ -269,7 +317,7 @@
 
         <article class="chart-panel result-panel etf-rotation-panel">
           <div class="panel-heading">
-            <h2>ETF 轮动信号</h2>
+            <h2 class="help-title" tabindex="0" data-help="根据风格分数和 ETF 近期强弱，输出当前目标 ETF 权重和轮动方向。">ETF 轮动信号</h2>
             <span class="panel-kicker">A1.2</span>
           </div>
           <div class="rotation-headline">
@@ -293,8 +341,11 @@
 
         <article class="chart-panel result-panel etf-backtest-panel wide-analysis-panel">
           <div class="panel-heading">
-            <h2>ETF 轮动回测</h2>
-            <span class="panel-kicker">A1.3</span>
+            <h2 class="help-title" tabindex="0" data-help="检验 ETF 轮动规则在历史区间的收益、回撤、命中率和基准对比；调仓历史是它的明细表。">ETF 轮动回测</h2>
+            <div class="panel-actions">
+              <span class="panel-kicker">A1.3</span>
+              <a class="panel-link" href="/rotation-history">调仓历史</a>
+            </div>
           </div>
           <div class="wide-panel-layout">
             <div class="wide-panel-metrics">
@@ -347,10 +398,20 @@
             <div class="chart-box rotation-backtest-box" id="rotationBacktestChart"></div>
           </div>
         </article>
+      </section>
+
+      <section class="results-overview" id="validation-channel" aria-live="polite">
+        <div class="dashboard-section-heading">
+          <div>
+            <span>Validation</span>
+            <h2>验证归因</h2>
+          </div>
+          <p>用影子账户、Regime 归因、结构事件和模型验证来判断系统是否可靠。</p>
+        </div>
 
         <article class="chart-panel result-panel shadow-panel wide-analysis-panel">
           <div class="panel-heading">
-            <h2>影子账户评估</h2>
+            <h2 class="help-title" tabindex="0" data-help="用系统历史仓位模拟一个影子账户，和基准对比收益、回撤与长期 Alpha。">影子账户评估</h2>
             <span class="panel-kicker">S1.1 / 510500</span>
           </div>
           <div class="wide-panel-layout">
@@ -403,7 +464,7 @@
 
         <article class="chart-panel result-panel attribution-panel">
           <div class="panel-heading">
-            <h2>Regime 归因</h2>
+            <h2 class="help-title" tabindex="0" data-help="把影子账户相对基准的差异拆到牛市、熊市、震荡和过渡状态，判断收益来源和拖累来源。">Regime 归因</h2>
             <span class="panel-kicker">S1.2</span>
           </div>
           <div class="attribution-headline">
@@ -431,15 +492,15 @@
 
         <div class="dashboard-section-heading">
           <div>
-            <span>Model & Boundary</span>
-            <h2>模型验证与系统边界</h2>
+            <span>Model Rules</span>
+            <h2>模型验证与生命周期</h2>
           </div>
-          <p>这些模块用于解释模型可靠性、生命周期标签、执行边界和接口目录。</p>
+          <p>这些模块用于解释结构事件、模型可靠性、生命周期标签和输出口径。</p>
         </div>
 
         <article class="chart-panel result-panel">
           <div class="panel-heading">
-            <h2>结构事件标签</h2>
+            <h2 class="help-title" tabindex="0" data-help="把日常状态跳变压缩为更重要的结构事件，减少噪声后观察主周期风险。">结构事件标签</h2>
             <span class="panel-kicker">H1.1 / H1.2</span>
           </div>
           <div class="result-metrics">
@@ -461,7 +522,7 @@
 
         <article class="chart-panel result-panel">
           <div class="panel-heading">
-            <h2>模型验证</h2>
+            <h2 class="help-title" tabindex="0" data-help="用 AUC、Lift 和敏感性区间检查状态模型是否有识别力，以及是否稳定。">模型验证</h2>
             <span class="panel-kicker">H1.3</span>
           </div>
           <div class="result-metrics">
@@ -487,7 +548,7 @@
 
         <article class="chart-panel result-panel">
           <div class="panel-heading">
-            <h2>生命周期与策略规则</h2>
+            <h2 class="help-title" tabindex="0" data-help="统计不同市场状态的持续时间、事件率和生命周期特征，辅助理解策略规则。">生命周期与策略规则</h2>
             <span class="panel-kicker">H2.1 / R1.2</span>
           </div>
           <div class="result-metrics">
@@ -509,40 +570,34 @@
 
         <article class="chart-panel result-panel conclusions-panel">
           <div class="panel-heading">
-            <h2>结论口径</h2>
+            <h2 class="help-title" tabindex="0" data-help="集中列出页面解释口径和边界，避免把模拟、验证或风险提示误读为交易指令。">结论口径</h2>
             <span class="panel-kicker">页面展示口径</span>
           </div>
           <ul class="conclusion-list" id="conclusionList"></ul>
         </article>
       </section>
 
-      <section class="detail-nav-section" aria-label="详情页面入口">
-        <a class="detail-nav-card" href="/rotation-history">
-          <span>ETF Rotation</span>
-          <strong>调仓历史</strong>
-          <em>查看每次再平衡日期、轮动方向、目标 ETF 权重和换手。</em>
-        </a>
-        <a class="detail-nav-card" href="/cycle-track">
-          <span>Current Cycle</span>
-          <strong>本轮周期跟踪</strong>
-          <em>查看本轮周期折线、概率展望、关键均线和事实解释。</em>
-        </a>
-        <a class="detail-nav-card" href="/cycle-observation">
-          <span>Long Cycle</span>
-          <strong>长期牛熊观察</strong>
-          <em>查看长期主周期切分、牛市主题和上证指数走势。</em>
-        </a>
-        <a class="detail-nav-card" href="/api-docs">
+      <section class="channel-section" id="api-channel">
+        <div class="dashboard-section-heading">
+          <div>
+            <span>API</span>
+            <h2>接口说明</h2>
+          </div>
+          <p>接口目录和只读边界放在最后，作为系统对外说明。</p>
+        </div>
+        <div class="channel-link-row channel-link-row-single">
+          <a class="detail-nav-card" href="/api-docs">
           <span>API</span>
-          <strong>接口说明</strong>
+          <strong class="help-title help-title-inline" tabindex="0" data-help="进入接口目录页面，查看当前系统提供的接口、返回内容和只读边界。">接口说明</strong>
           <em>查看当前系统全部接口、返回内容和只读边界。</em>
         </a>
+        </div>
       </section>
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260626-detail-1"></script>
-    <script src="/static/dashboard.js?v=20260626-detail-1"></script>
+    <script src="/static/charts.js?v=20260626-home-1"></script>
+    <script src="/static/dashboard.js?v=20260626-home-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
