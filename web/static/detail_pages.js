@@ -69,6 +69,29 @@ function styleLabel(value) {
   return labels[value] || value || "--";
 }
 
+function styleAllocationLabel(value) {
+  const labels = {
+    growth: "成长/科技",
+    value: "价值/大盘",
+    low_vol: "低波",
+    dividend: "红利",
+    small_cap: "中小盘",
+  };
+  return labels[value] || value || "--";
+}
+
+function regimeLabel(value) {
+  const labels = {
+    bull: "牛市",
+    bear: "熊市",
+    range: "震荡",
+    transition: "过渡",
+    recovery: "修复",
+    contraction: "收缩",
+  };
+  return labels[value] || value || "--";
+}
+
 function rotationSignalLabel(value) {
   if (!value) return "--";
   if (value === "hold_universe") return "保持观察池";
@@ -169,6 +192,108 @@ function rebalanceReasonHtml(reason) {
   `;
 }
 
+function topWeightEntries(weights, limit = 3) {
+  return Object.entries(weights || {})
+    .map(([key, value]) => [key, Number(value) || 0])
+    .sort((left, right) => right[1] - left[1])
+    .slice(0, limit);
+}
+
+function topStyleText(weights) {
+  return topWeightEntries(weights, 3)
+    .map(([style, weight]) => `${styleAllocationLabel(style)} ${percentText(weight)}`)
+    .join(" / ");
+}
+
+function topEtfText(weights) {
+  return topWeightEntries(weights, 3)
+    .map(([code, weight]) => `${code} ${percentText(weight)}`)
+    .join(" / ");
+}
+
+function macroRebalanceReason(current, previous) {
+  if (!previous) {
+    return {
+      label: "初始建仓",
+      detail: "首次按宏观、风格、ETF 三层规则建立目标组合。",
+      drivers: [
+        `宏观状态 ${regimeLabel(current.macro_regime)}`,
+        `目标权益 ${percentText(current.target_exposure)}`,
+        `主风格 ${topStyleText(current.style_allocation)}`,
+      ],
+    };
+  }
+  const exposureChange = Number(current.target_exposure || 0) - Number(previous.target_exposure || 0);
+  const currentTopStyle = topWeightEntries(current.style_allocation, 1)[0]?.[0];
+  const previousTopStyle = topWeightEntries(previous.style_allocation, 1)[0]?.[0];
+  const drivers = [
+    `目标权益 ${percentText(previous.target_exposure)} -> ${percentText(current.target_exposure)}`,
+    `主风格 ${styleAllocationLabel(previousTopStyle)} -> ${styleAllocationLabel(currentTopStyle)}`,
+    `ETF 权重 ${topEtfText(current.etf_allocation)}`,
+  ];
+  if (current.macro_regime !== previous.macro_regime) {
+    return {
+      label: "宏观状态切换",
+      detail: `${regimeLabel(previous.macro_regime)} -> ${regimeLabel(current.macro_regime)}，重新计算权益上限和风格分配。`,
+      drivers,
+    };
+  }
+  if (Math.abs(exposureChange) >= 0.08) {
+    return {
+      label: "目标权益显著变化",
+      detail: `目标权益变化 ${signedPointText(exposureChange)}，风险覆盖或宏观得分变化推动仓位调整。`,
+      drivers,
+    };
+  }
+  if (currentTopStyle !== previousTopStyle) {
+    return {
+      label: "主风格切换",
+      detail: `${styleAllocationLabel(previousTopStyle)} -> ${styleAllocationLabel(currentTopStyle)}，权益内部风格权重重新分配。`,
+      drivers,
+    };
+  }
+  return {
+    label: "周期再平衡",
+    detail: "达到 20 个交易日再平衡间隔，按最新分层信号微调 ETF 权重。",
+    drivers,
+  };
+}
+
+function targetWeightChanges(currentWeights, previousWeights) {
+  const keys = new Set([...Object.keys(currentWeights || {}), ...Object.keys(previousWeights || {})]);
+  return [...keys].map((code) => ({
+    code,
+    change: Number((currentWeights || {})[code] || 0) - Number((previousWeights || {})[code] || 0),
+  }));
+}
+
+function styleWeightsHtml(weights) {
+  const styleColors = {
+    growth: "#ef4444",
+    small_cap: "#f97316",
+    value: "#eab308",
+    dividend: "#64748b",
+    low_vol: "#94a3b8",
+  };
+  const order = ["growth", "small_cap", "value", "dividend", "low_vol"];
+  return `
+    <div class="style-allocation-cell">
+      ${order
+        .map((style) => {
+          const weight = Number((weights || {})[style] || 0);
+          return `
+            <div class="style-allocation-row">
+              <span>${escapeHtml(styleAllocationLabel(style))}</span>
+              <strong>${percentText(weight)}</strong>
+              <i style="width:${Math.round(weight * 100)}%; background:${styleColors[style]}"></i>
+            </div>
+          `;
+        })
+        .join("")}
+    </div>
+  `;
+}
+
 async function renderRotationHistoryPage() {
   const payload = await getJson("/api/style/rotation-backtest");
   const summary = payload.summary || {};
@@ -198,6 +323,44 @@ async function renderRotationHistoryPage() {
     )
     .join("");
   setText("historyCount", `${integerText(signals.length)} 次再平衡记录`);
+}
+
+async function renderMacroStyleHistoryPage() {
+  const payload = await getJson("/api/style/macro-style-etf-backtest");
+  const summary = payload.summary || {};
+  const signals = payload.signals || [];
+  setSummaryTiles([
+    { label: "回测区间", value: `${toIsoDate(summary.start_date)} - ${toIsoDate(summary.end_date)}` },
+    { label: "分层收益", value: signedRatioText(summary.hierarchical_total_return) },
+    { label: "510500收益", value: signedRatioText(summary.benchmark_510500_return) },
+    { label: "平均权益仓位", value: percentText(summary.average_target_exposure) },
+    { label: "最大回撤", value: percentText(summary.max_drawdown) },
+    { label: "调仓次数", value: integerText(summary.rebalance_count) },
+  ]);
+  const enriched = signals.map((item, index) => ({
+    ...item,
+    rebalance_reason: macroRebalanceReason(item, signals[index - 1]),
+    target_weight_changes: targetWeightChanges(item.etf_allocation, signals[index - 1]?.etf_allocation || {}),
+  }));
+  const rows = [...enriched].reverse();
+  document.getElementById("historyTableBody").innerHTML = rows
+    .map(
+      (item) => `
+        <tr>
+          <td>${toIsoDate(item.date)}</td>
+          <td>${regimeLabel(item.macro_regime)}</td>
+          <td>${percentText(item.exposure_ceiling)}</td>
+          <td>${percentText(item.target_exposure)}</td>
+          <td>${percentText(item.risk_overlay)}</td>
+          <td>${percentText(item.turnover_to_target)}</td>
+          <td>${rebalanceReasonHtml(item.rebalance_reason)}</td>
+          <td>${styleWeightsHtml(item.style_allocation)}</td>
+          <td>${weightsHtml(item.etf_allocation, { weight_changes: item.target_weight_changes })}</td>
+        </tr>
+      `
+    )
+    .join("");
+  setText("historyCount", `${integerText(signals.length)} 次分层再平衡记录`);
 }
 
 function setProbabilityRow(id, value) {
@@ -311,6 +474,7 @@ async function renderApiDocsPage() {
 async function bootDetailPage() {
   const page = document.body.dataset.page;
   if (page === "rotation-history") await renderRotationHistoryPage();
+  if (page === "macro-style-history") await renderMacroStyleHistoryPage();
   if (page === "cycle-track") await renderCycleTrackPage();
   if (page === "cycle-observation") await renderCycleObservationPage();
   if (page === "api-docs") await renderApiDocsPage();

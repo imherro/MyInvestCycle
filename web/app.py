@@ -431,6 +431,7 @@ def _api_catalog_payload() -> dict[str, object]:
             "endpoints": [
                 _api_endpoint("GET", "/", "打开当前系统首页。", "HTML dashboard", freshness="page"),
                 _api_endpoint("GET", "/rotation-history", "打开 ETF 轮动调仓历史表格页面。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/macro-style-history", "打开 Macro-Style-ETF 分层组合调仓历史表格页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/cycle-track", "打开本轮周期跟踪与概率展望页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/cycle-observation", "打开长期牛熊周期观察页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/api-docs", "打开接口说明页面。", "HTML page", freshness="page"),
@@ -570,6 +571,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/style/rotation-signal", "description": "读取 ETF 轮动信号与目标权重建议。"},
             {"path": "/api/style/rotation-backtest", "description": "读取 ETF 轮动 Alpha 验证结果。"},
             {"path": "/api/style/macro-style-etf-backtest", "description": "读取 Macro-Style-ETF 分层组合回测结果。"},
+            {"path": "/macro-style-history", "description": "查看 Macro-Style-ETF 分层组合调仓历史。"},
             {"path": "/api/shadow/current", "description": "读取仓位风控回测与 510500 基准评估。"},
         ],
         "safety": {
@@ -603,6 +605,11 @@ def dashboard():
 @app.get("/rotation-history", response_class=HTMLResponse)
 def rotation_history_page():
     return FileResponse(ROOT_DIR / "web" / "templates" / "rotation_history.html")
+
+
+@app.get("/macro-style-history", response_class=HTMLResponse)
+def macro_style_history_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "macro_style_history.html")
 
 
 @app.get("/cycle-track", response_class=HTMLResponse)

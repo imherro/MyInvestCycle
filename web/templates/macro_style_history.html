@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Macro-Style-ETF 分层调仓历史</title>
+    <link rel="stylesheet" href="/static/style.css?v=20260626-detail-8" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  </head>
+  <body data-page="macro-style-history">
+    <div data-myinvest-header></div>
+    <main class="shell detail-page">
+      <div class="detail-toolbar">
+        <div>
+          <p class="eyebrow">Macro-Style-ETF</p>
+          <h1>分层组合调仓历史</h1>
+        </div>
+        <a class="back-link" href="/#etf-channel">返回 ETF 频道</a>
+      </div>
+      <section class="detail-summary-grid" id="summaryTiles"></section>
+      <article class="chart-panel">
+        <div class="panel-heading">
+          <h2>再平衡记录</h2>
+          <span class="panel-kicker" id="historyCount">--</span>
+        </div>
+        <div class="history-table-wrap">
+          <table class="history-table macro-history-table">
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>宏观状态</th>
+                <th>权益上限</th>
+                <th>目标权益</th>
+                <th>风险覆盖</th>
+                <th>换手</th>
+                <th>调仓原因</th>
+                <th>风格权重</th>
+                <th>ETF 目标仓位</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody"></tbody>
+          </table>
+        </div>
+        <p class="result-note">
+          分层组合调仓历史来自 M2.1 回测信号。宏观层只控制权益仓位，风格层只分配风格权重，ETF 层只做映射；这里展示的是模拟回测轨迹，不代表真实交易指令。
+        </p>
+        <p class="result-note" id="pageError"></p>
+      </article>
+    </main>
+    <div data-myinvest-footer></div>
+    <script src="/static/charts.js?v=20260626-detail-8"></script>
+    <script src="/static/detail_pages.js?v=20260626-detail-8"></script>
+    <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
+    <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
+  </body>
+</html>

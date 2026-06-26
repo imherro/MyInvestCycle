@@ -105,6 +105,8 @@ python web/app.py
 Endpoints:
 
 - `GET http://127.0.0.1:8021/api`
+- `GET http://127.0.0.1:8021/rotation-history`
+- `GET http://127.0.0.1:8021/macro-style-history`
 - `GET http://127.0.0.1:8021/docs`
 - `GET http://127.0.0.1:8021/redoc`
 - `GET http://127.0.0.1:8021/openapi.json`
@@ -467,14 +469,18 @@ The hierarchical backtest keeps the layer contract explicit:
 macro_regime
 exposure_ceiling
 target_exposure
+risk_overlay
 style_allocation
 etf_allocation
+turnover_to_target
 alpha_vs_510300
 alpha_vs_510500
 alpha_vs_equal_weight
 alpha_vs_current_a1
 macro_regime_breakdown
 ```
+
+The web page `/macro-style-history` displays every M2.1 rebalance signal in reverse chronological order, including macro regime, exposure cap, target exposure, risk overlay, turnover, style weights, ETF target weights, and page-level rebalance reason.
 
 Run the S1.1 Shadow Portfolio Engine:
 
