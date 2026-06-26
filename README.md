@@ -36,6 +36,9 @@ engine foundation requested by the design review.
 - A1.2 ETF Rotation Signal Engine ranks ETF candidates by regime-conditioned
   style score, relative strength, ranking stability, and return quality, then
   emits simulation-only target weights; it does not generate orders.
+- A1.3 ETF Rotation Backtest & Alpha Validation replays historical A1.2-style
+  signals with one-session lag, compares against `510500.SH`, `510300.SH`, and
+  an equal-weight ETF basket, and reports whether the alpha evidence is real.
 - S1.1 Shadow Portfolio Engine replays historical R2 exposure against the
   `510500.SH` benchmark to evaluate equity curve, Alpha, and drawdown; it is a
   pure evaluation layer and does not predict returns, select stocks, or execute
@@ -114,6 +117,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/meta-edge/current`
 - `GET http://127.0.0.1:8021/api/style/current`
 - `GET http://127.0.0.1:8021/api/style/rotation-signal`
+- `GET http://127.0.0.1:8021/api/style/rotation-backtest`
 - `GET http://127.0.0.1:8021/api/shadow/current`
 - `GET http://127.0.0.1:8021/api/shadow/regime-attribution`
 - `GET http://127.0.0.1:8021/api/system/snapshot`
@@ -410,6 +414,34 @@ etf_target_weights
 rebalance_signal
 confidence
 data_coverage
+```
+
+Run the A1.3 ETF Rotation Backtest & Alpha Validation:
+
+```powershell
+python scripts/run_etf_rotation_backtest.py --start 20200101 --end 20260625
+```
+
+Default output:
+
+```text
+data/etf_rotation_backtest.json
+```
+
+The backtest applies signal weights from the next trading session to avoid
+lookahead bias, then returns:
+
+```text
+rotation_equity
+benchmark_equity
+alpha_vs_510500
+alpha_vs_510300
+alpha_vs_equal_weight
+sharpe
+max_drawdown
+hit_rate
+turnover
+regime_breakdown
 ```
 
 Run the S1.1 Shadow Portfolio Engine:

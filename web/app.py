@@ -41,7 +41,7 @@ from engine.market_engine import analyze_index_regime
 from engine.regime_explainer import explain_regime
 
 
-app = FastAPI(title="MyInvestCycle Regime API", version="0.6")
+app = FastAPI(title="MyInvestCycle Regime API", version="0.7")
 app.mount("/static", StaticFiles(directory=ROOT_DIR / "web" / "static"), name="static")
 
 
@@ -92,6 +92,14 @@ def _read_shadow_backtest_payload() -> dict[str, object] | None:
 
 def _read_regime_attribution_payload() -> dict[str, object] | None:
     path = DATA_DIR / "regime_performance_attribution.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
+def _read_etf_rotation_backtest_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "etf_rotation_backtest.json"
     if not path.exists():
         return None
     payload = json.loads(path.read_text(encoding="utf-8"))
@@ -472,6 +480,13 @@ def _api_catalog_payload() -> dict[str, object]:
                     "ETF rotation signal",
                     freshness="generated from local ETF cache",
                 ),
+                _api_endpoint(
+                    "GET",
+                    "/api/style/rotation-backtest",
+                    "返回 A1.3 ETF 轮动回测、Alpha 验证、benchmark 对比和分状态拆解。",
+                    "ETF rotation backtest",
+                    freshness="generated artifact",
+                ),
             ],
         },
         {
@@ -525,6 +540,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/meta-edge/current", "description": "读取系统内部矛盾信号。"},
             {"path": "/api/style/current", "description": "读取风格评分与 ETF 候选池。"},
             {"path": "/api/style/rotation-signal", "description": "读取 ETF 轮动信号与目标权重建议。"},
+            {"path": "/api/style/rotation-backtest", "description": "读取 ETF 轮动 Alpha 验证结果。"},
             {"path": "/api/shadow/current", "description": "读取影子账户与 510500 基准评估。"},
         ],
         "safety": {
@@ -686,6 +702,17 @@ def style_rotation_signal() -> dict:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
 
+@app.get("/api/style/rotation-backtest")
+def style_rotation_backtest() -> dict:
+    payload = _read_etf_rotation_backtest_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="ETF rotation backtest artifact missing; run scripts/run_etf_rotation_backtest.py first.",
+        )
+    return payload
+
+
 @app.get("/api/shadow/current")
 def shadow_current() -> dict:
     payload = _read_shadow_backtest_payload()
@@ -737,6 +764,7 @@ def results_summary() -> dict:
         meta_edge = _meta_edge_payload(snapshot)
         style_rotation = _style_rotation_payload(snapshot)
         etf_rotation_signal = _etf_rotation_signal_payload(style_rotation)
+        etf_rotation_backtest = _read_etf_rotation_backtest_payload()
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -774,6 +802,7 @@ def results_summary() -> dict:
             "meta_edge": meta_edge,
             "style_rotation": style_rotation,
             "etf_rotation_signal": etf_rotation_signal,
+            "etf_rotation_backtest": etf_rotation_backtest,
             "shadow_backtest": shadow_backtest,
             "regime_attribution": regime_attribution,
             "system": system_snapshot_payload,
@@ -808,6 +837,7 @@ def results_summary() -> dict:
                 "M1.1 已新增 Meta Signal Engine，只检测系统内部矛盾信号，不预测收益、不选股、不改变既有风控链路。",
                 "A1.1 已新增风格评分与 ETF universe 层，把 regime、风险评分、宽度、流动性和波动稳定度映射到 ETF 候选池。",
                 "A1.2 已新增 ETF 轮动信号层，把风格评分、ETF 相对强弱和排名稳定性转成 simulation-only 目标权重建议。",
+                "A1.3 已新增 ETF 轮动回测与 Alpha 验证层，用历史回放检验轮动信号是否跑赢 510500、510300 和等权 ETF basket。",
                 "S1.1 已新增影子账户评估，用历史 R2 仓位回放 510500 基准收益，输出权益曲线、Alpha 和回撤。",
                 "S1.2 已按牛熊状态拆解影子账户收益来源，识别牛市参与不足是主要拖累，熊市防守是主要正贡献。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",

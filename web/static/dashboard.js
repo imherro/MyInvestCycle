@@ -313,6 +313,9 @@ function setResultsPanel(results) {
   const styleInterpretation = styleRotation.interpretation || {};
   const etfRotation = results.etf_rotation_signal || {};
   const rotationConfidence = etfRotation.confidence || {};
+  const etfBacktest = results.etf_rotation_backtest || {};
+  const backtestSummary = etfBacktest.summary || {};
+  const backtestValidation = etfBacktest.validation || {};
   const shadowBacktest = results.shadow_backtest || {};
   const shadowSummary = shadowBacktest.summary || {};
   const shadowMetadata = shadowBacktest.metadata || {};
@@ -564,6 +567,22 @@ function setResultsPanel(results) {
       : "A1.2 ETF 轮动信号结果尚未生成。"
   );
 
+  setText("backtestAlpha510500", signedRatioText(backtestSummary.alpha_vs_510500));
+  setText("backtestAlphaEqual", signedRatioText(backtestSummary.alpha_vs_equal_weight));
+  setText("backtestDrawdown", percentText(backtestSummary.max_drawdown));
+  setText("backtestHitRate", percentText(backtestSummary.hit_rate_vs_510500));
+  const alphaVerdict = backtestValidation.alpha_positive_vs_equal_weight
+    ? "跑赢 510500、510300 和等权 ETF basket，存在初步 alpha 证据"
+    : backtestValidation.alpha_positive_vs_510500
+      ? "仅小幅跑赢 510500，但未跑赢等权 ETF basket，alpha 证据不足"
+      : "未跑赢 510500，当前轮动信号未证明 alpha";
+  setText(
+    "backtestConclusion",
+    etfBacktest.metadata
+      ? `A1.3 覆盖 ${integerText(backtestSummary.sessions)} 个交易日，${alphaVerdict}；该层只做历史真伪验证，不生成交易。`
+      : "A1.3 ETF 轮动回测结果尚未生成。"
+  );
+
   setText("shadowFinalAlpha", signedRatioText(shadowSummary.final_alpha));
   setText("shadowAverageExposure", percentText(shadowSummary.average_applied_exposure));
   setText("shadowTotalReturn", signedRatioText(shadowSummary.shadow_total_return));
@@ -778,6 +797,7 @@ async function loadDashboard() {
     setCycleBlocks(cycle.cycle_blocks || []);
     renderRadar("radarChart", current.sub_scores);
     renderShadowEquityChart("shadowEquityChart", results.shadow_backtest || {});
+    renderEtfRotationBacktestChart("rotationBacktestChart", results.etf_rotation_backtest || {});
     renderIndexChart("indexChart", cycle.series || [], phase, cycle.cycle_blocks || []);
     renderCycleTrackChart("cycleTrackChart", track);
   } finally {

@@ -117,6 +117,64 @@ function renderShadowEquityChart(elementId, shadowBacktest) {
   );
 }
 
+function renderEtfRotationBacktestChart(elementId, backtest) {
+  const items = backtest?.equity_curve || [];
+  const x = items.map((item) => toIsoDate(item.date));
+  const rotation = items.map((item) => item.rotation_equity ?? null);
+  const benchmark500 = items.map((item) => item.benchmark_510500_equity ?? null);
+  const benchmark300 = items.map((item) => item.benchmark_510300_equity ?? null);
+  const equalWeight = items.map((item) => item.equal_weight_basket_equity ?? null);
+  Plotly.react(
+    elementId,
+    [
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "轮动组合",
+        x,
+        y: rotation,
+        line: { color: "#2663eb", width: 2.4 },
+        hovertemplate: "%{x}<br>轮动 %{y:.3f}<extra></extra>",
+      },
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "510500",
+        x,
+        y: benchmark500,
+        line: { color: "#697386", width: 1.8 },
+        hovertemplate: "%{x}<br>510500 %{y:.3f}<extra></extra>",
+      },
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "510300",
+        x,
+        y: benchmark300,
+        line: { color: "#c69214", width: 1.7, dash: "dot" },
+        hovertemplate: "%{x}<br>510300 %{y:.3f}<extra></extra>",
+      },
+      {
+        type: "scatter",
+        mode: "lines",
+        name: "等权ETF",
+        x,
+        y: equalWeight,
+        line: { color: "#17885b", width: 1.7, dash: "dash" },
+        hovertemplate: "%{x}<br>等权 %{y:.3f}<extra></extra>",
+      },
+    ],
+    {
+      ...baseLayout(250),
+      margin: { l: 42, r: 16, t: 16, b: 36 },
+      xaxis: { tickformat: "%Y", gridcolor: "#edf0f5" },
+      yaxis: { gridcolor: "#edf0f5", zeroline: false },
+      legend: { orientation: "h", x: 0, y: 1.18 },
+    },
+    { responsive: true, displayModeBar: false }
+  );
+}
+
 function buildRegimeShapes(items, options = {}) {
   const y0 = options.y0 ?? 0;
   const y1 = options.y1 ?? 1;

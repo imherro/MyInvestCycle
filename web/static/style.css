@@ -326,6 +326,14 @@ h2 {
   border-bottom: 1px solid var(--line);
 }
 
+.backtest-headline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 10px 0 14px;
+  border-bottom: 1px solid var(--line);
+}
+
 .shadow-headline {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -358,6 +366,7 @@ h2 {
 .meta-edge-headline span,
 .style-headline span,
 .rotation-headline span,
+.backtest-headline span,
 .shadow-headline span,
 .attribution-headline span,
 .api-headline span,
@@ -432,6 +441,13 @@ h2 {
 }
 
 .rotation-headline strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 22px;
+  line-height: 1.15;
+}
+
+.backtest-headline strong {
   display: block;
   margin-top: 8px;
   font-size: 22px;
@@ -1088,6 +1104,11 @@ h2 {
   margin-top: 12px;
 }
 
+.chart-box.rotation-backtest-box {
+  height: 250px;
+  margin-top: 12px;
+}
+
 .chart-box.long-index-box {
   height: 410px;
 }
@@ -1494,6 +1515,7 @@ h2 {
     .meta-edge-headline,
     .style-headline,
     .rotation-headline,
+    .backtest-headline,
     .shadow-headline,
     .attribution-headline,
     .api-headline,
