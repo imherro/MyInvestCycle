@@ -14,7 +14,32 @@ from core.shadow_portfolio_engine import risk_signal_from_survival_row
 from core.style_factor_engine import build_style_factor_snapshot
 
 
-BENCHMARK_CODES = ("510500.SH", "510300.SH")
+ETF_COMPARISON_BENCHMARKS = (
+    {
+        "code": "510300.SH",
+        "name": "沪深300ETF",
+        "style": "价值/大盘",
+        "label": "价值/大盘 510300 沪深300ETF",
+    },
+    {
+        "code": "510880.SH",
+        "name": "红利ETF",
+        "style": "红利/低波",
+        "label": "红利/低波 510880 红利ETF",
+    },
+    {
+        "code": "510500.SH",
+        "name": "中证500ETF",
+        "style": "中小盘",
+        "label": "中小盘 510500 中证500ETF",
+    },
+    {
+        "code": "159915.SZ",
+        "name": "创业板ETF",
+        "style": "成长/科技",
+        "label": "成长/科技 159915 创业板ETF",
+    },
+)
 REGIME_LABELS = {
     "bull": "牛市",
     "bear": "熊市",
@@ -52,6 +77,18 @@ def _signal_label(value: object) -> str:
 
 def _coerce_price_frame(frame: pd.DataFrame) -> pd.DataFrame:
     return coerce_price_frame(frame)
+
+
+def _benchmark_key(code: str) -> str:
+    return code.split(".")[0]
+
+
+def _benchmark_return_column(code: str) -> str:
+    return f"benchmark_{_benchmark_key(code)}_return"
+
+
+def _benchmark_equity_column(code: str) -> str:
+    return f"benchmark_{_benchmark_key(code)}_equity"
 
 
 def _returns_matrix(price_history: Mapping[str, pd.DataFrame]) -> pd.DataFrame:
@@ -187,8 +224,7 @@ def _curve_records(frame: pd.DataFrame) -> list[dict[str, object]]:
     columns = [
         "date",
         "rotation_equity",
-        "benchmark_510500_equity",
-        "benchmark_510300_equity",
+        *[_benchmark_equity_column(str(item["code"])) for item in ETF_COMPARISON_BENCHMARKS],
         "equal_weight_basket_equity",
         "alpha_510500",
     ]
@@ -207,8 +243,7 @@ def _return_records(frame: pd.DataFrame) -> list[dict[str, object]]:
         "date",
         "regime",
         "rotation_return",
-        "benchmark_510500_return",
-        "benchmark_510300_return",
+        *[_benchmark_return_column(str(item["code"])) for item in ETF_COMPARISON_BENCHMARKS],
         "equal_weight_basket_return",
         "turnover",
     ]
@@ -239,6 +274,11 @@ def run_etf_rotation_backtest(
         if isinstance(row, dict) and row.get("date") and start_date <= str(row["date"]) <= end_date
     }
     returns = _returns_matrix(price_history)
+    comparison_benchmarks = [
+        benchmark
+        for benchmark in ETF_COMPARISON_BENCHMARKS
+        if str(benchmark["code"]) in returns.columns
+    ]
     dates = sorted(date for date in returns.index.astype(str) if start_date <= date <= end_date and date in rows_by_date)
     if not dates:
         raise ValueError("no overlapping dates between survival rows and ETF returns")
@@ -255,20 +295,20 @@ def run_etf_rotation_backtest(
         if current_weights and current_signal is not None:
             rotation_return = sum(float(weight) * float(day_returns.get(code, 0.0)) for code, weight in current_weights.items())
             equal_weight_return = float(day_returns[[code for code in price_history if code in day_returns.index]].mean())
-            daily_records.append(
-                {
-                    "date": date_text,
-                    "regime": current_signal.get("regime"),
-                    "rotation_return": rotation_return,
-                    "benchmark_510500_return": float(day_returns.get("510500.SH", 0.0)),
-                    "benchmark_510300_return": float(day_returns.get("510300.SH", 0.0)),
-                    "equal_weight_basket_return": equal_weight_return,
-                    "turnover": pending_turnover,
-                    "applied_weights": dict(current_weights),
-                    "signal_confidence": (current_signal.get("confidence") or {}).get("score"),
-                    "rebalance_signal": current_signal.get("rebalance_signal"),
-                }
-            )
+            record = {
+                "date": date_text,
+                "regime": current_signal.get("regime"),
+                "rotation_return": rotation_return,
+                "equal_weight_basket_return": equal_weight_return,
+                "turnover": pending_turnover,
+                "applied_weights": dict(current_weights),
+                "signal_confidence": (current_signal.get("confidence") or {}).get("score"),
+                "rebalance_signal": current_signal.get("rebalance_signal"),
+            }
+            for benchmark in comparison_benchmarks:
+                code = str(benchmark["code"])
+                record[_benchmark_return_column(code)] = float(day_returns.get(code, 0.0))
+            daily_records.append(record)
             pending_turnover = 0.0
 
         should_rebalance = index - last_rebalance_index >= max(1, rebalance_every_sessions)
@@ -311,27 +351,21 @@ def run_etf_rotation_backtest(
     if frame.empty:
         raise ValueError("no backtest returns generated; check ETF history and signal windows")
 
-    for column in (
-        "rotation_return",
-        "benchmark_510500_return",
-        "benchmark_510300_return",
-        "equal_weight_basket_return",
-    ):
+    benchmark_return_columns = [_benchmark_return_column(str(item["code"])) for item in comparison_benchmarks]
+    benchmark_equity_columns = [_benchmark_equity_column(str(item["code"])) for item in comparison_benchmarks]
+
+    for column in ("rotation_return", *benchmark_return_columns, "equal_weight_basket_return"):
         frame[column] = pd.to_numeric(frame[column], errors="coerce").fillna(0.0)
 
     frame["rotation_equity"] = (1.0 + frame["rotation_return"]).cumprod()
-    frame["benchmark_510500_equity"] = (1.0 + frame["benchmark_510500_return"]).cumprod()
-    frame["benchmark_510300_equity"] = (1.0 + frame["benchmark_510300_return"]).cumprod()
+    for return_column, equity_column in zip(benchmark_return_columns, benchmark_equity_columns):
+        frame[equity_column] = (1.0 + frame[return_column]).cumprod()
     frame["equal_weight_basket_equity"] = (1.0 + frame["equal_weight_basket_return"]).cumprod()
     frame["alpha_510500"] = frame["rotation_equity"] - frame["benchmark_510500_equity"]
 
     comparison = benchmark_comparison(
         frame,
-        benchmark_columns=[
-            "benchmark_510500_return",
-            "benchmark_510300_return",
-            "equal_weight_basket_return",
-        ],
+        benchmark_columns=[*benchmark_return_columns, "equal_weight_basket_return"],
     )
     primary = performance_metrics(
         frame["rotation_return"],
@@ -339,9 +373,33 @@ def run_etf_rotation_backtest(
         turnover=frame["turnover"],
     )
     rotation_total = compound_return(frame["rotation_return"])
-    benchmark_510500_total = compound_return(frame["benchmark_510500_return"])
-    benchmark_510300_total = compound_return(frame["benchmark_510300_return"])
+    benchmark_totals = {
+        str(benchmark["code"]): compound_return(frame[_benchmark_return_column(str(benchmark["code"]))])
+        for benchmark in comparison_benchmarks
+    }
     equal_weight_total = compound_return(frame["equal_weight_basket_return"])
+    rotation_drawdown = max_drawdown(frame["rotation_equity"])
+    benchmark_drawdowns = {
+        str(benchmark["code"]): max_drawdown(frame[_benchmark_equity_column(str(benchmark["code"]))])
+        for benchmark in comparison_benchmarks
+    }
+    benchmark_detail = []
+    for benchmark in comparison_benchmarks:
+        code = str(benchmark["code"])
+        total_return = benchmark_totals[code]
+        benchmark_drawdown = benchmark_drawdowns[code]
+        benchmark_detail.append(
+            {
+                "code": code,
+                "name": benchmark["name"],
+                "style": benchmark["style"],
+                "label": benchmark["label"],
+                "total_return": round(total_return, 6),
+                "max_drawdown": benchmark_drawdown,
+                "rotation_return_advantage": round(rotation_total - total_return, 6),
+                "rotation_drawdown_reduction": round(rotation_drawdown - benchmark_drawdown, 6),
+            }
+        )
 
     summary = {
         "start_date": str(frame["date"].iloc[0]),
@@ -350,21 +408,22 @@ def run_etf_rotation_backtest(
         "rebalance_count": len(signal_records),
         "rebalance_every_sessions": max(1, rebalance_every_sessions),
         "rotation_total_return": round(rotation_total, 6),
-        "benchmark_510500_return": round(benchmark_510500_total, 6),
-        "benchmark_510300_return": round(benchmark_510300_total, 6),
         "equal_weight_basket_return": round(equal_weight_total, 6),
-        "alpha_vs_510500": round(rotation_total - benchmark_510500_total, 6),
-        "alpha_vs_510300": round(rotation_total - benchmark_510300_total, 6),
         "alpha_vs_equal_weight": round(rotation_total - equal_weight_total, 6),
         "sharpe": primary["sharpe"],
-        "max_drawdown": max_drawdown(frame["rotation_equity"]),
-        "benchmark_510500_max_drawdown": max_drawdown(frame["benchmark_510500_equity"]),
-        "benchmark_510300_max_drawdown": max_drawdown(frame["benchmark_510300_equity"]),
+        "max_drawdown": rotation_drawdown,
         "equal_weight_basket_max_drawdown": max_drawdown(frame["equal_weight_basket_equity"]),
         "hit_rate_vs_510500": primary.get("hit_rate"),
         "average_turnover": primary.get("average_turnover"),
         "cumulative_turnover": primary.get("cumulative_turnover"),
+        "comparison_etfs": benchmark_detail,
     }
+    for code, total_return in benchmark_totals.items():
+        key = _benchmark_key(code)
+        summary[f"benchmark_{key}_return"] = round(total_return, 6)
+        summary[f"alpha_vs_{key}"] = round(rotation_total - total_return, 6)
+    for code, benchmark_drawdown in benchmark_drawdowns.items():
+        summary[f"benchmark_{_benchmark_key(code)}_max_drawdown"] = benchmark_drawdown
 
     return {
         "metadata": {
@@ -377,6 +436,7 @@ def run_etf_rotation_backtest(
             "no_stock_selection": True,
             "no_trade_execution": True,
             "no_order_generation": True,
+            "comparison_benchmarks": comparison_benchmarks,
         },
         "summary": summary,
         "performance_metrics": primary,
@@ -386,9 +446,11 @@ def run_etf_rotation_backtest(
         "daily_returns": _return_records(frame),
         "signals": signal_records,
         "validation": {
-            "alpha_positive_vs_510500": summary["alpha_vs_510500"] > 0,
-            "alpha_positive_vs_510300": summary["alpha_vs_510300"] > 0,
             "alpha_positive_vs_equal_weight": summary["alpha_vs_equal_weight"] > 0,
+            **{
+                f"alpha_positive_vs_{_benchmark_key(str(item['code']))}": summary[f"alpha_vs_{_benchmark_key(str(item['code']))}"] > 0
+                for item in comparison_benchmarks
+            },
             "stable_signal_count": len(signal_records),
             "effective_start_after_first_signal": summary["start_date"],
         },

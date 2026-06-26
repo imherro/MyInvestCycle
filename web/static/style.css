@@ -1046,6 +1046,51 @@ h2 {
   overflow-wrap: anywhere;
 }
 
+.backtest-comparison-table {
+  margin-top: 12px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--line);
+}
+
+.backtest-comparison-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.5fr) repeat(4, minmax(92px, 0.7fr));
+  gap: 10px;
+  min-width: 760px;
+  align-items: baseline;
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+}
+
+.backtest-comparison-head {
+  border-top: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.backtest-comparison-row strong {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.backtest-comparison-row span {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.backtest-comparison-head span {
+  color: var(--muted);
+}
+
+.backtest-comparison-row.is-strategy {
+  background: rgba(38, 99, 235, 0.04);
+}
+
 .api-group-row strong {
   color: var(--accent);
   font-size: 13px;

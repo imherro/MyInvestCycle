@@ -86,6 +86,14 @@ function fixedText(value, digits = 3) {
   return value.toFixed(digits);
 }
 
+function drawdownReductionText(value) {
+  if (typeof value !== "number") return "--";
+  const percent = Math.abs(value * 100).toFixed(1);
+  if (value > 0) return `轮动少 ${percent}pct`;
+  if (value < 0) return `轮动多 ${percent}pct`;
+  return "持平";
+}
+
 function integerText(value) {
   if (typeof value !== "number") return "--";
   return value.toLocaleString("zh-CN");
@@ -254,6 +262,45 @@ function componentLabel(value) {
 function setText(id, value) {
   const node = document.getElementById(id);
   if (node) node.textContent = value;
+}
+
+function setBacktestComparisonTable(summary) {
+  const target = document.getElementById("backtestEtfComparison");
+  if (!target) return;
+  const comparisonEtfs = summary.comparison_etfs || [];
+  const rows = [
+    {
+      label: "轮动策略",
+      total_return: summary.rotation_total_return,
+      max_drawdown: summary.max_drawdown,
+      rotation_return_advantage: null,
+      rotation_drawdown_reduction: null,
+      isStrategy: true,
+    },
+    ...comparisonEtfs,
+  ];
+  target.innerHTML = `
+    <div class="backtest-comparison-row backtest-comparison-head">
+      <span>标的</span>
+      <span>收益</span>
+      <span>最大回撤</span>
+      <span>收益差</span>
+      <span>回撤差</span>
+    </div>
+    ${rows
+      .map(
+        (item) => `
+          <div class="backtest-comparison-row${item.isStrategy ? " is-strategy" : ""}">
+            <strong>${escapeHtml(item.label || item.code || "--")}</strong>
+            <span>${signedRatioText(item.total_return)}</span>
+            <span>${percentText(item.max_drawdown)}</span>
+            <span>${item.isStrategy ? "--" : signedRatioText(item.rotation_return_advantage)}</span>
+            <span>${item.isStrategy ? "--" : drawdownReductionText(item.rotation_drawdown_reduction)}</span>
+          </div>
+        `
+      )
+      .join("")}
+  `;
 }
 
 function setApiCatalogPanel(catalog) {
@@ -573,9 +620,10 @@ function setResultsPanel(results) {
   setText("backtestSharpe", fixedText(backtestSummary.sharpe, 2));
   setText("backtestSessions", integerText(backtestSummary.sessions));
   setText("backtestRebalanceCount", integerText(backtestSummary.rebalance_count));
+  setBacktestComparisonTable(backtestSummary);
   setText(
     "backtestDrawdown",
-    `${percentText(backtestSummary.max_drawdown)} / 510500 ${percentText(backtestSummary.benchmark_510500_max_drawdown)} / 等权 ${percentText(backtestSummary.equal_weight_basket_max_drawdown)}`
+    `轮动 ${percentText(backtestSummary.max_drawdown)} / 等权 ${percentText(backtestSummary.equal_weight_basket_max_drawdown)}`
   );
   setText("backtestHitRate", percentText(backtestSummary.hit_rate_vs_510500));
   const alphaVerdict = backtestValidation.alpha_positive_vs_equal_weight
