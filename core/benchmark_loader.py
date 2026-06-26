@@ -72,6 +72,25 @@ def _read_cache(path: Path) -> pd.DataFrame:
     return _coerce_benchmark_daily(pd.read_csv(path, dtype={"trade_date": str}))
 
 
+def read_benchmark_cache(
+    ts_code: str = DEFAULT_BENCHMARK_CODE,
+    start_date: str = "19000101",
+    end_date: str = "20991231",
+    *,
+    cache_dir: Path = CACHE_DIR,
+) -> pd.DataFrame:
+    start = normalize_trade_date(start_date)
+    end = normalize_trade_date(end_date)
+    if start > end:
+        raise ValueError("start_date must be earlier than or equal to end_date.")
+
+    cached = _read_cache(benchmark_cache_path(ts_code, cache_dir))
+    if cached.empty:
+        return cached
+    result = cached[(cached["trade_date"] >= start) & (cached["trade_date"] <= end)].copy()
+    return result.sort_values("trade_date").reset_index(drop=True)
+
+
 def _write_cache(path: Path, df: pd.DataFrame) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     _coerce_benchmark_daily(df).to_csv(path, index=False, encoding="utf-8")

@@ -19,7 +19,9 @@ if str(ROOT_DIR) not in sys.path:
 
 from config import BREADTH_HISTORY_SAMPLE_SIZE, DATA_DIR, DEFAULT_INDEX_CODE, WEB_PORT
 from core.breadth import get_market_daily, get_market_history_sample
+from core.benchmark_loader import read_benchmark_cache
 from core.data_loader import get_index_daily, normalize_trade_date
+from core.etf_rotation_signal_engine import build_etf_rotation_signal
 from core.exposure_controller import build_exposure_decision
 from core.features import build_feature_frame
 from core.liquidity import get_moneyflow_hsgt
@@ -39,7 +41,7 @@ from engine.market_engine import analyze_index_regime
 from engine.regime_explainer import explain_regime
 
 
-app = FastAPI(title="MyInvestCycle Regime API", version="0.5")
+app = FastAPI(title="MyInvestCycle Regime API", version="0.6")
 app.mount("/static", StaticFiles(directory=ROOT_DIR / "web" / "static"), name="static")
 
 
@@ -343,6 +345,39 @@ def _style_rotation_payload(snapshot: dict[str, object]) -> dict[str, object]:
     }
 
 
+def _etf_price_history_from_cache(
+    etf_universe: dict[str, object],
+    as_of: str,
+    lookback_days: int = 320,
+) -> tuple[dict[str, pd.DataFrame], dict[str, str], str]:
+    start_date = _calendar_shift(as_of, -lookback_days)
+    price_history: dict[str, pd.DataFrame] = {}
+    errors: dict[str, str] = {}
+    for candidate in etf_universe.get("candidates", []):
+        code = str(candidate["code"])
+        frame = read_benchmark_cache(code, start_date, as_of)
+        if frame.empty:
+            errors[code] = "fund_daily cache missing or empty"
+            continue
+        price_history[code] = frame
+    return price_history, errors, start_date
+
+
+def _etf_rotation_signal_payload(style_rotation: dict[str, object]) -> dict[str, object]:
+    style_factor = style_rotation["style_factor"]
+    etf_universe = style_rotation["etf_universe"]
+    as_of = str(style_rotation["as_of"])
+    price_history, price_errors, start_date = _etf_price_history_from_cache(etf_universe, as_of)
+    rotation_signal = build_etf_rotation_signal(style_factor, etf_universe, price_history)
+    rotation_signal["price_history"] = {
+        "start_date": start_date,
+        "end_date": as_of,
+        "errors": price_errors,
+        "source": "local fund_daily cache",
+    }
+    return rotation_signal
+
+
 def _api_endpoint(
     method: str,
     path: str,
@@ -430,6 +465,13 @@ def _api_catalog_payload() -> dict[str, object]:
                     "返回 A1.1 风格评分、Top 风格、ETF universe 和候选 ETF 排名。",
                     "style factor and ETF universe",
                 ),
+                _api_endpoint(
+                    "GET",
+                    "/api/style/rotation-signal",
+                    "返回 A1.2 ETF 轮动信号、相对强弱、目标权重建议和置信度。",
+                    "ETF rotation signal",
+                    freshness="generated from local ETF cache",
+                ),
             ],
         },
         {
@@ -482,6 +524,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/regime/cycle/track", "description": "读取本轮周期位置和概率展望。"},
             {"path": "/api/meta-edge/current", "description": "读取系统内部矛盾信号。"},
             {"path": "/api/style/current", "description": "读取风格评分与 ETF 候选池。"},
+            {"path": "/api/style/rotation-signal", "description": "读取 ETF 轮动信号与目标权重建议。"},
             {"path": "/api/shadow/current", "description": "读取影子账户与 510500 基准评估。"},
         ],
         "safety": {
@@ -631,6 +674,18 @@ def style_current() -> dict:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
 
+@app.get("/api/style/rotation-signal")
+def style_rotation_signal() -> dict:
+    try:
+        snapshot = _current_portfolio_snapshot()
+        style_rotation = _style_rotation_payload(snapshot)
+        return _etf_rotation_signal_payload(style_rotation)
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
 @app.get("/api/shadow/current")
 def shadow_current() -> dict:
     payload = _read_shadow_backtest_payload()
@@ -681,6 +736,7 @@ def results_summary() -> dict:
         system_snapshot_payload = _system_snapshot_payload(snapshot)
         meta_edge = _meta_edge_payload(snapshot)
         style_rotation = _style_rotation_payload(snapshot)
+        etf_rotation_signal = _etf_rotation_signal_payload(style_rotation)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -717,6 +773,7 @@ def results_summary() -> dict:
             },
             "meta_edge": meta_edge,
             "style_rotation": style_rotation,
+            "etf_rotation_signal": etf_rotation_signal,
             "shadow_backtest": shadow_backtest,
             "regime_attribution": regime_attribution,
             "system": system_snapshot_payload,
@@ -750,6 +807,7 @@ def results_summary() -> dict:
                 "R3.1 已把策略路由转成执行意图和模拟指令，但不连接券商、不生成真实订单。",
                 "M1.1 已新增 Meta Signal Engine，只检测系统内部矛盾信号，不预测收益、不选股、不改变既有风控链路。",
                 "A1.1 已新增风格评分与 ETF universe 层，把 regime、风险评分、宽度、流动性和波动稳定度映射到 ETF 候选池。",
+                "A1.2 已新增 ETF 轮动信号层，把风格评分、ETF 相对强弱和排名稳定性转成 simulation-only 目标权重建议。",
                 "S1.1 已新增影子账户评估，用历史 R2 仓位回放 510500 基准收益，输出权益曲线、Alpha 和回撤。",
                 "S1.2 已按牛熊状态拆解影子账户收益来源，识别牛市参与不足是主要拖累，熊市防守是主要正贡献。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",

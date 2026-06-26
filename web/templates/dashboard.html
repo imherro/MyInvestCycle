@@ -251,6 +251,30 @@
           <p class="result-note" id="styleConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel etf-rotation-panel">
+          <div class="panel-heading">
+            <h2>ETF 轮动信号</h2>
+            <span class="panel-kicker">A1.2</span>
+          </div>
+          <div class="rotation-headline">
+            <div>
+              <span>轮动方向</span>
+              <strong id="rotationSignal">--</strong>
+            </div>
+            <div>
+              <span>置信度</span>
+              <strong id="rotationConfidence">--</strong>
+            </div>
+          </div>
+          <div class="result-row">
+            <span>首选 ETF</span>
+            <strong id="rotationTopEtf">--</strong>
+          </div>
+          <div class="rotation-weight-list" id="rotationTargetWeights"></div>
+          <div class="rotation-candidate-list" id="rotationCandidateList"></div>
+          <p class="result-note" id="rotationConclusion">--</p>
+        </article>
+
         <article class="chart-panel result-panel shadow-panel">
           <div class="panel-heading">
             <h2>影子账户评估</h2>
@@ -480,8 +504,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260626-a11-1"></script>
-    <script src="/static/dashboard.js?v=20260626-a11-1"></script>
+    <script src="/static/charts.js?v=20260626-a12-1"></script>
+    <script src="/static/dashboard.js?v=20260626-a12-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

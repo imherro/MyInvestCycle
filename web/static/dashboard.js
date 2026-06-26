@@ -201,6 +201,26 @@ function styleLabel(value) {
   return labels[value] || value || "--";
 }
 
+function rotationSignalLabel(value) {
+  if (!value) return "--";
+  if (value === "hold_universe") return "保持观察池";
+  if (value === "insufficient_data") return "样本不足";
+  if (value.startsWith("rotate_to_")) {
+    return `转向${styleLabel(value.replace("rotate_to_", ""))}`;
+  }
+  return value;
+}
+
+function confidenceLevelLabel(value) {
+  const labels = {
+    high: "高",
+    medium: "中",
+    low: "低",
+    insufficient: "不足",
+  };
+  return labels[value] || value || "--";
+}
+
 function metaEdgeInterpretationText(metaEdge) {
   const level = metaEdge.meta_edge_level;
   const activeSignals = metaEdge.signals || [];
@@ -291,6 +311,8 @@ function setResultsPanel(results) {
   const styleFactor = styleRotation.style_factor || {};
   const etfUniverse = styleRotation.etf_universe || {};
   const styleInterpretation = styleRotation.interpretation || {};
+  const etfRotation = results.etf_rotation_signal || {};
+  const rotationConfidence = etfRotation.confidence || {};
   const shadowBacktest = results.shadow_backtest || {};
   const shadowSummary = shadowBacktest.summary || {};
   const shadowMetadata = shadowBacktest.metadata || {};
@@ -499,6 +521,47 @@ function setResultsPanel(results) {
     styleFactor.engine
       ? `${styleInterpretation.summary || "A1.1 已把当前状态映射为风格评分与 ETF 候选池。"} 当前候选数 ${integerText(etfUniverse.candidate_count)}，仅生成 universe，不选股、不下单。`
       : "A1.1 风格轮动基础结果尚未生成。"
+  );
+
+  const rotationTopCandidate = (etfRotation.top_candidates || [])[0] || {};
+  setText("rotationSignal", rotationSignalLabel(etfRotation.rebalance_signal));
+  setText(
+    "rotationConfidence",
+    `${percentText(rotationConfidence.score)} · ${confidenceLevelLabel(rotationConfidence.level)}`
+  );
+  setText(
+    "rotationTopEtf",
+    rotationTopCandidate.code ? `${rotationTopCandidate.name} · ${rotationTopCandidate.code}` : "--"
+  );
+  const targetWeights = etfRotation.etf_target_weights || {};
+  document.getElementById("rotationTargetWeights").innerHTML = Object.entries(targetWeights)
+    .map(
+      ([code, weight]) => `
+        <div class="rotation-weight-row">
+          <span>${escapeHtml(code)}</span>
+          <strong>${percentText(weight)}</strong>
+          <i style="width:${typeof weight === "number" ? Math.round(weight * 100) : 0}%"></i>
+        </div>
+      `
+    )
+    .join("");
+  document.getElementById("rotationCandidateList").innerHTML = (etfRotation.top_candidates || [])
+    .slice(0, 4)
+    .map(
+      (candidate) => `
+        <div class="rotation-candidate-row">
+          <span>${escapeHtml(candidate.name || "--")}</span>
+          <strong>${percentText(candidate.signal_score)}</strong>
+          <em>${escapeHtml(candidate.code || "--")} · ${styleLabel(candidate.primary_style)} · 相对强弱 ${percentText(candidate.relative_strength_score)}</em>
+        </div>
+      `
+    )
+    .join("");
+  setText(
+    "rotationConclusion",
+    etfRotation.engine
+      ? `A1.2 输出 ${rotationSignalLabel(etfRotation.rebalance_signal)}，${rotationConfidence.reason || "置信度待评估"} 该层只给 ETF 级模拟权重建议，不选股、不下单、不生成订单。`
+      : "A1.2 ETF 轮动信号结果尚未生成。"
   );
 
   setText("shadowFinalAlpha", signedRatioText(shadowSummary.final_alpha));

@@ -33,6 +33,9 @@ engine foundation requested by the design review.
 - A1.1 Style Factor Engine maps regime, risk score, breadth, liquidity, and
   volatility stability into style scores, then builds an ETF-only universe; it
   does not select single stocks or execute trades.
+- A1.2 ETF Rotation Signal Engine ranks ETF candidates by regime-conditioned
+  style score, relative strength, ranking stability, and return quality, then
+  emits simulation-only target weights; it does not generate orders.
 - S1.1 Shadow Portfolio Engine replays historical R2 exposure against the
   `510500.SH` benchmark to evaluate equity curve, Alpha, and drawdown; it is a
   pure evaluation layer and does not predict returns, select stocks, or execute
@@ -110,6 +113,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/execution/current`
 - `GET http://127.0.0.1:8021/api/meta-edge/current`
 - `GET http://127.0.0.1:8021/api/style/current`
+- `GET http://127.0.0.1:8021/api/style/rotation-signal`
 - `GET http://127.0.0.1:8021/api/shadow/current`
 - `GET http://127.0.0.1:8021/api/shadow/regime-attribution`
 - `GET http://127.0.0.1:8021/api/system/snapshot`
@@ -382,6 +386,30 @@ top_styles
 reasoning
 top_candidates
 style_universe
+```
+
+Run the A1.2 ETF Rotation Signal Engine:
+
+```powershell
+python scripts/run_etf_rotation_signal.py --date 20260625 --cache-only --history-sample-size 30
+```
+
+Default output:
+
+```text
+data/etf_rotation_signal.json
+```
+
+The ETF rotation signal consumes A1.1 output plus ETF fund daily history and
+returns:
+
+```text
+style_signal_score
+top_candidates
+etf_target_weights
+rebalance_signal
+confidence
+data_coverage
 ```
 
 Run the S1.1 Shadow Portfolio Engine:
