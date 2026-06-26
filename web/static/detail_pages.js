@@ -78,10 +78,10 @@ function rotationSignalLabel(value) {
 }
 
 const ETF_ASSET_ORDER = [
+  { code: "159915.SZ", style: "成长/科技", name: "创业板ETF", color: "#7c3aed" },
+  { code: "510500.SH", style: "中小盘", name: "中证500ETF", color: "#697386" },
   { code: "510300.SH", style: "价值/大盘", name: "沪深300ETF", color: "#c69214" },
   { code: "510880.SH", style: "红利/低波", name: "红利ETF", color: "#c73d3d" },
-  { code: "510500.SH", style: "中小盘", name: "中证500ETF", color: "#697386" },
-  { code: "159915.SZ", style: "成长/科技", name: "创业板ETF", color: "#7c3aed" },
   { code: "511880.SH", style: "现金/债券代理", name: "银华日利ETF", color: "#17885b" },
 ];
 
