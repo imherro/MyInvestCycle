@@ -123,6 +123,40 @@ def _read_macro_style_etf_backtest_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+STRATEGY_BACKTEST_IDS = {
+    "defensive-dividend": "红利低波 + 现金代理防守策略",
+    "industry-momentum": "行业 ETF 动量轮动 + 511880 空仓机制",
+    "four-asset": "股 / 债 / 金 / 现金四资产轮动",
+}
+
+
+def _read_strategy_suite_backtest_payload(strategy_id: str) -> dict[str, object] | None:
+    if strategy_id not in STRATEGY_BACKTEST_IDS:
+        raise HTTPException(status_code=404, detail=f"unknown strategy backtest: {strategy_id}")
+    path = DATA_DIR / "strategy_backtests" / f"{strategy_id}.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
+def _read_strategy_suite_summaries() -> list[dict[str, object]]:
+    summaries = []
+    for strategy_id in STRATEGY_BACKTEST_IDS:
+        payload = _read_strategy_suite_backtest_payload(strategy_id)
+        if payload and isinstance(payload.get("summary"), dict):
+            summaries.append(
+                {
+                    "strategy_id": strategy_id,
+                    "metadata": payload.get("metadata", {}),
+                    "summary": payload.get("summary", {}),
+                    "validation": payload.get("validation", {}),
+                    "price_history": payload.get("price_history", {}),
+                }
+            )
+    return summaries
+
+
 def _compact_backtest_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
     if not isinstance(payload, dict):
         return payload
@@ -442,6 +476,9 @@ def _api_catalog_payload() -> dict[str, object]:
                 _api_endpoint("GET", "/", "打开当前系统首页。", "HTML dashboard", freshness="page"),
                 _api_endpoint("GET", "/strategy/etf-rotation", "打开 ETF 轮动策略主页，集中查看回测图、关键指标和调仓历史入口。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/macro-style", "打开 Macro-Style-ETF 分层策略主页，集中查看回测图、关键指标和调仓历史入口。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/strategy/defensive-dividend", "打开红利低波 + 现金代理防守策略主页。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/strategy/industry-momentum", "打开行业 ETF 动量轮动 + 511880 空仓机制策略主页。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/strategy/four-asset", "打开股 / 债 / 金 / 现金四资产轮动策略主页。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/rotation-history", "打开 ETF 轮动调仓历史表格页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/macro-style-history", "打开 Macro-Style-ETF 分层组合调仓历史表格页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/cycle-track", "打开本轮周期跟踪与概率展望页面。", "HTML page", freshness="page"),
@@ -528,6 +565,14 @@ def _api_catalog_payload() -> dict[str, object]:
                     "Macro-Style-ETF hierarchical backtest",
                     freshness="generated artifact",
                 ),
+                _api_endpoint(
+                    "GET",
+                    "/api/strategy-backtests/{strategy_id}",
+                    "返回新增策略回测结果，strategy_id 支持 defensive-dividend、industry-momentum、four-asset。",
+                    "strategy backtest artifact",
+                    params=[{"name": "strategy_id", "required": "true", "format": "path"}],
+                    freshness="generated artifact",
+                ),
             ],
         },
         {
@@ -591,6 +636,9 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/style/rotation-backtest", "description": "读取 ETF 轮动 Alpha 验证结果。"},
             {"path": "/strategy/macro-style", "description": "查看 Macro-Style-ETF 分层策略回测、图表和调仓历史入口。"},
             {"path": "/api/style/macro-style-etf-backtest", "description": "读取 Macro-Style-ETF 分层组合回测结果。"},
+            {"path": "/strategy/defensive-dividend", "description": "查看红利低波 + 现金代理防守策略。"},
+            {"path": "/strategy/industry-momentum", "description": "查看行业 ETF 动量轮动 + 511880 空仓机制策略。"},
+            {"path": "/strategy/four-asset", "description": "查看股 / 债 / 金 / 现金四资产轮动策略。"},
             {"path": "/api/shadow/current", "description": "读取仓位风控回测与 510500 基准评估。"},
         ],
         "safety": {
@@ -629,6 +677,21 @@ def etf_rotation_strategy_page():
 @app.get("/strategy/macro-style", response_class=HTMLResponse)
 def macro_style_strategy_page():
     return FileResponse(ROOT_DIR / "web" / "templates" / "strategy_macro_style.html")
+
+
+@app.get("/strategy/defensive-dividend", response_class=HTMLResponse)
+def defensive_dividend_strategy_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "strategy_generic.html")
+
+
+@app.get("/strategy/industry-momentum", response_class=HTMLResponse)
+def industry_momentum_strategy_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "strategy_generic.html")
+
+
+@app.get("/strategy/four-asset", response_class=HTMLResponse)
+def four_asset_strategy_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "strategy_generic.html")
 
 
 @app.get("/rotation-history", response_class=HTMLResponse)
@@ -809,6 +872,17 @@ def macro_style_etf_backtest() -> dict:
     return payload
 
 
+@app.get("/api/strategy-backtests/{strategy_id}")
+def strategy_suite_backtest(strategy_id: str) -> dict:
+    payload = _read_strategy_suite_backtest_payload(strategy_id)
+    if not payload:
+        raise HTTPException(
+            status_code=503,
+            detail=f"{STRATEGY_BACKTEST_IDS.get(strategy_id, strategy_id)} artifact missing; run scripts/run_strategy_backtest_suite.py first.",
+        )
+    return payload
+
+
 @app.get("/api/shadow/current")
 def shadow_current() -> dict:
     payload = _read_shadow_backtest_payload()
@@ -867,6 +941,7 @@ def results_summary(
         etf_rotation_signal = _etf_rotation_signal_payload(style_rotation)
         etf_rotation_backtest = _read_etf_rotation_backtest_payload()
         macro_style_etf_backtest = _read_macro_style_etf_backtest_payload()
+        strategy_suite_backtests = _read_strategy_suite_summaries()
         if compact:
             etf_rotation_backtest = _compact_backtest_payload(etf_rotation_backtest)
             macro_style_etf_backtest = _compact_backtest_payload(macro_style_etf_backtest)
@@ -909,6 +984,7 @@ def results_summary(
             "etf_rotation_signal": etf_rotation_signal,
             "etf_rotation_backtest": etf_rotation_backtest,
             "macro_style_etf_backtest": macro_style_etf_backtest,
+            "strategy_suite_backtests": strategy_suite_backtests,
             "shadow_backtest": shadow_backtest,
             "regime_attribution": regime_attribution,
             "system": system_snapshot_payload,
@@ -945,6 +1021,7 @@ def results_summary(
                 "A1.2 已新增 ETF 轮动信号层，把风格评分、ETF 相对强弱和排名稳定性转成 simulation-only 目标权重建议。",
                 "A1.3 已新增 ETF 轮动回测与 Alpha 验证层，用历史回放检验轮动信号是否跑赢 510500、510300 和等权 ETF basket。",
                 "M2.1 已新增 Macro-Style-ETF 分层组合回测，把宏观周期、风格分配和 ETF 执行三层解耦，并与 A1、510300、510500 和等权 ETF basket 对比。",
+                "新增三套独立 ETF 策略回测：红利低波防守、行业 ETF 动量空仓、股债金现金四资产轮动；页面按策略独立展示图表、指标和再平衡记录。",
                 "S1.1 已新增仓位风控回测，用历史 R2 动态仓位回放 510500 基准收益，输出权益曲线、Alpha 和回撤。",
                 "S1.2 已按牛熊状态拆解风控仓位策略收益来源，识别牛市参与不足是主要拖累，熊市防守是主要正贡献。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",

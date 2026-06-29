@@ -424,6 +424,77 @@ function renderMacroStyleEtfBacktestChart(elementId, backtest) {
   );
 }
 
+function renderStrategyBacktestChart(elementId, backtest) {
+  const items = backtest?.equity_curve || [];
+  if (!items.length) {
+    Plotly.purge(elementId);
+    return;
+  }
+  const x = items.map((item) => toIsoDate(item.date));
+  const comparisonAssets = backtest?.summary?.comparison_assets || [];
+  const colors = ["#c73d3d", "#17885b", "#c69214", "#64748b", "#7c3aed", "#0f766e"];
+  const comparisonTraces = comparisonAssets.slice(0, 6).map((asset, index) => {
+    const key = asset.code === "equal_weight" ? "equal_weight" : `benchmark_${String(asset.code || "").split(".")[0]}`;
+    const equityKey = `${key}_equity`;
+    const label = asset.label || asset.code || key;
+    return {
+      type: "scatter",
+      mode: "lines",
+      name: label,
+      x,
+      y: items.map((item) => item[equityKey] ?? null),
+      line: { color: colors[index % colors.length], width: 1.7, dash: index === 0 ? "dot" : "solid" },
+      hovertemplate: `%{x}<br>${label} %{y:.3f}<extra></extra>`,
+    };
+  });
+  Plotly.react(
+    elementId,
+    [
+      {
+        type: "scatter",
+        mode: "lines",
+        name: backtest?.summary?.short_name || "策略组合",
+        x,
+        y: items.map((item) => item.strategy_equity ?? null),
+        line: { color: "#2663eb", width: 2.6 },
+        hovertemplate: "%{x}<br>策略 %{y:.3f}<extra></extra>",
+      },
+      ...comparisonTraces,
+    ],
+    {
+      ...baseLayout(500),
+      dragmode: "zoom",
+      hovermode: "closest",
+      hoverdistance: 80,
+      spikedistance: -1,
+      margin: { l: 62, r: 18, t: 68, b: 46 },
+      xaxis: {
+        tickformat: "%Y",
+        hoverformat: "%Y-%m-%d",
+        gridcolor: "#edf0f5",
+        showspikes: true,
+        spikecolor: "#4b5563",
+        spikedash: "solid",
+        spikemode: "across",
+        spikesnap: "cursor",
+        spikethickness: 1,
+      },
+      yaxis: {
+        gridcolor: "#edf0f5",
+        zeroline: false,
+        showspikes: true,
+        spikecolor: "#4b5563",
+        spikedash: "solid",
+        spikemode: "across",
+        spikesnap: "cursor",
+        spikethickness: 1,
+      },
+      legend: { orientation: "h", x: 0, y: 1.22, font: { size: 11 } },
+    },
+    { responsive: true, displayModeBar: false }
+  );
+}
+
 function buildRegimeShapes(items, options = {}) {
   const y0 = options.y0 ?? 0;
   const y1 = options.y1 ?? 1;

@@ -274,6 +274,11 @@ h2 {
   grid-template-columns: minmax(280px, 520px);
 }
 
+.strategy-suite-link-row {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .dashboard-section-heading {
   display: flex;
   grid-column: 1 / -1;
@@ -408,8 +413,90 @@ h2 {
   overflow-wrap: anywhere;
 }
 
+.strategy-description {
+  margin: 10px 0 4px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
 .strategy-backtest-chart {
   min-height: 500px;
+}
+
+.generic-weight-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.generic-empty {
+  padding: 10px 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.generic-signal-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.generic-signal-card {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.generic-signal-card > div:first-child {
+  display: grid;
+  grid-template-columns: minmax(92px, 0.24fr) minmax(0, 0.56fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+}
+
+.generic-signal-card span,
+.generic-signal-card em,
+.generic-signal-card p {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.generic-signal-card strong {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.generic-signal-card p {
+  margin: 8px 0 0;
+}
+
+.weight-pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.weight-pill-list span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 2px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .conclusions-panel {
@@ -2216,6 +2303,7 @@ h2 {
   .detail-nav-section,
   .detail-summary-grid,
   .detail-two-column,
+  .generic-signal-list,
   .results-overview,
   .cycle-panel,
   .dashboard-section-heading,
@@ -2305,6 +2393,7 @@ h2 {
   .api-headline,
   .strategy-method-list div,
   .metric-card-grid,
+  .generic-signal-card > div:first-child,
   .conclusion-list {
     grid-template-columns: 1fr;
   }

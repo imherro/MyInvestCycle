@@ -381,6 +381,154 @@ function strategySetMacroBacktest(backtest) {
   );
 }
 
+function strategyGenericWeightRows(weights, universe) {
+  const assets = universe || [];
+  const byCode = new Map(assets.map((asset) => [asset.code, asset]));
+  const rows = Object.entries(weights || {})
+    .map(([code, weight]) => ({
+      code,
+      weight: Number(weight) || 0,
+      asset: byCode.get(code) || { code, name: code, group: "资产" },
+    }))
+    .sort((left, right) => right.weight - left.weight);
+  if (!rows.length) return '<div class="generic-empty">暂无目标仓位</div>';
+  return rows
+    .map(
+      (row) => `
+        <div class="rotation-weight-row">
+          <span>${strategyEscapeHtml(row.asset.group)} · ${strategyEscapeHtml(row.code)} ${strategyEscapeHtml(row.asset.name)}</span>
+          <strong>${strategyPercentText(row.weight)}</strong>
+          <i style="width:${Math.round(row.weight * 100)}%"></i>
+        </div>
+      `
+    )
+    .join("");
+}
+
+function strategyGenericWeightPills(weights, universe) {
+  const byCode = new Map((universe || []).map((asset) => [asset.code, asset]));
+  return `<div class="weight-pill-list">${Object.entries(weights || {})
+    .sort((left, right) => Number(right[1] || 0) - Number(left[1] || 0))
+    .map(([code, weight]) => {
+      const asset = byCode.get(code) || { name: code, group: "资产" };
+      return `<span>${strategyEscapeHtml(asset.group)} ${strategyEscapeHtml(code)} ${strategyPercentText(Number(weight) || 0)}</span>`;
+    })
+    .join("")}</div>`;
+}
+
+function strategyGenericCandidateText(candidates) {
+  return (candidates || [])
+    .slice(0, 4)
+    .map((item) => `${item.code} ${strategyScoreText(item.score)}`)
+    .join(" / ") || "--";
+}
+
+function strategySetGenericComparison(summary) {
+  strategyBacktestComparisonTable("genericComparison", [
+    {
+      label: summary.short_name || "策略组合",
+      total_return: summary.strategy_total_return,
+      max_drawdown: summary.max_drawdown,
+      isStrategy: true,
+    },
+    ...(summary.comparison_assets || []),
+  ]);
+}
+
+function strategySignalLabel(value) {
+  const labels = {
+    defensive_cash: "防守现金",
+    single_defensive_asset: "单防守资产+现金",
+    dividend_low_vol_mix: "红利低波组合",
+    cash_empty_position: "511880 空仓",
+    industry_top3_momentum: "行业 Top3 动量",
+    all_assets_cash: "四资产现金",
+    single_asset_plus_cash: "单资产+现金",
+    top2_four_asset: "四资产 Top2",
+  };
+  return labels[value] || value || "--";
+}
+
+function strategySetGenericPage(backtest) {
+  const metadata = backtest.metadata || {};
+  const summary = backtest.summary || {};
+  const validation = backtest.validation || {};
+  const universe = metadata.universe || [];
+  const signals = backtest.signals || [];
+  const latestSignal = signals[signals.length - 1] || {};
+
+  document.title = summary.strategy_name || "策略回测";
+  strategySetText("genericEyebrow", summary.strategy_id || "Strategy");
+  strategySetText("genericTitle", summary.strategy_name || "策略回测");
+  strategySetText("genericDescription", metadata.description || "--");
+  strategySetText("genericRange", `${strategyToIsoDate(summary.start_date)} - ${strategyToIsoDate(summary.end_date)}`);
+  strategySetSummaryTiles([
+    { label: "回测区间", value: `${strategyToIsoDate(summary.start_date)} - ${strategyToIsoDate(summary.end_date)}` },
+    { label: "策略收益", value: strategySignedRatioText(summary.strategy_total_return) },
+    { label: "最大回撤", value: strategyPercentText(summary.max_drawdown) },
+    { label: "Alpha vs 等权", value: strategySignedRatioText(summary.alpha_vs_equal_weight) },
+    { label: "夏普", value: strategyFixedText(summary.sharpe, 2) },
+    { label: "调仓次数", value: strategyIntegerText(summary.rebalance_count) },
+  ]);
+  const methodTarget = document.getElementById("genericMethodList");
+  if (methodTarget) {
+    methodTarget.innerHTML = (metadata.method || [])
+      .map((item, index) => `<div><span>规则 ${index + 1}</span><strong>${strategyEscapeHtml(item)}</strong></div>`)
+      .join("");
+  }
+  strategySetText("genericLatestDate", latestSignal.date ? strategyToIsoDate(latestSignal.date) : "--");
+  strategySetText("genericLatestSignal", strategySignalLabel(summary.latest_signal));
+  strategySetText("genericRebalanceCount", strategyIntegerText(summary.rebalance_count));
+  const latestWeightsTarget = document.getElementById("genericLatestWeights");
+  if (latestWeightsTarget) latestWeightsTarget.innerHTML = strategyGenericWeightRows(summary.latest_weights || {}, universe);
+  const latestReason = latestSignal.rebalance_reason || {};
+  strategySetText("genericLatestReason", latestReason.detail || metadata.description || "--");
+  strategySetText("genericStrategyReturn", strategySignedRatioText(summary.strategy_total_return));
+  strategySetText("genericMaxDrawdown", strategyPercentText(summary.max_drawdown));
+  strategySetText("genericAlphaEqual", strategySignedRatioText(summary.alpha_vs_equal_weight));
+  strategySetText("genericSharpe", strategyFixedText(summary.sharpe, 2));
+  strategySetText("genericHitRate", strategyPercentText(summary.hit_rate_vs_primary_benchmark));
+  strategySetText("genericSessions", strategyIntegerText(summary.sessions));
+  strategySetText("genericTurnover", strategyPercentText(summary.average_turnover));
+  strategySetText("genericSignalSummary", strategySignalLabel(summary.latest_signal));
+  strategySetGenericComparison(summary);
+  const verdict = validation.alpha_positive_vs_equal_weight
+    ? "本策略跑赢等权资产池，具备继续优化和跟踪价值。"
+    : "本策略未跑赢等权资产池，当前规则更适合保留为反例或继续优化。";
+  strategySetText(
+    "genericConclusion",
+    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用 ETF fund_daily pct_chg/pre_close。`
+  );
+  const signalTarget = document.getElementById("genericSignalList");
+  if (signalTarget) {
+    signalTarget.innerHTML = [...signals]
+      .reverse()
+      .map((item) => {
+        const reason = item.rebalance_reason || {};
+        return `
+          <article class="generic-signal-card">
+            <div>
+              <span>${strategyToIsoDate(item.date)}</span>
+              <strong>${strategySignalLabel(item.strategy_signal)}</strong>
+              <em>换手 ${strategyPercentText(item.turnover_to_target)} · Top ${strategyEscapeHtml(strategyGenericCandidateText(item.top_candidates))}</em>
+            </div>
+            ${strategyGenericWeightPills(item.target_weights || {}, universe)}
+            <p>${strategyEscapeHtml(reason.detail || "")}</p>
+          </article>
+        `;
+      })
+      .join("");
+  }
+  strategySetText("genericHistoryCount", `${strategyIntegerText(signals.length)} 次再平衡记录`);
+  renderStrategyBacktestChart("genericStrategyChart", backtest);
+}
+
+async function strategyRenderGenericPage() {
+  const strategyId = window.location.pathname.split("/").filter(Boolean).pop();
+  const backtest = await strategyGetJson(`/api/strategy-backtests/${strategyId}`);
+  strategySetGenericPage(backtest);
+}
+
 async function strategyRenderEtfRotationPage() {
   const [signal, backtest] = await Promise.all([
     strategyGetJson("/api/style/rotation-signal"),
@@ -420,6 +568,7 @@ async function strategyBootPage() {
   const page = document.body.dataset.page;
   if (page === "strategy-etf-rotation") await strategyRenderEtfRotationPage();
   if (page === "strategy-macro-style") await strategyRenderMacroStylePage();
+  if (page === "strategy-generic") await strategyRenderGenericPage();
 }
 
 document.getElementById("rotationBacktestReset")?.addEventListener("click", () => {
@@ -427,6 +576,9 @@ document.getElementById("rotationBacktestReset")?.addEventListener("click", () =
 });
 document.getElementById("macroStyleReset")?.addEventListener("click", () => {
   resetEtfRotationBacktestChart("macroStyleEtfChart");
+});
+document.getElementById("genericStrategyReset")?.addEventListener("click", () => {
+  resetEtfRotationBacktestChart("genericStrategyChart");
 });
 
 strategyBootPage().catch((error) => {

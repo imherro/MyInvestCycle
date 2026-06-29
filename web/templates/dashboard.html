@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260629-strategy-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260629-strategy-suite-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -462,6 +462,24 @@
             </div>
           </div>
         </article>
+
+        <section class="channel-link-row strategy-suite-link-row" aria-label="新增策略入口">
+          <a class="detail-nav-card" href="/strategy/defensive-dividend">
+            <span>Defensive</span>
+            <strong class="help-title help-title-inline" tabindex="0" data-help="只在红利、红利低波和现金代理之间切换，检验防守收益和回撤控制。">红利低波防守</strong>
+            <em>红利低波 + 现金代理防守策略。</em>
+          </a>
+          <a class="detail-nav-card" href="/strategy/industry-momentum">
+            <span>Industry Momentum</span>
+            <strong class="help-title help-title-inline" tabindex="0" data-help="在行业 ETF 中按中期动量和风险调整评分轮动；趋势不足时切到 511880。">行业 ETF 动量</strong>
+            <em>行业 ETF 动量轮动 + 511880 空仓机制。</em>
+          </a>
+          <a class="detail-nav-card" href="/strategy/four-asset">
+            <span>Four Asset</span>
+            <strong class="help-title help-title-inline" tabindex="0" data-help="在股票、债券、黄金和现金之间做跨资产轮动，观察低相关资产能否改善回撤。">四资产轮动</strong>
+            <em>股 / 债 / 金 / 现金四资产轮动。</em>
+          </a>
+        </section>
       </section>
 
       <section class="results-overview" id="validation-channel" aria-live="polite">
@@ -660,8 +678,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260629-strategy-1"></script>
-    <script src="/static/dashboard.js?v=20260629-strategy-1"></script>
+    <script src="/static/charts.js?v=20260629-strategy-suite-1"></script>
+    <script src="/static/dashboard.js?v=20260629-strategy-suite-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

@@ -43,6 +43,9 @@ engine foundation requested by the design review.
   style allocation, and ETF implementation, then backtests the layered portfolio
   against `510300.SH`, `510500.SH`, the equal-weight ETF basket, and the current
   A1 rotation system.
+- Strategy suite backtests add three independent ETF strategies: dividend/low
+  volatility defensive rotation, industry ETF momentum with `511880.SH` cash
+  fallback, and stock/bond/gold/cash four-asset rotation.
 - S1.1 Shadow Portfolio Engine replays historical R2 exposure against the
   `510500.SH` benchmark to evaluate equity curve, Alpha, and drawdown; it is a
   pure evaluation layer and does not predict returns, select stocks, or execute
@@ -107,6 +110,9 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api`
 - `GET http://127.0.0.1:8021/strategy/etf-rotation`
 - `GET http://127.0.0.1:8021/strategy/macro-style`
+- `GET http://127.0.0.1:8021/strategy/defensive-dividend`
+- `GET http://127.0.0.1:8021/strategy/industry-momentum`
+- `GET http://127.0.0.1:8021/strategy/four-asset`
 - `GET http://127.0.0.1:8021/rotation-history`
 - `GET http://127.0.0.1:8021/macro-style-history`
 - `GET http://127.0.0.1:8021/docs`
@@ -127,6 +133,9 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/style/rotation-signal`
 - `GET http://127.0.0.1:8021/api/style/rotation-backtest`
 - `GET http://127.0.0.1:8021/api/style/macro-style-etf-backtest`
+- `GET http://127.0.0.1:8021/api/strategy-backtests/defensive-dividend`
+- `GET http://127.0.0.1:8021/api/strategy-backtests/industry-momentum`
+- `GET http://127.0.0.1:8021/api/strategy-backtests/four-asset`
 - `GET http://127.0.0.1:8021/api/shadow/current`
 - `GET http://127.0.0.1:8021/api/shadow/regime-attribution`
 - `GET http://127.0.0.1:8021/api/system/snapshot`
@@ -494,6 +503,26 @@ hindsight_regime: future-confirmed structural state for visual comparison only
 ```
 
 The web page `/macro-style-history` displays every M2.1 rebalance signal in reverse chronological order, including macro regime, exposure cap, target exposure, risk overlay, turnover, style weights, ETF target weights, and page-level rebalance reason.
+
+Run the additional ETF strategy suite:
+
+```powershell
+python scripts/run_strategy_backtest_suite.py --start 20200101 --end 20260625
+```
+
+Default outputs:
+
+```text
+data/strategy_backtests/defensive-dividend.json
+data/strategy_backtests/industry-momentum.json
+data/strategy_backtests/four-asset.json
+```
+
+The strategy pages `/strategy/defensive-dividend`, `/strategy/industry-momentum`,
+and `/strategy/four-asset` show the standalone chart, benchmark comparison,
+latest weights, and rebalance records for each strategy. These are ETF-level
+simulation backtests only; they do not select stocks, connect brokers, or place
+orders.
 
 Run the S1.1 Shadow Portfolio Engine:
 
