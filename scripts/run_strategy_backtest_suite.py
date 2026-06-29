@@ -19,6 +19,11 @@ from core.drawdown_batch_backtest_engine import (
     MAX_DRAWDOWN_BATCH_SPEC,
     run_max_drawdown_batch_backtest,
 )
+from core.equal_weight_reversion_backtest_engine import (
+    EQUAL_WEIGHT_REVERSION_SPECS,
+    EqualWeightReversionSpec,
+    run_equal_weight_reversion_backtest,
+)
 from core.fixed_allocation_backtest_engine import (
     ALL_WEATHER_SPEC,
     FixedAllocationSpec,
@@ -28,7 +33,11 @@ from core.strategy_suite_backtest_engine import STRATEGY_SPECS, StrategySpec, ru
 
 
 DEFAULT_OUTPUT_DIR = DATA_DIR / "strategy_backtests"
-SPECIAL_STRATEGY_IDS = (MAX_DRAWDOWN_BATCH_SPEC.strategy_id, ALL_WEATHER_SPEC.strategy_id)
+SPECIAL_STRATEGY_IDS = (
+    MAX_DRAWDOWN_BATCH_SPEC.strategy_id,
+    ALL_WEATHER_SPEC.strategy_id,
+    *EQUAL_WEIGHT_REVERSION_SPECS,
+)
 ALL_STRATEGY_IDS = sorted([*STRATEGY_SPECS, *SPECIAL_STRATEGY_IDS])
 
 
@@ -49,7 +58,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def _load_price_history(
-    spec: StrategySpec | DrawdownBatchSpec | FixedAllocationSpec,
+    spec: StrategySpec | DrawdownBatchSpec | FixedAllocationSpec | EqualWeightReversionSpec,
     start_date: str,
     end_date: str,
     *,
@@ -58,7 +67,7 @@ def _load_price_history(
 ) -> tuple[dict[str, pd.DataFrame], dict[str, str]]:
     price_history: dict[str, pd.DataFrame] = {}
     errors: dict[str, str] = {}
-    warmup_start = _calendar_shift(start_date, -430)
+    warmup_start = _calendar_shift(start_date, -int(getattr(spec, "warmup_calendar_days", 430)))
     codes = sorted({asset.code for asset in spec.universe} | set(spec.benchmark_codes))
     for code in codes:
         try:
@@ -93,6 +102,8 @@ def main() -> None:
             spec = MAX_DRAWDOWN_BATCH_SPEC
         elif strategy_id == ALL_WEATHER_SPEC.strategy_id:
             spec = ALL_WEATHER_SPEC
+        elif strategy_id in EQUAL_WEIGHT_REVERSION_SPECS:
+            spec = EQUAL_WEIGHT_REVERSION_SPECS[strategy_id]
         else:
             spec = STRATEGY_SPECS[strategy_id]
         price_history, price_errors = _load_price_history(
@@ -111,6 +122,14 @@ def main() -> None:
             )
         elif strategy_id == ALL_WEATHER_SPEC.strategy_id:
             result = run_fixed_allocation_backtest(
+                price_history,
+                start_date=start_date,
+                end_date=end_date,
+                rebalance_every_sessions=args.rebalance_every_sessions,
+            )
+        elif strategy_id in EQUAL_WEIGHT_REVERSION_SPECS:
+            result = run_equal_weight_reversion_backtest(
+                spec,
                 price_history,
                 start_date=start_date,
                 end_date=end_date,

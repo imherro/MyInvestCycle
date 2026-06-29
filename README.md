@@ -43,11 +43,11 @@ engine foundation requested by the design review.
   style allocation, and ETF implementation, then backtests the layered portfolio
   against `510300.SH`, `510500.SH`, the equal-weight ETF basket, and the current
   A1 rotation system.
-- Strategy suite backtests add five independent ETF strategies: dividend/low
+- Strategy suite backtests add seven independent ETF strategies: dividend/low
   volatility defensive rotation, industry ETF momentum with `511880.SH` cash
   fallback, stock/bond/gold/cash four-asset rotation, and max-drawdown batch
   buying with `511880.SH` cash proxy, plus an A-share ETF All Weather
-  Portfolio.
+  Portfolio and two four-ETF equal-weight mean-reversion variants.
 - S1.1 Shadow Portfolio Engine replays historical R2 exposure against the
   `510500.SH` benchmark to evaluate equity curve, Alpha, and drawdown; it is a
   pure evaluation layer and does not predict returns, select stocks, or execute
@@ -117,6 +117,8 @@ Endpoints:
 - `GET http://127.0.0.1:8021/strategy/four-asset`
 - `GET http://127.0.0.1:8021/strategy/max-drawdown-batch`
 - `GET http://127.0.0.1:8021/strategy/all-weather`
+- `GET http://127.0.0.1:8021/strategy/equal-weight-reversion-basic`
+- `GET http://127.0.0.1:8021/strategy/equal-weight-reversion-guarded`
 - `GET http://127.0.0.1:8021/rotation-history`
 - `GET http://127.0.0.1:8021/macro-style-history`
 - `GET http://127.0.0.1:8021/docs`
@@ -142,6 +144,8 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/strategy-backtests/four-asset`
 - `GET http://127.0.0.1:8021/api/strategy-backtests/max-drawdown-batch`
 - `GET http://127.0.0.1:8021/api/strategy-backtests/all-weather`
+- `GET http://127.0.0.1:8021/api/strategy-backtests/equal-weight-reversion-basic`
+- `GET http://127.0.0.1:8021/api/strategy-backtests/equal-weight-reversion-guarded`
 - `GET http://127.0.0.1:8021/api/shadow/current`
 - `GET http://127.0.0.1:8021/api/shadow/regime-attribution`
 - `GET http://127.0.0.1:8021/api/system/snapshot`
@@ -524,13 +528,17 @@ data/strategy_backtests/industry-momentum.json
 data/strategy_backtests/four-asset.json
 data/strategy_backtests/max-drawdown-batch.json
 data/strategy_backtests/all-weather.json
+data/strategy_backtests/equal-weight-reversion-basic.json
+data/strategy_backtests/equal-weight-reversion-guarded.json
 ```
 
 The strategy pages `/strategy/defensive-dividend`, `/strategy/industry-momentum`,
 `/strategy/four-asset`, `/strategy/max-drawdown-batch`, and
-`/strategy/all-weather` show the standalone chart, benchmark comparison, latest
-weights, and rebalance records for each strategy. These are ETF-level simulation
-backtests only; they do not select stocks, connect brokers, or place orders.
+`/strategy/all-weather`, `/strategy/equal-weight-reversion-basic`, and
+`/strategy/equal-weight-reversion-guarded` show the standalone chart, benchmark
+comparison, latest weights, and rebalance records for each strategy. These are
+ETF-level simulation backtests only; they do not select stocks, connect brokers,
+or place orders.
 
 Run the S1.1 Shadow Portfolio Engine:
 

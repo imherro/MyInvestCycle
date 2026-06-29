@@ -433,6 +433,8 @@ function renderStrategyBacktestChart(elementId, backtest) {
   const x = items.map((item) => toIsoDate(item.date));
   const comparisonAssets = backtest?.summary?.comparison_assets || [];
   const colors = ["#c73d3d", "#17885b", "#c69214", "#64748b", "#7c3aed", "#0f766e"];
+  const indicatorItems = backtest?.indicator_curve || [];
+  const indicatorByDate = new Map(indicatorItems.map((item) => [toIsoDate(item.date), item]));
   const comparisonTraces = comparisonAssets.slice(0, 6).map((asset, index) => {
     const key = asset.code === "equal_weight" ? "equal_weight" : `benchmark_${String(asset.code || "").split(".")[0]}`;
     const equityKey = `${key}_equity`;
@@ -460,6 +462,19 @@ function renderStrategyBacktestChart(elementId, backtest) {
         hovertemplate: "%{x}<br>策略 %{y:.3f}<extra></extra>",
       },
       ...comparisonTraces,
+      ...(backtest?.metadata?.indicator === "equal_weight_ma_reversion"
+        ? [
+            {
+              type: "scatter",
+              mode: "lines",
+              name: "等权ETF MA250",
+              x,
+              y: x.map((date) => indicatorByDate.get(date)?.ma_equity ?? null),
+              line: { color: "#111827", width: 1.8, dash: "dash" },
+              hovertemplate: "%{x}<br>MA250 %{y:.3f}<extra></extra>",
+            },
+          ]
+        : []),
     ],
     {
       ...baseLayout(500),
