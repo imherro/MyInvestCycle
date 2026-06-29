@@ -445,6 +445,8 @@ function strategySignalLabel(value) {
     all_assets_cash: "四资产现金",
     single_asset_plus_cash: "单资产+现金",
     top2_four_asset: "四资产 Top2",
+    drawdown_cash_wait: "回撤未到档",
+    drawdown_ladder_buy: "回撤分批买入",
   };
   return labels[value] || value || "--";
 }

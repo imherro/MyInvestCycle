@@ -14,10 +14,17 @@ if str(ROOT_DIR) not in sys.path:
 from config import DATA_DIR
 from core.benchmark_loader import load_benchmark_daily, read_benchmark_cache
 from core.data_loader import normalize_trade_date
+from core.drawdown_batch_backtest_engine import (
+    DrawdownBatchSpec,
+    MAX_DRAWDOWN_BATCH_SPEC,
+    run_max_drawdown_batch_backtest,
+)
 from core.strategy_suite_backtest_engine import STRATEGY_SPECS, StrategySpec, run_strategy_backtest
 
 
 DEFAULT_OUTPUT_DIR = DATA_DIR / "strategy_backtests"
+SPECIAL_STRATEGY_IDS = {MAX_DRAWDOWN_BATCH_SPEC.strategy_id}
+ALL_STRATEGY_IDS = sorted([*STRATEGY_SPECS, *SPECIAL_STRATEGY_IDS])
 
 
 def _calendar_shift(date_text: str, days: int) -> str:
@@ -29,7 +36,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--start", default="20200101", help="Start date, YYYYMMDD.")
     parser.add_argument("--end", default="20260625", help="End date, YYYYMMDD.")
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR))
-    parser.add_argument("--strategy", choices=sorted(STRATEGY_SPECS), action="append", help="Run one strategy id; repeatable.")
+    parser.add_argument("--strategy", choices=ALL_STRATEGY_IDS, action="append", help="Run one strategy id; repeatable.")
     parser.add_argument("--rebalance-every-sessions", type=int, default=20)
     parser.add_argument("--refresh", action="store_true")
     parser.add_argument("--cache-only", action="store_true")
@@ -37,7 +44,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def _load_price_history(
-    spec: StrategySpec,
+    spec: StrategySpec | DrawdownBatchSpec,
     start_date: str,
     end_date: str,
     *,
@@ -71,13 +78,13 @@ def main() -> None:
     if start_date > end_date:
         raise ValueError("start must be earlier than or equal to end")
 
-    strategy_ids = args.strategy or list(STRATEGY_SPECS)
+    strategy_ids = args.strategy or [*STRATEGY_SPECS, *SPECIAL_STRATEGY_IDS]
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     results = []
     for strategy_id in strategy_ids:
-        spec = STRATEGY_SPECS[strategy_id]
+        spec = MAX_DRAWDOWN_BATCH_SPEC if strategy_id == MAX_DRAWDOWN_BATCH_SPEC.strategy_id else STRATEGY_SPECS[strategy_id]
         price_history, price_errors = _load_price_history(
             spec,
             start_date,
@@ -85,13 +92,21 @@ def main() -> None:
             refresh=args.refresh,
             cache_only=args.cache_only,
         )
-        result = run_strategy_backtest(
-            spec,
-            price_history,
-            start_date=start_date,
-            end_date=end_date,
-            rebalance_every_sessions=args.rebalance_every_sessions,
-        )
+        if strategy_id == MAX_DRAWDOWN_BATCH_SPEC.strategy_id:
+            result = run_max_drawdown_batch_backtest(
+                price_history,
+                start_date=start_date,
+                end_date=end_date,
+                rebalance_every_sessions=args.rebalance_every_sessions,
+            )
+        else:
+            result = run_strategy_backtest(
+                spec,
+                price_history,
+                start_date=start_date,
+                end_date=end_date,
+                rebalance_every_sessions=args.rebalance_every_sessions,
+            )
         result["price_history"] = {
             "loaded_etfs": sorted(price_history),
             "errors": price_errors,
