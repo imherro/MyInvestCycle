@@ -447,6 +447,7 @@ function strategySignalLabel(value) {
     top2_four_asset: "四资产 Top2",
     drawdown_cash_wait: "回撤未到档",
     drawdown_ladder_buy: "回撤分批买入",
+    all_weather_rebalance: "全天候再平衡",
   };
   return labels[value] || value || "--";
 }
@@ -494,9 +495,11 @@ function strategySetGenericPage(backtest) {
   strategySetText("genericTurnover", strategyPercentText(summary.average_turnover));
   strategySetText("genericSignalSummary", strategySignalLabel(summary.latest_signal));
   strategySetGenericComparison(summary);
-  const verdict = validation.alpha_positive_vs_equal_weight
-    ? "本策略跑赢等权资产池，具备继续优化和跟踪价值。"
-    : "本策略未跑赢等权资产池，当前规则更适合保留为反例或继续优化。";
+  const verdict = validation.static_allocation
+    ? "本策略是固定配置基准，重点观察收益、回撤和夏普之间的权衡，不以跑赢等权资产池作为唯一目标。"
+    : validation.alpha_positive_vs_equal_weight
+      ? "本策略跑赢等权资产池，具备继续优化和跟踪价值。"
+      : "本策略未跑赢等权资产池，当前规则更适合保留为反例或继续优化。";
   strategySetText(
     "genericConclusion",
     `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用 ETF fund_daily pct_chg/pre_close。`

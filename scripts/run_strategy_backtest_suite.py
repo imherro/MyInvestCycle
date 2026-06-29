@@ -19,11 +19,16 @@ from core.drawdown_batch_backtest_engine import (
     MAX_DRAWDOWN_BATCH_SPEC,
     run_max_drawdown_batch_backtest,
 )
+from core.fixed_allocation_backtest_engine import (
+    ALL_WEATHER_SPEC,
+    FixedAllocationSpec,
+    run_fixed_allocation_backtest,
+)
 from core.strategy_suite_backtest_engine import STRATEGY_SPECS, StrategySpec, run_strategy_backtest
 
 
 DEFAULT_OUTPUT_DIR = DATA_DIR / "strategy_backtests"
-SPECIAL_STRATEGY_IDS = {MAX_DRAWDOWN_BATCH_SPEC.strategy_id}
+SPECIAL_STRATEGY_IDS = (MAX_DRAWDOWN_BATCH_SPEC.strategy_id, ALL_WEATHER_SPEC.strategy_id)
 ALL_STRATEGY_IDS = sorted([*STRATEGY_SPECS, *SPECIAL_STRATEGY_IDS])
 
 
@@ -44,7 +49,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def _load_price_history(
-    spec: StrategySpec | DrawdownBatchSpec,
+    spec: StrategySpec | DrawdownBatchSpec | FixedAllocationSpec,
     start_date: str,
     end_date: str,
     *,
@@ -84,7 +89,12 @@ def main() -> None:
 
     results = []
     for strategy_id in strategy_ids:
-        spec = MAX_DRAWDOWN_BATCH_SPEC if strategy_id == MAX_DRAWDOWN_BATCH_SPEC.strategy_id else STRATEGY_SPECS[strategy_id]
+        if strategy_id == MAX_DRAWDOWN_BATCH_SPEC.strategy_id:
+            spec = MAX_DRAWDOWN_BATCH_SPEC
+        elif strategy_id == ALL_WEATHER_SPEC.strategy_id:
+            spec = ALL_WEATHER_SPEC
+        else:
+            spec = STRATEGY_SPECS[strategy_id]
         price_history, price_errors = _load_price_history(
             spec,
             start_date,
@@ -94,6 +104,13 @@ def main() -> None:
         )
         if strategy_id == MAX_DRAWDOWN_BATCH_SPEC.strategy_id:
             result = run_max_drawdown_batch_backtest(
+                price_history,
+                start_date=start_date,
+                end_date=end_date,
+                rebalance_every_sessions=args.rebalance_every_sessions,
+            )
+        elif strategy_id == ALL_WEATHER_SPEC.strategy_id:
+            result = run_fixed_allocation_backtest(
                 price_history,
                 start_date=start_date,
                 end_date=end_date,

@@ -128,6 +128,7 @@ STRATEGY_BACKTEST_IDS = {
     "industry-momentum": "行业 ETF 动量轮动 + 511880 空仓机制",
     "four-asset": "股 / 债 / 金 / 现金四资产轮动",
     "max-drawdown-batch": "最大回撤分批买入策略",
+    "all-weather": "All Weather Portfolio（A股 ETF 全天候组合）",
 }
 
 
@@ -481,6 +482,7 @@ def _api_catalog_payload() -> dict[str, object]:
                 _api_endpoint("GET", "/strategy/industry-momentum", "打开行业 ETF 动量轮动 + 511880 空仓机制策略主页。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/four-asset", "打开股 / 债 / 金 / 现金四资产轮动策略主页。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/max-drawdown-batch", "打开最大回撤分批买入策略主页。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/strategy/all-weather", "打开 All Weather Portfolio（A股 ETF 全天候组合）策略主页。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/rotation-history", "打开 ETF 轮动调仓历史表格页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/macro-style-history", "打开 Macro-Style-ETF 分层组合调仓历史表格页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/cycle-track", "打开本轮周期跟踪与概率展望页面。", "HTML page", freshness="page"),
@@ -570,7 +572,7 @@ def _api_catalog_payload() -> dict[str, object]:
                 _api_endpoint(
                     "GET",
                     "/api/strategy-backtests/{strategy_id}",
-                    "返回新增策略回测结果，strategy_id 支持 defensive-dividend、industry-momentum、four-asset、max-drawdown-batch。",
+                    "返回新增策略回测结果，strategy_id 支持 defensive-dividend、industry-momentum、four-asset、max-drawdown-batch、all-weather。",
                     "strategy backtest artifact",
                     params=[{"name": "strategy_id", "required": "true", "format": "path"}],
                     freshness="generated artifact",
@@ -642,6 +644,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/strategy/industry-momentum", "description": "查看行业 ETF 动量轮动 + 511880 空仓机制策略。"},
             {"path": "/strategy/four-asset", "description": "查看股 / 债 / 金 / 现金四资产轮动策略。"},
             {"path": "/strategy/max-drawdown-batch", "description": "查看最大回撤分批买入策略。"},
+            {"path": "/strategy/all-weather", "description": "查看 All Weather Portfolio（A股 ETF 全天候组合）。"},
             {"path": "/api/shadow/current", "description": "读取仓位风控回测与 510500 基准评估。"},
         ],
         "safety": {
@@ -699,6 +702,11 @@ def four_asset_strategy_page():
 
 @app.get("/strategy/max-drawdown-batch", response_class=HTMLResponse)
 def max_drawdown_batch_strategy_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "strategy_generic.html")
+
+
+@app.get("/strategy/all-weather", response_class=HTMLResponse)
+def all_weather_strategy_page():
     return FileResponse(ROOT_DIR / "web" / "templates" / "strategy_generic.html")
 
 
