@@ -388,6 +388,81 @@ h2 {
   gap: 12px;
 }
 
+.strategy-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.strategy-directory-card {
+  display: grid;
+  gap: 14px;
+  min-height: 290px;
+  align-content: start;
+}
+
+.strategy-card-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 12px;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.strategy-card-entry:hover strong {
+  color: var(--accent);
+}
+
+.strategy-card-entry span {
+  grid-column: 1 / -1;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.strategy-card-entry strong {
+  min-width: 0;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.strategy-card-entry em {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.strategy-card-section {
+  display: grid;
+  gap: 7px;
+}
+
+.strategy-card-section span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.strategy-card-section p,
+.strategy-card-loading {
+  margin: 0;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.strategy-card-loading {
+  color: var(--muted);
+  font-weight: 750;
+}
+
 .strategy-page .wide-analysis-panel {
   min-height: auto;
 }
@@ -2316,6 +2391,7 @@ h2 {
   .detail-summary-grid,
   .detail-two-column,
   .generic-signal-list,
+  .strategy-directory-grid,
   .results-overview,
   .cycle-panel,
   .dashboard-section-heading,

@@ -378,6 +378,154 @@ function setMacroStyleComparisonTable(summary) {
   ]);
 }
 
+const STRATEGY_DIRECTORY_CARDS = [
+  {
+    id: "etf-rotation",
+    title: "ETF 轮动回测",
+    badge: "A1.3",
+    href: "/strategy/etf-rotation",
+    rule: "每 20 个交易日依据市场状态、风格分数、ETF 相对强弱和排名稳定性，在宽基、红利、成长与现金代理之间轮动；信号收盘后生成，下一交易日生效。",
+    source: "etf_rotation_backtest",
+    returnKey: "rotation_total_return",
+    equalReturnKey: "equal_weight_basket_return",
+    equalDrawdownKey: "equal_weight_basket_max_drawdown",
+  },
+  {
+    id: "macro-style",
+    title: "Macro-Style-ETF 分层回测",
+    badge: "M2.1",
+    href: "/strategy/macro-style",
+    rule: "把规则拆成宏观层、风格层和 ETF 层：宏观层决定权益暴露范围，风格层分配成长、价值、小盘、红利低波，ETF 层只做执行映射。",
+    source: "macro_style_etf_backtest",
+    returnKey: "hierarchical_total_return",
+    equalReturnKey: "equal_weight_basket_return",
+    equalDrawdownKey: "equal_weight_basket_max_drawdown",
+  },
+  {
+    id: "defensive-dividend",
+    title: "红利低波防守",
+    badge: "Defensive",
+    href: "/strategy/defensive-dividend",
+    rule: "在红利 ETF、红利低波 ETF 与 511880 现金代理之间切换；红利趋势不足时转向现金代理，目标是降低波动和控制回撤。",
+  },
+  {
+    id: "industry-momentum",
+    title: "行业 ETF 动量",
+    badge: "Momentum",
+    href: "/strategy/industry-momentum",
+    rule: "在主要行业 ETF 中按 20/60/120 日动量、波动和回撤评分，选择中期趋势最强的行业；行业趋势不足时转入现金代理。",
+  },
+  {
+    id: "four-asset",
+    title: "四资产轮动",
+    badge: "Four Asset",
+    href: "/strategy/four-asset",
+    rule: "在股票、债券、黄金、现金四类 ETF 间按趋势和风险调整评分选择，利用低相关资产改善组合波动和回撤。",
+  },
+  {
+    id: "max-drawdown-batch",
+    title: "回撤分批买入",
+    badge: "Drawdown",
+    href: "/strategy/max-drawdown-batch",
+    rule: "用核心 ETF 自身历史回撤分布定义左侧买入档位，回撤加深时分批投入，回撤修复后逐级降低风险。",
+  },
+  {
+    id: "all-weather",
+    title: "全天候组合",
+    badge: "All Weather",
+    href: "/strategy/all-weather",
+    rule: "用 A 股 ETF 近似经典全天候组合，覆盖股票、长久期国债、中期国债、黄金和商品期货篮子，并定期再平衡。",
+  },
+  {
+    id: "equal-weight-reversion-basic",
+    title: "等权回归基础",
+    badge: "Mean Reversion",
+    href: "/strategy/equal-weight-reversion-basic",
+    rule: "构造 510300、510880、510500、159915 四 ETF 等权净值，观察其相对 MA250 的标准化偏离，低位提高权益暴露，高位降低。",
+  },
+  {
+    id: "equal-weight-reversion-guarded",
+    title: "等权回归风控",
+    badge: "Guarded",
+    href: "/strategy/equal-weight-reversion-guarded",
+    rule: "在等权均线回归基础上增加 MA250 下行过滤，避免长期下行阶段越跌越加，优先控制回撤风险。",
+  },
+];
+
+function strategyDirectoryPayload(results, card) {
+  if (card.source === "etf_rotation_backtest") return results.etf_rotation_backtest || {};
+  if (card.source === "macro_style_etf_backtest") return results.macro_style_etf_backtest || {};
+  return (results.strategy_suite_backtests || []).find((item) => item.strategy_id === card.id) || {};
+}
+
+function strategyDirectorySummary(card, payload) {
+  const summary = payload.summary || {};
+  return {
+    totalReturn: summary[card.returnKey || "strategy_total_return"],
+    equalReturn: summary[card.equalReturnKey || "equal_weight_return"],
+    alpha: summary.alpha_vs_equal_weight,
+    drawdown: summary.max_drawdown,
+    equalDrawdown: summary[card.equalDrawdownKey || "equal_weight_max_drawdown"],
+    sharpe: summary.sharpe,
+    sessions: summary.sessions,
+    endDate: summary.end_date,
+  };
+}
+
+function strategyDirectoryVerdict(data) {
+  if (typeof data.totalReturn !== "number") return "回测摘要尚未生成，暂不能评价。";
+  const hasAlpha = typeof data.alpha === "number";
+  const hasDrawdownGap = typeof data.drawdown === "number" && typeof data.equalDrawdown === "number";
+  const drawdownReduction = hasDrawdownGap ? Math.abs(data.equalDrawdown) - Math.abs(data.drawdown) : null;
+  if (hasAlpha && data.alpha >= 0 && drawdownReduction !== null && drawdownReduction >= 0) {
+    return "收益和回撤均优于等权对照，可作为重点候选继续观察。";
+  }
+  if (hasAlpha && data.alpha >= 0) {
+    return "收益有超额，但回撤代价需要单独评估，适合限定场景使用。";
+  }
+  if (drawdownReduction !== null && drawdownReduction > 0) {
+    return "更像降波动或防守工具，当前不是收益 Alpha 主力。";
+  }
+  return "当前回测未显示相对等权的综合优势，暂作研究备选。";
+}
+
+function strategyDirectoryEvaluation(card, payload) {
+  const data = strategyDirectorySummary(card, payload);
+  if (typeof data.totalReturn !== "number") return "回测数据缺失，等待重新生成后再评价。";
+  const parts = [
+    `截至 ${toIsoDate(data.endDate)}，累计收益 ${signedRatioText(data.totalReturn)}`,
+    `最大回撤 ${percentText(data.drawdown)}`,
+  ];
+  if (typeof data.alpha === "number") parts.push(`相对等权 Alpha ${signedRatioText(data.alpha)}`);
+  if (typeof data.sharpe === "number") parts.push(`夏普 ${fixedText(data.sharpe, 2)}`);
+  return `${parts.join("，")}。${strategyDirectoryVerdict(data)}`;
+}
+
+function setStrategyDirectory(results) {
+  const target = document.getElementById("strategyDirectoryGrid");
+  if (!target) return;
+  target.innerHTML = STRATEGY_DIRECTORY_CARDS.map((card) => {
+    const payload = strategyDirectoryPayload(results, card);
+    return `
+      <article class="chart-panel strategy-directory-card">
+        <a class="strategy-card-entry" href="${card.href}">
+          <span>${escapeHtml(card.badge)}</span>
+          <strong>${escapeHtml(card.title)}</strong>
+          <em>进入策略页</em>
+        </a>
+        <div class="strategy-card-section">
+          <span>策略规则</span>
+          <p>${escapeHtml(card.rule)}</p>
+        </div>
+        <div class="strategy-card-section">
+          <span>总体评价</span>
+          <p>${escapeHtml(strategyDirectoryEvaluation(card, payload))}</p>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
 function conclusionItemsForPage(results) {
   const items = results.conclusions || [];
   if (document.body?.dataset.page !== "validation") return items;
@@ -429,6 +577,8 @@ function setApiCatalogPanel(catalog) {
 }
 
 function setResultsPanel(results) {
+  setStrategyDirectory(results);
+
   const risk = results.risk || {};
   const decision = risk.decision || {};
   const portfolio = (results.portfolio || {}).allocation || {};
