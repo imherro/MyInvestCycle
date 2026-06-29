@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>验证归因</title>
+    <link rel="stylesheet" href="/static/style.css?v=20260629-channels-1" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  </head>
+  <body data-page="validation" data-results-page="1">
+    <div data-myinvest-header></div>
+    <main class="shell detail-page">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Validation</p>
+          <h1>验证归因</h1>
+        </div>
+        <div class="topbar-actions">
+          <button class="refresh-button" id="refreshButton" type="button">刷新</button>
+          <a class="back-link" href="/">返回首页</a>
+        </div>
+      </header>
+
+      <nav class="channel-nav-section" aria-label="频道导航">
+        <a href="/">
+          <span>Macro</span>
+          <strong>宏观总览</strong>
+        </a>
+        <a href="/cycle-track">
+          <span>Current Cycle</span>
+          <strong>本轮周期</strong>
+        </a>
+        <a href="/cycle-observation">
+          <span>Long Cycle</span>
+          <strong>长期牛熊</strong>
+        </a>
+        <a href="/risk-execution">
+          <span>Risk</span>
+          <strong>风控执行</strong>
+        </a>
+        <a href="/strategies">
+          <span>Strategies</span>
+          <strong>策略回测</strong>
+        </a>
+        <a class="is-active" href="/validation">
+          <span>Validation</span>
+          <strong>验证归因</strong>
+        </a>
+        <a href="/api-docs">
+          <span>API</span>
+          <strong>接口说明</strong>
+        </a>
+      </nav>
+
+      <section class="results-overview" id="validation-channel" aria-live="polite">
+        <div class="dashboard-section-heading">
+          <div>
+            <span>Validation</span>
+            <h2>验证归因</h2>
+          </div>
+          <p>用仓位风控回测、Regime 归因、结构事件和模型验证来判断系统是否可靠。</p>
+        </div>
+
+        <article class="chart-panel result-panel shadow-panel wide-analysis-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="按市场状态生成目标仓位：牛市偏进攻，震荡半仓，熊市低仓防守，过渡期降低交易；再用风险分数下调仓位，并滞后 1 个交易日应用到 510500.SH 日收益，和满仓持有 510500 对比收益、回撤与 Alpha。不做选股，不代表真实交易账户。">仓位风控回测</h2>
+            <span class="panel-kicker">R2 动态仓位 / 510500 基准</span>
+          </div>
+          <div class="wide-panel-layout">
+            <div class="wide-panel-metrics">
+              <div class="shadow-headline">
+                <div>
+                  <span>累计 Alpha</span>
+                  <strong id="shadowFinalAlpha">--</strong>
+                </div>
+                <div>
+                  <span>平均仓位</span>
+                  <strong id="shadowAverageExposure">--</strong>
+                </div>
+              </div>
+              <div class="metric-card-grid">
+                <div>
+                  <span>策略收益</span>
+                  <strong id="shadowTotalReturn">--</strong>
+                </div>
+                <div>
+                  <span>基准收益</span>
+                  <strong id="benchmarkTotalReturn">--</strong>
+                </div>
+                <div>
+                  <span>策略权益</span>
+                  <strong id="shadowFinalEquity">--</strong>
+                </div>
+                <div>
+                  <span>基准权益</span>
+                  <strong id="benchmarkFinalEquity">--</strong>
+                </div>
+                <div>
+                  <span>样本</span>
+                  <strong id="shadowSessions">--</strong>
+                </div>
+                <div>
+                  <span>基准</span>
+                  <strong id="shadowBenchmarkCode">--</strong>
+                </div>
+              </div>
+              <div class="result-row">
+                <span>最大回撤</span>
+                <strong id="shadowDrawdown">--</strong>
+              </div>
+              <p class="result-note" id="shadowConclusion">--</p>
+            </div>
+            <div class="chart-box shadow-equity-box" id="shadowEquityChart"></div>
+          </div>
+        </article>
+
+        <article class="chart-panel result-panel attribution-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="把风控仓位策略相对基准的差异拆到牛市、熊市、震荡和过渡状态，判断收益来源和拖累来源。">Regime 归因</h2>
+            <span class="panel-kicker">S1.2</span>
+          </div>
+          <div class="attribution-headline">
+            <div>
+              <span>累计 Alpha</span>
+              <strong id="regimeAttributionTotalAlpha">--</strong>
+            </div>
+            <div>
+              <span>回撤减少</span>
+              <strong id="regimeAttributionDrawdownReduction">--</strong>
+            </div>
+          </div>
+          <div class="result-row">
+            <span>最大拖累</span>
+            <strong id="largestDragRegime">--</strong>
+          </div>
+          <div class="result-row">
+            <span>最大正贡献</span>
+            <strong id="largestPositiveRegime">--</strong>
+          </div>
+          <div class="attribution-regime-list" id="regimeAttributionList"></div>
+          <div class="alpha-source-list" id="alphaSourceList"></div>
+          <p class="result-note" id="regimeAttributionConclusion">--</p>
+        </article>
+
+        <div class="dashboard-section-heading">
+          <div>
+            <span>Model Rules</span>
+            <h2>模型验证与生命周期</h2>
+          </div>
+          <p>这些模块用于解释结构事件、模型可靠性、生命周期标签和输出口径。</p>
+        </div>
+
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="把日常状态跳变压缩为更重要的结构事件，减少噪声后观察主周期风险。">结构事件标签</h2>
+            <span class="panel-kicker">H1.1 / H1.2</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>原始跳变率</span>
+              <strong id="hazardRawRate">--</strong>
+            </div>
+            <div class="result-row">
+              <span>结构跳变率</span>
+              <strong id="hazardStructuralRate">--</strong>
+            </div>
+            <div class="result-row">
+              <span>样本规模</span>
+              <strong id="hazardRows">--</strong>
+            </div>
+          </div>
+          <p class="result-note" id="hazardConclusion">--</p>
+        </article>
+
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="用 AUC、Lift 和敏感性区间检查状态模型是否有识别力，以及是否稳定。">模型验证</h2>
+            <span class="panel-kicker">H1.3</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>默认 AUC</span>
+              <strong id="modelAuc">--</strong>
+            </div>
+            <div class="result-row">
+              <span>默认 Lift</span>
+              <strong id="modelLift">--</strong>
+            </div>
+            <div class="result-row">
+              <span>波动单因子 AUC</span>
+              <strong id="volatilityAuc">--</strong>
+            </div>
+            <div class="result-row">
+              <span>敏感性区间</span>
+              <strong id="sensitivityRange">--</strong>
+            </div>
+          </div>
+          <p class="result-note" id="modelConclusion">--</p>
+        </article>
+
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="统计不同市场状态的持续时间、事件率和生命周期特征，辅助理解策略规则。">生命周期与策略规则</h2>
+            <span class="panel-kicker">H2.1 / R1.2</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>结构事件率</span>
+              <strong id="survivalEventRate">--</strong>
+            </div>
+            <div class="result-row">
+              <span>结构事件数</span>
+              <strong id="survivalEvents">--</strong>
+            </div>
+            <div class="result-row">
+              <span>观察样本</span>
+              <strong id="survivalRows">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="durationList"></div>
+        </article>
+
+        <article class="chart-panel result-panel conclusions-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="集中列出页面解释口径和边界，避免把模拟、验证或风险提示误读为交易指令。">结论口径</h2>
+            <span class="panel-kicker">页面展示口径</span>
+          </div>
+          <ul class="conclusion-list" id="conclusionList"></ul>
+        </article>
+      </section>
+    </main>
+    <div data-myinvest-footer></div>
+
+    <script src="/static/charts.js?v=20260629-channels-1"></script>
+    <script src="/static/dashboard.js?v=20260629-channels-1"></script>
+    <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
+    <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
+  </body>
+</html>

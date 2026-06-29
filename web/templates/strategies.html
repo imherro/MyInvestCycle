@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>策略回测</title>
+    <link rel="stylesheet" href="/static/style.css?v=20260629-channels-1" />
+  </head>
+  <body data-page="strategies" data-results-page="1">
+    <div data-myinvest-header></div>
+    <main class="shell detail-page">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Strategies</p>
+          <h1>策略回测</h1>
+        </div>
+        <div class="topbar-actions">
+          <button class="refresh-button" id="refreshButton" type="button">刷新</button>
+          <a class="back-link" href="/">返回首页</a>
+        </div>
+      </header>
+
+      <nav class="channel-nav-section" aria-label="频道导航">
+        <a href="/">
+          <span>Macro</span>
+          <strong>宏观总览</strong>
+        </a>
+        <a href="/cycle-track">
+          <span>Current Cycle</span>
+          <strong>本轮周期</strong>
+        </a>
+        <a href="/cycle-observation">
+          <span>Long Cycle</span>
+          <strong>长期牛熊</strong>
+        </a>
+        <a href="/risk-execution">
+          <span>Risk</span>
+          <strong>风控执行</strong>
+        </a>
+        <a class="is-active" href="/strategies">
+          <span>Strategies</span>
+          <strong>策略回测</strong>
+        </a>
+        <a href="/validation">
+          <span>Validation</span>
+          <strong>验证归因</strong>
+        </a>
+        <a href="/api-docs">
+          <span>API</span>
+          <strong>接口说明</strong>
+        </a>
+      </nav>
+
+      <section class="results-overview" id="etf-channel" aria-live="polite">
+        <div class="dashboard-section-heading">
+          <div>
+            <span>Strategy Backtests</span>
+            <h2>策略回测入口</h2>
+          </div>
+          <p>策略频道集中展示策略信号、关键摘要和入口；完整图表、缩放对比和调仓历史进入各策略主页查看。</p>
+        </div>
+
+        <article class="chart-panel result-panel style-rotation-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="把当前市场状态映射到价值、成长、红利、低波、现金等风格分数，生成 ETF 候选池。">风格轮动基础</h2>
+            <span class="panel-kicker">A1.1</span>
+          </div>
+          <div class="style-headline">
+            <div>
+              <span>状态映射</span>
+              <strong id="styleRegime">--</strong>
+            </div>
+            <div>
+              <span>首选风格</span>
+              <strong id="styleTopStyle">--</strong>
+            </div>
+          </div>
+          <div class="result-row">
+            <span>首选 ETF</span>
+            <strong id="styleTopCandidate">--</strong>
+          </div>
+          <div class="style-score-list" id="styleScoreList"></div>
+          <div class="style-candidate-list" id="styleCandidateList"></div>
+          <p class="result-note" id="styleConclusion">--</p>
+        </article>
+
+        <article class="chart-panel result-panel etf-rotation-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="根据风格分数和 ETF 近期强弱，输出当前目标 ETF 权重和轮动方向。">ETF 轮动信号</h2>
+            <span class="panel-kicker">A1.2</span>
+          </div>
+          <div class="rotation-headline">
+            <div>
+              <span>轮动方向</span>
+              <strong id="rotationSignal">--</strong>
+            </div>
+            <div>
+              <span>置信度</span>
+              <strong id="rotationConfidence">--</strong>
+            </div>
+          </div>
+          <div class="result-row">
+            <span>首选 ETF</span>
+            <strong id="rotationTopEtf">--</strong>
+          </div>
+          <div class="rotation-weight-list" id="rotationTargetWeights"></div>
+          <div class="rotation-candidate-list" id="rotationCandidateList"></div>
+          <p class="result-note" id="rotationConclusion">--</p>
+        </article>
+
+        <article class="chart-panel result-panel etf-backtest-panel strategy-entry-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="ETF 轮动策略主页集中展示回测图、状态色带、基准对比和该策略的调仓历史入口。">ETF 轮动回测</h2>
+            <div class="panel-actions">
+              <span class="panel-kicker">A1.3</span>
+              <a class="panel-link" href="/strategy/etf-rotation">进入策略主页</a>
+            </div>
+          </div>
+          <div class="strategy-entry-layout">
+            <div class="wide-panel-metrics">
+              <div class="backtest-headline">
+                <div>
+                  <span>Alpha vs 510500</span>
+                  <strong id="backtestAlpha510500">--</strong>
+                </div>
+                <div>
+                  <span>Alpha vs 等权</span>
+                  <strong id="backtestAlphaEqual">--</strong>
+                </div>
+              </div>
+              <div class="metric-card-grid">
+                <div>
+                  <span>轮动收益</span>
+                  <strong id="backtestRotationReturn">--</strong>
+                </div>
+                <div>
+                  <span>510500收益</span>
+                  <strong id="backtestBenchmark510500Return">--</strong>
+                </div>
+                <div>
+                  <span>等权收益</span>
+                  <strong id="backtestEqualReturn">--</strong>
+                </div>
+                <div>
+                  <span>夏普</span>
+                  <strong id="backtestSharpe">--</strong>
+                </div>
+                <div>
+                  <span>样本</span>
+                  <strong id="backtestSessions">--</strong>
+                </div>
+                <div>
+                  <span>再平衡</span>
+                  <strong id="backtestRebalanceCount">--</strong>
+                </div>
+              </div>
+              <div class="backtest-comparison-table" id="backtestEtfComparison"></div>
+              <div class="result-row">
+                <span>最大回撤</span>
+                <strong id="backtestDrawdown">--</strong>
+              </div>
+              <div class="result-row">
+                <span>命中率</span>
+                <strong id="backtestHitRate">--</strong>
+              </div>
+              <p class="result-note" id="backtestConclusion">--</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="chart-panel result-panel macro-style-etf-panel strategy-entry-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="Macro-Style-ETF 策略主页集中展示分层回测图、宏观状态对比、基准对比和该策略的调仓历史入口。">Macro-Style-ETF 分层回测</h2>
+            <div class="panel-actions">
+              <span class="panel-kicker">M2.1</span>
+              <a class="panel-link" href="/strategy/macro-style">进入策略主页</a>
+            </div>
+          </div>
+          <div class="strategy-entry-layout">
+            <div class="wide-panel-metrics">
+              <div class="backtest-headline">
+                <div>
+                  <span>Alpha vs 510500</span>
+                  <strong id="macroStyleAlpha510500">--</strong>
+                </div>
+                <div>
+                  <span>Alpha vs 等权</span>
+                  <strong id="macroStyleAlphaEqual">--</strong>
+                </div>
+              </div>
+              <div class="metric-card-grid">
+                <div>
+                  <span>分层收益</span>
+                  <strong id="macroStyleReturn">--</strong>
+                </div>
+                <div>
+                  <span>510500收益</span>
+                  <strong id="macroStyle510500Return">--</strong>
+                </div>
+                <div>
+                  <span>等权收益</span>
+                  <strong id="macroStyleEqualReturn">--</strong>
+                </div>
+                <div>
+                  <span>夏普</span>
+                  <strong id="macroStyleSharpe">--</strong>
+                </div>
+                <div>
+                  <span>样本</span>
+                  <strong id="macroStyleSessions">--</strong>
+                </div>
+                <div>
+                  <span>再平衡</span>
+                  <strong id="macroStyleRebalance">--</strong>
+                </div>
+              </div>
+              <div class="backtest-comparison-table" id="macroStyleComparison"></div>
+              <div class="result-row">
+                <span>最大回撤</span>
+                <strong id="macroStyleDrawdown">--</strong>
+              </div>
+              <div class="result-row">
+                <span>命中率</span>
+                <strong id="macroStyleHitRate">--</strong>
+              </div>
+              <p class="result-note" id="macroStyleConclusion">--</p>
+            </div>
+          </div>
+        </article>
+
+        <section class="channel-link-row strategy-suite-link-row" aria-label="策略入口">
+          <a class="detail-nav-card" href="/strategy/defensive-dividend">
+            <span>Defensive</span>
+            <strong class="help-title help-title-inline" tabindex="0" data-help="只在红利、红利低波和现金代理之间切换，检验防守收益和回撤控制。">红利低波防守</strong>
+            <em>红利低波 + 现金代理防守策略。</em>
+          </a>
+          <a class="detail-nav-card" href="/strategy/industry-momentum">
+            <span>Industry Momentum</span>
+            <strong class="help-title help-title-inline" tabindex="0" data-help="在行业 ETF 中按中期动量和风险调整评分轮动；趋势不足时切到 511880。">行业 ETF 动量</strong>
+            <em>行业 ETF 动量轮动 + 511880 空仓机制。</em>
+          </a>
+          <a class="detail-nav-card" href="/strategy/four-asset">
+            <span>Four Asset</span>
+            <strong class="help-title help-title-inline" tabindex="0" data-help="在股票、债券、黄金和现金之间做跨资产轮动，观察低相关资产能否改善回撤。">四资产轮动</strong>
+            <em>股 / 债 / 金 / 现金四资产轮动。</em>
+          </a>
+          <a class="detail-nav-card" href="/strategy/max-drawdown-batch">
+            <span>Drawdown Batch</span>
+            <strong class="help-title help-title-inline" tabindex="0" data-help="按每只 ETF 自身历史回撤分布分批买入，回撤修复后逐级降仓；用于验证左侧买入思想，不代表稳赚。">回撤分批买入</strong>
+            <em>最大回撤分批买入策略。</em>
+          </a>
+          <a class="detail-nav-card" href="/strategy/all-weather">
+            <span>All Weather</span>
+            <strong class="help-title help-title-inline" tabindex="0" data-help="用 A 股 ETF 近似经典全天候组合：股票、长久期国债、中期国债、黄金和商品期货篮子固定配置，定期再平衡。">全天候组合</strong>
+            <em>All Weather Portfolio（A股 ETF）。</em>
+          </a>
+          <a class="detail-nav-card" href="/strategy/equal-weight-reversion-basic">
+            <span>Mean Reversion</span>
+            <strong class="help-title help-title-inline" tabindex="0" data-help="构造 510300、510880、510500、159915 四 ETF 等权净值，用偏离 MA250 的 z-score 分档高卖低买。">等权回归基础</strong>
+            <em>四 ETF 等权均线回归策略。</em>
+          </a>
+          <a class="detail-nav-card" href="/strategy/equal-weight-reversion-guarded">
+            <span>Guarded Reversion</span>
+            <strong class="help-title help-title-inline" tabindex="0" data-help="在等权均线回归基础上加入 MA250 下行限仓规则，检验能否减少熊市越跌越买风险。">等权回归风控</strong>
+            <em>等权回归 + 趋势过滤。</em>
+          </a>
+        </section>
+      </section>
+    </main>
+    <div data-myinvest-footer></div>
+
+    <script src="/static/charts.js?v=20260629-channels-1"></script>
+    <script src="/static/dashboard.js?v=20260629-channels-1"></script>
+    <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
+    <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
+  </body>
+</html>

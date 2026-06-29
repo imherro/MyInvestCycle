@@ -477,7 +477,10 @@ def _api_catalog_payload() -> dict[str, object]:
             "name": "Web 与接口文档",
             "description": "页面入口、接口目录和自动生成文档。",
             "endpoints": [
-                _api_endpoint("GET", "/", "打开当前系统首页。", "HTML dashboard", freshness="page"),
+                _api_endpoint("GET", "/", "打开宏观周期总览首页。", "HTML dashboard", freshness="page"),
+                _api_endpoint("GET", "/risk-execution", "打开风控执行频道，集中查看风险、组合、策略路由、执行模拟和系统边界。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/strategies", "打开策略回测频道，集中查看策略信号、关键回测摘要和策略入口。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/validation", "打开验证归因频道，集中查看仓位风控回测、Regime 归因、结构事件和模型验证。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/etf-rotation", "打开 ETF 轮动策略主页，集中查看回测图、关键指标和调仓历史入口。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/macro-style", "打开 Macro-Style-ETF 分层策略主页，集中查看回测图、关键指标和调仓历史入口。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/defensive-dividend", "打开红利低波 + 现金代理防守策略主页。", "HTML page", freshness="page"),
@@ -635,6 +638,10 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api", "description": "先看接口目录。"},
             {"path": "/api/results/summary", "description": "读取系统全部成果汇总。"},
             {"path": "/api/system/snapshot", "description": "读取系统冻结边界与稳定状态。"},
+            {"path": "/", "description": "查看宏观周期总览。"},
+            {"path": "/risk-execution", "description": "查看风控执行频道。"},
+            {"path": "/strategies", "description": "查看策略回测频道。"},
+            {"path": "/validation", "description": "查看验证归因频道。"},
             {"path": "/api/regime/current", "description": "读取当前牛熊状态与四维评分。"},
             {"path": "/api/regime/cycle/track", "description": "读取本轮周期位置和概率展望。"},
             {"path": "/api/meta-edge/current", "description": "读取系统内部矛盾信号。"},
@@ -679,6 +686,21 @@ def health() -> dict[str, str]:
 @app.get("/", response_class=HTMLResponse)
 def dashboard():
     return FileResponse(ROOT_DIR / "web" / "templates" / "dashboard.html")
+
+
+@app.get("/risk-execution", response_class=HTMLResponse)
+def risk_execution_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "risk_execution.html")
+
+
+@app.get("/strategies", response_class=HTMLResponse)
+def strategies_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "strategies.html")
+
+
+@app.get("/validation", response_class=HTMLResponse)
+def validation_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "validation.html")
 
 
 @app.get("/strategy/etf-rotation", response_class=HTMLResponse)

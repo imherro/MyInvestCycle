@@ -6,23 +6,27 @@ const state = {
 
 function setRegimePanel(current) {
   const panel = document.getElementById("regimePanel");
+  if (!panel) return;
   const color = REGIME_COLORS[current.regime] || REGIME_COLORS.range;
   panel.style.borderLeftColor = color;
-  document.getElementById("regimeName").textContent = regimeLabel(current.regime);
-  document.getElementById("regimeName").style.color = color;
-  document.getElementById("asOf").textContent = toIsoDate(current.as_of);
-  document.getElementById("confidenceValue").textContent = scorePercent(current.confidence);
-  document.getElementById("regimeScoreValue").textContent = scorePercent(current.regime_score);
+  setText("regimeName", regimeLabel(current.regime));
+  const name = document.getElementById("regimeName");
+  if (name) name.style.color = color;
+  setText("asOf", toIsoDate(current.as_of));
+  setText("confidenceValue", scorePercent(current.confidence));
+  setText("regimeScoreValue", scorePercent(current.regime_score));
 }
 
 function setScoreList(scores) {
+  const target = document.getElementById("scoreList");
+  if (!target) return;
   const labels = [
     ["trend", "趋势"],
     ["breadth", "宽度"],
     ["liquidity", "流动性"],
     ["volatility", "波动稳定"],
   ];
-  document.getElementById("scoreList").innerHTML = labels
+  target.innerHTML = labels
     .map(([key, label]) => `<div class="score-chip"><span>${label}</span><strong>${scorePercent(scores[key])}</strong></div>`)
     .join("");
 }
@@ -42,13 +46,17 @@ async function getJson(url) {
 
 function setCyclePanel(phase) {
   if (!phase) return;
+  const title = document.getElementById("cycleTitle");
+  if (!title) return;
   const color = REGIME_COLORS[phase.regime] || REGIME_COLORS.range;
-  document.getElementById("cycleTitle").textContent = `${regimeLabel(phase.regime)}大周期`;
-  document.getElementById("cycleTitle").style.color = color;
-  document.getElementById("cycleStart").textContent = `${toIsoDate(phase.startDate)} · 上证 ${phase.startClose}`;
-  document.getElementById("cycleEnd").textContent = phase.endDate ? toIsoDate(phase.endDate) : "进行中";
-  document.getElementById("cyclePosition").textContent =
-    `第 ${phase.elapsedSessions} 个交易日 · 约 ${phase.elapsedYears} 年 · ${phase.returnPct}%`;
+  title.textContent = `${regimeLabel(phase.regime)}大周期`;
+  title.style.color = color;
+  setText("cycleStart", `${toIsoDate(phase.startDate)} · 上证 ${phase.startClose}`);
+  setText("cycleEnd", phase.endDate ? toIsoDate(phase.endDate) : "进行中");
+  setText(
+    "cyclePosition",
+    `第 ${phase.elapsedSessions} 个交易日 · 约 ${phase.elapsedYears} 年 · ${phase.returnPct}%`
+  );
 }
 
 function phaseFromMajorCycle(cycle) {
@@ -114,8 +122,9 @@ function escapeHtml(value) {
 }
 
 function setProbability(id, barId, value) {
-  document.getElementById(id).textContent = percentText(value);
-  document.getElementById(barId).style.width = typeof value === "number" ? `${Math.round(value * 100)}%` : "0";
+  setText(id, percentText(value));
+  const bar = document.getElementById(barId);
+  if (bar) bar.style.width = typeof value === "number" ? `${Math.round(value * 100)}%` : "0";
 }
 
 function listHtml(items) {
@@ -269,6 +278,16 @@ function setText(id, value) {
   if (node) node.textContent = value;
 }
 
+function setHtml(id, value) {
+  const node = document.getElementById(id);
+  if (node) node.innerHTML = value;
+}
+
+function setClassName(id, value) {
+  const node = document.getElementById(id);
+  if (node) node.className = value;
+}
+
 function setBacktestComparisonTable(targetId, rows) {
   const target = document.getElementById(targetId);
   if (!target) return;
@@ -359,6 +378,14 @@ function setMacroStyleComparisonTable(summary) {
   ]);
 }
 
+function conclusionItemsForPage(results) {
+  const items = results.conclusions || [];
+  if (document.body?.dataset.page !== "validation") return items;
+  return items.filter((item) =>
+    /^(S1\.|H1\.|H2\.)/.test(item) || /结构化|默认结构化|波动单因子|风险观察/.test(item)
+  );
+}
+
 function setApiCatalogPanel(catalog) {
   const docs = catalog.docs || {};
   const groups = catalog.groups || [];
@@ -368,7 +395,7 @@ function setApiCatalogPanel(catalog) {
 
   setText("apiEndpointCount", integerText(catalog.total_endpoints));
   setText("apiDocsStatus", docs.interactive ? `已开放 ${docs.interactive}` : "--");
-  document.getElementById("apiRecommendedList").innerHTML = recommended.length
+  setHtml("apiRecommendedList", recommended.length
     ? recommended
         .map(
           (item) => `
@@ -379,8 +406,8 @@ function setApiCatalogPanel(catalog) {
           `
         )
         .join("")
-    : '<div class="api-empty-row">暂无推荐入口</div>';
-  document.getElementById("apiGroupList").innerHTML = groups.length
+    : '<div class="api-empty-row">暂无推荐入口</div>');
+  setHtml("apiGroupList", groups.length
     ? groups
         .map(
           (group) => `
@@ -392,7 +419,7 @@ function setApiCatalogPanel(catalog) {
           `
         )
         .join("")
-    : '<div class="api-empty-row">暂无接口分组</div>';
+    : '<div class="api-empty-row">暂无接口分组</div>');
   setText(
     "apiCatalogConclusion",
     safetyOk
@@ -441,13 +468,13 @@ function setResultsPanel(results) {
 
   setText("resultsAsOf", `截至 ${toIsoDate(results.as_of)}`);
   setText("riskLevel", riskLevelLabel(decision.risk_level));
-  document.getElementById("riskLevel").className = `risk-level-text risk-${decision.risk_level || "medium"}`;
+  setClassName("riskLevel", `risk-level-text risk-${decision.risk_level || "medium"}`);
   setText("recommendedExposure", percentText(decision.recommended_exposure));
   setText("riskAction", actionLabel(decision.action));
   setText("riskScore", fixedText(decision.risk_score, 3));
   setText("strategyMode", strategyLabel(decision.strategy_mode));
   setText("riskAlert", decision.alert || "--");
-  document.getElementById("riskComponents").innerHTML = Object.entries(decision.risk_components || {})
+  setHtml("riskComponents", Object.entries(decision.risk_components || {})
     .map(
       ([key, value]) => `
         <div class="component-row">
@@ -457,7 +484,7 @@ function setResultsPanel(results) {
         </div>
       `
     )
-    .join("");
+    .join(""));
 
   setText("portfolioExposure", percentText(portfolio.total_exposure));
   setText("portfolioCash", percentText(portfolio.cash_ratio));
@@ -468,7 +495,7 @@ function setResultsPanel(results) {
     constraints.max_exposure_satisfied === true &&
     constraints.strategy_allocation_sum === 1;
   setText("portfolioConstraint", constraintOk ? "通过" : "需检查");
-  document.getElementById("strategyAllocation").innerHTML = Object.entries(portfolio.strategy_allocation || {})
+  setHtml("strategyAllocation", Object.entries(portfolio.strategy_allocation || {})
     .map(
       ([strategy, weight]) => `
         <div class="allocation-row">
@@ -478,7 +505,7 @@ function setResultsPanel(results) {
         </div>
       `
     )
-    .join("");
+    .join(""));
   setText(
     "portfolioConclusion",
     `R2.1 使用当前 ${regimeLabel(portfolio.regime)} 状态和风险评分 ${fixedText(portfolio.risk_score, 3)}，将风险资产仓位控制在 ${percentText(portfolio.total_exposure)}，其余保持现金。`
@@ -488,10 +515,10 @@ function setResultsPanel(results) {
   const disabledStrategies = route.disabled_strategies || [];
   setText("routeEnabledCount", integerText(enabledStrategies.length));
   setText("routeDisabledCount", integerText(disabledStrategies.length));
-  document.getElementById("routeEnabledList").innerHTML = enabledStrategies.length
+  setHtml("routeEnabledList", enabledStrategies.length
     ? enabledStrategies.map((strategy) => `<span>${strategyLabel(strategy)}</span>`).join("")
-    : "<em>无启用策略</em>";
-  document.getElementById("routeBudgetList").innerHTML = Object.entries(route.strategy_budget || {})
+    : "<em>无启用策略</em>");
+  setHtml("routeBudgetList", Object.entries(route.strategy_budget || {})
     .map(
       ([strategy, weight]) => `
         <div class="allocation-row route-budget-row">
@@ -501,7 +528,7 @@ function setResultsPanel(results) {
         </div>
       `
     )
-    .join("");
+    .join(""));
   setText("routeExecutionStatus", route.constraints?.no_trade_execution ? "仅约束，不执行" : "需检查");
   const disabledReason = route.disabled_reason || {};
   const disabledText = disabledStrategies.length
@@ -518,7 +545,7 @@ function setResultsPanel(results) {
   setText("executionOrderCount", integerText(simulatedOrders.length));
   setText("allowedActions", (intent.allowed_actions || []).map(executionActionLabel).join("、") || "--");
   setText("forbiddenActions", (intent.forbidden_actions || []).map(executionActionLabel).join("、") || "--");
-  document.getElementById("simulatedOrders").innerHTML = simulatedOrders
+  setHtml("simulatedOrders", simulatedOrders
     .map((order) => {
       const size = typeof order.weight_change === "number"
         ? signedPercentText(order.weight_change * 100)
@@ -532,7 +559,7 @@ function setResultsPanel(results) {
         </div>
       `;
     })
-    .join("");
+    .join(""));
   setText(
     "executionConclusion",
     execution.constraints?.no_real_orders
@@ -544,7 +571,7 @@ function setResultsPanel(results) {
   setText("systemLayers", integerText(system.layers));
   setText("systemExecutionMode", system.execution_mode === "simulation" ? "模拟层" : system.execution_mode || "--");
   setText("systemPolicyLocked", system.policy_locked ? "已锁定" : "未锁定");
-  document.getElementById("systemBoundaryList").innerHTML = Object.entries(system.boundaries || {})
+  setHtml("systemBoundaryList", Object.entries(system.boundaries || {})
     .map(
       ([key, passed]) => `
         <div class="boundary-row">
@@ -553,7 +580,7 @@ function setResultsPanel(results) {
         </div>
       `
     )
-    .join("");
+    .join(""));
   setText(
     "systemConclusion",
     system.status === "stable"
@@ -565,12 +592,12 @@ function setResultsPanel(results) {
   const metaSignalStrengths = metaEdge.signal_strengths || {};
   setText("metaEdgeScore", percentText(metaEdge.meta_edge_score));
   setText("metaEdgeLevel", metaEdgeLevelLabel(metaEdge.meta_edge_level));
-  document.getElementById("metaEdgeLevel").className = `meta-edge-level meta-${metaEdge.meta_edge_level || "quiet"}`;
+  setClassName("metaEdgeLevel", `meta-edge-level meta-${metaEdge.meta_edge_level || "quiet"}`);
   setText("metaEdgeActiveCount", activeMetaSignals.length ? `${integerText(activeMetaSignals.length)} 个` : "无触发");
-  document.getElementById("metaEdgeSignalList").innerHTML = activeMetaSignals.length
+  setHtml("metaEdgeSignalList", activeMetaSignals.length
     ? activeMetaSignals.map((signal) => `<span>${metaSignalLabel(signal)}</span>`).join("")
-    : "<em>当前无显著矛盾信号</em>";
-  document.getElementById("metaEdgeStrengthList").innerHTML = Object.entries(metaSignalStrengths)
+    : "<em>当前无显著矛盾信号</em>");
+  setHtml("metaEdgeStrengthList", Object.entries(metaSignalStrengths)
     .map(
       ([signal, strength]) => `
         <div class="meta-strength-row">
@@ -580,7 +607,7 @@ function setResultsPanel(results) {
         </div>
       `
     )
-    .join("");
+    .join(""));
   setText(
     "metaEdgeConclusion",
     metaEdge.meta_edge_level
@@ -600,7 +627,7 @@ function setResultsPanel(results) {
     "styleTopCandidate",
     topCandidate.code ? `${topCandidate.name} · ${topCandidate.code}` : "--"
   );
-  document.getElementById("styleScoreList").innerHTML = Object.entries(styleFactor.style_scores || {})
+  setHtml("styleScoreList", Object.entries(styleFactor.style_scores || {})
     .map(
       ([style, score]) => `
         <div class="style-score-row">
@@ -610,8 +637,8 @@ function setResultsPanel(results) {
         </div>
       `
     )
-    .join("");
-  document.getElementById("styleCandidateList").innerHTML = (etfUniverse.top_candidates || [])
+    .join(""));
+  setHtml("styleCandidateList", (etfUniverse.top_candidates || [])
     .slice(0, 4)
     .map(
       (candidate) => `
@@ -622,7 +649,7 @@ function setResultsPanel(results) {
         </div>
       `
     )
-    .join("");
+    .join(""));
   setText(
     "styleConclusion",
     styleFactor.engine
@@ -641,7 +668,7 @@ function setResultsPanel(results) {
     rotationTopCandidate.code ? `${rotationTopCandidate.name} · ${rotationTopCandidate.code}` : "--"
   );
   const targetWeights = etfRotation.etf_target_weights || {};
-  document.getElementById("rotationTargetWeights").innerHTML = Object.entries(targetWeights)
+  setHtml("rotationTargetWeights", Object.entries(targetWeights)
     .map(
       ([code, weight]) => `
         <div class="rotation-weight-row">
@@ -651,8 +678,8 @@ function setResultsPanel(results) {
         </div>
       `
     )
-    .join("");
-  document.getElementById("rotationCandidateList").innerHTML = (etfRotation.top_candidates || [])
+    .join(""));
+  setHtml("rotationCandidateList", (etfRotation.top_candidates || [])
     .slice(0, 4)
     .map(
       (candidate) => `
@@ -663,7 +690,7 @@ function setResultsPanel(results) {
         </div>
       `
     )
-    .join("");
+    .join(""));
   setText(
     "rotationConclusion",
     etfRotation.engine
@@ -747,7 +774,7 @@ function setResultsPanel(results) {
   setText("largestDragRegime", regimeLabel(attributionSummary.largest_drag_regime));
   setText("largestPositiveRegime", regimeLabel(attributionSummary.largest_positive_regime));
   const regimeOrder = ["bull", "range", "bear", "transition"];
-  document.getElementById("regimeAttributionList").innerHTML = regimeOrder
+  setHtml("regimeAttributionList", regimeOrder
     .filter((regime) => regimePerformance[regime])
     .map((regime) => {
       const item = regimePerformance[regime];
@@ -759,8 +786,8 @@ function setResultsPanel(results) {
         </div>
       `;
     })
-    .join("");
-  document.getElementById("alphaSourceList").innerHTML = Object.entries(alphaDecomposition.sources || {})
+    .join(""));
+  setHtml("alphaSourceList", Object.entries(alphaDecomposition.sources || {})
     .map(
       ([source, value]) => `
         <div class="alpha-source-row">
@@ -769,7 +796,7 @@ function setResultsPanel(results) {
         </div>
       `
     )
-    .join("");
+    .join(""));
   setText(
     "regimeAttributionConclusion",
     attributionSummary.sessions
@@ -803,7 +830,7 @@ function setResultsPanel(results) {
   setText("survivalRows", integerText(structuralSurvival.observations));
   const durationOrder = ["bull", "range", "bear", "transition"];
   const durations = structuralSurvival.durations || {};
-  document.getElementById("durationList").innerHTML = durationOrder
+  setHtml("durationList", durationOrder
     .filter((key) => durations[key])
     .map((key) => {
       const item = durations[key];
@@ -815,9 +842,9 @@ function setResultsPanel(results) {
         </div>
       `;
     })
-    .join("");
+    .join(""));
 
-  document.getElementById("conclusionList").innerHTML = listHtml(results.conclusions || []);
+  setHtml("conclusionList", listHtml(conclusionItemsForPage(results)));
 }
 
 function setForecastPanel(track) {
@@ -913,36 +940,66 @@ function setCycleBlocks(blocks) {
   `;
 }
 
+function pageNeedsResults() {
+  return Boolean(
+    document.body?.dataset.resultsPage ||
+      document.querySelector(
+        "#riskLevel, #portfolioExposure, #styleRegime, #rotationSignal, #shadowFinalAlpha, #regimeAttributionTotalAlpha, #hazardRawRate"
+      )
+  );
+}
+
+function pageNeedsRegime() {
+  return Boolean(document.querySelector("#regimePanel, #scoreList, #radarChart"));
+}
+
+function pageNeedsCycle() {
+  return Boolean(document.querySelector("#cycleTitle"));
+}
+
+function pageNeedsFullResults() {
+  return Boolean(document.querySelector("#shadowEquityChart, #rotationBacktestChart, #macroStyleEtfChart"));
+}
+
 async function loadDashboard() {
   const button = document.getElementById("refreshButton");
-  button.disabled = true;
-  button.textContent = "刷新中";
+  if (button) {
+    button.disabled = true;
+    button.textContent = "刷新中";
+  }
   try {
+    const needsRegime = pageNeedsRegime();
+    const needsCycle = pageNeedsCycle();
+    const needsResults = pageNeedsResults();
+    const resultUrl = pageNeedsFullResults() ? "/api/results/summary" : "/api/results/summary?compact=1";
     const [current, cycle, results] = await Promise.all([
-      getJson("/api/regime/current"),
-      getJson("/api/regime/cycle"),
-      getJson("/api/results/summary?compact=1"),
+      needsRegime ? getJson("/api/regime/current") : Promise.resolve(null),
+      needsCycle ? getJson("/api/regime/cycle") : Promise.resolve(null),
+      needsResults ? getJson(resultUrl) : Promise.resolve(null),
     ]);
-    state.current = current;
-    state.cycle = cycle;
-    state.results = results;
-    const phase = phaseFromMajorCycle(cycle);
+    state.current = current || null;
+    state.cycle = cycle || null;
+    state.results = results || null;
 
-    setRegimePanel(current);
-    setScoreList(current.sub_scores);
-    setCyclePanel(phase);
-    setResultsPanel(results);
-    if (document.getElementById("radarChart")) renderRadar("radarChart", current.sub_scores);
-    if (document.getElementById("shadowEquityChart")) renderShadowEquityChart("shadowEquityChart", results.shadow_backtest || {});
-    if (document.getElementById("rotationBacktestChart")) renderEtfRotationBacktestChart("rotationBacktestChart", results.etf_rotation_backtest || {});
-    if (document.getElementById("macroStyleEtfChart")) renderMacroStyleEtfBacktestChart("macroStyleEtfChart", results.macro_style_etf_backtest || {});
+    if (current) {
+      setRegimePanel(current);
+      setScoreList(current.sub_scores);
+      if (document.getElementById("radarChart")) renderRadar("radarChart", current.sub_scores);
+    }
+    if (cycle) setCyclePanel(phaseFromMajorCycle(cycle));
+    if (results) setResultsPanel(results);
+    if (results && document.getElementById("shadowEquityChart")) renderShadowEquityChart("shadowEquityChart", results.shadow_backtest || {});
+    if (results && document.getElementById("rotationBacktestChart")) renderEtfRotationBacktestChart("rotationBacktestChart", results.etf_rotation_backtest || {});
+    if (results && document.getElementById("macroStyleEtfChart")) renderMacroStyleEtfBacktestChart("macroStyleEtfChart", results.macro_style_etf_backtest || {});
   } finally {
-    button.disabled = false;
-    button.textContent = "刷新";
+    if (button) {
+      button.disabled = false;
+      button.textContent = "刷新";
+    }
   }
 }
 
-document.getElementById("refreshButton").addEventListener("click", loadDashboard);
+document.getElementById("refreshButton")?.addEventListener("click", loadDashboard);
 document.getElementById("rotationBacktestReset")?.addEventListener("click", () => {
   resetEtfRotationBacktestChart("rotationBacktestChart");
 });

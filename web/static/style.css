@@ -37,6 +37,13 @@ body {
   margin-bottom: 18px;
 }
 
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .eyebrow {
   margin: 0 0 3px;
   color: var(--accent);
@@ -248,6 +255,11 @@ h2 {
 
 .channel-nav-section a:hover {
   border-color: var(--accent);
+}
+
+.channel-nav-section a.is-active {
+  border-color: var(--accent);
+  background: #eef4ff;
 }
 
 .channel-nav-section span {
@@ -2316,6 +2328,12 @@ h2 {
 
   .topbar {
     align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .topbar-actions {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .timeline-panel,

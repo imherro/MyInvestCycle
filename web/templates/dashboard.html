@@ -3,20 +3,51 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260629-strategy-suite-1" />
+    <title>MyInvestCycle 宏观周期</title>
+    <link rel="stylesheet" href="/static/style.css?v=20260629-channels-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
-  <body>
+  <body data-page="dashboard">
     <div data-myinvest-header></div>
     <main class="shell">
       <header class="topbar">
         <div>
           <p class="eyebrow">MyInvestCycle</p>
-          <h1>A股牛熊周期状态</h1>
+          <h1>A股宏观周期状态</h1>
         </div>
         <button class="refresh-button" id="refreshButton" type="button">刷新</button>
       </header>
+
+      <nav class="channel-nav-section" aria-label="频道导航">
+        <a class="is-active" href="/">
+          <span>Macro</span>
+          <strong>宏观总览</strong>
+        </a>
+        <a href="/cycle-track">
+          <span>Current Cycle</span>
+          <strong>本轮周期</strong>
+        </a>
+        <a href="/cycle-observation">
+          <span>Long Cycle</span>
+          <strong>长期牛熊</strong>
+        </a>
+        <a href="/risk-execution">
+          <span>Risk</span>
+          <strong>风控执行</strong>
+        </a>
+        <a href="/strategies">
+          <span>Strategies</span>
+          <strong>策略回测</strong>
+        </a>
+        <a href="/validation">
+          <span>Validation</span>
+          <strong>验证归因</strong>
+        </a>
+        <a href="/api-docs">
+          <span>API</span>
+          <strong>接口说明</strong>
+        </a>
+      </nav>
 
       <section class="status-grid" aria-live="polite">
         <article class="regime-panel" id="regimePanel">
@@ -34,69 +65,42 @@
         </article>
       </section>
 
-      <nav class="channel-nav-section" aria-label="首页频道导航">
-        <a href="#cycle-channel">
-          <span>Cycle</span>
-          <strong>周期判断</strong>
-        </a>
-        <a href="#execution-channel">
-          <span>Risk</span>
-          <strong>风控执行</strong>
-        </a>
-        <a href="/strategy/etf-rotation">
-          <span>ETF Rotation</span>
-          <strong>ETF 轮动策略</strong>
-        </a>
-        <a href="/strategy/macro-style">
-          <span>Macro Style</span>
-          <strong>分层组合策略</strong>
-        </a>
-        <a href="#validation-channel">
-          <span>Validation</span>
-          <strong>验证归因</strong>
-        </a>
-        <a href="#api-channel">
-          <span>API</span>
-          <strong>接口说明</strong>
-        </a>
-      </nav>
-
       <section class="channel-section" id="cycle-channel">
         <div class="dashboard-section-heading">
           <div>
-            <span>Cycle</span>
-            <h2>周期判断</h2>
+            <span>Macro Cycle</span>
+            <h2>宏观周期判断</h2>
           </div>
-          <p>先判断当前牛熊阶段、本轮周期位置和长期主周期。</p>
+          <p>首页只保留宏观层信息：当前牛熊状态、本轮周期位置和四维评分。</p>
         </div>
 
         <section class="cycle-score-row">
-        <section class="cycle-panel" aria-live="polite">
-          <div class="cycle-cell cycle-state-cell">
-            <div class="panel-label">当前阶段定位</div>
-            <div class="cycle-title" id="cycleTitle">--</div>
-          </div>
-          <div class="cycle-cell">
-            <span>开始</span>
-            <strong id="cycleStart">--</strong>
-          </div>
-          <div class="cycle-cell">
-            <span>结束</span>
-            <strong id="cycleEnd">--</strong>
-          </div>
-          <div class="cycle-cell">
-            <span>当前位置</span>
-            <strong id="cyclePosition">--</strong>
-          </div>
-        </section>
+          <section class="cycle-panel" aria-live="polite">
+            <div class="cycle-cell cycle-state-cell">
+              <div class="panel-label">当前阶段定位</div>
+              <div class="cycle-title" id="cycleTitle">--</div>
+            </div>
+            <div class="cycle-cell">
+              <span>开始</span>
+              <strong id="cycleStart">--</strong>
+            </div>
+            <div class="cycle-cell">
+              <span>结束</span>
+              <strong id="cycleEnd">--</strong>
+            </div>
+            <div class="cycle-cell">
+              <span>当前位置</span>
+              <strong id="cyclePosition">--</strong>
+            </div>
+          </section>
 
-        <article class="chart-panel radar-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="把趋势、宽度、流动性和波动稳定性合成当前市场状态的基础证据。">四维评分</h2>
-          </div>
-          <div class="compact-scores" id="scoreList"></div>
-          <div class="chart-box radar-box" id="radarChart"></div>
-        </article>
+          <article class="chart-panel radar-panel">
+            <div class="panel-heading">
+              <h2 class="help-title" tabindex="0" data-help="把趋势、宽度、流动性和波动稳定性合成当前市场状态的基础证据。">四维评分</h2>
+            </div>
+            <div class="compact-scores" id="scoreList"></div>
+            <div class="chart-box radar-box" id="radarChart"></div>
+          </article>
         </section>
 
         <section class="channel-link-row" aria-label="周期详情入口">
@@ -112,594 +116,11 @@
           </a>
         </section>
       </section>
-
-      <section class="results-overview" id="execution-channel" aria-live="polite">
-        <div class="dashboard-section-heading">
-          <div>
-            <span>Risk Execution</span>
-            <h2>风控执行</h2>
-          </div>
-          <p>把风险评分、仓位、策略路由、执行模拟和系统边界放在一起。</p>
-        </div>
-
-        <article class="chart-panel result-panel risk-result-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="汇总当前风险等级、建议仓位和主要风控动作，是首页最先看的执行摘要。">风险总览</h2>
-            <span class="panel-kicker" id="resultsAsOf">--</span>
-          </div>
-          <div class="risk-headline">
-            <div>
-              <span>风险等级</span>
-              <strong id="riskLevel">--</strong>
-            </div>
-            <div>
-              <span>建议仓位</span>
-              <strong id="recommendedExposure">--</strong>
-            </div>
-            <div>
-              <span>执行动作</span>
-              <strong id="riskAction">--</strong>
-            </div>
-          </div>
-          <div class="risk-detail">
-            <div class="result-row">
-              <span>风险评分</span>
-              <strong id="riskScore">--</strong>
-            </div>
-            <div class="result-row">
-              <span>策略模式</span>
-              <strong id="strategyMode">--</strong>
-            </div>
-            <div class="result-row">
-              <span>风控提示</span>
-              <strong id="riskAlert">--</strong>
-            </div>
-          </div>
-          <div class="component-list" id="riskComponents"></div>
-        </article>
-
-        <article class="chart-panel result-panel portfolio-result-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="把系统建议的总仓位、现金比例和策略分配拆开，检查仓位是否符合风险约束。">组合配置</h2>
-            <span class="panel-kicker">R2.1</span>
-          </div>
-          <div class="portfolio-headline">
-            <div>
-              <span>总仓位</span>
-              <strong id="portfolioExposure">--</strong>
-            </div>
-            <div>
-              <span>现金比例</span>
-              <strong id="portfolioCash">--</strong>
-            </div>
-          </div>
-          <div class="result-row">
-            <span>约束状态</span>
-            <strong id="portfolioConstraint">--</strong>
-          </div>
-          <div class="allocation-list" id="strategyAllocation"></div>
-          <p class="result-note" id="portfolioConclusion">--</p>
-        </article>
-
-        <article class="chart-panel result-panel strategy-route-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="显示当前允许启用哪些策略、禁用哪些策略，以及资金在策略之间如何分配。">策略路由</h2>
-            <span class="panel-kicker">R2.2</span>
-          </div>
-          <div class="route-summary">
-            <div>
-              <span>启用策略</span>
-              <strong id="routeEnabledCount">--</strong>
-            </div>
-            <div>
-              <span>禁用策略</span>
-              <strong id="routeDisabledCount">--</strong>
-            </div>
-          </div>
-          <div class="route-pill-list" id="routeEnabledList"></div>
-          <div class="route-budget-list" id="routeBudgetList"></div>
-          <div class="result-row">
-            <span>执行状态</span>
-            <strong id="routeExecutionStatus">--</strong>
-          </div>
-          <p class="result-note" id="routeConclusion">--</p>
-        </article>
-
-        <article class="chart-panel result-panel execution-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="只展示模拟执行意图和模拟指令，用来检查系统会如何调整仓位，不会下真实订单。">执行模拟</h2>
-            <span class="panel-kicker">R3.1</span>
-          </div>
-          <div class="execution-headline">
-            <div>
-              <span>执行模式</span>
-              <strong id="executionMode">--</strong>
-            </div>
-            <div>
-              <span>模拟指令</span>
-              <strong id="executionOrderCount">--</strong>
-            </div>
-          </div>
-          <div class="action-list">
-            <div>
-              <span>允许动作</span>
-              <p id="allowedActions">--</p>
-            </div>
-            <div>
-              <span>禁止动作</span>
-              <p id="forbiddenActions">--</p>
-            </div>
-          </div>
-          <div class="simulated-order-list" id="simulatedOrders"></div>
-          <p class="result-note" id="executionConclusion">--</p>
-        </article>
-
-        <article class="chart-panel result-panel system-freeze-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="检查系统是否保持只读、模拟、无真实交易、无券商连接等边界。">系统冻结</h2>
-            <span class="panel-kicker">FINAL</span>
-          </div>
-          <div class="system-headline">
-            <div>
-              <span>状态</span>
-              <strong id="systemStatus">--</strong>
-            </div>
-            <div>
-              <span>层数</span>
-              <strong id="systemLayers">--</strong>
-            </div>
-          </div>
-          <div class="result-row">
-            <span>执行边界</span>
-            <strong id="systemExecutionMode">--</strong>
-          </div>
-          <div class="result-row">
-            <span>策略锁定</span>
-            <strong id="systemPolicyLocked">--</strong>
-          </div>
-          <div class="boundary-list" id="systemBoundaryList"></div>
-          <p class="result-note" id="systemConclusion">--</p>
-        </article>
-
-        <article class="chart-panel result-panel meta-edge-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="检测系统内部是否出现状态、风险、组合、周期之间的矛盾，用于提醒复核。">Meta Edge</h2>
-            <span class="panel-kicker">M1.1</span>
-          </div>
-          <div class="meta-edge-headline">
-            <div>
-              <span>矛盾强度</span>
-              <strong id="metaEdgeScore">--</strong>
-            </div>
-            <div>
-              <span>等级</span>
-              <strong id="metaEdgeLevel">--</strong>
-            </div>
-          </div>
-          <div class="result-row">
-            <span>触发信号</span>
-            <strong id="metaEdgeActiveCount">--</strong>
-          </div>
-          <div class="meta-signal-list" id="metaEdgeSignalList"></div>
-          <div class="meta-strength-list" id="metaEdgeStrengthList"></div>
-          <p class="result-note" id="metaEdgeConclusion">--</p>
-        </article>
-      </section>
-
-      <section class="results-overview" id="etf-channel" aria-live="polite">
-        <div class="dashboard-section-heading">
-          <div>
-            <span>Strategy Backtests</span>
-            <h2>策略回测入口</h2>
-          </div>
-          <p>首页只保留当前信号和关键摘要；完整图表、缩放对比和调仓历史进入各策略主页查看。</p>
-        </div>
-
-        <article class="chart-panel result-panel style-rotation-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="把当前市场状态映射到价值、成长、红利、低波、现金等风格分数，生成 ETF 候选池。">风格轮动基础</h2>
-            <span class="panel-kicker">A1.1</span>
-          </div>
-          <div class="style-headline">
-            <div>
-              <span>状态映射</span>
-              <strong id="styleRegime">--</strong>
-            </div>
-            <div>
-              <span>首选风格</span>
-              <strong id="styleTopStyle">--</strong>
-            </div>
-          </div>
-          <div class="result-row">
-            <span>首选 ETF</span>
-            <strong id="styleTopCandidate">--</strong>
-          </div>
-          <div class="style-score-list" id="styleScoreList"></div>
-          <div class="style-candidate-list" id="styleCandidateList"></div>
-          <p class="result-note" id="styleConclusion">--</p>
-        </article>
-
-        <article class="chart-panel result-panel etf-rotation-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="根据风格分数和 ETF 近期强弱，输出当前目标 ETF 权重和轮动方向。">ETF 轮动信号</h2>
-            <span class="panel-kicker">A1.2</span>
-          </div>
-          <div class="rotation-headline">
-            <div>
-              <span>轮动方向</span>
-              <strong id="rotationSignal">--</strong>
-            </div>
-            <div>
-              <span>置信度</span>
-              <strong id="rotationConfidence">--</strong>
-            </div>
-          </div>
-          <div class="result-row">
-            <span>首选 ETF</span>
-            <strong id="rotationTopEtf">--</strong>
-          </div>
-          <div class="rotation-weight-list" id="rotationTargetWeights"></div>
-          <div class="rotation-candidate-list" id="rotationCandidateList"></div>
-          <p class="result-note" id="rotationConclusion">--</p>
-        </article>
-
-        <article class="chart-panel result-panel etf-backtest-panel strategy-entry-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="ETF 轮动策略主页集中展示回测图、状态色带、基准对比和该策略的调仓历史入口。">ETF 轮动回测</h2>
-            <div class="panel-actions">
-              <span class="panel-kicker">A1.3</span>
-              <a class="panel-link" href="/strategy/etf-rotation">进入策略主页</a>
-            </div>
-          </div>
-          <div class="strategy-entry-layout">
-            <div class="wide-panel-metrics">
-              <div class="backtest-headline">
-                <div>
-                  <span>Alpha vs 510500</span>
-                  <strong id="backtestAlpha510500">--</strong>
-                </div>
-                <div>
-                  <span>Alpha vs 等权</span>
-                  <strong id="backtestAlphaEqual">--</strong>
-                </div>
-              </div>
-              <div class="metric-card-grid">
-                <div>
-                  <span>轮动收益</span>
-                  <strong id="backtestRotationReturn">--</strong>
-                </div>
-                <div>
-                  <span>510500收益</span>
-                  <strong id="backtestBenchmark510500Return">--</strong>
-                </div>
-                <div>
-                  <span>等权收益</span>
-                  <strong id="backtestEqualReturn">--</strong>
-                </div>
-                <div>
-                  <span>夏普</span>
-                  <strong id="backtestSharpe">--</strong>
-                </div>
-                <div>
-                  <span>样本</span>
-                  <strong id="backtestSessions">--</strong>
-                </div>
-                <div>
-                  <span>再平衡</span>
-                  <strong id="backtestRebalanceCount">--</strong>
-                </div>
-              </div>
-              <div class="backtest-comparison-table" id="backtestEtfComparison"></div>
-              <div class="result-row">
-                <span>最大回撤</span>
-                <strong id="backtestDrawdown">--</strong>
-              </div>
-              <div class="result-row">
-                <span>命中率</span>
-                <strong id="backtestHitRate">--</strong>
-              </div>
-              <p class="result-note" id="backtestConclusion">--</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="chart-panel result-panel macro-style-etf-panel strategy-entry-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="Macro-Style-ETF 策略主页集中展示分层回测图、宏观状态对比、基准对比和该策略的调仓历史入口。">Macro-Style-ETF 分层回测</h2>
-            <div class="panel-actions">
-              <span class="panel-kicker">M2.1</span>
-              <a class="panel-link" href="/strategy/macro-style">进入策略主页</a>
-            </div>
-          </div>
-          <div class="strategy-entry-layout">
-            <div class="wide-panel-metrics">
-              <div class="backtest-headline">
-                <div>
-                  <span>Alpha vs 510500</span>
-                  <strong id="macroStyleAlpha510500">--</strong>
-                </div>
-                <div>
-                  <span>Alpha vs 等权</span>
-                  <strong id="macroStyleAlphaEqual">--</strong>
-                </div>
-              </div>
-              <div class="metric-card-grid">
-                <div>
-                  <span>分层收益</span>
-                  <strong id="macroStyleReturn">--</strong>
-                </div>
-                <div>
-                  <span>510500收益</span>
-                  <strong id="macroStyle510500Return">--</strong>
-                </div>
-                <div>
-                  <span>等权收益</span>
-                  <strong id="macroStyleEqualReturn">--</strong>
-                </div>
-                <div>
-                  <span>夏普</span>
-                  <strong id="macroStyleSharpe">--</strong>
-                </div>
-                <div>
-                  <span>样本</span>
-                  <strong id="macroStyleSessions">--</strong>
-                </div>
-                <div>
-                  <span>再平衡</span>
-                  <strong id="macroStyleRebalance">--</strong>
-                </div>
-              </div>
-              <div class="backtest-comparison-table" id="macroStyleComparison"></div>
-              <div class="result-row">
-                <span>最大回撤</span>
-                <strong id="macroStyleDrawdown">--</strong>
-              </div>
-              <div class="result-row">
-                <span>命中率</span>
-                <strong id="macroStyleHitRate">--</strong>
-              </div>
-              <p class="result-note" id="macroStyleConclusion">--</p>
-            </div>
-          </div>
-        </article>
-
-        <section class="channel-link-row strategy-suite-link-row" aria-label="新增策略入口">
-          <a class="detail-nav-card" href="/strategy/defensive-dividend">
-            <span>Defensive</span>
-            <strong class="help-title help-title-inline" tabindex="0" data-help="只在红利、红利低波和现金代理之间切换，检验防守收益和回撤控制。">红利低波防守</strong>
-            <em>红利低波 + 现金代理防守策略。</em>
-          </a>
-          <a class="detail-nav-card" href="/strategy/industry-momentum">
-            <span>Industry Momentum</span>
-            <strong class="help-title help-title-inline" tabindex="0" data-help="在行业 ETF 中按中期动量和风险调整评分轮动；趋势不足时切到 511880。">行业 ETF 动量</strong>
-            <em>行业 ETF 动量轮动 + 511880 空仓机制。</em>
-          </a>
-          <a class="detail-nav-card" href="/strategy/four-asset">
-            <span>Four Asset</span>
-            <strong class="help-title help-title-inline" tabindex="0" data-help="在股票、债券、黄金和现金之间做跨资产轮动，观察低相关资产能否改善回撤。">四资产轮动</strong>
-            <em>股 / 债 / 金 / 现金四资产轮动。</em>
-          </a>
-          <a class="detail-nav-card" href="/strategy/max-drawdown-batch">
-            <span>Drawdown Batch</span>
-            <strong class="help-title help-title-inline" tabindex="0" data-help="按每只 ETF 自身历史回撤分布分批买入，回撤修复后逐级降仓；用于验证左侧买入思想，不代表稳赚。">回撤分批买入</strong>
-            <em>最大回撤分批买入策略。</em>
-          </a>
-          <a class="detail-nav-card" href="/strategy/all-weather">
-            <span>All Weather</span>
-            <strong class="help-title help-title-inline" tabindex="0" data-help="用 A 股 ETF 近似经典全天候组合：股票、长久期国债、中期国债、黄金和商品期货篮子固定配置，定期再平衡。">全天候组合</strong>
-            <em>All Weather Portfolio（A股 ETF）。</em>
-          </a>
-          <a class="detail-nav-card" href="/strategy/equal-weight-reversion-basic">
-            <span>Mean Reversion</span>
-            <strong class="help-title help-title-inline" tabindex="0" data-help="构造 510300、510880、510500、159915 四 ETF 等权净值，用偏离 MA250 的 z-score 分档高卖低买。">等权回归基础</strong>
-            <em>四 ETF 等权均线回归策略。</em>
-          </a>
-          <a class="detail-nav-card" href="/strategy/equal-weight-reversion-guarded">
-            <span>Guarded Reversion</span>
-            <strong class="help-title help-title-inline" tabindex="0" data-help="在等权均线回归基础上加入 MA250 下行限仓规则，检验能否减少熊市越跌越买风险。">等权回归风控</strong>
-            <em>等权回归 + 趋势过滤。</em>
-          </a>
-        </section>
-      </section>
-
-      <section class="results-overview" id="validation-channel" aria-live="polite">
-        <div class="dashboard-section-heading">
-          <div>
-            <span>Validation</span>
-            <h2>验证归因</h2>
-          </div>
-          <p>用仓位风控回测、Regime 归因、结构事件和模型验证来判断系统是否可靠。</p>
-        </div>
-
-        <article class="chart-panel result-panel shadow-panel wide-analysis-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="按市场状态生成目标仓位：牛市偏进攻，震荡半仓，熊市低仓防守，过渡期降低交易；再用风险分数下调仓位，并滞后 1 个交易日应用到 510500.SH 日收益，和满仓持有 510500 对比收益、回撤与 Alpha。不做选股，不代表真实交易账户。">仓位风控回测</h2>
-            <span class="panel-kicker">R2 动态仓位 / 510500 基准</span>
-          </div>
-          <div class="wide-panel-layout">
-            <div class="wide-panel-metrics">
-              <div class="shadow-headline">
-                <div>
-                  <span>累计 Alpha</span>
-                  <strong id="shadowFinalAlpha">--</strong>
-                </div>
-                <div>
-                  <span>平均仓位</span>
-                  <strong id="shadowAverageExposure">--</strong>
-                </div>
-              </div>
-              <div class="metric-card-grid">
-                <div>
-                  <span>策略收益</span>
-                  <strong id="shadowTotalReturn">--</strong>
-                </div>
-                <div>
-                  <span>基准收益</span>
-                  <strong id="benchmarkTotalReturn">--</strong>
-                </div>
-                <div>
-                  <span>策略权益</span>
-                  <strong id="shadowFinalEquity">--</strong>
-                </div>
-                <div>
-                  <span>基准权益</span>
-                  <strong id="benchmarkFinalEquity">--</strong>
-                </div>
-                <div>
-                  <span>样本</span>
-                  <strong id="shadowSessions">--</strong>
-                </div>
-                <div>
-                  <span>基准</span>
-                  <strong id="shadowBenchmarkCode">--</strong>
-                </div>
-              </div>
-              <div class="result-row">
-                <span>最大回撤</span>
-                <strong id="shadowDrawdown">--</strong>
-              </div>
-              <p class="result-note" id="shadowConclusion">--</p>
-            </div>
-            <div class="chart-box shadow-equity-box" id="shadowEquityChart"></div>
-          </div>
-        </article>
-
-        <article class="chart-panel result-panel attribution-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="把风控仓位策略相对基准的差异拆到牛市、熊市、震荡和过渡状态，判断收益来源和拖累来源。">Regime 归因</h2>
-            <span class="panel-kicker">S1.2</span>
-          </div>
-          <div class="attribution-headline">
-            <div>
-              <span>累计 Alpha</span>
-              <strong id="regimeAttributionTotalAlpha">--</strong>
-            </div>
-            <div>
-              <span>回撤减少</span>
-              <strong id="regimeAttributionDrawdownReduction">--</strong>
-            </div>
-          </div>
-          <div class="result-row">
-            <span>最大拖累</span>
-            <strong id="largestDragRegime">--</strong>
-          </div>
-          <div class="result-row">
-            <span>最大正贡献</span>
-            <strong id="largestPositiveRegime">--</strong>
-          </div>
-          <div class="attribution-regime-list" id="regimeAttributionList"></div>
-          <div class="alpha-source-list" id="alphaSourceList"></div>
-          <p class="result-note" id="regimeAttributionConclusion">--</p>
-        </article>
-
-        <div class="dashboard-section-heading">
-          <div>
-            <span>Model Rules</span>
-            <h2>模型验证与生命周期</h2>
-          </div>
-          <p>这些模块用于解释结构事件、模型可靠性、生命周期标签和输出口径。</p>
-        </div>
-
-        <article class="chart-panel result-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="把日常状态跳变压缩为更重要的结构事件，减少噪声后观察主周期风险。">结构事件标签</h2>
-            <span class="panel-kicker">H1.1 / H1.2</span>
-          </div>
-          <div class="result-metrics">
-            <div class="result-row">
-              <span>原始跳变率</span>
-              <strong id="hazardRawRate">--</strong>
-            </div>
-            <div class="result-row">
-              <span>结构跳变率</span>
-              <strong id="hazardStructuralRate">--</strong>
-            </div>
-            <div class="result-row">
-              <span>样本规模</span>
-              <strong id="hazardRows">--</strong>
-            </div>
-          </div>
-          <p class="result-note" id="hazardConclusion">--</p>
-        </article>
-
-        <article class="chart-panel result-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="用 AUC、Lift 和敏感性区间检查状态模型是否有识别力，以及是否稳定。">模型验证</h2>
-            <span class="panel-kicker">H1.3</span>
-          </div>
-          <div class="result-metrics">
-            <div class="result-row">
-              <span>默认 AUC</span>
-              <strong id="modelAuc">--</strong>
-            </div>
-            <div class="result-row">
-              <span>默认 Lift</span>
-              <strong id="modelLift">--</strong>
-            </div>
-            <div class="result-row">
-              <span>波动单因子 AUC</span>
-              <strong id="volatilityAuc">--</strong>
-            </div>
-            <div class="result-row">
-              <span>敏感性区间</span>
-              <strong id="sensitivityRange">--</strong>
-            </div>
-          </div>
-          <p class="result-note" id="modelConclusion">--</p>
-        </article>
-
-        <article class="chart-panel result-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="统计不同市场状态的持续时间、事件率和生命周期特征，辅助理解策略规则。">生命周期与策略规则</h2>
-            <span class="panel-kicker">H2.1 / R1.2</span>
-          </div>
-          <div class="result-metrics">
-            <div class="result-row">
-              <span>结构事件率</span>
-              <strong id="survivalEventRate">--</strong>
-            </div>
-            <div class="result-row">
-              <span>结构事件数</span>
-              <strong id="survivalEvents">--</strong>
-            </div>
-            <div class="result-row">
-              <span>观察样本</span>
-              <strong id="survivalRows">--</strong>
-            </div>
-          </div>
-          <div class="duration-list" id="durationList"></div>
-        </article>
-
-        <article class="chart-panel result-panel conclusions-panel">
-          <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="集中列出页面解释口径和边界，避免把模拟、验证或风险提示误读为交易指令。">结论口径</h2>
-            <span class="panel-kicker">页面展示口径</span>
-          </div>
-          <ul class="conclusion-list" id="conclusionList"></ul>
-        </article>
-      </section>
-
-      <section class="channel-section" id="api-channel">
-        <div class="dashboard-section-heading">
-          <div>
-            <span>API</span>
-            <h2>接口说明</h2>
-          </div>
-          <p>接口目录和只读边界放在最后，作为系统对外说明。</p>
-        </div>
-        <div class="channel-link-row channel-link-row-single">
-          <a class="detail-nav-card" href="/api-docs">
-          <span>API</span>
-          <strong class="help-title help-title-inline" tabindex="0" data-help="进入接口目录页面，查看当前系统提供的接口、返回内容和只读边界。">接口说明</strong>
-          <em>查看当前系统全部接口、返回内容和只读边界。</em>
-        </a>
-        </div>
-      </section>
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260629-strategy-suite-1"></script>
-    <script src="/static/dashboard.js?v=20260629-strategy-suite-1"></script>
+    <script src="/static/charts.js?v=20260629-channels-1"></script>
+    <script src="/static/dashboard.js?v=20260629-channels-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
