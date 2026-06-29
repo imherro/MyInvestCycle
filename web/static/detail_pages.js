@@ -267,29 +267,51 @@ function targetWeightChanges(currentWeights, previousWeights) {
   }));
 }
 
+function macroPositionHtml(item) {
+  return `
+    <div class="macro-position-cell">
+      <strong>${escapeHtml(regimeLabel(item.macro_regime))}</strong>
+      <span>目标权益 ${percentText(item.target_exposure)}</span>
+      <em>上限 ${percentText(item.exposure_ceiling)} / 风险 ${percentText(item.risk_overlay)} / 换手 ${percentText(item.turnover_to_target)}</em>
+    </div>
+  `;
+}
+
 function styleWeightsHtml(weights) {
   const styleColors = {
     growth: "#ef4444",
     small_cap: "#f97316",
     value: "#eab308",
-    dividend: "#64748b",
-    low_vol: "#94a3b8",
+    dividend_low_vol: "#64748b",
   };
-  const order = ["growth", "small_cap", "value", "dividend", "low_vol"];
+  const combined = {
+    growth: Number((weights || {}).growth || 0),
+    small_cap: Number((weights || {}).small_cap || 0),
+    value: Number((weights || {}).value || 0),
+    dividend_low_vol: Number((weights || {}).dividend || 0) + Number((weights || {}).low_vol || 0),
+  };
+  const labels = {
+    growth: "成长/科技",
+    small_cap: "中小盘",
+    value: "价值/大盘",
+    dividend_low_vol: "红利/低波",
+  };
+  const order = ["growth", "small_cap", "value", "dividend_low_vol"];
   return `
     <div class="style-allocation-cell">
       ${order
         .map((style) => {
-          const weight = Number((weights || {})[style] || 0);
+          const weight = combined[style] || 0;
           return `
             <div class="style-allocation-row">
-              <span>${escapeHtml(styleAllocationLabel(style))}</span>
+              <span>${escapeHtml(labels[style])}</span>
               <strong>${percentText(weight)}</strong>
               <i style="width:${Math.round(weight * 100)}%; background:${styleColors[style]}"></i>
             </div>
           `;
         })
         .join("")}
+      <p>权益内部，不含现金/债券</p>
     </div>
   `;
 }
@@ -348,11 +370,7 @@ async function renderMacroStyleHistoryPage() {
       (item) => `
         <tr>
           <td>${toIsoDate(item.date)}</td>
-          <td>${regimeLabel(item.macro_regime)}</td>
-          <td>${percentText(item.exposure_ceiling)}</td>
-          <td>${percentText(item.target_exposure)}</td>
-          <td>${percentText(item.risk_overlay)}</td>
-          <td>${percentText(item.turnover_to_target)}</td>
+          <td>${macroPositionHtml(item)}</td>
           <td>${rebalanceReasonHtml(item.rebalance_reason)}</td>
           <td>${styleWeightsHtml(item.style_allocation)}</td>
           <td>${weightsHtml(item.etf_allocation, { weight_changes: item.target_weight_changes })}</td>

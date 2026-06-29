@@ -1494,7 +1494,47 @@ h2 {
 }
 
 .macro-history-table {
-  min-width: 1620px;
+  min-width: 0;
+  table-layout: fixed;
+}
+
+.macro-history-table-wrap {
+  overflow-x: visible;
+}
+
+.macro-history-table th,
+.macro-history-table td {
+  padding: 8px 8px;
+}
+
+.macro-history-table th:nth-child(1),
+.macro-history-table td:nth-child(1) {
+  width: 8%;
+}
+
+.macro-history-table th:nth-child(2),
+.macro-history-table td:nth-child(2) {
+  width: 15%;
+}
+
+.macro-history-table th:nth-child(3),
+.macro-history-table td:nth-child(3) {
+  width: 24%;
+}
+
+.macro-history-table th:nth-child(4),
+.macro-history-table td:nth-child(4) {
+  width: 18%;
+}
+
+.macro-history-table th:nth-child(5),
+.macro-history-table td:nth-child(5) {
+  width: 35%;
+}
+
+.macro-history-table .reason-cell {
+  min-width: 0;
+  max-width: none;
 }
 
 .history-table th,
@@ -1536,28 +1576,28 @@ h2 {
 
 .allocation-cell {
   display: grid;
-  gap: 8px;
-  min-width: 360px;
+  gap: 6px;
+  min-width: 0;
 }
 
 .style-allocation-cell {
   display: grid;
-  min-width: 260px;
-  gap: 8px;
+  min-width: 0;
+  gap: 6px;
 }
 
 .style-allocation-row {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(86px, 1fr) auto;
-  gap: 10px;
-  padding-bottom: 9px;
+  grid-template-columns: minmax(66px, 1fr) auto;
+  gap: 6px;
+  padding-bottom: 8px;
 }
 
 .style-allocation-row span,
 .style-allocation-row strong {
   color: var(--ink);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 750;
   line-height: 1.35;
 }
@@ -1590,10 +1630,38 @@ h2 {
   border-radius: 999px;
 }
 
+.style-allocation-cell p {
+  margin: -2px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.macro-position-cell {
+  display: grid;
+  gap: 4px;
+}
+
+.macro-position-cell strong {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.macro-position-cell span,
+.macro-position-cell em {
+  color: var(--muted);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
 .allocation-stack {
   display: flex;
   width: 100%;
-  height: 14px;
+  height: 12px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -1617,13 +1685,13 @@ h2 {
 
 .allocation-asset-list {
   display: grid;
-  gap: 5px;
+  gap: 4px;
 }
 
 .allocation-asset-row {
   display: grid;
-  grid-template-columns: 8px minmax(190px, 1fr) 54px 64px;
-  gap: 7px;
+  grid-template-columns: 8px minmax(0, 1fr) auto auto;
+  gap: 5px;
   align-items: center;
 }
 
@@ -1638,7 +1706,7 @@ h2 {
 .allocation-asset-row strong,
 .allocation-asset-row em {
   color: var(--ink);
-  font-size: 12px;
+  font-size: 11px;
   font-style: normal;
   font-weight: 750;
   line-height: 1.35;
