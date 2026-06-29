@@ -1,29 +1,10 @@
 {
   "engine": "ETF Universe Builder A1.1",
-  "as_of": "20260626",
+  "as_of": "20260629",
   "regime": "range",
-  "risk_score": 0.5855,
+  "risk_score": 0.4145,
   "candidate_count": 5,
   "top_candidates": [
-    {
-      "code": "510880.SH",
-      "name": "红利ETF",
-      "bucket": "dividend",
-      "primary_style": "dividend",
-      "risk_tier": "defensive",
-      "eligible_regimes": [
-        "range",
-        "bear",
-        "transition"
-      ],
-      "regime_eligible": true,
-      "candidate_score": 0.525832,
-      "style_weights": {
-        "dividend": 0.8,
-        "low_vol": 0.25,
-        "value": 0.2
-      }
-    },
     {
       "code": "510300.SH",
       "name": "沪深300ETF",
@@ -36,7 +17,7 @@
         "transition"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.524548,
+      "candidate_score": 0.55266,
       "style_weights": {
         "value": 0.35,
         "growth": 0.25,
@@ -54,11 +35,46 @@
         "range"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.409918,
+      "candidate_score": 0.519327,
       "style_weights": {
         "small_cap": 0.45,
         "value": 0.25,
         "growth": 0.2
+      }
+    },
+    {
+      "code": "510880.SH",
+      "name": "红利ETF",
+      "bucket": "dividend",
+      "primary_style": "dividend",
+      "risk_tier": "defensive",
+      "eligible_regimes": [
+        "range",
+        "bear",
+        "transition"
+      ],
+      "regime_eligible": true,
+      "candidate_score": 0.451344,
+      "style_weights": {
+        "dividend": 0.8,
+        "low_vol": 0.25,
+        "value": 0.2
+      }
+    },
+    {
+      "code": "159915.SZ",
+      "name": "创业板ETF",
+      "bucket": "growth",
+      "primary_style": "growth",
+      "risk_tier": "aggressive",
+      "eligible_regimes": [
+        "bull"
+      ],
+      "regime_eligible": false,
+      "candidate_score": 0.375106,
+      "style_weights": {
+        "growth": 0.75,
+        "small_cap": 0.25
       }
     },
     {
@@ -73,50 +89,15 @@
         "range"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.40465,
+      "candidate_score": 0.317017,
       "style_weights": {
         "cash_proxy": 0.95,
         "low_vol": 0.2
-      }
-    },
-    {
-      "code": "159915.SZ",
-      "name": "创业板ETF",
-      "bucket": "growth",
-      "primary_style": "growth",
-      "risk_tier": "aggressive",
-      "eligible_regimes": [
-        "bull"
-      ],
-      "regime_eligible": false,
-      "candidate_score": 0.233242,
-      "style_weights": {
-        "growth": 0.75,
-        "small_cap": 0.25
       }
     }
   ],
   "candidates": [
     {
-      "code": "510880.SH",
-      "name": "红利ETF",
-      "bucket": "dividend",
-      "primary_style": "dividend",
-      "risk_tier": "defensive",
-      "eligible_regimes": [
-        "range",
-        "bear",
-        "transition"
-      ],
-      "regime_eligible": true,
-      "candidate_score": 0.525832,
-      "style_weights": {
-        "dividend": 0.8,
-        "low_vol": 0.25,
-        "value": 0.2
-      }
-    },
-    {
       "code": "510300.SH",
       "name": "沪深300ETF",
       "bucket": "broad_base",
@@ -128,7 +109,7 @@
         "transition"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.524548,
+      "candidate_score": 0.55266,
       "style_weights": {
         "value": 0.35,
         "growth": 0.25,
@@ -146,11 +127,46 @@
         "range"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.409918,
+      "candidate_score": 0.519327,
       "style_weights": {
         "small_cap": 0.45,
         "value": 0.25,
         "growth": 0.2
+      }
+    },
+    {
+      "code": "510880.SH",
+      "name": "红利ETF",
+      "bucket": "dividend",
+      "primary_style": "dividend",
+      "risk_tier": "defensive",
+      "eligible_regimes": [
+        "range",
+        "bear",
+        "transition"
+      ],
+      "regime_eligible": true,
+      "candidate_score": 0.451344,
+      "style_weights": {
+        "dividend": 0.8,
+        "low_vol": 0.25,
+        "value": 0.2
+      }
+    },
+    {
+      "code": "159915.SZ",
+      "name": "创业板ETF",
+      "bucket": "growth",
+      "primary_style": "growth",
+      "risk_tier": "aggressive",
+      "eligible_regimes": [
+        "bull"
+      ],
+      "regime_eligible": false,
+      "candidate_score": 0.375106,
+      "style_weights": {
+        "growth": 0.75,
+        "small_cap": 0.25
       }
     },
     {
@@ -165,63 +181,47 @@
         "range"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.40465,
+      "candidate_score": 0.317017,
       "style_weights": {
         "cash_proxy": 0.95,
         "low_vol": 0.2
       }
-    },
-    {
-      "code": "159915.SZ",
-      "name": "创业板ETF",
-      "bucket": "growth",
-      "primary_style": "growth",
-      "risk_tier": "aggressive",
-      "eligible_regimes": [
-        "bull"
-      ],
-      "regime_eligible": false,
-      "candidate_score": 0.233242,
-      "style_weights": {
-        "growth": 0.75,
-        "small_cap": 0.25
-      }
     }
   ],
   "style_universe": {
-    "dividend": [
-      {
-        "code": "510880.SH",
-        "name": "红利ETF",
-        "candidate_score": 0.525832
-      }
-    ],
     "value": [
       {
         "code": "510300.SH",
         "name": "沪深300ETF",
-        "candidate_score": 0.524548
+        "candidate_score": 0.55266
       }
     ],
     "small_cap": [
       {
         "code": "510500.SH",
         "name": "中证500ETF",
-        "candidate_score": 0.409918
+        "candidate_score": 0.519327
       }
     ],
-    "cash_proxy": [
+    "dividend": [
       {
-        "code": "511880.SH",
-        "name": "银华日利ETF",
-        "candidate_score": 0.40465
+        "code": "510880.SH",
+        "name": "红利ETF",
+        "candidate_score": 0.451344
       }
     ],
     "growth": [
       {
         "code": "159915.SZ",
         "name": "创业板ETF",
-        "candidate_score": 0.233242
+        "candidate_score": 0.375106
+      }
+    ],
+    "cash_proxy": [
+      {
+        "code": "511880.SH",
+        "name": "银华日利ETF",
+        "candidate_score": 0.317017
       }
     ]
   },

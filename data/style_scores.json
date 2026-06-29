@@ -1,15 +1,15 @@
 {
   "engine": "Style Factor Engine A1.1",
-  "as_of": "20260626",
+  "as_of": "20260629",
   "regime": "range",
-  "risk_score": 0.5855,
+  "risk_score": 0.4145,
   "input": {
-    "trend": 0.17,
-    "breadth": 0.15,
-    "liquidity": 0.76,
-    "volatility": 0.63,
-    "regime_score": 0.35,
-    "confidence": 0.72
+    "trend": 0.47,
+    "breadth": 0.53,
+    "liquidity": 0.79,
+    "volatility": 0.62,
+    "regime_score": 0.58,
+    "confidence": 0.77
   },
   "base_scores": {
     "growth": 0.45,
@@ -20,40 +20,40 @@
     "cash_proxy": 0.35
   },
   "adjustments": {
-    "growth": -0.105375,
-    "value": 0.03394,
-    "low_vol": 0.03139,
-    "dividend": 0.027025,
-    "small_cap": -0.07301,
-    "cash_proxy": 0.037575
+    "growth": 0.076875,
+    "value": -0.01874,
+    "low_vol": -0.04299,
+    "dividend": -0.039025,
+    "small_cap": 0.08941,
+    "cash_proxy": -0.039375
   },
   "style_scores": {
-    "growth": 0.344625,
-    "value": 0.68394,
-    "low_vol": 0.58139,
-    "dividend": 0.477025,
-    "small_cap": 0.32699,
-    "cash_proxy": 0.387575
+    "growth": 0.526875,
+    "value": 0.63126,
+    "low_vol": 0.50701,
+    "dividend": 0.410975,
+    "small_cap": 0.48941,
+    "cash_proxy": 0.310625
   },
   "top_styles": [
     {
       "style": "value",
-      "score": 0.68394
+      "score": 0.63126
+    },
+    {
+      "style": "growth",
+      "score": 0.526875
     },
     {
       "style": "low_vol",
-      "score": 0.58139
-    },
-    {
-      "style": "dividend",
-      "score": 0.477025
+      "score": 0.50701
     }
   ],
   "reasoning": [
     "range regime sets the base style preference.",
-    "Risk score 0.59 shifts weight toward defensive styles when elevated.",
-    "Breadth 0.15, liquidity 0.76, and volatility stability 0.63 adjust growth versus defensive preference.",
-    "Top styles are value, low_vol, dividend."
+    "Risk score 0.41 shifts weight toward defensive styles when elevated.",
+    "Breadth 0.53, liquidity 0.79, and volatility stability 0.62 adjust growth versus defensive preference.",
+    "Top styles are value, growth, low_vol."
   ],
   "constraints": {
     "asset_selection_layer": true,
