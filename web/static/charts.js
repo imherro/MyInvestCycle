@@ -432,20 +432,34 @@ function renderStrategyBacktestChart(elementId, backtest) {
   }
   const x = items.map((item) => toIsoDate(item.date));
   const comparisonAssets = backtest?.summary?.comparison_assets || [];
-  const colors = ["#c73d3d", "#17885b", "#c69214", "#64748b", "#7c3aed", "#0f766e"];
+  const traceStyleByCode = {
+    "510300.SH": { color: "#dc2626", dash: "solid" },
+    "510880.SH": { color: "#16a34a", dash: "solid" },
+    "512890.SH": { color: "#059669", dash: "dash" },
+    "510500.SH": { color: "#f59e0b", dash: "solid" },
+    "159915.SZ": { color: "#7c3aed", dash: "solid" },
+    "511880.SH": { color: "#64748b", dash: "dot" },
+    "511260.SH": { color: "#0891b2", dash: "solid" },
+    "511010.SH": { color: "#0d9488", dash: "dash" },
+    "518880.SH": { color: "#ca8a04", dash: "solid" },
+    commodity_basket: { color: "#be123c", dash: "dash" },
+    equal_weight: { color: "#111827", dash: "dashdot", width: 2.2 },
+  };
+  const fallbackColors = ["#c73d3d", "#17885b", "#c69214", "#64748b", "#7c3aed", "#0f766e"];
   const indicatorItems = backtest?.indicator_curve || [];
   const indicatorByDate = new Map(indicatorItems.map((item) => [toIsoDate(item.date), item]));
   const comparisonTraces = comparisonAssets.slice(0, 6).map((asset, index) => {
     const key = asset.code === "equal_weight" ? "equal_weight" : `benchmark_${String(asset.code || "").split(".")[0]}`;
     const equityKey = `${key}_equity`;
     const label = asset.label || asset.code || key;
+    const style = traceStyleByCode[asset.code] || { color: fallbackColors[index % fallbackColors.length], dash: "solid" };
     return {
       type: "scatter",
       mode: "lines",
       name: label,
       x,
       y: items.map((item) => item[equityKey] ?? null),
-      line: { color: colors[index % colors.length], width: 1.7, dash: index === 0 ? "dot" : "solid" },
+      line: { color: style.color, width: style.width || 1.8, dash: style.dash },
       hovertemplate: `%{x}<br>${label} %{y:.3f}<extra></extra>`,
     };
   });
@@ -470,7 +484,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
               name: "等权ETF MA250",
               x,
               y: x.map((date) => indicatorByDate.get(date)?.ma_equity ?? null),
-              line: { color: "#111827", width: 1.8, dash: "dash" },
+              line: { color: "#9ca3af", width: 1.8, dash: "dash" },
               hovertemplate: "%{x}<br>MA250 %{y:.3f}<extra></extra>",
             },
           ]
