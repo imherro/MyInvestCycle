@@ -230,7 +230,7 @@ h2 {
 
 .channel-nav-section {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px;
   margin-bottom: 14px;
 }
@@ -358,6 +358,58 @@ h2 {
 .wide-analysis-panel {
   grid-column: 1 / -1;
   min-height: 430px;
+}
+
+.strategy-entry-panel {
+  grid-column: span 6;
+  min-height: auto;
+}
+
+.strategy-entry-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.strategy-page .wide-analysis-panel {
+  min-height: auto;
+}
+
+.strategy-overview .strategy-current-panel,
+.strategy-overview .strategy-method-panel {
+  grid-column: span 6;
+}
+
+.strategy-method-list {
+  display: grid;
+  gap: 0;
+  margin-top: 10px;
+}
+
+.strategy-method-list div {
+  display: grid;
+  grid-template-columns: minmax(98px, 0.34fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.strategy-method-list span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.strategy-method-list strong {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.strategy-backtest-chart {
+  min-height: 500px;
 }
 
 .conclusions-panel {
@@ -2157,20 +2209,20 @@ h2 {
   }
 
   .topbar,
-    .status-grid,
-    .channel-nav-section,
-    .channel-link-row,
-    .cycle-score-row,
-    .detail-nav-section,
-    .detail-summary-grid,
-    .detail-two-column,
-    .results-overview,
-    .cycle-panel,
-    .dashboard-section-heading,
-    .wide-panel-layout,
-    .focus-layout,
-    .visual-grid,
-    .cycle-block {
+  .status-grid,
+  .channel-nav-section,
+  .channel-link-row,
+  .cycle-score-row,
+  .detail-nav-section,
+  .detail-summary-grid,
+  .detail-two-column,
+  .results-overview,
+  .cycle-panel,
+  .dashboard-section-heading,
+  .wide-panel-layout,
+  .focus-layout,
+  .visual-grid,
+  .cycle-block {
     grid-template-columns: 1fr;
   }
 
@@ -2220,6 +2272,9 @@ h2 {
   .meta-edge-panel,
   .style-rotation-panel,
   .etf-rotation-panel,
+  .strategy-entry-panel,
+  .strategy-overview .strategy-current-panel,
+  .strategy-overview .strategy-method-panel,
   .wide-analysis-panel,
   .attribution-panel,
   .conclusions-panel {
@@ -2238,18 +2293,19 @@ h2 {
 
   .risk-headline,
   .portfolio-headline,
-    .route-summary,
-    .execution-headline,
-    .system-headline,
-    .meta-edge-headline,
-    .style-headline,
-    .rotation-headline,
-    .backtest-headline,
-    .shadow-headline,
-    .attribution-headline,
-    .api-headline,
-    .metric-card-grid,
-    .conclusion-list {
+  .route-summary,
+  .execution-headline,
+  .system-headline,
+  .meta-edge-headline,
+  .style-headline,
+  .rotation-headline,
+  .backtest-headline,
+  .shadow-headline,
+  .attribution-headline,
+  .api-headline,
+  .strategy-method-list div,
+  .metric-card-grid,
+  .conclusion-list {
     grid-template-columns: 1fr;
   }
 

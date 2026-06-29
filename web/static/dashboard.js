@@ -921,7 +921,7 @@ async function loadDashboard() {
     const [current, cycle, results] = await Promise.all([
       getJson("/api/regime/current"),
       getJson("/api/regime/cycle"),
-      getJson("/api/results/summary"),
+      getJson("/api/results/summary?compact=1"),
     ]);
     state.current = current;
     state.cycle = cycle;
@@ -932,10 +932,10 @@ async function loadDashboard() {
     setScoreList(current.sub_scores);
     setCyclePanel(phase);
     setResultsPanel(results);
-    renderRadar("radarChart", current.sub_scores);
-    renderShadowEquityChart("shadowEquityChart", results.shadow_backtest || {});
-    renderEtfRotationBacktestChart("rotationBacktestChart", results.etf_rotation_backtest || {});
-    renderMacroStyleEtfBacktestChart("macroStyleEtfChart", results.macro_style_etf_backtest || {});
+    if (document.getElementById("radarChart")) renderRadar("radarChart", current.sub_scores);
+    if (document.getElementById("shadowEquityChart")) renderShadowEquityChart("shadowEquityChart", results.shadow_backtest || {});
+    if (document.getElementById("rotationBacktestChart")) renderEtfRotationBacktestChart("rotationBacktestChart", results.etf_rotation_backtest || {});
+    if (document.getElementById("macroStyleEtfChart")) renderMacroStyleEtfBacktestChart("macroStyleEtfChart", results.macro_style_etf_backtest || {});
   } finally {
     button.disabled = false;
     button.textContent = "刷新";

@@ -123,6 +123,16 @@ def _read_macro_style_etf_backtest_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _compact_backtest_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in ("metadata", "summary", "validation", "price_history")
+        if key in payload
+    }
+
+
 def _event_summary(rows: list[dict], event_key: str = "label") -> dict[str, object]:
     observations = len(rows)
     events = sum(1 for row in rows if int(row.get(event_key, 0)) == 1)
@@ -430,6 +440,8 @@ def _api_catalog_payload() -> dict[str, object]:
             "description": "页面入口、接口目录和自动生成文档。",
             "endpoints": [
                 _api_endpoint("GET", "/", "打开当前系统首页。", "HTML dashboard", freshness="page"),
+                _api_endpoint("GET", "/strategy/etf-rotation", "打开 ETF 轮动策略主页，集中查看回测图、关键指标和调仓历史入口。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/strategy/macro-style", "打开 Macro-Style-ETF 分层策略主页，集中查看回测图、关键指标和调仓历史入口。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/rotation-history", "打开 ETF 轮动调仓历史表格页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/macro-style-history", "打开 Macro-Style-ETF 分层组合调仓历史表格页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/cycle-track", "打开本轮周期跟踪与概率展望页面。", "HTML page", freshness="page"),
@@ -543,7 +555,13 @@ def _api_catalog_payload() -> dict[str, object]:
             "description": "系统冻结状态、完整成果和研究验证摘要。",
             "endpoints": [
                 _api_endpoint("GET", "/api/system/snapshot", "系统边界、冻结文档、策略锁定和当前状态快照。", "system snapshot"),
-                _api_endpoint("GET", "/api/results/summary", "页面使用的完整成果汇总，包括风控、组合、策略、执行和验证结论。", "results summary"),
+                _api_endpoint(
+                    "GET",
+                    "/api/results/summary",
+                    "页面使用的成果汇总，包括风控、组合、策略、执行和验证结论；compact=true 时省略回测长曲线用于首页提速。",
+                    "results summary",
+                    params=[{"name": "compact", "required": "false", "format": "boolean"}],
+                ),
             ],
         },
     ]
@@ -569,9 +587,10 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/meta-edge/current", "description": "读取系统内部矛盾信号。"},
             {"path": "/api/style/current", "description": "读取风格评分与 ETF 候选池。"},
             {"path": "/api/style/rotation-signal", "description": "读取 ETF 轮动信号与目标权重建议。"},
+            {"path": "/strategy/etf-rotation", "description": "查看 ETF 轮动策略回测、图表和调仓历史入口。"},
             {"path": "/api/style/rotation-backtest", "description": "读取 ETF 轮动 Alpha 验证结果。"},
+            {"path": "/strategy/macro-style", "description": "查看 Macro-Style-ETF 分层策略回测、图表和调仓历史入口。"},
             {"path": "/api/style/macro-style-etf-backtest", "description": "读取 Macro-Style-ETF 分层组合回测结果。"},
-            {"path": "/macro-style-history", "description": "查看 Macro-Style-ETF 分层组合调仓历史。"},
             {"path": "/api/shadow/current", "description": "读取仓位风控回测与 510500 基准评估。"},
         ],
         "safety": {
@@ -600,6 +619,16 @@ def health() -> dict[str, str]:
 @app.get("/", response_class=HTMLResponse)
 def dashboard():
     return FileResponse(ROOT_DIR / "web" / "templates" / "dashboard.html")
+
+
+@app.get("/strategy/etf-rotation", response_class=HTMLResponse)
+def etf_rotation_strategy_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "strategy_etf_rotation.html")
+
+
+@app.get("/strategy/macro-style", response_class=HTMLResponse)
+def macro_style_strategy_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "strategy_macro_style.html")
 
 
 @app.get("/rotation-history", response_class=HTMLResponse)
@@ -814,7 +843,12 @@ def system_snapshot() -> dict:
 
 
 @app.get("/api/results/summary")
-def results_summary() -> dict:
+def results_summary(
+    compact: bool = Query(
+        False,
+        description="When true, omit long backtest curves/signals and keep only fields needed by overview pages.",
+    ),
+) -> dict:
     try:
         snapshot = _current_portfolio_snapshot()
         current = snapshot["current"]
@@ -833,6 +867,9 @@ def results_summary() -> dict:
         etf_rotation_signal = _etf_rotation_signal_payload(style_rotation)
         etf_rotation_backtest = _read_etf_rotation_backtest_payload()
         macro_style_etf_backtest = _read_macro_style_etf_backtest_payload()
+        if compact:
+            etf_rotation_backtest = _compact_backtest_payload(etf_rotation_backtest)
+            macro_style_etf_backtest = _compact_backtest_payload(macro_style_etf_backtest)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 

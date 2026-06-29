@@ -105,6 +105,8 @@ python web/app.py
 Endpoints:
 
 - `GET http://127.0.0.1:8021/api`
+- `GET http://127.0.0.1:8021/strategy/etf-rotation`
+- `GET http://127.0.0.1:8021/strategy/macro-style`
 - `GET http://127.0.0.1:8021/rotation-history`
 - `GET http://127.0.0.1:8021/macro-style-history`
 - `GET http://127.0.0.1:8021/docs`
@@ -129,6 +131,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/shadow/regime-attribution`
 - `GET http://127.0.0.1:8021/api/system/snapshot`
 - `GET http://127.0.0.1:8021/api/results/summary`
+- `GET http://127.0.0.1:8021/api/results/summary?compact=1`
 
 Validation scripts:
 

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle Regime</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260626-home-9" />
+    <link rel="stylesheet" href="/static/style.css?v=20260629-strategy-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body>
@@ -43,9 +43,13 @@
           <span>Risk</span>
           <strong>风控执行</strong>
         </a>
-        <a href="#etf-channel">
-          <span>ETF</span>
-          <strong>ETF 轮动</strong>
+        <a href="/strategy/etf-rotation">
+          <span>ETF Rotation</span>
+          <strong>ETF 轮动策略</strong>
+        </a>
+        <a href="/strategy/macro-style">
+          <span>Macro Style</span>
+          <strong>分层组合策略</strong>
         </a>
         <a href="#validation-channel">
           <span>Validation</span>
@@ -285,10 +289,10 @@
       <section class="results-overview" id="etf-channel" aria-live="polite">
         <div class="dashboard-section-heading">
           <div>
-            <span>ETF Rotation</span>
-            <h2>ETF 轮动</h2>
+            <span>Strategy Backtests</span>
+            <h2>策略回测入口</h2>
           </div>
-          <p>从风格信号到 ETF 权重，再到回测曲线和调仓历史，集中观察轮动系统本身。</p>
+          <p>首页只保留当前信号和关键摘要；完整图表、缩放对比和调仓历史进入各策略主页查看。</p>
         </div>
 
         <article class="chart-panel result-panel style-rotation-panel">
@@ -339,16 +343,15 @@
           <p class="result-note" id="rotationConclusion">--</p>
         </article>
 
-        <article class="chart-panel result-panel etf-backtest-panel wide-analysis-panel">
+        <article class="chart-panel result-panel etf-backtest-panel strategy-entry-panel">
           <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="检验 ETF 轮动规则在历史区间的收益、回撤、命中率和基准对比；图底部两条状态色带分别表示当时模型可见状态和回看确认状态，牛市红、熊市绿、震荡黄、过渡灰。调仓历史是它的明细表。">ETF 轮动回测</h2>
+            <h2 class="help-title" tabindex="0" data-help="ETF 轮动策略主页集中展示回测图、状态色带、基准对比和该策略的调仓历史入口。">ETF 轮动回测</h2>
             <div class="panel-actions">
               <span class="panel-kicker">A1.3</span>
-              <button class="panel-link panel-button" id="rotationBacktestReset" type="button">还原图表</button>
-              <a class="panel-link" href="/rotation-history">调仓历史</a>
+              <a class="panel-link" href="/strategy/etf-rotation">进入策略主页</a>
             </div>
           </div>
-          <div class="wide-panel-layout">
+          <div class="strategy-entry-layout">
             <div class="wide-panel-metrics">
               <div class="backtest-headline">
                 <div>
@@ -397,20 +400,18 @@
               </div>
               <p class="result-note" id="backtestConclusion">--</p>
             </div>
-            <div class="chart-box rotation-backtest-box" id="rotationBacktestChart"></div>
           </div>
         </article>
 
-        <article class="chart-panel result-panel macro-style-etf-panel wide-analysis-panel">
+        <article class="chart-panel result-panel macro-style-etf-panel strategy-entry-panel">
           <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="M2.1 把宏观周期、风格分配、ETF 映射三层解耦：宏观只控制仓位上限，风格只分配成长/价值/小盘/红利/低波，ETF 只负责执行映射。">Macro-Style-ETF 分层回测</h2>
+            <h2 class="help-title" tabindex="0" data-help="Macro-Style-ETF 策略主页集中展示分层回测图、宏观状态对比、基准对比和该策略的调仓历史入口。">Macro-Style-ETF 分层回测</h2>
             <div class="panel-actions">
               <span class="panel-kicker">M2.1</span>
-              <button class="panel-link panel-button" id="macroStyleReset" type="button">还原图表</button>
-              <a class="panel-link" href="/macro-style-history">调仓历史</a>
+              <a class="panel-link" href="/strategy/macro-style">进入策略主页</a>
             </div>
           </div>
-          <div class="wide-panel-layout">
+          <div class="strategy-entry-layout">
             <div class="wide-panel-metrics">
               <div class="backtest-headline">
                 <div>
@@ -459,7 +460,6 @@
               </div>
               <p class="result-note" id="macroStyleConclusion">--</p>
             </div>
-            <div class="chart-box macro-style-etf-box" id="macroStyleEtfChart"></div>
           </div>
         </article>
       </section>
@@ -660,8 +660,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260626-home-9"></script>
-    <script src="/static/dashboard.js?v=20260626-home-9"></script>
+    <script src="/static/charts.js?v=20260629-strategy-1"></script>
+    <script src="/static/dashboard.js?v=20260629-strategy-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
