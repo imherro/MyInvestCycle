@@ -523,6 +523,7 @@ def run_free_cash_flow_trend_backtest(
     ]], on="date")
 
     primary = performance_metrics(frame["strategy_return"], benchmark_returns=frame[return_column], turnover=frame["turnover"])
+    benchmark_metrics = performance_metrics(frame[return_column])
     strategy_total = compound_return(frame["strategy_return"])
     benchmark_total = compound_return(frame[return_column])
     strategy_drawdown = max_drawdown(frame["strategy_equity"])
@@ -552,8 +553,10 @@ def run_free_cash_flow_trend_backtest(
         "rebalance_count": len(signal_records),
         "rebalance_every_sessions": 1,
         "strategy_total_return": round(strategy_total, 6),
+        "annualized_return": primary.get("annualized_return"),
         "equal_weight_label": "自由现金流指数基准",
         "equal_weight_return": round(benchmark_total, 6),
+        "equal_weight_annualized_return": benchmark_metrics.get("annualized_return"),
         "alpha_vs_equal_weight": round(strategy_total - benchmark_total, 6),
         "sharpe": primary["sharpe"],
         "max_drawdown": strategy_drawdown,

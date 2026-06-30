@@ -466,12 +466,15 @@ function strategySignalLabel(value) {
 function strategySetGenericPage(backtest) {
   const metadata = backtest.metadata || {};
   const summary = backtest.summary || {};
+  const performance = backtest.performance_metrics || {};
   const validation = backtest.validation || {};
   const universe = metadata.universe || [];
   const signals = backtest.signals || [];
   const latestSignal = signals[signals.length - 1] || {};
   const isIndexStrategy = metadata.indicator === "free_cash_flow_trend_channel";
   const comparisonLabel = summary.equal_weight_label || "等权";
+  const annualizedReturn =
+    typeof summary.annualized_return === "number" ? summary.annualized_return : performance.annualized_return;
 
   document.title = summary.strategy_name || "策略回测";
   strategySetText("genericEyebrow", summary.strategy_id || "Strategy");
@@ -481,6 +484,7 @@ function strategySetGenericPage(backtest) {
   const genericTiles = [
     { label: "回测区间", value: `${strategyToIsoDate(summary.start_date)} - ${strategyToIsoDate(summary.end_date)}` },
     { label: "策略收益", value: strategySignedRatioText(summary.strategy_total_return) },
+    { label: "年化收益", value: strategySignedRatioText(annualizedReturn) },
     { label: "最大回撤", value: strategyPercentText(summary.max_drawdown) },
     { label: `Alpha vs ${comparisonLabel}`, value: strategySignedRatioText(summary.alpha_vs_equal_weight) },
     ...(isIndexStrategy
@@ -504,6 +508,7 @@ function strategySetGenericPage(backtest) {
   const latestReason = latestSignal.rebalance_reason || {};
   strategySetText("genericLatestReason", latestReason.detail || metadata.description || "--");
   strategySetText("genericStrategyReturn", strategySignedRatioText(summary.strategy_total_return));
+  strategySetText("genericAnnualizedReturn", strategySignedRatioText(annualizedReturn));
   strategySetText("genericMaxDrawdown", strategyPercentText(summary.max_drawdown));
   strategySetText("genericAlphaEqual", strategySignedRatioText(summary.alpha_vs_equal_weight));
   strategySetText("genericSharpe", strategyFixedText(summary.sharpe, 2));
@@ -568,6 +573,7 @@ async function strategyRenderEtfRotationPage() {
   strategySetSummaryTiles([
     { label: "回测区间", value: `${strategyToIsoDate(summary.start_date)} - ${strategyToIsoDate(summary.end_date)}` },
     { label: "轮动收益", value: strategySignedRatioText(summary.rotation_total_return) },
+    { label: "年化收益", value: strategySignedRatioText(backtest.performance_metrics?.annualized_return) },
     { label: "最大回撤", value: strategyPercentText(summary.max_drawdown) },
     { label: "命中率", value: strategyPercentText(summary.hit_rate_vs_510500) },
     { label: "当前方向", value: strategyRotationSignalLabel(signal.rebalance_signal) },
@@ -584,6 +590,7 @@ async function strategyRenderMacroStylePage() {
   strategySetSummaryTiles([
     { label: "回测区间", value: `${strategyToIsoDate(summary.start_date)} - ${strategyToIsoDate(summary.end_date)}` },
     { label: "分层收益", value: strategySignedRatioText(summary.hierarchical_total_return) },
+    { label: "年化收益", value: strategySignedRatioText(backtest.performance_metrics?.annualized_return) },
     { label: "最大回撤", value: strategyPercentText(summary.max_drawdown) },
     { label: "平均权益仓位", value: strategyPercentText(summary.average_target_exposure) },
     { label: "Alpha vs A1", value: strategySignedRatioText(summary.alpha_vs_current_a1) },
