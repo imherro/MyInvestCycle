@@ -41,8 +41,9 @@ class FreeCashFlowTrendSpec:
     lower_anchor_dates: tuple[str, ...] = ("20160128", "20211116", "20240911", "20250407", "20260626")
     upper_residual_end_date: str = "20260101"
     upper_residual_quantile: float = 0.985
-    upper_position_threshold: float = 0.985
-    lower_position_threshold: float = 0.05
+    upper_position_threshold: float = 0.75
+    lower_position_threshold: float = 0.25
+    exposure_step: float = 0.05
 
 
 FREE_CASH_FLOW_UNIVERSE = (
@@ -61,8 +62,8 @@ FREE_CASH_FLOW_TREND_SPECS: dict[str, FreeCashFlowTrendSpec] = {
             "标的使用 932365.CSI 中证全指自由现金流指数；优先尝试全收益指数，若 Tushare 无可用全收益序列则使用价格指数并明确标注。",
             "研究版下轨使用 2016-01-28、2021-11-16、2024-09-11、2025-04-07、2026-06-26 等主要低点，在 log(price) 上拟合一条直线。",
             "上轨不是单独拟合高点，而是在下轨基础上叠加 2026 年前残差的 98.5% 分位；中轨为上下轨在 log 空间的中点。",
-            "轨道位置 = (log(价格)-log(下轨)) / (log(上轨)-log(下轨))；接近或突破 1 视为上轨区，接近或跌破 0 视为下轨区。",
-            "价格进入上轨区后，下一交易日权益暴露降到 50%；价格进入下轨区后，下一交易日恢复 100%。该通道包含当前研究锚点，是复盘研究口径，不作为无未来函数实盘信号。",
+            "轨道位置 = (log(价格)-log(下轨)) / (log(上轨)-log(下轨))；>=0.75 视为上轨附近，<=0.25 视为下轨附近。",
+            "价格进入上轨附近或触及上轨波动容忍带后，按 5pct 仓位阶梯定卖，最低降到 50%；价格进入下轨附近或触及下轨容忍带后，按 5pct 仓位阶梯定投/加回，最高恢复 100%。该通道包含当前研究锚点，是复盘研究口径，不作为无未来函数实盘信号。",
         ],
         index_code="932365.CSI",
         benchmark_codes=("932365.CSI",),
@@ -78,8 +79,8 @@ FREE_CASH_FLOW_TREND_SPECS: dict[str, FreeCashFlowTrendSpec] = {
             "标的使用 932365.CSI 中证全指自由现金流指数；优先尝试全收益指数，若 Tushare 无可用全收益序列则使用价格指数并明确标注。",
             "研究版下轨使用 2016-01-28、2021-11-16、2024-09-11、2025-04-07、2026-06-26 等主要低点，在 log(price) 上拟合一条直线。",
             "上轨不是单独拟合高点，而是在下轨基础上叠加 2026 年前残差的 98.5% 分位；中轨为上下轨在 log 空间的中点。",
-            "轨道位置 = (log(价格)-log(下轨)) / (log(上轨)-log(下轨))；接近或突破 1 视为上轨区，接近或跌破 0 视为下轨区。",
-            "价格进入上轨区后，下一交易日权益暴露降到 0%；价格进入下轨区后，下一交易日恢复 100%。该通道包含当前研究锚点，是复盘研究口径，不作为无未来函数实盘信号。",
+            "轨道位置 = (log(价格)-log(下轨)) / (log(上轨)-log(下轨))；>=0.75 视为上轨附近，<=0.25 视为下轨附近。",
+            "价格进入上轨附近或触及上轨波动容忍带后，按 5pct 仓位阶梯定卖，最低降到 0%；价格进入下轨附近或触及下轨容忍带后，按 5pct 仓位阶梯定投/加回，最高恢复 100%。该通道包含当前研究锚点，是复盘研究口径，不作为无未来函数实盘信号。",
         ],
         index_code="932365.CSI",
         benchmark_codes=("932365.CSI",),
@@ -311,8 +312,20 @@ def _build_indicator_frame(frame: pd.DataFrame, spec: FreeCashFlowTrendSpec) -> 
         distance_to_mid = channel_row.get("distance_to_mid") if valid else None
         distance_to_lower = channel_row.get("distance_to_lower") if valid else None
         channel_position = float(position) if valid else None
-        upper_zone = bool(valid and channel_position is not None and channel_position >= spec.upper_position_threshold)
-        lower_zone = bool(valid and channel_position is not None and channel_position <= spec.lower_position_threshold)
+        near_upper_by_position = bool(
+            valid and channel_position is not None and channel_position >= spec.upper_position_threshold
+        )
+        near_lower_by_position = bool(
+            valid and channel_position is not None and channel_position <= spec.lower_position_threshold
+        )
+        near_upper_by_distance = bool(
+            valid and distance_to_upper is not None and not pd.isna(distance_to_upper) and float(distance_to_upper) >= -tolerance
+        )
+        near_lower_by_distance = bool(
+            valid and distance_to_lower is not None and not pd.isna(distance_to_lower) and float(distance_to_lower) <= tolerance
+        )
+        upper_zone = near_upper_by_position or near_upper_by_distance
+        lower_zone = near_lower_by_position or near_lower_by_distance
         rows.append(
             {
                 "date": date_text,
@@ -331,6 +344,10 @@ def _build_indicator_frame(frame: pd.DataFrame, spec: FreeCashFlowTrendSpec) -> 
                 "tolerance": tolerance,
                 "upper_position_threshold": spec.upper_position_threshold,
                 "lower_position_threshold": spec.lower_position_threshold,
+                "near_upper_by_position": near_upper_by_position,
+                "near_lower_by_position": near_lower_by_position,
+                "near_upper_by_distance": near_upper_by_distance,
+                "near_lower_by_distance": near_lower_by_distance,
                 "upper_zone": upper_zone,
                 "lower_zone": lower_zone,
                 "confirmed_high_count": 0,
@@ -343,25 +360,73 @@ def _build_indicator_frame(frame: pd.DataFrame, spec: FreeCashFlowTrendSpec) -> 
     return result
 
 
+def _clip(value: float, lower: float, upper: float) -> float:
+    return max(lower, min(upper, float(value)))
+
+
+def _step_down(value: float, step: float) -> float:
+    if step <= 0:
+        return value
+    return np.floor((value + 1e-12) / step) * step
+
+
+def _step_up(value: float, step: float) -> float:
+    if step <= 0:
+        return value
+    return np.ceil((value - 1e-12) / step) * step
+
+
+def _upper_ladder_target(row: pd.Series, spec: FreeCashFlowTrendSpec) -> float:
+    position = row.get("channel_position")
+    scale = 0.0
+    if position is not None and not pd.isna(position):
+        width = max(1.0 - spec.upper_position_threshold, 1e-9)
+        scale = _clip((float(position) - spec.upper_position_threshold) / width, 0.0, 1.0)
+    raw_target = 1.0 - scale * (1.0 - spec.reduce_exposure)
+    target = _step_down(raw_target, spec.exposure_step)
+    if target >= 1.0:
+        target = 1.0 - spec.exposure_step
+    return round(_clip(target, spec.reduce_exposure, 1.0), 6)
+
+
+def _lower_ladder_target(row: pd.Series, spec: FreeCashFlowTrendSpec) -> float:
+    position = row.get("channel_position")
+    scale = 0.0
+    if position is not None and not pd.isna(position):
+        width = max(spec.lower_position_threshold, 1e-9)
+        scale = _clip((spec.lower_position_threshold - float(position)) / width, 0.0, 1.0)
+    raw_target = spec.reduce_exposure + scale * (1.0 - spec.reduce_exposure)
+    target = _step_up(raw_target, spec.exposure_step)
+    if target <= spec.reduce_exposure:
+        target = spec.reduce_exposure + spec.exposure_step
+    return round(_clip(target, spec.reduce_exposure, 1.0), 6)
+
+
 def _signal_for_row(row: pd.Series, current_exposure: float, spec: FreeCashFlowTrendSpec) -> tuple[float, str, list[str]]:
     if bool(row.get("upper_zone")) and bool(row.get("lower_zone")):
         return current_exposure, "fcf_channel_hold", ["上下轨距离过近或价格同时触发上下轨容忍带，维持原仓位。"]
     if bool(row.get("upper_zone")):
-        return spec.reduce_exposure, spec.upper_signal, [
-            f"轨道位置 {float(row['channel_position']):.2f}，达到上轨阈值 {spec.upper_position_threshold:.3f}，按规则降低权益暴露。",
+        target = min(current_exposure, _upper_ladder_target(row, spec))
+        if abs(target - current_exposure) < 0.000001:
+            return current_exposure, "fcf_channel_hold", ["已处于当前上轨区域对应仓位，维持原仓位。"]
+        return target, spec.upper_signal, [
+            f"轨道位置 {float(row['channel_position']):.2f}，进入上轨附近，按 {spec.exposure_step:.0%} 仓位阶梯定卖至 {target:.0%}。",
         ]
     if bool(row.get("lower_zone")):
-        return 1.0, "fcf_channel_full_buy", [
-            f"轨道位置 {float(row['channel_position']):.2f}，低于下轨阈值 {spec.lower_position_threshold:.3f}，按规则恢复满仓。",
+        target = max(current_exposure, _lower_ladder_target(row, spec))
+        if abs(target - current_exposure) < 0.000001:
+            return current_exposure, "fcf_channel_hold", ["已处于当前下轨区域对应仓位，维持原仓位。"]
+        return target, "fcf_channel_full_buy", [
+            f"轨道位置 {float(row['channel_position']):.2f}，进入下轨附近，按 {spec.exposure_step:.0%} 仓位阶梯定投/加回至 {target:.0%}。",
         ]
     return current_exposure, "fcf_channel_hold", ["价格位于趋势通道中部，维持原仓位。"]
 
 
 def _signal_label(value: str) -> str:
     labels = {
-        "fcf_channel_half_reduce": "上轨半仓",
-        "fcf_channel_full_exit": "上轨空仓",
-        "fcf_channel_full_buy": "下轨满仓",
+        "fcf_channel_half_reduce": "上轨定卖",
+        "fcf_channel_full_exit": "上轨定卖",
+        "fcf_channel_full_buy": "下轨定投",
         "fcf_channel_hold": "通道内持有",
     }
     return labels.get(value, value)

@@ -455,9 +455,9 @@ function strategySignalLabel(value) {
     reversion_reduce: "高位降仓",
     reversion_light: "极高位轻仓",
     reversion_guard_cap: "下行限仓",
-    fcf_channel_half_reduce: "上轨半仓",
-    fcf_channel_full_exit: "上轨空仓",
-    fcf_channel_full_buy: "下轨满仓",
+    fcf_channel_half_reduce: "上轨定卖",
+    fcf_channel_full_exit: "上轨定卖",
+    fcf_channel_full_buy: "下轨定投",
     fcf_channel_hold: "通道内持有",
   };
   return labels[value] || value || "--";
