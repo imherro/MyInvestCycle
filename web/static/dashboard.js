@@ -94,6 +94,11 @@ function signedRatioText(value) {
   return signedPercentText(value * 100);
 }
 
+function annualizedFromTotal(totalReturn, sessions) {
+  if (typeof totalReturn !== "number" || typeof sessions !== "number" || sessions <= 0 || totalReturn <= -1) return null;
+  return (1 + totalReturn) ** (252 / sessions) - 1;
+}
+
 function fixedText(value, digits = 3) {
   if (typeof value !== "number") return "--";
   return value.toFixed(digits);
@@ -462,9 +467,14 @@ const STRATEGY_DIRECTORY_CARDS = [
     title: "自由现金流通道空仓",
     badge: "FCF Trend",
     href: "/strategy/free-cash-flow-trend-full",
-    rule: "同样使用自由现金流指数对数直线通道；靠近上轨按 5pct 阶梯定卖，最低降到 0%，靠近下轨按 5pct 阶梯定投/加回。",
+    rule: "同样使用自由现金流指数对数直线通道；进入上轨卖出区间一次性降到 0%，进入下轨买入区间一次性恢复 100%。",
   },
 ];
+
+const strategyDirectorySort = {
+  key: "annualized",
+  direction: "desc",
+};
 
 function strategyDirectoryPayload(results, card) {
   if (card.source === "etf_rotation_backtest") return results.etf_rotation_backtest || {};
@@ -474,9 +484,15 @@ function strategyDirectoryPayload(results, card) {
 
 function strategyDirectorySummary(card, payload) {
   const summary = payload.summary || {};
+  const totalReturn = summary[card.returnKey || "strategy_total_return"];
+  const sessions = summary.sessions;
+  const annualized = typeof summary.annualized_return === "number"
+    ? summary.annualized_return
+    : annualizedFromTotal(totalReturn, sessions);
   return {
-    totalReturn: summary[card.returnKey || "strategy_total_return"],
+    totalReturn,
     equalReturn: summary[card.equalReturnKey || "equal_weight_return"],
+    annualized,
     alpha: summary.alpha_vs_equal_weight,
     drawdown: summary.max_drawdown,
     equalDrawdown: summary[card.equalDrawdownKey || "equal_weight_max_drawdown"],
@@ -484,6 +500,61 @@ function strategyDirectorySummary(card, payload) {
     sessions: summary.sessions,
     endDate: summary.end_date,
   };
+}
+
+function strategyDirectoryRows(results) {
+  return STRATEGY_DIRECTORY_CARDS.map((card) => {
+    const payload = strategyDirectoryPayload(results, card);
+    const data = strategyDirectorySummary(card, payload);
+    return {
+      ...card,
+      payload,
+      data,
+      evaluation: strategyDirectoryEvaluation(card, payload),
+    };
+  });
+}
+
+function strategyDirectorySortValue(row, key) {
+  const values = {
+    strategy: row.title,
+    annualized: row.data.annualized,
+    totalReturn: row.data.totalReturn,
+    drawdown: row.data.drawdown,
+    sharpe: row.data.sharpe,
+    alpha: row.data.alpha,
+    endDate: row.data.endDate,
+  };
+  return values[key];
+}
+
+function sortStrategyDirectoryRows(rows) {
+  const key = strategyDirectorySort.key;
+  const direction = strategyDirectorySort.direction === "asc" ? 1 : -1;
+  return [...rows].sort((left, right) => {
+    const leftValue = strategyDirectorySortValue(left, key);
+    const rightValue = strategyDirectorySortValue(right, key);
+    const leftMissing = leftValue === null || leftValue === undefined || Number.isNaN(leftValue);
+    const rightMissing = rightValue === null || rightValue === undefined || Number.isNaN(rightValue);
+    if (leftMissing && rightMissing) return left.title.localeCompare(right.title, "zh-CN");
+    if (leftMissing) return 1;
+    if (rightMissing) return -1;
+    if (typeof leftValue === "number" && typeof rightValue === "number") {
+      if (leftValue !== rightValue) return (leftValue - rightValue) * direction;
+      const leftSharpe = typeof left.data.sharpe === "number" ? left.data.sharpe : -Infinity;
+      const rightSharpe = typeof right.data.sharpe === "number" ? right.data.sharpe : -Infinity;
+      if (leftSharpe !== rightSharpe) return (leftSharpe - rightSharpe) * -1;
+      return left.title.localeCompare(right.title, "zh-CN");
+    }
+    return String(leftValue).localeCompare(String(rightValue), "zh-CN") * direction;
+  });
+}
+
+function strategyDirectoryHeader(label, key) {
+  const active = strategyDirectorySort.key === key;
+  const arrow = active ? (strategyDirectorySort.direction === "asc" ? "↑" : "↓") : "";
+  const title = active ? `当前按${label}${strategyDirectorySort.direction === "asc" ? "升序" : "降序"}排序` : `点击按${label}排序`;
+  return `<button class="strategy-table-sort${active ? " is-active" : ""}" type="button" data-strategy-sort="${key}" title="${escapeHtml(title)}">${escapeHtml(label)}<span>${arrow}</span></button>`;
 }
 
 function strategyDirectoryVerdict(data, comparisonLabel = "等权对照") {
@@ -519,26 +590,43 @@ function strategyDirectoryEvaluation(card, payload) {
 function setStrategyDirectory(results) {
   const target = document.getElementById("strategyDirectoryGrid");
   if (!target) return;
-  target.innerHTML = STRATEGY_DIRECTORY_CARDS.map((card) => {
-    const payload = strategyDirectoryPayload(results, card);
-    return `
-      <article class="chart-panel strategy-directory-card">
-        <a class="strategy-card-entry" href="${card.href}">
-          <span>${escapeHtml(card.badge)}</span>
-          <strong>${escapeHtml(card.title)}</strong>
-          <em>进入策略页</em>
-        </a>
-        <div class="strategy-card-section">
-          <span>策略规则</span>
-          <p>${escapeHtml(card.rule)}</p>
-        </div>
-        <div class="strategy-card-section">
-          <span>总体评价</span>
-          <p>${escapeHtml(strategyDirectoryEvaluation(card, payload))}</p>
-        </div>
-      </article>
-    `;
-  }).join("");
+  const rows = sortStrategyDirectoryRows(strategyDirectoryRows(results));
+  target.innerHTML = `
+    <div class="chart-panel strategy-directory-table" role="table" aria-label="策略回测对比表">
+      <div class="strategy-directory-row strategy-directory-head" role="row">
+        <div role="columnheader">排序</div>
+        <div role="columnheader">${strategyDirectoryHeader("策略", "strategy")}</div>
+        <div role="columnheader">${strategyDirectoryHeader("年化", "annualized")}</div>
+        <div role="columnheader">${strategyDirectoryHeader("累计", "totalReturn")}</div>
+        <div role="columnheader">${strategyDirectoryHeader("回撤", "drawdown")}</div>
+        <div role="columnheader">${strategyDirectoryHeader("夏普", "sharpe")}</div>
+        <div role="columnheader">${strategyDirectoryHeader("Alpha", "alpha")}</div>
+        <div role="columnheader">${strategyDirectoryHeader("截至", "endDate")}</div>
+        <div role="columnheader">规则与评价</div>
+      </div>
+      ${rows
+        .map((row, index) => `
+          <div class="strategy-directory-row" role="row">
+            <div class="strategy-rank" role="cell">${index + 1}</div>
+            <div class="strategy-name-cell" role="cell">
+              <span>${escapeHtml(row.badge)}</span>
+              <a href="${row.href}">${escapeHtml(row.title)}</a>
+            </div>
+            <div class="metric-strong" role="cell">${signedRatioText(row.data.annualized)}</div>
+            <div role="cell">${signedRatioText(row.data.totalReturn)}</div>
+            <div role="cell">${percentText(row.data.drawdown)}</div>
+            <div role="cell">${fixedText(row.data.sharpe, 2)}</div>
+            <div role="cell">${signedRatioText(row.data.alpha)}</div>
+            <div role="cell">${toIsoDate(row.data.endDate)}</div>
+            <div class="strategy-rule-cell" role="cell">
+              <p><strong>规则</strong>${escapeHtml(row.rule)}</p>
+              <p><strong>评价</strong>${escapeHtml(row.evaluation)}</p>
+            </div>
+          </div>
+        `)
+        .join("")}
+    </div>
+  `;
 }
 
 function conclusionItemsForPage(results) {
@@ -1165,6 +1253,20 @@ async function loadDashboard() {
 }
 
 document.getElementById("refreshButton")?.addEventListener("click", loadDashboard);
+document.addEventListener("click", (event) => {
+  const target = event.target instanceof Element ? event.target : null;
+  const button = target?.closest("[data-strategy-sort]");
+  if (!button || !document.getElementById("strategyDirectoryGrid")) return;
+  const key = button.dataset.strategySort;
+  if (!key) return;
+  if (strategyDirectorySort.key === key) {
+    strategyDirectorySort.direction = strategyDirectorySort.direction === "asc" ? "desc" : "asc";
+  } else {
+    strategyDirectorySort.key = key;
+    strategyDirectorySort.direction = key === "strategy" ? "asc" : "desc";
+  }
+  if (state.results) setStrategyDirectory(state.results);
+});
 document.getElementById("rotationBacktestReset")?.addEventListener("click", () => {
   resetEtfRotationBacktestChart("rotationBacktestChart");
 });
