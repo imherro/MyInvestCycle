@@ -432,7 +432,6 @@ function renderStrategyBacktestChart(elementId, backtest) {
   }
   const isFreeCashFlowTrend = backtest?.metadata?.indicator === "free_cash_flow_trend_channel";
   const x = items.map((item) => toIsoDate(item.date));
-  const equityByDate = new Map(items.map((item) => [toIsoDate(item.date), item.strategy_equity ?? null]));
   const comparisonAssets = backtest?.summary?.comparison_assets || [];
   const traceStyleByCode = {
     "510300.SH": { color: "#dc2626", dash: "solid" },
@@ -477,7 +476,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
             mode: "markers",
             name: group.name,
             x: group.items.map((item) => toIsoDate(item.date)),
-            y: group.items.map((item) => equityByDate.get(toIsoDate(item.date)) ?? null),
+            y: group.items.map((item) => indicatorByDate.get(toIsoDate(item.date))?.index_equity ?? null),
             customdata: group.items.map((item) => {
               const targetWeights = item.target_weights || {};
               const equityWeight = targetWeights["932365.CSI"];
@@ -498,7 +497,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
             hovertemplate:
               "%{x}<br>" +
               `${group.name}<br>` +
-              "策略净值 %{y:.3f}<br>" +
+              "指数位置 %{y:.3f}<br>" +
               "目标权益 %{customdata[0]} / 现金 %{customdata[1]}<br>" +
               "%{customdata[2]}<extra></extra>",
           }))
