@@ -432,6 +432,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
   }
   const isFreeCashFlowTrend = backtest?.metadata?.indicator === "free_cash_flow_trend_channel";
   const x = items.map((item) => toIsoDate(item.date));
+  const equityByDate = new Map(items.map((item) => [toIsoDate(item.date), item.strategy_equity ?? null]));
   const comparisonAssets = backtest?.summary?.comparison_assets || [];
   const traceStyleByCode = {
     "510300.SH": { color: "#dc2626", dash: "solid" },
@@ -450,6 +451,58 @@ function renderStrategyBacktestChart(elementId, backtest) {
   const fallbackColors = ["#c73d3d", "#17885b", "#c69214", "#64748b", "#7c3aed", "#0f766e"];
   const indicatorItems = backtest?.indicator_curve || [];
   const indicatorByDate = new Map(indicatorItems.map((item) => [toIsoDate(item.date), item]));
+  const signalItems = backtest?.signals || [];
+  const signalGroups = [
+    {
+      name: "上轨定卖",
+      color: "#dc2626",
+      symbol: "triangle-down",
+      items: signalItems.filter((item) =>
+        ["fcf_channel_half_reduce", "fcf_channel_full_exit"].includes(item.strategy_signal)
+      ),
+    },
+    {
+      name: "下轨定投",
+      color: "#16a34a",
+      symbol: "triangle-up",
+      items: signalItems.filter((item) => item.strategy_signal === "fcf_channel_full_buy"),
+    },
+  ];
+  const signalTraces =
+    isFreeCashFlowTrend
+      ? signalGroups
+          .filter((group) => group.items.length)
+          .map((group) => ({
+            type: "scatter",
+            mode: "markers",
+            name: group.name,
+            x: group.items.map((item) => toIsoDate(item.date)),
+            y: group.items.map((item) => equityByDate.get(toIsoDate(item.date)) ?? null),
+            customdata: group.items.map((item) => {
+              const targetWeights = item.target_weights || {};
+              const equityWeight = targetWeights["932365.CSI"];
+              const cashWeight = targetWeights.CASH || 0;
+              const reason = item.rebalance_reason?.detail || "";
+              return [
+                typeof equityWeight === "number" ? `${(equityWeight * 100).toFixed(0)}%` : "--",
+                typeof cashWeight === "number" ? `${(cashWeight * 100).toFixed(0)}%` : "--",
+                reason,
+              ];
+            }),
+            marker: {
+              color: group.color,
+              size: 9,
+              symbol: group.symbol,
+              line: { color: "#ffffff", width: 1.2 },
+            },
+            hovertemplate:
+              "%{x}<br>" +
+              `${group.name}<br>` +
+              "策略净值 %{y:.3f}<br>" +
+              "目标权益 %{customdata[0]} / 现金 %{customdata[1]}<br>" +
+              "%{customdata[2]}<extra></extra>",
+          }))
+      : [];
   const comparisonTraces = comparisonAssets.slice(0, 6).map((asset, index) => {
     const key = asset.code === "equal_weight" ? "equal_weight" : `benchmark_${String(asset.code || "").split(".")[0]}`;
     const equityKey = `${key}_equity`;
@@ -522,6 +575,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
             },
           ]
         : []),
+      ...signalTraces,
     ],
     {
       ...baseLayout(500),

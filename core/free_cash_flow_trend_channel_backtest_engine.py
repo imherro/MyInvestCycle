@@ -622,6 +622,9 @@ def run_free_cash_flow_trend_backtest(
         "equal_weight_label": "自由现金流指数基准",
         "equal_weight_return": round(benchmark_total, 6),
         "equal_weight_annualized_return": benchmark_metrics.get("annualized_return"),
+        "annualized_alpha_vs_equal_weight": None
+        if primary.get("annualized_return") is None or benchmark_metrics.get("annualized_return") is None
+        else round(float(primary["annualized_return"]) - float(benchmark_metrics["annualized_return"]), 6),
         "alpha_vs_equal_weight": round(strategy_total - benchmark_total, 6),
         "sharpe": primary["sharpe"],
         "max_drawdown": strategy_drawdown,

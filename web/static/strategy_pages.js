@@ -41,6 +41,37 @@ function strategyScoreText(value) {
   return value.toFixed(3);
 }
 
+function strategyDailyPercentText(value) {
+  if (typeof value !== "number") return "--";
+  const percent = value * 100;
+  const sign = percent > 0 ? "+" : "";
+  return `${sign}${percent.toFixed(3)}%`;
+}
+
+function strategyAnnualizedComparisonText(summary, performance) {
+  const strategyAnnualized =
+    typeof summary.annualized_return === "number" ? summary.annualized_return : performance.annualized_return;
+  const benchmarkAnnualized =
+    typeof summary.equal_weight_annualized_return === "number" ? summary.equal_weight_annualized_return : null;
+  const annualizedAlpha =
+    typeof summary.annualized_alpha_vs_equal_weight === "number"
+      ? summary.annualized_alpha_vs_equal_weight
+      : typeof strategyAnnualized === "number" && typeof benchmarkAnnualized === "number"
+        ? strategyAnnualized - benchmarkAnnualized
+        : null;
+  if (typeof benchmarkAnnualized !== "number") return strategySignedRatioText(strategyAnnualized);
+  return `${strategySignedRatioText(strategyAnnualized)} / 基准 ${strategySignedRatioText(benchmarkAnnualized)} / 差 ${strategySignedRatioText(annualizedAlpha)}`;
+}
+
+function strategySharpeFormulaText(performance) {
+  if (typeof performance.sharpe !== "number") return "夏普 = 日均收益 / 日收益标准差 × √252；当前无足够样本。";
+  const dailyMean =
+    typeof performance.annualized_return === "number" ? ((1 + performance.annualized_return) ** (1 / 252) - 1) : null;
+  const dailyVol =
+    typeof performance.annualized_volatility === "number" ? performance.annualized_volatility / Math.sqrt(252) : null;
+  return `夏普 ${strategyFixedText(performance.sharpe, 2)} = 日均收益 ${strategyDailyPercentText(dailyMean)} / 日波动 ${strategyDailyPercentText(dailyVol)} × √252；无风险收益率按 0 处理。`;
+}
+
 function strategyDrawdownReductionText(value) {
   if (typeof value !== "number") return "--";
   const percent = Math.abs(value * 100).toFixed(1);
@@ -473,8 +504,7 @@ function strategySetGenericPage(backtest) {
   const latestSignal = signals[signals.length - 1] || {};
   const isIndexStrategy = metadata.indicator === "free_cash_flow_trend_channel";
   const comparisonLabel = summary.equal_weight_label || "等权";
-  const annualizedReturn =
-    typeof summary.annualized_return === "number" ? summary.annualized_return : performance.annualized_return;
+  const annualizedComparison = strategyAnnualizedComparisonText(summary, performance);
 
   document.title = summary.strategy_name || "策略回测";
   strategySetText("genericEyebrow", summary.strategy_id || "Strategy");
@@ -484,7 +514,7 @@ function strategySetGenericPage(backtest) {
   const genericTiles = [
     { label: "回测区间", value: `${strategyToIsoDate(summary.start_date)} - ${strategyToIsoDate(summary.end_date)}` },
     { label: "策略收益", value: strategySignedRatioText(summary.strategy_total_return) },
-    { label: "年化收益", value: strategySignedRatioText(annualizedReturn) },
+    { label: "年化收益", value: annualizedComparison },
     { label: "最大回撤", value: strategyPercentText(summary.max_drawdown) },
     { label: `Alpha vs ${comparisonLabel}`, value: strategySignedRatioText(summary.alpha_vs_equal_weight) },
     ...(isIndexStrategy
@@ -508,7 +538,7 @@ function strategySetGenericPage(backtest) {
   const latestReason = latestSignal.rebalance_reason || {};
   strategySetText("genericLatestReason", latestReason.detail || metadata.description || "--");
   strategySetText("genericStrategyReturn", strategySignedRatioText(summary.strategy_total_return));
-  strategySetText("genericAnnualizedReturn", strategySignedRatioText(annualizedReturn));
+  strategySetText("genericAnnualizedReturn", annualizedComparison);
   strategySetText("genericMaxDrawdown", strategyPercentText(summary.max_drawdown));
   strategySetText("genericAlphaEqual", strategySignedRatioText(summary.alpha_vs_equal_weight));
   strategySetText("genericSharpe", strategyFixedText(summary.sharpe, 2));
@@ -516,6 +546,7 @@ function strategySetGenericPage(backtest) {
   strategySetText("genericSessions", strategyIntegerText(summary.sessions));
   strategySetText("genericTurnover", strategyPercentText(summary.average_turnover));
   strategySetText("genericSignalSummary", strategySignalLabel(summary.latest_signal));
+  strategySetText("genericSharpeFormula", strategySharpeFormulaText(performance));
   strategySetGenericComparison(summary);
   const verdict = isIndexStrategy
     ? validation.alpha_positive_vs_equal_weight

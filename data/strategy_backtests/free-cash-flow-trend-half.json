@@ -87,6 +87,7 @@
     "equal_weight_label": "自由现金流指数基准",
     "equal_weight_return": 2.049793,
     "equal_weight_annualized_return": 0.106003,
+    "annualized_alpha_vs_equal_weight": 0.02226,
     "alpha_vs_equal_weight": 0.752545,
     "sharpe": 0.672692,
     "max_drawdown": -0.450103,
