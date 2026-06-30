@@ -110,6 +110,7 @@ python web/app.py
 Endpoints:
 
 - `GET http://127.0.0.1:8021/api`
+- `GET http://127.0.0.1:8021/strategies`
 - `GET http://127.0.0.1:8021/strategy/etf-rotation`
 - `GET http://127.0.0.1:8021/strategy/macro-style`
 - `GET http://127.0.0.1:8021/strategy/defensive-dividend`
@@ -119,6 +120,9 @@ Endpoints:
 - `GET http://127.0.0.1:8021/strategy/all-weather`
 - `GET http://127.0.0.1:8021/strategy/equal-weight-reversion-basic`
 - `GET http://127.0.0.1:8021/strategy/equal-weight-reversion-guarded`
+- `GET http://127.0.0.1:8021/strategy/free-cash-flow-trend-half`
+- `GET http://127.0.0.1:8021/strategy/free-cash-flow-trend-full`
+- `GET http://127.0.0.1:8021/strategy/free-cash-flow-drawdown-rebound`
 - `GET http://127.0.0.1:8021/rotation-history`
 - `GET http://127.0.0.1:8021/macro-style-history`
 - `GET http://127.0.0.1:8021/docs`
@@ -146,6 +150,9 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/strategy-backtests/all-weather`
 - `GET http://127.0.0.1:8021/api/strategy-backtests/equal-weight-reversion-basic`
 - `GET http://127.0.0.1:8021/api/strategy-backtests/equal-weight-reversion-guarded`
+- `GET http://127.0.0.1:8021/api/strategy-backtests/free-cash-flow-trend-half`
+- `GET http://127.0.0.1:8021/api/strategy-backtests/free-cash-flow-trend-full`
+- `GET http://127.0.0.1:8021/api/strategy-backtests/free-cash-flow-drawdown-rebound`
 - `GET http://127.0.0.1:8021/api/shadow/current`
 - `GET http://127.0.0.1:8021/api/shadow/regime-attribution`
 - `GET http://127.0.0.1:8021/api/system/snapshot`

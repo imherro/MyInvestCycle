@@ -431,6 +431,8 @@ function renderStrategyBacktestChart(elementId, backtest) {
     return;
   }
   const isFreeCashFlowTrend = backtest?.metadata?.indicator === "free_cash_flow_trend_channel";
+  const isFreeCashFlowRebound = backtest?.metadata?.indicator === "free_cash_flow_drawdown_rebound";
+  const isFreeCashFlowIndexStrategy = isFreeCashFlowTrend || isFreeCashFlowRebound;
   const x = items.map((item) => toIsoDate(item.date));
   const comparisonAssets = backtest?.summary?.comparison_assets || [];
   const primaryStrategyCode = backtest?.metadata?.index_code || "480092.CNI";
@@ -550,18 +552,43 @@ function renderStrategyBacktestChart(elementId, backtest) {
       hovertemplate: `%{x}<br>${label} %{y:.3f}<extra></extra>`,
     };
   });
+  const reboundVariantColors = ["#2563eb", "#16a34a", "#f59e0b", "#7c3aed", "#dc2626"];
+  const bestVariant = backtest?.summary?.best_variant?.variant;
+  const reboundVariantTraces = isFreeCashFlowRebound
+    ? (backtest?.summary?.variants || []).map((variant, index) => {
+        const isBest = variant.variant === bestVariant;
+        const label = variant.label || variant.variant || `n${index + 1}`;
+        return {
+          type: "scatter",
+          mode: "lines",
+          name: `${label}${isBest ? " 代表" : ""}`,
+          x,
+          y: items.map((item) => item[variant.equity_key] ?? null),
+          line: {
+            color: reboundVariantColors[index % reboundVariantColors.length],
+            width: isBest ? 2.9 : 1.8,
+            dash: isBest ? "solid" : "dot",
+          },
+          hovertemplate: `%{x}<br>${label} %{y:.3f}<extra></extra>`,
+        };
+      })
+    : [];
   Plotly.react(
     elementId,
     [
-      {
-        type: "scatter",
-        mode: "lines",
-        name: backtest?.summary?.short_name || "策略组合",
-        x,
-        y: items.map((item) => item.strategy_equity ?? null),
-        line: { color: "#2663eb", width: 2.6 },
-        hovertemplate: "%{x}<br>策略 %{y:.3f}<extra></extra>",
-      },
+      ...(isFreeCashFlowRebound
+        ? reboundVariantTraces
+        : [
+            {
+              type: "scatter",
+              mode: "lines",
+              name: backtest?.summary?.short_name || "策略组合",
+              x,
+              y: items.map((item) => item.strategy_equity ?? null),
+              line: { color: "#2663eb", width: 2.6 },
+              hovertemplate: "%{x}<br>策略 %{y:.3f}<extra></extra>",
+            },
+          ]),
       ...comparisonTraces,
       ...(backtest?.metadata?.indicator === "equal_weight_ma_reversion"
         ? [
@@ -629,7 +656,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
         spikethickness: 1,
       },
       yaxis: {
-        type: isFreeCashFlowTrend ? "log" : undefined,
+        type: isFreeCashFlowIndexStrategy ? "log" : undefined,
         gridcolor: "#edf0f5",
         zeroline: false,
         showspikes: true,

@@ -469,6 +469,13 @@ const STRATEGY_DIRECTORY_CARDS = [
     href: "/strategy/free-cash-flow-trend-full",
     rule: "统一使用 480092.CNI 国证自由现金流R指数对数直线通道；进入上轨卖出区间一次性降到 0%，进入下轨买入区间一次性恢复 100%。",
   },
+  {
+    id: "free-cash-flow-drawdown-rebound",
+    title: "自由现金流回撤反弹",
+    badge: "FCF Rebound",
+    href: "/strategy/free-cash-flow-drawdown-rebound",
+    rule: "空仓跟踪 480092.CNI 阶段高点，回撤 n% 后满仓买入；满仓跟踪阶段低点，反弹 n% 后空仓卖出；同时测试 10%、12%、15%、18%、20% 五个阈值。",
+  },
 ];
 
 const strategyDirectorySort = {

@@ -34,6 +34,11 @@ from core.free_cash_flow_trend_channel_backtest_engine import (
     FreeCashFlowTrendSpec,
     run_free_cash_flow_trend_backtest,
 )
+from core.free_cash_flow_rebound_backtest_engine import (
+    FREE_CASH_FLOW_REBOUND_SPEC,
+    FreeCashFlowReboundSpec,
+    run_free_cash_flow_rebound_backtest,
+)
 from core.strategy_suite_backtest_engine import STRATEGY_SPECS, StrategySpec, run_strategy_backtest
 
 
@@ -45,6 +50,7 @@ SPECIAL_STRATEGY_IDS = (
     ALL_WEATHER_SPEC.strategy_id,
     *EQUAL_WEIGHT_REVERSION_SPECS,
     *FREE_CASH_FLOW_TREND_SPECS,
+    FREE_CASH_FLOW_REBOUND_SPEC.strategy_id,
 )
 ALL_STRATEGY_IDS = sorted([*STRATEGY_SPECS, *SPECIAL_STRATEGY_IDS])
 
@@ -109,7 +115,7 @@ def _read_index_cache(ts_code: str, start_date: str, end_date: str) -> pd.DataFr
 
 
 def _load_free_cash_flow_index_history(
-    spec: FreeCashFlowTrendSpec,
+    spec: FreeCashFlowTrendSpec | FreeCashFlowReboundSpec,
     start_date: str,
     end_date: str,
     *,
@@ -156,12 +162,14 @@ def main() -> None:
             spec = EQUAL_WEIGHT_REVERSION_SPECS[strategy_id]
         elif strategy_id in FREE_CASH_FLOW_TREND_SPECS:
             spec = FREE_CASH_FLOW_TREND_SPECS[strategy_id]
+        elif strategy_id == FREE_CASH_FLOW_REBOUND_SPEC.strategy_id:
+            spec = FREE_CASH_FLOW_REBOUND_SPEC
         else:
             spec = STRATEGY_SPECS[strategy_id]
         start_date = requested_start_date or normalize_trade_date(getattr(spec, "backtest_start_date", DEFAULT_START_DATE))
         if start_date > end_date:
             raise ValueError(f"start must be earlier than or equal to end for {strategy_id}")
-        if strategy_id in FREE_CASH_FLOW_TREND_SPECS:
+        if strategy_id in FREE_CASH_FLOW_TREND_SPECS or strategy_id == FREE_CASH_FLOW_REBOUND_SPEC.strategy_id:
             price_history, price_errors, resolved_index_code, resolved_index_type = _load_free_cash_flow_index_history(
                 spec,
                 start_date,
@@ -169,14 +177,24 @@ def main() -> None:
                 refresh=args.refresh,
                 cache_only=args.cache_only,
             )
-            result = run_free_cash_flow_trend_backtest(
-                spec,
-                price_history,
-                start_date=start_date,
-                end_date=end_date,
-                resolved_index_code=resolved_index_code,
-                resolved_index_type=resolved_index_type,
-            )
+            if strategy_id == FREE_CASH_FLOW_REBOUND_SPEC.strategy_id:
+                result = run_free_cash_flow_rebound_backtest(
+                    spec,
+                    price_history,
+                    start_date=start_date,
+                    end_date=end_date,
+                    resolved_index_code=resolved_index_code,
+                    resolved_index_type=resolved_index_type,
+                )
+            else:
+                result = run_free_cash_flow_trend_backtest(
+                    spec,
+                    price_history,
+                    start_date=start_date,
+                    end_date=end_date,
+                    resolved_index_code=resolved_index_code,
+                    resolved_index_type=resolved_index_type,
+                )
         else:
             price_history, price_errors = _load_price_history(
                 spec,
@@ -207,7 +225,7 @@ def main() -> None:
                 end_date=end_date,
                 rebalance_every_sessions=args.rebalance_every_sessions,
             )
-        elif strategy_id not in FREE_CASH_FLOW_TREND_SPECS:
+        elif strategy_id not in FREE_CASH_FLOW_TREND_SPECS and strategy_id != FREE_CASH_FLOW_REBOUND_SPEC.strategy_id:
             result = run_strategy_backtest(
                 spec,
                 price_history,

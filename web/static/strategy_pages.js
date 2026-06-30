@@ -477,6 +477,7 @@ function strategySetGenericComparison(summary, performance) {
         max_drawdown: summary.max_drawdown,
         isStrategy: true,
       },
+      ...(summary.variant_assets || []),
       ...(summary.comparison_assets || []),
     ],
     { sessions: summary.sessions, strategyAnnualizedReturn: annualizedReturn }
@@ -507,6 +508,9 @@ function strategySignalLabel(value) {
     fcf_channel_full_exit: "上轨空仓",
     fcf_channel_full_buy: "下轨买入",
     fcf_channel_hold: "通道内持有",
+    fcf_rebound_buy: "回撤买入",
+    fcf_rebound_sell: "反弹卖出",
+    fcf_rebound_hold: "等待信号",
   };
   return labels[value] || value || "--";
 }
@@ -519,7 +523,9 @@ function strategySetGenericPage(backtest) {
   const universe = metadata.universe || [];
   const signals = backtest.signals || [];
   const latestSignal = signals[signals.length - 1] || {};
-  const isIndexStrategy = metadata.indicator === "free_cash_flow_trend_channel";
+  const isChannelStrategy = metadata.indicator === "free_cash_flow_trend_channel";
+  const isReboundStrategy = metadata.indicator === "free_cash_flow_drawdown_rebound";
+  const isIndexStrategy = isChannelStrategy || isReboundStrategy;
   const comparisonLabel = summary.equal_weight_label || "等权";
   const annualizedReturn =
     typeof summary.annualized_return === "number" ? summary.annualized_return : performance.annualized_return;
@@ -535,7 +541,7 @@ function strategySetGenericPage(backtest) {
     { label: "年化收益", value: strategySignedRatioText(annualizedReturn) },
     { label: "最大回撤", value: strategyPercentText(summary.max_drawdown) },
     { label: `Alpha vs ${comparisonLabel}`, value: strategySignedRatioText(summary.alpha_vs_equal_weight) },
-    ...(isIndexStrategy
+    ...(isChannelStrategy
       ? [{ label: "最新轨道位置", value: strategyFixedText(summary.latest_channel_position, 2) }]
       : []),
     { label: "夏普", value: strategyFixedText(summary.sharpe, 2) },
@@ -566,10 +572,14 @@ function strategySetGenericPage(backtest) {
   strategySetText("genericSignalSummary", strategySignalLabel(summary.latest_signal));
   strategySetText("genericSharpeFormula", strategySharpeFormulaText(performance));
   strategySetGenericComparison(summary, performance);
-  const verdict = isIndexStrategy
+  const verdict = isChannelStrategy
     ? validation.alpha_positive_vs_equal_weight
       ? "本策略跑赢自由现金流指数基准，说明趋势通道择时存在初步收益改善。"
       : "本策略未跑赢自由现金流指数基准，当前更像风险暴露调节工具，需要继续优化趋势线规则。"
+    : isReboundStrategy
+    ? validation.alpha_positive_vs_equal_weight
+      ? "代表阈值跑赢国证自由现金流R基准，说明回撤买入/反弹卖出在当前样本有正超额。"
+      : "代表阈值未跑赢国证自由现金流R基准，说明该规则目前更像参数研究，不宜直接当成稳赚模型。"
     : validation.mean_reversion_signal
     ? validation.alpha_positive_vs_equal_weight
       ? "本策略跑赢四 ETF 等权基准，说明当前均值回归规则有初步 alpha 证据。"
@@ -581,7 +591,7 @@ function strategySetGenericPage(backtest) {
       : "本策略未跑赢等权资产池，当前规则更适合保留为反例或继续优化。";
   strategySetText(
     "genericConclusion",
-    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isIndexStrategy ? " Tushare index_daily 指数日收益；图中红/灰/绿线为 2016 低点以来的对数直线上轨、中轨、下轨。本版通道包含当前研究锚点，适合复盘观察，不等同于严格无未来函数实盘信号。" : " ETF fund_daily pct_chg/pre_close。"}`
+    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isChannelStrategy ? " Tushare index_daily 指数日收益；图中红/灰/绿线为 2016 低点以来的对数直线上轨、中轨、下轨。本版通道包含当前研究锚点，适合复盘观察，不等同于严格无未来函数实盘信号。" : isReboundStrategy ? " Tushare index_daily 指数日收益；图中五条曲线分别代表 n=10%/12%/15%/18%/20%，策略摘要采用年化收益最高的阈值作为代表结果。现金收益暂按 0 处理。" : " ETF fund_daily pct_chg/pre_close。"}`
   );
   const signalTarget = document.getElementById("genericSignalList");
   if (signalTarget) {
