@@ -453,7 +453,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
   const signalItems = backtest?.signals || [];
   const signalGroups = [
     {
-      name: "上轨定卖",
+      name: "上轨卖出",
       color: "#dc2626",
       symbol: "triangle-down",
       items: signalItems.filter((item) =>
@@ -461,7 +461,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
       ),
     },
     {
-      name: "下轨定投",
+      name: "下轨买入",
       color: "#16a34a",
       symbol: "triangle-up",
       items: signalItems.filter((item) => item.strategy_signal === "fcf_channel_full_buy"),
@@ -502,6 +502,37 @@ function renderStrategyBacktestChart(elementId, backtest) {
               "%{customdata[2]}<extra></extra>",
           }))
       : [];
+  const buildChannelBandTrace = (name, lowerKey, upperKey, color) => {
+    const points = x
+      .map((date) => {
+        const item = indicatorByDate.get(date);
+        return {
+          date,
+          lower: item?.[lowerKey],
+          upper: item?.[upperKey],
+        };
+      })
+      .filter((point) => Number.isFinite(point.lower) && Number.isFinite(point.upper));
+    if (!points.length) return null;
+    const reversePoints = [...points].reverse();
+    return {
+      type: "scatter",
+      mode: "lines",
+      name,
+      x: [...points.map((point) => point.date), ...reversePoints.map((point) => point.date)],
+      y: [...points.map((point) => point.lower), ...reversePoints.map((point) => point.upper)],
+      fill: "toself",
+      fillcolor: color,
+      line: { color: "rgba(255,255,255,0)", width: 0 },
+      hoverinfo: "skip",
+    };
+  };
+  const channelBandTraces = isFreeCashFlowTrend
+    ? [
+        buildChannelBandTrace("上轨卖出区间", "upper_zone_equity", "upper_equity", "rgba(220, 38, 38, 0.12)"),
+        buildChannelBandTrace("下轨买入区间", "lower_equity", "lower_zone_equity", "rgba(22, 163, 74, 0.12)"),
+      ].filter(Boolean)
+    : [];
   const comparisonTraces = comparisonAssets.slice(0, 6).map((asset, index) => {
     const key = asset.code === "equal_weight" ? "equal_weight" : `benchmark_${String(asset.code || "").split(".")[0]}`;
     const equityKey = `${key}_equity`;
@@ -543,6 +574,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
             },
           ]
         : []),
+      ...channelBandTraces,
       ...(isFreeCashFlowTrend
         ? [
             {

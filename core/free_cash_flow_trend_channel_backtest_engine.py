@@ -44,6 +44,7 @@ class FreeCashFlowTrendSpec:
     upper_position_threshold: float = 0.75
     lower_position_threshold: float = 0.25
     exposure_step: float = 0.05
+    use_ladder_sizing: bool = True
 
 
 FREE_CASH_FLOW_UNIVERSE = (
@@ -80,12 +81,13 @@ FREE_CASH_FLOW_TREND_SPECS: dict[str, FreeCashFlowTrendSpec] = {
             "研究版下轨使用 2016-01-28、2021-11-16、2024-09-11、2025-04-07、2026-06-26 等主要低点，在 log(price) 上拟合一条直线。",
             "上轨不是单独拟合高点，而是在下轨基础上叠加 2026 年前残差的 98.5% 分位；中轨为上下轨在 log 空间的中点。",
             "轨道位置 = (log(价格)-log(下轨)) / (log(上轨)-log(下轨))；>=0.75 视为上轨附近，<=0.25 视为下轨附近。",
-            "价格进入上轨附近或触及上轨波动容忍带后，按 5pct 仓位阶梯定卖，最低降到 0%；价格进入下轨附近或触及下轨容忍带后，按 5pct 仓位阶梯定投/加回，最高恢复 100%。该通道包含当前研究锚点，是复盘研究口径，不作为无未来函数实盘信号。",
+            "价格进入上轨附近或触及上轨波动容忍带后，一次性降到 0%；价格进入下轨附近或触及下轨容忍带后，一次性恢复 100%。上下轨触发位是区间，不是单条线；该通道包含当前研究锚点，是复盘研究口径，不作为无未来函数实盘信号。",
         ],
         index_code="932365.CSI",
         benchmark_codes=("932365.CSI",),
         reduce_exposure=0.0,
         upper_signal="fcf_channel_full_exit",
+        use_ladder_sizing=False,
     ),
 }
 
@@ -197,7 +199,9 @@ def _build_log_channel(close: pd.Series, spec: FreeCashFlowTrendSpec) -> tuple[p
         empty = pd.DataFrame(index=close.index)
         for column in [
             "upper_line",
+            "upper_zone_line",
             "mid_line",
+            "lower_zone_line",
             "lower_line",
             "channel_position",
             "distance_to_upper",
@@ -249,13 +253,17 @@ def _build_log_channel(close: pd.Series, spec: FreeCashFlowTrendSpec) -> tuple[p
         offset = 0.01
 
     lower = np.exp(lower_log)
+    lower_zone_line = np.exp(lower_log + offset * spec.lower_position_threshold)
     mid = np.exp(lower_log + offset / 2.0)
+    upper_zone_line = np.exp(lower_log + offset * spec.upper_position_threshold)
     upper = np.exp(lower_log + offset)
     channel_position = residuals / offset
     channel = pd.DataFrame(
         {
             "upper_line": upper,
+            "upper_zone_line": upper_zone_line,
             "mid_line": mid,
+            "lower_zone_line": lower_zone_line,
             "lower_line": lower,
             "channel_position": channel_position,
         },
@@ -294,7 +302,9 @@ def _build_indicator_frame(frame: pd.DataFrame, spec: FreeCashFlowTrendSpec) -> 
     for date_text in close.index.astype(str):
         channel_row = channel.loc[date_text] if date_text in channel.index else pd.Series(dtype=float)
         upper = channel_row.get("upper_line")
+        upper_zone_line = channel_row.get("upper_zone_line")
         mid = channel_row.get("mid_line")
+        lower_zone_line = channel_row.get("lower_zone_line")
         lower = channel_row.get("lower_line")
         position = channel_row.get("channel_position")
         current_close = float(close.loc[date_text])
@@ -332,10 +342,14 @@ def _build_indicator_frame(frame: pd.DataFrame, spec: FreeCashFlowTrendSpec) -> 
                 "close": current_close,
                 "index_equity": current_close / base_close,
                 "upper_line": upper,
+                "upper_zone_line": upper_zone_line,
                 "mid_line": mid,
+                "lower_zone_line": lower_zone_line,
                 "lower_line": lower,
                 "upper_equity": upper / base_close if upper is not None else None,
+                "upper_zone_equity": upper_zone_line / base_close if upper_zone_line is not None else None,
                 "mid_equity": mid / base_close if mid is not None else None,
+                "lower_zone_equity": lower_zone_line / base_close if lower_zone_line is not None else None,
                 "lower_equity": lower / base_close if lower is not None else None,
                 "distance_to_upper": distance_to_upper,
                 "distance_to_mid": distance_to_mid,
@@ -406,16 +420,32 @@ def _signal_for_row(row: pd.Series, current_exposure: float, spec: FreeCashFlowT
     if bool(row.get("upper_zone")) and bool(row.get("lower_zone")):
         return current_exposure, "fcf_channel_hold", ["上下轨距离过近或价格同时触发上下轨容忍带，维持原仓位。"]
     if bool(row.get("upper_zone")):
-        target = min(current_exposure, _upper_ladder_target(row, spec))
+        target = (
+            min(current_exposure, _upper_ladder_target(row, spec))
+            if spec.use_ladder_sizing
+            else min(current_exposure, spec.reduce_exposure)
+        )
         if abs(target - current_exposure) < 0.000001:
             return current_exposure, "fcf_channel_hold", ["已处于当前上轨区域对应仓位，维持原仓位。"]
+        if not spec.use_ladder_sizing:
+            return target, spec.upper_signal, [
+                f"轨道位置 {float(row['channel_position']):.2f}，进入上轨卖出区间，按满仓/空仓规则降至 {target:.0%}。",
+            ]
         return target, spec.upper_signal, [
             f"轨道位置 {float(row['channel_position']):.2f}，进入上轨附近，按 {spec.exposure_step:.0%} 仓位阶梯定卖至 {target:.0%}。",
         ]
     if bool(row.get("lower_zone")):
-        target = max(current_exposure, _lower_ladder_target(row, spec))
+        target = (
+            max(current_exposure, _lower_ladder_target(row, spec))
+            if spec.use_ladder_sizing
+            else max(current_exposure, 1.0)
+        )
         if abs(target - current_exposure) < 0.000001:
             return current_exposure, "fcf_channel_hold", ["已处于当前下轨区域对应仓位，维持原仓位。"]
+        if not spec.use_ladder_sizing:
+            return target, "fcf_channel_full_buy", [
+                f"轨道位置 {float(row['channel_position']):.2f}，进入下轨买入区间，按满仓/空仓规则恢复 {target:.0%}。",
+            ]
         return target, "fcf_channel_full_buy", [
             f"轨道位置 {float(row['channel_position']):.2f}，进入下轨附近，按 {spec.exposure_step:.0%} 仓位阶梯定投/加回至 {target:.0%}。",
         ]
@@ -425,8 +455,8 @@ def _signal_for_row(row: pd.Series, current_exposure: float, spec: FreeCashFlowT
 def _signal_label(value: str) -> str:
     labels = {
         "fcf_channel_half_reduce": "上轨定卖",
-        "fcf_channel_full_exit": "上轨定卖",
-        "fcf_channel_full_buy": "下轨定投",
+        "fcf_channel_full_exit": "上轨空仓",
+        "fcf_channel_full_buy": "下轨买入",
         "fcf_channel_hold": "通道内持有",
     }
     return labels.get(value, value)
@@ -476,7 +506,9 @@ def _indicator_records(frame: pd.DataFrame) -> list[dict[str, object]]:
         "date",
         "index_equity",
         "upper_equity",
+        "upper_zone_equity",
         "mid_equity",
+        "lower_zone_equity",
         "lower_equity",
         "distance_to_upper",
         "distance_to_mid",
@@ -517,7 +549,9 @@ def run_free_cash_flow_trend_backtest(
     base_close = float(indicator["close"].iloc[0])
     indicator["index_equity"] = indicator["close"].astype(float) / base_close
     indicator["upper_equity"] = indicator["upper_line"].apply(lambda value: None if pd.isna(value) else float(value) / base_close)
+    indicator["upper_zone_equity"] = indicator["upper_zone_line"].apply(lambda value: None if pd.isna(value) else float(value) / base_close)
     indicator["mid_equity"] = indicator["mid_line"].apply(lambda value: None if pd.isna(value) else float(value) / base_close)
+    indicator["lower_zone_equity"] = indicator["lower_zone_line"].apply(lambda value: None if pd.isna(value) else float(value) / base_close)
     indicator["lower_equity"] = indicator["lower_line"].apply(lambda value: None if pd.isna(value) else float(value) / base_close)
 
     current_exposure = 1.0
@@ -578,7 +612,9 @@ def run_free_cash_flow_trend_backtest(
     frame = frame.join(indicator_by_date[[
         "index_equity",
         "upper_equity",
+        "upper_zone_equity",
         "mid_equity",
+        "lower_zone_equity",
         "lower_equity",
         "distance_to_upper",
         "distance_to_mid",
