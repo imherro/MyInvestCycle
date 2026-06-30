@@ -37,6 +37,12 @@ class FreeCashFlowTrendSpec:
     vol_horizon_sessions: int = 20
     vol_multiplier: float = 0.5
     warmup_calendar_days: int = 1800
+    channel_start_date: str = "20160101"
+    lower_anchor_dates: tuple[str, ...] = ("20160128", "20211116", "20240911", "20250407", "20260626")
+    upper_residual_end_date: str = "20260101"
+    upper_residual_quantile: float = 0.985
+    upper_position_threshold: float = 0.985
+    lower_position_threshold: float = 0.05
 
 
 FREE_CASH_FLOW_UNIVERSE = (
@@ -50,13 +56,13 @@ FREE_CASH_FLOW_TREND_SPECS: dict[str, FreeCashFlowTrendSpec] = {
         strategy_id="free-cash-flow-trend-half",
         name="自由现金流趋势通道策略（半仓防守版）",
         short_name="自由现金流半仓",
-        description="用中证全指自由现金流指数的已确认历史高低点滚动拟合趋势通道，上轨附近降到半仓，下轨附近恢复满仓。",
+        description="用自由现金流指数 2016 低点以来的对数直线趋势通道，上轨附近降到半仓，下轨附近恢复满仓。",
         method=[
             "标的使用 932365.CSI 中证全指自由现金流指数；优先尝试全收益指数，若 Tushare 无可用全收益序列则使用价格指数并明确标注。",
-            "用前后各 20 个交易日确认历史高点/低点；只有确认日已经发生的拐点才能进入当日趋势线拟合，避免未来函数。",
-            "分别取最近最多 8 个已确认高点和低点，在 log(price) 上做线性拟合，形成上轨和下轨。",
-            "价格进入上轨容忍带或突破上轨后，下一交易日权益暴露降到 50%；价格进入下轨容忍带或跌破下轨后，下一交易日恢复 100%。",
-            "容忍带由最近 60 日波动率自适应生成，并限制在 2.5% 到 8% 之间；现金部分按 0 收益处理，用于纯粹检验指数择时。",
+            "研究版下轨使用 2016-01-28、2021-11-16、2024-09-11、2025-04-07、2026-06-26 等主要低点，在 log(price) 上拟合一条直线。",
+            "上轨不是单独拟合高点，而是在下轨基础上叠加 2026 年前残差的 98.5% 分位；中轨为上下轨在 log 空间的中点。",
+            "轨道位置 = (log(价格)-log(下轨)) / (log(上轨)-log(下轨))；接近或突破 1 视为上轨区，接近或跌破 0 视为下轨区。",
+            "价格进入上轨区后，下一交易日权益暴露降到 50%；价格进入下轨区后，下一交易日恢复 100%。该通道包含当前研究锚点，是复盘研究口径，不作为无未来函数实盘信号。",
         ],
         index_code="932365.CSI",
         benchmark_codes=("932365.CSI",),
@@ -67,13 +73,13 @@ FREE_CASH_FLOW_TREND_SPECS: dict[str, FreeCashFlowTrendSpec] = {
         strategy_id="free-cash-flow-trend-full",
         name="自由现金流趋势通道策略（满仓/空仓版）",
         short_name="自由现金流空仓",
-        description="同样使用自由现金流指数趋势通道，但上轨附近直接降到 0%，下轨附近恢复 100%，用于检验更激进的择时效果。",
+        description="同样使用自由现金流指数 2016 低点以来的对数直线趋势通道，但上轨附近直接降到 0%。",
         method=[
             "标的使用 932365.CSI 中证全指自由现金流指数；优先尝试全收益指数，若 Tushare 无可用全收益序列则使用价格指数并明确标注。",
-            "用前后各 20 个交易日确认历史高点/低点；只有确认日已经发生的拐点才能进入当日趋势线拟合，避免未来函数。",
-            "分别取最近最多 8 个已确认高点和低点，在 log(price) 上做线性拟合，形成上轨和下轨。",
-            "价格进入上轨容忍带或突破上轨后，下一交易日权益暴露降到 0%；价格进入下轨容忍带或跌破下轨后，下一交易日恢复 100%。",
-            "容忍带由最近 60 日波动率自适应生成，并限制在 2.5% 到 8% 之间；现金部分按 0 收益处理，用于纯粹检验指数择时。",
+            "研究版下轨使用 2016-01-28、2021-11-16、2024-09-11、2025-04-07、2026-06-26 等主要低点，在 log(price) 上拟合一条直线。",
+            "上轨不是单独拟合高点，而是在下轨基础上叠加 2026 年前残差的 98.5% 分位；中轨为上下轨在 log 空间的中点。",
+            "轨道位置 = (log(价格)-log(下轨)) / (log(上轨)-log(下轨))；接近或突破 1 视为上轨区，接近或跌破 0 视为下轨区。",
+            "价格进入上轨区后，下一交易日权益暴露降到 0%；价格进入下轨区后，下一交易日恢复 100%。该通道包含当前研究锚点，是复盘研究口径，不作为无未来函数实盘信号。",
         ],
         index_code="932365.CSI",
         benchmark_codes=("932365.CSI",),
@@ -166,6 +172,113 @@ def _tolerance(returns: pd.Series, *, current_date: str, spec: FreeCashFlowTrend
     return max(spec.min_tolerance, min(spec.max_tolerance, spec.vol_multiplier * horizon_vol))
 
 
+def _nearest_anchor(close: pd.Series, anchor_date: str) -> tuple[str, float] | None:
+    if close.empty:
+        return None
+    if anchor_date in close.index:
+        return anchor_date, float(close.loc[anchor_date])
+    dates = pd.to_datetime(pd.Index(close.index), format="%Y%m%d", errors="coerce")
+    target = pd.to_datetime(anchor_date, format="%Y%m%d", errors="coerce")
+    if pd.isna(target) or dates.isna().all():
+        return None
+    deltas = (dates - target).days.to_numpy()
+    index = int(np.nanargmin(np.abs(deltas)))
+    if abs(float(deltas[index])) > 10:
+        return None
+    date_text = str(close.index[index])
+    return date_text, float(close.iloc[index])
+
+
+def _build_log_channel(close: pd.Series, spec: FreeCashFlowTrendSpec) -> tuple[pd.DataFrame, dict[str, object]]:
+    channel_close = close.loc[close.index >= spec.channel_start_date].astype(float)
+    channel_close = channel_close[channel_close > 0]
+    if len(channel_close) < 20:
+        empty = pd.DataFrame(index=close.index)
+        for column in [
+            "upper_line",
+            "mid_line",
+            "lower_line",
+            "channel_position",
+            "distance_to_upper",
+            "distance_to_mid",
+            "distance_to_lower",
+        ]:
+            empty[column] = np.nan
+        return empty, {"anchor_points": [], "status": "insufficient_channel_history"}
+
+    anchors: list[dict[str, object]] = []
+    latest_available_date = str(channel_close.index.max())
+    for anchor_date in spec.lower_anchor_dates:
+        if anchor_date > latest_available_date:
+            continue
+        match = _nearest_anchor(channel_close, anchor_date)
+        if match is None:
+            continue
+        date_text, price = match
+        if anchors and anchors[-1]["date"] == date_text:
+            continue
+        anchors.append({"date": date_text, "price": price})
+
+    if len(anchors) < 2:
+        low_date = str(channel_close.idxmin())
+        anchors = [
+            {"date": str(channel_close.index[0]), "price": float(channel_close.iloc[0])},
+            {"date": low_date, "price": float(channel_close.loc[low_date])},
+            {"date": latest_available_date, "price": float(channel_close.iloc[-1])},
+        ]
+
+    origin = pd.to_datetime(channel_close.index[0], format="%Y%m%d")
+    anchor_dates = pd.to_datetime([item["date"] for item in anchors], format="%Y%m%d")
+    anchor_x = ((anchor_dates - origin).days.to_numpy(dtype=float)) / 365.25
+    anchor_y = np.log(np.array([float(item["price"]) for item in anchors], dtype=float))
+    slope, intercept = np.polyfit(anchor_x, anchor_y, 1)
+
+    channel_dates = pd.to_datetime(channel_close.index, format="%Y%m%d")
+    channel_x = ((channel_dates - origin).days.to_numpy(dtype=float)) / 365.25
+    lower_log = intercept + slope * channel_x
+    price_log = np.log(channel_close.to_numpy(dtype=float))
+    residuals = price_log - lower_log
+    residual_frame = pd.DataFrame({"date": channel_close.index.astype(str), "residual": residuals})
+    pre_2026 = residual_frame[residual_frame["date"] < spec.upper_residual_end_date]["residual"].dropna()
+    sample = pre_2026 if len(pre_2026) >= 60 else residual_frame["residual"].dropna()
+    offset = float(np.nanquantile(sample.to_numpy(dtype=float), spec.upper_residual_quantile)) if len(sample) else float("nan")
+    if not np.isfinite(offset) or offset <= 0:
+        offset = float(np.nanmax(residuals)) if len(residuals) else 0.0
+    if not np.isfinite(offset) or offset <= 0:
+        offset = 0.01
+
+    lower = np.exp(lower_log)
+    mid = np.exp(lower_log + offset / 2.0)
+    upper = np.exp(lower_log + offset)
+    channel_position = residuals / offset
+    channel = pd.DataFrame(
+        {
+            "upper_line": upper,
+            "mid_line": mid,
+            "lower_line": lower,
+            "channel_position": channel_position,
+        },
+        index=channel_close.index,
+    )
+    channel["distance_to_upper"] = channel_close / channel["upper_line"] - 1.0
+    channel["distance_to_mid"] = channel_close / channel["mid_line"] - 1.0
+    channel["distance_to_lower"] = channel_close / channel["lower_line"] - 1.0
+
+    result = pd.DataFrame(index=close.index)
+    result = result.join(channel, how="left")
+    metadata = {
+        "anchor_points": anchors,
+        "channel_start_date": spec.channel_start_date,
+        "upper_residual_end_date": spec.upper_residual_end_date,
+        "upper_residual_quantile": spec.upper_residual_quantile,
+        "log_channel_width": offset,
+        "channel_width_pct": float(np.exp(offset) - 1.0),
+        "log_lower_slope": float(slope),
+        "lower_slope_annualized": float(np.exp(slope) - 1.0),
+    }
+    return result, metadata
+
+
 def _build_indicator_frame(frame: pd.DataFrame, spec: FreeCashFlowTrendSpec) -> pd.DataFrame:
     prices = coerce_price_frame(frame)
     if prices.empty:
@@ -173,40 +286,61 @@ def _build_indicator_frame(frame: pd.DataFrame, spec: FreeCashFlowTrendSpec) -> 
     prices = prices.drop_duplicates(subset=["trade_date"], keep="last").sort_values("trade_date")
     close = prices.set_index("trade_date")["close"].astype(float)
     returns = daily_return_series(prices).reindex(close.index).fillna(0.0)
-    highs, lows = _confirmed_pivots(close, window=spec.pivot_window)
     base_close = float(close.iloc[0])
+    channel, channel_metadata = _build_log_channel(close, spec)
 
     rows: list[dict[str, object]] = []
-    for current_index, date_text in enumerate(close.index.astype(str)):
-        upper = _fit_log_line(highs, current_index=current_index, spec=spec)
-        lower = _fit_log_line(lows, current_index=current_index, spec=spec)
+    for date_text in close.index.astype(str):
+        channel_row = channel.loc[date_text] if date_text in channel.index else pd.Series(dtype=float)
+        upper = channel_row.get("upper_line")
+        mid = channel_row.get("mid_line")
+        lower = channel_row.get("lower_line")
+        position = channel_row.get("channel_position")
         current_close = float(close.loc[date_text])
         tolerance = _tolerance(returns, current_date=date_text, spec=spec)
-        valid = upper is not None and lower is not None and upper > lower
-        distance_to_upper = current_close / upper - 1.0 if valid else None
-        distance_to_lower = current_close / lower - 1.0 if valid else None
-        upper_zone = bool(valid and distance_to_upper is not None and distance_to_upper >= -tolerance)
-        lower_zone = bool(valid and distance_to_lower is not None and distance_to_lower <= tolerance)
+        valid = (
+            upper is not None
+            and lower is not None
+            and not pd.isna(upper)
+            and not pd.isna(lower)
+            and float(upper) > float(lower)
+            and position is not None
+            and not pd.isna(position)
+        )
+        distance_to_upper = channel_row.get("distance_to_upper") if valid else None
+        distance_to_mid = channel_row.get("distance_to_mid") if valid else None
+        distance_to_lower = channel_row.get("distance_to_lower") if valid else None
+        channel_position = float(position) if valid else None
+        upper_zone = bool(valid and channel_position is not None and channel_position >= spec.upper_position_threshold)
+        lower_zone = bool(valid and channel_position is not None and channel_position <= spec.lower_position_threshold)
         rows.append(
             {
                 "date": date_text,
                 "close": current_close,
                 "index_equity": current_close / base_close,
                 "upper_line": upper,
+                "mid_line": mid,
                 "lower_line": lower,
                 "upper_equity": upper / base_close if upper is not None else None,
+                "mid_equity": mid / base_close if mid is not None else None,
                 "lower_equity": lower / base_close if lower is not None else None,
                 "distance_to_upper": distance_to_upper,
+                "distance_to_mid": distance_to_mid,
                 "distance_to_lower": distance_to_lower,
+                "channel_position": channel_position,
                 "tolerance": tolerance,
+                "upper_position_threshold": spec.upper_position_threshold,
+                "lower_position_threshold": spec.lower_position_threshold,
                 "upper_zone": upper_zone,
                 "lower_zone": lower_zone,
-                "confirmed_high_count": sum(1 for pivot in highs if int(pivot["confirm_index"]) <= current_index),
-                "confirmed_low_count": sum(1 for pivot in lows if int(pivot["confirm_index"]) <= current_index),
+                "confirmed_high_count": 0,
+                "confirmed_low_count": len(channel_metadata.get("anchor_points", [])),
                 "benchmark_return": float(returns.loc[date_text]),
             }
         )
-    return pd.DataFrame(rows)
+    result = pd.DataFrame(rows)
+    result.attrs["channel_metadata"] = channel_metadata
+    return result
 
 
 def _signal_for_row(row: pd.Series, current_exposure: float, spec: FreeCashFlowTrendSpec) -> tuple[float, str, list[str]]:
@@ -214,11 +348,11 @@ def _signal_for_row(row: pd.Series, current_exposure: float, spec: FreeCashFlowT
         return current_exposure, "fcf_channel_hold", ["上下轨距离过近或价格同时触发上下轨容忍带，维持原仓位。"]
     if bool(row.get("upper_zone")):
         return spec.reduce_exposure, spec.upper_signal, [
-            f"价格距离上轨 {float(row['distance_to_upper']):.2%}，进入 {float(row['tolerance']):.2%} 容忍带，按规则降低权益暴露。",
+            f"轨道位置 {float(row['channel_position']):.2f}，达到上轨阈值 {spec.upper_position_threshold:.3f}，按规则降低权益暴露。",
         ]
     if bool(row.get("lower_zone")):
         return 1.0, "fcf_channel_full_buy", [
-            f"价格距离下轨 {float(row['distance_to_lower']):.2%}，进入 {float(row['tolerance']):.2%} 容忍带，按规则恢复满仓。",
+            f"轨道位置 {float(row['channel_position']):.2f}，低于下轨阈值 {spec.lower_position_threshold:.3f}，按规则恢复满仓。",
         ]
     return current_exposure, "fcf_channel_hold", ["价格位于趋势通道中部，维持原仓位。"]
 
@@ -243,6 +377,7 @@ def _top_candidates(row: pd.Series, target_exposure: float) -> list[dict[str, ob
             "target_weight": round(float(target_exposure), 6),
             "distance_to_upper": None if pd.isna(row.get("distance_to_upper")) else round(float(row["distance_to_upper"]), 6),
             "distance_to_lower": None if pd.isna(row.get("distance_to_lower")) else round(float(row["distance_to_lower"]), 6),
+            "channel_position": None if pd.isna(row.get("channel_position")) else round(float(row["channel_position"]), 6),
             "tolerance": round(float(row.get("tolerance", 0.0)), 6),
         },
         {
@@ -276,9 +411,12 @@ def _indicator_records(frame: pd.DataFrame) -> list[dict[str, object]]:
         "date",
         "index_equity",
         "upper_equity",
+        "mid_equity",
         "lower_equity",
         "distance_to_upper",
+        "distance_to_mid",
         "distance_to_lower",
+        "channel_position",
         "tolerance",
         "target_exposure",
     ]
@@ -307,12 +445,14 @@ def run_free_cash_flow_trend_backtest(
     if source_code not in index_history:
         raise ValueError(f"missing free cash flow index history: {source_code}")
     indicator = _build_indicator_frame(index_history[source_code], spec)
+    channel_metadata = dict(indicator.attrs.get("channel_metadata", {}))
     indicator = indicator[(indicator["date"] >= start_date) & (indicator["date"] <= end_date)].copy()
     if indicator.empty:
         raise ValueError("no overlapping free cash flow index dates in backtest window")
     base_close = float(indicator["close"].iloc[0])
     indicator["index_equity"] = indicator["close"].astype(float) / base_close
     indicator["upper_equity"] = indicator["upper_line"].apply(lambda value: None if pd.isna(value) else float(value) / base_close)
+    indicator["mid_equity"] = indicator["mid_line"].apply(lambda value: None if pd.isna(value) else float(value) / base_close)
     indicator["lower_equity"] = indicator["lower_line"].apply(lambda value: None if pd.isna(value) else float(value) / base_close)
 
     current_exposure = 1.0
@@ -373,9 +513,12 @@ def run_free_cash_flow_trend_backtest(
     frame = frame.join(indicator_by_date[[
         "index_equity",
         "upper_equity",
+        "mid_equity",
         "lower_equity",
         "distance_to_upper",
+        "distance_to_mid",
         "distance_to_lower",
+        "channel_position",
         "tolerance",
     ]], on="date")
 
@@ -385,6 +528,7 @@ def run_free_cash_flow_trend_backtest(
     strategy_drawdown = max_drawdown(frame["strategy_equity"])
     benchmark_drawdown = max_drawdown(frame[_benchmark_equity_column(spec.index_code)])
     latest_signal = signal_records[-1] if signal_records else {}
+    latest_indicator = indicator.iloc[-1]
     average_exposure = float(frame["target_exposure"].mean())
     comparison_assets = [
         {
@@ -421,6 +565,22 @@ def run_free_cash_flow_trend_backtest(
         "latest_signal": latest_signal.get("strategy_signal"),
         "latest_signal_date": latest_signal.get("date"),
         "latest_weights": latest_signal.get("target_weights", _weights(current_exposure)),
+        "latest_channel_position": None
+        if pd.isna(latest_indicator.get("channel_position"))
+        else round(float(latest_indicator["channel_position"]), 6),
+        "latest_distance_to_upper": None
+        if pd.isna(latest_indicator.get("distance_to_upper"))
+        else round(float(latest_indicator["distance_to_upper"]), 6),
+        "latest_distance_to_mid": None
+        if pd.isna(latest_indicator.get("distance_to_mid"))
+        else round(float(latest_indicator["distance_to_mid"]), 6),
+        "latest_distance_to_lower": None
+        if pd.isna(latest_indicator.get("distance_to_lower"))
+        else round(float(latest_indicator["distance_to_lower"]), 6),
+        "channel_anchor_points": channel_metadata.get("anchor_points", []),
+        "channel_width_pct": round(float(channel_metadata.get("channel_width_pct", 0.0)), 6),
+        "channel_lower_slope_annualized": round(float(channel_metadata.get("lower_slope_annualized", 0.0)), 6),
+        "channel_upper_residual_quantile": spec.upper_residual_quantile,
         "comparison_assets": comparison_assets,
         "benchmark_932365_return": round(benchmark_total, 6),
         "benchmark_932365_max_drawdown": benchmark_drawdown,
@@ -441,9 +601,16 @@ def run_free_cash_flow_trend_backtest(
             "resolved_index_type": resolved_index_type,
             "requested_total_return_code": "932365CNY010.CSI",
             "indicator": "free_cash_flow_trend_channel",
+            "channel_fit": {
+                **channel_metadata,
+                "fit_mode": "fixed_log_lower_anchors_plus_pre_2026_residual_quantile",
+                "upper_position_threshold": spec.upper_position_threshold,
+                "lower_position_threshold": spec.lower_position_threshold,
+            },
             "return_source": INDEX_RETURN_SOURCE,
             "signal_timing": "Signal is generated after close on date t and applied starting t+1.",
-            "no_lookahead_bias": True,
+            "no_lookahead_bias": False,
+            "lookahead_note": "The current research channel uses fixed major-low anchors including 2026-06-26. It is useful for visual research and hypothesis testing, not a strict live-trading backtest.",
             "evaluation_only": True,
             "no_stock_selection": True,
             "no_trade_execution": True,
@@ -462,6 +629,8 @@ def run_free_cash_flow_trend_backtest(
             "stable_signal_count": len(signal_records),
             "effective_start_after_first_signal": summary["start_date"],
             "trend_channel_signal": True,
-            "uses_confirmed_pivots_only": True,
+            "uses_confirmed_pivots_only": False,
+            "uses_fixed_research_channel": True,
+            "ex_post_channel_fit": True,
         },
     }

@@ -478,14 +478,18 @@ function strategySetGenericPage(backtest) {
   strategySetText("genericTitle", summary.strategy_name || "策略回测");
   strategySetText("genericDescription", metadata.description || "--");
   strategySetText("genericRange", `${strategyToIsoDate(summary.start_date)} - ${strategyToIsoDate(summary.end_date)}`);
-  strategySetSummaryTiles([
+  const genericTiles = [
     { label: "回测区间", value: `${strategyToIsoDate(summary.start_date)} - ${strategyToIsoDate(summary.end_date)}` },
     { label: "策略收益", value: strategySignedRatioText(summary.strategy_total_return) },
     { label: "最大回撤", value: strategyPercentText(summary.max_drawdown) },
     { label: `Alpha vs ${comparisonLabel}`, value: strategySignedRatioText(summary.alpha_vs_equal_weight) },
+    ...(isIndexStrategy
+      ? [{ label: "最新轨道位置", value: strategyFixedText(summary.latest_channel_position, 2) }]
+      : []),
     { label: "夏普", value: strategyFixedText(summary.sharpe, 2) },
     { label: "调仓次数", value: strategyIntegerText(summary.rebalance_count) },
-  ]);
+  ];
+  strategySetSummaryTiles(genericTiles);
   const methodTarget = document.getElementById("genericMethodList");
   if (methodTarget) {
     methodTarget.innerHTML = (metadata.method || [])
@@ -523,7 +527,7 @@ function strategySetGenericPage(backtest) {
       : "本策略未跑赢等权资产池，当前规则更适合保留为反例或继续优化。";
   strategySetText(
     "genericConclusion",
-    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isIndexStrategy ? " Tushare index_daily 指数日收益；图中红/绿虚线分别为滚动上轨/下轨趋势线。" : " ETF fund_daily pct_chg/pre_close。"}`
+    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isIndexStrategy ? " Tushare index_daily 指数日收益；图中红/灰/绿线为 2016 低点以来的对数直线上轨、中轨、下轨。本版通道包含当前研究锚点，适合复盘观察，不等同于严格无未来函数实盘信号。" : " ETF fund_daily pct_chg/pre_close。"}`
   );
   const signalTarget = document.getElementById("genericSignalList");
   if (signalTarget) {

@@ -430,6 +430,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
     Plotly.purge(elementId);
     return;
   }
+  const isFreeCashFlowTrend = backtest?.metadata?.indicator === "free_cash_flow_trend_channel";
   const x = items.map((item) => toIsoDate(item.date));
   const comparisonAssets = backtest?.summary?.comparison_assets || [];
   const traceStyleByCode = {
@@ -490,25 +491,34 @@ function renderStrategyBacktestChart(elementId, backtest) {
             },
           ]
         : []),
-      ...(backtest?.metadata?.indicator === "free_cash_flow_trend_channel"
+      ...(isFreeCashFlowTrend
         ? [
             {
               type: "scatter",
               mode: "lines",
-              name: "自由现金流上轨趋势线",
+              name: "上轨：2026前98.5%残差",
               x,
               y: x.map((date) => indicatorByDate.get(date)?.upper_equity ?? null),
-              line: { color: "#c73d3d", width: 2, dash: "dash" },
-              hovertemplate: "%{x}<br>上轨趋势线 %{y:.3f}<extra></extra>",
+              line: { color: "#ef4444", width: 2.1 },
+              hovertemplate: "%{x}<br>上轨 %{y:.3f}<extra></extra>",
             },
             {
               type: "scatter",
               mode: "lines",
-              name: "自由现金流下轨趋势线",
+              name: "中轨",
+              x,
+              y: x.map((date) => indicatorByDate.get(date)?.mid_equity ?? null),
+              line: { color: "#718096", width: 1.8, dash: "dash" },
+              hovertemplate: "%{x}<br>中轨 %{y:.3f}<extra></extra>",
+            },
+            {
+              type: "scatter",
+              mode: "lines",
+              name: "下轨：主要低点拟合",
               x,
               y: x.map((date) => indicatorByDate.get(date)?.lower_equity ?? null),
-              line: { color: "#17885b", width: 2, dash: "dash" },
-              hovertemplate: "%{x}<br>下轨趋势线 %{y:.3f}<extra></extra>",
+              line: { color: "#16a34a", width: 2.1 },
+              hovertemplate: "%{x}<br>下轨 %{y:.3f}<extra></extra>",
             },
           ]
         : []),
@@ -532,6 +542,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
         spikethickness: 1,
       },
       yaxis: {
+        type: isFreeCashFlowTrend ? "log" : undefined,
         gridcolor: "#edf0f5",
         zeroline: false,
         showspikes: true,
