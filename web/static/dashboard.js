@@ -460,14 +460,14 @@ const STRATEGY_DIRECTORY_CARDS = [
     title: "自由现金流通道半仓",
     badge: "FCF Trend",
     href: "/strategy/free-cash-flow-trend-half",
-    rule: "用自由现金流指数 2016 低点以来的对数直线通道；靠近上轨按 5pct 阶梯定卖，最低降到 50%，靠近下轨按 5pct 阶梯定投/加回。",
+    rule: "统一使用 480092.CNI 国证自由现金流R指数构造 2016 低点以来的对数直线通道；靠近上轨按 5pct 阶梯定卖，最低降到 50%，靠近下轨按 5pct 阶梯定投/加回。",
   },
   {
     id: "free-cash-flow-trend-full",
     title: "自由现金流通道空仓",
     badge: "FCF Trend",
     href: "/strategy/free-cash-flow-trend-full",
-    rule: "同样使用自由现金流指数对数直线通道；进入上轨卖出区间一次性降到 0%，进入下轨买入区间一次性恢复 100%。",
+    rule: "统一使用 480092.CNI 国证自由现金流R指数对数直线通道；进入上轨卖出区间一次性降到 0%，进入下轨买入区间一次性恢复 100%。",
   },
 ];
 

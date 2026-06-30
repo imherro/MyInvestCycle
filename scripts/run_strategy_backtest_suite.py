@@ -117,12 +117,10 @@ def _load_free_cash_flow_index_history(
     cache_only: bool,
 ) -> tuple[dict[str, pd.DataFrame], dict[str, str], str, str]:
     warmup_start = _calendar_shift(start_date, -spec.warmup_calendar_days)
-    candidates = [
-        ("932365CNY010.CSI", "total_return"),
-        (spec.index_code, "price"),
-    ]
+    codes = [spec.index_code, *[code for code in spec.benchmark_codes if code != spec.index_code]]
     errors: dict[str, str] = {}
-    for code, index_type in candidates:
+    price_history: dict[str, pd.DataFrame] = {}
+    for code in codes:
         try:
             if cache_only:
                 frame = _read_index_cache(code, warmup_start, end_date)
@@ -134,8 +132,9 @@ def _load_free_cash_flow_index_history(
         if frame.empty:
             errors[code] = "empty index_daily history"
             continue
-        return {code: frame}, errors, code, index_type
-    return {}, errors, spec.index_code, "missing"
+        price_history[code] = frame
+    resolved_index_type = "total_return" if spec.index_code in price_history else "missing"
+    return price_history, errors, spec.index_code, resolved_index_type
 
 
 def main() -> None:

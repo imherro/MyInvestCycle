@@ -11,9 +11,12 @@ from core.etf_return_utils import coerce_price_frame, daily_return_series
 from core.strategy_suite_backtest_engine import Asset
 
 
+FREE_CASH_FLOW_PRIMARY_CODE = "480092.CNI"
+CSI500_BENCHMARK_CODE = "000905.SH"
+
 INDEX_RETURN_SOURCE = (
-    "Tushare index_daily for 932365.CSI; total-return code is requested first when available, "
-    "but the current local source falls back to the price index when total-return rows are unavailable."
+    "Tushare index_daily for 480092.CNI 国证自由现金流R指数. "
+    "The same total-return series is used for channel signals, strategy returns, and the primary benchmark."
 )
 
 
@@ -49,7 +52,7 @@ class FreeCashFlowTrendSpec:
 
 
 FREE_CASH_FLOW_UNIVERSE = (
-    Asset("932365.CSI", "中证全指自由现金流指数", "自由现金流"),
+    Asset(FREE_CASH_FLOW_PRIMARY_CODE, "国证自由现金流R指数", "自由现金流R"),
     Asset("CASH", "现金", "现金/空仓"),
 )
 
@@ -61,14 +64,14 @@ FREE_CASH_FLOW_TREND_SPECS: dict[str, FreeCashFlowTrendSpec] = {
         short_name="自由现金流半仓",
         description="用自由现金流指数 2016 低点以来的对数直线趋势通道，上轨附近降到半仓，下轨附近恢复满仓。",
         method=[
-            "标的使用 932365.CSI 中证全指自由现金流指数；优先尝试全收益指数，若 Tushare 无可用全收益序列则使用价格指数并明确标注。",
-            "研究版下轨使用 2016-01-28、2021-11-16、2024-09-11、2025-04-07、2026-06-26 等主要低点，在 log(price) 上拟合一条直线。",
+            "标的、信号轨道和主基准统一使用 480092.CNI 国证自由现金流R指数；不再使用 932365.CSI 价格指数替代。",
+            "研究版下轨使用 2016-01-28、2021-11-16、2024-09-11、2025-04-07、2026-06-26 等主要低点，在 log(index) 上拟合一条直线。",
             "上轨不是单独拟合高点，而是在下轨基础上叠加 2026 年前残差的 98.5% 分位；中轨为上下轨在 log 空间的中点。",
             "轨道位置 = (log(价格)-log(下轨)) / (log(上轨)-log(下轨))；>=0.75 视为上轨附近，<=0.25 视为下轨附近。",
             "价格进入上轨附近或触及上轨波动容忍带后，按 5pct 仓位阶梯定卖，最低降到 50%；价格进入下轨附近或触及下轨容忍带后，按 5pct 仓位阶梯定投/加回，最高恢复 100%。该通道包含当前研究锚点，是复盘研究口径，不作为无未来函数实盘信号。",
         ],
-        index_code="932365.CSI",
-        benchmark_codes=("932365.CSI",),
+        index_code=FREE_CASH_FLOW_PRIMARY_CODE,
+        benchmark_codes=(FREE_CASH_FLOW_PRIMARY_CODE, CSI500_BENCHMARK_CODE),
         reduce_exposure=0.50,
         upper_signal="fcf_channel_half_reduce",
     ),
@@ -78,14 +81,14 @@ FREE_CASH_FLOW_TREND_SPECS: dict[str, FreeCashFlowTrendSpec] = {
         short_name="自由现金流空仓",
         description="同样使用自由现金流指数 2016 低点以来的对数直线趋势通道，但上轨附近直接降到 0%。",
         method=[
-            "标的使用 932365.CSI 中证全指自由现金流指数；优先尝试全收益指数，若 Tushare 无可用全收益序列则使用价格指数并明确标注。",
-            "研究版下轨使用 2016-01-28、2021-11-16、2024-09-11、2025-04-07、2026-06-26 等主要低点，在 log(price) 上拟合一条直线。",
+            "标的、信号轨道和主基准统一使用 480092.CNI 国证自由现金流R指数；不再使用 932365.CSI 价格指数替代。",
+            "研究版下轨使用 2016-01-28、2021-11-16、2024-09-11、2025-04-07、2026-06-26 等主要低点，在 log(index) 上拟合一条直线。",
             "上轨不是单独拟合高点，而是在下轨基础上叠加 2026 年前残差的 98.5% 分位；中轨为上下轨在 log 空间的中点。",
             "轨道位置 = (log(价格)-log(下轨)) / (log(上轨)-log(下轨))；>=0.75 视为上轨附近，<=0.25 视为下轨附近。",
             "价格进入上轨附近或触及上轨波动容忍带后，一次性降到 0%；价格进入下轨附近或触及下轨容忍带后，一次性恢复 100%。上下轨触发位是区间，不是单条线；该通道包含当前研究锚点，是复盘研究口径，不作为无未来函数实盘信号。",
         ],
-        index_code="932365.CSI",
-        benchmark_codes=("932365.CSI",),
+        index_code=FREE_CASH_FLOW_PRIMARY_CODE,
+        benchmark_codes=(FREE_CASH_FLOW_PRIMARY_CODE, CSI500_BENCHMARK_CODE),
         reduce_exposure=0.0,
         upper_signal="fcf_channel_full_exit",
         use_ladder_sizing=False,
@@ -109,10 +112,26 @@ def _benchmark_equity_column(code: str) -> str:
     return f"benchmark_{_benchmark_key(code)}_equity"
 
 
+def _benchmark_asset(code: str) -> dict[str, str]:
+    assets = {
+        FREE_CASH_FLOW_PRIMARY_CODE: {
+            "name": "国证自由现金流R指数",
+            "group": "自由现金流R基准",
+            "label": f"国证自由现金流R {FREE_CASH_FLOW_PRIMARY_CODE}",
+        },
+        CSI500_BENCHMARK_CODE: {
+            "name": "中证500指数",
+            "group": "宽基对比",
+            "label": f"中证500指数 {CSI500_BENCHMARK_CODE}",
+        },
+    }
+    return assets.get(code, {"name": code, "group": "基准对比", "label": code})
+
+
 def _weights(exposure: float) -> dict[str, float]:
     exposure = max(0.0, min(1.0, float(exposure)))
     cash = 1.0 - exposure
-    result = {"932365.CSI": round(exposure, 6)}
+    result = {FREE_CASH_FLOW_PRIMARY_CODE: round(exposure, 6)}
     if cash > 0.000001:
         result["CASH"] = round(cash, 6)
     return result
@@ -466,9 +485,9 @@ def _signal_label(value: str) -> str:
 def _top_candidates(row: pd.Series, target_exposure: float) -> list[dict[str, object]]:
     return [
         {
-            "code": "932365.CSI",
-            "name": "中证全指自由现金流指数",
-            "group": "自由现金流",
+            "code": FREE_CASH_FLOW_PRIMARY_CODE,
+            "name": "国证自由现金流R指数",
+            "group": "自由现金流R",
             "score": round(float(target_exposure), 6),
             "target_weight": round(float(target_exposure), 6),
             "distance_to_upper": None if pd.isna(row.get("distance_to_upper")) else round(float(row["distance_to_upper"]), 6),
@@ -555,6 +574,17 @@ def run_free_cash_flow_trend_backtest(
     indicator["lower_zone_equity"] = indicator["lower_zone_line"].apply(lambda value: None if pd.isna(value) else float(value) / base_close)
     indicator["lower_equity"] = indicator["lower_line"].apply(lambda value: None if pd.isna(value) else float(value) / base_close)
 
+    benchmark_returns_by_code: dict[str, pd.Series] = {
+        spec.index_code: indicator.set_index("date")["benchmark_return"].astype(float)
+    }
+    for code in spec.benchmark_codes:
+        if code == spec.index_code:
+            continue
+        if code not in index_history:
+            raise ValueError(f"missing benchmark index history: {code}")
+        returns = daily_return_series(index_history[code]).reindex(indicator["date"].astype(str)).fillna(0.0)
+        benchmark_returns_by_code[code] = returns.astype(float)
+
     current_exposure = 1.0
     current_weights = _weights(current_exposure)
     pending_turnover = 0.0
@@ -565,6 +595,10 @@ def run_free_cash_flow_trend_backtest(
         date_text = str(row["date"])
         benchmark_return = float(row["benchmark_return"])
         strategy_return = current_exposure * benchmark_return
+        benchmark_record = {
+            _benchmark_return_column(code): float(series.loc[date_text])
+            for code, series in benchmark_returns_by_code.items()
+        }
         daily_records.append(
             {
                 "date": date_text,
@@ -573,7 +607,7 @@ def run_free_cash_flow_trend_backtest(
                 "turnover": pending_turnover,
                 "target_exposure": current_exposure,
                 "applied_weights": dict(current_weights),
-                _benchmark_return_column(spec.index_code): benchmark_return,
+                **benchmark_record,
             }
         )
         pending_turnover = 0.0
@@ -605,7 +639,8 @@ def run_free_cash_flow_trend_backtest(
     if frame.empty:
         raise ValueError("no free cash flow trend backtest returns generated")
     return_column = _benchmark_return_column(spec.index_code)
-    for column in ["strategy_return", "equal_weight_return", return_column]:
+    benchmark_return_columns = [_benchmark_return_column(code) for code in spec.benchmark_codes]
+    for column in ["strategy_return", "equal_weight_return", *benchmark_return_columns]:
         frame[column] = pd.to_numeric(frame[column], errors="coerce").fillna(0.0)
         frame[column.replace("_return", "_equity")] = (1.0 + frame[column]).cumprod()
 
@@ -633,18 +668,24 @@ def run_free_cash_flow_trend_backtest(
     latest_signal = signal_records[-1] if signal_records else {}
     latest_indicator = indicator.iloc[-1]
     average_exposure = float(frame["target_exposure"].mean())
-    comparison_assets = [
-        {
-            "code": spec.index_code,
-            "name": "中证全指自由现金流指数",
-            "group": "自由现金流基准",
-            "label": f"自由现金流指数 {spec.index_code}",
-            "total_return": round(benchmark_total, 6),
-            "max_drawdown": benchmark_drawdown,
-            "return_advantage": round(strategy_total - benchmark_total, 6),
-            "drawdown_reduction": round(strategy_drawdown - benchmark_drawdown, 6),
-        }
-    ]
+    comparison_assets = []
+    for code in spec.benchmark_codes:
+        return_series = frame[_benchmark_return_column(code)]
+        total_return = compound_return(return_series)
+        drawdown = max_drawdown(frame[_benchmark_equity_column(code)])
+        asset = _benchmark_asset(code)
+        comparison_assets.append(
+            {
+                "code": code,
+                "name": asset["name"],
+                "group": asset["group"],
+                "label": asset["label"],
+                "total_return": round(total_return, 6),
+                "max_drawdown": drawdown,
+                "return_advantage": round(strategy_total - total_return, 6),
+                "drawdown_reduction": round(strategy_drawdown - drawdown, 6),
+            }
+        )
     summary = {
         "strategy_id": spec.strategy_id,
         "strategy_name": spec.name,
@@ -656,7 +697,7 @@ def run_free_cash_flow_trend_backtest(
         "rebalance_every_sessions": 1,
         "strategy_total_return": round(strategy_total, 6),
         "annualized_return": primary.get("annualized_return"),
-        "equal_weight_label": "自由现金流指数基准",
+        "equal_weight_label": "国证自由现金流R基准",
         "equal_weight_return": round(benchmark_total, 6),
         "equal_weight_annualized_return": benchmark_metrics.get("annualized_return"),
         "annualized_alpha_vs_equal_weight": None
@@ -690,10 +731,12 @@ def run_free_cash_flow_trend_backtest(
         "channel_lower_slope_annualized": round(float(channel_metadata.get("lower_slope_annualized", 0.0)), 6),
         "channel_upper_residual_quantile": spec.upper_residual_quantile,
         "comparison_assets": comparison_assets,
-        "benchmark_932365_return": round(benchmark_total, 6),
-        "benchmark_932365_max_drawdown": benchmark_drawdown,
-        "alpha_vs_932365": round(strategy_total - benchmark_total, 6),
     }
+    for item in comparison_assets:
+        key = _benchmark_key(str(item["code"]))
+        summary[f"benchmark_{key}_return"] = item["total_return"]
+        summary[f"benchmark_{key}_max_drawdown"] = item["max_drawdown"]
+        summary[f"alpha_vs_{key}"] = round(strategy_total - float(item["total_return"]), 6)
     return {
         "metadata": {
             "engine": f"{spec.name} Backtest",
@@ -707,7 +750,8 @@ def run_free_cash_flow_trend_backtest(
             "index_code": spec.index_code,
             "resolved_index_code": source_code,
             "resolved_index_type": resolved_index_type,
-            "requested_total_return_code": "932365CNY010.CSI",
+            "benchmark_codes": list(spec.benchmark_codes),
+            "requested_total_return_code": FREE_CASH_FLOW_PRIMARY_CODE,
             "indicator": "free_cash_flow_trend_channel",
             "channel_fit": {
                 **channel_metadata,

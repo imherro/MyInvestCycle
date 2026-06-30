@@ -433,7 +433,9 @@ function renderStrategyBacktestChart(elementId, backtest) {
   const isFreeCashFlowTrend = backtest?.metadata?.indicator === "free_cash_flow_trend_channel";
   const x = items.map((item) => toIsoDate(item.date));
   const comparisonAssets = backtest?.summary?.comparison_assets || [];
+  const primaryStrategyCode = backtest?.metadata?.index_code || "480092.CNI";
   const traceStyleByCode = {
+    "000905.SH": { color: "#f97316", dash: "dot", width: 2.0 },
     "510300.SH": { color: "#dc2626", dash: "solid" },
     "510880.SH": { color: "#16a34a", dash: "solid" },
     "512890.SH": { color: "#059669", dash: "dash" },
@@ -443,7 +445,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
     "511260.SH": { color: "#0891b2", dash: "solid" },
     "511010.SH": { color: "#0d9488", dash: "dash" },
     "518880.SH": { color: "#ca8a04", dash: "solid" },
-    "932365.CSI": { color: "#111827", dash: "dashdot", width: 2.1 },
+    "480092.CNI": { color: "#111827", dash: "dashdot", width: 2.1 },
     commodity_basket: { color: "#be123c", dash: "dash" },
     equal_weight: { color: "#111827", dash: "dashdot", width: 2.2 },
   };
@@ -479,7 +481,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
             y: group.items.map((item) => indicatorByDate.get(toIsoDate(item.date))?.index_equity ?? null),
             customdata: group.items.map((item) => {
               const targetWeights = item.target_weights || {};
-              const equityWeight = targetWeights["932365.CSI"];
+              const equityWeight = targetWeights[primaryStrategyCode];
               const cashWeight = targetWeights.CASH || 0;
               const reason = item.rebalance_reason?.detail || "";
               return [
