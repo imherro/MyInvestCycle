@@ -41,25 +41,18 @@ function strategyScoreText(value) {
   return value.toFixed(3);
 }
 
-function strategyDailyPercentText(value) {
-  if (typeof value !== "number") return "--";
-  const percent = value * 100;
-  const sign = percent > 0 ? "+" : "";
-  return `${sign}${percent.toFixed(3)}%`;
-}
-
 function strategyAnnualizedFromTotal(totalReturn, sessions) {
   if (typeof totalReturn !== "number" || typeof sessions !== "number" || sessions <= 0) return null;
   return (1 + totalReturn) ** (252 / sessions) - 1;
 }
 
 function strategySharpeFormulaText(performance) {
-  if (typeof performance.sharpe !== "number") return "夏普 = 日均收益 / 日收益标准差 × √252；当前无足够样本。";
-  const dailyMean =
-    typeof performance.annualized_return === "number" ? ((1 + performance.annualized_return) ** (1 / 252) - 1) : null;
-  const dailyVol =
-    typeof performance.annualized_volatility === "number" ? performance.annualized_volatility / Math.sqrt(252) : null;
-  return `夏普 ${strategyFixedText(performance.sharpe, 2)} = 日均收益 ${strategyDailyPercentText(dailyMean)} / 日波动 ${strategyDailyPercentText(dailyVol)} × √252；无风险收益率按 0 处理。`;
+  if (typeof performance.sharpe !== "number") return "夏普 = (Rp - Rf) / σp；当前无足够样本。";
+  const riskFreeRate = 0;
+  const volatility = performance.annualized_volatility;
+  const portfolioReturn =
+    typeof volatility === "number" ? performance.sharpe * volatility + riskFreeRate : performance.annualized_return;
+  return `夏普 = (Rp - Rf) / σp = (${strategySignedRatioText(portfolioReturn)} - ${strategyPercentText(riskFreeRate)}) / ${strategyPercentText(volatility)} = ${strategyFixedText(performance.sharpe, 2)}；Rp 为日收益均值年化，不是表格里的复利年化收益；σp 为日收益波动年化。`;
 }
 
 function strategyDrawdownReductionText(value) {
