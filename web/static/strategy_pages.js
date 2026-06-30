@@ -455,6 +455,10 @@ function strategySignalLabel(value) {
     reversion_reduce: "高位降仓",
     reversion_light: "极高位轻仓",
     reversion_guard_cap: "下行限仓",
+    fcf_channel_half_reduce: "上轨半仓",
+    fcf_channel_full_exit: "上轨空仓",
+    fcf_channel_full_buy: "下轨满仓",
+    fcf_channel_hold: "通道内持有",
   };
   return labels[value] || value || "--";
 }
@@ -466,6 +470,8 @@ function strategySetGenericPage(backtest) {
   const universe = metadata.universe || [];
   const signals = backtest.signals || [];
   const latestSignal = signals[signals.length - 1] || {};
+  const isIndexStrategy = metadata.indicator === "free_cash_flow_trend_channel";
+  const comparisonLabel = summary.equal_weight_label || "等权";
 
   document.title = summary.strategy_name || "策略回测";
   strategySetText("genericEyebrow", summary.strategy_id || "Strategy");
@@ -476,7 +482,7 @@ function strategySetGenericPage(backtest) {
     { label: "回测区间", value: `${strategyToIsoDate(summary.start_date)} - ${strategyToIsoDate(summary.end_date)}` },
     { label: "策略收益", value: strategySignedRatioText(summary.strategy_total_return) },
     { label: "最大回撤", value: strategyPercentText(summary.max_drawdown) },
-    { label: "Alpha vs 等权", value: strategySignedRatioText(summary.alpha_vs_equal_weight) },
+    { label: `Alpha vs ${comparisonLabel}`, value: strategySignedRatioText(summary.alpha_vs_equal_weight) },
     { label: "夏普", value: strategyFixedText(summary.sharpe, 2) },
     { label: "调仓次数", value: strategyIntegerText(summary.rebalance_count) },
   ]);
@@ -502,7 +508,11 @@ function strategySetGenericPage(backtest) {
   strategySetText("genericTurnover", strategyPercentText(summary.average_turnover));
   strategySetText("genericSignalSummary", strategySignalLabel(summary.latest_signal));
   strategySetGenericComparison(summary);
-  const verdict = validation.mean_reversion_signal
+  const verdict = isIndexStrategy
+    ? validation.alpha_positive_vs_equal_weight
+      ? "本策略跑赢自由现金流指数基准，说明趋势通道择时存在初步收益改善。"
+      : "本策略未跑赢自由现金流指数基准，当前更像风险暴露调节工具，需要继续优化趋势线规则。"
+    : validation.mean_reversion_signal
     ? validation.alpha_positive_vs_equal_weight
       ? "本策略跑赢四 ETF 等权基准，说明当前均值回归规则有初步 alpha 证据。"
       : "本策略未跑赢四 ETF 等权基准，当前更像回撤控制工具，不是稳赚模型。"
@@ -513,7 +523,7 @@ function strategySetGenericPage(backtest) {
       : "本策略未跑赢等权资产池，当前规则更适合保留为反例或继续优化。";
   strategySetText(
     "genericConclusion",
-    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用 ETF fund_daily pct_chg/pre_close。`
+    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isIndexStrategy ? " Tushare index_daily 指数日收益；图中红/绿虚线分别为滚动上轨/下轨趋势线。" : " ETF fund_daily pct_chg/pre_close。"}`
   );
   const signalTarget = document.getElementById("genericSignalList");
   if (signalTarget) {

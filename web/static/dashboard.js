@@ -450,6 +450,20 @@ const STRATEGY_DIRECTORY_CARDS = [
     href: "/strategy/equal-weight-reversion-guarded",
     rule: "在等权均线回归基础上增加 MA250 下行过滤，避免长期下行阶段越跌越加，优先控制回撤风险。",
   },
+  {
+    id: "free-cash-flow-trend-half",
+    title: "自由现金流通道半仓",
+    badge: "FCF Trend",
+    href: "/strategy/free-cash-flow-trend-half",
+    rule: "用自由现金流指数已确认历史高低点滚动拟合趋势通道；靠近上轨降到 50%，靠近或跌破下轨恢复 100%。",
+  },
+  {
+    id: "free-cash-flow-trend-full",
+    title: "自由现金流通道空仓",
+    badge: "FCF Trend",
+    href: "/strategy/free-cash-flow-trend-full",
+    rule: "同样使用自由现金流指数趋势通道；靠近上轨直接降到 0%，靠近或跌破下轨恢复 100%，用于检验更激进择时。",
+  },
 ];
 
 function strategyDirectoryPayload(results, card) {
@@ -472,13 +486,13 @@ function strategyDirectorySummary(card, payload) {
   };
 }
 
-function strategyDirectoryVerdict(data) {
+function strategyDirectoryVerdict(data, comparisonLabel = "等权对照") {
   if (typeof data.totalReturn !== "number") return "回测摘要尚未生成，暂不能评价。";
   const hasAlpha = typeof data.alpha === "number";
   const hasDrawdownGap = typeof data.drawdown === "number" && typeof data.equalDrawdown === "number";
   const drawdownReduction = hasDrawdownGap ? Math.abs(data.equalDrawdown) - Math.abs(data.drawdown) : null;
   if (hasAlpha && data.alpha >= 0 && drawdownReduction !== null && drawdownReduction >= 0) {
-    return "收益和回撤均优于等权对照，可作为重点候选继续观察。";
+    return `收益和回撤均优于${comparisonLabel}，可作为重点候选继续观察。`;
   }
   if (hasAlpha && data.alpha >= 0) {
     return "收益有超额，但回撤代价需要单独评估，适合限定场景使用。";
@@ -486,19 +500,20 @@ function strategyDirectoryVerdict(data) {
   if (drawdownReduction !== null && drawdownReduction > 0) {
     return "更像降波动或防守工具，当前不是收益 Alpha 主力。";
   }
-  return "当前回测未显示相对等权的综合优势，暂作研究备选。";
+  return `当前回测未显示相对${comparisonLabel}的综合优势，暂作研究备选。`;
 }
 
 function strategyDirectoryEvaluation(card, payload) {
   const data = strategyDirectorySummary(card, payload);
+  const comparisonLabel = payload.summary?.equal_weight_label || "等权";
   if (typeof data.totalReturn !== "number") return "回测数据缺失，等待重新生成后再评价。";
   const parts = [
     `截至 ${toIsoDate(data.endDate)}，累计收益 ${signedRatioText(data.totalReturn)}`,
     `最大回撤 ${percentText(data.drawdown)}`,
   ];
-  if (typeof data.alpha === "number") parts.push(`相对等权 Alpha ${signedRatioText(data.alpha)}`);
+  if (typeof data.alpha === "number") parts.push(`相对${comparisonLabel} Alpha ${signedRatioText(data.alpha)}`);
   if (typeof data.sharpe === "number") parts.push(`夏普 ${fixedText(data.sharpe, 2)}`);
-  return `${parts.join("，")}。${strategyDirectoryVerdict(data)}`;
+  return `${parts.join("，")}。${strategyDirectoryVerdict(data, comparisonLabel)}`;
 }
 
 function setStrategyDirectory(results) {

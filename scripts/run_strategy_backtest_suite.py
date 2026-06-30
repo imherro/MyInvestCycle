@@ -13,7 +13,7 @@ if str(ROOT_DIR) not in sys.path:
 
 from config import DATA_DIR
 from core.benchmark_loader import load_benchmark_daily, read_benchmark_cache
-from core.data_loader import normalize_trade_date
+from core.data_loader import cache_path_for, get_index_daily, normalize_trade_date
 from core.drawdown_batch_backtest_engine import (
     DrawdownBatchSpec,
     MAX_DRAWDOWN_BATCH_SPEC,
@@ -29,6 +29,11 @@ from core.fixed_allocation_backtest_engine import (
     FixedAllocationSpec,
     run_fixed_allocation_backtest,
 )
+from core.free_cash_flow_trend_channel_backtest_engine import (
+    FREE_CASH_FLOW_TREND_SPECS,
+    FreeCashFlowTrendSpec,
+    run_free_cash_flow_trend_backtest,
+)
 from core.strategy_suite_backtest_engine import STRATEGY_SPECS, StrategySpec, run_strategy_backtest
 
 
@@ -37,6 +42,7 @@ SPECIAL_STRATEGY_IDS = (
     MAX_DRAWDOWN_BATCH_SPEC.strategy_id,
     ALL_WEATHER_SPEC.strategy_id,
     *EQUAL_WEIGHT_REVERSION_SPECS,
+    *FREE_CASH_FLOW_TREND_SPECS,
 )
 ALL_STRATEGY_IDS = sorted([*STRATEGY_SPECS, *SPECIAL_STRATEGY_IDS])
 
@@ -85,6 +91,47 @@ def _load_price_history(
     return price_history, errors
 
 
+def _read_index_cache(ts_code: str, start_date: str, end_date: str) -> pd.DataFrame:
+    path = cache_path_for(ts_code)
+    if not path.exists():
+        return pd.DataFrame()
+    frame = pd.read_csv(path, dtype={"trade_date": str})
+    if frame.empty:
+        return frame
+    frame["trade_date"] = frame["trade_date"].astype(str)
+    return frame[(frame["trade_date"] >= start_date) & (frame["trade_date"] <= end_date)].copy()
+
+
+def _load_free_cash_flow_index_history(
+    spec: FreeCashFlowTrendSpec,
+    start_date: str,
+    end_date: str,
+    *,
+    refresh: bool,
+    cache_only: bool,
+) -> tuple[dict[str, pd.DataFrame], dict[str, str], str, str]:
+    warmup_start = _calendar_shift(start_date, -spec.warmup_calendar_days)
+    candidates = [
+        ("932365CNY010.CSI", "total_return"),
+        (spec.index_code, "price"),
+    ]
+    errors: dict[str, str] = {}
+    for code, index_type in candidates:
+        try:
+            if cache_only:
+                frame = _read_index_cache(code, warmup_start, end_date)
+            else:
+                frame = get_index_daily(code, warmup_start, end_date, refresh=refresh)
+        except Exception as exc:
+            errors[code] = str(exc)
+            continue
+        if frame.empty:
+            errors[code] = "empty index_daily history"
+            continue
+        return {code: frame}, errors, code, index_type
+    return {}, errors, spec.index_code, "missing"
+
+
 def main() -> None:
     args = parse_args()
     start_date = normalize_trade_date(args.start)
@@ -104,15 +151,34 @@ def main() -> None:
             spec = ALL_WEATHER_SPEC
         elif strategy_id in EQUAL_WEIGHT_REVERSION_SPECS:
             spec = EQUAL_WEIGHT_REVERSION_SPECS[strategy_id]
+        elif strategy_id in FREE_CASH_FLOW_TREND_SPECS:
+            spec = FREE_CASH_FLOW_TREND_SPECS[strategy_id]
         else:
             spec = STRATEGY_SPECS[strategy_id]
-        price_history, price_errors = _load_price_history(
-            spec,
-            start_date,
-            end_date,
-            refresh=args.refresh,
-            cache_only=args.cache_only,
-        )
+        if strategy_id in FREE_CASH_FLOW_TREND_SPECS:
+            price_history, price_errors, resolved_index_code, resolved_index_type = _load_free_cash_flow_index_history(
+                spec,
+                start_date,
+                end_date,
+                refresh=args.refresh,
+                cache_only=args.cache_only,
+            )
+            result = run_free_cash_flow_trend_backtest(
+                spec,
+                price_history,
+                start_date=start_date,
+                end_date=end_date,
+                resolved_index_code=resolved_index_code,
+                resolved_index_type=resolved_index_type,
+            )
+        else:
+            price_history, price_errors = _load_price_history(
+                spec,
+                start_date,
+                end_date,
+                refresh=args.refresh,
+                cache_only=args.cache_only,
+            )
         if strategy_id == MAX_DRAWDOWN_BATCH_SPEC.strategy_id:
             result = run_max_drawdown_batch_backtest(
                 price_history,
@@ -135,7 +201,7 @@ def main() -> None:
                 end_date=end_date,
                 rebalance_every_sessions=args.rebalance_every_sessions,
             )
-        else:
+        elif strategy_id not in FREE_CASH_FLOW_TREND_SPECS:
             result = run_strategy_backtest(
                 spec,
                 price_history,

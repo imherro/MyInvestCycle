@@ -442,6 +442,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
     "511260.SH": { color: "#0891b2", dash: "solid" },
     "511010.SH": { color: "#0d9488", dash: "dash" },
     "518880.SH": { color: "#ca8a04", dash: "solid" },
+    "932365.CSI": { color: "#111827", dash: "dashdot", width: 2.1 },
     commodity_basket: { color: "#be123c", dash: "dash" },
     equal_weight: { color: "#111827", dash: "dashdot", width: 2.2 },
   };
@@ -486,6 +487,28 @@ function renderStrategyBacktestChart(elementId, backtest) {
               y: x.map((date) => indicatorByDate.get(date)?.ma_equity ?? null),
               line: { color: "#9ca3af", width: 1.8, dash: "dash" },
               hovertemplate: "%{x}<br>MA250 %{y:.3f}<extra></extra>",
+            },
+          ]
+        : []),
+      ...(backtest?.metadata?.indicator === "free_cash_flow_trend_channel"
+        ? [
+            {
+              type: "scatter",
+              mode: "lines",
+              name: "自由现金流上轨趋势线",
+              x,
+              y: x.map((date) => indicatorByDate.get(date)?.upper_equity ?? null),
+              line: { color: "#c73d3d", width: 2, dash: "dash" },
+              hovertemplate: "%{x}<br>上轨趋势线 %{y:.3f}<extra></extra>",
+            },
+            {
+              type: "scatter",
+              mode: "lines",
+              name: "自由现金流下轨趋势线",
+              x,
+              y: x.map((date) => indicatorByDate.get(date)?.lower_equity ?? null),
+              line: { color: "#17885b", width: 2, dash: "dash" },
+              hovertemplate: "%{x}<br>下轨趋势线 %{y:.3f}<extra></extra>",
             },
           ]
         : []),
