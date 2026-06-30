@@ -37,6 +37,7 @@ class FreeCashFlowTrendSpec:
     vol_horizon_sessions: int = 20
     vol_multiplier: float = 0.5
     warmup_calendar_days: int = 1800
+    backtest_start_date: str = "20160101"
     channel_start_date: str = "20160101"
     lower_anchor_dates: tuple[str, ...] = ("20160128", "20211116", "20240911", "20250407", "20260626")
     upper_residual_end_date: str = "20260101"

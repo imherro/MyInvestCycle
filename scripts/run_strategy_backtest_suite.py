@@ -38,6 +38,8 @@ from core.strategy_suite_backtest_engine import STRATEGY_SPECS, StrategySpec, ru
 
 
 DEFAULT_OUTPUT_DIR = DATA_DIR / "strategy_backtests"
+DEFAULT_START_DATE = "20200101"
+DEFAULT_END_DATE = "20260625"
 SPECIAL_STRATEGY_IDS = (
     MAX_DRAWDOWN_BATCH_SPEC.strategy_id,
     ALL_WEATHER_SPEC.strategy_id,
@@ -53,8 +55,12 @@ def _calendar_shift(date_text: str, days: int) -> str:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run additional ETF strategy backtests.")
-    parser.add_argument("--start", default="20200101", help="Start date, YYYYMMDD.")
-    parser.add_argument("--end", default="20260625", help="End date, YYYYMMDD.")
+    parser.add_argument(
+        "--start",
+        default=None,
+        help=f"Start date, YYYYMMDD. Defaults to each strategy setting; otherwise {DEFAULT_START_DATE}.",
+    )
+    parser.add_argument("--end", default=DEFAULT_END_DATE, help="End date, YYYYMMDD.")
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR))
     parser.add_argument("--strategy", choices=ALL_STRATEGY_IDS, action="append", help="Run one strategy id; repeatable.")
     parser.add_argument("--rebalance-every-sessions", type=int, default=20)
@@ -134,10 +140,8 @@ def _load_free_cash_flow_index_history(
 
 def main() -> None:
     args = parse_args()
-    start_date = normalize_trade_date(args.start)
+    requested_start_date = normalize_trade_date(args.start) if args.start else None
     end_date = normalize_trade_date(args.end)
-    if start_date > end_date:
-        raise ValueError("start must be earlier than or equal to end")
 
     strategy_ids = args.strategy or [*STRATEGY_SPECS, *SPECIAL_STRATEGY_IDS]
     output_dir = Path(args.output_dir)
@@ -155,6 +159,9 @@ def main() -> None:
             spec = FREE_CASH_FLOW_TREND_SPECS[strategy_id]
         else:
             spec = STRATEGY_SPECS[strategy_id]
+        start_date = requested_start_date or normalize_trade_date(getattr(spec, "backtest_start_date", DEFAULT_START_DATE))
+        if start_date > end_date:
+            raise ValueError(f"start must be earlier than or equal to end for {strategy_id}")
         if strategy_id in FREE_CASH_FLOW_TREND_SPECS:
             price_history, price_errors, resolved_index_code, resolved_index_type = _load_free_cash_flow_index_history(
                 spec,
