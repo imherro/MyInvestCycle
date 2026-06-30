@@ -48,19 +48,9 @@ function strategyDailyPercentText(value) {
   return `${sign}${percent.toFixed(3)}%`;
 }
 
-function strategyAnnualizedComparisonText(summary, performance) {
-  const strategyAnnualized =
-    typeof summary.annualized_return === "number" ? summary.annualized_return : performance.annualized_return;
-  const benchmarkAnnualized =
-    typeof summary.equal_weight_annualized_return === "number" ? summary.equal_weight_annualized_return : null;
-  const annualizedAlpha =
-    typeof summary.annualized_alpha_vs_equal_weight === "number"
-      ? summary.annualized_alpha_vs_equal_weight
-      : typeof strategyAnnualized === "number" && typeof benchmarkAnnualized === "number"
-        ? strategyAnnualized - benchmarkAnnualized
-        : null;
-  if (typeof benchmarkAnnualized !== "number") return strategySignedRatioText(strategyAnnualized);
-  return `${strategySignedRatioText(strategyAnnualized)} / 基准 ${strategySignedRatioText(benchmarkAnnualized)} / 差 ${strategySignedRatioText(annualizedAlpha)}`;
+function strategyAnnualizedFromTotal(totalReturn, sessions) {
+  if (typeof totalReturn !== "number" || typeof sessions !== "number" || sessions <= 0) return null;
+  return (1 + totalReturn) ** (252 / sessions) - 1;
 }
 
 function strategySharpeFormulaText(performance) {
@@ -190,29 +180,48 @@ function strategyTopCandidatesHtml(candidates) {
     .join("");
 }
 
-function strategyBacktestComparisonTable(targetId, rows) {
+function strategyBacktestComparisonTable(targetId, rows, options = {}) {
   const target = document.getElementById(targetId);
   if (!target) return;
+  const sessions = options.sessions;
+  const strategyAnnualized =
+    typeof options.strategyAnnualizedReturn === "number"
+      ? options.strategyAnnualizedReturn
+      : strategyAnnualizedFromTotal(rows.find((item) => item.isStrategy)?.total_return, sessions);
   target.innerHTML = `
     <div class="backtest-comparison-row backtest-comparison-head">
       <span>标的</span>
       <span>收益</span>
+      <span>年化</span>
       <span>最大回撤</span>
       <span>收益差</span>
+      <span>年化差</span>
       <span>回撤差</span>
     </div>
     ${rows
-      .map(
-        (item) => `
+      .map((item) => {
+        const annualizedReturn =
+          typeof item.annualized_return === "number"
+            ? item.annualized_return
+            : strategyAnnualizedFromTotal(item.total_return, item.sessions || sessions);
+        const annualizedAdvantage =
+          typeof item.annualized_return_advantage === "number"
+            ? item.annualized_return_advantage
+            : typeof strategyAnnualized === "number" && typeof annualizedReturn === "number"
+              ? strategyAnnualized - annualizedReturn
+              : null;
+        return `
           <div class="backtest-comparison-row${item.isStrategy ? " is-strategy" : ""}">
             <strong>${strategyEscapeHtml(item.label || item.code || "--")}</strong>
             <span>${strategySignedRatioText(item.total_return)}</span>
+            <span>${strategySignedRatioText(annualizedReturn)}</span>
             <span>${strategyPercentText(item.max_drawdown)}</span>
             <span>${item.isStrategy ? "--" : strategySignedRatioText(item.return_advantage)}</span>
+            <span>${item.isStrategy ? "--" : strategySignedRatioText(annualizedAdvantage)}</span>
             <span>${item.isStrategy ? "--" : strategyDrawdownReductionText(item.drawdown_reduction)}</span>
           </div>
-        `
-      )
+        `;
+      })
       .join("")}
   `;
 }
@@ -223,15 +232,19 @@ function strategySetEtfComparison(summary) {
     return_advantage: item.rotation_return_advantage,
     drawdown_reduction: item.rotation_drawdown_reduction,
   }));
-  strategyBacktestComparisonTable("backtestEtfComparison", [
-    {
-      label: "轮动策略",
-      total_return: summary.rotation_total_return,
-      max_drawdown: summary.max_drawdown,
-      isStrategy: true,
-    },
-    ...comparisonEtfs,
-  ]);
+  strategyBacktestComparisonTable(
+    "backtestEtfComparison",
+    [
+      {
+        label: "轮动策略",
+        total_return: summary.rotation_total_return,
+        max_drawdown: summary.max_drawdown,
+        isStrategy: true,
+      },
+      ...comparisonEtfs,
+    ],
+    { sessions: summary.sessions }
+  );
 }
 
 function strategySetMacroComparison(summary) {
@@ -269,15 +282,19 @@ function strategySetMacroComparison(summary) {
         ? Math.abs(item.max_drawdown) - Math.abs(strategyDrawdown)
         : null,
   }));
-  strategyBacktestComparisonTable("macroStyleComparison", [
-    {
-      label: "M2.1 分层组合",
-      total_return: strategyReturn,
-      max_drawdown: strategyDrawdown,
-      isStrategy: true,
-    },
-    ...comparisonRows,
-  ]);
+  strategyBacktestComparisonTable(
+    "macroStyleComparison",
+    [
+      {
+        label: "M2.1 分层组合",
+        total_return: strategyReturn,
+        max_drawdown: strategyDrawdown,
+        isStrategy: true,
+      },
+      ...comparisonRows,
+    ],
+    { sessions: summary.sessions }
+  );
 }
 
 function strategySetRotationSignal(signal) {
@@ -454,16 +471,23 @@ function strategyGenericCandidateText(candidates) {
     .join(" / ") || "--";
 }
 
-function strategySetGenericComparison(summary) {
-  strategyBacktestComparisonTable("genericComparison", [
-    {
-      label: summary.short_name || "策略组合",
-      total_return: summary.strategy_total_return,
-      max_drawdown: summary.max_drawdown,
-      isStrategy: true,
-    },
-    ...(summary.comparison_assets || []),
-  ]);
+function strategySetGenericComparison(summary, performance) {
+  const annualizedReturn =
+    typeof summary.annualized_return === "number" ? summary.annualized_return : performance?.annualized_return;
+  strategyBacktestComparisonTable(
+    "genericComparison",
+    [
+      {
+        label: summary.short_name || "策略组合",
+        total_return: summary.strategy_total_return,
+        annualized_return: annualizedReturn,
+        max_drawdown: summary.max_drawdown,
+        isStrategy: true,
+      },
+      ...(summary.comparison_assets || []),
+    ],
+    { sessions: summary.sessions, strategyAnnualizedReturn: annualizedReturn }
+  );
 }
 
 function strategySignalLabel(value) {
@@ -504,7 +528,8 @@ function strategySetGenericPage(backtest) {
   const latestSignal = signals[signals.length - 1] || {};
   const isIndexStrategy = metadata.indicator === "free_cash_flow_trend_channel";
   const comparisonLabel = summary.equal_weight_label || "等权";
-  const annualizedComparison = strategyAnnualizedComparisonText(summary, performance);
+  const annualizedReturn =
+    typeof summary.annualized_return === "number" ? summary.annualized_return : performance.annualized_return;
 
   document.title = summary.strategy_name || "策略回测";
   strategySetText("genericEyebrow", summary.strategy_id || "Strategy");
@@ -514,7 +539,7 @@ function strategySetGenericPage(backtest) {
   const genericTiles = [
     { label: "回测区间", value: `${strategyToIsoDate(summary.start_date)} - ${strategyToIsoDate(summary.end_date)}` },
     { label: "策略收益", value: strategySignedRatioText(summary.strategy_total_return) },
-    { label: "年化收益", value: annualizedComparison },
+    { label: "年化收益", value: strategySignedRatioText(annualizedReturn) },
     { label: "最大回撤", value: strategyPercentText(summary.max_drawdown) },
     { label: `Alpha vs ${comparisonLabel}`, value: strategySignedRatioText(summary.alpha_vs_equal_weight) },
     ...(isIndexStrategy
@@ -538,7 +563,7 @@ function strategySetGenericPage(backtest) {
   const latestReason = latestSignal.rebalance_reason || {};
   strategySetText("genericLatestReason", latestReason.detail || metadata.description || "--");
   strategySetText("genericStrategyReturn", strategySignedRatioText(summary.strategy_total_return));
-  strategySetText("genericAnnualizedReturn", annualizedComparison);
+  strategySetText("genericAnnualizedReturn", strategySignedRatioText(annualizedReturn));
   strategySetText("genericMaxDrawdown", strategyPercentText(summary.max_drawdown));
   strategySetText("genericAlphaEqual", strategySignedRatioText(summary.alpha_vs_equal_weight));
   strategySetText("genericSharpe", strategyFixedText(summary.sharpe, 2));
@@ -547,7 +572,7 @@ function strategySetGenericPage(backtest) {
   strategySetText("genericTurnover", strategyPercentText(summary.average_turnover));
   strategySetText("genericSignalSummary", strategySignalLabel(summary.latest_signal));
   strategySetText("genericSharpeFormula", strategySharpeFormulaText(performance));
-  strategySetGenericComparison(summary);
+  strategySetGenericComparison(summary, performance);
   const verdict = isIndexStrategy
     ? validation.alpha_positive_vs_equal_weight
       ? "本策略跑赢自由现金流指数基准，说明趋势通道择时存在初步收益改善。"

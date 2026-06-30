@@ -1274,15 +1274,15 @@ h2 {
 
 .backtest-comparison-table {
   margin-top: 12px;
-  overflow-x: auto;
+  overflow-x: visible;
   border-bottom: 1px solid var(--line);
 }
 
 .backtest-comparison-row {
   display: grid;
-  grid-template-columns: minmax(220px, 1.5fr) repeat(4, minmax(92px, 0.7fr));
-  gap: 10px;
-  min-width: 760px;
+  grid-template-columns: minmax(118px, 1.5fr) repeat(6, minmax(0, 0.7fr));
+  gap: 8px;
+  min-width: 0;
   align-items: baseline;
   padding: 9px 0;
   border-top: 1px solid var(--line);
@@ -1307,6 +1307,7 @@ h2 {
   font-size: 13px;
   font-weight: 750;
   line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .backtest-comparison-head span {
