@@ -1,14 +1,14 @@
 {
   "engine": "Style Factor Engine A1.1",
-  "as_of": "20260629",
+  "as_of": "20260630",
   "regime": "range",
-  "risk_score": 0.4145,
+  "risk_score": 0.4225,
   "input": {
-    "trend": 0.47,
-    "breadth": 0.53,
-    "liquidity": 0.79,
+    "trend": 0.49,
+    "breadth": 0.64,
+    "liquidity": 0.52,
     "volatility": 0.62,
-    "regime_score": 0.58,
+    "regime_score": 0.56,
     "confidence": 0.77
   },
   "base_scores": {
@@ -20,39 +20,39 @@
     "cash_proxy": 0.35
   },
   "adjustments": {
-    "growth": 0.076875,
-    "value": -0.01874,
-    "low_vol": -0.04299,
-    "dividend": -0.039025,
-    "small_cap": 0.08941,
-    "cash_proxy": -0.039375
+    "growth": 0.060375,
+    "value": -0.0149,
+    "low_vol": -0.05475,
+    "dividend": -0.027225,
+    "small_cap": 0.06025,
+    "cash_proxy": -0.039775
   },
   "style_scores": {
-    "growth": 0.526875,
-    "value": 0.63126,
-    "low_vol": 0.50701,
-    "dividend": 0.410975,
-    "small_cap": 0.48941,
-    "cash_proxy": 0.310625
+    "growth": 0.510375,
+    "value": 0.6351,
+    "low_vol": 0.49525,
+    "dividend": 0.422775,
+    "small_cap": 0.46025,
+    "cash_proxy": 0.310225
   },
   "top_styles": [
     {
       "style": "value",
-      "score": 0.63126
+      "score": 0.6351
     },
     {
       "style": "growth",
-      "score": 0.526875
+      "score": 0.510375
     },
     {
       "style": "low_vol",
-      "score": 0.50701
+      "score": 0.49525
     }
   ],
   "reasoning": [
     "range regime sets the base style preference.",
-    "Risk score 0.41 shifts weight toward defensive styles when elevated.",
-    "Breadth 0.53, liquidity 0.79, and volatility stability 0.62 adjust growth versus defensive preference.",
+    "Risk score 0.42 shifts weight toward defensive styles when elevated.",
+    "Breadth 0.64, liquidity 0.52, and volatility stability 0.62 adjust growth versus defensive preference.",
     "Top styles are value, growth, low_vol."
   ],
   "constraints": {

@@ -1,8 +1,8 @@
 {
   "engine": "ETF Universe Builder A1.1",
-  "as_of": "20260629",
+  "as_of": "20260630",
   "regime": "range",
-  "risk_score": 0.4145,
+  "risk_score": 0.4225,
   "candidate_count": 5,
   "top_candidates": [
     {
@@ -17,7 +17,7 @@
         "transition"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.55266,
+      "candidate_score": 0.546439,
       "style_weights": {
         "value": 0.35,
         "growth": 0.25,
@@ -35,7 +35,7 @@
         "range"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.519327,
+      "candidate_score": 0.502384,
       "style_weights": {
         "small_cap": 0.45,
         "value": 0.25,
@@ -54,7 +54,7 @@
         "transition"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.451344,
+      "candidate_score": 0.457435,
       "style_weights": {
         "dividend": 0.8,
         "low_vol": 0.25,
@@ -71,7 +71,7 @@
         "bull"
       ],
       "regime_eligible": false,
-      "candidate_score": 0.375106,
+      "candidate_score": 0.359938,
       "style_weights": {
         "growth": 0.75,
         "small_cap": 0.25
@@ -89,7 +89,7 @@
         "range"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.317017,
+      "candidate_score": 0.31549,
       "style_weights": {
         "cash_proxy": 0.95,
         "low_vol": 0.2
@@ -109,7 +109,7 @@
         "transition"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.55266,
+      "candidate_score": 0.546439,
       "style_weights": {
         "value": 0.35,
         "growth": 0.25,
@@ -127,7 +127,7 @@
         "range"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.519327,
+      "candidate_score": 0.502384,
       "style_weights": {
         "small_cap": 0.45,
         "value": 0.25,
@@ -146,7 +146,7 @@
         "transition"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.451344,
+      "candidate_score": 0.457435,
       "style_weights": {
         "dividend": 0.8,
         "low_vol": 0.25,
@@ -163,7 +163,7 @@
         "bull"
       ],
       "regime_eligible": false,
-      "candidate_score": 0.375106,
+      "candidate_score": 0.359938,
       "style_weights": {
         "growth": 0.75,
         "small_cap": 0.25
@@ -181,7 +181,7 @@
         "range"
       ],
       "regime_eligible": true,
-      "candidate_score": 0.317017,
+      "candidate_score": 0.31549,
       "style_weights": {
         "cash_proxy": 0.95,
         "low_vol": 0.2
@@ -193,35 +193,35 @@
       {
         "code": "510300.SH",
         "name": "沪深300ETF",
-        "candidate_score": 0.55266
+        "candidate_score": 0.546439
       }
     ],
     "small_cap": [
       {
         "code": "510500.SH",
         "name": "中证500ETF",
-        "candidate_score": 0.519327
+        "candidate_score": 0.502384
       }
     ],
     "dividend": [
       {
         "code": "510880.SH",
         "name": "红利ETF",
-        "candidate_score": 0.451344
+        "candidate_score": 0.457435
       }
     ],
     "growth": [
       {
         "code": "159915.SZ",
         "name": "创业板ETF",
-        "candidate_score": 0.375106
+        "candidate_score": 0.359938
       }
     ],
     "cash_proxy": [
       {
         "code": "511880.SH",
         "name": "银华日利ETF",
-        "candidate_score": 0.317017
+        "candidate_score": 0.31549
       }
     ]
   },
