@@ -433,7 +433,10 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
   const isFreeCashFlowTrend = backtest?.metadata?.indicator === "free_cash_flow_trend_channel";
   const isFreeCashFlowRebound = backtest?.metadata?.indicator === "free_cash_flow_drawdown_rebound";
   const isFreeCashFlowBuyHold = backtest?.metadata?.indicator === "free_cash_flow_buy_hold";
-  const isFreeCashFlowIndexStrategy = isFreeCashFlowTrend || isFreeCashFlowRebound || isFreeCashFlowBuyHold;
+  const isFreeCashFlowPairDynamic = backtest?.metadata?.indicator === "free_cash_flow_chinext_dynamic";
+  const hasCycleBackground = isFreeCashFlowBuyHold || isFreeCashFlowPairDynamic;
+  const isFreeCashFlowIndexStrategy =
+    isFreeCashFlowTrend || isFreeCashFlowRebound || isFreeCashFlowBuyHold || isFreeCashFlowPairDynamic;
   const x = items.map((item) => toIsoDate(item.date));
   const visibleBenchmarkCodes = Array.isArray(options.visibleBenchmarkCodes)
     ? new Set(options.visibleBenchmarkCodes)
@@ -458,6 +461,8 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     "511010.SH": { color: "#0d9488", dash: "dash" },
     "518880.SH": { color: "#ca8a04", dash: "solid" },
     "480092.CNI": { color: "#111827", dash: "dashdot", width: 2.1 },
+    "free-cash-flow-chinext-dynamic": { color: "#2563eb", dash: "solid", width: 2.7 },
+    fcf_chinext_fixed_equal: { color: "#9333ea", dash: "longdash", width: 2.1 },
     checked_equal_weight: { color: "#0f172a", dash: "longdash", width: 2.5 },
     checked_risk_parity: { color: "#0891b2", dash: "dashdot", width: 2.5 },
     commodity_basket: { color: "#be123c", dash: "dash" },
@@ -585,11 +590,11 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
         };
       })
     : [];
-  const cycleBlockShapes = isFreeCashFlowBuyHold
+  const cycleBlockShapes = hasCycleBackground
     ? buildCycleBlockShapes(backtest?.cycle_blocks || [], x[0], x[x.length - 1])
     : [];
   const backgroundTraces =
-    isFreeCashFlowBuyHold && items.some((item) => typeof item.shanghai_equity === "number")
+    hasCycleBackground && items.some((item) => typeof item.shanghai_equity === "number")
       ? [
           {
             type: "scatter",
@@ -676,7 +681,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
       margin: { l: 62, r: 18, t: 68, b: 46 },
       shapes: cycleBlockShapes,
       xaxis: {
-        range: isFreeCashFlowBuyHold ? [x[0], x[x.length - 1]] : undefined,
+        range: hasCycleBackground ? [x[0], x[x.length - 1]] : undefined,
         tickformat: "%Y",
         hoverformat: "%Y-%m-%d",
         gridcolor: "#edf0f5",

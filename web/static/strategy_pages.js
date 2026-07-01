@@ -589,6 +589,10 @@ function strategyFullDateRange(backtest) {
   return dates.length ? { start: dates[0], end: dates[dates.length - 1] } : null;
 }
 
+function strategyHasSelectableBenchmarks(backtest) {
+  return ["free_cash_flow_buy_hold", "free_cash_flow_chinext_dynamic"].includes(backtest.metadata?.indicator);
+}
+
 function strategyShiftIsoYear(isoDate, years) {
   const [year, month, day] = String(isoDate).split("-").map((part) => Number(part));
   const shifted = new Date(Date.UTC(year - years, month - 1, day));
@@ -806,7 +810,7 @@ function strategyBuildRangeBacktest(sourceBacktest, range) {
 }
 
 function strategyGetVisibleBenchmarkCodes(backtest) {
-  if (backtest.metadata?.indicator !== "free_cash_flow_buy_hold") return null;
+  if (!strategyHasSelectableBenchmarks(backtest)) return null;
   const summary = backtest.summary || {};
   const strategyId = summary.strategy_id || "generic";
   const assets = (summary.comparison_assets || []).filter((asset) => !asset.always_visible && !asset.isVirtual);
@@ -1003,7 +1007,7 @@ function strategySetGenericBenchmarkToggles(backtest, sourceBacktest = backtest)
   const strategyId = summary.strategy_id || "generic";
   const baseAssets = (summary.comparison_assets || []).filter((asset) => !asset.always_visible && !asset.isVirtual);
   const virtualAssets = (summary.comparison_assets || []).filter((asset) => asset.always_visible || asset.isVirtual);
-  if (backtest.metadata?.indicator !== "free_cash_flow_buy_hold" || (!baseAssets.length && !virtualAssets.length)) {
+  if (!strategyHasSelectableBenchmarks(backtest) || (!baseAssets.length && !virtualAssets.length)) {
     target.hidden = true;
     target.innerHTML = "";
     return null;
@@ -1021,7 +1025,7 @@ function strategySetGenericBenchmarkToggles(backtest, sourceBacktest = backtest)
   `;
   target.hidden = false;
   target.innerHTML = `
-    <span>图上显示基准 · 虚拟ETF=自由现金流R+勾选项</span>
+    <span>${backtest.metadata?.indicator === "free_cash_flow_buy_hold" ? "图上显示基准 · 虚拟ETF=自由现金流R+勾选项" : "图上显示对照曲线"}</span>
     ${virtualAssets.map((asset) => checkboxHtml(asset, "virtual", selectedVirtual)).join("")}
     ${baseAssets.map((asset) => checkboxHtml(asset, "base", selectedBase)).join("")}
   `;
@@ -1071,6 +1075,9 @@ function strategySignalLabel(value) {
     fcf_rebound_sell: "反弹卖出",
     fcf_rebound_hold: "等待信号",
     fcf_buy_hold_full: "满仓持有",
+    fcf_chinext_dynamic_init: "初始等权",
+    fcf_chinext_dynamic_rebalance: "动态调仓",
+    fcf_chinext_dynamic_hold: "继续持有",
   };
   return labels[value] || value || "--";
 }
@@ -1090,6 +1097,7 @@ function strategySetGenericPage(sourceBacktest) {
   const isChannelStrategy = metadata.indicator === "free_cash_flow_trend_channel";
   const isReboundStrategy = metadata.indicator === "free_cash_flow_drawdown_rebound";
   const isBuyHoldStrategy = metadata.indicator === "free_cash_flow_buy_hold";
+  const isPairDynamicStrategy = metadata.indicator === "free_cash_flow_chinext_dynamic";
   const comparisonLabel = summary.equal_weight_label || "等权";
   const annualizedReturn =
     typeof summary.annualized_return === "number" ? summary.annualized_return : performance.annualized_return;
@@ -1147,6 +1155,10 @@ function strategySetGenericPage(sourceBacktest) {
       : "代表阈值未跑赢国证自由现金流R基准，说明该规则目前更像参数研究，不宜直接当成稳赚模型。"
     : isBuyHoldStrategy
     ? "本策略是不择时的 480092.CNI 满仓基准，用于直接观察自由现金流R相对主要全收益指数的长期收益和风险。"
+    : isPairDynamicStrategy
+    ? validation.alpha_positive_vs_equal_weight
+      ? "动态满仓策略跑赢 50/50 固定等权，说明风险平价和趋势倾斜在当前样本有增益。"
+      : "动态满仓策略未跑赢 50/50 固定等权，说明当前规则复杂度可能没有补偿调仓成本。"
     : validation.mean_reversion_signal
     ? validation.alpha_positive_vs_equal_weight
       ? "本策略跑赢四 ETF 等权基准，说明当前均值回归规则有初步 alpha 证据。"
@@ -1158,7 +1170,7 @@ function strategySetGenericPage(sourceBacktest) {
       : "本策略未跑赢等权资产池，当前规则更适合保留为反例或继续优化。";
   strategySetText(
     "genericConclusion",
-    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isChannelStrategy ? " Tushare index_daily 指数日收益；图中红/灰/绿线为 2016 低点以来的对数直线上轨、中轨、下轨。本版通道包含当前研究锚点，适合复盘观察，不等同于严格无未来函数实盘信号。" : isReboundStrategy ? " Tushare index_daily 指数日收益；图中五条曲线分别代表 n=10%/12%/15%/18%/20%，策略摘要采用年化收益最高的阈值作为代表结果。现金收益暂按 0 处理。" : isBuyHoldStrategy ? " Tushare index_daily 全收益指数日收益；红/绿背景来自长期牛熊主周期，上证指数灰线只作市场环境背景参考。" : " ETF fund_daily pct_chg/pre_close。"}`
+    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isChannelStrategy ? " Tushare index_daily 指数日收益；图中红/灰/绿线为 2016 低点以来的对数直线上轨、中轨、下轨。本版通道包含当前研究锚点，适合复盘观察，不等同于严格无未来函数实盘信号。" : isReboundStrategy ? " Tushare index_daily 指数日收益；图中五条曲线分别代表 n=10%/12%/15%/18%/20%，策略摘要采用年化收益最高的阈值作为代表结果。现金收益暂按 0 处理。" : isBuyHoldStrategy ? " Tushare index_daily 全收益指数日收益；红/绿背景来自长期牛熊主周期，上证指数灰线只作市场环境背景参考。" : isPairDynamicStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，信号按收盘后计算并从下一交易日生效，红/绿背景来自长期牛熊主周期。" : " ETF fund_daily pct_chg/pre_close。"}`
   );
   const signalTarget = document.getElementById("genericSignalList");
   if (signalTarget) {

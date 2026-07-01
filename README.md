@@ -124,6 +124,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/strategy/free-cash-flow-trend-full`
 - `GET http://127.0.0.1:8021/strategy/free-cash-flow-drawdown-rebound`
 - `GET http://127.0.0.1:8021/strategy/free-cash-flow-buy-hold-480092`
+- `GET http://127.0.0.1:8021/strategy/free-cash-flow-chinext-dynamic`
 - `GET http://127.0.0.1:8021/rotation-history`
 - `GET http://127.0.0.1:8021/macro-style-history`
 - `GET http://127.0.0.1:8021/docs`
@@ -155,6 +156,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/strategy-backtests/free-cash-flow-trend-full`
 - `GET http://127.0.0.1:8021/api/strategy-backtests/free-cash-flow-drawdown-rebound`
 - `GET http://127.0.0.1:8021/api/strategy-backtests/free-cash-flow-buy-hold-480092`
+- `GET http://127.0.0.1:8021/api/strategy-backtests/free-cash-flow-chinext-dynamic`
 - `GET http://127.0.0.1:8021/api/shadow/current`
 - `GET http://127.0.0.1:8021/api/shadow/regime-attribution`
 - `GET http://127.0.0.1:8021/api/system/snapshot`
@@ -540,13 +542,15 @@ data/strategy_backtests/all-weather.json
 data/strategy_backtests/equal-weight-reversion-basic.json
 data/strategy_backtests/equal-weight-reversion-guarded.json
 data/strategy_backtests/free-cash-flow-buy-hold-480092.json
+data/strategy_backtests/free-cash-flow-chinext-dynamic.json
 ```
 
 The strategy pages `/strategy/defensive-dividend`, `/strategy/industry-momentum`,
 `/strategy/four-asset`, `/strategy/max-drawdown-batch`, and
 `/strategy/all-weather`, `/strategy/equal-weight-reversion-basic`,
 `/strategy/equal-weight-reversion-guarded`, and
-`/strategy/free-cash-flow-buy-hold-480092` show the standalone chart, benchmark
+`/strategy/free-cash-flow-buy-hold-480092`, and
+`/strategy/free-cash-flow-chinext-dynamic` show the standalone chart, benchmark
 comparison, latest weights, and rebalance records for each strategy. These are
 ETF-level or index-level simulation backtests only; they do not select stocks,
 connect brokers, or place orders.

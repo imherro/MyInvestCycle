@@ -483,6 +483,13 @@ const STRATEGY_DIRECTORY_CARDS = [
     href: "/strategy/free-cash-flow-buy-hold-480092",
     rule: "从 480092.CNI 国证自由现金流R指数有数据开始满仓持有，不择时、不调仓；同图对比沪深300、中证500、创业板、红利低波全收益指数。",
   },
+  {
+    id: "free-cash-flow-chinext-dynamic",
+    title: "FCF/创业板动态",
+    badge: "FCF Growth",
+    href: "/strategy/free-cash-flow-chinext-dynamic",
+    rule: "在自由现金流R和创业板R两个全收益指数之间满仓动态分配：风险平价作基础权重，趋势强弱决定倾斜，单边权重限制在 20%-80%。",
+  },
 ];
 
 const strategyDirectorySort = {

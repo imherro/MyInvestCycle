@@ -135,6 +135,7 @@ STRATEGY_BACKTEST_IDS = {
     "free-cash-flow-trend-full": "自由现金流趋势通道策略（满仓/空仓版）",
     "free-cash-flow-drawdown-rebound": "自由现金流回撤反弹策略（五阈值）",
     "free-cash-flow-buy-hold-480092": "自由现金流R满仓持有策略",
+    "free-cash-flow-chinext-dynamic": "自由现金流R/创业板R动态满仓策略",
 }
 
 
@@ -498,6 +499,7 @@ def _api_catalog_payload() -> dict[str, object]:
                 _api_endpoint("GET", "/strategy/free-cash-flow-trend-full", "打开自由现金流趋势通道满仓/空仓版主页。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/free-cash-flow-drawdown-rebound", "打开自由现金流回撤反弹策略主页，查看五个 n 阈值净值曲线。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/free-cash-flow-buy-hold-480092", "打开自由现金流R满仓持有策略主页，查看全收益指数对比和长期牛熊背景图。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/strategy/free-cash-flow-chinext-dynamic", "打开自由现金流R/创业板R动态满仓策略主页，查看动态权重和双指数对比。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/rotation-history", "打开 ETF 轮动调仓历史表格页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/macro-style-history", "打开 Macro-Style-ETF 分层组合调仓历史表格页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/cycle-track", "打开本轮周期跟踪与概率展望页面。", "HTML page", freshness="page"),
@@ -587,7 +589,7 @@ def _api_catalog_payload() -> dict[str, object]:
                 _api_endpoint(
                     "GET",
                     "/api/strategy-backtests/{strategy_id}",
-                    "返回新增策略回测结果，strategy_id 支持 defensive-dividend、industry-momentum、four-asset、max-drawdown-batch、all-weather、equal-weight-reversion-basic、equal-weight-reversion-guarded、free-cash-flow-trend-half、free-cash-flow-trend-full、free-cash-flow-drawdown-rebound、free-cash-flow-buy-hold-480092。",
+                    "返回新增策略回测结果，strategy_id 支持 defensive-dividend、industry-momentum、four-asset、max-drawdown-batch、all-weather、equal-weight-reversion-basic、equal-weight-reversion-guarded、free-cash-flow-trend-half、free-cash-flow-trend-full、free-cash-flow-drawdown-rebound、free-cash-flow-buy-hold-480092、free-cash-flow-chinext-dynamic。",
                     "strategy backtest artifact",
                     params=[{"name": "strategy_id", "required": "true", "format": "path"}],
                     freshness="generated artifact",
@@ -670,6 +672,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/strategy/free-cash-flow-trend-full", "description": "查看自由现金流趋势通道满仓/空仓版。"},
             {"path": "/strategy/free-cash-flow-drawdown-rebound", "description": "查看自由现金流回撤反弹五阈值策略。"},
             {"path": "/strategy/free-cash-flow-buy-hold-480092", "description": "查看自由现金流R满仓持有与全收益指数对比。"},
+            {"path": "/strategy/free-cash-flow-chinext-dynamic", "description": "查看自由现金流R/创业板R动态满仓策略。"},
             {"path": "/api/shadow/current", "description": "读取仓位风控回测与 510500 基准评估。"},
         ],
         "safety": {
@@ -777,6 +780,11 @@ def free_cash_flow_drawdown_rebound_strategy_page():
 
 @app.get("/strategy/free-cash-flow-buy-hold-480092", response_class=HTMLResponse)
 def free_cash_flow_buy_hold_strategy_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "strategy_generic.html")
+
+
+@app.get("/strategy/free-cash-flow-chinext-dynamic", response_class=HTMLResponse)
+def free_cash_flow_chinext_dynamic_strategy_page():
     return FileResponse(ROOT_DIR / "web" / "templates" / "strategy_generic.html")
 
 
