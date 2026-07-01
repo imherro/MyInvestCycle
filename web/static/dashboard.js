@@ -476,6 +476,13 @@ const STRATEGY_DIRECTORY_CARDS = [
     href: "/strategy/free-cash-flow-drawdown-rebound",
     rule: "空仓跟踪 480092.CNI 阶段高点，回撤 n% 后满仓买入；满仓跟踪阶段低点，反弹 n% 后空仓卖出；同时测试 10%、12%、15%、18%、20% 五个阈值。",
   },
+  {
+    id: "free-cash-flow-buy-hold-480092",
+    title: "自由现金流R满仓",
+    badge: "FCF Hold",
+    href: "/strategy/free-cash-flow-buy-hold-480092",
+    rule: "从 480092.CNI 国证自由现金流R指数有数据开始满仓持有，不择时、不调仓；同图对比沪深300、中证500、创业板、红利低波全收益指数。",
+  },
 ];
 
 const strategyDirectorySort = {

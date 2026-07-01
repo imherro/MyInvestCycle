@@ -432,12 +432,17 @@ function renderStrategyBacktestChart(elementId, backtest) {
   }
   const isFreeCashFlowTrend = backtest?.metadata?.indicator === "free_cash_flow_trend_channel";
   const isFreeCashFlowRebound = backtest?.metadata?.indicator === "free_cash_flow_drawdown_rebound";
-  const isFreeCashFlowIndexStrategy = isFreeCashFlowTrend || isFreeCashFlowRebound;
+  const isFreeCashFlowBuyHold = backtest?.metadata?.indicator === "free_cash_flow_buy_hold";
+  const isFreeCashFlowIndexStrategy = isFreeCashFlowTrend || isFreeCashFlowRebound || isFreeCashFlowBuyHold;
   const x = items.map((item) => toIsoDate(item.date));
   const comparisonAssets = backtest?.summary?.comparison_assets || [];
   const primaryStrategyCode = backtest?.metadata?.index_code || "480092.CNI";
   const traceStyleByCode = {
     "000905.SH": { color: "#f97316", dash: "dot", width: 2.0 },
+    "h00300.CSI": { color: "#dc2626", dash: "dot", width: 1.9 },
+    "h00905.CSI": { color: "#f97316", dash: "dot", width: 1.9 },
+    "399606.SZ": { color: "#7c3aed", dash: "dot", width: 1.9 },
+    "h20269.CSI": { color: "#16a34a", dash: "dot", width: 1.9 },
     "510300.SH": { color: "#dc2626", dash: "solid" },
     "510880.SH": { color: "#16a34a", dash: "solid" },
     "512890.SH": { color: "#059669", dash: "dash" },
@@ -573,9 +578,27 @@ function renderStrategyBacktestChart(elementId, backtest) {
         };
       })
     : [];
+  const cycleBlockShapes = isFreeCashFlowBuyHold
+    ? buildCycleBlockShapes(backtest?.cycle_blocks || [], x[0], x[x.length - 1])
+    : [];
+  const backgroundTraces =
+    isFreeCashFlowBuyHold && items.some((item) => typeof item.shanghai_equity === "number")
+      ? [
+          {
+            type: "scatter",
+            mode: "lines",
+            name: "上证指数背景",
+            x,
+            y: items.map((item) => item.shanghai_equity ?? null),
+            line: { color: "rgba(71, 85, 105, 0.42)", width: 1.6, dash: "dash" },
+            hovertemplate: "%{x}<br>上证归一 %{y:.3f}<extra></extra>",
+          },
+        ]
+      : [];
   Plotly.react(
     elementId,
     [
+      ...backgroundTraces,
       ...(isFreeCashFlowRebound
         ? reboundVariantTraces
         : [
@@ -644,6 +667,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
       hoverdistance: 80,
       spikedistance: -1,
       margin: { l: 62, r: 18, t: 68, b: 46 },
+      shapes: cycleBlockShapes,
       xaxis: {
         tickformat: "%Y",
         hoverformat: "%Y-%m-%d",
@@ -670,6 +694,23 @@ function renderStrategyBacktestChart(elementId, backtest) {
     },
     { responsive: true, displayModeBar: false }
   );
+}
+
+function buildCycleBlockShapes(blocks, fallbackStart, fallbackEnd) {
+  return (blocks || [])
+    .filter((block) => ["bull", "bear"].includes(block.state))
+    .map((block) => ({
+      type: "rect",
+      xref: "x",
+      yref: "paper",
+      x0: toIsoDate(block.start_date) || fallbackStart,
+      x1: toIsoDate(block.end_date) || fallbackEnd,
+      y0: 0,
+      y1: 1,
+      fillcolor: block.state === "bull" ? "rgba(199, 61, 61, 0.085)" : "rgba(23, 136, 91, 0.085)",
+      line: { width: 0 },
+      layer: "below",
+    }));
 }
 
 function buildRegimeShapes(items, options = {}) {
