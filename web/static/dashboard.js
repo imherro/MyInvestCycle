@@ -509,14 +509,26 @@ function strategyDirectorySummary(card, payload) {
   };
 }
 
+function strategyDirectoryLookaheadNote(payload) {
+  const metadata = payload.metadata || {};
+  if (metadata.no_lookahead_bias === false) {
+    return metadata.lookahead_note || "该策略使用回看锚点或未来信息，只适合复盘研究，不应与无未来函数策略直接排序比较。";
+  }
+  if (metadata.lookahead_note) return metadata.lookahead_note;
+  return "";
+}
+
 function strategyDirectoryRows(results) {
   return STRATEGY_DIRECTORY_CARDS.map((card) => {
     const payload = strategyDirectoryPayload(results, card);
     const data = strategyDirectorySummary(card, payload);
+    const lookaheadNote = strategyDirectoryLookaheadNote(payload);
     return {
       ...card,
       payload,
       data,
+      lookahead: Boolean(lookaheadNote),
+      lookaheadNote,
       evaluation: strategyDirectoryEvaluation(card, payload),
     };
   });
@@ -539,6 +551,7 @@ function sortStrategyDirectoryRows(rows) {
   const key = strategyDirectorySort.key;
   const direction = strategyDirectorySort.direction === "asc" ? 1 : -1;
   return [...rows].sort((left, right) => {
+    if (left.lookahead !== right.lookahead) return left.lookahead ? 1 : -1;
     const leftValue = strategyDirectorySortValue(left, key);
     const rightValue = strategyDirectorySortValue(right, key);
     const leftMissing = leftValue === null || leftValue === undefined || Number.isNaN(leftValue);
@@ -613,11 +626,12 @@ function setStrategyDirectory(results) {
       </div>
       ${rows
         .map((row, index) => `
-          <div class="strategy-directory-row" role="row">
+          <div class="strategy-directory-row${row.lookahead ? " has-lookahead" : ""}" role="row">
             <div class="strategy-rank" role="cell">${index + 1}</div>
             <div class="strategy-name-cell" role="cell">
               <span>${escapeHtml(row.badge)}</span>
               <a href="${row.href}">${escapeHtml(row.title)}</a>
+              ${row.lookahead ? `<strong class="lookahead-badge" title="${escapeHtml(row.lookaheadNote)}">含未来函数</strong>` : ""}
             </div>
             <div class="metric-strong" role="cell">${signedRatioText(row.data.annualized)}</div>
             <div role="cell">${signedRatioText(row.data.totalReturn)}</div>
@@ -626,6 +640,11 @@ function setStrategyDirectory(results) {
             <div role="cell">${signedRatioText(row.data.alpha)}</div>
             <div role="cell">${toIsoDate(row.data.endDate)}</div>
             <div class="strategy-rule-cell" role="cell">
+              ${
+                row.lookahead
+                  ? `<p class="lookahead-warning"><strong>未来函数</strong>该策略使用回看锚点或未来信息，只适合复盘研究，已固定置底。</p>`
+                  : ""
+              }
               <p><strong>规则</strong>${escapeHtml(row.rule)}</p>
               <p><strong>评价</strong>${escapeHtml(row.evaluation)}</p>
             </div>

@@ -490,6 +490,11 @@ h2 {
   border-bottom: 0;
 }
 
+.strategy-directory-row.has-lookahead {
+  border-left: 4px solid #dc2626;
+  background: #fff1f2;
+}
+
 .strategy-directory-head {
   position: sticky;
   top: 0;
@@ -557,6 +562,18 @@ h2 {
   color: var(--accent);
 }
 
+.lookahead-badge {
+  width: fit-content;
+  padding: 4px 7px;
+  border: 1px solid #dc2626;
+  border-radius: 4px;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+}
+
 .strategy-directory-row > div:not(.strategy-rule-cell):not(.strategy-name-cell) {
   color: var(--ink);
   font-size: 13px;
@@ -588,6 +605,19 @@ h2 {
   margin-right: 6px;
   color: var(--muted);
   font-size: 12px;
+}
+
+.strategy-rule-cell .lookahead-warning {
+  padding: 8px 10px;
+  border: 1px solid #fecdd3;
+  border-radius: 6px;
+  background: #ffe4e6;
+  color: #991b1b;
+  font-weight: 850;
+}
+
+.strategy-rule-cell .lookahead-warning strong {
+  color: #dc2626;
 }
 
 .strategy-page .wide-analysis-panel {
