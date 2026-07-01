@@ -502,7 +502,7 @@ const STRATEGY_DIRECTORY_CARDS = [
     title: "FCF/创业板平衡回归",
     badge: "Balanced",
     href: "/strategy/free-cash-flow-chinext-balanced-reversion",
-    rule: "以 50/50 为底仓，风险平价只做小幅修正；只有相对比值极端且出现反转确认时才做回归倾斜，避免长期趋势里过早逆势。",
+    rule: "以 50/50 为底仓，风险平价做更大幅度修正；相对比值极端时先做预备回归倾斜，反转确认后加大倾斜。",
   },
 ];
 

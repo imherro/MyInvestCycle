@@ -31,14 +31,14 @@ class FreeCashFlowChinextBalancedReversionSpec:
     strategy_id: str = "free-cash-flow-chinext-balanced-reversion"
     name: str = "自由现金流R/创业板R平衡回归策略"
     short_name: str = "FCF/创业板平衡回归"
-    description: str = "以 50/50 为底仓，先用风险平价小幅修正，再仅在相对偏离极端且出现反转确认时做回归倾斜，组合始终保持 100% 满仓。"
+    description: str = "以 50/50 为底仓，先用风险平价修正；相对偏离极端时先做预备回归倾斜，出现反转确认后加大倾斜，组合始终保持 100% 满仓。"
     method: tuple[str, ...] = (
         "资产池只包含 480092.CNI 国证自由现金流R指数和 399606.SZ 创业板R全收益指数，收益均使用 Tushare index_daily 全收益口径。",
-        "底仓为 50/50；用 60 日波动率倒数风险平价做 30% 权重混合，基础权重限制在 40%-60%，避免风险平价过度主导。",
+        "底仓为 50/50；用 60 日波动率倒数风险平价做 50% 权重混合，基础权重限制在 35%-65%。",
         "构造相对比值 log(自由现金流R净值 / 创业板R净值)，用 500 日滚动均值和波动计算 Z-score。",
-        "只有当 |Z-score| >= 1.25 且 20 日相对走势已经反向，才启动回归倾斜；否则只保留 50/50 + 风险平价底仓。",
-        "回归倾斜方向为反向配置：自由现金流相对偏热且开始回落时增配创业板；创业板相对偏热且开始回落时增配自由现金流。",
-        "单一指数最终权重限制在 30% 到 70%；若 120 日相关性过高，回归倾斜减半；若新旧目标权重差小于 6pct，则不调仓。",
+        "当 |Z-score| >= 1.0 时先启动预备回归倾斜；若 20 日相对走势已经反向，则切换为满档回归倾斜。",
+        "回归方向为反向配置：自由现金流相对偏热时增配创业板；创业板相对偏热时增配自由现金流。",
+        "单一指数最终权重限制在 20% 到 80%；若 120 日相关性过高，回归倾斜减半；若新旧目标权重差小于 4pct，则不调仓。",
     )
     index_code: str = FREE_CASH_FLOW_PRIMARY_CODE
     benchmark_codes: tuple[str, ...] = (CHINEXT_TOTAL_RETURN_CODE,)
@@ -48,19 +48,20 @@ class FreeCashFlowChinextBalancedReversionSpec:
     rebalance_every_sessions: int = 20
     volatility_window: int = 60
     min_volatility_samples: int = 20
-    risk_parity_blend: float = 0.30
-    base_min_weight: float = 0.40
-    base_max_weight: float = 0.60
+    risk_parity_blend: float = 0.50
+    base_min_weight: float = 0.35
+    base_max_weight: float = 0.65
     zscore_window: int = 500
     min_zscore_samples: int = 120
-    entry_zscore: float = 1.25
+    entry_zscore: float = 1.00
     zscore_scale: float = 1.35
     confirmation_window: int = 20
     min_confirmation_move: float = 0.005
-    max_reversion_tilt: float = 0.18
-    min_weight: float = 0.30
-    max_weight: float = 0.70
-    rebalance_threshold: float = 0.06
+    max_preconfirm_tilt: float = 0.12
+    max_reversion_tilt: float = 0.32
+    min_weight: float = 0.20
+    max_weight: float = 0.80
+    rebalance_threshold: float = 0.04
     correlation_window: int = 120
     min_correlation_samples: int = 60
     correlation_risk_threshold: float = 0.65
@@ -144,17 +145,24 @@ def _reversion_tilt(
         return 0.0, "相对偏离未达到极端阈值"
 
     if zscore > 0:
-        if momentum >= -spec.min_confirmation_move:
-            return 0.0, "自由现金流相对偏热，但尚未出现回落确认"
         direction = 1.0
-        reason = "自由现金流相对偏热且开始回落，回归倾斜增配创业板"
+        confirmed = momentum < -spec.min_confirmation_move
+        reason = (
+            "自由现金流相对偏热且开始回落，满档回归倾斜增配创业板"
+            if confirmed
+            else "自由现金流相对偏热但尚未回落确认，预备回归倾斜增配创业板"
+        )
     else:
-        if momentum <= spec.min_confirmation_move:
-            return 0.0, "创业板相对偏热，但尚未出现回落确认"
         direction = -1.0
-        reason = "创业板相对偏热且开始回落，回归倾斜增配自由现金流"
+        confirmed = momentum > spec.min_confirmation_move
+        reason = (
+            "创业板相对偏热且开始回落，满档回归倾斜增配自由现金流"
+            if confirmed
+            else "创业板相对偏热但尚未回落确认，预备回归倾斜增配自由现金流"
+        )
 
-    magnitude = spec.max_reversion_tilt * math.tanh((abs(zscore) - spec.entry_zscore) / spec.zscore_scale)
+    max_tilt = spec.max_reversion_tilt if confirmed else spec.max_preconfirm_tilt
+    magnitude = max_tilt * math.tanh((abs(zscore) - spec.entry_zscore) / spec.zscore_scale)
     if correlation is not None and correlation >= spec.correlation_risk_threshold:
         magnitude *= 0.5
         reason += "；近期相关性偏高，倾斜减半"
