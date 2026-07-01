@@ -483,7 +483,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     "free-cash-flow-ma-deviation": { color: "#0f766e", dash: "solid", width: 2.7 },
     fcf_ma_best_full_sample: { color: "#be123c", dash: "longdash", width: 2.2 },
     "free-cash-flow-dual-ma-crossover": { color: "#2563eb", dash: "solid", width: 2.7 },
-    fcf_drawdown20_ma30_90: { color: "#ea580c", dash: "solid", width: 2.25 },
+    fcf_drawdown20_rebound40_ma30_90: { color: "#ea580c", dash: "solid", width: 2.25 },
     fcf_dual_ma_best_full_sample: { color: "#be123c", dash: "longdash", width: 2.2 },
     fcf_chinext_fixed_equal: { color: "#9333ea", dash: "longdash", width: 2.1 },
     checked_equal_weight: { color: "#0f172a", dash: "longdash", width: 2.5 },

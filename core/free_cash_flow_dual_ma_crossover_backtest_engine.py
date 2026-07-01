@@ -20,7 +20,7 @@ from core.free_cash_flow_trend_channel_backtest_engine import (
 
 
 BEST_FULL_SAMPLE_CODE = "fcf_dual_ma_best_full_sample"
-DRAWDOWN20_MA_RULE_CODE = "fcf_drawdown20_ma30_90"
+DRAWDOWN20_MA_RULE_CODE = "fcf_drawdown20_rebound40_ma30_90"
 DRAWDOWN20_MA_RULE_EQUITY = "drawdown20_ma_equity"
 DRAWDOWN20_MA_RULE_RETURN = "drawdown20_ma_return"
 DRAWDOWN20_MA_RULE_EXPOSURE = "drawdown20_ma_exposure"
@@ -38,7 +38,7 @@ class FreeCashFlowDualMaCrossoverSpec:
         "默认研究规则为 MA30 / MA90：快线上穿慢线后，下一交易日恢复 100% 仓位；快线下穿慢线后，下一交易日降到 0%。",
         "均线样本不足时维持初始 100% 仓位；信号按收盘后计算，下一交易日生效；空仓现金收益暂按 0 处理。",
         "页面同时扫描快线=10/20/30/40/60/90/120 与慢线=90/120/150/180/200/250/300，且只保留快线小于慢线的组合。",
-        "额外测试规则：初始空仓，空仓期从已发生高点回撤达到 20% 后下一交易日满仓；持仓期 MA30 下穿 MA90 后下一交易日清仓。",
+        "额外测试规则：初始空仓，空仓期从已发生高点回撤达到 20% 后下一交易日满仓；持仓后先要求从持仓期最低点反弹 40% 以上，之后遇到 MA30 下穿 MA90 才在下一交易日清仓。",
         "默认 MA30/MA90 信号本身不使用未来价格；但该默认参数来自全样本筛参观察，只能用于研究，不能当作已验证实盘参数。",
     )
     index_code: str = FREE_CASH_FLOW_PRIMARY_CODE
@@ -230,6 +230,7 @@ def _simulate_drawdown20_ma_rule(
     fast_window: int = 30,
     slow_window: int = 90,
     drawdown_threshold: float = 0.20,
+    rebound_threshold: float = 0.40,
 ) -> tuple[pd.DataFrame, list[dict[str, object]]]:
     fast_ma = close.rolling(fast_window, min_periods=fast_window).mean()
     slow_ma = close.rolling(slow_window, min_periods=slow_window).mean()
@@ -238,6 +239,8 @@ def _simulate_drawdown20_ma_rule(
     current_weights = _weights(current_exposure)
     pending_turnover = 0.0
     high_since_exit: float | None = None
+    low_since_entry: float | None = None
+    rebound_gate_met = False
     previous_spread: float | None = None
     records: list[dict[str, object]] = []
     signals: list[dict[str, object]] = []
@@ -273,7 +276,7 @@ def _simulate_drawdown20_ma_rule(
                         "date": date_text,
                         "apply_from_next_session": True,
                         "strategy_signal": "fcf_drawdown20_ma_buy",
-                        "variant": "drawdown20_ma30_90",
+                        "variant": "drawdown20_rebound40_ma30_90",
                         "target_weights": target_weights,
                         "turnover_to_target": turnover,
                         "top_candidates": [
@@ -305,7 +308,19 @@ def _simulate_drawdown20_ma_rule(
                 current_exposure = target_exposure
                 current_weights = target_weights
                 pending_turnover = turnover
-        elif previous_spread is not None and current_spread is not None and previous_spread >= 0 > current_spread:
+                low_since_entry = close_float
+                rebound_gate_met = False
+        else:
+            low_since_entry = close_float if low_since_entry is None else min(low_since_entry, close_float)
+            rebound_from_low = close_float / low_since_entry - 1.0 if low_since_entry else 0.0
+            if rebound_from_low >= rebound_threshold:
+                rebound_gate_met = True
+            death_cross = previous_spread is not None and current_spread is not None and previous_spread >= 0 > current_spread
+            if not rebound_gate_met or not death_cross:
+                if current_spread is not None:
+                    previous_spread = current_spread
+                continue
+
             target_exposure = 0.0
             target_weights = _weights(target_exposure)
             turnover = _target_turnover(current_weights, target_weights)
@@ -314,7 +329,7 @@ def _simulate_drawdown20_ma_rule(
                     "date": date_text,
                     "apply_from_next_session": True,
                     "strategy_signal": "fcf_drawdown20_ma_sell",
-                    "variant": "drawdown20_ma30_90",
+                    "variant": "drawdown20_rebound40_ma30_90",
                     "target_weights": target_weights,
                     "turnover_to_target": turnover,
                     "top_candidates": [
@@ -330,16 +345,22 @@ def _simulate_drawdown20_ma_rule(
                             "fast_ma": None if fast_value is None else round(fast_value, 4),
                             "slow_ma": None if slow_value is None else round(slow_value, 4),
                             "ma_spread": round(float(current_spread), 6),
+                            "low_since_entry": None if low_since_entry is None else round(float(low_since_entry), 4),
+                            "rebound_from_low": round(float(rebound_from_low), 6),
+                            "rebound_threshold": round(float(rebound_threshold), 6),
                         }
                     ],
                     "rebalance_reason": {
-                        "label": "MA30下穿MA90清仓",
+                        "label": "反弹40%后MA30下穿MA90清仓",
                         "detail": (
+                            f"持仓期低点 {low_since_entry:.2f}，当前较低点反弹 {rebound_from_low:.1%}；"
                             f"收盘 {close_float:.2f}，MA{fast_window} {fast_value:.2f}，"
                             f"MA{slow_window} {slow_value:.2f}，快慢线差 {current_spread:.2%}，"
                             "下一交易日清仓。"
                         ),
                         "drivers": [
+                            f"持仓期低点以来反弹 {rebound_from_low:.1%}",
+                            f"反弹阈值 {rebound_threshold:.1%}",
                             f"MA{fast_window} 下穿 MA{slow_window}",
                             f"快慢线差 {current_spread:.2%}",
                         ],
@@ -350,6 +371,8 @@ def _simulate_drawdown20_ma_rule(
             current_weights = target_weights
             pending_turnover = turnover
             high_since_exit = close_float
+            low_since_entry = None
+            rebound_gate_met = False
 
         if current_spread is not None:
             previous_spread = current_spread
@@ -756,7 +779,7 @@ def run_free_cash_flow_dual_ma_crossover_backtest(
     )
     drawdown_rule_row = _metric_row(
         code=DRAWDOWN20_MA_RULE_CODE,
-        label="回撤20%买入 + MA30/MA90死叉清仓",
+        label="回撤20%买入 + 反弹40%后MA30/MA90死叉清仓",
         group="测试规则",
         returns=frame[DRAWDOWN20_MA_RULE_RETURN],
         dates=frame["date"],
