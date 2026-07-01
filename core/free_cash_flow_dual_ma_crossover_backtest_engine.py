@@ -20,6 +20,11 @@ from core.free_cash_flow_trend_channel_backtest_engine import (
 
 
 BEST_FULL_SAMPLE_CODE = "fcf_dual_ma_best_full_sample"
+DRAWDOWN20_MA_RULE_CODE = "fcf_drawdown20_ma30_90"
+DRAWDOWN20_MA_RULE_EQUITY = "drawdown20_ma_equity"
+DRAWDOWN20_MA_RULE_RETURN = "drawdown20_ma_return"
+DRAWDOWN20_MA_RULE_EXPOSURE = "drawdown20_ma_exposure"
+DRAWDOWN20_MA_RULE_TURNOVER = "drawdown20_ma_turnover"
 
 
 @dataclass(frozen=True)
@@ -33,6 +38,7 @@ class FreeCashFlowDualMaCrossoverSpec:
         "默认研究规则为 MA30 / MA90：快线上穿慢线后，下一交易日恢复 100% 仓位；快线下穿慢线后，下一交易日降到 0%。",
         "均线样本不足时维持初始 100% 仓位；信号按收盘后计算，下一交易日生效；空仓现金收益暂按 0 处理。",
         "页面同时扫描快线=10/20/30/40/60/90/120 与慢线=90/120/150/180/200/250/300，且只保留快线小于慢线的组合。",
+        "额外测试规则：初始空仓，空仓期从已发生高点回撤达到 20% 后下一交易日满仓；持仓期 MA30 下穿 MA90 后下一交易日清仓。",
         "默认 MA30/MA90 信号本身不使用未来价格；但该默认参数来自全样本筛参观察，只能用于研究，不能当作已验证实盘参数。",
     )
     index_code: str = FREE_CASH_FLOW_PRIMARY_CODE
@@ -213,6 +219,140 @@ def _simulate_variant(
         current_exposure = target_exposure
         current_weights = target_weights
         pending_turnover = turnover
+
+    return pd.DataFrame(records), signals
+
+
+def _simulate_drawdown20_ma_rule(
+    close: pd.Series,
+    returns: pd.Series,
+    *,
+    fast_window: int = 30,
+    slow_window: int = 90,
+    drawdown_threshold: float = 0.20,
+) -> tuple[pd.DataFrame, list[dict[str, object]]]:
+    fast_ma = close.rolling(fast_window, min_periods=fast_window).mean()
+    slow_ma = close.rolling(slow_window, min_periods=slow_window).mean()
+    spread = fast_ma / slow_ma - 1.0
+    current_exposure = 0.0
+    current_weights = _weights(current_exposure)
+    pending_turnover = 0.0
+    high_since_exit: float | None = None
+    previous_spread: float | None = None
+    records: list[dict[str, object]] = []
+    signals: list[dict[str, object]] = []
+
+    for date_text, close_value in close.items():
+        date_text = str(date_text)
+        close_float = float(close_value)
+        current_return = float(returns.loc[date_text])
+        records.append(
+            {
+                "date": date_text,
+                DRAWDOWN20_MA_RULE_RETURN: current_exposure * current_return,
+                DRAWDOWN20_MA_RULE_EXPOSURE: current_exposure,
+                DRAWDOWN20_MA_RULE_TURNOVER: pending_turnover,
+            }
+        )
+        pending_turnover = 0.0
+
+        current_spread_value = spread.loc[date_text]
+        current_spread = None if pd.isna(current_spread_value) else float(current_spread_value)
+        fast_value = None if pd.isna(fast_ma.loc[date_text]) else float(fast_ma.loc[date_text])
+        slow_value = None if pd.isna(slow_ma.loc[date_text]) else float(slow_ma.loc[date_text])
+
+        if current_exposure < 0.5:
+            high_since_exit = close_float if high_since_exit is None else max(high_since_exit, close_float)
+            drawdown = close_float / high_since_exit - 1.0 if high_since_exit else 0.0
+            if drawdown <= -drawdown_threshold:
+                target_exposure = 1.0
+                target_weights = _weights(target_exposure)
+                turnover = _target_turnover(current_weights, target_weights)
+                signals.append(
+                    {
+                        "date": date_text,
+                        "apply_from_next_session": True,
+                        "strategy_signal": "fcf_drawdown20_ma_buy",
+                        "variant": "drawdown20_ma30_90",
+                        "target_weights": target_weights,
+                        "turnover_to_target": turnover,
+                        "top_candidates": [
+                            {
+                                "code": FREE_CASH_FLOW_PRIMARY_CODE,
+                                "name": "国证自由现金流R指数",
+                                "group": "自由现金流R",
+                                "score": round(float(-drawdown), 6),
+                                "target_weight": 1.0,
+                                "drawdown_threshold": round(float(drawdown_threshold), 6),
+                                "high_since_exit": round(float(high_since_exit), 4),
+                                "current_drawdown": round(float(drawdown), 6),
+                            }
+                        ],
+                        "rebalance_reason": {
+                            "label": "回撤20%满仓",
+                            "detail": (
+                                f"空仓期高点 {high_since_exit:.2f}，收盘 {close_float:.2f}，"
+                                f"回撤 {drawdown:.1%} 达到 20% 阈值，下一交易日满仓。"
+                            ),
+                            "drivers": [
+                                f"空仓期最高收盘价 {high_since_exit:.2f}",
+                                f"当前回撤 {drawdown:.1%}",
+                                "买入阈值 -20.0%",
+                            ],
+                        },
+                    }
+                )
+                current_exposure = target_exposure
+                current_weights = target_weights
+                pending_turnover = turnover
+        elif previous_spread is not None and current_spread is not None and previous_spread >= 0 > current_spread:
+            target_exposure = 0.0
+            target_weights = _weights(target_exposure)
+            turnover = _target_turnover(current_weights, target_weights)
+            signals.append(
+                {
+                    "date": date_text,
+                    "apply_from_next_session": True,
+                    "strategy_signal": "fcf_drawdown20_ma_sell",
+                    "variant": "drawdown20_ma30_90",
+                    "target_weights": target_weights,
+                    "turnover_to_target": turnover,
+                    "top_candidates": [
+                        {
+                            "code": FREE_CASH_FLOW_PRIMARY_CODE,
+                            "name": "国证自由现金流R指数",
+                            "group": "自由现金流R",
+                            "score": round(float(current_spread), 6),
+                            "target_weight": 0.0,
+                            "fast_window": fast_window,
+                            "slow_window": slow_window,
+                            "close": round(close_float, 4),
+                            "fast_ma": None if fast_value is None else round(fast_value, 4),
+                            "slow_ma": None if slow_value is None else round(slow_value, 4),
+                            "ma_spread": round(float(current_spread), 6),
+                        }
+                    ],
+                    "rebalance_reason": {
+                        "label": "MA30下穿MA90清仓",
+                        "detail": (
+                            f"收盘 {close_float:.2f}，MA{fast_window} {fast_value:.2f}，"
+                            f"MA{slow_window} {slow_value:.2f}，快慢线差 {current_spread:.2%}，"
+                            "下一交易日清仓。"
+                        ),
+                        "drivers": [
+                            f"MA{fast_window} 下穿 MA{slow_window}",
+                            f"快慢线差 {current_spread:.2%}",
+                        ],
+                    },
+                }
+            )
+            current_exposure = target_exposure
+            current_weights = target_weights
+            pending_turnover = turnover
+            high_since_exit = close_float
+
+        if current_spread is not None:
+            previous_spread = current_spread
 
     return pd.DataFrame(records), signals
 
@@ -549,6 +689,29 @@ def run_free_cash_flow_dual_ma_crossover_backtest(
         frame["best_full_sample_return"] = frame[best_return_column].fillna(0.0)
         frame["best_full_sample_equity"] = frame[best_equity_column].ffill().fillna(1.0)
 
+    drawdown_rule_frame, drawdown_rule_signals = _simulate_drawdown20_ma_rule(close, returns)
+    drawdown_rule_frame[DRAWDOWN20_MA_RULE_RETURN] = pd.to_numeric(
+        drawdown_rule_frame[DRAWDOWN20_MA_RULE_RETURN], errors="coerce"
+    ).fillna(0.0)
+    drawdown_rule_frame[DRAWDOWN20_MA_RULE_EQUITY] = (1.0 + drawdown_rule_frame[DRAWDOWN20_MA_RULE_RETURN]).cumprod()
+    frame = frame.merge(
+        drawdown_rule_frame[
+            [
+                "date",
+                DRAWDOWN20_MA_RULE_RETURN,
+                DRAWDOWN20_MA_RULE_EQUITY,
+                DRAWDOWN20_MA_RULE_EXPOSURE,
+                DRAWDOWN20_MA_RULE_TURNOVER,
+            ]
+        ],
+        on="date",
+        how="left",
+    )
+    frame[DRAWDOWN20_MA_RULE_RETURN] = frame[DRAWDOWN20_MA_RULE_RETURN].fillna(0.0)
+    frame[DRAWDOWN20_MA_RULE_EQUITY] = frame[DRAWDOWN20_MA_RULE_EQUITY].ffill().fillna(1.0)
+    frame[DRAWDOWN20_MA_RULE_EXPOSURE] = frame[DRAWDOWN20_MA_RULE_EXPOSURE].ffill().fillna(0.0)
+    frame[DRAWDOWN20_MA_RULE_TURNOVER] = frame[DRAWDOWN20_MA_RULE_TURNOVER].fillna(0.0)
+
     primary = performance_metrics(
         frame["strategy_return"],
         benchmark_returns=frame[_benchmark_return_column(spec.index_code)],
@@ -591,8 +754,18 @@ def run_free_cash_flow_dual_ma_crossover_backtest(
         equity_key="best_full_sample_equity",
         full_sample_optimized=True,
     )
+    drawdown_rule_row = _metric_row(
+        code=DRAWDOWN20_MA_RULE_CODE,
+        label="回撤20%买入 + MA30/MA90死叉清仓",
+        group="测试规则",
+        returns=frame[DRAWDOWN20_MA_RULE_RETURN],
+        dates=frame["date"],
+        equity_key=DRAWDOWN20_MA_RULE_EQUITY,
+    )
+    drawdown_rule_row["rebalance_count"] = len(drawdown_rule_signals)
+    drawdown_rule_row["average_target_exposure"] = round(float(frame[DRAWDOWN20_MA_RULE_EXPOSURE].mean()), 6)
     comparison_assets = []
-    for item in (benchmark_row, best_row):
+    for item in (drawdown_rule_row, benchmark_row, best_row):
         item = dict(item)
         item["return_advantage"] = None if item["total_return"] is None else round(float(strategy_row["total_return"]) - float(item["total_return"]), 6)
         item["drawdown_reduction"] = None if item["max_drawdown"] is None else round(float(strategy_row["max_drawdown"]) - float(item["max_drawdown"]), 6)
@@ -645,6 +818,9 @@ def run_free_cash_flow_dual_ma_crossover_backtest(
         "best_parameter_total_return": round(best_total, 6),
         "best_parameter_annualized_return": best_metrics.get("annualized_return"),
         "best_parameter_max_drawdown": best_drawdown,
+        "drawdown20_ma_rule": drawdown_rule_row,
+        "drawdown20_ma_rule_signal_count": len(drawdown_rule_signals),
+        "drawdown20_ma_rule_latest_signal": drawdown_rule_signals[-1] if drawdown_rule_signals else None,
         "sample_validation": sample_validation,
         "parameter_scan": parameter_scan,
         "parameter_scan_sorted_by": "Calmar, annualized return, max drawdown",
@@ -669,6 +845,7 @@ def run_free_cash_flow_dual_ma_crossover_backtest(
         "strategy_equity",
         _benchmark_equity_column(spec.index_code),
         "best_full_sample_equity",
+        DRAWDOWN20_MA_RULE_EQUITY,
         "index_equity",
         "fast_ma_equity",
         "slow_ma_equity",
