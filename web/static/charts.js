@@ -435,13 +435,17 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
   const isFreeCashFlowBuyHold = backtest?.metadata?.indicator === "free_cash_flow_buy_hold";
   const isFreeCashFlowPairDynamic = backtest?.metadata?.indicator === "free_cash_flow_chinext_dynamic";
   const isFreeCashFlowPairReversion = backtest?.metadata?.indicator === "free_cash_flow_chinext_reversion";
-  const hasCycleBackground = isFreeCashFlowBuyHold || isFreeCashFlowPairDynamic || isFreeCashFlowPairReversion;
+  const isFreeCashFlowPairBalancedReversion =
+    backtest?.metadata?.indicator === "free_cash_flow_chinext_balanced_reversion";
+  const hasCycleBackground =
+    isFreeCashFlowBuyHold || isFreeCashFlowPairDynamic || isFreeCashFlowPairReversion || isFreeCashFlowPairBalancedReversion;
   const isFreeCashFlowIndexStrategy =
     isFreeCashFlowTrend ||
     isFreeCashFlowRebound ||
     isFreeCashFlowBuyHold ||
     isFreeCashFlowPairDynamic ||
-    isFreeCashFlowPairReversion;
+    isFreeCashFlowPairReversion ||
+    isFreeCashFlowPairBalancedReversion;
   const x = items.map((item) => toIsoDate(item.date));
   const visibleBenchmarkCodes = Array.isArray(options.visibleBenchmarkCodes)
     ? new Set(options.visibleBenchmarkCodes)
@@ -468,6 +472,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     "480092.CNI": { color: "#111827", dash: "dashdot", width: 2.1 },
     "free-cash-flow-chinext-dynamic": { color: "#2563eb", dash: "solid", width: 2.7 },
     "free-cash-flow-chinext-reversion": { color: "#0f766e", dash: "solid", width: 2.7 },
+    "free-cash-flow-chinext-balanced-reversion": { color: "#be123c", dash: "solid", width: 2.7 },
     fcf_chinext_fixed_equal: { color: "#9333ea", dash: "longdash", width: 2.1 },
     checked_equal_weight: { color: "#0f172a", dash: "longdash", width: 2.5 },
     checked_risk_parity: { color: "#0891b2", dash: "dashdot", width: 2.5 },
@@ -613,7 +618,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
           },
         ]
       : [];
-  const reversionIndicatorTraces = isFreeCashFlowPairReversion
+  const reversionIndicatorTraces = isFreeCashFlowPairReversion || isFreeCashFlowPairBalancedReversion
     ? [
         {
           type: "scatter",
@@ -724,7 +729,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
         spikesnap: "cursor",
         spikethickness: 1,
       },
-      yaxis2: isFreeCashFlowPairReversion
+      yaxis2: isFreeCashFlowPairReversion || isFreeCashFlowPairBalancedReversion
         ? {
             title: "Z-score",
             overlaying: "y",

@@ -126,6 +126,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/strategy/free-cash-flow-buy-hold-480092`
 - `GET http://127.0.0.1:8021/strategy/free-cash-flow-chinext-dynamic`
 - `GET http://127.0.0.1:8021/strategy/free-cash-flow-chinext-reversion`
+- `GET http://127.0.0.1:8021/strategy/free-cash-flow-chinext-balanced-reversion`
 - `GET http://127.0.0.1:8021/rotation-history`
 - `GET http://127.0.0.1:8021/macro-style-history`
 - `GET http://127.0.0.1:8021/docs`
@@ -159,6 +160,7 @@ Endpoints:
 - `GET http://127.0.0.1:8021/api/strategy-backtests/free-cash-flow-buy-hold-480092`
 - `GET http://127.0.0.1:8021/api/strategy-backtests/free-cash-flow-chinext-dynamic`
 - `GET http://127.0.0.1:8021/api/strategy-backtests/free-cash-flow-chinext-reversion`
+- `GET http://127.0.0.1:8021/api/strategy-backtests/free-cash-flow-chinext-balanced-reversion`
 - `GET http://127.0.0.1:8021/api/shadow/current`
 - `GET http://127.0.0.1:8021/api/shadow/regime-attribution`
 - `GET http://127.0.0.1:8021/api/system/snapshot`
@@ -546,6 +548,7 @@ data/strategy_backtests/equal-weight-reversion-guarded.json
 data/strategy_backtests/free-cash-flow-buy-hold-480092.json
 data/strategy_backtests/free-cash-flow-chinext-dynamic.json
 data/strategy_backtests/free-cash-flow-chinext-reversion.json
+data/strategy_backtests/free-cash-flow-chinext-balanced-reversion.json
 ```
 
 The strategy pages `/strategy/defensive-dividend`, `/strategy/industry-momentum`,
@@ -554,7 +557,8 @@ The strategy pages `/strategy/defensive-dividend`, `/strategy/industry-momentum`
 `/strategy/equal-weight-reversion-guarded`, and
 `/strategy/free-cash-flow-buy-hold-480092`,
 `/strategy/free-cash-flow-chinext-dynamic`, and
-`/strategy/free-cash-flow-chinext-reversion` show the standalone chart, benchmark
+`/strategy/free-cash-flow-chinext-reversion`, and
+`/strategy/free-cash-flow-chinext-balanced-reversion` show the standalone chart, benchmark
 comparison, latest weights, and rebalance records for each strategy. These are
 ETF-level or index-level simulation backtests only; they do not select stocks,
 connect brokers, or place orders.

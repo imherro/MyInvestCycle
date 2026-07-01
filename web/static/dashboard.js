@@ -497,6 +497,13 @@ const STRATEGY_DIRECTORY_CARDS = [
     href: "/strategy/free-cash-flow-chinext-reversion",
     rule: "在自由现金流R和创业板R之间做相对回归：用两者净值比值 Z-score 判断谁相对偏热，反向增配另一边，始终保持满仓。",
   },
+  {
+    id: "free-cash-flow-chinext-balanced-reversion",
+    title: "FCF/创业板平衡回归",
+    badge: "Balanced",
+    href: "/strategy/free-cash-flow-chinext-balanced-reversion",
+    rule: "以 50/50 为底仓，风险平价只做小幅修正；只有相对比值极端且出现反转确认时才做回归倾斜，避免长期趋势里过早逆势。",
+  },
 ];
 
 const strategyDirectorySort = {

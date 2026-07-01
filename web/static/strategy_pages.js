@@ -630,9 +630,12 @@ function strategyFullDateRange(backtest) {
 }
 
 function strategyHasSelectableBenchmarks(backtest) {
-  return ["free_cash_flow_buy_hold", "free_cash_flow_chinext_dynamic", "free_cash_flow_chinext_reversion"].includes(
-    backtest.metadata?.indicator
-  );
+  return [
+    "free_cash_flow_buy_hold",
+    "free_cash_flow_chinext_dynamic",
+    "free_cash_flow_chinext_reversion",
+    "free_cash_flow_chinext_balanced_reversion",
+  ].includes(backtest.metadata?.indicator);
 }
 
 function strategyShiftIsoYear(isoDate, years) {
@@ -1123,6 +1126,9 @@ function strategySignalLabel(value) {
     fcf_chinext_reversion_init: "初始等权",
     fcf_chinext_reversion_rebalance: "回归调仓",
     fcf_chinext_reversion_hold: "继续持有",
+    fcf_chinext_balanced_reversion_init: "初始等权",
+    fcf_chinext_balanced_reversion_rebalance: "平衡回归调仓",
+    fcf_chinext_balanced_reversion_hold: "继续持有",
   };
   return labels[value] || value || "--";
 }
@@ -1144,6 +1150,7 @@ function strategySetGenericPage(sourceBacktest) {
   const isBuyHoldStrategy = metadata.indicator === "free_cash_flow_buy_hold";
   const isPairDynamicStrategy = metadata.indicator === "free_cash_flow_chinext_dynamic";
   const isPairReversionStrategy = metadata.indicator === "free_cash_flow_chinext_reversion";
+  const isPairBalancedReversionStrategy = metadata.indicator === "free_cash_flow_chinext_balanced_reversion";
   const comparisonLabel = summary.equal_weight_label || "等权";
   const annualizedReturn =
     typeof summary.annualized_return === "number" ? summary.annualized_return : performance.annualized_return;
@@ -1164,7 +1171,7 @@ function strategySetGenericPage(sourceBacktest) {
       : []),
     { label: "夏普", value: strategyFixedText(summary.sharpe, 2) },
     ...(typeof summary.calmar === "number" ? [{ label: "Calmar", value: strategyFixedText(summary.calmar, 2) }] : []),
-    ...(isPairReversionStrategy
+    ...(isPairReversionStrategy || isPairBalancedReversionStrategy
       ? [
           { label: "相对Z-score", value: strategyFixedText(summary.latest_relative_zscore, 2) },
           { label: "120日相关", value: strategyFixedText(summary.latest_rolling_correlation, 2) },
@@ -1215,6 +1222,10 @@ function strategySetGenericPage(sourceBacktest) {
     ? validation.alpha_positive_vs_equal_weight
       ? "相对回归策略跑赢 50/50 固定等权，说明两资产偏离后反向再平衡在当前样本有增益。"
       : "相对回归策略未跑赢 50/50 固定等权，说明当前参数下回归交易没有补偿调仓和错判成本。"
+    : isPairBalancedReversionStrategy
+    ? validation.alpha_positive_vs_equal_weight
+      ? "平衡回归策略跑赢 50/50 固定等权，说明底仓+风险平价微调+反转确认在当前样本有增益。"
+      : "平衡回归策略未跑赢 50/50 固定等权，说明当前确认条件和倾斜幅度仍不足以形成稳定超额。"
     : validation.mean_reversion_signal
     ? validation.alpha_positive_vs_equal_weight
       ? "本策略跑赢四 ETF 等权基准，说明当前均值回归规则有初步 alpha 证据。"
@@ -1226,7 +1237,7 @@ function strategySetGenericPage(sourceBacktest) {
       : "本策略未跑赢等权资产池，当前规则更适合保留为反例或继续优化。";
   strategySetText(
     "genericConclusion",
-    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isChannelStrategy ? " Tushare index_daily 指数日收益；图中红/灰/绿线为 2016 低点以来的对数直线上轨、中轨、下轨。本版通道包含当前研究锚点，适合复盘观察，不等同于严格无未来函数实盘信号。" : isReboundStrategy ? " Tushare index_daily 指数日收益；图中五条曲线分别代表 n=10%/12%/15%/18%/20%，策略摘要采用年化收益最高的阈值作为代表结果。现金收益暂按 0 处理。" : isBuyHoldStrategy ? " Tushare index_daily 全收益指数日收益；红/绿背景来自长期牛熊主周期，上证指数灰线只作市场环境背景参考。" : isPairDynamicStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，信号按收盘后计算并从下一交易日生效，红/绿背景来自长期牛熊主周期。" : isPairReversionStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，按相对比值 Z-score 做反向再平衡，信号按收盘后计算并从下一交易日生效。" : " ETF fund_daily pct_chg/pre_close。"}`
+    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isChannelStrategy ? " Tushare index_daily 指数日收益；图中红/灰/绿线为 2016 低点以来的对数直线上轨、中轨、下轨。本版通道包含当前研究锚点，适合复盘观察，不等同于严格无未来函数实盘信号。" : isReboundStrategy ? " Tushare index_daily 指数日收益；图中五条曲线分别代表 n=10%/12%/15%/18%/20%，策略摘要采用年化收益最高的阈值作为代表结果。现金收益暂按 0 处理。" : isBuyHoldStrategy ? " Tushare index_daily 全收益指数日收益；红/绿背景来自长期牛熊主周期，上证指数灰线只作市场环境背景参考。" : isPairDynamicStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，信号按收盘后计算并从下一交易日生效，红/绿背景来自长期牛熊主周期。" : isPairReversionStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，按相对比值 Z-score 做反向再平衡，信号按收盘后计算并从下一交易日生效。" : isPairBalancedReversionStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，以 50/50 为底仓，只有相对极端并反转确认时才做回归倾斜。" : " ETF fund_daily pct_chg/pre_close。"}`
   );
   const signalTarget = document.getElementById("genericSignalList");
   if (signalTarget) {
