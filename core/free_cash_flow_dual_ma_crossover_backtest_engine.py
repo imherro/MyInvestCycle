@@ -20,7 +20,7 @@ from core.free_cash_flow_trend_channel_backtest_engine import (
 
 
 BEST_FULL_SAMPLE_CODE = "fcf_dual_ma_best_full_sample"
-DRAWDOWN20_MA_RULE_CODE = "fcf_drawdown20_rebound40_ma30_90"
+DRAWDOWN20_MA_RULE_CODE = "fcf_drawdown15_rebound30_ma30_90"
 DRAWDOWN20_MA_RULE_EQUITY = "drawdown20_ma_equity"
 DRAWDOWN20_MA_RULE_RETURN = "drawdown20_ma_return"
 DRAWDOWN20_MA_RULE_EXPOSURE = "drawdown20_ma_exposure"
@@ -38,7 +38,7 @@ class FreeCashFlowDualMaCrossoverSpec:
         "默认研究规则为 MA30 / MA90：快线上穿慢线后，下一交易日恢复 100% 仓位；快线下穿慢线后，下一交易日降到 0%。",
         "均线样本不足时维持初始 100% 仓位；信号按收盘后计算，下一交易日生效；空仓现金收益暂按 0 处理。",
         "页面同时扫描快线=10/20/30/40/60/90/120 与慢线=90/120/150/180/200/250/300，且只保留快线小于慢线的组合。",
-        "额外测试规则：初始空仓，空仓期从已发生高点回撤达到 20% 后下一交易日满仓；持仓后先要求从持仓期最低点反弹 40% 以上，之后遇到 MA30 下穿 MA90 才在下一交易日清仓。",
+        "额外测试规则：初始空仓，空仓期从已发生高点回撤达到 15% 后下一交易日满仓；持仓后先要求从持仓期最低点反弹 30% 以上，之后遇到 MA30 下穿 MA90 才在下一交易日清仓；清仓后继续等待下一次 15% 回撤。",
         "默认 MA30/MA90 信号本身不使用未来价格；但该默认参数来自全样本筛参观察，只能用于研究，不能当作已验证实盘参数。",
     )
     index_code: str = FREE_CASH_FLOW_PRIMARY_CODE
@@ -229,8 +229,8 @@ def _simulate_drawdown20_ma_rule(
     *,
     fast_window: int = 30,
     slow_window: int = 90,
-    drawdown_threshold: float = 0.20,
-    rebound_threshold: float = 0.40,
+    drawdown_threshold: float = 0.15,
+    rebound_threshold: float = 0.30,
 ) -> tuple[pd.DataFrame, list[dict[str, object]]]:
     fast_ma = close.rolling(fast_window, min_periods=fast_window).mean()
     slow_ma = close.rolling(slow_window, min_periods=slow_window).mean()
@@ -275,8 +275,8 @@ def _simulate_drawdown20_ma_rule(
                     {
                         "date": date_text,
                         "apply_from_next_session": True,
-                        "strategy_signal": "fcf_drawdown20_ma_buy",
-                        "variant": "drawdown20_rebound40_ma30_90",
+                        "strategy_signal": "fcf_drawdown15_ma_buy",
+                        "variant": "drawdown15_rebound30_ma30_90",
                         "target_weights": target_weights,
                         "turnover_to_target": turnover,
                         "top_candidates": [
@@ -292,15 +292,15 @@ def _simulate_drawdown20_ma_rule(
                             }
                         ],
                         "rebalance_reason": {
-                            "label": "回撤20%满仓",
+                            "label": f"回撤{drawdown_threshold:.0%}满仓",
                             "detail": (
                                 f"空仓期高点 {high_since_exit:.2f}，收盘 {close_float:.2f}，"
-                                f"回撤 {drawdown:.1%} 达到 20% 阈值，下一交易日满仓。"
+                                f"回撤 {drawdown:.1%} 达到 {drawdown_threshold:.0%} 阈值，下一交易日满仓。"
                             ),
                             "drivers": [
                                 f"空仓期最高收盘价 {high_since_exit:.2f}",
                                 f"当前回撤 {drawdown:.1%}",
-                                "买入阈值 -20.0%",
+                                f"买入阈值 {-drawdown_threshold:.1%}",
                             ],
                         },
                     }
@@ -328,8 +328,8 @@ def _simulate_drawdown20_ma_rule(
                 {
                     "date": date_text,
                     "apply_from_next_session": True,
-                    "strategy_signal": "fcf_drawdown20_ma_sell",
-                    "variant": "drawdown20_rebound40_ma30_90",
+                    "strategy_signal": "fcf_drawdown15_ma_sell",
+                    "variant": "drawdown15_rebound30_ma30_90",
                     "target_weights": target_weights,
                     "turnover_to_target": turnover,
                     "top_candidates": [
@@ -351,7 +351,7 @@ def _simulate_drawdown20_ma_rule(
                         }
                     ],
                     "rebalance_reason": {
-                        "label": "反弹40%后MA30下穿MA90清仓",
+                        "label": f"反弹{rebound_threshold:.0%}后MA30下穿MA90清仓",
                         "detail": (
                             f"持仓期低点 {low_since_entry:.2f}，当前较低点反弹 {rebound_from_low:.1%}；"
                             f"收盘 {close_float:.2f}，MA{fast_window} {fast_value:.2f}，"
@@ -779,7 +779,7 @@ def run_free_cash_flow_dual_ma_crossover_backtest(
     )
     drawdown_rule_row = _metric_row(
         code=DRAWDOWN20_MA_RULE_CODE,
-        label="回撤20%买入 + 反弹40%后MA30/MA90死叉清仓",
+        label="回撤15%买入 + 反弹30%后MA30/MA90死叉清仓",
         group="测试规则",
         returns=frame[DRAWDOWN20_MA_RULE_RETURN],
         dates=frame["date"],
