@@ -437,6 +437,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
   const isFreeCashFlowPairReversion = backtest?.metadata?.indicator === "free_cash_flow_chinext_reversion";
   const isFreeCashFlowPairBalancedReversion =
     backtest?.metadata?.indicator === "free_cash_flow_chinext_balanced_reversion";
+  const isFreeCashFlowMaDeviation = backtest?.metadata?.indicator === "free_cash_flow_ma_deviation";
   const hasCycleBackground =
     isFreeCashFlowBuyHold || isFreeCashFlowPairDynamic || isFreeCashFlowPairReversion || isFreeCashFlowPairBalancedReversion;
   const isFreeCashFlowIndexStrategy =
@@ -445,7 +446,8 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     isFreeCashFlowBuyHold ||
     isFreeCashFlowPairDynamic ||
     isFreeCashFlowPairReversion ||
-    isFreeCashFlowPairBalancedReversion;
+    isFreeCashFlowPairBalancedReversion ||
+    isFreeCashFlowMaDeviation;
   const x = items.map((item) => toIsoDate(item.date));
   const visibleBenchmarkCodes = Array.isArray(options.visibleBenchmarkCodes)
     ? new Set(options.visibleBenchmarkCodes)
@@ -473,6 +475,8 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     "free-cash-flow-chinext-dynamic": { color: "#2563eb", dash: "solid", width: 2.7 },
     "free-cash-flow-chinext-reversion": { color: "#0f766e", dash: "solid", width: 2.7 },
     "free-cash-flow-chinext-balanced-reversion": { color: "#be123c", dash: "solid", width: 2.7 },
+    "free-cash-flow-ma-deviation": { color: "#0f766e", dash: "solid", width: 2.7 },
+    fcf_ma_best_full_sample: { color: "#be123c", dash: "longdash", width: 2.2 },
     fcf_chinext_fixed_equal: { color: "#9333ea", dash: "longdash", width: 2.1 },
     checked_equal_weight: { color: "#0f172a", dash: "longdash", width: 2.5 },
     checked_risk_parity: { color: "#0891b2", dash: "dashdot", width: 2.5 },
@@ -483,24 +487,39 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
   const indicatorItems = backtest?.indicator_curve || [];
   const indicatorByDate = new Map(indicatorItems.map((item) => [toIsoDate(item.date), item]));
   const signalItems = backtest?.signals || [];
-  const signalGroups = [
-    {
-      name: "上轨卖出",
-      color: "#dc2626",
-      symbol: "triangle-down",
-      items: signalItems.filter((item) =>
-        ["fcf_channel_half_reduce", "fcf_channel_full_exit"].includes(item.strategy_signal)
-      ),
-    },
-    {
-      name: "下轨买入",
-      color: "#16a34a",
-      symbol: "triangle-up",
-      items: signalItems.filter((item) => item.strategy_signal === "fcf_channel_full_buy"),
-    },
-  ];
+  const signalGroups = isFreeCashFlowMaDeviation
+    ? [
+        {
+          name: "高位减仓",
+          color: "#dc2626",
+          symbol: "triangle-down",
+          items: signalItems.filter((item) => item.strategy_signal === "fcf_ma_deviation_reduce"),
+        },
+        {
+          name: "低位买回",
+          color: "#16a34a",
+          symbol: "triangle-up",
+          items: signalItems.filter((item) => item.strategy_signal === "fcf_ma_deviation_buy"),
+        },
+      ]
+    : [
+        {
+          name: "上轨卖出",
+          color: "#dc2626",
+          symbol: "triangle-down",
+          items: signalItems.filter((item) =>
+            ["fcf_channel_half_reduce", "fcf_channel_full_exit"].includes(item.strategy_signal)
+          ),
+        },
+        {
+          name: "下轨买入",
+          color: "#16a34a",
+          symbol: "triangle-up",
+          items: signalItems.filter((item) => item.strategy_signal === "fcf_channel_full_buy"),
+        },
+      ];
   const signalTraces =
-    isFreeCashFlowTrend
+    isFreeCashFlowTrend || isFreeCashFlowMaDeviation
       ? signalGroups
           .filter((group) => group.items.length)
           .map((group) => ({
@@ -564,6 +583,9 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
         buildChannelBandTrace("上轨卖出区间", "upper_zone_equity", "upper_equity", "rgba(220, 38, 38, 0.12)"),
         buildChannelBandTrace("下轨买入区间", "lower_equity", "lower_zone_equity", "rgba(22, 163, 74, 0.12)"),
       ].filter(Boolean)
+    : [];
+  const maDeviationBandTraces = isFreeCashFlowMaDeviation
+    ? [buildChannelBandTrace("MA120 ±5% 偏离带", "lower_band_equity", "upper_band_equity", "rgba(15, 118, 110, 0.08)")].filter(Boolean)
     : [];
   const comparisonTraces = comparisonAssets.slice(0, 6).map((asset, index) => {
     const key = asset.code === "equal_weight" ? "equal_weight" : `benchmark_${String(asset.code || "").split(".")[0]}`;
@@ -665,6 +687,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
           ]
         : []),
       ...channelBandTraces,
+      ...maDeviationBandTraces,
       ...(isFreeCashFlowTrend
         ? [
             {
@@ -693,6 +716,37 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
               y: x.map((date) => indicatorByDate.get(date)?.lower_equity ?? null),
               line: { color: "#16a34a", width: 2.1 },
               hovertemplate: "%{x}<br>下轨 %{y:.3f}<extra></extra>",
+            },
+          ]
+        : []),
+      ...(isFreeCashFlowMaDeviation
+        ? [
+            {
+              type: "scatter",
+              mode: "lines",
+              name: "MA120",
+              x,
+              y: x.map((date) => indicatorByDate.get(date)?.ma_equity ?? null),
+              line: { color: "#64748b", width: 1.9, dash: "dash" },
+              hovertemplate: "%{x}<br>MA120 %{y:.3f}<extra></extra>",
+            },
+            {
+              type: "scatter",
+              mode: "lines",
+              name: "上偏离带 +5%",
+              x,
+              y: x.map((date) => indicatorByDate.get(date)?.upper_band_equity ?? null),
+              line: { color: "#dc2626", width: 1.8, dash: "dot" },
+              hovertemplate: "%{x}<br>上偏离带 %{y:.3f}<extra></extra>",
+            },
+            {
+              type: "scatter",
+              mode: "lines",
+              name: "下偏离带 -5%",
+              x,
+              y: x.map((date) => indicatorByDate.get(date)?.lower_band_equity ?? null),
+              line: { color: "#16a34a", width: 1.8, dash: "dot" },
+              hovertemplate: "%{x}<br>下偏离带 %{y:.3f}<extra></extra>",
             },
           ]
         : []),
@@ -731,6 +785,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
       },
       yaxis2: isFreeCashFlowPairReversion || isFreeCashFlowPairBalancedReversion
         ? {
+            anchor: "x",
             title: "Z-score",
             overlaying: "y",
             side: "right",
@@ -739,7 +794,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
             showgrid: false,
             tickfont: { size: 10, color: "#f97316" },
           }
-        : undefined,
+        : { anchor: "x", overlaying: "y", side: "right", visible: false, showgrid: false },
       legend: { orientation: "h", x: 0, y: 1.22, font: { size: 11 } },
     },
     { responsive: true, displayModeBar: false }

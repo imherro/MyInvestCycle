@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>策略回测</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260701-balanced-reversion-2" />
+    <link rel="stylesheet" href="/static/style.css?v=20260701-ma-deviation-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body data-page="strategy-generic">
@@ -113,6 +113,15 @@
         </div>
       </article>
 
+      <article class="chart-panel" id="genericParameterPanel" hidden>
+        <div class="panel-heading">
+          <h2 class="help-title" tabindex="0" data-help="全样本参数扫描结果，包含回看筛参，只用于研究参数敏感性，不代表实盘可直接采用。">参数扫描</h2>
+          <span class="panel-kicker" id="genericParameterCount">--</span>
+        </div>
+        <p class="result-note" id="genericParameterNote">--</p>
+        <div class="backtest-comparison-table" id="genericParameterTable"></div>
+      </article>
+
       <article class="chart-panel">
         <div class="panel-heading">
           <h2 class="help-title" tabindex="0" data-help="按时间倒序展示本策略的历史再平衡记录，含目标仓位、候选评分和调仓原因。">再平衡记录</h2>
@@ -124,8 +133,8 @@
       <p class="result-note" id="pageError"></p>
     </main>
     <div data-myinvest-footer></div>
-    <script src="/static/charts.js?v=20260701-balanced-reversion-2"></script>
-    <script src="/static/strategy_pages.js?v=20260701-balanced-reversion-2"></script>
+    <script src="/static/charts.js?v=20260701-ma-deviation-1"></script>
+    <script src="/static/strategy_pages.js?v=20260701-ma-deviation-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

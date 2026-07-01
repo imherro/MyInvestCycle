@@ -504,6 +504,13 @@ const STRATEGY_DIRECTORY_CARDS = [
     href: "/strategy/free-cash-flow-chinext-balanced-reversion",
     rule: "以 50/50 为底仓，风险平价做更大幅度修正；相对比值极端时先做预备回归倾斜，反转确认后加大倾斜。",
   },
+  {
+    id: "free-cash-flow-ma-deviation",
+    title: "FCF均线偏离",
+    badge: "FCF MA",
+    href: "/strategy/free-cash-flow-ma-deviation",
+    rule: "只交易 480092.CNI 自由现金流R指数；默认用 MA120 与 ±5% 偏离带调仓，低于下轨恢复满仓，高于上轨降到半仓；页面同时展示全样本参数扫描，筛参结果仅供研究。",
+  },
 ];
 
 const strategyDirectorySort = {
