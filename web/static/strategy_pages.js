@@ -1317,8 +1317,8 @@ function strategySetGenericPage(sourceBacktest) {
       : "默认 MA120/±5% 偏离策略未跑赢自由现金流R满仓基准，说明均线偏离更可能是仓位平滑工具；全样本最优参数只能作为研究参考。"
     : isDualMaStrategy
     ? validation.alpha_positive_vs_equal_weight
-      ? "默认 MA60/MA250 双均线策略跑赢自由现金流R满仓基准，说明趋势过滤在当前样本有初步收益改善。"
-      : "默认 MA60/MA250 双均线策略未跑赢自由现金流R满仓基准，说明金叉死叉更可能是回撤控制工具；全样本最优参数只能作为研究参考。"
+      ? "默认 MA30/MA90 双均线策略跑赢自由现金流R满仓基准，说明趋势过滤在当前样本有初步收益改善。"
+      : "默认 MA30/MA90 双均线策略未跑赢自由现金流R满仓基准，说明金叉死叉更可能是回撤控制工具；全样本最优参数只能作为研究参考。"
     : validation.mean_reversion_signal
     ? validation.alpha_positive_vs_equal_weight
       ? "本策略跑赢四 ETF 等权基准，说明当前均值回归规则有初步 alpha 证据。"
@@ -1330,7 +1330,7 @@ function strategySetGenericPage(sourceBacktest) {
       : "本策略未跑赢等权资产池，当前规则更适合保留为反例或继续优化。";
   strategySetText(
     "genericConclusion",
-    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isChannelStrategy ? " Tushare index_daily 指数日收益；图中红/灰/绿线为 2016 低点以来的对数直线上轨、中轨、下轨。本版通道包含当前研究锚点，适合复盘观察，不等同于严格无未来函数实盘信号。" : isReboundStrategy ? " Tushare index_daily 指数日收益；图中五条曲线分别代表 n=10%/12%/15%/18%/20%，策略摘要采用年化收益最高的阈值作为代表结果。现金收益暂按 0 处理。" : isBuyHoldStrategy ? " Tushare index_daily 全收益指数日收益；红/绿背景来自长期牛熊主周期，上证指数灰线只作市场环境背景参考。" : isPairDynamicStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，信号按收盘后计算并从下一交易日生效，红/绿背景来自长期牛熊主周期。" : isPairReversionStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，按相对比值 Z-score 做反向再平衡，信号按收盘后计算并从下一交易日生效。" : isPairBalancedReversionStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，以 50/50 为底仓，相对极端时先做预备回归倾斜，反转确认后加大倾斜。" : isMaDeviationStrategy ? " Tushare index_daily 全收益指数日收益；默认 MA120/±5% 信号按收盘后计算并从下一交易日生效。参数扫描是全样本回看筛参，含未来函数，只能用于研究。" : isDualMaStrategy ? " Tushare index_daily 全收益指数日收益；默认 MA60/MA250 金叉/死叉信号按收盘后计算并从下一交易日生效。参数扫描是全样本回看筛参，含未来函数，只能用于研究。" : " ETF fund_daily pct_chg/pre_close。"}`
+    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isChannelStrategy ? " Tushare index_daily 指数日收益；图中红/灰/绿线为 2016 低点以来的对数直线上轨、中轨、下轨。本版通道包含当前研究锚点，适合复盘观察，不等同于严格无未来函数实盘信号。" : isReboundStrategy ? " Tushare index_daily 指数日收益；图中五条曲线分别代表 n=10%/12%/15%/18%/20%，策略摘要采用年化收益最高的阈值作为代表结果。现金收益暂按 0 处理。" : isBuyHoldStrategy ? " Tushare index_daily 全收益指数日收益；红/绿背景来自长期牛熊主周期，上证指数灰线只作市场环境背景参考。" : isPairDynamicStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，信号按收盘后计算并从下一交易日生效，红/绿背景来自长期牛熊主周期。" : isPairReversionStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，按相对比值 Z-score 做反向再平衡，信号按收盘后计算并从下一交易日生效。" : isPairBalancedReversionStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，以 50/50 为底仓，相对极端时先做预备回归倾斜，反转确认后加大倾斜。" : isMaDeviationStrategy ? " Tushare index_daily 全收益指数日收益；默认 MA120/±5% 信号按收盘后计算并从下一交易日生效。参数扫描是全样本回看筛参，含未来函数，只能用于研究。" : isDualMaStrategy ? " Tushare index_daily 全收益指数日收益；默认 MA30/MA90 金叉/死叉信号按收盘后计算并从下一交易日生效。默认参数来自全样本筛参观察，含未来函数，只能用于研究。" : " ETF fund_daily pct_chg/pre_close。"}`
   );
   const signalTarget = document.getElementById("genericSignalList");
   if (signalTarget) {

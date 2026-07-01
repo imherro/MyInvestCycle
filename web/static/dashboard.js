@@ -516,7 +516,7 @@ const STRATEGY_DIRECTORY_CARDS = [
     title: "FCF双均线",
     badge: "Dual MA",
     href: "/strategy/free-cash-flow-dual-ma-crossover",
-    rule: "只交易 480092.CNI 自由现金流R指数；默认 MA60/MA250 金叉满仓、死叉空仓；页面同时展示快慢均线参数扫描和样本外验证，筛参结果仅供研究。",
+    rule: "只交易 480092.CNI 自由现金流R指数；默认 MA30/MA90 金叉满仓、死叉空仓；页面同时展示快慢均线参数扫描和样本外验证，筛参结果仅供研究。",
   },
 ];
 

@@ -30,17 +30,17 @@ class FreeCashFlowDualMaCrossoverSpec:
     description: str = "只交易 480092.CNI 国证自由现金流R指数，按快慢均线金叉满仓、死叉空仓。"
     method: tuple[str, ...] = (
         "标的、信号和主基准统一使用 480092.CNI 国证自由现金流R指数，全仓持有 480092.CNI 作为基准。",
-        "默认实盘规则为 MA60 / MA250：快线上穿慢线后，下一交易日恢复 100% 仓位；快线下穿慢线后，下一交易日降到 0%。",
+        "默认研究规则为 MA30 / MA90：快线上穿慢线后，下一交易日恢复 100% 仓位；快线下穿慢线后，下一交易日降到 0%。",
         "均线样本不足时维持初始 100% 仓位；信号按收盘后计算，下一交易日生效；空仓现金收益暂按 0 处理。",
         "页面同时扫描快线=10/20/30/40/60/90/120 与慢线=90/120/150/180/200/250/300，且只保留快线小于慢线的组合。",
-        "默认 MA60/MA250 策略不使用未来数据；参数扫描为全样本回看筛参，只能用于研究，不能当作已验证实盘参数。",
+        "默认 MA30/MA90 信号本身不使用未来价格；但该默认参数来自全样本筛参观察，只能用于研究，不能当作已验证实盘参数。",
     )
     index_code: str = FREE_CASH_FLOW_PRIMARY_CODE
     benchmark_codes: tuple[str, ...] = (FREE_CASH_FLOW_PRIMARY_CODE,)
     fast_windows: tuple[int, ...] = (10, 20, 30, 40, 60, 90, 120)
     slow_windows: tuple[int, ...] = (90, 120, 150, 180, 200, 250, 300)
-    default_fast_window: int = 60
-    default_slow_window: int = 250
+    default_fast_window: int = 30
+    default_slow_window: int = 90
     high_exposure: float = 1.0
     low_exposure: float = 0.0
     warmup_calendar_days: int = 1400
@@ -691,9 +691,9 @@ def run_free_cash_flow_dual_ma_crossover_backtest(
             "benchmark_codes": list(spec.benchmark_codes),
             "indicator": "free_cash_flow_dual_ma_crossover",
             "return_source": "Tushare index_daily for 480092.CNI total-return index series.",
-            "signal_timing": "Default MA60/MA250 signal is generated after close on date t and applied starting t+1.",
+            "signal_timing": "Default MA30/MA90 signal is generated after close on date t and applied starting t+1.",
             "no_lookahead_bias": True,
-            "lookahead_note": "默认 MA60/MA250 策略无未来函数；页面包含全样本参数扫描，最优参数属于回看筛参研究结果。",
+            "lookahead_note": "默认 MA30/MA90 信号计算无未来价格；但默认参数来自全样本筛参观察，页面整体仍按含未来函数研究结果标注。",
             "parameter_scan_lookahead": True,
             "evaluation_only": True,
             "no_stock_selection": True,

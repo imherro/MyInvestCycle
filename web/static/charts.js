@@ -439,6 +439,9 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     backtest?.metadata?.indicator === "free_cash_flow_chinext_balanced_reversion";
   const isFreeCashFlowMaDeviation = backtest?.metadata?.indicator === "free_cash_flow_ma_deviation";
   const isFreeCashFlowDualMa = backtest?.metadata?.indicator === "free_cash_flow_dual_ma_crossover";
+  const dualMaDefaultParameter = backtest?.summary?.default_parameter || {};
+  const dualMaFastLabel = dualMaDefaultParameter.fast_window ? `MA${dualMaDefaultParameter.fast_window}` : "快线";
+  const dualMaSlowLabel = dualMaDefaultParameter.slow_window ? `MA${dualMaDefaultParameter.slow_window}` : "慢线";
   const hasCycleBackground =
     isFreeCashFlowBuyHold || isFreeCashFlowPairDynamic || isFreeCashFlowPairReversion || isFreeCashFlowPairBalancedReversion;
   const isFreeCashFlowIndexStrategy =
@@ -774,7 +777,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
             {
               type: "scatter",
               mode: "lines",
-              name: "快线 MA60",
+              name: `快线 ${dualMaFastLabel}`,
               x,
               y: x.map((date) => indicatorByDate.get(date)?.fast_ma_equity ?? null),
               line: { color: "#f97316", width: 1.9, dash: "dash" },
@@ -783,7 +786,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
             {
               type: "scatter",
               mode: "lines",
-              name: "慢线 MA250",
+              name: `慢线 ${dualMaSlowLabel}`,
               x,
               y: x.map((date) => indicatorByDate.get(date)?.slow_ma_equity ?? null),
               line: { color: "#64748b", width: 1.9, dash: "dot" },
