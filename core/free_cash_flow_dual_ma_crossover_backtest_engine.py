@@ -20,7 +20,7 @@ from core.free_cash_flow_trend_channel_backtest_engine import (
 
 
 BEST_FULL_SAMPLE_CODE = "fcf_dual_ma_best_full_sample"
-DRAWDOWN20_MA_RULE_CODE = "fcf_drawdown15_rebound30_ma30_90"
+DRAWDOWN20_MA_RULE_CODE = "fcf_peak_drawdown10_clear_20_full"
 DRAWDOWN20_MA_RULE_EQUITY = "drawdown20_ma_equity"
 DRAWDOWN20_MA_RULE_RETURN = "drawdown20_ma_return"
 DRAWDOWN20_MA_RULE_EXPOSURE = "drawdown20_ma_exposure"
@@ -38,7 +38,7 @@ class FreeCashFlowDualMaCrossoverSpec:
         "默认研究规则为 MA30 / MA90：快线上穿慢线后，下一交易日恢复 100% 仓位；快线下穿慢线后，下一交易日降到 0%。",
         "均线样本不足时维持初始 100% 仓位；信号按收盘后计算，下一交易日生效；空仓现金收益暂按 0 处理。",
         "页面同时扫描快线=10/20/30/40/60/90/120 与慢线=90/120/150/180/200/250/300，且只保留快线小于慢线的组合。",
-        "额外测试规则：初始空仓，空仓期从已发生高点回撤达到 15% 后下一交易日满仓；持仓后先要求从持仓期最低点反弹 30% 以上，之后遇到 MA30 下穿 MA90 才在下一交易日清仓；清仓后继续等待下一次 15% 回撤。",
+        "额外测试规则：初始满仓，跟踪已发生最高收盘价；满仓时从高点回撤达到 10% 后下一交易日清仓，空仓后若继续回撤达到 20% 后下一交易日恢复满仓；深跌买回后，需先收复到 10% 回撤以内才重新触发下一次 10% 清仓。",
         "默认 MA30/MA90 信号本身不使用未来价格；但该默认参数来自全样本筛参观察，只能用于研究，不能当作已验证实盘参数。",
     )
     index_code: str = FREE_CASH_FLOW_PRIMARY_CODE
@@ -227,27 +227,36 @@ def _simulate_drawdown20_ma_rule(
     close: pd.Series,
     returns: pd.Series,
     *,
-    fast_window: int = 30,
-    slow_window: int = 90,
-    drawdown_threshold: float = 0.15,
-    rebound_threshold: float = 0.30,
+    sell_drawdown_threshold: float = 0.10,
+    buy_drawdown_threshold: float = 0.20,
 ) -> tuple[pd.DataFrame, list[dict[str, object]]]:
-    fast_ma = close.rolling(fast_window, min_periods=fast_window).mean()
-    slow_ma = close.rolling(slow_window, min_periods=slow_window).mean()
-    spread = fast_ma / slow_ma - 1.0
-    current_exposure = 0.0
+    current_exposure = 1.0
     current_weights = _weights(current_exposure)
     pending_turnover = 0.0
-    high_since_exit: float | None = None
-    low_since_entry: float | None = None
-    rebound_gate_met = False
-    previous_spread: float | None = None
+    running_high: float | None = None
+    sell_armed = True
     records: list[dict[str, object]] = []
-    signals: list[dict[str, object]] = []
+    signals: list[dict[str, object]] = [
+        {
+            "date": str(close.index[0]),
+            "apply_from_next_session": False,
+            "strategy_signal": "fcf_peak_drawdown_init",
+            "variant": "peak_drawdown10_clear_20_full",
+            "target_weights": _weights(current_exposure),
+            "turnover_to_target": 1.0,
+            "top_candidates": [],
+            "rebalance_reason": {
+                "label": "初始满仓",
+                "detail": "初始按 100% 持有自由现金流R，跟踪历史最高收盘价与回撤阈值。",
+            },
+        }
+    ]
 
     for date_text, close_value in close.items():
         date_text = str(date_text)
         close_float = float(close_value)
+        running_high = close_float if running_high is None else max(running_high, close_float)
+        drawdown = close_float / running_high - 1.0 if running_high else 0.0
         current_return = float(returns.loc[date_text])
         records.append(
             {
@@ -259,15 +268,61 @@ def _simulate_drawdown20_ma_rule(
         )
         pending_turnover = 0.0
 
-        current_spread_value = spread.loc[date_text]
-        current_spread = None if pd.isna(current_spread_value) else float(current_spread_value)
-        fast_value = None if pd.isna(fast_ma.loc[date_text]) else float(fast_ma.loc[date_text])
-        slow_value = None if pd.isna(slow_ma.loc[date_text]) else float(slow_ma.loc[date_text])
+        if drawdown > -sell_drawdown_threshold:
+            sell_armed = True
 
-        if current_exposure < 0.5:
-            high_since_exit = close_float if high_since_exit is None else max(high_since_exit, close_float)
-            drawdown = close_float / high_since_exit - 1.0 if high_since_exit else 0.0
-            if drawdown <= -drawdown_threshold:
+        if current_exposure >= 0.5:
+            if sell_armed and drawdown <= -sell_drawdown_threshold:
+                target_exposure = 0.0
+                target_weights = _weights(target_exposure)
+                turnover = _target_turnover(current_weights, target_weights)
+                signals.append(
+                    {
+                        "date": date_text,
+                        "apply_from_next_session": True,
+                        "strategy_signal": "fcf_peak_drawdown10_clear",
+                        "variant": "peak_drawdown10_clear_20_full",
+                        "target_weights": target_weights,
+                        "turnover_to_target": turnover,
+                        "top_candidates": [
+                            {
+                                "code": FREE_CASH_FLOW_PRIMARY_CODE,
+                                "name": "国证自由现金流R指数",
+                                "group": "自由现金流R",
+                                "score": round(float(-drawdown), 6),
+                                "target_weight": 0.0,
+                                "sell_drawdown_threshold": round(float(sell_drawdown_threshold), 6),
+                                "running_high": round(float(running_high), 4),
+                                "current_drawdown": round(float(drawdown), 6),
+                            },
+                            {
+                                "code": "CASH",
+                                "name": "现金",
+                                "group": "现金/空仓",
+                                "score": 1.0,
+                                "target_weight": 1.0,
+                            },
+                        ],
+                        "rebalance_reason": {
+                            "label": f"高点回撤{sell_drawdown_threshold:.0%}清仓",
+                            "detail": (
+                                f"历史最高收盘 {running_high:.2f}，当前收盘 {close_float:.2f}，"
+                                f"回撤 {drawdown:.1%} 达到 {sell_drawdown_threshold:.0%} 清仓阈值，下一交易日清仓。"
+                            ),
+                            "drivers": [
+                                f"历史最高收盘价 {running_high:.2f}",
+                                f"当前回撤 {drawdown:.1%}",
+                                f"清仓阈值 {-sell_drawdown_threshold:.1%}",
+                            ],
+                        },
+                    }
+                )
+                current_exposure = target_exposure
+                current_weights = target_weights
+                pending_turnover = turnover
+                sell_armed = False
+        else:
+            if drawdown <= -buy_drawdown_threshold:
                 target_exposure = 1.0
                 target_weights = _weights(target_exposure)
                 turnover = _target_turnover(current_weights, target_weights)
@@ -275,8 +330,8 @@ def _simulate_drawdown20_ma_rule(
                     {
                         "date": date_text,
                         "apply_from_next_session": True,
-                        "strategy_signal": "fcf_drawdown15_ma_buy",
-                        "variant": "drawdown15_rebound30_ma30_90",
+                        "strategy_signal": "fcf_peak_drawdown20_full",
+                        "variant": "peak_drawdown10_clear_20_full",
                         "target_weights": target_weights,
                         "turnover_to_target": turnover,
                         "top_candidates": [
@@ -286,21 +341,21 @@ def _simulate_drawdown20_ma_rule(
                                 "group": "自由现金流R",
                                 "score": round(float(-drawdown), 6),
                                 "target_weight": 1.0,
-                                "drawdown_threshold": round(float(drawdown_threshold), 6),
-                                "high_since_exit": round(float(high_since_exit), 4),
+                                "buy_drawdown_threshold": round(float(buy_drawdown_threshold), 6),
+                                "running_high": round(float(running_high), 4),
                                 "current_drawdown": round(float(drawdown), 6),
                             }
                         ],
                         "rebalance_reason": {
-                            "label": f"回撤{drawdown_threshold:.0%}满仓",
+                            "label": f"高点回撤{buy_drawdown_threshold:.0%}满仓",
                             "detail": (
-                                f"空仓期高点 {high_since_exit:.2f}，收盘 {close_float:.2f}，"
-                                f"回撤 {drawdown:.1%} 达到 {drawdown_threshold:.0%} 阈值，下一交易日满仓。"
+                                f"历史最高收盘 {running_high:.2f}，当前收盘 {close_float:.2f}，"
+                                f"回撤 {drawdown:.1%} 达到 {buy_drawdown_threshold:.0%} 买入阈值，下一交易日满仓。"
                             ),
                             "drivers": [
-                                f"空仓期最高收盘价 {high_since_exit:.2f}",
+                                f"历史最高收盘价 {running_high:.2f}",
                                 f"当前回撤 {drawdown:.1%}",
-                                f"买入阈值 {-drawdown_threshold:.1%}",
+                                f"买入阈值 {-buy_drawdown_threshold:.1%}",
                             ],
                         },
                     }
@@ -308,74 +363,7 @@ def _simulate_drawdown20_ma_rule(
                 current_exposure = target_exposure
                 current_weights = target_weights
                 pending_turnover = turnover
-                low_since_entry = close_float
-                rebound_gate_met = False
-        else:
-            low_since_entry = close_float if low_since_entry is None else min(low_since_entry, close_float)
-            rebound_from_low = close_float / low_since_entry - 1.0 if low_since_entry else 0.0
-            if rebound_from_low >= rebound_threshold:
-                rebound_gate_met = True
-            death_cross = previous_spread is not None and current_spread is not None and previous_spread >= 0 > current_spread
-            if not rebound_gate_met or not death_cross:
-                if current_spread is not None:
-                    previous_spread = current_spread
-                continue
-
-            target_exposure = 0.0
-            target_weights = _weights(target_exposure)
-            turnover = _target_turnover(current_weights, target_weights)
-            signals.append(
-                {
-                    "date": date_text,
-                    "apply_from_next_session": True,
-                    "strategy_signal": "fcf_drawdown15_ma_sell",
-                    "variant": "drawdown15_rebound30_ma30_90",
-                    "target_weights": target_weights,
-                    "turnover_to_target": turnover,
-                    "top_candidates": [
-                        {
-                            "code": FREE_CASH_FLOW_PRIMARY_CODE,
-                            "name": "国证自由现金流R指数",
-                            "group": "自由现金流R",
-                            "score": round(float(current_spread), 6),
-                            "target_weight": 0.0,
-                            "fast_window": fast_window,
-                            "slow_window": slow_window,
-                            "close": round(close_float, 4),
-                            "fast_ma": None if fast_value is None else round(fast_value, 4),
-                            "slow_ma": None if slow_value is None else round(slow_value, 4),
-                            "ma_spread": round(float(current_spread), 6),
-                            "low_since_entry": None if low_since_entry is None else round(float(low_since_entry), 4),
-                            "rebound_from_low": round(float(rebound_from_low), 6),
-                            "rebound_threshold": round(float(rebound_threshold), 6),
-                        }
-                    ],
-                    "rebalance_reason": {
-                        "label": f"反弹{rebound_threshold:.0%}后MA30下穿MA90清仓",
-                        "detail": (
-                            f"持仓期低点 {low_since_entry:.2f}，当前较低点反弹 {rebound_from_low:.1%}；"
-                            f"收盘 {close_float:.2f}，MA{fast_window} {fast_value:.2f}，"
-                            f"MA{slow_window} {slow_value:.2f}，快慢线差 {current_spread:.2%}，"
-                            "下一交易日清仓。"
-                        ),
-                        "drivers": [
-                            f"持仓期低点以来反弹 {rebound_from_low:.1%}",
-                            f"反弹阈值 {rebound_threshold:.1%}",
-                            f"MA{fast_window} 下穿 MA{slow_window}",
-                            f"快慢线差 {current_spread:.2%}",
-                        ],
-                    },
-                }
-            )
-            current_exposure = target_exposure
-            current_weights = target_weights
-            pending_turnover = turnover
-            high_since_exit = close_float
-            low_since_entry = None
-            rebound_gate_met = False
-
-        if current_spread is not None:
-            previous_spread = current_spread
+                sell_armed = False
 
     return pd.DataFrame(records), signals
 
@@ -779,7 +767,7 @@ def run_free_cash_flow_dual_ma_crossover_backtest(
     )
     drawdown_rule_row = _metric_row(
         code=DRAWDOWN20_MA_RULE_CODE,
-        label="回撤15%买入 + 反弹30%后MA30/MA90死叉清仓",
+        label="高点回撤10%清仓 / 20%满仓",
         group="测试规则",
         returns=frame[DRAWDOWN20_MA_RULE_RETURN],
         dates=frame["date"],
