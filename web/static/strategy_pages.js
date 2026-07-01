@@ -629,7 +629,11 @@ function strategySetGenericParameterScan(summary) {
   strategySetText("genericParameterCount", `前 ${topRows.length} / ${rows.length} 组参数`);
   const noteTarget = document.getElementById("genericParameterNote");
   if (noteTarget) {
-    noteTarget.innerHTML = `默认参数：${strategyEscapeHtml(defaultVariant.label || "--")}；全样本 Calmar 最优：${strategyEscapeHtml(bestVariant.label || "--")}；年化收益最高：${strategyEscapeHtml(bestAnnualizedVariant.label || "--")}。<strong class="lookahead-inline">未来函数</strong>${strategyEscapeHtml(summary.parameter_scan_lookahead_note || "全样本筛参只用于研究参数敏感性。")}`;
+    const sample = summary.sample_validation || {};
+    const sampleText = sample.train_best_calmar_test
+      ? ` 样本外：训练段 Calmar 最优 ${strategyEscapeHtml(sample.train_best_calmar?.label || "--")} 在测试段年化 ${strategySignedRatioText(sample.train_best_calmar_test.annualized_return)}，最大回撤 ${strategyPercentText(sample.train_best_calmar_test.max_drawdown)}。`
+      : "";
+    noteTarget.innerHTML = `默认参数：${strategyEscapeHtml(defaultVariant.label || "--")}；全样本 Calmar 最优：${strategyEscapeHtml(bestVariant.label || "--")}；年化收益最高：${strategyEscapeHtml(bestAnnualizedVariant.label || "--")}。<strong class="lookahead-inline">未来函数</strong>${strategyEscapeHtml(summary.parameter_scan_lookahead_note || "全样本筛参只用于研究参数敏感性。")}${sampleText}`;
   }
   table.innerHTML = `
     <div class="backtest-comparison-row backtest-comparison-head parameter-table-row">
@@ -1190,6 +1194,9 @@ function strategySignalLabel(value) {
     fcf_ma_deviation_init: "初始满仓",
     fcf_ma_deviation_buy: "低位恢复满仓",
     fcf_ma_deviation_reduce: "高位降到半仓",
+    fcf_dual_ma_init: "初始满仓",
+    fcf_dual_ma_golden_cross_buy: "金叉满仓",
+    fcf_dual_ma_death_cross_sell: "死叉空仓",
   };
   return labels[value] || value || "--";
 }
@@ -1213,6 +1220,7 @@ function strategySetGenericPage(sourceBacktest) {
   const isPairReversionStrategy = metadata.indicator === "free_cash_flow_chinext_reversion";
   const isPairBalancedReversionStrategy = metadata.indicator === "free_cash_flow_chinext_balanced_reversion";
   const isMaDeviationStrategy = metadata.indicator === "free_cash_flow_ma_deviation";
+  const isDualMaStrategy = metadata.indicator === "free_cash_flow_dual_ma_crossover";
   const comparisonLabel = summary.equal_weight_label || "等权";
   const annualizedReturn =
     typeof summary.annualized_return === "number" ? summary.annualized_return : performance.annualized_return;
@@ -1242,6 +1250,13 @@ function strategySetGenericPage(sourceBacktest) {
     ...(isMaDeviationStrategy
       ? [
           { label: "最新MA偏离", value: strategySignedRatioText(summary.latest_ma_deviation) },
+          { label: "Calmar最优参数", value: summary.best_parameter?.label || "--" },
+          { label: "年化最高参数", value: summary.best_annualized_parameter?.label || "--" },
+        ]
+      : []),
+    ...(isDualMaStrategy
+      ? [
+          { label: "最新快慢线差", value: strategySignedRatioText(summary.latest_ma_spread) },
           { label: "Calmar最优参数", value: summary.best_parameter?.label || "--" },
           { label: "年化最高参数", value: summary.best_annualized_parameter?.label || "--" },
         ]
@@ -1300,6 +1315,10 @@ function strategySetGenericPage(sourceBacktest) {
     ? validation.alpha_positive_vs_equal_weight
       ? "默认 MA120/±5% 偏离策略跑赢自由现金流R满仓基准，说明均线偏离调仓在当前样本有初步收益改善。"
       : "默认 MA120/±5% 偏离策略未跑赢自由现金流R满仓基准，说明均线偏离更可能是仓位平滑工具；全样本最优参数只能作为研究参考。"
+    : isDualMaStrategy
+    ? validation.alpha_positive_vs_equal_weight
+      ? "默认 MA60/MA250 双均线策略跑赢自由现金流R满仓基准，说明趋势过滤在当前样本有初步收益改善。"
+      : "默认 MA60/MA250 双均线策略未跑赢自由现金流R满仓基准，说明金叉死叉更可能是回撤控制工具；全样本最优参数只能作为研究参考。"
     : validation.mean_reversion_signal
     ? validation.alpha_positive_vs_equal_weight
       ? "本策略跑赢四 ETF 等权基准，说明当前均值回归规则有初步 alpha 证据。"
@@ -1311,7 +1330,7 @@ function strategySetGenericPage(sourceBacktest) {
       : "本策略未跑赢等权资产池，当前规则更适合保留为反例或继续优化。";
   strategySetText(
     "genericConclusion",
-    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isChannelStrategy ? " Tushare index_daily 指数日收益；图中红/灰/绿线为 2016 低点以来的对数直线上轨、中轨、下轨。本版通道包含当前研究锚点，适合复盘观察，不等同于严格无未来函数实盘信号。" : isReboundStrategy ? " Tushare index_daily 指数日收益；图中五条曲线分别代表 n=10%/12%/15%/18%/20%，策略摘要采用年化收益最高的阈值作为代表结果。现金收益暂按 0 处理。" : isBuyHoldStrategy ? " Tushare index_daily 全收益指数日收益；红/绿背景来自长期牛熊主周期，上证指数灰线只作市场环境背景参考。" : isPairDynamicStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，信号按收盘后计算并从下一交易日生效，红/绿背景来自长期牛熊主周期。" : isPairReversionStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，按相对比值 Z-score 做反向再平衡，信号按收盘后计算并从下一交易日生效。" : isPairBalancedReversionStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，以 50/50 为底仓，相对极端时先做预备回归倾斜，反转确认后加大倾斜。" : isMaDeviationStrategy ? " Tushare index_daily 全收益指数日收益；默认 MA120/±5% 信号按收盘后计算并从下一交易日生效。参数扫描是全样本回看筛参，含未来函数，只能用于研究。" : " ETF fund_daily pct_chg/pre_close。"}`
+    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isChannelStrategy ? " Tushare index_daily 指数日收益；图中红/灰/绿线为 2016 低点以来的对数直线上轨、中轨、下轨。本版通道包含当前研究锚点，适合复盘观察，不等同于严格无未来函数实盘信号。" : isReboundStrategy ? " Tushare index_daily 指数日收益；图中五条曲线分别代表 n=10%/12%/15%/18%/20%，策略摘要采用年化收益最高的阈值作为代表结果。现金收益暂按 0 处理。" : isBuyHoldStrategy ? " Tushare index_daily 全收益指数日收益；红/绿背景来自长期牛熊主周期，上证指数灰线只作市场环境背景参考。" : isPairDynamicStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，信号按收盘后计算并从下一交易日生效，红/绿背景来自长期牛熊主周期。" : isPairReversionStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，按相对比值 Z-score 做反向再平衡，信号按收盘后计算并从下一交易日生效。" : isPairBalancedReversionStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，以 50/50 为底仓，相对极端时先做预备回归倾斜，反转确认后加大倾斜。" : isMaDeviationStrategy ? " Tushare index_daily 全收益指数日收益；默认 MA120/±5% 信号按收盘后计算并从下一交易日生效。参数扫描是全样本回看筛参，含未来函数，只能用于研究。" : isDualMaStrategy ? " Tushare index_daily 全收益指数日收益；默认 MA60/MA250 金叉/死叉信号按收盘后计算并从下一交易日生效。参数扫描是全样本回看筛参，含未来函数，只能用于研究。" : " ETF fund_daily pct_chg/pre_close。"}`
   );
   const signalTarget = document.getElementById("genericSignalList");
   if (signalTarget) {

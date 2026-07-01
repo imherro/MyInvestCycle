@@ -139,6 +139,7 @@ STRATEGY_BACKTEST_IDS = {
     "free-cash-flow-chinext-reversion": "自由现金流R/创业板R相对回归策略",
     "free-cash-flow-chinext-balanced-reversion": "自由现金流R/创业板R平衡回归策略",
     "free-cash-flow-ma-deviation": "自由现金流R均线偏离策略",
+    "free-cash-flow-dual-ma-crossover": "自由现金流R双均线金叉死叉策略",
 }
 
 
@@ -506,6 +507,7 @@ def _api_catalog_payload() -> dict[str, object]:
                 _api_endpoint("GET", "/strategy/free-cash-flow-chinext-reversion", "打开自由现金流R/创业板R相对回归策略主页，查看相对比值 Z-score 和双指数对比。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/free-cash-flow-chinext-balanced-reversion", "打开自由现金流R/创业板R平衡回归策略主页，查看底仓、回归确认和双指数对比。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/free-cash-flow-ma-deviation", "打开自由现金流R均线偏离策略主页，查看 MA 偏离带、默认参数和全样本参数扫描。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/strategy/free-cash-flow-dual-ma-crossover", "打开自由现金流R双均线金叉死叉策略主页，查看快慢均线、交叉信号和参数扫描。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/rotation-history", "打开 ETF 轮动调仓历史表格页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/macro-style-history", "打开 Macro-Style-ETF 分层组合调仓历史表格页面。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/cycle-track", "打开本轮周期跟踪与概率展望页面。", "HTML page", freshness="page"),
@@ -595,7 +597,7 @@ def _api_catalog_payload() -> dict[str, object]:
                 _api_endpoint(
                     "GET",
                     "/api/strategy-backtests/{strategy_id}",
-                    "返回新增策略回测结果，strategy_id 支持 defensive-dividend、industry-momentum、four-asset、max-drawdown-batch、all-weather、equal-weight-reversion-basic、equal-weight-reversion-guarded、free-cash-flow-trend-half、free-cash-flow-trend-full、free-cash-flow-drawdown-rebound、free-cash-flow-buy-hold-480092、free-cash-flow-chinext-dynamic、free-cash-flow-chinext-reversion、free-cash-flow-chinext-balanced-reversion、free-cash-flow-ma-deviation。",
+                    "返回新增策略回测结果，strategy_id 支持 defensive-dividend、industry-momentum、four-asset、max-drawdown-batch、all-weather、equal-weight-reversion-basic、equal-weight-reversion-guarded、free-cash-flow-trend-half、free-cash-flow-trend-full、free-cash-flow-drawdown-rebound、free-cash-flow-buy-hold-480092、free-cash-flow-chinext-dynamic、free-cash-flow-chinext-reversion、free-cash-flow-chinext-balanced-reversion、free-cash-flow-ma-deviation、free-cash-flow-dual-ma-crossover。",
                     "strategy backtest artifact",
                     params=[{"name": "strategy_id", "required": "true", "format": "path"}],
                     freshness="generated artifact",
@@ -682,6 +684,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/strategy/free-cash-flow-chinext-reversion", "description": "查看自由现金流R/创业板R相对回归策略。"},
             {"path": "/strategy/free-cash-flow-chinext-balanced-reversion", "description": "查看自由现金流R/创业板R平衡回归策略。"},
             {"path": "/strategy/free-cash-flow-ma-deviation", "description": "查看自由现金流R均线偏离策略与参数扫描。"},
+            {"path": "/strategy/free-cash-flow-dual-ma-crossover", "description": "查看自由现金流R双均线金叉死叉策略与参数扫描。"},
             {"path": "/api/shadow/current", "description": "读取仓位风控回测与 510500 基准评估。"},
         ],
         "safety": {
@@ -809,6 +812,11 @@ def free_cash_flow_chinext_balanced_reversion_strategy_page():
 
 @app.get("/strategy/free-cash-flow-ma-deviation", response_class=HTMLResponse)
 def free_cash_flow_ma_deviation_strategy_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "strategy_generic.html")
+
+
+@app.get("/strategy/free-cash-flow-dual-ma-crossover", response_class=HTMLResponse)
+def free_cash_flow_dual_ma_crossover_strategy_page():
     return FileResponse(ROOT_DIR / "web" / "templates" / "strategy_generic.html")
 
 

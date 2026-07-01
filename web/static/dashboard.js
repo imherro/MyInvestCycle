@@ -511,6 +511,13 @@ const STRATEGY_DIRECTORY_CARDS = [
     href: "/strategy/free-cash-flow-ma-deviation",
     rule: "只交易 480092.CNI 自由现金流R指数；默认用 MA120 与 ±5% 偏离带调仓，低于下轨恢复满仓，高于上轨降到半仓；页面同时展示全样本参数扫描，筛参结果仅供研究。",
   },
+  {
+    id: "free-cash-flow-dual-ma-crossover",
+    title: "FCF双均线",
+    badge: "Dual MA",
+    href: "/strategy/free-cash-flow-dual-ma-crossover",
+    rule: "只交易 480092.CNI 自由现金流R指数；默认 MA60/MA250 金叉满仓、死叉空仓；页面同时展示快慢均线参数扫描和样本外验证，筛参结果仅供研究。",
+  },
 ];
 
 const strategyDirectorySort = {

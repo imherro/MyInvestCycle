@@ -438,6 +438,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
   const isFreeCashFlowPairBalancedReversion =
     backtest?.metadata?.indicator === "free_cash_flow_chinext_balanced_reversion";
   const isFreeCashFlowMaDeviation = backtest?.metadata?.indicator === "free_cash_flow_ma_deviation";
+  const isFreeCashFlowDualMa = backtest?.metadata?.indicator === "free_cash_flow_dual_ma_crossover";
   const hasCycleBackground =
     isFreeCashFlowBuyHold || isFreeCashFlowPairDynamic || isFreeCashFlowPairReversion || isFreeCashFlowPairBalancedReversion;
   const isFreeCashFlowIndexStrategy =
@@ -447,7 +448,8 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     isFreeCashFlowPairDynamic ||
     isFreeCashFlowPairReversion ||
     isFreeCashFlowPairBalancedReversion ||
-    isFreeCashFlowMaDeviation;
+    isFreeCashFlowMaDeviation ||
+    isFreeCashFlowDualMa;
   const x = items.map((item) => toIsoDate(item.date));
   const visibleBenchmarkCodes = Array.isArray(options.visibleBenchmarkCodes)
     ? new Set(options.visibleBenchmarkCodes)
@@ -477,6 +479,8 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     "free-cash-flow-chinext-balanced-reversion": { color: "#be123c", dash: "solid", width: 2.7 },
     "free-cash-flow-ma-deviation": { color: "#0f766e", dash: "solid", width: 2.7 },
     fcf_ma_best_full_sample: { color: "#be123c", dash: "longdash", width: 2.2 },
+    "free-cash-flow-dual-ma-crossover": { color: "#2563eb", dash: "solid", width: 2.7 },
+    fcf_dual_ma_best_full_sample: { color: "#be123c", dash: "longdash", width: 2.2 },
     fcf_chinext_fixed_equal: { color: "#9333ea", dash: "longdash", width: 2.1 },
     checked_equal_weight: { color: "#0f172a", dash: "longdash", width: 2.5 },
     checked_risk_parity: { color: "#0891b2", dash: "dashdot", width: 2.5 },
@@ -487,7 +491,22 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
   const indicatorItems = backtest?.indicator_curve || [];
   const indicatorByDate = new Map(indicatorItems.map((item) => [toIsoDate(item.date), item]));
   const signalItems = backtest?.signals || [];
-  const signalGroups = isFreeCashFlowMaDeviation
+  const signalGroups = isFreeCashFlowDualMa
+    ? [
+        {
+          name: "金叉买入",
+          color: "#16a34a",
+          symbol: "triangle-up",
+          items: signalItems.filter((item) => item.strategy_signal === "fcf_dual_ma_golden_cross_buy"),
+        },
+        {
+          name: "死叉卖出",
+          color: "#dc2626",
+          symbol: "triangle-down",
+          items: signalItems.filter((item) => item.strategy_signal === "fcf_dual_ma_death_cross_sell"),
+        },
+      ]
+    : isFreeCashFlowMaDeviation
     ? [
         {
           name: "高位减仓",
@@ -519,7 +538,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
         },
       ];
   const signalTraces =
-    isFreeCashFlowTrend || isFreeCashFlowMaDeviation
+    isFreeCashFlowTrend || isFreeCashFlowMaDeviation || isFreeCashFlowDualMa
       ? signalGroups
           .filter((group) => group.items.length)
           .map((group) => ({
@@ -747,6 +766,28 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
               y: x.map((date) => indicatorByDate.get(date)?.lower_band_equity ?? null),
               line: { color: "#16a34a", width: 1.8, dash: "dot" },
               hovertemplate: "%{x}<br>下偏离带 %{y:.3f}<extra></extra>",
+            },
+          ]
+        : []),
+      ...(isFreeCashFlowDualMa
+        ? [
+            {
+              type: "scatter",
+              mode: "lines",
+              name: "快线 MA60",
+              x,
+              y: x.map((date) => indicatorByDate.get(date)?.fast_ma_equity ?? null),
+              line: { color: "#f97316", width: 1.9, dash: "dash" },
+              hovertemplate: "%{x}<br>快线 %{y:.3f}<extra></extra>",
+            },
+            {
+              type: "scatter",
+              mode: "lines",
+              name: "慢线 MA250",
+              x,
+              y: x.map((date) => indicatorByDate.get(date)?.slow_ma_equity ?? null),
+              line: { color: "#64748b", width: 1.9, dash: "dot" },
+              hovertemplate: "%{x}<br>慢线 %{y:.3f}<extra></extra>",
             },
           ]
         : []),
