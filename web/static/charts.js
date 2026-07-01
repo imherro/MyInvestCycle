@@ -439,7 +439,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     ? new Set(options.visibleBenchmarkCodes)
     : null;
   const comparisonAssets = (backtest?.summary?.comparison_assets || []).filter((asset) =>
-    asset.always_visible || (visibleBenchmarkCodes ? visibleBenchmarkCodes.has(asset.code) : true)
+    visibleBenchmarkCodes ? visibleBenchmarkCodes.has(asset.code) : true
   );
   const primaryStrategyCode = backtest?.metadata?.index_code || "480092.CNI";
   const traceStyleByCode = {
@@ -459,6 +459,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     "518880.SH": { color: "#ca8a04", dash: "solid" },
     "480092.CNI": { color: "#111827", dash: "dashdot", width: 2.1 },
     checked_equal_weight: { color: "#0f172a", dash: "longdash", width: 2.5 },
+    checked_risk_parity: { color: "#0891b2", dash: "dashdot", width: 2.5 },
     commodity_basket: { color: "#be123c", dash: "dash" },
     equal_weight: { color: "#111827", dash: "dashdot", width: 2.2 },
   };

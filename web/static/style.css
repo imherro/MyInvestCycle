@@ -749,6 +749,11 @@ h2 {
   cursor: pointer;
 }
 
+.benchmark-toggle-list label.is-virtual {
+  border-color: rgba(8, 145, 178, 0.28);
+  background: rgba(8, 145, 178, 0.06);
+}
+
 .benchmark-toggle-list input {
   width: 14px;
   height: 14px;

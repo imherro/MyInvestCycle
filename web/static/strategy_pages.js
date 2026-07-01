@@ -1,5 +1,6 @@
 const strategyMetricTableSortState = {};
 const strategyBenchmarkToggleState = {};
+const strategyVirtualToggleState = {};
 const strategyRangeState = {};
 
 async function strategyGetJson(url) {
@@ -821,9 +822,68 @@ function strategyGetVisibleBenchmarkCodes(backtest) {
   return [...selected];
 }
 
+function strategyGetVisibleVirtualCodes(backtest) {
+  if (backtest.metadata?.indicator !== "free_cash_flow_buy_hold") return null;
+  const summary = backtest.summary || {};
+  const strategyId = summary.strategy_id || "generic";
+  const assets = (summary.comparison_assets || []).filter((asset) => asset.isVirtual || asset.always_visible);
+  if (!assets.length) return null;
+  if (!strategyVirtualToggleState[strategyId]) {
+    strategyVirtualToggleState[strategyId] = new Set(assets.map((asset) => asset.code));
+  }
+  const selected = strategyVirtualToggleState[strategyId];
+  const availableCodes = new Set(assets.map((asset) => asset.code));
+  for (const code of [...selected]) {
+    if (!availableCodes.has(code)) selected.delete(code);
+  }
+  return [...selected];
+}
+
+function strategyVisibleChartCodes(backtest) {
+  return [
+    ...(strategyGetVisibleVirtualCodes(backtest) || []),
+    ...(strategyGetVisibleBenchmarkCodes(backtest) || []),
+  ];
+}
+
 function strategyMean(values) {
   const clean = values.filter((value) => typeof value === "number" && Number.isFinite(value));
   return clean.length ? clean.reduce((sum, value) => sum + value, 0) / clean.length : null;
+}
+
+function strategyStandardDeviation(values) {
+  const clean = values.filter((value) => typeof value === "number" && Number.isFinite(value));
+  if (clean.length < 2) return null;
+  const mean = clean.reduce((sum, value) => sum + value, 0) / clean.length;
+  const variance = clean.reduce((sum, value) => sum + (value - mean) ** 2, 0) / (clean.length - 1);
+  return Math.sqrt(variance);
+}
+
+function strategyRiskParityWeights(returnRows, equityKeys, index, lookback = 60, minSamples = 20) {
+  if (index < minSamples) return null;
+  const start = Math.max(1, index - lookback);
+  const inverseVols = equityKeys.map((key) => {
+    const values = returnRows.slice(start, index).map((row) => row[key]);
+    const volatility = strategyStandardDeviation(values);
+    return volatility && volatility > 0 ? 1 / volatility : null;
+  });
+  if (inverseVols.some((value) => typeof value !== "number" || !Number.isFinite(value))) return null;
+  const total = inverseVols.reduce((sum, value) => sum + value, 0);
+  if (!total) return null;
+  return inverseVols.map((value) => value / total);
+}
+
+function strategyWeightedMean(values, weights) {
+  let total = 0;
+  let weightTotal = 0;
+  values.forEach((value, index) => {
+    const weight = weights?.[index];
+    if (typeof value === "number" && Number.isFinite(value) && typeof weight === "number" && Number.isFinite(weight)) {
+      total += value * weight;
+      weightTotal += weight;
+    }
+  });
+  return weightTotal > 0 ? total / weightTotal : null;
 }
 
 function strategyBuildCheckedEqualWeightBacktest(backtest, visibleBenchmarkCodes) {
@@ -837,26 +897,40 @@ function strategyBuildCheckedEqualWeightBacktest(backtest, visibleBenchmarkCodes
   const sourceRows = backtest.equity_curve || [];
   if (!sourceRows.length) return backtest;
 
+  const returnRows = sourceRows.map((row, index) => {
+    const previous = sourceRows[index - 1];
+    const returns = {};
+    equityKeys.forEach((key) => {
+      returns[key] =
+        index > 0 && previous && typeof row[key] === "number" && typeof previous[key] === "number" && previous[key] > 0
+          ? row[key] / previous[key] - 1
+          : null;
+    });
+    return returns;
+  });
   let equalWeightEquity = 1;
+  let riskParityEquity = 1;
   const equityCurve = sourceRows.map((row, index) => {
     if (index > 0) {
-      const previous = sourceRows[index - 1];
-      const returns = equityKeys.map((key) =>
-        typeof row[key] === "number" && typeof previous[key] === "number" && previous[key] > 0
-          ? row[key] / previous[key] - 1
-          : null
-      );
+      const returns = equityKeys.map((key) => returnRows[index][key]);
       equalWeightEquity *= 1 + (strategyMean(returns) || 0);
+      const riskWeights = strategyRiskParityWeights(returnRows, equityKeys, index);
+      riskParityEquity *= 1 + (strategyWeightedMean(returns, riskWeights) ?? strategyMean(returns) ?? 0);
     }
     return {
       ...row,
       checked_equal_weight_equity: equalWeightEquity,
+      checked_risk_parity_equity: riskParityEquity,
     };
   });
   const label =
     selectedAssets.length > 0
       ? `勾选等权ETF（自由现金流R + ${selectedAssets.length}个基准）`
       : "勾选等权ETF（仅自由现金流R）";
+  const riskParityLabel =
+    selectedAssets.length > 0
+      ? `勾选风险平价ETF（自由现金流R + ${selectedAssets.length}个基准）`
+      : "勾选风险平价ETF（仅自由现金流R）";
   const equalWeightMetric = strategyEquityMetricsFromCurve(
     {
       code: "checked_equal_weight",
@@ -871,30 +945,50 @@ function strategyBuildCheckedEqualWeightBacktest(backtest, visibleBenchmarkCodes
     equityCurve,
     "checked_equal_weight_equity"
   );
+  const riskParityMetric = strategyEquityMetricsFromCurve(
+    {
+      code: "checked_risk_parity",
+      name: "勾选风险平价ETF",
+      group: "虚拟风险平价",
+      label: riskParityLabel,
+      isVirtual: true,
+      always_visible: true,
+      equity_key: "checked_risk_parity_equity",
+      composition: ["480092.CNI", ...selectedAssets.map((asset) => asset.code)],
+      weighting: "60日滚动波动率倒数权重，样本不足时等权。",
+    },
+    equityCurve,
+    "checked_risk_parity_equity"
+  );
   const metricRows = backtest.summary?.metric_comparison_assets || [];
   const strategyRow = metricRows.find((item) => item.isStrategy);
-  const otherRows = metricRows.filter((item) => !item.isStrategy && item.code !== "checked_equal_weight");
+  const otherRows = metricRows.filter(
+    (item) => !item.isStrategy && !["checked_equal_weight", "checked_risk_parity"].includes(item.code)
+  );
+  const withStrategyGap = (metric) => ({
+    ...metric,
+    return_advantage:
+      typeof backtest.summary?.strategy_total_return === "number" && typeof metric.total_return === "number"
+        ? backtest.summary.strategy_total_return - metric.total_return
+        : null,
+    drawdown_reduction:
+      typeof backtest.summary?.max_drawdown === "number" && typeof metric.max_drawdown === "number"
+        ? backtest.summary.max_drawdown - metric.max_drawdown
+        : null,
+  });
   return {
     ...backtest,
     summary: {
       ...backtest.summary,
       comparison_assets: [
-        {
-          ...equalWeightMetric,
-          return_advantage:
-            typeof backtest.summary?.strategy_total_return === "number" && typeof equalWeightMetric.total_return === "number"
-              ? backtest.summary.strategy_total_return - equalWeightMetric.total_return
-              : null,
-          drawdown_reduction:
-            typeof backtest.summary?.max_drawdown === "number" && typeof equalWeightMetric.max_drawdown === "number"
-              ? backtest.summary.max_drawdown - equalWeightMetric.max_drawdown
-              : null,
-        },
+        withStrategyGap(equalWeightMetric),
+        withStrategyGap(riskParityMetric),
         ...baseComparisonAssets,
       ],
       metric_comparison_assets: [
         ...(strategyRow ? [strategyRow] : []),
         equalWeightMetric,
+        riskParityMetric,
         ...otherRows,
       ],
     },
@@ -907,37 +1001,46 @@ function strategySetGenericBenchmarkToggles(backtest, sourceBacktest = backtest)
   if (!target) return null;
   const summary = backtest.summary || {};
   const strategyId = summary.strategy_id || "generic";
-  const assets = (summary.comparison_assets || []).filter((asset) => !asset.always_visible && !asset.isVirtual);
-  if (backtest.metadata?.indicator !== "free_cash_flow_buy_hold" || !assets.length) {
+  const baseAssets = (summary.comparison_assets || []).filter((asset) => !asset.always_visible && !asset.isVirtual);
+  const virtualAssets = (summary.comparison_assets || []).filter((asset) => asset.always_visible || asset.isVirtual);
+  if (backtest.metadata?.indicator !== "free_cash_flow_buy_hold" || (!baseAssets.length && !virtualAssets.length)) {
     target.hidden = true;
     target.innerHTML = "";
     return null;
   }
   strategyGetVisibleBenchmarkCodes(backtest);
-  const selected = strategyBenchmarkToggleState[strategyId];
+  strategyGetVisibleVirtualCodes(backtest);
+  const selectedBase = strategyBenchmarkToggleState[strategyId] || new Set();
+  const selectedVirtual = strategyVirtualToggleState[strategyId] || new Set();
+  const checkboxHtml = (asset, kind, selected) => `
+    <label class="${kind === "virtual" ? "is-virtual" : ""}">
+      <input type="checkbox" value="${strategyEscapeHtml(asset.code)}" data-toggle-kind="${kind}" ${selected.has(asset.code) ? "checked" : ""} />
+      <i></i>
+      ${strategyEscapeHtml(asset.group || asset.label || asset.code)}
+    </label>
+  `;
   target.hidden = false;
   target.innerHTML = `
-    <span>图上显示基准 · 等权ETF=自由现金流R+勾选项每日等权</span>
-    ${assets
-      .map(
-        (asset) => `
-          <label>
-            <input type="checkbox" value="${strategyEscapeHtml(asset.code)}" ${selected.has(asset.code) ? "checked" : ""} />
-            <i></i>
-            ${strategyEscapeHtml(asset.group || asset.label || asset.code)}
-          </label>
-        `
-      )
-      .join("")}
+    <span>图上显示基准 · 虚拟ETF=自由现金流R+勾选项</span>
+    ${virtualAssets.map((asset) => checkboxHtml(asset, "virtual", selectedVirtual)).join("")}
+    ${baseAssets.map((asset) => checkboxHtml(asset, "base", selectedBase)).join("")}
   `;
   target.onchange = (event) => {
     const input = event.target.closest("input[type='checkbox']");
     if (!input) return;
-    if (input.checked) selected.add(input.value);
-    else selected.delete(input.value);
+    if (input.dataset.toggleKind === "virtual") {
+      if (input.checked) selectedVirtual.add(input.value);
+      else selectedVirtual.delete(input.value);
+      renderStrategyBacktestChart("genericStrategyChart", backtest, {
+        visibleBenchmarkCodes: strategyVisibleChartCodes(backtest),
+      });
+      return;
+    }
+    if (input.checked) selectedBase.add(input.value);
+    else selectedBase.delete(input.value);
     strategySetGenericPage(sourceBacktest);
   };
-  return [...selected];
+  return strategyVisibleChartCodes(backtest);
 }
 
 function strategySignalLabel(value) {
@@ -1078,7 +1181,7 @@ function strategySetGenericPage(sourceBacktest) {
       .join("");
   }
   strategySetText("genericHistoryCount", `${strategyIntegerText(signals.length)} 次再平衡记录`);
-  const currentVisibleBenchmarkCodes = strategySetGenericBenchmarkToggles(backtest, sourceBacktest) || visibleBenchmarkCodes;
+  const currentVisibleBenchmarkCodes = strategySetGenericBenchmarkToggles(backtest, sourceBacktest) || strategyVisibleChartCodes(backtest);
   renderStrategyBacktestChart("genericStrategyChart", backtest, { visibleBenchmarkCodes: currentVisibleBenchmarkCodes });
 }
 
