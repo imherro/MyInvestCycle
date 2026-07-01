@@ -540,6 +540,46 @@ function strategyGenericWeightPills(weights, universe) {
     .join("")}</div>`;
 }
 
+function strategyGenericWeightStack(weights, universe) {
+  const byCode = new Map((universe || []).map((asset) => [asset.code, asset]));
+  const colorByCode = {
+    "480092.CNI": "#111827",
+    "399606.SZ": "#7c3aed",
+    "510300.SH": "#dc2626",
+    "510880.SH": "#16a34a",
+    "510500.SH": "#f59e0b",
+    "159915.SZ": "#7c3aed",
+    "511880.SH": "#64748b",
+    CASH: "#94a3b8",
+  };
+  const universeOrder = new Map((universe || []).map((asset, index) => [asset.code, index]));
+  const rows = Object.entries(weights || {})
+    .map(([code, weight]) => ({
+      code,
+      weight: Number(weight) || 0,
+      asset: byCode.get(code) || { code, name: code, group: code },
+    }))
+    .sort((left, right) => (universeOrder.get(left.code) ?? 999) - (universeOrder.get(right.code) ?? 999));
+  if (!rows.length) return '<div class="generic-empty">暂无目标仓位</div>';
+  const segments = rows
+    .map((row) => {
+      const width = Math.max(2, Math.round(row.weight * 100));
+      return `<i style="width:${width}%;background:${colorByCode[row.code] || "#64748b"}" title="${strategyEscapeHtml(row.asset.group || row.code)} ${strategyPercentText(row.weight)}"></i>`;
+    })
+    .join("");
+  const labels = rows
+    .map(
+      (row) => `
+        <span>
+          <b style="background:${colorByCode[row.code] || "#64748b"}"></b>
+          ${strategyEscapeHtml(row.asset.group || row.code)} ${strategyPercentText(row.weight)}
+        </span>
+      `
+    )
+    .join("");
+  return `<div class="generic-weight-stack"><div>${segments}</div><em>${labels}</em></div>`;
+}
+
 function strategyGenericCandidateText(candidates) {
   return (candidates || [])
     .slice(0, 4)
@@ -590,7 +630,9 @@ function strategyFullDateRange(backtest) {
 }
 
 function strategyHasSelectableBenchmarks(backtest) {
-  return ["free_cash_flow_buy_hold", "free_cash_flow_chinext_dynamic"].includes(backtest.metadata?.indicator);
+  return ["free_cash_flow_buy_hold", "free_cash_flow_chinext_dynamic", "free_cash_flow_chinext_reversion"].includes(
+    backtest.metadata?.indicator
+  );
 }
 
 function strategyShiftIsoYear(isoDate, years) {
@@ -1078,6 +1120,9 @@ function strategySignalLabel(value) {
     fcf_chinext_dynamic_init: "初始等权",
     fcf_chinext_dynamic_rebalance: "动态调仓",
     fcf_chinext_dynamic_hold: "继续持有",
+    fcf_chinext_reversion_init: "初始等权",
+    fcf_chinext_reversion_rebalance: "回归调仓",
+    fcf_chinext_reversion_hold: "继续持有",
   };
   return labels[value] || value || "--";
 }
@@ -1098,6 +1143,7 @@ function strategySetGenericPage(sourceBacktest) {
   const isReboundStrategy = metadata.indicator === "free_cash_flow_drawdown_rebound";
   const isBuyHoldStrategy = metadata.indicator === "free_cash_flow_buy_hold";
   const isPairDynamicStrategy = metadata.indicator === "free_cash_flow_chinext_dynamic";
+  const isPairReversionStrategy = metadata.indicator === "free_cash_flow_chinext_reversion";
   const comparisonLabel = summary.equal_weight_label || "等权";
   const annualizedReturn =
     typeof summary.annualized_return === "number" ? summary.annualized_return : performance.annualized_return;
@@ -1118,6 +1164,12 @@ function strategySetGenericPage(sourceBacktest) {
       : []),
     { label: "夏普", value: strategyFixedText(summary.sharpe, 2) },
     ...(typeof summary.calmar === "number" ? [{ label: "Calmar", value: strategyFixedText(summary.calmar, 2) }] : []),
+    ...(isPairReversionStrategy
+      ? [
+          { label: "相对Z-score", value: strategyFixedText(summary.latest_relative_zscore, 2) },
+          { label: "120日相关", value: strategyFixedText(summary.latest_rolling_correlation, 2) },
+        ]
+      : []),
     { label: "调仓次数", value: strategyIntegerText(summary.rebalance_count) },
   ];
   strategySetSummaryTiles(genericTiles);
@@ -1159,6 +1211,10 @@ function strategySetGenericPage(sourceBacktest) {
     ? validation.alpha_positive_vs_equal_weight
       ? "动态满仓策略跑赢 50/50 固定等权，说明风险平价和趋势倾斜在当前样本有增益。"
       : "动态满仓策略未跑赢 50/50 固定等权，说明当前规则复杂度可能没有补偿调仓成本。"
+    : isPairReversionStrategy
+    ? validation.alpha_positive_vs_equal_weight
+      ? "相对回归策略跑赢 50/50 固定等权，说明两资产偏离后反向再平衡在当前样本有增益。"
+      : "相对回归策略未跑赢 50/50 固定等权，说明当前参数下回归交易没有补偿调仓和错判成本。"
     : validation.mean_reversion_signal
     ? validation.alpha_positive_vs_equal_weight
       ? "本策略跑赢四 ETF 等权基准，说明当前均值回归规则有初步 alpha 证据。"
@@ -1170,27 +1226,37 @@ function strategySetGenericPage(sourceBacktest) {
       : "本策略未跑赢等权资产池，当前规则更适合保留为反例或继续优化。";
   strategySetText(
     "genericConclusion",
-    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isChannelStrategy ? " Tushare index_daily 指数日收益；图中红/灰/绿线为 2016 低点以来的对数直线上轨、中轨、下轨。本版通道包含当前研究锚点，适合复盘观察，不等同于严格无未来函数实盘信号。" : isReboundStrategy ? " Tushare index_daily 指数日收益；图中五条曲线分别代表 n=10%/12%/15%/18%/20%，策略摘要采用年化收益最高的阈值作为代表结果。现金收益暂按 0 处理。" : isBuyHoldStrategy ? " Tushare index_daily 全收益指数日收益；红/绿背景来自长期牛熊主周期，上证指数灰线只作市场环境背景参考。" : isPairDynamicStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，信号按收盘后计算并从下一交易日生效，红/绿背景来自长期牛熊主周期。" : " ETF fund_daily pct_chg/pre_close。"}`
+    `${summary.short_name || "策略"}覆盖 ${strategyIntegerText(summary.sessions)} 个交易日，${verdict} 收益口径使用${isChannelStrategy ? " Tushare index_daily 指数日收益；图中红/灰/绿线为 2016 低点以来的对数直线上轨、中轨、下轨。本版通道包含当前研究锚点，适合复盘观察，不等同于严格无未来函数实盘信号。" : isReboundStrategy ? " Tushare index_daily 指数日收益；图中五条曲线分别代表 n=10%/12%/15%/18%/20%，策略摘要采用年化收益最高的阈值作为代表结果。现金收益暂按 0 处理。" : isBuyHoldStrategy ? " Tushare index_daily 全收益指数日收益；红/绿背景来自长期牛熊主周期，上证指数灰线只作市场环境背景参考。" : isPairDynamicStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，信号按收盘后计算并从下一交易日生效，红/绿背景来自长期牛熊主周期。" : isPairReversionStrategy ? " Tushare index_daily 全收益指数日收益；组合始终满仓，按相对比值 Z-score 做反向再平衡，信号按收盘后计算并从下一交易日生效。" : " ETF fund_daily pct_chg/pre_close。"}`
   );
   const signalTarget = document.getElementById("genericSignalList");
   if (signalTarget) {
-    signalTarget.innerHTML = [...signals]
+    const rows = [...signals]
       .reverse()
       .map((item) => {
         const reason = item.rebalance_reason || {};
         return `
-          <article class="generic-signal-card">
-            <div>
-              <span>${strategyToIsoDate(item.date)}</span>
-              <strong>${strategySignalLabel(item.strategy_signal)}</strong>
-              <em>换手 ${strategyPercentText(item.turnover_to_target)} · Top ${strategyEscapeHtml(strategyGenericCandidateText(item.top_candidates))}</em>
-            </div>
-            ${strategyGenericWeightPills(item.target_weights || {}, universe)}
+          <div class="generic-signal-row">
+            <div><span>日期</span><strong>${strategyToIsoDate(item.date)}</strong></div>
+            <div><span>信号</span><strong>${strategySignalLabel(item.strategy_signal)}</strong></div>
+            <div><span>换手</span><strong>${strategyPercentText(item.turnover_to_target)}</strong><em>${strategyEscapeHtml(strategyGenericCandidateText(item.top_candidates))}</em></div>
+            <div><span>目标仓位</span>${strategyGenericWeightStack(item.target_weights || {}, universe)}</div>
             <p>${strategyEscapeHtml(reason.detail || "")}</p>
-          </article>
+          </div>
         `;
       })
       .join("");
+    signalTarget.innerHTML = `
+      <div class="generic-signal-table">
+        <div class="generic-signal-row generic-signal-head">
+          <strong>日期</strong>
+          <strong>信号</strong>
+          <strong>换手 / 候选</strong>
+          <strong>目标仓位</strong>
+          <strong>调仓原因</strong>
+        </div>
+        ${rows}
+      </div>
+    `;
   }
   strategySetText("genericHistoryCount", `${strategyIntegerText(signals.length)} 次再平衡记录`);
   const currentVisibleBenchmarkCodes = strategySetGenericBenchmarkToggles(backtest, sourceBacktest) || strategyVisibleChartCodes(backtest);

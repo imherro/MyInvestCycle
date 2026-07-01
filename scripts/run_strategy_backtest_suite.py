@@ -49,6 +49,11 @@ from core.free_cash_flow_chinext_dynamic_backtest_engine import (
     FreeCashFlowChinextDynamicSpec,
     run_free_cash_flow_chinext_dynamic_backtest,
 )
+from core.free_cash_flow_chinext_reversion_backtest_engine import (
+    FREE_CASH_FLOW_CHINEXT_REVERSION_SPEC,
+    FreeCashFlowChinextReversionSpec,
+    run_free_cash_flow_chinext_reversion_backtest,
+)
 from core.strategy_suite_backtest_engine import STRATEGY_SPECS, StrategySpec, run_strategy_backtest
 
 
@@ -63,6 +68,7 @@ SPECIAL_STRATEGY_IDS = (
     FREE_CASH_FLOW_REBOUND_SPEC.strategy_id,
     FREE_CASH_FLOW_BUY_HOLD_SPEC.strategy_id,
     FREE_CASH_FLOW_CHINEXT_DYNAMIC_SPEC.strategy_id,
+    FREE_CASH_FLOW_CHINEXT_REVERSION_SPEC.strategy_id,
 )
 ALL_STRATEGY_IDS = sorted([*STRATEGY_SPECS, *SPECIAL_STRATEGY_IDS])
 
@@ -127,7 +133,13 @@ def _read_index_cache(ts_code: str, start_date: str, end_date: str) -> pd.DataFr
 
 
 def _load_free_cash_flow_index_history(
-    spec: FreeCashFlowTrendSpec | FreeCashFlowReboundSpec | FreeCashFlowBuyHoldSpec | FreeCashFlowChinextDynamicSpec,
+    spec: (
+        FreeCashFlowTrendSpec
+        | FreeCashFlowReboundSpec
+        | FreeCashFlowBuyHoldSpec
+        | FreeCashFlowChinextDynamicSpec
+        | FreeCashFlowChinextReversionSpec
+    ),
     start_date: str,
     end_date: str,
     *,
@@ -185,6 +197,8 @@ def main() -> None:
             spec = FREE_CASH_FLOW_BUY_HOLD_SPEC
         elif strategy_id == FREE_CASH_FLOW_CHINEXT_DYNAMIC_SPEC.strategy_id:
             spec = FREE_CASH_FLOW_CHINEXT_DYNAMIC_SPEC
+        elif strategy_id == FREE_CASH_FLOW_CHINEXT_REVERSION_SPEC.strategy_id:
+            spec = FREE_CASH_FLOW_CHINEXT_REVERSION_SPEC
         else:
             spec = STRATEGY_SPECS[strategy_id]
         start_date = requested_start_date or normalize_trade_date(getattr(spec, "backtest_start_date", DEFAULT_START_DATE))
@@ -195,6 +209,7 @@ def main() -> None:
             or strategy_id == FREE_CASH_FLOW_REBOUND_SPEC.strategy_id
             or strategy_id == FREE_CASH_FLOW_BUY_HOLD_SPEC.strategy_id
             or strategy_id == FREE_CASH_FLOW_CHINEXT_DYNAMIC_SPEC.strategy_id
+            or strategy_id == FREE_CASH_FLOW_CHINEXT_REVERSION_SPEC.strategy_id
         ):
             price_history, price_errors, resolved_index_code, resolved_index_type = _load_free_cash_flow_index_history(
                 spec,
@@ -223,6 +238,15 @@ def main() -> None:
                 )
             elif strategy_id == FREE_CASH_FLOW_CHINEXT_DYNAMIC_SPEC.strategy_id:
                 result = run_free_cash_flow_chinext_dynamic_backtest(
+                    spec,
+                    price_history,
+                    start_date=start_date,
+                    end_date=end_date,
+                    resolved_index_code=resolved_index_code,
+                    resolved_index_type=resolved_index_type,
+                )
+            elif strategy_id == FREE_CASH_FLOW_CHINEXT_REVERSION_SPEC.strategy_id:
+                result = run_free_cash_flow_chinext_reversion_backtest(
                     spec,
                     price_history,
                     start_date=start_date,
@@ -274,6 +298,7 @@ def main() -> None:
             and strategy_id != FREE_CASH_FLOW_REBOUND_SPEC.strategy_id
             and strategy_id != FREE_CASH_FLOW_BUY_HOLD_SPEC.strategy_id
             and strategy_id != FREE_CASH_FLOW_CHINEXT_DYNAMIC_SPEC.strategy_id
+            and strategy_id != FREE_CASH_FLOW_CHINEXT_REVERSION_SPEC.strategy_id
         ):
             result = run_strategy_backtest(
                 spec,

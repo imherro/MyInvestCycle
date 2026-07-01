@@ -774,9 +774,7 @@ h2 {
 }
 
 .generic-signal-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  min-width: 0;
 }
 
 .generic-signal-card {
@@ -832,6 +830,109 @@ h2 {
   color: var(--ink);
   font-size: 12px;
   font-weight: 800;
+}
+
+.generic-signal-table {
+  display: grid;
+  gap: 8px;
+}
+
+.generic-signal-row {
+  display: grid;
+  grid-template-columns: minmax(92px, 0.7fr) minmax(96px, 0.8fr) minmax(108px, 0.9fr) minmax(220px, 1.5fr) minmax(260px, 2fr);
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.generic-signal-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #f8fafc;
+}
+
+.generic-signal-row > div {
+  min-width: 0;
+}
+
+.generic-signal-row span,
+.generic-signal-row em,
+.generic-signal-row p {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.generic-signal-row span {
+  display: none;
+}
+
+.generic-signal-row strong {
+  display: block;
+  min-width: 0;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.generic-signal-row em {
+  display: block;
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.generic-signal-row p {
+  margin: 0;
+}
+
+.generic-weight-stack {
+  min-width: 0;
+}
+
+.generic-weight-stack > div {
+  display: flex;
+  width: 100%;
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #eef2f7;
+}
+
+.generic-weight-stack > div i {
+  display: block;
+  min-width: 2px;
+  height: 100%;
+}
+
+.generic-weight-stack em {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 6px;
+}
+
+.generic-weight-stack em span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.generic-weight-stack em b {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
 }
 
 .conclusions-panel {
@@ -2718,6 +2819,25 @@ h2 {
 
   .cycle-score-row {
     margin-bottom: 14px;
+  }
+
+  .generic-signal-head {
+    display: none;
+  }
+
+  .generic-signal-row {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .generic-signal-row span {
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .generic-signal-row p {
+    padding-top: 6px;
+    border-top: 1px solid var(--line);
   }
 
   .risk-result-panel,

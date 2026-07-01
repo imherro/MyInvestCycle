@@ -434,9 +434,14 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
   const isFreeCashFlowRebound = backtest?.metadata?.indicator === "free_cash_flow_drawdown_rebound";
   const isFreeCashFlowBuyHold = backtest?.metadata?.indicator === "free_cash_flow_buy_hold";
   const isFreeCashFlowPairDynamic = backtest?.metadata?.indicator === "free_cash_flow_chinext_dynamic";
-  const hasCycleBackground = isFreeCashFlowBuyHold || isFreeCashFlowPairDynamic;
+  const isFreeCashFlowPairReversion = backtest?.metadata?.indicator === "free_cash_flow_chinext_reversion";
+  const hasCycleBackground = isFreeCashFlowBuyHold || isFreeCashFlowPairDynamic || isFreeCashFlowPairReversion;
   const isFreeCashFlowIndexStrategy =
-    isFreeCashFlowTrend || isFreeCashFlowRebound || isFreeCashFlowBuyHold || isFreeCashFlowPairDynamic;
+    isFreeCashFlowTrend ||
+    isFreeCashFlowRebound ||
+    isFreeCashFlowBuyHold ||
+    isFreeCashFlowPairDynamic ||
+    isFreeCashFlowPairReversion;
   const x = items.map((item) => toIsoDate(item.date));
   const visibleBenchmarkCodes = Array.isArray(options.visibleBenchmarkCodes)
     ? new Set(options.visibleBenchmarkCodes)
@@ -462,6 +467,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     "518880.SH": { color: "#ca8a04", dash: "solid" },
     "480092.CNI": { color: "#111827", dash: "dashdot", width: 2.1 },
     "free-cash-flow-chinext-dynamic": { color: "#2563eb", dash: "solid", width: 2.7 },
+    "free-cash-flow-chinext-reversion": { color: "#0f766e", dash: "solid", width: 2.7 },
     fcf_chinext_fixed_equal: { color: "#9333ea", dash: "longdash", width: 2.1 },
     checked_equal_weight: { color: "#0f172a", dash: "longdash", width: 2.5 },
     checked_risk_parity: { color: "#0891b2", dash: "dashdot", width: 2.5 },
@@ -607,6 +613,20 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
           },
         ]
       : [];
+  const reversionIndicatorTraces = isFreeCashFlowPairReversion
+    ? [
+        {
+          type: "scatter",
+          mode: "lines",
+          name: "相对比值 Z-score",
+          x,
+          y: items.map((item) => item.relative_zscore ?? null),
+          yaxis: "y2",
+          line: { color: "#f97316", width: 1.8, dash: "dot" },
+          hovertemplate: "%{x}<br>Z-score %{y:.2f}<extra></extra>",
+        },
+      ]
+    : [];
   Plotly.react(
     elementId,
     [
@@ -625,6 +645,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
             },
           ]),
       ...comparisonTraces,
+      ...reversionIndicatorTraces,
       ...(backtest?.metadata?.indicator === "equal_weight_ma_reversion"
         ? [
             {
@@ -703,6 +724,17 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
         spikesnap: "cursor",
         spikethickness: 1,
       },
+      yaxis2: isFreeCashFlowPairReversion
+        ? {
+            title: "Z-score",
+            overlaying: "y",
+            side: "right",
+            zeroline: true,
+            zerolinecolor: "rgba(249, 115, 22, 0.45)",
+            showgrid: false,
+            tickfont: { size: 10, color: "#f97316" },
+          }
+        : undefined,
       legend: { orientation: "h", x: 0, y: 1.22, font: { size: 11 } },
     },
     { responsive: true, displayModeBar: false }

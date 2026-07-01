@@ -490,6 +490,13 @@ const STRATEGY_DIRECTORY_CARDS = [
     href: "/strategy/free-cash-flow-chinext-dynamic",
     rule: "在自由现金流R和创业板R两个全收益指数之间满仓动态分配：风险平价作基础权重，趋势强弱决定倾斜，单边权重限制在 20%-80%。",
   },
+  {
+    id: "free-cash-flow-chinext-reversion",
+    title: "FCF/创业板回归",
+    badge: "FCF Reversion",
+    href: "/strategy/free-cash-flow-chinext-reversion",
+    rule: "在自由现金流R和创业板R之间做相对回归：用两者净值比值 Z-score 判断谁相对偏热，反向增配另一边，始终保持满仓。",
+  },
 ];
 
 const strategyDirectorySort = {
