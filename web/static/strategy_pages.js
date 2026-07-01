@@ -804,17 +804,12 @@ function strategyBuildRangeBacktest(sourceBacktest, range) {
   };
 }
 
-function strategySetGenericBenchmarkToggles(backtest) {
-  const target = document.getElementById("genericBenchmarkToggles");
-  if (!target) return null;
+function strategyGetVisibleBenchmarkCodes(backtest) {
+  if (backtest.metadata?.indicator !== "free_cash_flow_buy_hold") return null;
   const summary = backtest.summary || {};
   const strategyId = summary.strategy_id || "generic";
-  const assets = summary.comparison_assets || [];
-  if (backtest.metadata?.indicator !== "free_cash_flow_buy_hold" || !assets.length) {
-    target.hidden = true;
-    target.innerHTML = "";
-    return null;
-  }
+  const assets = (summary.comparison_assets || []).filter((asset) => !asset.always_visible && !asset.isVirtual);
+  if (!assets.length) return null;
   if (!strategyBenchmarkToggleState[strategyId]) {
     strategyBenchmarkToggleState[strategyId] = new Set(assets.map((asset) => asset.code));
   }
@@ -823,9 +818,106 @@ function strategySetGenericBenchmarkToggles(backtest) {
   for (const code of [...selected]) {
     if (!availableCodes.has(code)) selected.delete(code);
   }
+  return [...selected];
+}
+
+function strategyMean(values) {
+  const clean = values.filter((value) => typeof value === "number" && Number.isFinite(value));
+  return clean.length ? clean.reduce((sum, value) => sum + value, 0) / clean.length : null;
+}
+
+function strategyBuildCheckedEqualWeightBacktest(backtest, visibleBenchmarkCodes) {
+  if (backtest.metadata?.indicator !== "free_cash_flow_buy_hold") return backtest;
+  const selectedCodes = new Set(visibleBenchmarkCodes || []);
+  const baseComparisonAssets = (backtest.summary?.comparison_assets || []).filter(
+    (asset) => !asset.always_visible && !asset.isVirtual
+  );
+  const selectedAssets = baseComparisonAssets.filter((asset) => selectedCodes.has(asset.code));
+  const equityKeys = ["strategy_equity", ...selectedAssets.map((asset) => strategyBenchmarkEquityKey(asset.code))];
+  const sourceRows = backtest.equity_curve || [];
+  if (!sourceRows.length) return backtest;
+
+  let equalWeightEquity = 1;
+  const equityCurve = sourceRows.map((row, index) => {
+    if (index > 0) {
+      const previous = sourceRows[index - 1];
+      const returns = equityKeys.map((key) =>
+        typeof row[key] === "number" && typeof previous[key] === "number" && previous[key] > 0
+          ? row[key] / previous[key] - 1
+          : null
+      );
+      equalWeightEquity *= 1 + (strategyMean(returns) || 0);
+    }
+    return {
+      ...row,
+      checked_equal_weight_equity: equalWeightEquity,
+    };
+  });
+  const label =
+    selectedAssets.length > 0
+      ? `勾选等权ETF（自由现金流R + ${selectedAssets.length}个基准）`
+      : "勾选等权ETF（仅自由现金流R）";
+  const equalWeightMetric = strategyEquityMetricsFromCurve(
+    {
+      code: "checked_equal_weight",
+      name: "勾选等权ETF",
+      group: "虚拟等权",
+      label,
+      isVirtual: true,
+      always_visible: true,
+      equity_key: "checked_equal_weight_equity",
+      composition: ["480092.CNI", ...selectedAssets.map((asset) => asset.code)],
+    },
+    equityCurve,
+    "checked_equal_weight_equity"
+  );
+  const metricRows = backtest.summary?.metric_comparison_assets || [];
+  const strategyRow = metricRows.find((item) => item.isStrategy);
+  const otherRows = metricRows.filter((item) => !item.isStrategy && item.code !== "checked_equal_weight");
+  return {
+    ...backtest,
+    summary: {
+      ...backtest.summary,
+      comparison_assets: [
+        {
+          ...equalWeightMetric,
+          return_advantage:
+            typeof backtest.summary?.strategy_total_return === "number" && typeof equalWeightMetric.total_return === "number"
+              ? backtest.summary.strategy_total_return - equalWeightMetric.total_return
+              : null,
+          drawdown_reduction:
+            typeof backtest.summary?.max_drawdown === "number" && typeof equalWeightMetric.max_drawdown === "number"
+              ? backtest.summary.max_drawdown - equalWeightMetric.max_drawdown
+              : null,
+        },
+        ...baseComparisonAssets,
+      ],
+      metric_comparison_assets: [
+        ...(strategyRow ? [strategyRow] : []),
+        equalWeightMetric,
+        ...otherRows,
+      ],
+    },
+    equity_curve: equityCurve,
+  };
+}
+
+function strategySetGenericBenchmarkToggles(backtest, sourceBacktest = backtest) {
+  const target = document.getElementById("genericBenchmarkToggles");
+  if (!target) return null;
+  const summary = backtest.summary || {};
+  const strategyId = summary.strategy_id || "generic";
+  const assets = (summary.comparison_assets || []).filter((asset) => !asset.always_visible && !asset.isVirtual);
+  if (backtest.metadata?.indicator !== "free_cash_flow_buy_hold" || !assets.length) {
+    target.hidden = true;
+    target.innerHTML = "";
+    return null;
+  }
+  strategyGetVisibleBenchmarkCodes(backtest);
+  const selected = strategyBenchmarkToggleState[strategyId];
   target.hidden = false;
   target.innerHTML = `
-    <span>图上显示基准</span>
+    <span>图上显示基准 · 等权ETF=自由现金流R+勾选项每日等权</span>
     ${assets
       .map(
         (asset) => `
@@ -843,7 +935,7 @@ function strategySetGenericBenchmarkToggles(backtest) {
     if (!input) return;
     if (input.checked) selected.add(input.value);
     else selected.delete(input.value);
-    renderStrategyBacktestChart("genericStrategyChart", backtest, { visibleBenchmarkCodes: [...selected] });
+    strategySetGenericPage(sourceBacktest);
   };
   return [...selected];
 }
@@ -882,7 +974,9 @@ function strategySignalLabel(value) {
 
 function strategySetGenericPage(sourceBacktest) {
   const selectedRange = strategySetGenericRangeControls(sourceBacktest);
-  const backtest = strategyBuildRangeBacktest(sourceBacktest, selectedRange);
+  const rangedBacktest = strategyBuildRangeBacktest(sourceBacktest, selectedRange);
+  const visibleBenchmarkCodes = strategyGetVisibleBenchmarkCodes(rangedBacktest);
+  const backtest = strategyBuildCheckedEqualWeightBacktest(rangedBacktest, visibleBenchmarkCodes);
   const metadata = backtest.metadata || {};
   const summary = backtest.summary || {};
   const performance = backtest.performance_metrics || {};
@@ -984,8 +1078,8 @@ function strategySetGenericPage(sourceBacktest) {
       .join("");
   }
   strategySetText("genericHistoryCount", `${strategyIntegerText(signals.length)} 次再平衡记录`);
-  const visibleBenchmarkCodes = strategySetGenericBenchmarkToggles(backtest);
-  renderStrategyBacktestChart("genericStrategyChart", backtest, { visibleBenchmarkCodes });
+  const currentVisibleBenchmarkCodes = strategySetGenericBenchmarkToggles(backtest, sourceBacktest) || visibleBenchmarkCodes;
+  renderStrategyBacktestChart("genericStrategyChart", backtest, { visibleBenchmarkCodes: currentVisibleBenchmarkCodes });
 }
 
 async function strategyRenderGenericPage() {

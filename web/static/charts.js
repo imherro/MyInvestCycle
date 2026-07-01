@@ -439,7 +439,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     ? new Set(options.visibleBenchmarkCodes)
     : null;
   const comparisonAssets = (backtest?.summary?.comparison_assets || []).filter((asset) =>
-    visibleBenchmarkCodes ? visibleBenchmarkCodes.has(asset.code) : true
+    asset.always_visible || (visibleBenchmarkCodes ? visibleBenchmarkCodes.has(asset.code) : true)
   );
   const primaryStrategyCode = backtest?.metadata?.index_code || "480092.CNI";
   const traceStyleByCode = {
@@ -458,6 +458,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     "511010.SH": { color: "#0d9488", dash: "dash" },
     "518880.SH": { color: "#ca8a04", dash: "solid" },
     "480092.CNI": { color: "#111827", dash: "dashdot", width: 2.1 },
+    checked_equal_weight: { color: "#0f172a", dash: "longdash", width: 2.5 },
     commodity_basket: { color: "#be123c", dash: "dash" },
     equal_weight: { color: "#111827", dash: "dashdot", width: 2.2 },
   };
@@ -549,7 +550,7 @@ function renderStrategyBacktestChart(elementId, backtest, options = {}) {
     : [];
   const comparisonTraces = comparisonAssets.slice(0, 6).map((asset, index) => {
     const key = asset.code === "equal_weight" ? "equal_weight" : `benchmark_${String(asset.code || "").split(".")[0]}`;
-    const equityKey = `${key}_equity`;
+    const equityKey = asset.equity_key || `${key}_equity`;
     const label = asset.label || asset.code || key;
     const style = traceStyleByCode[asset.code] || { color: fallbackColors[index % fallbackColors.length], dash: "solid" };
     return {
