@@ -424,7 +424,7 @@ function renderMacroStyleEtfBacktestChart(elementId, backtest) {
   );
 }
 
-function renderStrategyBacktestChart(elementId, backtest) {
+function renderStrategyBacktestChart(elementId, backtest, options = {}) {
   const items = backtest?.equity_curve || [];
   if (!items.length) {
     Plotly.purge(elementId);
@@ -435,7 +435,12 @@ function renderStrategyBacktestChart(elementId, backtest) {
   const isFreeCashFlowBuyHold = backtest?.metadata?.indicator === "free_cash_flow_buy_hold";
   const isFreeCashFlowIndexStrategy = isFreeCashFlowTrend || isFreeCashFlowRebound || isFreeCashFlowBuyHold;
   const x = items.map((item) => toIsoDate(item.date));
-  const comparisonAssets = backtest?.summary?.comparison_assets || [];
+  const visibleBenchmarkCodes = Array.isArray(options.visibleBenchmarkCodes)
+    ? new Set(options.visibleBenchmarkCodes)
+    : null;
+  const comparisonAssets = (backtest?.summary?.comparison_assets || []).filter((asset) =>
+    visibleBenchmarkCodes ? visibleBenchmarkCodes.has(asset.code) : true
+  );
   const primaryStrategyCode = backtest?.metadata?.index_code || "480092.CNI";
   const traceStyleByCode = {
     "000905.SH": { color: "#f97316", dash: "dot", width: 2.0 },
@@ -669,6 +674,7 @@ function renderStrategyBacktestChart(elementId, backtest) {
       margin: { l: 62, r: 18, t: 68, b: 46 },
       shapes: cycleBlockShapes,
       xaxis: {
+        range: isFreeCashFlowBuyHold ? [x[0], x[x.length - 1]] : undefined,
         tickformat: "%Y",
         hoverformat: "%Y-%m-%d",
         gridcolor: "#edf0f5",
@@ -697,20 +703,34 @@ function renderStrategyBacktestChart(elementId, backtest) {
 }
 
 function buildCycleBlockShapes(blocks, fallbackStart, fallbackEnd) {
+  const normalizeDate = (value, fallback) => {
+    const text = toIsoDate(value);
+    return /^\d{4}-\d{2}-\d{2}$/.test(text) ? text : fallback;
+  };
+  const startBound = normalizeDate(fallbackStart, fallbackStart);
+  const endBound = normalizeDate(fallbackEnd, fallbackEnd);
   return (blocks || [])
     .filter((block) => ["bull", "bear"].includes(block.state))
-    .map((block) => ({
-      type: "rect",
-      xref: "x",
-      yref: "paper",
-      x0: toIsoDate(block.start_date) || fallbackStart,
-      x1: toIsoDate(block.end_date) || fallbackEnd,
-      y0: 0,
-      y1: 1,
-      fillcolor: block.state === "bull" ? "rgba(199, 61, 61, 0.085)" : "rgba(23, 136, 91, 0.085)",
-      line: { width: 0 },
-      layer: "below",
-    }));
+    .map((block) => {
+      const blockStart = normalizeDate(block.start_date, startBound);
+      const blockEnd = normalizeDate(block.end_date, endBound);
+      const x0 = blockStart < startBound ? startBound : blockStart;
+      const x1 = blockEnd > endBound ? endBound : blockEnd;
+      if (x1 < startBound || x0 > endBound || x1 < x0) return null;
+      return {
+        type: "rect",
+        xref: "x",
+        yref: "paper",
+        x0,
+        x1,
+        y0: 0,
+        y1: 1,
+        fillcolor: block.state === "bull" ? "rgba(199, 61, 61, 0.085)" : "rgba(23, 136, 91, 0.085)",
+        line: { width: 0 },
+        layer: "below",
+      };
+    })
+    .filter(Boolean);
 }
 
 function buildRegimeShapes(items, options = {}) {

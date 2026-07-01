@@ -1,3 +1,7 @@
+const strategyMetricTableSortState = {};
+const strategyBenchmarkToggleState = {};
+const strategyRangeState = {};
+
 async function strategyGetJson(url) {
   const requestUrl = new URL(url, window.location.origin);
   requestUrl.searchParams.set("_t", Date.now().toString());
@@ -222,17 +226,46 @@ function strategyBacktestComparisonTable(targetId, rows, options = {}) {
 function strategyBacktestMetricTable(targetId, rows) {
   const target = document.getElementById(targetId);
   if (!target) return;
+  const state = strategyMetricTableSortState[targetId] || {};
+  const labels = {
+    label: "标的",
+    total_return: "总收益",
+    annualized_return: "年化收益",
+    max_drawdown: "最大回撤",
+    sharpe: "夏普",
+    calmar: "Calmar",
+    start_date: "区间",
+  };
+  const headerButton = (key) => {
+    const active = state.key === key;
+    const arrow = active ? (state.direction === 1 ? "↑" : "↓") : "";
+    return `<button class="comparison-sort-button${active ? " is-active" : ""}" type="button" data-metric-sort="${key}" title="点击按${strategyEscapeHtml(labels[key])}排序">${strategyEscapeHtml(labels[key])}<span>${arrow}</span></button>`;
+  };
+  const sortedRows = [...(rows || [])].sort((left, right) => {
+    if (!state.key) return 0;
+    const leftValue = strategyMetricSortValue(left, state.key);
+    const rightValue = strategyMetricSortValue(right, state.key);
+    const leftMissing = leftValue === null || leftValue === undefined || Number.isNaN(leftValue);
+    const rightMissing = rightValue === null || rightValue === undefined || Number.isNaN(rightValue);
+    if (leftMissing && rightMissing) return String(strategyMetricSortValue(left, "label")).localeCompare(String(strategyMetricSortValue(right, "label")), "zh-CN");
+    if (leftMissing) return 1;
+    if (rightMissing) return -1;
+    if (typeof leftValue === "number" && typeof rightValue === "number") {
+      return (leftValue - rightValue) * state.direction;
+    }
+    return String(leftValue).localeCompare(String(rightValue), "zh-CN") * state.direction;
+  });
   target.innerHTML = `
     <div class="backtest-comparison-row backtest-comparison-head metric-table-row">
-      <span>标的</span>
-      <span>总收益</span>
-      <span>年化收益</span>
-      <span>最大回撤</span>
-      <span>夏普</span>
-      <span>Calmar</span>
-      <span>区间</span>
+      <span>${headerButton("label")}</span>
+      <span>${headerButton("total_return")}</span>
+      <span>${headerButton("annualized_return")}</span>
+      <span>${headerButton("max_drawdown")}</span>
+      <span>${headerButton("sharpe")}</span>
+      <span>${headerButton("calmar")}</span>
+      <span>${headerButton("start_date")}</span>
     </div>
-    ${(rows || [])
+    ${sortedRows
       .map(
         (item) => `
           <div class="backtest-comparison-row metric-table-row${item.isStrategy ? " is-strategy" : ""}">
@@ -248,6 +281,24 @@ function strategyBacktestMetricTable(targetId, rows) {
       )
       .join("")}
   `;
+  target.onclick = (event) => {
+    const button = event.target.closest("[data-metric-sort]");
+    if (!button) return;
+    const key = button.dataset.metricSort;
+    const current = strategyMetricTableSortState[targetId] || {};
+    const defaultDirection = key === "label" || key === "start_date" ? 1 : -1;
+    strategyMetricTableSortState[targetId] = {
+      key,
+      direction: current.key === key ? current.direction * -1 : defaultDirection,
+    };
+    strategyBacktestMetricTable(targetId, rows);
+  };
+}
+
+function strategyMetricSortValue(item, key) {
+  if (key === "label") return item.label || item.code || "";
+  if (key === "start_date") return item.start_date || "";
+  return item[key];
 }
 
 function strategySetEtfComparison(summary) {
@@ -519,6 +570,284 @@ function strategySetGenericComparison(summary, performance) {
   );
 }
 
+function strategyBenchmarkEquityKey(code) {
+  return code === "equal_weight" ? "equal_weight_equity" : `benchmark_${String(code || "").split(".")[0]}_equity`;
+}
+
+function strategyIsoToRawDate(value) {
+  return String(value || "").replace(/-/g, "");
+}
+
+function strategyNormalizeIsoDate(value) {
+  const text = strategyToIsoDate(value);
+  return /^\d{4}-\d{2}-\d{2}$/.test(text) ? text : "";
+}
+
+function strategyFullDateRange(backtest) {
+  const dates = (backtest.equity_curve || []).map((item) => strategyNormalizeIsoDate(item.date)).filter(Boolean);
+  return dates.length ? { start: dates[0], end: dates[dates.length - 1] } : null;
+}
+
+function strategyShiftIsoYear(isoDate, years) {
+  const [year, month, day] = String(isoDate).split("-").map((part) => Number(part));
+  const shifted = new Date(Date.UTC(year - years, month - 1, day));
+  return shifted.toISOString().slice(0, 10);
+}
+
+function strategySelectedDateRange(backtest) {
+  const full = strategyFullDateRange(backtest);
+  if (!full) return null;
+  const strategyId = backtest.summary?.strategy_id || "generic";
+  const state = strategyRangeState[strategyId] || {};
+  let start = state.start || full.start;
+  let end = state.end || full.end;
+  if (start < full.start) start = full.start;
+  if (end > full.end) end = full.end;
+  if (start > end) [start, end] = [end, start];
+  strategyRangeState[strategyId] = { start, end };
+  return { start, end, fullStart: full.start, fullEnd: full.end };
+}
+
+function strategySetGenericRangeControls(sourceBacktest) {
+  const target = document.getElementById("genericRangeControls");
+  if (!target) return null;
+  if (sourceBacktest.metadata?.indicator !== "free_cash_flow_buy_hold") {
+    target.hidden = true;
+    target.innerHTML = "";
+    return null;
+  }
+  const range = strategySelectedDateRange(sourceBacktest);
+  if (!range) {
+    target.hidden = true;
+    return null;
+  }
+  const quickButtons = Array.from({ length: 11 }, (_, index) => index + 1)
+    .map((year) => {
+      const quickStart = strategyShiftIsoYear(range.fullEnd, year);
+      const active = range.end === range.fullEnd && range.start === (quickStart < range.fullStart ? range.fullStart : quickStart);
+      return `<button class="range-chip${active ? " is-active" : ""}" type="button" data-range-years="${year}">${year}年</button>`;
+    })
+    .join("");
+  const fullActive = range.start === range.fullStart && range.end === range.fullEnd;
+  target.hidden = false;
+  target.innerHTML = `
+    <div class="range-inputs">
+      <label>开始 <input type="date" id="genericRangeStartInput" value="${range.start}" min="${range.fullStart}" max="${range.fullEnd}" /></label>
+      <label>结束 <input type="date" id="genericRangeEndInput" value="${range.end}" min="${range.fullStart}" max="${range.fullEnd}" /></label>
+    </div>
+    <div class="quick-range-buttons">
+      <button class="range-chip${fullActive ? " is-active" : ""}" type="button" data-range-full="1">全区间</button>
+      ${quickButtons}
+    </div>
+  `;
+  target.onclick = (event) => {
+    const button = event.target.closest("button");
+    if (!button) return;
+    const strategyId = sourceBacktest.summary?.strategy_id || "generic";
+    if (button.dataset.rangeFull) {
+      strategyRangeState[strategyId] = { start: range.fullStart, end: range.fullEnd };
+    } else if (button.dataset.rangeYears) {
+      const years = Number(button.dataset.rangeYears);
+      const quickStart = strategyShiftIsoYear(range.fullEnd, years);
+      strategyRangeState[strategyId] = {
+        start: quickStart < range.fullStart ? range.fullStart : quickStart,
+        end: range.fullEnd,
+      };
+    }
+    strategySetGenericPage(sourceBacktest);
+  };
+  target.onchange = () => {
+    const strategyId = sourceBacktest.summary?.strategy_id || "generic";
+    const start = document.getElementById("genericRangeStartInput")?.value || range.fullStart;
+    const end = document.getElementById("genericRangeEndInput")?.value || range.fullEnd;
+    strategyRangeState[strategyId] = { start, end };
+    strategySetGenericPage(sourceBacktest);
+  };
+  return range;
+}
+
+function strategyRebaseCurveRows(rows, keys) {
+  const bases = {};
+  keys.forEach((key) => {
+    const first = rows.find((item) => typeof item[key] === "number");
+    bases[key] = first ? first[key] : null;
+  });
+  return rows.map((item) => {
+    const next = { ...item };
+    keys.forEach((key) => {
+      next[key] = typeof item[key] === "number" && bases[key] ? item[key] / bases[key] : null;
+    });
+    return next;
+  });
+}
+
+function strategyEquityMetricsFromCurve(template, curveRows, equityKey) {
+  const points = curveRows
+    .map((item) => ({ date: item.date, value: item[equityKey] }))
+    .filter((item) => typeof item.value === "number" && Number.isFinite(item.value));
+  const base = {
+    ...template,
+    start_date: points[0]?.date ? strategyIsoToRawDate(points[0].date) : null,
+    end_date: points[points.length - 1]?.date ? strategyIsoToRawDate(points[points.length - 1].date) : null,
+    sessions: points.length,
+  };
+  if (points.length < 2) {
+    return {
+      ...base,
+      total_return: null,
+      annualized_return: null,
+      max_drawdown: null,
+      sharpe: null,
+      calmar: null,
+      annualized_volatility: null,
+    };
+  }
+  const values = points.map((item) => item.value);
+  const totalReturn = values[values.length - 1] - 1;
+  const annualizedReturn = (1 + totalReturn) ** (252 / points.length) - 1;
+  let peak = values[0];
+  let maxDrawdown = 0;
+  values.forEach((value) => {
+    if (value > peak) peak = value;
+    const drawdown = peak > 0 ? value / peak - 1 : 0;
+    if (drawdown < maxDrawdown) maxDrawdown = drawdown;
+  });
+  const returns = values.map((value, index) => (index === 0 ? 0 : value / values[index - 1] - 1));
+  const mean = returns.reduce((sum, value) => sum + value, 0) / returns.length;
+  const variance =
+    returns.length > 1
+      ? returns.reduce((sum, value) => sum + (value - mean) ** 2, 0) / (returns.length - 1)
+      : 0;
+  const annualizedVolatility = Math.sqrt(variance) * Math.sqrt(252);
+  const sharpe = annualizedVolatility > 0 ? (mean * 252) / annualizedVolatility : null;
+  return {
+    ...base,
+    total_return: totalReturn,
+    annualized_return: annualizedReturn,
+    max_drawdown: maxDrawdown,
+    sharpe,
+    calmar: Math.abs(maxDrawdown) > 0 ? annualizedReturn / Math.abs(maxDrawdown) : null,
+    annualized_volatility: annualizedVolatility,
+  };
+}
+
+function strategyBuildRangeBacktest(sourceBacktest, range) {
+  if (!range || sourceBacktest.metadata?.indicator !== "free_cash_flow_buy_hold") return sourceBacktest;
+  const comparisonAssets = sourceBacktest.summary?.comparison_assets || [];
+  const curveKeys = [
+    "strategy_equity",
+    "shanghai_equity",
+    ...comparisonAssets.map((asset) => strategyBenchmarkEquityKey(asset.code)),
+  ];
+  const rawRows = (sourceBacktest.equity_curve || [])
+    .map((item) => ({ ...item, date: strategyNormalizeIsoDate(item.date) }))
+    .filter((item) => item.date && item.date >= range.start && item.date <= range.end);
+  if (!rawRows.length) return sourceBacktest;
+  const equityCurve = strategyRebaseCurveRows(rawRows, curveKeys);
+  const sourceMetricRows = sourceBacktest.summary?.metric_comparison_assets || [];
+  const metricRows = sourceMetricRows.map((item) =>
+    strategyEquityMetricsFromCurve(
+      item,
+      equityCurve,
+      item.isStrategy ? "strategy_equity" : strategyBenchmarkEquityKey(item.code)
+    )
+  );
+  const strategyMetrics = metricRows.find((item) => item.isStrategy) || {};
+  const rangedComparisons = metricRows
+    .filter((item) => !item.isStrategy)
+    .map((item) => ({
+      ...item,
+      return_advantage:
+        typeof strategyMetrics.total_return === "number" && typeof item.total_return === "number"
+          ? strategyMetrics.total_return - item.total_return
+          : null,
+      drawdown_reduction:
+        typeof strategyMetrics.max_drawdown === "number" && typeof item.max_drawdown === "number"
+          ? strategyMetrics.max_drawdown - item.max_drawdown
+          : null,
+    }));
+  const metricComparisonAssets = metricRows.map((item) => {
+    const comparison = rangedComparisons.find((asset) => asset.code === item.code);
+    return comparison || item;
+  });
+  const primaryBenchmark = rangedComparisons[0] || {};
+  const alphaVsPrimary =
+    typeof strategyMetrics.total_return === "number" && typeof primaryBenchmark.total_return === "number"
+      ? strategyMetrics.total_return - primaryBenchmark.total_return
+      : null;
+  return {
+    ...sourceBacktest,
+    summary: {
+      ...sourceBacktest.summary,
+      start_date: strategyIsoToRawDate(equityCurve[0].date),
+      end_date: strategyIsoToRawDate(equityCurve[equityCurve.length - 1].date),
+      sessions: equityCurve.length,
+      strategy_total_return: strategyMetrics.total_return,
+      annualized_return: strategyMetrics.annualized_return,
+      max_drawdown: strategyMetrics.max_drawdown,
+      sharpe: strategyMetrics.sharpe,
+      calmar: strategyMetrics.calmar,
+      equal_weight_return: primaryBenchmark.total_return,
+      alpha_vs_equal_weight: alphaVsPrimary,
+      comparison_assets: rangedComparisons,
+      metric_comparison_assets: metricComparisonAssets,
+    },
+    performance_metrics: {
+      ...sourceBacktest.performance_metrics,
+      total_return: strategyMetrics.total_return,
+      annualized_return: strategyMetrics.annualized_return,
+      annualized_volatility: strategyMetrics.annualized_volatility,
+      max_drawdown: strategyMetrics.max_drawdown,
+      sharpe: strategyMetrics.sharpe,
+    },
+    equity_curve: equityCurve,
+  };
+}
+
+function strategySetGenericBenchmarkToggles(backtest) {
+  const target = document.getElementById("genericBenchmarkToggles");
+  if (!target) return null;
+  const summary = backtest.summary || {};
+  const strategyId = summary.strategy_id || "generic";
+  const assets = summary.comparison_assets || [];
+  if (backtest.metadata?.indicator !== "free_cash_flow_buy_hold" || !assets.length) {
+    target.hidden = true;
+    target.innerHTML = "";
+    return null;
+  }
+  if (!strategyBenchmarkToggleState[strategyId]) {
+    strategyBenchmarkToggleState[strategyId] = new Set(assets.map((asset) => asset.code));
+  }
+  const selected = strategyBenchmarkToggleState[strategyId];
+  const availableCodes = new Set(assets.map((asset) => asset.code));
+  for (const code of [...selected]) {
+    if (!availableCodes.has(code)) selected.delete(code);
+  }
+  target.hidden = false;
+  target.innerHTML = `
+    <span>图上显示基准</span>
+    ${assets
+      .map(
+        (asset) => `
+          <label>
+            <input type="checkbox" value="${strategyEscapeHtml(asset.code)}" ${selected.has(asset.code) ? "checked" : ""} />
+            <i></i>
+            ${strategyEscapeHtml(asset.group || asset.label || asset.code)}
+          </label>
+        `
+      )
+      .join("")}
+  `;
+  target.onchange = (event) => {
+    const input = event.target.closest("input[type='checkbox']");
+    if (!input) return;
+    if (input.checked) selected.add(input.value);
+    else selected.delete(input.value);
+    renderStrategyBacktestChart("genericStrategyChart", backtest, { visibleBenchmarkCodes: [...selected] });
+  };
+  return [...selected];
+}
+
 function strategySignalLabel(value) {
   const labels = {
     defensive_cash: "防守现金",
@@ -551,7 +880,9 @@ function strategySignalLabel(value) {
   return labels[value] || value || "--";
 }
 
-function strategySetGenericPage(backtest) {
+function strategySetGenericPage(sourceBacktest) {
+  const selectedRange = strategySetGenericRangeControls(sourceBacktest);
+  const backtest = strategyBuildRangeBacktest(sourceBacktest, selectedRange);
   const metadata = backtest.metadata || {};
   const summary = backtest.summary || {};
   const performance = backtest.performance_metrics || {};
@@ -653,7 +984,8 @@ function strategySetGenericPage(backtest) {
       .join("");
   }
   strategySetText("genericHistoryCount", `${strategyIntegerText(signals.length)} 次再平衡记录`);
-  renderStrategyBacktestChart("genericStrategyChart", backtest);
+  const visibleBenchmarkCodes = strategySetGenericBenchmarkToggles(backtest);
+  renderStrategyBacktestChart("genericStrategyChart", backtest, { visibleBenchmarkCodes });
 }
 
 async function strategyRenderGenericPage() {

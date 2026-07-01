@@ -670,6 +670,91 @@ h2 {
   min-height: 500px;
 }
 
+.strategy-chart-area {
+  min-width: 0;
+}
+
+.strategy-range-controls,
+.benchmark-toggle-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.strategy-range-controls[hidden],
+.benchmark-toggle-list[hidden] {
+  display: none;
+}
+
+.range-inputs,
+.quick-range-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.range-inputs label,
+.benchmark-toggle-list label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.range-inputs input {
+  height: 30px;
+  padding: 3px 7px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--ink);
+  font: inherit;
+}
+
+.range-chip {
+  min-height: 30px;
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.range-chip.is-active,
+.range-chip:hover {
+  border-color: rgba(38, 99, 235, 0.38);
+  color: var(--accent);
+  background: rgba(38, 99, 235, 0.06);
+}
+
+.benchmark-toggle-list > span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.benchmark-toggle-list label {
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.benchmark-toggle-list input {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--accent);
+}
+
 .generic-weight-list {
   display: grid;
   gap: 12px;
@@ -1470,6 +1555,31 @@ h2 {
 
 .backtest-comparison-head span {
   color: var(--muted);
+}
+
+.comparison-sort-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 850;
+  text-align: left;
+  cursor: pointer;
+}
+
+.comparison-sort-button span {
+  color: var(--accent);
+  font-size: 11px;
+}
+
+.comparison-sort-button.is-active,
+.comparison-sort-button:hover {
+  color: var(--accent);
 }
 
 .backtest-comparison-row.is-strategy {
