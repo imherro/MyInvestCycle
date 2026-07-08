@@ -28,6 +28,11 @@ from implementation_readiness.governance_freeze import (
     validate_implementation_readiness_governance_freeze,
     write_implementation_readiness_governance_freeze,
 )
+from implementation_readiness.risk_diagnostic_evidence_package import (
+    build_risk_diagnostic_evidence_package,
+    validate_risk_diagnostic_evidence_package,
+    write_risk_diagnostic_evidence_package,
+)
 
 __all__ = [
     "build_evidence_package_validation_engine",
@@ -35,17 +40,20 @@ __all__ = [
     "build_invalid_evidence_package_rejection_example",
     "build_implementation_readiness_evidence_audit",
     "build_implementation_readiness_evidence_specification",
+    "build_risk_diagnostic_evidence_package",
     "build_research_component_evidence_submission_protocol",
     "validate_evidence_package_validation_engine",
     "validate_implementation_readiness_governance_freeze",
     "validate_invalid_evidence_package_rejection_example",
     "validate_implementation_readiness_evidence_audit",
     "validate_implementation_readiness_evidence_specification",
+    "validate_risk_diagnostic_evidence_package",
     "validate_research_component_evidence_submission_protocol",
     "write_evidence_package_validation_engine",
     "write_implementation_readiness_governance_freeze",
     "write_invalid_evidence_package_rejection_example",
     "write_implementation_readiness_evidence_audit",
     "write_implementation_readiness_evidence_specification",
+    "write_risk_diagnostic_evidence_package",
     "write_research_component_evidence_submission_protocol",
 ]

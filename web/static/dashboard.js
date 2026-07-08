@@ -1718,6 +1718,12 @@ function setResultsPanel(results) {
   const governanceFreeze = results.implementation_readiness_governance_freeze || {};
   const governanceFreezeSummary = governanceFreeze.summary || {};
   const governanceFreezeChain = Array.isArray(governanceFreeze.frozen_governance_chain) ? governanceFreeze.frozen_governance_chain : [];
+  const riskEvidence = results.risk_diagnostic_evidence_package || {};
+  const riskEvidenceSummary = riskEvidence.summary || {};
+  const riskEvidenceItems = Array.isArray(riskEvidence.evidence_items) ? riskEvidence.evidence_items : [];
+  const riskEvidenceBoundary = riskEvidence.boundary_violation_scan || {};
+  const riskEvidenceValidatorResult = riskEvidence.v13_2_validator_result || {};
+  const riskEvidenceAuditProjection = riskEvidence.v12_3_audit_projection || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4160,6 +4166,15 @@ function setResultsPanel(results) {
     frozen: "已冻结",
     none_submitted: "未提交",
     governance_frozen_project_not_complete: "治理冻结/项目未完成",
+    submitted: "已提交",
+    submitted_blocked_phase_0: "已提交/Phase 0 阻断",
+    format_valid_not_ready_for_implementation: "格式有效/未就绪",
+    passed_no_investable_output: "通过/无投资输出",
+    projected_blocked: "预计阻断",
+    blocked_pending_shadow_and_manual_review: "等待影子观察/人工审核",
+    submitted_inconclusive: "已提交/不确定",
+    submitted_negative: "已提交/负面",
+    submitted_missing_required_live_log: "缺 live shadow",
   }[value] || value || "--");
   setText("phaseClosureStatus", phaseStatusLabel(phaseClosureSummary.research_phase));
   setText("phaseClosureRisk", phaseStatusLabel(phaseClosureSummary.risk_research_status));
@@ -4328,6 +4343,30 @@ function setResultsPanel(results) {
     governanceFreeze.metadata
       ? `V13.4 冻结 V12-V13 实现准入治理链：${integerText(governanceFreezeSummary.frozen_stage_count)} 个阶段已冻结，未来可按协议提交单组件证据包，但当前没有真实候选，implementation_ready=false，项目仍未完成。`
       : "V13.4 实现准入治理冻结尚未生成。"
+  );
+
+  const riskEvidenceBlockerCount = riskEvidenceItems.filter((row) => (
+    row.evidence_status === "submitted_negative" ||
+    row.evidence_status === "submitted_inconclusive" ||
+    row.evidence_status === "submitted_missing_required_live_log"
+  )).length;
+  setText("riskEvidenceStatus", phaseStatusLabel(riskEvidenceSummary.evidence_status));
+  setText("riskEvidencePackage", phaseStatusLabel(riskEvidenceSummary.package_status));
+  setText("riskEvidenceValidator", phaseStatusLabel(riskEvidenceValidatorResult.package_status || riskEvidenceBoundary.validator_package_status));
+  setText("riskEvidenceReady", riskEvidenceSummary.implementation_ready === false ? "否" : "--");
+  setText("riskEvidenceBlockers", `${integerText(riskEvidenceBlockerCount)} 项`);
+  setHtml("riskEvidenceRows", riskEvidenceItems.map((row) => `
+    <div class="duration-row">
+      <span>${escapeHtml(row.evidence_id || "--")}</span>
+      <strong>${escapeHtml(phaseStatusLabel(row.evidence_status))}</strong>
+      <em>${escapeHtml(row.finding || "--")}</em>
+    </div>
+  `).join(""));
+  setText(
+    "riskEvidenceConclusion",
+    riskEvidence.metadata
+      ? `V14.1 已提交 risk_diagnostic_layer 证据包，V13.2 校验结果为${phaseStatusLabel(riskEvidenceValidatorResult.package_status)}，V12.3 投影审计为${phaseStatusLabel(riskEvidenceAuditProjection.audit_decision)}；由于误报、漏报、跨周期稳定性和 live shadow 缺口，implementation_ready=false。`
+      : "V14.1 风险诊断层证据包尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

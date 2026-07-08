@@ -1,0 +1,417 @@
+{
+  "package_metadata": {
+    "package_id": "v14_1_risk_diagnostic_layer_phase0",
+    "component_id": "risk_diagnostic_layer",
+    "created_at": "2026-07-08T22:47:03+00:00",
+    "market_data_as_of": "20260707",
+    "generator": "V14.1 Risk Diagnostic Layer Evidence Package Phase 0",
+    "input_hashes": {
+      "v13_1_submission_protocol": "17106edbd89e99bdf81b33c3b7330fcffcdab33bca5b99cbee76609468935cb4",
+      "v13_2_validation_engine": "b2857dc5cfa1ba8e90478e3e708665f8369cdbb0aa52637cf275f7d2986793dd",
+      "v12_3_audit_framework": "67d0e12adec3d3aa8a0ca5de71652571b3e34d82d4f994f24f09a7f1a6496081",
+      "v13_4_governance_freeze": "325897429b5f3ff525471b7f0d4d698e256321181b3e61aabeda694b175bef3a",
+      "risk_gradient_robustness": "61a1a1e994950aedb7254f49be7267465b9518827e453d30d0e9a8446ccbc47c",
+      "risk_gradient_condition_analysis": "1df3b4673a5279e229384fca136a09f880e181316039174f25373ad869c6e288",
+      "risk_gradient_candidate_rules": "51f16fca17df5e2d3f35bedf52e250e367955c150039ae8e0744e132a5f38f46",
+      "exposure_policy_validation": "e9129be2562cbb90006c8d783e1c5876b9e9a51489a8b6a76747fad72f5e3235",
+      "protection_score_validation": "facfc8ceb545ecf7a37fd41765a59aa2a4b28113c7febf226654275138ca9509",
+      "two_axis_context_validation": "12cf495b73bd83f85e0c2df7e7ce44cd6aafe1c119a376efb1106d49186feffb",
+      "context_information_attribution": "19856a7b9865fd6b580efe9aedd9e93978fb5981189a9370be3749187721eebd",
+      "h2_external_validation_execution": "b709927afdbb840c59886e8319a89e2e33e05f8cb779f3fa78748c1f6f6d7dbf",
+      "h2_external_validation_result_freeze": "e045b28baeb66f36c1e569253cd3ce2b5a5ceeb49ada5b11520e549c49625376"
+    }
+  },
+  "component_id": "risk_diagnostic_layer",
+  "summary": {
+    "evidence_status": "submitted",
+    "package_status": "submitted_blocked_phase_0",
+    "component_id": "risk_diagnostic_layer",
+    "required_evidence_item_count": 5,
+    "submitted_evidence_item_count": 5,
+    "validation_result_count": 5,
+    "implementation_gate_result": "blocked",
+    "implementation_ready": false,
+    "manual_review_required": true,
+    "shadow_observation_required": true,
+    "investable_output": false,
+    "strategy_output_generated": false,
+    "allocation_output_generated": false,
+    "trade_ready": false,
+    "conclusion": "risk_diagnostic_evidence_submitted_blocked_no_strategy_no_allocation",
+    "key_read": "Risk diagnostic evidence is submitted for governance testing, but false warnings, missed risks, cross-period instability and missing live shadow observation keep the component blocked."
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "independent_out_of_sample_warning_effect",
+      "evidence_status": "submitted_inconclusive",
+      "source_files": [
+        "data/h2_external_validation_execution.json",
+        "data/h2_external_validation_result_freeze.json"
+      ],
+      "observations": {
+        "target_hypothesis": "H2",
+        "external_status": "inconclusive",
+        "window_count": 4,
+        "supported_count": 1,
+        "not_confirmed_count": 1,
+        "unresolved_count": 1,
+        "insufficient_count": 1
+      },
+      "finding": "External validation shows visible adverse-risk evidence, but stability is not broad enough for promotion.",
+      "implementation_effect": "blocks_component_promotion"
+    },
+    {
+      "evidence_id": "false_warning_cost_estimate",
+      "evidence_status": "submitted_negative",
+      "source_files": [
+        "data/exposure_policy_validation.json"
+      ],
+      "observations": {
+        "false_warning_rate": 0.642857,
+        "policy_validation_status": "diagnostic_not_ready_for_policy_change"
+      },
+      "finding": "The fixed diagnostic flag has high false-warning cost in the current sample.",
+      "implementation_effect": "blocks_policy_or_mapper_change"
+    },
+    {
+      "evidence_id": "missed_risk_cost_estimate",
+      "evidence_status": "submitted_negative",
+      "source_files": [
+        "data/exposure_policy_validation.json"
+      ],
+      "observations": {
+        "capture_rate": 0.192308,
+        "primary_candidate_count": 2
+      },
+      "finding": "The fixed diagnostic flag captures only a small share of future high-risk events.",
+      "implementation_effect": "blocks_policy_or_mapper_change"
+    },
+    {
+      "evidence_id": "market_structure_stability_review",
+      "evidence_status": "submitted_inconclusive",
+      "source_files": [
+        "data/risk_gradient_robustness.json",
+        "data/risk_gradient_condition_analysis.json",
+        "data/risk_gradient_candidate_rules.json"
+      ],
+      "observations": {
+        "period_consistency": "insufficient_evidence",
+        "overall_failure_rate": 0.226087,
+        "overall_high_risk_lift": 0.131056,
+        "positive_condition_count": 5,
+        "insufficient_condition_count": 40,
+        "robustness_warning": {
+          "period_consistency": "insufficient_evidence",
+          "positive_period_count": 1,
+          "negative_period_count": 1,
+          "insufficient_period_count": 4
+        }
+      },
+      "finding": "Risk edge is visible in selected contexts, but cross-period robustness is insufficient.",
+      "implementation_effect": "requires_more_shadow_and_external_observation"
+    },
+    {
+      "evidence_id": "live_shadow_observation_log",
+      "evidence_status": "submitted_missing_required_live_log",
+      "source_files": [],
+      "observations": {
+        "live_shadow_observation_count": 0,
+        "shadow_trade_enabled": false,
+        "observation_status": "not_started_required_before_promotion"
+      },
+      "finding": "No live no-trade shadow observation log is available yet.",
+      "implementation_effect": "blocks_implementation_readiness"
+    }
+  ],
+  "dataset_lineage": {
+    "lineage_status": "frozen_sources_hashed",
+    "market_data_as_of": "20260707",
+    "source_count": 9,
+    "source_files": [
+      {
+        "source_id": "risk_gradient_robustness",
+        "path": "data/risk_gradient_robustness.json",
+        "hash": "61a1a1e994950aedb7254f49be7267465b9518827e453d30d0e9a8446ccbc47c",
+        "engine": "V5.11 Risk Gradient Robustness & Stability Audit",
+        "as_of": "20260707"
+      },
+      {
+        "source_id": "risk_gradient_condition_analysis",
+        "path": "data/risk_gradient_condition_analysis.json",
+        "hash": "1df3b4673a5279e229384fca136a09f880e181316039174f25373ad869c6e288",
+        "engine": "V5.12 Risk Gradient Conditional Validation",
+        "as_of": "20260707"
+      },
+      {
+        "source_id": "risk_gradient_candidate_rules",
+        "path": "data/risk_gradient_candidate_rules.json",
+        "hash": "51f16fca17df5e2d3f35bedf52e250e367955c150039ae8e0744e132a5f38f46",
+        "engine": "V5.13 Risk Gradient Minimal Rule Candidate Audit",
+        "as_of": "20260707"
+      },
+      {
+        "source_id": "exposure_policy_validation",
+        "path": "data/exposure_policy_validation.json",
+        "hash": "e9129be2562cbb90006c8d783e1c5876b9e9a51489a8b6a76747fad72f5e3235",
+        "engine": "V6.1 Adaptive Exposure Policy Simulation Validation",
+        "as_of": "20260707"
+      },
+      {
+        "source_id": "protection_score_validation",
+        "path": "data/protection_score_validation.json",
+        "hash": "facfc8ceb545ecf7a37fd41765a59aa2a4b28113c7febf226654275138ca9509",
+        "engine": "V6.4 Protection Score Robustness & Conditional Validation",
+        "as_of": "20260707"
+      },
+      {
+        "source_id": "two_axis_context_validation",
+        "path": "data/two_axis_context_validation.json",
+        "hash": "12cf495b73bd83f85e0c2df7e7ce44cd6aafe1c119a376efb1106d49186feffb",
+        "engine": "V6.5 Adaptive Context Two-Axis Validation",
+        "as_of": "20260707"
+      },
+      {
+        "source_id": "context_information_attribution",
+        "path": "data/context_information_attribution.json",
+        "hash": "19856a7b9865fd6b580efe9aedd9e93978fb5981189a9370be3749187721eebd",
+        "engine": "V6.6 Adaptive Context Information Attribution Audit",
+        "as_of": "20260707"
+      },
+      {
+        "source_id": "h2_external_validation_execution",
+        "path": "data/h2_external_validation_execution.json",
+        "hash": "b709927afdbb840c59886e8319a89e2e33e05f8cb779f3fa78748c1f6f6d7dbf",
+        "engine": "V11.2 H2 External Validation Execution Framework",
+        "as_of": "20260707"
+      },
+      {
+        "source_id": "h2_external_validation_result_freeze",
+        "path": "data/h2_external_validation_result_freeze.json",
+        "hash": "e045b28baeb66f36c1e569253cd3ce2b5a5ceeb49ada5b11520e549c49625376",
+        "engine": "V11.3 H2 External Validation Result Freeze & Final Interpretation",
+        "as_of": "20260707"
+      }
+    ],
+    "lineage_note": "V14.1 reads frozen research artifacts only and records their hashes; it does not recompute market features or forward labels."
+  },
+  "validation_results": [
+    {
+      "window_id": "h2_external_validation",
+      "method": "frozen_external_validation_review",
+      "pre_registered_metric": "adverse_risk_evidence_stability",
+      "result_status": "inconclusive",
+      "lineage_hash": "e045b28baeb66f36c1e569253cd3ce2b5a5ceeb49ada5b11520e549c49625376"
+    },
+    {
+      "window_id": "risk_gradient_robustness",
+      "method": "fixed_gradient_stability_audit",
+      "pre_registered_metric": "period_consistency",
+      "result_status": "overall_edge_visible_but_not_robust",
+      "lineage_hash": "61a1a1e994950aedb7254f49be7267465b9518827e453d30d0e9a8446ccbc47c"
+    },
+    {
+      "window_id": "conditional_risk_edge",
+      "method": "fixed_context_condition_review",
+      "pre_registered_metric": "conditional_high_risk_lift",
+      "result_status": "conditional_edge_visible_but_not_rule_ready",
+      "lineage_hash": "1df3b4673a5279e229384fca136a09f880e181316039174f25373ad869c6e288"
+    },
+    {
+      "window_id": "policy_overlay_validation",
+      "method": "diagnostic_overlay_validation_without_policy_change",
+      "pre_registered_metric": "capture_rate_and_false_warning_rate",
+      "result_status": "diagnostic_not_ready_for_policy_change",
+      "lineage_hash": "e9129be2562cbb90006c8d783e1c5876b9e9a51489a8b6a76747fad72f5e3235"
+    },
+    {
+      "window_id": "two_axis_context_review",
+      "method": "fixed_context_score_map_validation",
+      "pre_registered_metric": "risk_spread_and_opportunity_spread",
+      "result_status": "risk_axis_visible_opportunity_axis_weak",
+      "lineage_hash": "12cf495b73bd83f85e0c2df7e7ce44cd6aafe1c119a376efb1106d49186feffb"
+    }
+  ],
+  "cost_turnover_capacity_review": {
+    "review_status": "blocked_until_candidate_policy_exists",
+    "cost_measured": false,
+    "turnover_measured": false,
+    "capacity_measured": false,
+    "reason": "Risk diagnostic layer has no policy, asset mapping, allocation or trade path; cost and capacity review cannot pass until a later explicit candidate exists."
+  },
+  "shadow_observation_log": {
+    "observation_status": "not_started_required_before_promotion",
+    "live_observation_count": 0,
+    "shadow_trade_enabled": false,
+    "required_before_promotion": true,
+    "planned_checks": [
+      "log_warning_events_without_trade",
+      "compare_warning_to_later_risk_outcome",
+      "record_false_warning_and_missed_risk_cases",
+      "manual_review_before_any_promotion"
+    ]
+  },
+  "human_review_record": {
+    "reviewer": "codex_generated_for_chatgpt_audit",
+    "review_time": "2026-07-08T22:47:03+00:00",
+    "approval_status": "not_approved_for_implementation",
+    "stop_conditions_confirmed": true,
+    "review_note": "Phase 0 package is submitted for governance validation only; implementation promotion remains blocked."
+  },
+  "boundary_violation_scan": {
+    "scan_status": "passed_no_investable_output",
+    "validator_package_status": "format_valid_not_ready_for_implementation",
+    "validator_decision": "blocked_pending_manual_review_and_future_audit",
+    "market_code_pattern_found": false,
+    "boundary_violations": [],
+    "forbidden_output_key_found": false
+  },
+  "input_hashes": {
+    "v13_1_submission_protocol": "17106edbd89e99bdf81b33c3b7330fcffcdab33bca5b99cbee76609468935cb4",
+    "v13_2_validation_engine": "b2857dc5cfa1ba8e90478e3e708665f8369cdbb0aa52637cf275f7d2986793dd",
+    "v12_3_audit_framework": "67d0e12adec3d3aa8a0ca5de71652571b3e34d82d4f994f24f09a7f1a6496081",
+    "v13_4_governance_freeze": "325897429b5f3ff525471b7f0d4d698e256321181b3e61aabeda694b175bef3a",
+    "risk_gradient_robustness": "61a1a1e994950aedb7254f49be7267465b9518827e453d30d0e9a8446ccbc47c",
+    "risk_gradient_condition_analysis": "1df3b4673a5279e229384fca136a09f880e181316039174f25373ad869c6e288",
+    "risk_gradient_candidate_rules": "51f16fca17df5e2d3f35bedf52e250e367955c150039ae8e0744e132a5f38f46",
+    "exposure_policy_validation": "e9129be2562cbb90006c8d783e1c5876b9e9a51489a8b6a76747fad72f5e3235",
+    "protection_score_validation": "facfc8ceb545ecf7a37fd41765a59aa2a4b28113c7febf226654275138ca9509",
+    "two_axis_context_validation": "12cf495b73bd83f85e0c2df7e7ce44cd6aafe1c119a376efb1106d49186feffb",
+    "context_information_attribution": "19856a7b9865fd6b580efe9aedd9e93978fb5981189a9370be3749187721eebd",
+    "h2_external_validation_execution": "b709927afdbb840c59886e8319a89e2e33e05f8cb779f3fa78748c1f6f6d7dbf",
+    "h2_external_validation_result_freeze": "e045b28baeb66f36c1e569253cd3ce2b5a5ceeb49ada5b11520e549c49625376"
+  },
+  "metadata": {
+    "engine": "V14.1 Risk Diagnostic Layer Evidence Package Phase 0",
+    "generated_at": "2026-07-08T22:47:03+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v13_1_submission_protocol": "data/research_component_evidence_submission_protocol.json",
+      "v13_2_validation_engine": "data/evidence_package_validation_engine.json",
+      "v12_3_audit_framework": "data/implementation_readiness_evidence_audit.json",
+      "v13_4_governance_freeze": "data/implementation_readiness_governance_freeze.json",
+      "risk_gradient_robustness": "data/risk_gradient_robustness.json",
+      "risk_gradient_condition_analysis": "data/risk_gradient_condition_analysis.json",
+      "risk_gradient_candidate_rules": "data/risk_gradient_candidate_rules.json",
+      "exposure_policy_validation": "data/exposure_policy_validation.json",
+      "protection_score_validation": "data/protection_score_validation.json",
+      "two_axis_context_validation": "data/two_axis_context_validation.json",
+      "context_information_attribution": "data/context_information_attribution.json",
+      "h2_external_validation_execution": "data/h2_external_validation_execution.json",
+      "h2_external_validation_result_freeze": "data/h2_external_validation_result_freeze.json"
+    },
+    "input_hashes": {
+      "v13_1_submission_protocol": "17106edbd89e99bdf81b33c3b7330fcffcdab33bca5b99cbee76609468935cb4",
+      "v13_2_validation_engine": "b2857dc5cfa1ba8e90478e3e708665f8369cdbb0aa52637cf275f7d2986793dd",
+      "v12_3_audit_framework": "67d0e12adec3d3aa8a0ca5de71652571b3e34d82d4f994f24f09a7f1a6496081",
+      "v13_4_governance_freeze": "325897429b5f3ff525471b7f0d4d698e256321181b3e61aabeda694b175bef3a",
+      "risk_gradient_robustness": "61a1a1e994950aedb7254f49be7267465b9518827e453d30d0e9a8446ccbc47c",
+      "risk_gradient_condition_analysis": "1df3b4673a5279e229384fca136a09f880e181316039174f25373ad869c6e288",
+      "risk_gradient_candidate_rules": "51f16fca17df5e2d3f35bedf52e250e367955c150039ae8e0744e132a5f38f46",
+      "exposure_policy_validation": "e9129be2562cbb90006c8d783e1c5876b9e9a51489a8b6a76747fad72f5e3235",
+      "protection_score_validation": "facfc8ceb545ecf7a37fd41765a59aa2a4b28113c7febf226654275138ca9509",
+      "two_axis_context_validation": "12cf495b73bd83f85e0c2df7e7ce44cd6aafe1c119a376efb1106d49186feffb",
+      "context_information_attribution": "19856a7b9865fd6b580efe9aedd9e93978fb5981189a9370be3749187721eebd",
+      "h2_external_validation_execution": "b709927afdbb840c59886e8319a89e2e33e05f8cb779f3fa78748c1f6f6d7dbf",
+      "h2_external_validation_result_freeze": "e045b28baeb66f36c1e569253cd3ce2b5a5ceeb49ada5b11520e549c49625376"
+    },
+    "purpose": "Submit the first single-component risk diagnostic evidence package through the frozen V13 protocol without promoting implementation or generating investable outputs."
+  },
+  "source_governance": {
+    "v13_1_protocol_status": "defined",
+    "v13_2_validation_engine_status": "defined",
+    "v13_4_governance_freeze_status": "frozen"
+  },
+  "v12_3_audit_projection": {
+    "audit_status": "projected_blocked",
+    "audit_decision": "blocked_pending_shadow_and_manual_review",
+    "data_lineage_and_time_safety": "present",
+    "independent_out_of_sample_validation": "inconclusive",
+    "cost_turnover_capacity_review": "not_applicable_until_policy_candidate_exists",
+    "live_shadow_observation": "missing_required_before_promotion",
+    "human_review_and_stop_conditions": "not_approved_for_implementation",
+    "implementation_ready": false
+  },
+  "time_safety": {
+    "uses_frozen_research_artifacts_only": true,
+    "input_hashes_recorded": true,
+    "does_not_read_market_price_data": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "single_component_evidence_package_only": true,
+    "submits_real_research_evidence": true,
+    "does_not_promote_component": true,
+    "does_not_generate_strategy": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "v13_2_validator_result": {
+    "package_status": "format_valid_not_ready_for_implementation",
+    "package_present": true,
+    "component_id": "risk_diagnostic_layer",
+    "component_id_status": "valid",
+    "missing_items": [],
+    "boundary_violations": [],
+    "market_code_pattern_found": false,
+    "implementation_ready": false,
+    "validation_decision": "blocked_pending_manual_review_and_future_audit"
+  },
+  "audit": {
+    "audit_status": "passed",
+    "checked_component_id": "risk_diagnostic_layer",
+    "checked_evidence_status": "submitted",
+    "checked_validator_package_status": "format_valid_not_ready_for_implementation",
+    "checked_audit_decision": "blocked_pending_shadow_and_manual_review",
+    "checked_implementation_ready": false,
+    "checked_constraints": [
+      "single_component_evidence_package_only",
+      "submits_real_research_evidence",
+      "does_not_promote_component",
+      "does_not_generate_strategy",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}

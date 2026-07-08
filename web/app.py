@@ -970,6 +970,14 @@ def _read_implementation_readiness_governance_freeze_payload() -> dict[str, obje
     return payload if isinstance(payload, dict) else None
 
 
+def _read_risk_diagnostic_evidence_package_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "risk_diagnostic_evidence_package.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -1972,6 +1980,35 @@ def _compact_implementation_readiness_governance_freeze_payload(payload: dict[st
             "implementation_boundaries",
             "not_completed",
             "recommended_next_phase",
+            "time_safety",
+            "constraints",
+            "forbidden_outputs",
+            "audit",
+        )
+        if key in payload
+    }
+
+
+def _compact_risk_diagnostic_evidence_package_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "package_metadata",
+            "component_id",
+            "summary",
+            "evidence_items",
+            "dataset_lineage",
+            "validation_results",
+            "cost_turnover_capacity_review",
+            "shadow_observation_log",
+            "human_review_record",
+            "boundary_violation_scan",
+            "source_governance",
+            "v12_3_audit_projection",
+            "v13_2_validator_result",
             "time_safety",
             "constraints",
             "forbidden_outputs",
@@ -3183,6 +3220,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/implementation-readiness/risk-diagnostic-evidence-package",
+                    "返回 V14.1 Risk Diagnostic Layer Evidence Package Phase 0：提交风险诊断层单组件证据包，经过格式与边界校验，但 implementation_ready=false，不生成策略、资产、ETF、权重、配置或交易。",
+                    "risk diagnostic evidence package",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -3354,6 +3398,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/implementation-readiness/evidence-package-validator", "description": "读取 V13.2 证据包校验引擎：定义未来 evidence package 的格式和边界自动校验；当前不接收真实证据。"},
             {"path": "/api/implementation-readiness/invalid-evidence-example", "description": "读取 V13.3 不合格证据包拒绝测试：用模拟缺陷包证明 validator 会拒绝越界输入。"},
             {"path": "/api/implementation-readiness/governance-freeze", "description": "读取 V13.4 实现准入治理冻结：冻结 V12-V13 治理链，仍无真实候选或实现输出。"},
+            {"path": "/api/implementation-readiness/risk-diagnostic-evidence-package", "description": "读取 V14.1 风险诊断层证据包：单组件证据已提交，但仍 blocked，不输出策略、权重、配置或交易。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -4626,6 +4671,17 @@ def implementation_readiness_governance_freeze() -> dict:
     return payload
 
 
+@app.get("/api/implementation-readiness/risk-diagnostic-evidence-package")
+def risk_diagnostic_evidence_package() -> dict:
+    payload = _read_risk_diagnostic_evidence_package_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Risk diagnostic evidence package artifact missing; run scripts/run_risk_diagnostic_evidence_package.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -4884,6 +4940,7 @@ def results_summary(
         evidence_package_validation_engine = _read_evidence_package_validation_engine_payload()
         invalid_evidence_package_rejection_example = _read_invalid_evidence_package_rejection_example_payload()
         implementation_readiness_governance_freeze = _read_implementation_readiness_governance_freeze_payload()
+        risk_diagnostic_evidence_package = _read_risk_diagnostic_evidence_package_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -4950,6 +5007,7 @@ def results_summary(
             evidence_package_validation_engine = _compact_evidence_package_validation_engine_payload(evidence_package_validation_engine)
             invalid_evidence_package_rejection_example = _compact_invalid_evidence_package_rejection_example_payload(invalid_evidence_package_rejection_example)
             implementation_readiness_governance_freeze = _compact_implementation_readiness_governance_freeze_payload(implementation_readiness_governance_freeze)
+            risk_diagnostic_evidence_package = _compact_risk_diagnostic_evidence_package_payload(risk_diagnostic_evidence_package)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -5053,6 +5111,7 @@ def results_summary(
             "evidence_package_validation_engine": evidence_package_validation_engine,
             "invalid_evidence_package_rejection_example": invalid_evidence_package_rejection_example,
             "implementation_readiness_governance_freeze": implementation_readiness_governance_freeze,
+            "risk_diagnostic_evidence_package": risk_diagnostic_evidence_package,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,

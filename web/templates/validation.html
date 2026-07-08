@@ -1738,6 +1738,37 @@
           <p class="result-note" id="governanceFreezeConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="提交 risk_diagnostic_layer 的第一份真实研究证据包：只验证证据格式、数据 lineage、边界和阻断原因；当前仍不允许策略、资产、ETF、权重、配置或交易。">风险诊断层证据包</h2>
+            <span class="panel-kicker">V14.1</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>证据状态</span>
+              <strong id="riskEvidenceStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>包状态</span>
+              <strong id="riskEvidencePackage">--</strong>
+            </div>
+            <div class="result-row">
+              <span>校验结果</span>
+              <strong id="riskEvidenceValidator">--</strong>
+            </div>
+            <div class="result-row">
+              <span>实现就绪</span>
+              <strong id="riskEvidenceReady">--</strong>
+            </div>
+            <div class="result-row">
+              <span>阻断原因</span>
+              <strong id="riskEvidenceBlockers">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="riskEvidenceRows"></div>
+          <p class="result-note" id="riskEvidenceConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -1828,7 +1859,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-governance-freeze-1"></script>
+    <script src="/static/dashboard.js?v=20260708-risk-evidence-package-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
