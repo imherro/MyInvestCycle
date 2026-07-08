@@ -1675,6 +1675,9 @@ function setResultsPanel(results) {
   const allocationReview = results.allocation_research_result_review || {};
   const allocationReviewSummary = allocationReview.summary || {};
   const allocationReviewRows = allocationReview.hypothesis_review || {};
+  const allocationFinal = results.allocation_research_final_boundary || {};
+  const allocationFinalSummary = allocationFinal.summary || {};
+  const allocationFinalDirections = allocationFinal.directions || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -3918,6 +3921,44 @@ function setResultsPanel(results) {
     allocationReview.metadata
       ? `V10.2 只审查 V10.1 研究执行结果：H2 继续研究但不升级，H4 保留为研究流程门禁。promotion_allowed=false、allocation_ready=false，仍不生成资产、ETF、权重、配置、优化或交易。`
       : "V10.2 配置研究结果审查尚未生成。"
+  );
+
+  const allocationFinalReadyFlagsOff =
+    allocationFinalSummary.promotion_allowed === false &&
+    allocationFinalSummary.strategy_promotion === false &&
+    allocationFinalSummary.allocation_ready === false &&
+    allocationFinalSummary.investable_output === false &&
+    allocationFinalSummary.investable_output_generated === false &&
+    allocationFinalSummary.ready_for_asset_selection === false &&
+    allocationFinalSummary.ready_for_etf_mapping === false &&
+    allocationFinalSummary.ready_for_weight_generation === false &&
+    allocationFinalSummary.ready_for_optimization === false &&
+    allocationFinalSummary.ready_for_trade === false;
+  const allocationFinalStatusLabel = (status) => ({
+    continue_external_validation: "外部验证",
+    research_governance_only: "治理保留",
+    frozen_no_external_validation: "冻结",
+  }[status] || status || "--");
+  const allocationFinalEntries = Object.entries(allocationFinalDirections || {});
+  setText("allocationFinalStatus", allocationFinalSummary.research_phase_status === "completed" ? "已完成" : "--");
+  setText("allocationFinalDirections", integerText(allocationFinalSummary.direction_count));
+  setText("allocationFinalExternal", integerText(allocationFinalSummary.continue_external_validation_count));
+  setText("allocationFinalGovernance", integerText(allocationFinalSummary.research_governance_only_count));
+  setText("allocationFinalBoundary", allocationFinalReadyFlagsOff ? "只定边界/不配置/不优化/不交易" : "需复核");
+  setHtml("allocationFinalRows", allocationFinalEntries
+    .map(([id, row]) => `
+      <div class="duration-row">
+        <span>${escapeHtml(id)} · ${escapeHtml(allocationFinalStatusLabel(row.status))}</span>
+        <strong>${escapeHtml(row.allowed_next_step || "--")}</strong>
+        <em>${escapeHtml(row.decision_reason || "--")}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "allocationFinalConclusion",
+    allocationFinal.metadata
+      ? `V10.3 固定最终研究边界：H2 只能继续外部验证，H4 仅作为研究治理保留，H1/H3 冻结且不做外部验证。allocation_ready=false，仍不生成资产、ETF、权重、配置、优化或交易。`
+      : "V10.3 配置研究最终边界尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

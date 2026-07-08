@@ -18,6 +18,11 @@ from allocation_research.allocation_research_result_review import (
     validate_allocation_research_result_review,
     write_allocation_research_result_review,
 )
+from allocation_research.allocation_research_final_boundary import (
+    build_allocation_research_final_boundary,
+    validate_allocation_research_final_boundary,
+    write_allocation_research_final_boundary,
+)
 from allocation_research.allocation_research_schema import build_allocation_research_schema
 from allocation_research.allocation_hypothesis_audit import (
     build_allocation_hypothesis_framework,
@@ -72,6 +77,7 @@ __all__ = [
     "build_allocation_research_architecture",
     "build_allocation_research_evidence_freeze",
     "build_allocation_research_execution_framework",
+    "build_allocation_research_final_boundary",
     "build_allocation_research_result_review",
     "build_allocation_research_schema",
     "build_allocation_validation_plan",
@@ -85,6 +91,7 @@ __all__ = [
     "validate_allocation_research_boundary",
     "validate_allocation_research_evidence_freeze",
     "validate_allocation_research_execution_framework",
+    "validate_allocation_research_final_boundary",
     "validate_allocation_research_result_review",
     "validate_allocation_validation_plan",
     "validate_research_candidate_deep_validation",
@@ -96,6 +103,7 @@ __all__ = [
     "write_allocation_research_architecture",
     "write_allocation_research_evidence_freeze",
     "write_allocation_research_execution_framework",
+    "write_allocation_research_final_boundary",
     "write_allocation_research_result_review",
     "write_allocation_validation_plan",
     "write_research_candidate_deep_validation",
