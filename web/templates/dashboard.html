@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle 宏观周期</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260708-regime-copy-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260708-score-history-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body data-page="dashboard">
@@ -101,10 +101,11 @@
 
           <article class="chart-panel radar-panel">
             <div class="panel-heading">
-              <h2 class="help-title" tabindex="0" data-help="短期风控状态的证据来源：趋势、宽度、流动性和波动稳定性。它不等同于长期牛熊主周期。">短期四维评分</h2>
+              <h2 class="help-title" tabindex="0" data-help="从本轮牛市起点开始观察趋势、宽度、流动性和波动稳定性评分。灰线是上证指数收盘价背景，帮助判断评分变化发生在指数什么位置。">本轮四维评分走势</h2>
             </div>
             <div class="compact-scores" id="scoreList"></div>
-            <div class="chart-box radar-box" id="radarChart"></div>
+            <div class="chart-box score-history-box" id="scoreHistoryChart"></div>
+            <p class="result-note" id="scoreHistoryNote">--</p>
           </article>
         </section>
 
@@ -112,8 +113,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260708-regime-copy-1"></script>
-    <script src="/static/dashboard.js?v=20260708-regime-copy-1"></script>
+    <script src="/static/charts.js?v=20260708-score-history-1"></script>
+    <script src="/static/dashboard.js?v=20260708-score-history-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

@@ -2017,6 +2017,10 @@ h2 {
   height: 260px;
 }
 
+.chart-box.score-history-box {
+  height: 330px;
+}
+
 .chart-box.shadow-equity-box {
   height: 360px;
   margin-top: 0;

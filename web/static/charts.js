@@ -108,6 +108,65 @@ function renderRadar(elementId, scores) {
   );
 }
 
+function renderScoreHistoryChart(elementId, history) {
+  const items = history?.items || [];
+  if (!items.length) {
+    Plotly.purge(elementId);
+    return;
+  }
+  const x = items.map((item) => toIsoDate(item.as_of));
+  const scoreTraces = [
+    ["trend", "趋势", "#2563eb"],
+    ["breadth", "宽度", "#16a34a"],
+    ["liquidity", "流动性", "#f97316"],
+    ["volatility", "波动稳定", "#9333ea"],
+  ].map(([key, name, color]) => ({
+    type: "scatter",
+    mode: "lines",
+    name,
+    x,
+    y: items.map((item) => item.scores?.[key] ?? null),
+    line: { color, width: 2.2 },
+    hovertemplate: `%{x}<br>${name} %{y:.1%}<extra></extra>`,
+  }));
+  const indexTrace = {
+    type: "scatter",
+    mode: "lines",
+    name: "上证指数",
+    x,
+    y: items.map((item) => item.index?.close ?? null),
+    yaxis: "y2",
+    line: { color: "rgba(100, 116, 139, 0.38)", width: 2 },
+    hovertemplate: "%{x}<br>上证 %{y:.2f}<extra></extra>",
+  };
+  Plotly.react(
+    elementId,
+    [indexTrace, ...scoreTraces],
+    {
+      ...baseLayout(330),
+      margin: { l: 44, r: 58, t: 14, b: 52 },
+      hovermode: "x unified",
+      xaxis: { tickformat: "%Y-%m", gridcolor: "#edf0f5" },
+      yaxis: {
+        title: "评分",
+        range: [0, 1],
+        tickformat: ".0%",
+        gridcolor: "#edf0f5",
+        zeroline: false,
+      },
+      yaxis2: {
+        title: "上证",
+        overlaying: "y",
+        side: "right",
+        showgrid: false,
+        zeroline: false,
+      },
+      legend: { orientation: "h", x: 0, y: -0.2, font: { size: 12 } },
+    },
+    { responsive: true, displayModeBar: false }
+  );
+}
+
 function renderShadowEquityChart(elementId, shadowBacktest) {
   const shadowCurve = shadowBacktest?.shadow_equity_curve || [];
   const benchmarkCurve = shadowBacktest?.benchmark_equity_curve || [];

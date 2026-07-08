@@ -1,6 +1,7 @@
 const state = {
   current: null,
   cycle: null,
+  scoreHistory: null,
   results: null,
 };
 
@@ -57,6 +58,54 @@ function setScoreList(scores) {
   target.innerHTML = labels
     .map(([key, label]) => `<div class="score-chip"><span>${label}</span><strong>${scorePercent(scores[key])}</strong></div>`)
     .join("");
+}
+
+function setScoreHistoryNote(history) {
+  const items = history?.items || [];
+  if (!items.length) {
+    setText("scoreHistoryNote", "暂无可用历史评分。");
+    return;
+  }
+  const historyEnd = history?.source?.history_end;
+  const cacheText = historyEnd && historyEnd !== history.as_of ? `，历史缓存至 ${toIsoDate(historyEnd)}` : "";
+  const latestText = history?.source?.appended_current ? `，最新点 ${toIsoDate(history.as_of)} 使用当前评分` : "";
+  const filledCount = history?.source?.dynamic_tail_count || 0;
+  const filledText = filledCount ? `，末尾 ${filledCount} 个交易日为现场补算` : "";
+  setText(
+    "scoreHistoryNote",
+    `${toIsoDate(history.start_date)} 至 ${toIsoDate(history.as_of)} · ${items.length} 个绘图点 · 灰线为上证指数收盘价背景${cacheText}${latestText}${filledText}。`
+  );
+}
+
+function mergeScoreHistoryCurrent(history, current) {
+  if (!history || !current?.as_of) return history;
+  const items = [...(history.items || [])];
+  const hasCurrent = items.some((item) => item.as_of === current.as_of);
+  if (!hasCurrent) {
+    items.push({
+      as_of: current.as_of,
+      regime: current.regime,
+      structural_regime: null,
+      scores: {
+        ...(current.sub_scores || {}),
+        regime_score: current.regime_score,
+        confidence: current.confidence,
+      },
+      index: {
+        close: history.source?.latest_index?.as_of === current.as_of ? history.source.latest_index.close : null,
+      },
+    });
+  }
+  items.sort((left, right) => String(left.as_of).localeCompare(String(right.as_of)));
+  return {
+    ...history,
+    as_of: current.as_of,
+    items,
+    source: {
+      ...(history.source || {}),
+      appended_current: !hasCurrent,
+    },
+  };
 }
 
 async function getJson(url) {
@@ -1299,7 +1348,7 @@ function pageNeedsResults() {
 }
 
 function pageNeedsRegime() {
-  return Boolean(document.querySelector("#regimePanel, #scoreList, #radarChart"));
+  return Boolean(document.querySelector("#regimePanel, #scoreList, #scoreHistoryChart"));
 }
 
 function pageNeedsCycle() {
@@ -1320,20 +1369,27 @@ async function loadDashboard() {
     const needsRegime = pageNeedsRegime();
     const needsCycle = pageNeedsCycle();
     const needsResults = pageNeedsResults();
+    const needsScoreHistory = Boolean(document.getElementById("scoreHistoryChart"));
     const resultUrl = pageNeedsFullResults() ? "/api/results/summary" : "/api/results/summary?compact=1";
-    const [current, cycle, results] = await Promise.all([
+    const [current, cycle, scoreHistory, results] = await Promise.all([
       needsRegime ? getJson("/api/regime/current") : Promise.resolve(null),
       needsCycle ? getJson("/api/regime/cycle") : Promise.resolve(null),
+      needsScoreHistory ? getJson("/api/regime/score-history") : Promise.resolve(null),
       needsResults ? getJson(resultUrl) : Promise.resolve(null),
     ]);
     state.current = current || null;
     state.cycle = cycle || null;
+    state.scoreHistory = scoreHistory || null;
     state.results = results || null;
 
     if (current) {
       setRegimePanel(current);
       setScoreList(current.sub_scores);
-      if (document.getElementById("radarChart")) renderRadar("radarChart", current.sub_scores);
+    }
+    if (scoreHistory && document.getElementById("scoreHistoryChart")) {
+      const chartHistory = mergeScoreHistoryCurrent(scoreHistory, current);
+      renderScoreHistoryChart("scoreHistoryChart", chartHistory);
+      setScoreHistoryNote(chartHistory);
     }
     if (cycle) setCyclePanel(phaseFromMajorCycle(cycle));
     if (current && cycle) setRegimeContextNote(current, cycle);

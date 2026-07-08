@@ -91,6 +91,115 @@ def _read_data_json(file_name: str):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+SCORE_HISTORY_KEYS = ("trend", "breadth", "liquidity", "volatility")
+
+
+def _float_or_none(value, digits: int = 4):
+    if value is None or pd.isna(value):
+        return None
+    return round(float(value), digits)
+
+
+def _score_history_item(
+    date_text: str,
+    regime: str | None,
+    structural_regime: str | None,
+    features: dict[str, object],
+    close: object,
+) -> dict[str, object] | None:
+    scores = {key: _float_or_none(features.get(key), 4) for key in SCORE_HISTORY_KEYS}
+    if any(value is None for value in scores.values()):
+        return None
+    scores["regime_score"] = _float_or_none(features.get("regime_score"), 4)
+    scores["confidence"] = _float_or_none(features.get("confidence"), 4)
+    return {
+        "as_of": date_text,
+        "regime": regime,
+        "structural_regime": structural_regime,
+        "scores": scores,
+        "index": {"close": _float_or_none(close, 4)},
+    }
+
+
+def _cached_score_history_items(
+    start_date: str,
+    end_date: str,
+    close_by_date: dict[str, object],
+) -> tuple[list[dict[str, object]], dict[str, object]]:
+    dataset = _read_data_json("structural_survival_dataset.json")
+    if not isinstance(dataset, list):
+        return [], {"source": "structural_survival_dataset.json", "available": False}
+
+    items = []
+    dates = []
+    for row in dataset:
+        date_text = str(row.get("date") or "")
+        if not date_text:
+            continue
+        dates.append(date_text)
+        if start_date <= date_text <= end_date:
+            item = _score_history_item(
+                date_text,
+                row.get("raw_regime"),
+                row.get("structural_regime"),
+                row.get("features") or {},
+                close_by_date.get(date_text),
+            )
+            if item:
+                items.append(item)
+
+    return items, {
+        "source": "structural_survival_dataset.json",
+        "available": True,
+        "cached_start": min(dates) if dates else None,
+        "cached_end": max(dates) if dates else None,
+    }
+
+
+def _dynamic_score_history_items(
+    target_dates: list[str],
+    index_df: pd.DataFrame,
+) -> list[dict[str, object]]:
+    if len(target_dates) > 80:
+        raise HTTPException(
+            status_code=503,
+            detail="score history cache is missing too many trading days; rebuild structural_survival_dataset first",
+        )
+
+    items = []
+    for trade_date in target_dates:
+        index_slice = index_df[index_df["trade_date"] <= trade_date]
+        market_daily = get_market_daily(trade_date)
+        market_history = get_market_history_sample(
+            market_daily,
+            _calendar_shift(trade_date, -370),
+            trade_date,
+            sample_size=BREADTH_HISTORY_SAMPLE_SIZE,
+        )
+        hsgt = _load_hsgt_for_index(index_df, trade_date)
+        result = analyze_index_regime(
+            index_slice,
+            market_daily_df=market_daily,
+            market_history_df=market_history,
+            hsgt_df=hsgt,
+        )
+        feature_row = build_feature_frame(index_slice).iloc[-1]
+        item = _score_history_item(
+            str(result["as_of"]),
+            result.get("regime"),
+            None,
+            {
+                **(result.get("sub_scores") or {}),
+                "regime_score": result.get("regime_score"),
+                "confidence": result.get("confidence"),
+            },
+            feature_row["close"],
+        )
+        if item:
+            items.append(item)
+    return items
+
+
 def _read_shadow_backtest_payload() -> dict[str, object] | None:
     path = DATA_DIR / "shadow_equity_curve.json"
     if not path.exists():
@@ -529,6 +638,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 _api_endpoint("GET", "/api/regime/explain", "当前状态识别的文字解释。", "regime explanation"),
                 _api_endpoint(
                     "GET",
+                    "/api/regime/score-history",
+                    "从本轮牛市起点开始的四维评分历史，并叠加上证指数收盘价；默认只读缓存，fill_tail=true 时补算缺失尾部。",
+                    "cycle score history",
+                    params=[{"name": "fill_tail", "required": "false", "format": "boolean"}],
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/regime/history",
                     "指定时间段内的状态序列，最多 80 个交易日。",
                     "history items",
@@ -887,6 +1003,57 @@ def regime_cycle_track() -> dict:
     try:
         index_df = _load_cycle_index(_today_text())
         return detect_current_cycle_track(index_df)
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
+@app.get("/api/regime/score-history")
+def regime_score_history(
+    fill_tail: bool = Query(False, description="Whether to compute missing tail sessions after cached history."),
+) -> dict:
+    try:
+        index_df = _load_cycle_index(_today_text())
+        if index_df.empty:
+            raise HTTPException(status_code=503, detail="No index data available.")
+        cycle_payload = detect_major_cycles(index_df)
+        current_cycle = cycle_payload.get("current_cycle") or {}
+        start_date = str(current_cycle.get("start_date") or index_df["trade_date"].iloc[-1])
+        end_date = str(cycle_payload.get("as_of") or index_df["trade_date"].iloc[-1])
+        cycle_index = index_df[
+            (index_df["trade_date"] >= start_date) & (index_df["trade_date"] <= end_date)
+        ].copy()
+        if cycle_index.empty:
+            raise HTTPException(status_code=503, detail="No index data available for current cycle.")
+
+        close_by_date = dict(zip(cycle_index["trade_date"].astype(str), cycle_index["close"]))
+        cached_items, cache_meta = _cached_score_history_items(start_date, end_date, close_by_date)
+        cached_dates = {item["as_of"] for item in cached_items}
+        cycle_dates = cycle_index["trade_date"].astype(str).tolist()
+        missing_dates = [trade_date for trade_date in cycle_dates if trade_date not in cached_dates]
+        dynamic_items = _dynamic_score_history_items(missing_dates, index_df) if fill_tail and missing_dates else []
+        items = sorted([*cached_items, *dynamic_items], key=lambda item: item["as_of"])
+        if not items:
+            raise HTTPException(status_code=503, detail="No score history items available.")
+
+        return {
+            "as_of": end_date,
+            "start_date": start_date,
+            "cycle": current_cycle,
+            "source": {
+                **cache_meta,
+                "dynamic_tail_count": len(dynamic_items),
+                "missing_dates": [] if fill_tail else missing_dates,
+                "missing_dates_filled": missing_dates if fill_tail else [],
+                "history_end": items[-1]["as_of"],
+                "latest_index": {
+                    "as_of": end_date,
+                    "close": _float_or_none(close_by_date.get(end_date), 4),
+                },
+            },
+            "items": items,
+        }
+    except HTTPException:
+        raise
     except Exception as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
