@@ -1,0 +1,293 @@
+{
+  "metadata": {
+    "engine": "V9.4 Allocation Research Experiment Template Framework",
+    "generated_at": "2026-07-08T20:05:55+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v9_3_allocation_validation_plan": "data/allocation_validation_plan.json"
+    },
+    "purpose": "Define predefined research experiment templates without executing experiments or producing allocation outputs."
+  },
+  "summary": {
+    "source_context": "risk_controlled_opportunity_watch",
+    "source_conclusion": "allocation_validation_plan_defined_not_executed",
+    "validation_plan_count": 4,
+    "experiment_template_count": 4,
+    "executed_experiment_count": 0,
+    "experiment_template_ready": false,
+    "experiment_executed": false,
+    "ready_for_asset_selection": false,
+    "ready_for_etf_mapping": false,
+    "ready_for_weight_generation": false,
+    "ready_for_backtest": false,
+    "ready_for_validation_result": false,
+    "ready_for_optimization": false,
+    "ready_for_trade": false,
+    "conclusion": "allocation_experiment_templates_defined_not_executed",
+    "key_read": "V9.4 defines experiment templates only; no experiment is run and no configuration, result, optimization, or trade output is produced."
+  },
+  "schema": {
+    "schema_version": "V9.4",
+    "purpose": "Define predefined allocation research experiment templates without running experiments.",
+    "allowed_input": {
+      "field": "allocation_validation_plan",
+      "source": "V9.3 Allocation Research Validation Plan Framework",
+      "description": "Use only hypothesis references, validation objectives, evidence requirements, and failure criteria."
+    },
+    "template_fields": [
+      "hypothesis_id",
+      "experiment_question",
+      "predefined_comparison",
+      "evaluation_criteria",
+      "failure_criteria",
+      "anti_overfitting_rules",
+      "execution_status",
+      "forbidden_interpretation"
+    ],
+    "allowed_comparison_labels": [
+      "baseline_research_posture",
+      "alternative_research_posture"
+    ],
+    "required_evaluation_criteria": [
+      "out_of_sample_design",
+      "drawdown_audit_design",
+      "contradiction_audit_design",
+      "regime_stability_design",
+      "time_safety_design"
+    ],
+    "required_execution_status": "template_only_not_executed",
+    "forbidden_outputs": [
+      "asset_selection",
+      "etf_mapping",
+      "portfolio_weight",
+      "top_n",
+      "exposure_percent",
+      "buy_signal",
+      "sell_signal",
+      "rebalance_instruction",
+      "broker_order",
+      "backtest_result",
+      "validation_result",
+      "experiment_result",
+      "optimization"
+    ]
+  },
+  "source_layer_evidence": {
+    "v9_3_summary": {
+      "source_context": "risk_controlled_opportunity_watch",
+      "source_conclusion": "allocation_hypothesis_framework_defined_unvalidated",
+      "hypothesis_count": 4,
+      "validation_plan_count": 4,
+      "executed_plan_count": 0,
+      "validation_plan_ready": false,
+      "validation_executed": false,
+      "ready_for_asset_selection": false,
+      "ready_for_etf_mapping": false,
+      "ready_for_weight_generation": false,
+      "ready_for_backtest": false,
+      "ready_for_optimization": false,
+      "ready_for_trade": false,
+      "conclusion": "allocation_validation_plan_defined_not_executed",
+      "key_read": "V9.3 defines validation plans only; it does not execute tests, produce results, optimize, or promote candidates."
+    },
+    "validation_plan_ids": [
+      "H1",
+      "H2",
+      "H3",
+      "H4"
+    ]
+  },
+  "experiment_templates": [
+    {
+      "hypothesis_id": "H1",
+      "hypothesis_name": "risk_relief_opportunity_readiness",
+      "experiment_question": "Can a predefined constructive research posture be evaluated against a waiting posture when risk relief and opportunity readiness improve?",
+      "predefined_comparison": {
+        "baseline": "baseline_research_posture",
+        "alternative": "alternative_research_posture",
+        "comparison_boundary": "Compare research postures only; do not define assets, ETFs, weights, exposure percentages, or trades."
+      },
+      "evaluation_criteria": [
+        "out_of_sample_design",
+        "drawdown_audit_design",
+        "contradiction_audit_design",
+        "regime_stability_design",
+        "time_safety_design"
+      ],
+      "failure_criteria": [
+        "out_of_sample_relationship_not_reproduced",
+        "drawdown_audit_shows_risk_relief_unstable",
+        "contradiction_audit_finds_false_participation_context"
+      ],
+      "anti_overfitting_rules": [
+        "no_parameter_search",
+        "no_best_period_selection",
+        "no_threshold_optimization",
+        "no_result_based_candidate_promotion",
+        "predeclare_failure_criteria"
+      ],
+      "execution_status": "template_only_not_executed",
+      "forbidden_interpretation": "This template is not an experiment run, not a backtest result, not an optimization output, and not an investable allocation."
+    },
+    {
+      "hypothesis_id": "H2",
+      "hypothesis_name": "risk_dominant_protection_persistence",
+      "experiment_question": "Can a predefined protection-first research posture be evaluated against an opportunity-seeking posture when risk evidence dominates?",
+      "predefined_comparison": {
+        "baseline": "baseline_research_posture",
+        "alternative": "alternative_research_posture",
+        "comparison_boundary": "Compare research postures only; do not define assets, ETFs, weights, exposure percentages, or trades."
+      },
+      "evaluation_criteria": [
+        "out_of_sample_design",
+        "drawdown_audit_design",
+        "contradiction_audit_design",
+        "regime_stability_design",
+        "time_safety_design"
+      ],
+      "failure_criteria": [
+        "protection_quality_not_stable_out_of_sample",
+        "opportunity_miss_contradictions_increase",
+        "risk_dominance_signal_not_time_safe"
+      ],
+      "anti_overfitting_rules": [
+        "no_parameter_search",
+        "no_best_period_selection",
+        "no_threshold_optimization",
+        "no_result_based_candidate_promotion",
+        "predeclare_failure_criteria"
+      ],
+      "execution_status": "template_only_not_executed",
+      "forbidden_interpretation": "This template is not an experiment run, not a backtest result, not an optimization output, and not an investable allocation."
+    },
+    {
+      "hypothesis_id": "H3",
+      "hypothesis_name": "structural_opportunity_independent_confirmation",
+      "experiment_question": "Can a predefined structure-aware research posture be evaluated against a broad-regime-only posture when structural opportunity evidence improves?",
+      "predefined_comparison": {
+        "baseline": "baseline_research_posture",
+        "alternative": "alternative_research_posture",
+        "comparison_boundary": "Compare research postures only; do not define assets, ETFs, weights, exposure percentages, or trades."
+      },
+      "evaluation_criteria": [
+        "out_of_sample_design",
+        "drawdown_audit_design",
+        "contradiction_audit_design",
+        "regime_stability_design",
+        "time_safety_design"
+      ],
+      "failure_criteria": [
+        "structural_evidence_fails_time_safety",
+        "broad_regime_explains_context_better",
+        "walk_forward_design_cannot_separate_structure_from_broad_beta"
+      ],
+      "anti_overfitting_rules": [
+        "no_parameter_search",
+        "no_best_period_selection",
+        "no_threshold_optimization",
+        "no_result_based_candidate_promotion",
+        "predeclare_failure_criteria"
+      ],
+      "execution_status": "template_only_not_executed",
+      "forbidden_interpretation": "This template is not an experiment run, not a backtest result, not an optimization output, and not an investable allocation."
+    },
+    {
+      "hypothesis_id": "H4",
+      "hypothesis_name": "contradiction_first_promotion_gate",
+      "experiment_question": "Can a contradiction-gated research posture be evaluated against ungated promotion when known contradiction types recur?",
+      "predefined_comparison": {
+        "baseline": "baseline_research_posture",
+        "alternative": "alternative_research_posture",
+        "comparison_boundary": "Compare research postures only; do not define assets, ETFs, weights, exposure percentages, or trades."
+      },
+      "evaluation_criteria": [
+        "out_of_sample_design",
+        "drawdown_audit_design",
+        "contradiction_audit_design",
+        "regime_stability_design",
+        "time_safety_design"
+      ],
+      "failure_criteria": [
+        "contradiction_types_not_reproducible",
+        "gate_too_sparse_for_research_use",
+        "predeclared_failure_criteria_not_auditable"
+      ],
+      "anti_overfitting_rules": [
+        "no_parameter_search",
+        "no_best_period_selection",
+        "no_threshold_optimization",
+        "no_result_based_candidate_promotion",
+        "predeclare_failure_criteria"
+      ],
+      "execution_status": "template_only_not_executed",
+      "forbidden_interpretation": "This template is not an experiment run, not a backtest result, not an optimization output, and not an investable allocation."
+    }
+  ],
+  "time_safety": {
+    "uses_v9_3_artifact_only": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "future_returns_not_used": true,
+    "experiment_not_executed": true
+  },
+  "data_quality": {
+    "no_asset_data_loaded": true,
+    "no_etf_data_loaded": true,
+    "no_backtest": true,
+    "no_parameter_scan": true,
+    "no_optimization": true,
+    "no_validation_result": true,
+    "no_experiment_result": true
+  },
+  "constraints": {
+    "research_only": true,
+    "template_only": true,
+    "does_not_execute_experiment": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_exposure_percent": true,
+    "does_not_run_backtest": true,
+    "does_not_generate_result": true,
+    "does_not_optimize_parameters": true,
+    "no_buy_sell_signal": true,
+    "no_rebalance_instruction": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "audit": {
+    "audit_status": "passed",
+    "checked_template_count": 4,
+    "checked_constraints": [
+      "research_only",
+      "template_only",
+      "does_not_execute_experiment",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_exposure_percent",
+      "does_not_run_backtest",
+      "does_not_generate_result",
+      "does_not_optimize_parameters",
+      "no_buy_sell_signal",
+      "no_rebalance_instruction",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "backtest_result",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "experiment_result",
+      "exposure_percent",
+      "optimization",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "validation_result"
+    ]
+  }
+}

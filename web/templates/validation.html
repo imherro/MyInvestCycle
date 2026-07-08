@@ -1121,6 +1121,33 @@
           <p class="result-note" id="allocationValidationConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="定义 V9.4 配置研究实验模板：只给出预声明比较方法、评价标准和失败标准；不运行实验、不输出验证或回测结果、不生成资产、ETF、权重、优化或交易。">配置研究实验模板</h2>
+            <span class="panel-kicker">V9.4</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>执行状态</span>
+              <strong id="allocationExperimentStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>模板数量</span>
+              <strong id="allocationExperimentCount">--</strong>
+            </div>
+            <div class="result-row">
+              <span>评价标准</span>
+              <strong id="allocationExperimentEvaluation">--</strong>
+            </div>
+            <div class="result-row">
+              <span>输出边界</span>
+              <strong id="allocationExperimentBoundary">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="allocationExperimentRows"></div>
+          <p class="result-note" id="allocationExperimentConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -1211,7 +1238,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-allocation-validation-1"></script>
+    <script src="/static/dashboard.js?v=20260708-allocation-experiment-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

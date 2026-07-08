@@ -1673,6 +1673,10 @@ function setResultsPanel(results) {
   const allocationValidationSummary = allocationValidationPlan.summary || {};
   const allocationValidationSchema = allocationValidationPlan.schema || {};
   const allocationValidationRows = Array.isArray(allocationValidationPlan.validation_plans) ? allocationValidationPlan.validation_plans : [];
+  const allocationExperiments = results.allocation_experiment_templates || {};
+  const allocationExperimentSummary = allocationExperiments.summary || {};
+  const allocationExperimentSchema = allocationExperiments.schema || {};
+  const allocationExperimentRows = Array.isArray(allocationExperiments.experiment_templates) ? allocationExperiments.experiment_templates : [];
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3576,6 +3580,50 @@ function setResultsPanel(results) {
     allocationValidationPlan.metadata
       ? `V9.3 只为 ${integerText(allocationValidationSummary.validation_plan_count)} 个假设设计验证计划，执行数 ${integerText(allocationValidationSummary.executed_plan_count)}；要求 ${allocationValidationEvidence.map((item) => escapeHtml(item)).join(" / ") || "验证设计"}，防过拟合规则 ${allocationValidationAntiOverfit.map((item) => escapeHtml(item)).join(" / ") || "--"}。禁止输出：${allocationValidationForbidden.map((item) => escapeHtml(item)).join(" / ") || "--"}。`
       : "V9.3 配置研究验证计划尚未生成。"
+  );
+
+  const allocationExperimentReadyFlagsOff =
+    allocationExperimentSummary.experiment_template_ready === false &&
+    allocationExperimentSummary.experiment_executed === false &&
+    allocationExperimentSummary.ready_for_asset_selection === false &&
+    allocationExperimentSummary.ready_for_etf_mapping === false &&
+    allocationExperimentSummary.ready_for_weight_generation === false &&
+    allocationExperimentSummary.ready_for_backtest === false &&
+    allocationExperimentSummary.ready_for_validation_result === false &&
+    allocationExperimentSummary.ready_for_optimization === false &&
+    allocationExperimentSummary.ready_for_trade === false;
+  const allocationExperimentCriteria = Array.isArray(allocationExperimentSchema.required_evaluation_criteria)
+    ? allocationExperimentSchema.required_evaluation_criteria
+    : [];
+  const allocationExperimentForbidden = Array.isArray(allocationExperimentSchema.forbidden_outputs)
+    ? allocationExperimentSchema.forbidden_outputs
+    : [];
+  setText("allocationExperimentStatus", allocationExperimentSummary.experiment_executed === false ? "模板未执行" : "--");
+  setText(
+    "allocationExperimentCount",
+    allocationExperimentSummary.experiment_template_count != null
+      ? `${integerText(allocationExperimentSummary.experiment_template_count)} 个`
+      : "--"
+  );
+  setText("allocationExperimentEvaluation", allocationExperimentCriteria.length ? `${integerText(allocationExperimentCriteria.length)} 项` : "--");
+  setText("allocationExperimentBoundary", allocationExperimentReadyFlagsOff ? "只定义模板/不运行/不出结果/不配置/不交易" : "需复核");
+  setHtml("allocationExperimentRows", allocationExperimentRows
+    .map((row) => {
+      const comparison = row.predefined_comparison || {};
+      return `
+        <div class="duration-row">
+          <span>${escapeHtml(row.hypothesis_id || "--")} · ${escapeHtml(row.hypothesis_name || "--")}</span>
+          <strong>${escapeHtml(row.execution_status || "--")}</strong>
+          <em>${escapeHtml(comparison.baseline || "--")} vs ${escapeHtml(comparison.alternative || "--")} · ${escapeHtml(row.experiment_question || "")}</em>
+        </div>
+      `;
+    })
+    .join(""));
+  setText(
+    "allocationExperimentConclusion",
+    allocationExperiments.metadata
+      ? `V9.4 只定义 ${integerText(allocationExperimentSummary.experiment_template_count)} 个预声明实验模板，执行数 ${integerText(allocationExperimentSummary.executed_experiment_count)}；评价标准 ${allocationExperimentCriteria.map((item) => escapeHtml(item)).join(" / ") || "--"}。禁止输出：${allocationExperimentForbidden.map((item) => escapeHtml(item)).join(" / ") || "--"}。`
+      : "V9.4 配置研究实验模板尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
