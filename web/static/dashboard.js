@@ -1685,6 +1685,10 @@ function setResultsPanel(results) {
   const h2External = results.h2_external_validation_execution || {};
   const h2ExternalSummary = h2External.summary || {};
   const h2ExternalRuns = Array.isArray(h2External.validation_runs) ? h2External.validation_runs : [];
+  const h2Freeze = results.h2_external_validation_result_freeze || {};
+  const h2FreezeSummary = h2Freeze.summary || {};
+  const h2FreezeConclusion = h2Freeze.final_conclusion || {};
+  const h2FreezeEvidence = h2Freeze.evidence || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4060,6 +4064,47 @@ function setResultsPanel(results) {
     h2External.metadata
       ? `V11.2 按预注册窗口执行 H2 外部验证：通过 ${integerText(h2ExternalSummary.passed_count)}、不确定 ${integerText(h2ExternalSummary.inconclusive_count)}、失败 ${integerText(h2ExternalSummary.failed_count)}，整体为${h2ExternalStatusLabel(h2ExternalSummary.overall_status)}。结论仍是 research-only，不生成资产、ETF、权重、配置、优化或交易。`
       : "V11.2 H2 外部验证执行尚未生成。"
+  );
+
+  const h2FreezeReadyFlagsOff =
+    h2FreezeSummary.promotion_allowed === false &&
+    h2FreezeSummary.strategy_promotion === false &&
+    h2FreezeSummary.allocation_ready === false &&
+    h2FreezeSummary.investable_output === false &&
+    h2FreezeSummary.investable_output_generated === false &&
+    h2FreezeSummary.ready_for_asset_selection === false &&
+    h2FreezeSummary.ready_for_etf_mapping === false &&
+    h2FreezeSummary.ready_for_weight_generation === false &&
+    h2FreezeSummary.ready_for_optimization === false &&
+    h2FreezeSummary.ready_for_trade === false;
+  const h2EvidenceStatusLabel = (status) => ({
+    supported: "支持",
+    not_confirmed: "未确认",
+    insufficient: "不足",
+    unresolved: "未解决",
+  }[status] || status || "--");
+  const h2DecisionLabel = (value) => ({
+    continue_observation_only: "仅继续观察",
+  }[value] || value || "--");
+  setText("h2FreezeStatus", h2FreezeSummary.freeze_status === "frozen" ? "已冻结" : "--");
+  setText("h2FreezeH2Status", h2ExternalStatusLabel(h2FreezeSummary.h2_status));
+  setText("h2FreezeDecision", h2DecisionLabel(h2FreezeConclusion.research_decision));
+  setText("h2FreezeSupported", integerText(h2FreezeSummary.evidence_supported_count));
+  setText("h2FreezeBoundary", h2FreezeReadyFlagsOff ? "只冻结解释/不配置/不交易" : "需复核");
+  setHtml("h2FreezeRows", Object.entries(h2FreezeEvidence)
+    .map(([key, row]) => `
+      <div class="duration-row">
+        <span>${escapeHtml(key)}</span>
+        <strong>${escapeHtml(h2EvidenceStatusLabel(row.status))}</strong>
+        <em>${escapeHtml(row.interpretation || "--")}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "h2FreezeConclusion",
+    h2Freeze.metadata
+      ? `V11.3 冻结 H2 外部验证结论：风险证据可见，但跨周期稳定不足、近期样本不足、结构机会冲突未解决。研究决策为${h2DecisionLabel(h2FreezeConclusion.research_decision)}，不修改 H2，不调阈值，不加特征，不生成资产、ETF、权重、配置、优化或交易。`
+      : "V11.3 H2 外部验证结果冻结尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
