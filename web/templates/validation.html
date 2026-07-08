@@ -648,6 +648,33 @@
           <p class="result-note" id="policyValidationConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="把机会状态、市场阶段、风险状态和风险梯度组合成研究型 decision context 标签，审计这些标签是否能分离未来风险和机会；不输出仓位、权重或交易。">暴露决策上下文审计</h2>
+            <span class="panel-kicker">V6.2</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>样本</span>
+              <strong id="decisionRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>风险分离</span>
+              <strong id="decisionRiskSeparation">--</strong>
+            </div>
+            <div class="result-row">
+              <span>机会分离</span>
+              <strong id="decisionOpportunitySeparation">--</strong>
+            </div>
+            <div class="result-row">
+              <span>策略变更</span>
+              <strong id="decisionReady">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="decisionModeList"></div>
+          <p class="result-note" id="decisionConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -738,7 +765,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-policy-validation-1"></script>
+    <script src="/static/dashboard.js?v=20260708-decision-audit-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

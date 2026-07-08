@@ -827,6 +827,17 @@ function policyModelLabel(value) {
   return labels[value] || value || "--";
 }
 
+function decisionModeLabel(value) {
+  const labels = {
+    FULL_PARTICIPATION: "全参与",
+    SELECTIVE_PARTICIPATION: "选择性参与",
+    PROTECTED_PARTICIPATION: "保护性参与",
+    DEFENSIVE: "防守",
+    WAIT: "等待",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1482,6 +1493,10 @@ function setResultsPanel(results) {
   const policyValidation = results.exposure_policy_validation || {};
   const policyValidationSummary = policyValidation.summary || {};
   const policyValidationModels = policyValidation.model_comparison || {};
+  const decisionAudit = results.exposure_decision_audit || {};
+  const decisionSummary = decisionAudit.summary || {};
+  const decisionSeparation = decisionAudit.separation_review || {};
+  const decisionModes = decisionAudit.mode_stats || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2656,6 +2671,40 @@ function setResultsPanel(results) {
     policyValidation.metadata
       ? `V6.1 固定 V5.1 暴露模拟做诊断叠加：B/C 风险提示集合${policyValidationSummary.model_b_c_flag_sets_identical ? "相同" : "不同"}，捕获率 ${percentText(modelB.high_risk_event_capture_rate)}，误警率 ${percentText(modelB.false_warning_rate)}。结论：${policyValidationStatusLabel(policyValidationSummary.policy_validation_status)}，不改 mapper、不改 exposure。`
       : "V6.1 暴露策略诊断验证尚未生成。"
+  );
+
+  setText("decisionRows", integerText(decisionSummary.joined_sample_count));
+  setText("decisionRiskSeparation", contextStateQualityLabel(decisionSummary.risk_separation));
+  setText("decisionOpportunitySeparation", contextStateQualityLabel(decisionSummary.opportunity_separation));
+  setText(
+    "decisionReady",
+    decisionSummary.ready_for_mapper_change === true || decisionSummary.ready_for_exposure_change === true
+      ? "可变更"
+      : "不可变更"
+  );
+  setHtml("decisionModeList", [
+    "FULL_PARTICIPATION",
+    "SELECTIVE_PARTICIPATION",
+    "PROTECTED_PARTICIPATION",
+    "DEFENSIVE",
+    "WAIT",
+  ]
+    .map((mode) => {
+      const item = decisionModes[mode] || {};
+      return `
+        <div class="duration-row">
+          <span>${decisionModeLabel(mode)}</span>
+          <strong>${integerText(item.sample_count)} 样本 · 风险 ${percentText(item.future_high_risk_rate)}</strong>
+          <em>机会 ${percentText(item.future_opportunity_rate)} · 冲突 ${percentText(item.contradiction_row_rate)}</em>
+        </div>
+      `;
+    })
+    .join(""));
+  setText(
+    "decisionConclusion",
+    decisionAudit.metadata
+      ? `V6.2 决策上下文审计：保护/防守/等待组相对参与组风险抬升 ${signedRatioText(decisionSeparation.caution_vs_participation_risk_lift)}，机会分离 ${signedRatioText(decisionSeparation.participation_vs_caution_opportunity_lift)}。结论：风险/机会分离均弱，不改 mapper、不改 exposure。`
+      : "V6.2 暴露决策上下文审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
