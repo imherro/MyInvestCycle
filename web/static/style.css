@@ -428,6 +428,7 @@ h2 {
 }
 
 .radar-panel .compact-scores {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   margin: 4px 0 8px;
 }
 

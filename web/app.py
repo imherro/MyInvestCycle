@@ -596,7 +596,7 @@ def _api_catalog_payload() -> dict[str, object]:
             "description": "页面入口、接口目录和自动生成文档。",
             "endpoints": [
                 _api_endpoint("GET", "/", "打开宏观周期总览首页。", "HTML dashboard", freshness="page"),
-                _api_endpoint("GET", "/risk-execution", "打开风控执行频道，集中查看风险、组合、策略路由、执行模拟和系统边界。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/risk-execution", "兼容旧链接；风控执行内容已合并到首页展示。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategies", "打开策略回测频道，集中查看策略信号、关键回测摘要和策略入口。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/validation", "打开仓位回测频道，集中查看仓位风控回测、Regime 归因、结构事件和模型验证。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/etf-rotation", "打开 ETF 轮动策略主页，集中查看回测图、关键指标和调仓历史入口。", "HTML page", freshness="page"),
@@ -773,7 +773,6 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/results/summary", "description": "读取系统全部成果汇总。"},
             {"path": "/api/system/snapshot", "description": "读取系统冻结边界与稳定状态。"},
             {"path": "/", "description": "查看宏观周期总览。"},
-            {"path": "/risk-execution", "description": "查看风控执行频道。"},
             {"path": "/strategies", "description": "查看策略回测频道。"},
             {"path": "/validation", "description": "查看仓位回测频道。"},
             {"path": "/api/regime/current", "description": "读取当前牛熊状态与四维评分。"},
