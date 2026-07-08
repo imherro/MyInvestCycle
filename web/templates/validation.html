@@ -1800,6 +1800,37 @@
           <p class="result-note" id="riskShadowConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="初始化风险诊断层的 active 空观察日志：当前事件数为 0，只允许未来手动追加无交易观察，不自动触发 warning，不调整 exposure 或仓位。">风险诊断影子观察日志</h2>
+            <span class="panel-kicker">V14.3</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>观察状态</span>
+              <strong id="riskShadowLogStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>日志状态</span>
+              <strong id="riskShadowLogMode">--</strong>
+            </div>
+            <div class="result-row">
+              <span>事件数量</span>
+              <strong id="riskShadowLogEvents">--</strong>
+            </div>
+            <div class="result-row">
+              <span>自动触发</span>
+              <strong id="riskShadowLogAuto">--</strong>
+            </div>
+            <div class="result-row">
+              <span>交易启用</span>
+              <strong id="riskShadowLogTrade">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="riskShadowLogRows"></div>
+          <p class="result-note" id="riskShadowLogConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -1890,7 +1921,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-risk-shadow-framework-1"></script>
+    <script src="/static/dashboard.js?v=20260708-risk-shadow-log-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
