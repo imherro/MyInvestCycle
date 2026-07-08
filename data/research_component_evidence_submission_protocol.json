@@ -1,0 +1,434 @@
+{
+  "metadata": {
+    "engine": "V13.1 Research Component Evidence Submission Protocol",
+    "generated_at": "2026-07-08T22:09:15+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "implementation_readiness_evidence_audit": "data/implementation_readiness_evidence_audit.json"
+    },
+    "input_hashes": {
+      "implementation_readiness_evidence_audit": "67d0e12adec3d3aa8a0ca5de71652571b3e34d82d4f994f24f09a7f1a6496081"
+    },
+    "purpose": "Define the standard format for future research component evidence package submission without submitting evidence or creating investable outputs."
+  },
+  "summary": {
+    "protocol_status": "defined",
+    "submission_status": "not_submitted",
+    "evidence_package_created": false,
+    "implementation_gate_result": "blocked",
+    "component_contract_count": 8,
+    "required_top_level_field_count": 10,
+    "implementation_ready": false,
+    "investable_output": false,
+    "strategy_output_generated": false,
+    "allocation_output_generated": false,
+    "trade_ready": false,
+    "conclusion": "research_component_evidence_submission_protocol_defined_no_strategy_no_allocation",
+    "key_read": "V13.1 defines future evidence package submission format only; no evidence is submitted, no component is promoted and no investable output is created."
+  },
+  "submission_schema": {
+    "schema_version": "v13.1",
+    "current_run_submits_evidence_package": false,
+    "future_package_required_for_audit": true,
+    "protocol_can_promote_component": false,
+    "required_top_level_fields": [
+      "package_metadata",
+      "component_id",
+      "evidence_items",
+      "dataset_lineage",
+      "validation_results",
+      "cost_turnover_capacity_review",
+      "shadow_observation_log",
+      "human_review_record",
+      "boundary_violation_scan",
+      "input_hashes"
+    ],
+    "package_metadata_required_fields": [
+      "package_id",
+      "component_id",
+      "created_at",
+      "market_data_as_of",
+      "generator",
+      "input_hashes"
+    ],
+    "validation_result_required_fields": [
+      "window_id",
+      "method",
+      "pre_registered_metric",
+      "result_status",
+      "lineage_hash"
+    ],
+    "manual_review_required_fields": [
+      "reviewer",
+      "review_time",
+      "approval_status",
+      "stop_conditions_confirmed"
+    ]
+  },
+  "component_submission_contracts": [
+    {
+      "component_id": "risk_diagnostic_layer",
+      "submission_scope": "future_evidence_package_only",
+      "current_package_submitted": false,
+      "submission_allowed_now": false,
+      "required_evidence_items": [
+        "independent_out_of_sample_warning_effect",
+        "false_warning_cost_estimate",
+        "missed_risk_cost_estimate",
+        "market_structure_stability_review",
+        "live_shadow_observation_log"
+      ],
+      "required_package_sections": [
+        "component_id",
+        "evidence_items",
+        "dataset_lineage",
+        "validation_results",
+        "cost_turnover_capacity_review",
+        "shadow_observation_log",
+        "human_review_record",
+        "boundary_violation_scan",
+        "input_hashes"
+      ],
+      "forbidden_package_content": [
+        "strategy_instruction",
+        "asset_or_fund_code",
+        "portfolio_or_allocation_output",
+        "optimization_result",
+        "broker_or_order_instruction"
+      ],
+      "initial_submission_status": "not_submitted",
+      "promotion_allowed": false,
+      "implementation_ready": false
+    },
+    {
+      "component_id": "protection_research_value",
+      "submission_scope": "future_evidence_package_only",
+      "current_package_submitted": false,
+      "submission_allowed_now": false,
+      "required_evidence_items": [
+        "cross_regime_drawdown_reduction",
+        "opportunity_cost_bound",
+        "adverse_window_repeatability",
+        "risk_event_definition_stability",
+        "live_shadow_observation_log"
+      ],
+      "required_package_sections": [
+        "component_id",
+        "evidence_items",
+        "dataset_lineage",
+        "validation_results",
+        "cost_turnover_capacity_review",
+        "shadow_observation_log",
+        "human_review_record",
+        "boundary_violation_scan",
+        "input_hashes"
+      ],
+      "forbidden_package_content": [
+        "strategy_instruction",
+        "asset_or_fund_code",
+        "portfolio_or_allocation_output",
+        "optimization_result",
+        "broker_or_order_instruction"
+      ],
+      "initial_submission_status": "not_submitted",
+      "promotion_allowed": false,
+      "implementation_ready": false
+    },
+    {
+      "component_id": "contradiction_governance_layer",
+      "submission_scope": "future_evidence_package_only",
+      "current_package_submitted": false,
+      "submission_allowed_now": false,
+      "required_evidence_items": [
+        "decision_log_completeness",
+        "contradiction_rule_stability",
+        "human_review_reproducibility",
+        "audit_trail_integrity"
+      ],
+      "required_package_sections": [
+        "component_id",
+        "evidence_items",
+        "dataset_lineage",
+        "validation_results",
+        "cost_turnover_capacity_review",
+        "shadow_observation_log",
+        "human_review_record",
+        "boundary_violation_scan",
+        "input_hashes"
+      ],
+      "forbidden_package_content": [
+        "strategy_instruction",
+        "asset_or_fund_code",
+        "portfolio_or_allocation_output",
+        "optimization_result",
+        "broker_or_order_instruction"
+      ],
+      "initial_submission_status": "not_submitted",
+      "promotion_allowed": false,
+      "implementation_ready": false
+    },
+    {
+      "component_id": "opportunity_prediction_layer",
+      "submission_scope": "future_evidence_package_only",
+      "current_package_submitted": false,
+      "submission_allowed_now": false,
+      "required_evidence_items": [
+        "positive_out_of_sample_information_coefficient",
+        "feature_stability_by_market_structure",
+        "proxy_to_tradable_migration_validation",
+        "data_coverage_and_lag_audit",
+        "negative_control_comparison"
+      ],
+      "required_package_sections": [
+        "component_id",
+        "evidence_items",
+        "dataset_lineage",
+        "validation_results",
+        "cost_turnover_capacity_review",
+        "shadow_observation_log",
+        "human_review_record",
+        "boundary_violation_scan",
+        "input_hashes"
+      ],
+      "forbidden_package_content": [
+        "strategy_instruction",
+        "asset_or_fund_code",
+        "portfolio_or_allocation_output",
+        "optimization_result",
+        "broker_or_order_instruction"
+      ],
+      "initial_submission_status": "not_submitted",
+      "promotion_allowed": false,
+      "implementation_ready": false
+    },
+    {
+      "component_id": "allocation_alpha_layer",
+      "submission_scope": "future_evidence_package_only",
+      "current_package_submitted": false,
+      "submission_allowed_now": false,
+      "required_evidence_items": [
+        "positive_incremental_value_after_cost",
+        "sample_split_robustness",
+        "turnover_capacity_cost_model",
+        "stress_window_loss_bound",
+        "pre_registered_policy_comparison"
+      ],
+      "required_package_sections": [
+        "component_id",
+        "evidence_items",
+        "dataset_lineage",
+        "validation_results",
+        "cost_turnover_capacity_review",
+        "shadow_observation_log",
+        "human_review_record",
+        "boundary_violation_scan",
+        "input_hashes"
+      ],
+      "forbidden_package_content": [
+        "strategy_instruction",
+        "asset_or_fund_code",
+        "portfolio_or_allocation_output",
+        "optimization_result",
+        "broker_or_order_instruction"
+      ],
+      "initial_submission_status": "not_submitted",
+      "promotion_allowed": false,
+      "implementation_ready": false
+    },
+    {
+      "component_id": "asset_selection_layer",
+      "submission_scope": "future_evidence_package_only",
+      "current_package_submitted": false,
+      "submission_allowed_now": false,
+      "required_evidence_items": [
+        "independent_universe_definition",
+        "liquidity_tracking_error_audit",
+        "survivorship_bias_audit",
+        "constituent_or_fund_metadata_lineage"
+      ],
+      "required_package_sections": [
+        "component_id",
+        "evidence_items",
+        "dataset_lineage",
+        "validation_results",
+        "cost_turnover_capacity_review",
+        "shadow_observation_log",
+        "human_review_record",
+        "boundary_violation_scan",
+        "input_hashes"
+      ],
+      "forbidden_package_content": [
+        "strategy_instruction",
+        "asset_or_fund_code",
+        "portfolio_or_allocation_output",
+        "optimization_result",
+        "broker_or_order_instruction"
+      ],
+      "initial_submission_status": "not_submitted",
+      "promotion_allowed": false,
+      "implementation_ready": false
+    },
+    {
+      "component_id": "portfolio_construction_layer",
+      "submission_scope": "future_evidence_package_only",
+      "current_package_submitted": false,
+      "submission_allowed_now": false,
+      "required_evidence_items": [
+        "risk_budget_pre_registration",
+        "turnover_and_transaction_cost_policy",
+        "capacity_and_liquidity_stress_test",
+        "rebalancing_failure_protocol",
+        "human_review_before_promotion"
+      ],
+      "required_package_sections": [
+        "component_id",
+        "evidence_items",
+        "dataset_lineage",
+        "validation_results",
+        "cost_turnover_capacity_review",
+        "shadow_observation_log",
+        "human_review_record",
+        "boundary_violation_scan",
+        "input_hashes"
+      ],
+      "forbidden_package_content": [
+        "strategy_instruction",
+        "asset_or_fund_code",
+        "portfolio_or_allocation_output",
+        "optimization_result",
+        "broker_or_order_instruction"
+      ],
+      "initial_submission_status": "not_submitted",
+      "promotion_allowed": false,
+      "implementation_ready": false
+    },
+    {
+      "component_id": "execution_layer",
+      "submission_scope": "future_evidence_package_only",
+      "current_package_submitted": false,
+      "submission_allowed_now": false,
+      "required_evidence_items": [
+        "paper_trading_sandbox_only",
+        "broker_write_path_security_review",
+        "explicit_user_authorization_record",
+        "kill_switch_and_rollback_plan",
+        "manual_approval_protocol"
+      ],
+      "required_package_sections": [
+        "component_id",
+        "evidence_items",
+        "dataset_lineage",
+        "validation_results",
+        "cost_turnover_capacity_review",
+        "shadow_observation_log",
+        "human_review_record",
+        "boundary_violation_scan",
+        "input_hashes"
+      ],
+      "forbidden_package_content": [
+        "strategy_instruction",
+        "asset_or_fund_code",
+        "portfolio_or_allocation_output",
+        "optimization_result",
+        "broker_or_order_instruction"
+      ],
+      "initial_submission_status": "not_submitted",
+      "promotion_allowed": false,
+      "implementation_ready": false
+    }
+  ],
+  "automatic_rejection_conditions": [
+    "missing_required_top_level_field",
+    "missing_input_hash",
+    "component_id_not_in_protocol",
+    "market_data_date_missing",
+    "future_function_risk_not_addressed",
+    "forbidden_package_content_detected",
+    "manual_review_missing",
+    "broker_or_order_path_included"
+  ],
+  "current_submission_state": {
+    "package_present": false,
+    "package_path": null,
+    "submitted_component_count": 0,
+    "accepted_component_count": 0,
+    "rejected_component_count": 0,
+    "implementation_ready_component_count": 0
+  },
+  "source_audit_framework_evidence": {
+    "v12_3_audit_framework_status": "defined",
+    "v12_3_evidence_package_status": "not_submitted",
+    "v12_3_ready_component_count": 0,
+    "v12_3_gate_result": "blocked"
+  },
+  "time_safety": {
+    "uses_v12_3_audit_framework_only": true,
+    "input_hash_recorded": true,
+    "does_not_read_market_price_data": true,
+    "does_not_compute_forward_returns": true,
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "does_not_submit_or_evaluate_evidence": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "submission_protocol_only": true,
+    "current_run_no_submission": true,
+    "does_not_evaluate_evidence": true,
+    "does_not_generate_strategy": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_protocol_status": "defined",
+    "checked_submission_status": "not_submitted",
+    "checked_component_contracts": 8,
+    "checked_constraints": [
+      "submission_protocol_only",
+      "current_run_no_submission",
+      "does_not_evaluate_evidence",
+      "does_not_generate_strategy",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}

@@ -938,6 +938,14 @@ def _read_implementation_readiness_evidence_audit_payload() -> dict[str, object]
     return payload if isinstance(payload, dict) else None
 
 
+def _read_research_component_evidence_submission_protocol_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "research_component_evidence_submission_protocol.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -1856,6 +1864,28 @@ def _compact_implementation_readiness_evidence_audit_payload(payload: dict[str, 
             "global_gate_audits",
             "future_package_contract",
             "source_specification_evidence",
+            "time_safety",
+            "constraints",
+            "forbidden_outputs",
+            "audit",
+        )
+        if key in payload
+    }
+
+
+def _compact_research_component_evidence_submission_protocol_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "submission_schema",
+            "component_submission_contracts",
+            "automatic_rejection_conditions",
+            "current_submission_state",
+            "source_audit_framework_evidence",
             "time_safety",
             "constraints",
             "forbidden_outputs",
@@ -3039,6 +3069,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/implementation-readiness/evidence-submission-protocol",
+                    "返回 V13.1 Research Component Evidence Submission Protocol，定义未来研究组件提交实现资格证据包的标准格式；当前不提交证据包，不生成策略、资产、ETF、权重、配置或交易。",
+                    "research component evidence submission protocol",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -3206,6 +3243,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/implementation-boundary/research-to-implementation", "description": "读取 V12.1 研究到实现隔离边界：定义可观察候选、隔离项和进入实现前的额外验证要求。"},
             {"path": "/api/implementation-readiness/evidence-specification", "description": "读取 V12.2 实现就绪证据标准：定义未来允许进入实现前必须满足的证据，不评价证据、不输出策略。"},
             {"path": "/api/implementation-readiness/evidence-audit", "description": "读取 V12.3 实现证据审计框架：定义未来 evidence package 审计方式；当前未提交证据，所有组件 blocked。"},
+            {"path": "/api/implementation-readiness/evidence-submission-protocol", "description": "读取 V13.1 证据包提交协议：定义未来研究组件如何提交实现资格证据包；当前不提交证据。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -4434,6 +4472,17 @@ def implementation_readiness_evidence_audit() -> dict:
     return payload
 
 
+@app.get("/api/implementation-readiness/evidence-submission-protocol")
+def research_component_evidence_submission_protocol() -> dict:
+    payload = _read_research_component_evidence_submission_protocol_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Research component evidence submission protocol artifact missing; run scripts/run_research_component_evidence_submission_protocol.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -4688,6 +4737,7 @@ def results_summary(
         research_to_implementation_boundary = _read_research_to_implementation_boundary_payload()
         implementation_readiness_evidence_specification = _read_implementation_readiness_evidence_specification_payload()
         implementation_readiness_evidence_audit = _read_implementation_readiness_evidence_audit_payload()
+        research_component_evidence_submission_protocol = _read_research_component_evidence_submission_protocol_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -4750,6 +4800,7 @@ def results_summary(
             research_to_implementation_boundary = _compact_research_to_implementation_boundary_payload(research_to_implementation_boundary)
             implementation_readiness_evidence_specification = _compact_implementation_readiness_evidence_specification_payload(implementation_readiness_evidence_specification)
             implementation_readiness_evidence_audit = _compact_implementation_readiness_evidence_audit_payload(implementation_readiness_evidence_audit)
+            research_component_evidence_submission_protocol = _compact_research_component_evidence_submission_protocol_payload(research_component_evidence_submission_protocol)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -4849,6 +4900,7 @@ def results_summary(
             "research_to_implementation_boundary": research_to_implementation_boundary,
             "implementation_readiness_evidence_specification": implementation_readiness_evidence_specification,
             "implementation_readiness_evidence_audit": implementation_readiness_evidence_audit,
+            "research_component_evidence_submission_protocol": research_component_evidence_submission_protocol,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,

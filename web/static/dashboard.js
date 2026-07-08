@@ -1704,6 +1704,10 @@ function setResultsPanel(results) {
   const readinessAudit = results.implementation_readiness_evidence_audit || {};
   const readinessAuditSummary = readinessAudit.summary || {};
   const readinessAuditComponents = Array.isArray(readinessAudit.component_audits) ? readinessAudit.component_audits : [];
+  const submissionProtocol = results.research_component_evidence_submission_protocol || {};
+  const submissionProtocolSummary = submissionProtocol.summary || {};
+  const submissionProtocolState = submissionProtocol.current_submission_state || {};
+  const submissionProtocolContracts = Array.isArray(submissionProtocol.component_submission_contracts) ? submissionProtocol.component_submission_contracts : [];
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4226,6 +4230,25 @@ function setResultsPanel(results) {
     readinessAudit.metadata
       ? `V12.3 只定义未来 evidence package 审计框架：当前证据包${phaseStatusLabel(readinessAuditSummary.evidence_package_status)}，${integerText(readinessAuditSummary.component_audit_count)} 个组件全部未提交证据，ready 组件 ${integerText(readinessAuditSummary.implementation_ready_component_count)} 个，实现门禁仍为${phaseStatusLabel(readinessAuditSummary.implementation_gate_result)}。`
       : "V12.3 实现证据审计框架尚未生成。"
+  );
+
+  setText("submissionProtocolStatus", phaseStatusLabel(submissionProtocolSummary.protocol_status));
+  setText("submissionProtocolSubmission", phaseStatusLabel(submissionProtocolSummary.submission_status));
+  setText("submissionProtocolContracts", `${integerText(submissionProtocolSummary.component_contract_count)} 个`);
+  setText("submissionProtocolFields", `${integerText(submissionProtocolSummary.required_top_level_field_count)} 个`);
+  setText("submissionProtocolPackage", submissionProtocolState.package_present === false ? "未提交" : "--");
+  setHtml("submissionProtocolRows", submissionProtocolContracts.map((row) => `
+    <div class="duration-row">
+      <span>${escapeHtml(row.component_id || "--")}</span>
+      <strong>${escapeHtml(phaseStatusLabel(row.initial_submission_status))}</strong>
+      <em>要求 ${integerText(Array.isArray(row.required_package_sections) ? row.required_package_sections.length : null)} 个包字段；当前提交 ${row.current_package_submitted ? "是" : "否"}。</em>
+    </div>
+  `).join(""));
+  setText(
+    "submissionProtocolConclusion",
+    submissionProtocol.metadata
+      ? `V13.1 只定义未来研究组件 evidence package 的提交协议：${integerText(submissionProtocolSummary.component_contract_count)} 个组件协议、${integerText(submissionProtocolSummary.required_top_level_field_count)} 个顶层字段；当前没有提交证据包，submitted=${integerText(submissionProtocolState.submitted_component_count)}，ready=${integerText(submissionProtocolState.implementation_ready_component_count)}。`
+      : "V13.1 证据包提交协议尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
