@@ -869,6 +869,34 @@
           <p class="result-note" id="opportunityValidationConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="固定 V7.3 验证结果，归因哪些特征暂时保留研究、观察或暂弃；这些标签不是评分、权重、排名、Top N 或交易信号。">机会特征归因与稳定性</h2>
+            <span class="panel-kicker">V7.4</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>归因条数</span>
+              <strong id="opportunityAttributionRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>保留结论</span>
+              <strong id="opportunityAttributionRetention">--</strong>
+            </div>
+            <div class="result-row">
+              <span>环境一致性</span>
+              <strong id="opportunityAttributionRegime">--</strong>
+            </div>
+            <div class="result-row">
+              <span>输出边界</span>
+              <strong id="opportunityAttributionBoundary">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="opportunityAttributionCounts"></div>
+          <div class="alpha-source-list" id="opportunityAttributionSamples"></div>
+          <p class="result-note" id="opportunityAttributionConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -959,7 +987,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-opportunity-validation-1"></script>
+    <script src="/static/dashboard.js?v=20260708-opportunity-attribution-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

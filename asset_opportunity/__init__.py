@@ -11,6 +11,7 @@ from asset_opportunity.opportunity_score_engine import build_asset_opportunity_s
 from asset_opportunity.opportunity_research_foundation import build_opportunity_research_foundation
 from asset_opportunity.opportunity_context_features import build_opportunity_context_features
 from asset_opportunity.opportunity_feature_validation import build_opportunity_feature_validation
+from asset_opportunity.opportunity_feature_attribution import build_opportunity_feature_attribution
 from asset_opportunity.opportunity_validation import build_opportunity_validation
 from asset_opportunity.portfolio_risk_control import default_risk_control_scenarios
 from asset_opportunity.regime_conditioned_validation import build_regime_conditioned_validation
@@ -31,6 +32,7 @@ __all__ = [
     "build_opportunity_research_foundation",
     "build_opportunity_context_features",
     "build_opportunity_feature_validation",
+    "build_opportunity_feature_attribution",
     "build_regime_conditioned_validation",
     "asset_style_map",
     "default_risk_control_scenarios",

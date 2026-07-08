@@ -570,6 +570,14 @@ def _read_opportunity_feature_validation_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_opportunity_feature_attribution_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "opportunity_feature_attribution.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -1076,6 +1084,26 @@ def _compact_opportunity_feature_validation_payload(payload: dict[str, object] |
     rows = payload.get("feature_results")
     if isinstance(rows, list):
         compact["sample_results"] = rows[:8]
+    return compact
+
+
+def _compact_opportunity_feature_attribution_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    compact = {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "time_safety",
+            "data_quality",
+            "constraints",
+        )
+        if key in payload
+    }
+    rows = payload.get("feature_attribution")
+    if isinstance(rows, list):
+        compact["sample_attribution"] = rows[:8]
     return compact
 
 
@@ -1943,6 +1971,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/opportunity/feature-attribution",
+                    "返回 V7.4 Opportunity Feature Attribution & Stability Audit，固定 V7.3 结果做特征保留/观察/暂弃归因和环境稳定性审计；不生成评分、权重、排名、Top N、仓位或交易信号。",
+                    "opportunity feature attribution audit",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -2085,6 +2120,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/opportunity/research-foundation", "description": "读取 V7.1 机会研究基础层：资产池、研究代理、覆盖率和只读边界。"},
             {"path": "/api/opportunity/context-features", "description": "读取 V7.2 机会研究特征层：动量、相对强弱、趋势、风险和结构字段。"},
             {"path": "/api/opportunity/feature-validation", "description": "读取 V7.3 机会特征有效性审计：IC、proxy/ETF 分离和环境分层。"},
+            {"path": "/api/opportunity/feature-attribution", "description": "读取 V7.4 机会特征归因与稳定性审计：保留/观察/暂弃标签和环境一致性。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -3115,6 +3151,17 @@ def opportunity_feature_validation() -> dict:
     return payload
 
 
+@app.get("/api/opportunity/feature-attribution")
+def opportunity_feature_attribution() -> dict:
+    payload = _read_opportunity_feature_attribution_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Opportunity feature attribution artifact missing; run scripts/run_opportunity_feature_attribution.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -3274,6 +3321,7 @@ def results_summary(
         opportunity_research_foundation = _read_opportunity_research_foundation_payload()
         opportunity_context_features = _read_opportunity_context_features_payload()
         opportunity_feature_validation = _read_opportunity_feature_validation_payload()
+        opportunity_feature_attribution = _read_opportunity_feature_attribution_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -3311,6 +3359,7 @@ def results_summary(
             opportunity_research_foundation = _compact_opportunity_research_foundation_payload(opportunity_research_foundation)
             opportunity_context_features = _compact_opportunity_context_features_payload(opportunity_context_features)
             opportunity_feature_validation = _compact_opportunity_feature_validation_payload(opportunity_feature_validation)
+            opportunity_feature_attribution = _compact_opportunity_feature_attribution_payload(opportunity_feature_attribution)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -3385,6 +3434,7 @@ def results_summary(
             "opportunity_research_foundation": opportunity_research_foundation,
             "opportunity_context_features": opportunity_context_features,
             "opportunity_feature_validation": opportunity_feature_validation,
+            "opportunity_feature_attribution": opportunity_feature_attribution,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,

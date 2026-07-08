@@ -919,6 +919,26 @@ function opportunityValidationStatusLabel(value) {
   return labels[value] || value || "--";
 }
 
+function opportunityRetentionLabel(value) {
+  const labels = {
+    research_candidate: "保留研究",
+    watch: "继续观察",
+    reject_for_now: "暂不保留",
+    insufficient: "样本不足",
+  };
+  return labels[value] || value || "--";
+}
+
+function opportunityRegimeConsistencyLabel(value) {
+  const labels = {
+    consistent_context_signal: "环境一致",
+    single_context_signal: "单环境",
+    mixed_or_conflicting_context_signal: "混合/冲突",
+    no_regime_signal: "无环境信号",
+  };
+  return labels[value] || value || "--";
+}
+
 function decisionModeLabel(value) {
   const labels = {
     FULL_PARTICIPATION: "全参与",
@@ -1617,6 +1637,9 @@ function setResultsPanel(results) {
   const opportunityValidationSummary = opportunityValidation.summary || {};
   const opportunityValidationSamples = opportunityValidation.sample_results || opportunityValidation.feature_results || [];
   const opportunityValidationTimeSafety = opportunityValidation.time_safety || {};
+  const opportunityFeatureAttribution = results.opportunity_feature_attribution || {};
+  const opportunityFeatureAttributionSummary = opportunityFeatureAttribution.summary || {};
+  const opportunityFeatureAttributionSamples = opportunityFeatureAttribution.sample_attribution || opportunityFeatureAttribution.feature_attribution || [];
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3124,6 +3147,53 @@ function setResultsPanel(results) {
     opportunityValidation.metadata
       ? `V7.3 固定 V7.2 字段做 IC 审计：共 ${integerText(opportunityValidationSummary.result_count)} 条 feature × horizon 结果。多数结果仍为平坦或偏弱，说明当前只能用于研究归因，还不能进入机会评分。时间安全：${opportunityValidationTimeSafety.forward_returns_used_only_as_validation_labels ? "未来收益只作验证标签" : "需复核"}。`
       : "V7.3 机会特征有效性审计尚未生成。"
+  );
+
+  const retentionCounts = opportunityFeatureAttributionSummary.retention_counts || {};
+  const regimeConsistencyCounts = opportunityFeatureAttributionSummary.regime_consistency_counts || {};
+  const retentionSummaryText = ["research_candidate", "watch", "reject_for_now", "insufficient"]
+    .filter((key) => retentionCounts[key])
+    .map((key) => `${opportunityRetentionLabel(key)} ${integerText(retentionCounts[key])}`)
+    .join(" / ") || "--";
+  const regimeSummaryText = ["consistent_context_signal", "single_context_signal", "mixed_or_conflicting_context_signal", "no_regime_signal"]
+    .filter((key) => regimeConsistencyCounts[key])
+    .map((key) => `${opportunityRegimeConsistencyLabel(key)} ${integerText(regimeConsistencyCounts[key])}`)
+    .join(" / ") || "--";
+  setText("opportunityAttributionRows", integerText(opportunityFeatureAttributionSummary.attribution_count));
+  setText("opportunityAttributionRetention", retentionSummaryText);
+  setText("opportunityAttributionRegime", regimeSummaryText);
+  setText(
+    "opportunityAttributionBoundary",
+    opportunityFeatureAttributionSummary.ready_for_scoring === false &&
+      opportunityFeatureAttributionSummary.ready_for_ranking === false &&
+      opportunityFeatureAttributionSummary.ready_for_allocation === false &&
+      opportunityFeatureAttributionSummary.ready_for_trade === false
+      ? "不可评分/排名/配置/交易"
+      : "需复核"
+  );
+  setHtml("opportunityAttributionCounts", [
+    ["保留/观察", retentionSummaryText],
+    ["环境一致性", regimeSummaryText],
+  ].map(([label, value]) => `
+    <div class="duration-row">
+      <span>${label}</span>
+      <strong>${value}</strong>
+      <em>归因标签，不是权重或交易动作</em>
+    </div>
+  `).join(""));
+  setHtml("opportunityAttributionSamples", opportunityFeatureAttributionSamples
+    .map((item) => `
+      <div>
+        <strong>${escapeHtml(item.feature_key)} · ${integerText(item.horizon_sessions)}日</strong>
+        <span>${opportunityRetentionLabel(item.retention)} · ${escapeHtml(item.proxy_etf_alignment || "--")} · ${opportunityRegimeConsistencyLabel(item.regime_consistency?.status)}</span>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "opportunityAttributionConclusion",
+    opportunityFeatureAttribution.metadata
+      ? `V7.4 固定 V7.3 结果做归因：${integerText(retentionCounts.research_candidate || 0)} 条暂列保留研究，${integerText(retentionCounts.watch || 0)} 条继续观察，但总体结论仍是 ${escapeHtml(opportunityFeatureAttributionSummary.conclusion || "不可进入机会评分")}。这些 retention 标签不是评分、权重、排名或交易信号。`
+      : "V7.4 机会特征归因与稳定性审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
