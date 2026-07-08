@@ -1,0 +1,525 @@
+{
+  "metadata": {
+    "engine": "V8.2 Research Decision Historical Scenario Audit",
+    "generated_at": "2026-07-08T19:12:02+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "research_decision_context": "data/research_decision_context.json",
+      "two_axis_context": "data/two_axis_context_validation.json",
+      "context_information_attribution": "data/context_information_attribution.json"
+    },
+    "purpose": "Audit whether the V8.1 research context explains historical scenarios consistently; no returns, score, rank, allocation, or trade output."
+  },
+  "summary": {
+    "base_decision_context": "risk_controlled_opportunity_watch",
+    "base_research_posture": "observe_without_selection",
+    "scenario_count": 6,
+    "covered_scenario_count": 6,
+    "consistency_counts": {
+      "low": 3,
+      "medium": 3
+    },
+    "dominant_context_counts": {
+      "PARTICIPATE": 1,
+      "WAIT": 5
+    },
+    "average_transition_rate": 0.422896,
+    "contradiction_case_count": 16,
+    "missing_context_case_count": 0,
+    "ready_for_scoring": false,
+    "ready_for_ranking": false,
+    "ready_for_allocation": false,
+    "ready_for_trade": false,
+    "conclusion": "scenario_explanation_audit_only_no_strategy",
+    "key_read": "V8.2 checks historical explanation consistency only; it does not use returns, produce rankings, allocate assets, or trade."
+  },
+  "scenarios": [
+    {
+      "scenario": "2015_bull_bear_transition",
+      "name": "2015 牛熊转换",
+      "start": "20150101",
+      "end": "20160229",
+      "observation_count": 12,
+      "coverage_status": "covered",
+      "dominant_context": "WAIT",
+      "dominant_context_share": 0.416667,
+      "interpretation": "wait_or_mixed_context",
+      "consistency": "low",
+      "transition_count": 9,
+      "transition_rate": 0.818182,
+      "contradiction_count": 7,
+      "contradiction_rate": 0.583333,
+      "missing_context_count": 0,
+      "missing_context_rate": 0.0,
+      "two_axis_distribution": {
+        "AVOID": {
+          "count": 3,
+          "share": 0.25
+        },
+        "PARTICIPATE": {
+          "count": 2,
+          "share": 0.166667
+        },
+        "PROTECT_BUT_PARTICIPATE": {
+          "count": 2,
+          "share": 0.166667
+        },
+        "WAIT": {
+          "count": 5,
+          "share": 0.416667
+        }
+      },
+      "market_phase_distribution": {
+        "EARLY_CYCLE": {
+          "count": 11,
+          "share": 0.916667
+        },
+        "EXPANSION": {
+          "count": 1,
+          "share": 0.083333
+        }
+      },
+      "risk_state_distribution": {
+        "CROWDED": {
+          "count": 12,
+          "share": 1.0
+        }
+      },
+      "opportunity_state_distribution": {
+        "BULL_EXPANSION": {
+          "count": 1,
+          "share": 0.083333
+        },
+        "EARLY_RECOVERY": {
+          "count": 11,
+          "share": 0.916667
+        }
+      },
+      "research_only": true
+    },
+    {
+      "scenario": "2018_bear",
+      "name": "2018 熊市",
+      "start": "20180101",
+      "end": "20181231",
+      "observation_count": 12,
+      "coverage_status": "covered",
+      "dominant_context": "PARTICIPATE",
+      "dominant_context_share": 1.0,
+      "interpretation": "participation_context_visible",
+      "consistency": "low",
+      "transition_count": 0,
+      "transition_rate": 0.0,
+      "contradiction_count": 5,
+      "contradiction_rate": 0.416667,
+      "missing_context_count": 0,
+      "missing_context_rate": 0.0,
+      "two_axis_distribution": {
+        "PARTICIPATE": {
+          "count": 12,
+          "share": 1.0
+        }
+      },
+      "market_phase_distribution": {
+        "EARLY_CYCLE": {
+          "count": 3,
+          "share": 0.25
+        },
+        "ROTATION": {
+          "count": 9,
+          "share": 0.75
+        }
+      },
+      "risk_state_distribution": {
+        "CROWDED": {
+          "count": 10,
+          "share": 0.833333
+        },
+        "LOW_RISK": {
+          "count": 1,
+          "share": 0.083333
+        },
+        "NORMAL": {
+          "count": 1,
+          "share": 0.083333
+        }
+      },
+      "opportunity_state_distribution": {
+        "EARLY_RECOVERY": {
+          "count": 3,
+          "share": 0.25
+        },
+        "STRUCTURAL_ROTATION": {
+          "count": 9,
+          "share": 0.75
+        }
+      },
+      "research_only": true
+    },
+    {
+      "scenario": "2020_recovery",
+      "name": "2020 恢复",
+      "start": "20200101",
+      "end": "20201231",
+      "observation_count": 10,
+      "coverage_status": "covered",
+      "dominant_context": "WAIT",
+      "dominant_context_share": 0.5,
+      "interpretation": "wait_or_mixed_context",
+      "consistency": "medium",
+      "transition_count": 8,
+      "transition_rate": 0.888889,
+      "contradiction_count": 0,
+      "contradiction_rate": 0.0,
+      "missing_context_count": 0,
+      "missing_context_rate": 0.0,
+      "two_axis_distribution": {
+        "AVOID": {
+          "count": 3,
+          "share": 0.3
+        },
+        "PARTICIPATE": {
+          "count": 2,
+          "share": 0.2
+        },
+        "WAIT": {
+          "count": 5,
+          "share": 0.5
+        }
+      },
+      "market_phase_distribution": {
+        "CONTRACTION": {
+          "count": 1,
+          "share": 0.1
+        },
+        "EARLY_CYCLE": {
+          "count": 4,
+          "share": 0.4
+        },
+        "LATE_CYCLE": {
+          "count": 3,
+          "share": 0.3
+        },
+        "ROTATION": {
+          "count": 1,
+          "share": 0.1
+        },
+        "UNKNOWN": {
+          "count": 1,
+          "share": 0.1
+        }
+      },
+      "risk_state_distribution": {
+        "CROWDED": {
+          "count": 9,
+          "share": 0.9
+        },
+        "NORMAL": {
+          "count": 1,
+          "share": 0.1
+        }
+      },
+      "opportunity_state_distribution": {
+        "BULL_EXPANSION": {
+          "count": 2,
+          "share": 0.2
+        },
+        "EARLY_RECOVERY": {
+          "count": 2,
+          "share": 0.2
+        },
+        "STRUCTURAL_ROTATION": {
+          "count": 6,
+          "share": 0.6
+        }
+      },
+      "research_only": true
+    },
+    {
+      "scenario": "2021_core_asset_divergence",
+      "name": "2021 核心资产分化",
+      "start": "20210101",
+      "end": "20211231",
+      "observation_count": 11,
+      "coverage_status": "covered",
+      "dominant_context": "WAIT",
+      "dominant_context_share": 1.0,
+      "interpretation": "wait_or_mixed_context",
+      "consistency": "low",
+      "transition_count": 0,
+      "transition_rate": 0.0,
+      "contradiction_count": 3,
+      "contradiction_rate": 0.272727,
+      "missing_context_count": 0,
+      "missing_context_rate": 0.0,
+      "two_axis_distribution": {
+        "WAIT": {
+          "count": 11,
+          "share": 1.0
+        }
+      },
+      "market_phase_distribution": {
+        "CONTRACTION": {
+          "count": 2,
+          "share": 0.181818
+        },
+        "EARLY_CYCLE": {
+          "count": 3,
+          "share": 0.272727
+        },
+        "LATE_CYCLE": {
+          "count": 3,
+          "share": 0.272727
+        },
+        "ROTATION": {
+          "count": 1,
+          "share": 0.090909
+        },
+        "UNKNOWN": {
+          "count": 2,
+          "share": 0.181818
+        }
+      },
+      "risk_state_distribution": {
+        "CROWDED": {
+          "count": 7,
+          "share": 0.636364
+        },
+        "NORMAL": {
+          "count": 4,
+          "share": 0.363636
+        }
+      },
+      "opportunity_state_distribution": {
+        "EARLY_RECOVERY": {
+          "count": 8,
+          "share": 0.727273
+        },
+        "STRUCTURAL_ROTATION": {
+          "count": 3,
+          "share": 0.272727
+        }
+      },
+      "research_only": true
+    },
+    {
+      "scenario": "2022_bear",
+      "name": "2022 熊市",
+      "start": "20220101",
+      "end": "20221231",
+      "observation_count": 12,
+      "coverage_status": "covered",
+      "dominant_context": "WAIT",
+      "dominant_context_share": 0.75,
+      "interpretation": "wait_or_mixed_context",
+      "consistency": "medium",
+      "transition_count": 4,
+      "transition_rate": 0.363636,
+      "contradiction_count": 1,
+      "contradiction_rate": 0.083333,
+      "missing_context_count": 0,
+      "missing_context_rate": 0.0,
+      "two_axis_distribution": {
+        "AVOID": {
+          "count": 3,
+          "share": 0.25
+        },
+        "WAIT": {
+          "count": 9,
+          "share": 0.75
+        }
+      },
+      "market_phase_distribution": {
+        "CONTRACTION": {
+          "count": 6,
+          "share": 0.5
+        },
+        "EARLY_CYCLE": {
+          "count": 3,
+          "share": 0.25
+        },
+        "ROTATION": {
+          "count": 1,
+          "share": 0.083333
+        },
+        "UNKNOWN": {
+          "count": 2,
+          "share": 0.166667
+        }
+      },
+      "risk_state_distribution": {
+        "CROWDED": {
+          "count": 10,
+          "share": 0.833333
+        },
+        "NORMAL": {
+          "count": 2,
+          "share": 0.166667
+        }
+      },
+      "opportunity_state_distribution": {
+        "EARLY_RECOVERY": {
+          "count": 10,
+          "share": 0.833333
+        },
+        "STRUCTURAL_ROTATION": {
+          "count": 2,
+          "share": 0.166667
+        }
+      },
+      "research_only": true
+    },
+    {
+      "scenario": "2024_2026_structural_market",
+      "name": "2024-2026 结构行情",
+      "start": "20240101",
+      "end": "20260707",
+      "observation_count": 16,
+      "coverage_status": "covered",
+      "dominant_context": "WAIT",
+      "dominant_context_share": 0.75,
+      "interpretation": "wait_or_mixed_context",
+      "consistency": "medium",
+      "transition_count": 7,
+      "transition_rate": 0.466667,
+      "contradiction_count": 0,
+      "contradiction_rate": 0.0,
+      "missing_context_count": 0,
+      "missing_context_rate": 0.0,
+      "two_axis_distribution": {
+        "AVOID": {
+          "count": 4,
+          "share": 0.25
+        },
+        "WAIT": {
+          "count": 12,
+          "share": 0.75
+        }
+      },
+      "market_phase_distribution": {
+        "CONTRACTION": {
+          "count": 3,
+          "share": 0.1875
+        },
+        "EARLY_CYCLE": {
+          "count": 3,
+          "share": 0.1875
+        },
+        "LATE_CYCLE": {
+          "count": 4,
+          "share": 0.25
+        },
+        "ROTATION": {
+          "count": 1,
+          "share": 0.0625
+        },
+        "UNKNOWN": {
+          "count": 5,
+          "share": 0.3125
+        }
+      },
+      "risk_state_distribution": {
+        "CROWDED": {
+          "count": 12,
+          "share": 0.75
+        },
+        "NORMAL": {
+          "count": 4,
+          "share": 0.25
+        }
+      },
+      "opportunity_state_distribution": {
+        "BULL_EXPANSION": {
+          "count": 3,
+          "share": 0.1875
+        },
+        "EARLY_RECOVERY": {
+          "count": 8,
+          "share": 0.5
+        },
+        "STRUCTURAL_ROTATION": {
+          "count": 5,
+          "share": 0.3125
+        }
+      },
+      "research_only": true
+    }
+  ],
+  "coverage": {
+    "two_axis_row_count": 115,
+    "information_row_count": 115,
+    "scenario_definitions": [
+      {
+        "scenario": "2015_bull_bear_transition",
+        "name": "2015 牛熊转换",
+        "start": "20150101",
+        "end": "20160229"
+      },
+      {
+        "scenario": "2018_bear",
+        "name": "2018 熊市",
+        "start": "20180101",
+        "end": "20181231"
+      },
+      {
+        "scenario": "2020_recovery",
+        "name": "2020 恢复",
+        "start": "20200101",
+        "end": "20201231"
+      },
+      {
+        "scenario": "2021_core_asset_divergence",
+        "name": "2021 核心资产分化",
+        "start": "20210101",
+        "end": "20211231"
+      },
+      {
+        "scenario": "2022_bear",
+        "name": "2022 熊市",
+        "start": "20220101",
+        "end": "20221231"
+      },
+      {
+        "scenario": "2024_2026_structural_market",
+        "name": "2024-2026 结构行情",
+        "start": "20240101",
+        "end": "20260707"
+      }
+    ]
+  },
+  "time_safety": {
+    "uses_existing_v8_1_output_only": true,
+    "uses_existing_v6_rows_only": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "does_not_use_return_metrics": true
+  },
+  "data_quality": {
+    "fixed_scenarios": true,
+    "no_new_feature_search": true,
+    "no_scoring": true,
+    "no_ranking": true,
+    "no_top_n": true,
+    "no_allocation": true,
+    "no_backtest": true,
+    "no_return_metric": true,
+    "no_parameter_optimization": true
+  },
+  "constraints": {
+    "audit_only": true,
+    "research_only": true,
+    "does_not_create_opportunity_score": true,
+    "does_not_rank_assets": true,
+    "does_not_select_top_assets": true,
+    "does_not_generate_position": true,
+    "no_percentage_exposure": true,
+    "no_etf_code": true,
+    "no_asset_weight": true,
+    "no_portfolio_weight": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_return_optimization": true,
+    "no_parameter_optimization": true
+  }
+}

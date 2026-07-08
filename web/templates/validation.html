@@ -953,6 +953,33 @@
           <p class="result-note" id="researchDecisionConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="固定 2015、2018、2020、2021、2022、2024-2026 六个历史场景，审计 V8.1 研究语境的解释一致性、上下文切换、矛盾样本和覆盖缺口；不看收益、不做策略。">历史情景解释审计</h2>
+            <span class="panel-kicker">V8.2</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>场景覆盖</span>
+              <strong id="scenarioAuditCoverage">--</strong>
+            </div>
+            <div class="result-row">
+              <span>一致性</span>
+              <strong id="scenarioAuditConsistency">--</strong>
+            </div>
+            <div class="result-row">
+              <span>切换稳定</span>
+              <strong id="scenarioAuditTransitions">--</strong>
+            </div>
+            <div class="result-row">
+              <span>输出边界</span>
+              <strong id="scenarioAuditBoundary">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="scenarioAuditRows"></div>
+          <p class="result-note" id="scenarioAuditConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -1043,7 +1070,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-research-decision-1"></script>
+    <script src="/static/dashboard.js?v=20260708-scenario-audit-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

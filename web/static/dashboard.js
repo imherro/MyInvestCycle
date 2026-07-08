@@ -1650,6 +1650,9 @@ function setResultsPanel(results) {
   const researchDecisionContext = researchDecision.research_context || {};
   const researchDecisionRiskEvidence = researchDecision.risk_context_evidence || {};
   const researchDecisionOpportunityEvidence = researchDecision.opportunity_context_evidence || {};
+  const scenarioAudit = results.research_decision_scenario_audit || {};
+  const scenarioAuditSummary = scenarioAudit.summary || {};
+  const scenarioAuditRows = scenarioAudit.scenarios || [];
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3311,6 +3314,45 @@ function setResultsPanel(results) {
     researchDecision.metadata
       ? `V8.1 只把冻结的 V6 风险上下文和 V7 机会归因连成研究解释：${researchDecisionLabels[researchDecisionContext.context] || researchDecisionContext.context || "--"}。风险轴可用于框架化观察，机会层仍不具备评分、排名、Top N、配置或交易条件。`
       : "V8.1 研究决策整合架构尚未生成。"
+  );
+
+  const scenarioConsistencyCounts = scenarioAuditSummary.consistency_counts || {};
+  const scenarioDominantCounts = scenarioAuditSummary.dominant_context_counts || {};
+  const scenarioAuditReadyFlagsOff =
+    scenarioAuditSummary.ready_for_scoring === false &&
+    scenarioAuditSummary.ready_for_ranking === false &&
+    scenarioAuditSummary.ready_for_allocation === false &&
+    scenarioAuditSummary.ready_for_trade === false;
+  const consistencySummaryText = ["high", "medium", "low", "insufficient"]
+    .filter((key) => scenarioConsistencyCounts[key])
+    .map((key) => `${key} ${integerText(scenarioConsistencyCounts[key])}`)
+    .join(" / ") || "--";
+  setText(
+    "scenarioAuditCoverage",
+    scenarioAuditSummary.scenario_count
+      ? `${integerText(scenarioAuditSummary.covered_scenario_count)} / ${integerText(scenarioAuditSummary.scenario_count)}`
+      : "--"
+  );
+  setText("scenarioAuditConsistency", consistencySummaryText);
+  setText(
+    "scenarioAuditTransitions",
+    scenarioAuditSummary.average_transition_rate != null ? percentText(scenarioAuditSummary.average_transition_rate) : "--"
+  );
+  setText("scenarioAuditBoundary", scenarioAuditReadyFlagsOff ? "不可评分/排名/配置/交易" : "需复核");
+  setHtml("scenarioAuditRows", scenarioAuditRows
+    .map((row) => `
+      <div class="duration-row">
+        <span>${escapeHtml(row.name || row.scenario || "--")}</span>
+        <strong>${escapeHtml(row.consistency || "--")} · ${escapeHtml(row.dominant_context || "--")}</strong>
+        <em>${integerText(row.observation_count)} 点 · 切换 ${percentText(row.transition_rate)} · 矛盾 ${integerText(row.contradiction_count)} · ${escapeHtml(row.interpretation || "--")}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "scenarioAuditConclusion",
+    scenarioAudit.metadata
+      ? `V8.2 固定 ${integerText(scenarioAuditSummary.scenario_count)} 个历史场景做解释审计：一致性 ${consistencySummaryText}，主导语境 ${Object.entries(scenarioDominantCounts).map(([key, value]) => `${key} ${integerText(value)}`).join(" / ") || "--"}。该层只暴露解释稳定性问题，不使用收益指标，也不生成策略、评分、排名或配置。`
+      : "V8.2 历史情景解释审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
