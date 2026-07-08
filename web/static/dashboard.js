@@ -580,6 +580,23 @@ function exposureEffectivenessReviewLabel(value) {
   return labels[value] || value || "--";
 }
 
+function balancedOutcomeLabel(value) {
+  const labels = {
+    BALANCED_FAILURE: "失败/风险",
+    BALANCED_MISSED_OPPORTUNITY: "机会错失",
+    BALANCED_NEUTRAL: "中性",
+  };
+  return labels[value] || value || "--";
+}
+
+function exposureContextRecommendationLabel(value) {
+  const labels = {
+    split_balanced_before_mapper_changes: "先拆 BALANCED",
+    balanced_split_not_yet_supported: "暂不支持拆分",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1191,6 +1208,9 @@ function setResultsPanel(results) {
   const exposureEffectivenessDistribution = exposureEffectivenessSummary.distribution_review || {};
   const exposureEffectivenessOrdering = exposureEffectivenessSummary.ordering_review || {};
   const exposureEffectivenessAbsence = exposureEffectivenessSummary.high_offensive_absence || {};
+  const exposureContext = results.exposure_context_analysis || {};
+  const exposureContextSummary = exposureContext.summary || {};
+  const exposureContextSplit = exposureContextSummary.split_candidates || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -1882,6 +1902,41 @@ function setResultsPanel(results) {
     exposureEffectiveness.metadata
       ? `V5.2 固定 V5.1 不改规则做审计：${exposureEffectivenessSummary.key_read || "暴露等级有效性待复核"} 缺失 ${((exposureEffectivenessAbsence.missing_positive_levels || []).map(qualitativeExposureLabel).join(" / ")) || "无"}；该层只做审计，不输出仓位、ETF、权重或交易。`
       : "V5.2 暴露等级有效性审计尚未生成。"
+  );
+
+  setText("exposureContextShare", percentText(exposureContextSummary.balanced_share_of_all));
+  setText("exposureContextFailure", percentText(exposureContextSummary.balanced_failure_rate));
+  setText("exposureContextMissed", percentText(exposureContextSummary.balanced_missed_opportunity_rate));
+  setText("exposureContextRecommendation", exposureContextRecommendationLabel(exposureContextSplit.recommendation));
+  const balancedSubgroups = exposureContext.balanced_subgroups || {};
+  setHtml("exposureContextSubgroups", Object.entries(balancedSubgroups)
+    .map(
+      ([group, item]) => `
+        <div class="alpha-source-row">
+          <span>${balancedOutcomeLabel(group)}</span>
+          <strong>${integerText(item.count)} 次 · ${percentText(item.share_of_balanced)}</strong>
+        </div>
+      `
+    )
+    .join(""));
+  const riskContexts = exposureContextSplit.risk_contexts || [];
+  const opportunityContexts = exposureContextSplit.opportunity_contexts || [];
+  setHtml("exposureContextCandidates", [...riskContexts.slice(0, 3), ...opportunityContexts.slice(0, 3)]
+    .map(
+      (item) => `
+        <div class="duration-row">
+          <span>${escapeHtml(item.opportunity_state || "--")} / ${escapeHtml(item.risk_state || "--")}</span>
+          <strong>${escapeHtml(item.market_phase || "--")}</strong>
+          <em>失败 ${percentText(item.failure_rate)} · 机会 ${percentText(item.missed_opportunity_rate)} · ${integerText(item.usable_rows)} 次</em>
+        </div>
+      `
+    )
+    .join(""));
+  setText(
+    "exposureContextConclusion",
+    exposureContext.metadata
+      ? `V5.3 只拆解 BALANCED：${exposureContextSummary.key_read || "上下文拆解待生成"} 当前源数据缺少完整数值型宏观/结构字段，暂用 evidence flags 代理；该层不改规则、不新增等级、不输出交易。`
+      : "V5.3 BALANCED 上下文拆解尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

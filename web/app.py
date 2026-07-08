@@ -410,6 +410,14 @@ def _read_exposure_effectiveness_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_exposure_context_analysis_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "exposure_context_analysis.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -583,6 +591,16 @@ def _compact_exposure_effectiveness_payload(payload: dict[str, object] | None) -
     return {
         key: payload[key]
         for key in ("metadata", "current", "summary", "period_validation", "data_quality", "constraints")
+        if key in payload
+    }
+
+
+def _compact_exposure_context_analysis_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in ("metadata", "summary", "balanced_subgroups", "context_comparison", "reason_flag_analysis", "data_quality", "constraints")
         if key in payload
     }
 
@@ -1311,6 +1329,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/allocation/exposure-context-analysis",
+                    "返回 V5.3 Exposure Context Decomposition Audit，只分析固定 V5.1 的 BALANCED 桶，拆解失败、机会错失和中性样本的上下文来源；不修改规则、不增加等级、不输出仓位或交易。",
+                    "balanced exposure context decomposition audit",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -1433,6 +1458,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/allocation/phase-effectiveness", "description": "读取 V4.7 市场阶段解释力与错误案例审计。"},
             {"path": "/api/allocation/exposure-simulation", "description": "读取 V5.1 定性暴露等级模拟与历史矛盾审计。"},
             {"path": "/api/allocation/exposure-effectiveness", "description": "读取 V5.2 定性暴露等级有效性与有序性审计。"},
+            {"path": "/api/allocation/exposure-context-analysis", "description": "读取 V5.3 BALANCED 暴露桶上下文拆解审计。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -2243,6 +2269,17 @@ def exposure_effectiveness() -> dict:
     return payload
 
 
+@app.get("/api/allocation/exposure-context-analysis")
+def exposure_context_analysis() -> dict:
+    payload = _read_exposure_context_analysis_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Exposure context analysis artifact missing; run scripts/run_exposure_context_analysis.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -2382,6 +2419,7 @@ def results_summary(
         phase_effectiveness = _read_phase_effectiveness_payload()
         exposure_simulation = _read_exposure_simulation_payload()
         exposure_effectiveness = _read_exposure_effectiveness_payload()
+        exposure_context_analysis = _read_exposure_context_analysis_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -2399,6 +2437,7 @@ def results_summary(
             phase_effectiveness = _compact_phase_effectiveness_payload(phase_effectiveness)
             exposure_simulation = _compact_exposure_simulation_payload(exposure_simulation)
             exposure_effectiveness = _compact_exposure_effectiveness_payload(exposure_effectiveness)
+            exposure_context_analysis = _compact_exposure_context_analysis_payload(exposure_context_analysis)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -2453,6 +2492,7 @@ def results_summary(
             "phase_effectiveness": phase_effectiveness,
             "exposure_simulation": exposure_simulation,
             "exposure_effectiveness": exposure_effectiveness,
+            "exposure_context_analysis": exposure_context_analysis,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,
@@ -2504,6 +2544,7 @@ def results_summary(
                 "V4.7 已固定 V4.6 阶段规则做解释力和转移审计，标出 phase 未优于 structural_state、EXPANSION 样本太少和熊市阶段漏判等复核项；该层不调阈值、不生成仓位或交易。",
                 "V5.1 已把固定政策模式映射为 DEFENSIVE/LOW/BALANCED/HIGH/OFFENSIVE 定性暴露等级，并审计历史矛盾和机会错失；该层只做模拟验证，不输出仓位百分比、ETF、权重或交易信号。",
                 "V5.2 已固定 V5.1 暴露等级做有效性审计，发现 BALANCED 过宽、HIGH/OFFENSIVE 缺失且等级有序性未被证明；该层只做审计，不改规则、不输出交易。",
+                "V5.3 已只分析 BALANCED 桶，拆解失败、机会错失和中性样本的上下文来源，结论是先拆 BALANCED 再考虑 mapper 调整；该层不改规则、不加等级、不输出交易。",
                 "S1.1 已新增仓位风控回测，用历史 R2 动态仓位回放 510500 基准收益，输出权益曲线、Alpha 和回撤。",
                 "S1.2 已按牛熊状态拆解风控仓位策略收益来源，识别牛市参与不足是主要拖累，熊市防守是主要正贡献。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",

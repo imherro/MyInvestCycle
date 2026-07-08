@@ -316,6 +316,34 @@
           <p class="result-note" id="exposureEffectivenessConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="只分析 V5.1 中最大的 BALANCED 桶，拆解后续失败、机会错失和中性样本对应的机会状态、风险状态、市场阶段和证据旗标；不修改规则、不新增等级、不生成仓位或交易。">BALANCED 上下文拆解</h2>
+            <span class="panel-kicker">V5.3</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>BALANCED 占比</span>
+              <strong id="exposureContextShare">--</strong>
+            </div>
+            <div class="result-row">
+              <span>失败占比</span>
+              <strong id="exposureContextFailure">--</strong>
+            </div>
+            <div class="result-row">
+              <span>机会错失</span>
+              <strong id="exposureContextMissed">--</strong>
+            </div>
+            <div class="result-row">
+              <span>建议</span>
+              <strong id="exposureContextRecommendation">--</strong>
+            </div>
+          </div>
+          <div class="alpha-source-list" id="exposureContextSubgroups"></div>
+          <div class="duration-list" id="exposureContextCandidates"></div>
+          <p class="result-note" id="exposureContextConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -406,7 +434,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-exposure-effectiveness-1"></script>
+    <script src="/static/dashboard.js?v=20260708-exposure-context-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
