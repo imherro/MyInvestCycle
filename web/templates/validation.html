@@ -566,6 +566,34 @@
           <p class="result-note" id="robustnessConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="固定 V5.10 风险分数和 V5.11 阈值，按机会状态、市场阶段、风险状态及组合条件拆分，解释风险梯度在哪些环境下更有效；只做条件解释，不形成仓位规则。">风险梯度条件有效性</h2>
+            <span class="panel-kicker">V5.12</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>正向条件</span>
+              <strong id="conditionPositive">--</strong>
+            </div>
+            <div class="result-row">
+              <span>样本不足</span>
+              <strong id="conditionInsufficient">--</strong>
+            </div>
+            <div class="result-row">
+              <span>最强条件</span>
+              <strong id="conditionTop">--</strong>
+            </div>
+            <div class="result-row">
+              <span>规则变更</span>
+              <strong id="conditionReady">--</strong>
+            </div>
+          </div>
+          <div class="alpha-source-list" id="conditionPositiveList"></div>
+          <div class="duration-list" id="conditionNegativeList"></div>
+          <p class="result-note" id="conditionConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -656,7 +684,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-robustness-2"></script>
+    <script src="/static/dashboard.js?v=20260708-condition-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

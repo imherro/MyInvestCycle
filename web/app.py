@@ -482,6 +482,14 @@ def _read_risk_gradient_robustness_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_risk_gradient_condition_analysis_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "risk_gradient_condition_analysis.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -771,6 +779,26 @@ def _compact_risk_gradient_robustness_payload(payload: dict[str, object] | None)
             "period_analysis",
             "threshold_consistency",
             "overall_bucket_metrics",
+            "time_safety",
+            "data_quality",
+            "constraints",
+        )
+        if key in payload
+    }
+
+
+def _compact_risk_gradient_condition_analysis_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "dimension_analysis",
+            "composite_analysis",
+            "observed_context_distribution",
+            "threshold_consistency",
             "time_safety",
             "data_quality",
             "constraints",
@@ -1566,6 +1594,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/allocation/risk-gradient-condition-analysis",
+                    "返回 V5.12 Risk Gradient Conditional Validation，固定 V5.10 风险分数和 V5.11 阈值，按机会状态、市场阶段、风险状态及组合条件审计高风险梯度何时有效；不形成规则。",
+                    "risk gradient conditional validation",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -1697,6 +1732,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/allocation/exposure-context-state-audit", "description": "读取 V5.9 BALANCED 上下文状态模型设计审计。"},
             {"path": "/api/allocation/exposure-gradient-analysis", "description": "读取 V5.10 BALANCED 连续风险/机会梯度审计。"},
             {"path": "/api/allocation/risk-gradient-robustness", "description": "读取 V5.11 风险梯度分阶段稳健性审计。"},
+            {"path": "/api/allocation/risk-gradient-condition-analysis", "description": "读取 V5.12 风险梯度条件有效性审计。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -2606,6 +2642,17 @@ def risk_gradient_robustness() -> dict:
     return payload
 
 
+@app.get("/api/allocation/risk-gradient-condition-analysis")
+def risk_gradient_condition_analysis() -> dict:
+    payload = _read_risk_gradient_condition_analysis_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Risk gradient condition analysis artifact missing; run scripts/run_risk_gradient_condition_analysis.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -2754,6 +2801,7 @@ def results_summary(
         exposure_context_state_audit = _read_exposure_context_state_audit_payload()
         exposure_gradient_analysis = _read_exposure_gradient_analysis_payload()
         risk_gradient_robustness = _read_risk_gradient_robustness_payload()
+        risk_gradient_condition_analysis = _read_risk_gradient_condition_analysis_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -2780,6 +2828,7 @@ def results_summary(
             exposure_context_state_audit = _compact_exposure_context_state_audit_payload(exposure_context_state_audit)
             exposure_gradient_analysis = _compact_exposure_gradient_analysis_payload(exposure_gradient_analysis)
             risk_gradient_robustness = _compact_risk_gradient_robustness_payload(risk_gradient_robustness)
+            risk_gradient_condition_analysis = _compact_risk_gradient_condition_analysis_payload(risk_gradient_condition_analysis)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -2843,6 +2892,7 @@ def results_summary(
             "exposure_context_state_audit": exposure_context_state_audit,
             "exposure_gradient_analysis": exposure_gradient_analysis,
             "risk_gradient_robustness": risk_gradient_robustness,
+            "risk_gradient_condition_analysis": risk_gradient_condition_analysis,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,
@@ -2901,6 +2951,7 @@ def results_summary(
                 "V5.9 已设计 Recovery、Structural Opportunity、Risk、Neutral 四类 BALANCED 研究候选状态并审计分离度，结果显示可解释但风险/机会边际仍弱，不能进入正式 mapper。",
                 "V5.10 已从离散状态转向连续风险/机会梯度，风险梯度高分桶能明显抬升未来失败率，但机会梯度暂未显示区分力；该层仍不改 mapper、不输出仓位或交易。",
                 "V5.11 已固定 V5.10 风险梯度做分阶段稳健性审计，结论是总体边际可见但跨阶段稳定性证据不足，仍不能进入 mapper 或仓位规则。",
+                "V5.12 已按机会状态、市场阶段、风险状态和组合条件拆解风险梯度适用环境，发现拥挤和早周期条件下更有效，但样本不足较多，仍只做条件解释。",
                 "S1.1 已新增仓位风控回测，用历史 R2 动态仓位回放 510500 基准收益，输出权益曲线、Alpha 和回撤。",
                 "S1.2 已按牛熊状态拆解风控仓位策略收益来源，识别牛市参与不足是主要拖累，熊市防守是主要正贡献。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",

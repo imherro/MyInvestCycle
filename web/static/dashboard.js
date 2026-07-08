@@ -749,6 +749,49 @@ function robustnessConclusionLabel(value) {
   return labels[value] || value || "--";
 }
 
+function conditionEdgeLabel(value) {
+  const labels = {
+    positive: "正向",
+    negative: "负向",
+    flat: "持平",
+    insufficient_total_sample: "样本不足",
+    insufficient_high_risk_sample: "高风险样本不足",
+  };
+  return labels[value] || value || "--";
+}
+
+function contextValueLabel(value) {
+  const labels = {
+    EARLY_RECOVERY: "早期修复",
+    STRUCTURAL_ROTATION: "结构轮动",
+    BULL_EXPANSION: "牛市扩张",
+    EARLY_CYCLE: "早周期",
+    ROTATION: "轮动",
+    LATE_CYCLE: "后周期",
+    CONTRACTION: "收缩",
+    EXPANSION: "扩张",
+    CROWDED: "拥挤",
+    NORMAL: "正常",
+    LOW_RISK: "低风险",
+    UNKNOWN: "未知",
+  };
+  return labels[value] || value || "--";
+}
+
+function conditionDisplayLabel(value) {
+  return String(value || "--")
+    .split("+")
+    .map(contextValueLabel)
+    .join(" + ");
+}
+
+function conditionConclusionLabel(value) {
+  const labels = {
+    conditional_edge_visible_but_not_rule_ready: "条件边际可见，但不可规则化",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1396,6 +1439,8 @@ function setResultsPanel(results) {
   const riskRobustnessStats = riskRobustness.robustness || {};
   const riskRobustnessPeriods = riskRobustness.period_analysis || [];
   const riskRobustnessBuckets = riskRobustness.overall_bucket_metrics || {};
+  const riskCondition = results.risk_gradient_condition_analysis || {};
+  const riskConditionSummary = riskCondition.summary || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2481,6 +2526,42 @@ function setResultsPanel(results) {
     riskRobustness.metadata
       ? `V5.11 固定 V5.10 风险梯度复核：总体高风险桶风险抬升 ${signedRatioText(riskRobustnessSummary.overall_high_risk_lift)}，但阶段一致性为 ${robustnessConsistencyLabel(riskRobustnessSummary.period_consistency)}。结论：${robustnessConclusionLabel(riskRobustnessSummary.conclusion)}，仍只做研究，不进入 mapper 或仓位规则。`
       : "V5.11 风险梯度稳健性审计尚未生成。"
+  );
+
+  const topCondition = riskConditionSummary.strongest_positive_condition || {};
+  const positiveConditions = riskConditionSummary.top_positive_conditions || [];
+  const negativeConditions = riskConditionSummary.negative_conditions || [];
+  setText("conditionPositive", integerText(riskConditionSummary.positive_condition_count));
+  setText("conditionInsufficient", integerText(riskConditionSummary.insufficient_condition_count));
+  setText(
+    "conditionTop",
+    topCondition.condition
+      ? `${conditionDisplayLabel(topCondition.condition)} · ${signedRatioText(topCondition.high_risk_lift)}`
+      : "--"
+  );
+  setText("conditionReady", riskConditionSummary.ready_for_mapper_change === true ? "可变更" : "不可变更");
+  setHtml("conditionPositiveList", (Array.isArray(positiveConditions) ? positiveConditions : [])
+    .map((item) => `
+      <div class="alpha-source-row">
+        <span>${conditionDisplayLabel(item.condition)} · ${conditionEdgeLabel(item.risk_gradient_edge)} · 置信 ${contextStateQualityLabel(item.confidence)}</span>
+        <strong>${integerText(item.sample_count)} 样本 · 高风险 ${integerText(item.high_risk_sample_count)} 个 · 抬升 ${signedRatioText(item.high_risk_lift)}</strong>
+      </div>
+    `)
+    .join(""));
+  setHtml("conditionNegativeList", (Array.isArray(negativeConditions) ? negativeConditions : [])
+    .map((item) => `
+      <div class="duration-row">
+        <span>${conditionDisplayLabel(item.condition)} · ${conditionEdgeLabel(item.risk_gradient_edge)}</span>
+        <strong>${integerText(item.sample_count)} 样本 · 高风险 ${integerText(item.high_risk_sample_count)} 个</strong>
+        <em>抬升 ${signedRatioText(item.high_risk_lift)}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "conditionConclusion",
+    riskCondition.metadata
+      ? `V5.12 条件验证：发现 ${integerText(riskConditionSummary.positive_condition_count)} 个正向条件，最强为 ${conditionDisplayLabel(topCondition.condition)}；但 ${integerText(riskConditionSummary.insufficient_condition_count)} 个条件样本不足。结论：${conditionConclusionLabel(riskConditionSummary.conclusion)}，只能解释“何时更有效”，不能形成仓位规则。`
+      : "V5.12 风险梯度条件有效性审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
