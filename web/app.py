@@ -45,6 +45,7 @@ from macro.macro_cycle_engine import build_macro_cycle_snapshot
 from macro.macro_loader import DEFAULT_MACRO_INDICATORS, load_macro_indicators
 from market_structure.structure_engine import build_structure_snapshot
 from industry_structure.opportunity_engine import build_industry_opportunity_snapshot
+from structural_bull.structural_bull_engine import build_structural_bull_snapshot
 
 
 app = FastAPI(title="MyInvestCycle Regime API", version="0.8")
@@ -728,6 +729,23 @@ def _api_catalog_payload() -> dict[str, object]:
             ],
         },
         {
+            "name": "V2 结构性牛市探测",
+            "description": "融合宏观周期、市场结构和行业机会三层证据，只判断当前结构环境；不输出仓位、ETF 配置或交易信号。",
+            "endpoints": [
+                _api_endpoint(
+                    "GET",
+                    "/api/structural-bull/current",
+                    "返回 V2.3 Structural Bull Rotation Detector 的结构状态、评分、置信度和三层证据链。",
+                    "structural bull snapshot",
+                    params=[
+                        {"name": "date", "required": "false", "format": "YYYYMMDD"},
+                        {"name": "cache_only", "required": "false", "format": "boolean"},
+                    ],
+                    freshness="macro, market structure and industry opportunity cache",
+                ),
+            ],
+        },
+        {
             "name": "后市展望与历史回顾",
             "description": "历史周期切分、后市展望和概率展望。",
             "endpoints": [
@@ -1268,6 +1286,17 @@ def industry_opportunity(
     return build_industry_opportunity_snapshot(
         date_text or _today_text(),
         start_date=start_date,
+        cache_only=cache_only,
+    )
+
+
+@app.get("/api/structural-bull/current")
+def structural_bull_current(
+    date_text: str | None = Query(None, alias="date", description="Decision date, YYYYMMDD. Defaults to today."),
+    cache_only: bool = Query(True, description="Use local cache only for Web/API reads."),
+) -> dict:
+    return build_structural_bull_snapshot(
+        date_text or _today_text(),
         cache_only=cache_only,
     )
 

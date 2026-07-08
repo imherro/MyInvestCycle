@@ -1,0 +1,165 @@
+{
+  "engine": "V2.3.3 Structural Bull Rotation Detector",
+  "requested_as_of": "20260708",
+  "as_of": "20260707",
+  "generated_at": "2026-07-08T06:24:28+00:00",
+  "structural_state": "STRUCTURAL_BULL_ROTATION",
+  "score": 65.1385,
+  "confidence": 0.7802,
+  "evidence": {
+    "macro": {
+      "state": "RECOVERY",
+      "score": 73.3665,
+      "confidence": 0.7639,
+      "as_of": "20260708"
+    },
+    "market_structure": {
+      "state": "BULL_DIVERGENCE",
+      "score": 53.5177,
+      "confidence": 0.9148,
+      "as_of": "20260707",
+      "index_trend": 78.7653,
+      "breadth": 14.59,
+      "liquidity": 45.37
+    },
+    "industry_opportunity": {
+      "state": "INDUSTRY_OPPORTUNITY",
+      "score": 65.4773,
+      "as_of": "20260707",
+      "source_type": "industry_index",
+      "industry_strength": 55.1048,
+      "theme_persistence": 82.7922,
+      "rotation_health": 54.3613,
+      "industry_breadth": 0.0968,
+      "top_industry_ratio": 0.2581,
+      "top_themes": [
+        {
+          "code": "801080.SI",
+          "name": "电子",
+          "source_type": "industry_index",
+          "strength": 83.1613,
+          "persistence": 98.1931,
+          "composite_score": 89.4747,
+          "return_20d": 0.189673,
+          "return_60d": 0.561513,
+          "relative_60d": 0.504641
+        },
+        {
+          "code": "801710.SI",
+          "name": "建筑材料",
+          "source_type": "industry_index",
+          "strength": 79.4839,
+          "persistence": 92.6125,
+          "composite_score": 84.9979,
+          "return_20d": 0.117915,
+          "return_60d": 0.164263,
+          "relative_60d": 0.107391
+        },
+        {
+          "code": "801890.SI",
+          "name": "机械设备",
+          "source_type": "industry_index",
+          "strength": 72.3871,
+          "persistence": 89.2948,
+          "composite_score": 79.4883,
+          "return_20d": 0.01228,
+          "return_60d": 0.116947,
+          "relative_60d": 0.060075
+        },
+        {
+          "code": "801770.SI",
+          "name": "通信",
+          "source_type": "industry_index",
+          "strength": 61.3548,
+          "persistence": 86.7098,
+          "composite_score": 72.0039,
+          "return_20d": -0.046067,
+          "return_60d": 0.264943,
+          "relative_60d": 0.208071
+        },
+        {
+          "code": "801790.SI",
+          "name": "非银金融",
+          "source_type": "industry_index",
+          "strength": 83.6129,
+          "persistence": 39.8011,
+          "composite_score": 65.2119,
+          "return_20d": 0.061966,
+          "return_60d": -0.023074,
+          "relative_60d": -0.079947
+        },
+        {
+          "code": "801030.SI",
+          "name": "基础化工",
+          "source_type": "industry_index",
+          "strength": 67.4194,
+          "persistence": 47.1508,
+          "composite_score": 58.9066,
+          "return_20d": 0.032224,
+          "return_60d": -0.054098,
+          "relative_60d": -0.11097
+        },
+        {
+          "code": "801230.SI",
+          "name": "综合",
+          "source_type": "industry_index",
+          "strength": 74.5161,
+          "persistence": 29.7543,
+          "composite_score": 55.7161,
+          "return_20d": 0.021955,
+          "return_60d": -0.050463,
+          "relative_60d": -0.107335
+        },
+        {
+          "code": "801780.SI",
+          "name": "银行",
+          "source_type": "industry_index",
+          "strength": 70.0,
+          "persistence": 34.6149,
+          "composite_score": 55.1383,
+          "return_20d": -0.042585,
+          "return_60d": -0.05008,
+          "relative_60d": -0.106952
+        }
+      ]
+    }
+  },
+  "source_snapshots": {
+    "macro_engine": "V2.2.1 Macro Cycle Engine Core",
+    "market_structure_engine": "V2.3.1 Market Structure Engine Core",
+    "industry_opportunity_engine": "V2.3.2 Industry / Theme Opportunity Engine"
+  },
+  "data_quality": {
+    "macro_as_of": "20260708",
+    "market_structure_as_of": "20260707",
+    "industry_opportunity_as_of": "20260707",
+    "industry_source_type": "industry_index",
+    "no_future_data": true
+  },
+  "thresholds": {
+    "structural_bull_rotation": {
+      "macro_not_bear": true,
+      "market_structure_not_breakdown": true,
+      "industry_strength_min": 52,
+      "theme_persistence_min": 70,
+      "rotation_health_min": 50,
+      "top_industry_ratio_min": 0.12
+    }
+  },
+  "explanation": [
+    "structural_state=STRUCTURAL_BULL_ROTATION: 结构性牛市主线轮动。",
+    "宏观层为 RECOVERY，宏观分 73.4。",
+    "市场结构为 BULL_DIVERGENCE，结构分 53.5，宽度 14.6。",
+    "行业机会分 65.5，行业强度 55.1，主线持续性 82.8。",
+    "当前主线候选：电子、建筑材料、机械设备。",
+    "判断含义：宏观不处于熊市，宽基不是破位结构，同时存在持续行业主线；这不是仓位或买入信号。",
+    "V2.3.3 只输出状态与证据链，不输出仓位、ETF 配置、交易信号或回测结论。"
+  ],
+  "constraints": {
+    "no_etf_allocation": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_backtest": true,
+    "state_and_evidence_only": true
+  }
+}
