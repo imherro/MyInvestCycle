@@ -346,6 +346,14 @@ def _read_allocation_policy_snapshot_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_allocation_policy_validation_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "allocation_policy_validation.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -439,6 +447,16 @@ def _compact_backtest_payload(payload: dict[str, object] | None) -> dict[str, ob
     return {
         key: payload[key]
         for key in ("metadata", "summary", "validation", "price_history")
+        if key in payload
+    }
+
+
+def _compact_policy_validation_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in ("metadata", "summary", "period_validation", "policy_contradiction_audit", "data_quality", "constraints")
         if key in payload
     }
 
@@ -1111,6 +1129,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/allocation/policy-validation",
+                    "返回 V4.2 Risk Budget Historical Validation，把固定 V4.1 风险预算规则在 2015 起历史状态中重放，输出阶段分布、矛盾审计和复核项；不调规则、不输出仓位、不生成交易。",
+                    "risk budget historical validation",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -1225,6 +1250,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/style/validation", "description": "读取 V3.5.2 风格偏好验证与归因。"},
             {"path": "/api/style/incremental-analysis", "description": "读取 V3.5.7 风格偏好增量信息检验。"},
             {"path": "/api/allocation/policy", "description": "读取 V4.1 Beta 风险预算约束层。"},
+            {"path": "/api/allocation/policy-validation", "description": "读取 V4.2 风险预算历史重放与矛盾审计。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -1947,6 +1973,17 @@ def allocation_policy_snapshot() -> dict:
     return payload
 
 
+@app.get("/api/allocation/policy-validation")
+def allocation_policy_validation() -> dict:
+    payload = _read_allocation_policy_validation_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Allocation policy validation artifact missing; run scripts/run_policy_validation.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -2078,6 +2115,7 @@ def results_summary(
         style_validation = _read_style_validation_payload()
         style_incremental_analysis = _read_style_incremental_analysis_payload()
         allocation_policy_snapshot = _read_allocation_policy_snapshot_payload()
+        allocation_policy_validation = _read_allocation_policy_validation_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -2087,6 +2125,7 @@ def results_summary(
         if compact:
             etf_rotation_backtest = _compact_backtest_payload(etf_rotation_backtest)
             macro_style_etf_backtest = _compact_backtest_payload(macro_style_etf_backtest)
+            allocation_policy_validation = _compact_policy_validation_payload(allocation_policy_validation)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -2133,6 +2172,7 @@ def results_summary(
             "style_validation": style_validation,
             "style_incremental_analysis": style_incremental_analysis,
             "allocation_policy_snapshot": allocation_policy_snapshot,
+            "allocation_policy_validation": allocation_policy_validation,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,
@@ -2176,6 +2216,7 @@ def results_summary(
                 "A1.3 已新增 ETF 轮动回测与 Alpha 验证层，用历史回放检验轮动信号是否跑赢 510500、510300 和等权 ETF basket。",
                 "M2.1 已新增 Macro-Style-ETF 分层组合回测，把宏观周期、风格分配和 ETF 执行三层解耦，并与 A1、510300、510500 和等权 ETF basket 对比。",
                 "新增三套独立 ETF 策略回测：红利低波防守、行业 ETF 动量空仓、股债金现金四资产轮动；页面按策略独立展示图表、指标和再平衡记录。",
+                "V4.2 已重放固定 V4.1 风险预算规则并输出历史矛盾审计，硬矛盾和软复核项只用于规则评估，不自动改规则、不生成交易。",
                 "S1.1 已新增仓位风控回测，用历史 R2 动态仓位回放 510500 基准收益，输出权益曲线、Alpha 和回撤。",
                 "S1.2 已按牛熊状态拆解风控仓位策略收益来源，识别牛市参与不足是主要拖累，熊市防守是主要正贡献。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",

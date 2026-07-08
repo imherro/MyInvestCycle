@@ -314,6 +314,37 @@ function allocationPolicyStateLabel(value) {
   return labels[value] || value || "--";
 }
 
+function riskPostureLabel(value) {
+  const labels = {
+    defensive: "防守",
+    risk_off: "低风险",
+    balanced: "平衡",
+    offensive: "进攻",
+    unknown: "未知",
+  };
+  return labels[value] || value || "--";
+}
+
+function policyValidationReviewLabel(value) {
+  const labels = {
+    bear_or_downturn_budget_not_defensive_enough: "下跌阶段防守不够",
+    bull_or_structural_uptrend_budget_may_be_too_constrained: "上涨阶段进攻受限",
+  };
+  return labels[value] || value || "--";
+}
+
+function policyValidationInterpretationLabel(value) {
+  const labels = {
+    risk_reduction_aligned: "防守匹配",
+    risk_reduction_insufficient_review: "防守需复核",
+    bull_participation_aligned: "牛市参与匹配",
+    bull_participation_may_be_constrained: "牛市参与受限",
+    mixed_or_range_validation: "震荡/混合观察",
+    no_replay_rows: "无样本",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -815,7 +846,7 @@ function conclusionItemsForPage(results) {
   const items = results.conclusions || [];
   if (document.body?.dataset.page !== "validation") return items;
   return items.filter((item) =>
-    /^(S1\.|H1\.|H2\.)/.test(item) || /结构化|默认结构化|波动单因子|风险观察/.test(item)
+    /^(S1\.|H1\.|H2\.|V4\.2)/.test(item) || /结构化|默认结构化|波动单因子|风险观察/.test(item)
   );
 }
 
@@ -896,6 +927,9 @@ function setResultsPanel(results) {
   const allocationPolicyPolicy = allocationPolicy.policy || {};
   const allocationEnvironment = allocationPolicyPolicy.allocation_environment || {};
   const allocationRiskConstraints = allocationPolicyPolicy.risk_constraints || {};
+  const allocationPolicyValidation = results.allocation_policy_validation || {};
+  const allocationPolicyValidationSummary = allocationPolicyValidation.summary || {};
+  const allocationPolicyContradictionAudit = allocationPolicyValidation.policy_contradiction_audit || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -1287,6 +1321,47 @@ function setResultsPanel(results) {
     styleIncremental.metadata
       ? `${styleIncrementalVerdict} Combined 固定为 50% Opportunity + 50% Style，没有调参、没有交易信号。`
       : "V3.5.7 Style 增量信息检验尚未生成。"
+  );
+
+  const policyValidationCoverage = allocationPolicyValidationSummary.context_coverage || {};
+  const policyValidationReviewItems = allocationPolicyContradictionAudit.review_items || [];
+  setText("policyValidationReplay", integerText(allocationPolicyValidationSummary.replay_count));
+  setText("policyValidationHardContradictions", integerText(allocationPolicyValidationSummary.contradiction_count));
+  setText("policyValidationReviewItems", integerText(allocationPolicyValidationSummary.review_item_count));
+  setText("policyValidationContextCoverage", percentText(policyValidationCoverage.complete_structural_context_share));
+  const postureDistribution = allocationPolicyValidationSummary.risk_posture_distribution || {};
+  setHtml("policyValidationPosture", Object.entries(postureDistribution)
+    .map(
+      ([posture, item]) => `
+        <div class="alpha-source-row">
+          <span>${riskPostureLabel(posture)}</span>
+          <strong>${percentText(item.share)}</strong>
+        </div>
+      `
+    )
+    .join(""));
+  setHtml("policyValidationPeriods", (allocationPolicyValidation.period_validation || [])
+    .map(
+      (period) => `
+        <div class="duration-row">
+          <span>${escapeHtml(period.label || period.period || "--")}</span>
+          <strong>${policyValidationInterpretationLabel(period.interpretation)}</strong>
+          <em>${signedRatioText(period.market_return)} · ${integerText(period.signal_count)} 次</em>
+        </div>
+      `
+    )
+    .join(""));
+  const reviewText = policyValidationReviewItems.length
+    ? policyValidationReviewItems
+        .slice(0, 3)
+        .map((item) => `${item.period}: ${policyValidationReviewLabel(item.type)}`)
+        .join("；")
+    : "暂无软复核项";
+  setText(
+    "policyValidationConclusion",
+    allocationPolicyValidation.metadata
+      ? `V4.2 重放固定 V4.1 规则 ${integerText(allocationPolicyValidationSummary.replay_count)} 次，硬矛盾 ${integerText(allocationPolicyValidationSummary.contradiction_count)} 个，软复核项 ${integerText(allocationPolicyValidationSummary.review_item_count)} 个。${reviewText}。该验证不调规则、不输出仓位、不生成交易。`
+      : "V4.2 风险预算历史验证尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
