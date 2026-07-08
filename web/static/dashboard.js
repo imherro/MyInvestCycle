@@ -1715,6 +1715,9 @@ function setResultsPanel(results) {
   const invalidExample = results.invalid_evidence_package_rejection_example || {};
   const invalidExampleSummary = invalidExample.summary || {};
   const invalidExampleDetail = invalidExample.invalid_example_summary || {};
+  const governanceFreeze = results.implementation_readiness_governance_freeze || {};
+  const governanceFreezeSummary = governanceFreeze.summary || {};
+  const governanceFreezeChain = Array.isArray(governanceFreeze.frozen_governance_chain) ? governanceFreeze.frozen_governance_chain : [];
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4154,6 +4157,9 @@ function setResultsPanel(results) {
     generated: "已生成",
     invalid_missing_or_boundary_violation: "缺失/越界",
     blocked_pending_manual_review_and_future_audit: "已阻断",
+    frozen: "已冻结",
+    none_submitted: "未提交",
+    governance_frozen_project_not_complete: "治理冻结/项目未完成",
   }[value] || value || "--");
   setText("phaseClosureStatus", phaseStatusLabel(phaseClosureSummary.research_phase));
   setText("phaseClosureRisk", phaseStatusLabel(phaseClosureSummary.risk_research_status));
@@ -4303,6 +4309,25 @@ function setResultsPanel(results) {
     invalidExample.metadata
       ? `V13.3 使用模拟不合格证据包验证 validator：包状态为${phaseStatusLabel(invalidExampleSummary.package_status)}，决策为${phaseStatusLabel(invalidExampleSummary.validation_decision)}，违例 ${integerText(invalidExampleSummary.boundary_violation_count)} 个，implementation_ready=false。`
       : "V13.3 不合格证据包拒绝测试尚未生成。"
+  );
+
+  setText("governanceFreezeStatus", phaseStatusLabel(governanceFreezeSummary.governance_freeze_status));
+  setText("governanceFreezeStages", `${integerText(governanceFreezeSummary.frozen_stage_count)} 个`);
+  setText("governanceFreezeCandidate", phaseStatusLabel(governanceFreezeSummary.implementation_candidate_status));
+  setText("governanceFreezeReady", governanceFreezeSummary.implementation_ready === false ? "否" : "--");
+  setText("governanceFreezeProject", phaseStatusLabel(governanceFreezeSummary.project_completion_status));
+  setHtml("governanceFreezeRows", governanceFreezeChain.map((row) => `
+    <div class="duration-row">
+      <span>${escapeHtml(row.version || "--")} · ${escapeHtml(row.stage_id || "--")}</span>
+      <strong>${escapeHtml(phaseStatusLabel(row.status))}</strong>
+      <em>source=${escapeHtml(row.source_status || "--")}；ready=${row.implementation_ready ? "是" : "否"}</em>
+    </div>
+  `).join(""));
+  setText(
+    "governanceFreezeConclusion",
+    governanceFreeze.metadata
+      ? `V13.4 冻结 V12-V13 实现准入治理链：${integerText(governanceFreezeSummary.frozen_stage_count)} 个阶段已冻结，未来可按协议提交单组件证据包，但当前没有真实候选，implementation_ready=false，项目仍未完成。`
+      : "V13.4 实现准入治理冻结尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
