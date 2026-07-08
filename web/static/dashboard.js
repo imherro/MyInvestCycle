@@ -1712,6 +1712,9 @@ function setResultsPanel(results) {
   const packageValidatorSummary = packageValidator.summary || {};
   const packageValidatorEngine = packageValidator.validation_engine || {};
   const packageValidatorTemplates = Array.isArray(packageValidator.component_validation_templates) ? packageValidator.component_validation_templates : [];
+  const invalidExample = results.invalid_evidence_package_rejection_example || {};
+  const invalidExampleSummary = invalidExample.summary || {};
+  const invalidExampleDetail = invalidExample.invalid_example_summary || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4148,6 +4151,9 @@ function setResultsPanel(results) {
     not_evaluated: "未评价",
     not_submitted: "未提交",
     invalid_not_submitted: "无包/无效",
+    generated: "已生成",
+    invalid_missing_or_boundary_violation: "缺失/越界",
+    blocked_pending_manual_review_and_future_audit: "已阻断",
   }[value] || value || "--");
   setText("phaseClosureStatus", phaseStatusLabel(phaseClosureSummary.research_phase));
   setText("phaseClosureRisk", phaseStatusLabel(phaseClosureSummary.risk_research_status));
@@ -4273,6 +4279,30 @@ function setResultsPanel(results) {
     packageValidator.metadata
       ? `V13.2 只定义未来证据包自动校验引擎：当前证据包状态为${phaseStatusLabel(packageValidatorSummary.current_package_status)}，${integerText(packageValidatorSummary.component_template_count)} 个组件模板均未提交，支持 ${integerText(Array.isArray(packageValidatorEngine.supported_checks) ? packageValidatorEngine.supported_checks.length : null)} 类格式和边界检查。`
       : "V13.2 证据包校验引擎尚未生成。"
+  );
+
+  setText("invalidExampleStatus", phaseStatusLabel(invalidExampleSummary.example_status));
+  setText("invalidExamplePackage", phaseStatusLabel(invalidExampleSummary.package_status));
+  setText("invalidExampleDecision", phaseStatusLabel(invalidExampleSummary.validation_decision));
+  setText("invalidExampleViolations", `${integerText(invalidExampleSummary.boundary_violation_count)} 个`);
+  setText("invalidExampleReady", invalidExampleSummary.implementation_ready === false ? "否" : "--");
+  setHtml("invalidExampleRows", [
+    ["缺失字段", integerText(invalidExampleSummary.missing_item_count), "模拟包故意不完整。"],
+    ["禁用输出", invalidExampleSummary.forbidden_output_detected ? "已检测" : "--", "校验器识别到越界字段。"],
+    ["真实代码", invalidExampleDetail.contains_real_market_code === false ? "无" : "--", "样例不包含真实市场代码。"],
+    ["真实权重", invalidExampleDetail.contains_real_weight === false ? "无" : "--", "样例不包含真实权重。"],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  setText(
+    "invalidExampleConclusion",
+    invalidExample.metadata
+      ? `V13.3 使用模拟不合格证据包验证 validator：包状态为${phaseStatusLabel(invalidExampleSummary.package_status)}，决策为${phaseStatusLabel(invalidExampleSummary.validation_decision)}，违例 ${integerText(invalidExampleSummary.boundary_violation_count)} 个，implementation_ready=false。`
+      : "V13.3 不合格证据包拒绝测试尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

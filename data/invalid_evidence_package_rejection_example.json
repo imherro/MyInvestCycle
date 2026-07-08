@@ -1,0 +1,145 @@
+{
+  "metadata": {
+    "engine": "V13.3 Invalid Evidence Package Rejection Test",
+    "generated_at": "2026-07-08T22:25:26+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "evidence_package_validation_engine": "data/evidence_package_validation_engine.json",
+      "research_component_evidence_submission_protocol": "data/research_component_evidence_submission_protocol.json"
+    },
+    "input_hashes": {
+      "evidence_package_validation_engine": "b2857dc5cfa1ba8e90478e3e708665f8369cdbb0aa52637cf275f7d2986793dd",
+      "research_component_evidence_submission_protocol": "17106edbd89e99bdf81b33c3b7330fcffcdab33bca5b99cbee76609468935cb4"
+    },
+    "purpose": "Prove the V13.2 validator blocks a synthetic invalid evidence package without using real strategy evidence or creating investable outputs."
+  },
+  "summary": {
+    "example_status": "generated",
+    "example_package_kind": "invalid_blocked_case",
+    "package_status": "invalid_missing_or_boundary_violation",
+    "validation_decision": "blocked_pending_manual_review_and_future_audit",
+    "missing_item_count": 4,
+    "boundary_violation_count": 2,
+    "forbidden_output_detected": true,
+    "market_code_pattern_found": false,
+    "implementation_ready": false,
+    "investable_output": false,
+    "strategy_output_generated": false,
+    "allocation_output_generated": false,
+    "trade_ready": false,
+    "conclusion": "invalid_evidence_package_rejected_no_strategy_no_allocation",
+    "key_read": "A synthetic invalid evidence package is rejected because it misses required sections and contains a forbidden output field; no real evidence, asset code, weight, allocation or trade is created."
+  },
+  "invalid_example_summary": {
+    "package_id": "example_invalid_package",
+    "component_id": "allocation_alpha_layer",
+    "example_only": true,
+    "contains_real_market_code": false,
+    "contains_real_weight": false,
+    "redacted_forbidden_field_present": true,
+    "intentionally_missing_items": [
+      "cost_turnover_capacity_review",
+      "shadow_observation_log",
+      "human_review_record",
+      "boundary_violation_scan"
+    ],
+    "detected_boundary_violations": [
+      "forbidden_output_key_detected",
+      "missing_required_field"
+    ]
+  },
+  "validator_result": {
+    "package_status": "invalid_missing_or_boundary_violation",
+    "package_present": true,
+    "component_id": "allocation_alpha_layer",
+    "component_id_status": "valid",
+    "missing_items": [
+      "cost_turnover_capacity_review",
+      "shadow_observation_log",
+      "human_review_record",
+      "boundary_violation_scan"
+    ],
+    "boundary_violations": [
+      "forbidden_output_key_detected",
+      "missing_required_field"
+    ],
+    "market_code_pattern_found": false,
+    "implementation_ready": false,
+    "validation_decision": "blocked_pending_manual_review_and_future_audit"
+  },
+  "source_engine_evidence": {
+    "v13_2_validation_engine_status": "defined",
+    "v13_2_current_package_status": "invalid_not_submitted",
+    "v13_2_implementation_ready": false,
+    "v13_1_protocol_status": "defined"
+  },
+  "time_safety": {
+    "uses_v13_1_and_v13_2_only": true,
+    "input_hashes_recorded": true,
+    "does_not_read_market_price_data": true,
+    "does_not_compute_forward_returns": true,
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "uses_synthetic_invalid_package_only": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "invalid_example_only": true,
+    "does_not_submit_real_evidence": true,
+    "does_not_evaluate_strategy_return": true,
+    "does_not_generate_strategy": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_package_status": "invalid_missing_or_boundary_violation",
+    "checked_validation_decision": "blocked_pending_manual_review_and_future_audit",
+    "checked_constraints": [
+      "invalid_example_only",
+      "does_not_submit_real_evidence",
+      "does_not_evaluate_strategy_return",
+      "does_not_generate_strategy",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}

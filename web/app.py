@@ -954,6 +954,14 @@ def _read_evidence_package_validation_engine_payload() -> dict[str, object] | No
     return payload if isinstance(payload, dict) else None
 
 
+def _read_invalid_evidence_package_rejection_example_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "invalid_evidence_package_rejection_example.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -1915,6 +1923,26 @@ def _compact_evidence_package_validation_engine_payload(payload: dict[str, objec
             "current_validation_result",
             "component_validation_templates",
             "source_protocol_evidence",
+            "time_safety",
+            "constraints",
+            "forbidden_outputs",
+            "audit",
+        )
+        if key in payload
+    }
+
+
+def _compact_invalid_evidence_package_rejection_example_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "invalid_example_summary",
+            "validator_result",
+            "source_engine_evidence",
             "time_safety",
             "constraints",
             "forbidden_outputs",
@@ -3112,6 +3140,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/implementation-readiness/invalid-evidence-example",
+                    "返回 V13.3 Invalid Evidence Package Rejection Test，使用模拟不合格证据包验证校验引擎能拒绝缺字段和越界输出；不使用真实策略证据、不生成资产、ETF、权重、配置或交易。",
+                    "invalid evidence package rejection example",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -3281,6 +3316,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/implementation-readiness/evidence-audit", "description": "读取 V12.3 实现证据审计框架：定义未来 evidence package 审计方式；当前未提交证据，所有组件 blocked。"},
             {"path": "/api/implementation-readiness/evidence-submission-protocol", "description": "读取 V13.1 证据包提交协议：定义未来研究组件如何提交实现资格证据包；当前不提交证据。"},
             {"path": "/api/implementation-readiness/evidence-package-validator", "description": "读取 V13.2 证据包校验引擎：定义未来 evidence package 的格式和边界自动校验；当前不接收真实证据。"},
+            {"path": "/api/implementation-readiness/invalid-evidence-example", "description": "读取 V13.3 不合格证据包拒绝测试：用模拟缺陷包证明 validator 会拒绝越界输入。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -4531,6 +4567,17 @@ def evidence_package_validation_engine() -> dict:
     return payload
 
 
+@app.get("/api/implementation-readiness/invalid-evidence-example")
+def invalid_evidence_package_rejection_example() -> dict:
+    payload = _read_invalid_evidence_package_rejection_example_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Invalid evidence package rejection example artifact missing; run scripts/run_invalid_evidence_package_rejection_example.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -4787,6 +4834,7 @@ def results_summary(
         implementation_readiness_evidence_audit = _read_implementation_readiness_evidence_audit_payload()
         research_component_evidence_submission_protocol = _read_research_component_evidence_submission_protocol_payload()
         evidence_package_validation_engine = _read_evidence_package_validation_engine_payload()
+        invalid_evidence_package_rejection_example = _read_invalid_evidence_package_rejection_example_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -4851,6 +4899,7 @@ def results_summary(
             implementation_readiness_evidence_audit = _compact_implementation_readiness_evidence_audit_payload(implementation_readiness_evidence_audit)
             research_component_evidence_submission_protocol = _compact_research_component_evidence_submission_protocol_payload(research_component_evidence_submission_protocol)
             evidence_package_validation_engine = _compact_evidence_package_validation_engine_payload(evidence_package_validation_engine)
+            invalid_evidence_package_rejection_example = _compact_invalid_evidence_package_rejection_example_payload(invalid_evidence_package_rejection_example)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -4952,6 +5001,7 @@ def results_summary(
             "implementation_readiness_evidence_audit": implementation_readiness_evidence_audit,
             "research_component_evidence_submission_protocol": research_component_evidence_submission_protocol,
             "evidence_package_validation_engine": evidence_package_validation_engine,
+            "invalid_evidence_package_rejection_example": invalid_evidence_package_rejection_example,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,

@@ -1676,6 +1676,37 @@
           <p class="result-note" id="packageValidatorConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="用模拟不合格证据包验证校验引擎能拒绝缺字段和越界输出。该样例不包含真实市场代码、真实权重、真实收益或交易指令。">不合格证据包拒绝测试</h2>
+            <span class="panel-kicker">V13.3</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>样例状态</span>
+              <strong id="invalidExampleStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>包状态</span>
+              <strong id="invalidExamplePackage">--</strong>
+            </div>
+            <div class="result-row">
+              <span>校验决策</span>
+              <strong id="invalidExampleDecision">--</strong>
+            </div>
+            <div class="result-row">
+              <span>违例数</span>
+              <strong id="invalidExampleViolations">--</strong>
+            </div>
+            <div class="result-row">
+              <span>实现就绪</span>
+              <strong id="invalidExampleReady">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="invalidExampleRows"></div>
+          <p class="result-note" id="invalidExampleConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -1766,7 +1797,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-evidence-package-validator-1"></script>
+    <script src="/static/dashboard.js?v=20260708-invalid-evidence-rejection-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
