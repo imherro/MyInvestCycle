@@ -158,6 +158,41 @@ body {
   line-height: 1.5;
 }
 
+.v2-validation-chart {
+  height: 460px;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.v2-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.v2-table th,
+.v2-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.v2-table th {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  background: #f8fafc;
+}
+
+.v2-table td {
+  font-size: 13px;
+  font-weight: 650;
+}
+
 @media (max-width: 860px) {
   .v2-hero {
     align-items: stretch;
@@ -168,6 +203,10 @@ body {
   .v2-dashboard-grid,
   .v2-trace {
     grid-template-columns: 1fr;
+  }
+
+  .v2-validation-chart {
+    height: 340px;
   }
 }
 

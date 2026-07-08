@@ -242,6 +242,14 @@ def _read_macro_style_etf_backtest_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_v2_allocation_backtest_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "v2_allocation_backtest.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 STRATEGY_BACKTEST_IDS = {
     "defensive-dividend": "红利低波 + 现金代理防守策略",
     "industry-momentum": "行业 ETF 动量轮动 + 511880 空仓机制",
@@ -607,6 +615,7 @@ def _api_catalog_payload() -> dict[str, object]:
             "endpoints": [
                 _api_endpoint("GET", "/", "打开宏观周期总览首页。", "HTML dashboard", freshness="page"),
                 _api_endpoint("GET", "/v2", "打开 V2 研究总览，展示宏观、结构、行业机会、主题风险、配置意图和决策追踪。", "HTML dashboard", freshness="page"),
+                _api_endpoint("GET", "/v2-validation", "打开 V2 验证页面，查看 V2 配置意图回测、基准对比和状态归因。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/risk-execution", "兼容旧链接；风控执行内容已合并到首页展示。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategies", "打开策略回测频道，集中查看策略信号、关键回测摘要和策略入口。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/validation", "打开验证归因频道，集中查看仓位风控回测、Regime 归因、结构事件和模型验证。", "HTML page", freshness="page"),
@@ -810,6 +819,14 @@ def _api_catalog_payload() -> dict[str, object]:
                     ],
                     freshness="current v2 cache",
                 ),
+                _api_endpoint(
+                    "GET",
+                    "/api/v2/backtest",
+                    "返回 V2.5.1 配置意图验证回测结果，包含 T+1 净值曲线、宽基/旧系统基准对比和状态归因。",
+                    "v2 allocation validation backtest",
+                    freshness="generated artifact",
+                    safety="read-only artifact",
+                ),
             ],
         },
         {
@@ -990,6 +1007,11 @@ def dashboard():
 @app.get("/v2", response_class=HTMLResponse)
 def v2_dashboard_page():
     return FileResponse(ROOT_DIR / "web" / "templates" / "v2_dashboard.html")
+
+
+@app.get("/v2-validation", response_class=HTMLResponse)
+def v2_validation_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "v2_validation.html")
 
 
 @app.get("/risk-execution", response_class=HTMLResponse)
@@ -1473,6 +1495,17 @@ def v2_overview(
             "no_backtest": True,
         },
     }
+
+
+@app.get("/api/v2/backtest")
+def v2_allocation_backtest() -> dict:
+    payload = _read_v2_allocation_backtest_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V2 allocation backtest artifact missing; run scripts/run_v2_allocation_backtest.py first.",
+        )
+    return payload
 
 
 @app.get("/api/style/rotation-signal")
