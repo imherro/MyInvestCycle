@@ -1,0 +1,656 @@
+{
+  "metadata": {
+    "engine": "V3.5.1 Style Allocation Engine Foundation",
+    "generated_at": "2026-07-08T11:46:17+00:00",
+    "as_of": "20260707",
+    "purpose": "Map macro, structural, theme-risk and alpha-style evidence into style preference only.",
+    "not_an_etf_weight_model": true
+  },
+  "style_universe": [
+    {
+      "style_id": "growth",
+      "label": "Growth",
+      "role": "offensive",
+      "representative_assets": [
+        {
+          "code": "159915.SZ",
+          "name": "创业板ETF"
+        },
+        {
+          "code": "588000.SH",
+          "name": "科创50ETF"
+        },
+        {
+          "code": "512480.SH",
+          "name": "半导体ETF"
+        }
+      ],
+      "description": "成长/科技风格，主要观察创业板、科创和半导体方向的趋势与拥挤风险。"
+    },
+    {
+      "style_id": "small_cap",
+      "label": "Small Cap",
+      "role": "offensive",
+      "representative_assets": [
+        {
+          "code": "510500.SH",
+          "name": "中证500ETF"
+        },
+        {
+          "code": "512100.SH",
+          "name": "中证1000ETF"
+        }
+      ],
+      "description": "中小盘风格，主要观察市场宽度和中小市值相对强弱。"
+    },
+    {
+      "style_id": "value",
+      "label": "Value",
+      "role": "core",
+      "representative_assets": [
+        {
+          "code": "510300.SH",
+          "name": "沪深300ETF"
+        },
+        {
+          "code": "510050.SH",
+          "name": "上证50ETF"
+        }
+      ],
+      "description": "价值/大盘风格，作为宽基核心 Beta 与阶段防守过渡风格。"
+    },
+    {
+      "style_id": "dividend",
+      "label": "Dividend",
+      "role": "defensive",
+      "representative_assets": [
+        {
+          "code": "510880.SH",
+          "name": "红利ETF"
+        },
+        {
+          "code": "512890.SH",
+          "name": "红利低波ETF"
+        }
+      ],
+      "description": "红利/低波风格，主要承担防守、波动缓冲和拥挤风险对冲观察。"
+    }
+  ],
+  "inputs": {
+    "as_of": "20260707",
+    "generated_sources": {
+      "macro_cycle": {
+        "engine": "V2.2.1 Macro Cycle Engine Core",
+        "as_of": "20260708",
+        "macro_state": "RECOVERY",
+        "macro_score": 73.3665,
+        "confidence": 0.7639
+      },
+      "structural_bull": {
+        "engine": "V2.3.3 Structural Bull Rotation Detector",
+        "as_of": "20260707",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "score": 65.1385,
+        "confidence": 0.7802
+      },
+      "theme_risk": {
+        "engine": "V2.3.4 Theme Valuation & Crowding Risk Layer",
+        "as_of": "20260707",
+        "theme_risk_level": "medium",
+        "quality_score": 63.3204,
+        "crowding_score": 56.1413,
+        "warnings": [
+          "high_60d_momentum_extension",
+          "near_252d_high_position",
+          "top_theme_price_extension_high",
+          "industry_breadth_narrow"
+        ]
+      },
+      "asset_opportunity": {
+        "engine": "V3.2.1 Asset Opportunity Score Engine",
+        "as_of": "20260625"
+      },
+      "alpha_robustness": {
+        "engine": "V3.4.4 Alpha Portfolio Robustness & Style Attribution Validation",
+        "as_of": "20260708"
+      },
+      "residual_alpha": {
+        "engine": "V3.4.5 Residual Alpha Attribution & Factor Neutralization Analysis",
+        "as_of": "20260708"
+      }
+    },
+    "macro": {
+      "state": "RECOVERY",
+      "score": 73.3665,
+      "confidence": 0.7639
+    },
+    "structural": {
+      "state": "STRUCTURAL_BULL_ROTATION",
+      "score": 65.1385,
+      "confidence": 0.7802
+    },
+    "market_structure": {
+      "state": "BULL_DIVERGENCE",
+      "score": 53.5177,
+      "index_trend": 78.7653,
+      "breadth": 14.59,
+      "liquidity": 45.37
+    },
+    "industry_opportunity": {
+      "state": "INDUSTRY_OPPORTUNITY",
+      "score": 65.4773,
+      "industry_strength": 55.1048,
+      "theme_persistence": 82.7922,
+      "rotation_health": 54.3613,
+      "industry_breadth": 0.0968,
+      "top_industry_ratio": 0.2581,
+      "top_themes": [
+        {
+          "code": "801080.SI",
+          "name": "电子",
+          "source_type": "industry_index",
+          "strength": 83.1613,
+          "persistence": 98.1931,
+          "composite_score": 89.4747,
+          "return_20d": 0.189673,
+          "return_60d": 0.561513,
+          "relative_60d": 0.504641
+        },
+        {
+          "code": "801710.SI",
+          "name": "建筑材料",
+          "source_type": "industry_index",
+          "strength": 79.4839,
+          "persistence": 92.6125,
+          "composite_score": 84.9979,
+          "return_20d": 0.117915,
+          "return_60d": 0.164263,
+          "relative_60d": 0.107391
+        },
+        {
+          "code": "801890.SI",
+          "name": "机械设备",
+          "source_type": "industry_index",
+          "strength": 72.3871,
+          "persistence": 89.2948,
+          "composite_score": 79.4883,
+          "return_20d": 0.01228,
+          "return_60d": 0.116947,
+          "relative_60d": 0.060075
+        },
+        {
+          "code": "801770.SI",
+          "name": "通信",
+          "source_type": "industry_index",
+          "strength": 61.3548,
+          "persistence": 86.7098,
+          "composite_score": 72.0039,
+          "return_20d": -0.046067,
+          "return_60d": 0.264943,
+          "relative_60d": 0.208071
+        },
+        {
+          "code": "801790.SI",
+          "name": "非银金融",
+          "source_type": "industry_index",
+          "strength": 83.6129,
+          "persistence": 39.8011,
+          "composite_score": 65.2119,
+          "return_20d": 0.061966,
+          "return_60d": -0.023074,
+          "relative_60d": -0.079947
+        },
+        {
+          "code": "801030.SI",
+          "name": "基础化工",
+          "source_type": "industry_index",
+          "strength": 67.4194,
+          "persistence": 47.1508,
+          "composite_score": 58.9066,
+          "return_20d": 0.032224,
+          "return_60d": -0.054098,
+          "relative_60d": -0.11097
+        },
+        {
+          "code": "801230.SI",
+          "name": "综合",
+          "source_type": "industry_index",
+          "strength": 74.5161,
+          "persistence": 29.7543,
+          "composite_score": 55.7161,
+          "return_20d": 0.021955,
+          "return_60d": -0.050463,
+          "relative_60d": -0.107335
+        },
+        {
+          "code": "801780.SI",
+          "name": "银行",
+          "source_type": "industry_index",
+          "strength": 70.0,
+          "persistence": 34.6149,
+          "composite_score": 55.1383,
+          "return_20d": -0.042585,
+          "return_60d": -0.05008,
+          "relative_60d": -0.106952
+        }
+      ]
+    },
+    "theme_risk": {
+      "level": "medium",
+      "quality_score": 63.3204,
+      "crowding_score": 56.1413,
+      "warnings": [
+        "high_60d_momentum_extension",
+        "near_252d_high_position",
+        "top_theme_price_extension_high",
+        "industry_breadth_narrow"
+      ],
+      "top_theme": {
+        "code": "801080.SI",
+        "name": "电子",
+        "composite_score": 89.4747
+      }
+    },
+    "asset_opportunity_by_style": {
+      "growth": {
+        "asset_count": 3,
+        "average_score": 55.7612,
+        "best_score": 64.1139,
+        "best_rank": 3,
+        "top_assets": [
+          {
+            "code": "159915.SZ",
+            "name": "创业板ETF",
+            "rank": 3,
+            "score": 64.1139,
+            "strength": 89.9069,
+            "penalty": {
+              "extension": 25.793,
+              "crowding": 0.0
+            }
+          },
+          {
+            "code": "588000.SH",
+            "name": "科创50ETF",
+            "rank": 6,
+            "score": 51.5849,
+            "strength": 96.4399,
+            "penalty": {
+              "extension": 30.0,
+              "crowding": 14.855
+            }
+          },
+          {
+            "code": "512480.SH",
+            "name": "半导体ETF",
+            "rank": 7,
+            "score": 51.5849,
+            "strength": 96.4399,
+            "penalty": {
+              "extension": 30.0,
+              "crowding": 14.855
+            }
+          }
+        ]
+      },
+      "small_cap": {
+        "asset_count": 2,
+        "average_score": 62.5335,
+        "best_score": 65.0221,
+        "best_rank": 1,
+        "top_assets": [
+          {
+            "code": "510500.SH",
+            "name": "中证500ETF",
+            "rank": 1,
+            "score": 65.0221,
+            "strength": 83.0221,
+            "penalty": {
+              "extension": 18.0,
+              "crowding": 0.0
+            }
+          },
+          {
+            "code": "512100.SH",
+            "name": "中证1000ETF",
+            "rank": 4,
+            "score": 60.045,
+            "strength": 78.045,
+            "penalty": {
+              "extension": 18.0,
+              "crowding": 0.0
+            }
+          }
+        ]
+      },
+      "value": {
+        "asset_count": 2,
+        "average_score": 59.5119,
+        "best_score": 64.2068,
+        "best_rank": 2,
+        "top_assets": [
+          {
+            "code": "510050.SH",
+            "name": "上证50ETF",
+            "rank": 2,
+            "score": 64.2068,
+            "strength": 64.2068,
+            "penalty": {
+              "extension": 0.0,
+              "crowding": 0.0
+            }
+          },
+          {
+            "code": "510300.SH",
+            "name": "沪深300ETF",
+            "rank": 5,
+            "score": 54.8171,
+            "strength": 72.8171,
+            "penalty": {
+              "extension": 18.0,
+              "crowding": 0.0
+            }
+          }
+        ]
+      },
+      "dividend": {
+        "asset_count": 2,
+        "average_score": 17.6176,
+        "best_score": 21.5797,
+        "best_rank": 13,
+        "top_assets": [
+          {
+            "code": "510880.SH",
+            "name": "红利ETF",
+            "rank": 13,
+            "score": 21.5797,
+            "strength": 21.5797,
+            "penalty": {
+              "extension": 0.0,
+              "crowding": 0.0
+            }
+          },
+          {
+            "code": "512890.SH",
+            "name": "红利低波ETF",
+            "rank": 16,
+            "score": 13.6556,
+            "strength": 13.6556,
+            "penalty": {
+              "extension": 0.0,
+              "crowding": 0.0
+            }
+          }
+        ]
+      }
+    },
+    "latest_alpha_style_exposure": {
+      "growth": 1.0,
+      "small_cap": 0.0,
+      "value": 0.0,
+      "dividend": 0.0
+    },
+    "residual_alpha": {
+      "economic_strength": "weak_or_inconclusive",
+      "economically_meaningful_periods": [
+        "2022"
+      ],
+      "residual_alpha_persistent": true,
+      "residual_cagr_by_period": {
+        "2020-2021": 0.019741,
+        "2022": 0.117442,
+        "2023": 0.022063,
+        "2024-2026": 0.021277
+      },
+      "interpretation": "Residual alpha is the factor-neutralized return after removing fitted market and style factor returns; this is an in-sample attribution, not a prediction."
+    }
+  },
+  "preference": {
+    "style_environment": {
+      "growth": {
+        "preference_score": 86.9399,
+        "relative_signal_share": 0.331549,
+        "direction": "strong_preference",
+        "evidence": [
+          "宏观 RECOVERY：信用/经济修复阶段偏向进攻风格。",
+          "结构性牛市主线轮动：优先观察成长/科技主线。",
+          "市场结构 BULL_DIVERGENCE：宽基分化时更偏主线成长。",
+          "指数趋势分较高：支持进攻风格继续观察。",
+          "流动性未明显扩张：成长风格需防高位波动。",
+          "主线持续性高：成长/科技主线仍是主要观察对象。",
+          "头部行业贡献较高：主线型成长风格占优。",
+          "主题风险 medium：成长主线需扣除拥挤/高位风险。",
+          "主线高位/涨幅扩张警告：成长风格不应被解释为无风险偏好。",
+          "资产机会分映射：该风格最佳机会分 64.1139。",
+          "V3 最新持仓暴露 growth=100.0%，说明该风格是当前系统实际关注点。"
+        ],
+        "opportunity": {
+          "asset_count": 3,
+          "average_score": 55.7612,
+          "best_score": 64.1139,
+          "best_rank": 3,
+          "top_assets": [
+            {
+              "code": "159915.SZ",
+              "name": "创业板ETF",
+              "rank": 3,
+              "score": 64.1139,
+              "strength": 89.9069,
+              "penalty": {
+                "extension": 25.793,
+                "crowding": 0.0
+              }
+            },
+            {
+              "code": "588000.SH",
+              "name": "科创50ETF",
+              "rank": 6,
+              "score": 51.5849,
+              "strength": 96.4399,
+              "penalty": {
+                "extension": 30.0,
+                "crowding": 14.855
+              }
+            },
+            {
+              "code": "512480.SH",
+              "name": "半导体ETF",
+              "rank": 7,
+              "score": 51.5849,
+              "strength": 96.4399,
+              "penalty": {
+                "extension": 30.0,
+                "crowding": 14.855
+              }
+            }
+          ]
+        },
+        "latest_alpha_exposure": 1.0
+      },
+      "small_cap": {
+        "preference_score": 62.2577,
+        "relative_signal_share": 0.237423,
+        "direction": "positive_preference",
+        "evidence": [
+          "宏观 RECOVERY：风险偏好修复有利中小盘。",
+          "结构性牛市主线轮动：中小盘可作为轮动扩散观察。",
+          "市场宽度偏低：中小盘扩散仍需等待确认。",
+          "市场宽度低于 25：中小盘整体扩散不足。",
+          "指数趋势分较高：支持弹性风格观察。",
+          "轮动健康度尚可：中小盘扩散可继续跟踪。",
+          "主题风险 medium：弹性风格风险溢价下降。",
+          "资产机会分映射：该风格最佳机会分 65.0221。"
+        ],
+        "opportunity": {
+          "asset_count": 2,
+          "average_score": 62.5335,
+          "best_score": 65.0221,
+          "best_rank": 1,
+          "top_assets": [
+            {
+              "code": "510500.SH",
+              "name": "中证500ETF",
+              "rank": 1,
+              "score": 65.0221,
+              "strength": 83.0221,
+              "penalty": {
+                "extension": 18.0,
+                "crowding": 0.0
+              }
+            },
+            {
+              "code": "512100.SH",
+              "name": "中证1000ETF",
+              "rank": 4,
+              "score": 60.045,
+              "strength": 78.045,
+              "penalty": {
+                "extension": 18.0,
+                "crowding": 0.0
+              }
+            }
+          ]
+        },
+        "latest_alpha_exposure": 0.0
+      },
+      "value": {
+        "preference_score": 61.9724,
+        "relative_signal_share": 0.236335,
+        "direction": "positive_preference",
+        "evidence": [
+          "宏观 RECOVERY：核心宽基仍保留基础偏好。",
+          "主题风险 medium：提高核心大盘过渡价值。",
+          "资产机会分映射：该风格最佳机会分 64.2068。"
+        ],
+        "opportunity": {
+          "asset_count": 2,
+          "average_score": 59.5119,
+          "best_score": 64.2068,
+          "best_rank": 2,
+          "top_assets": [
+            {
+              "code": "510050.SH",
+              "name": "上证50ETF",
+              "rank": 2,
+              "score": 64.2068,
+              "strength": 64.2068,
+              "penalty": {
+                "extension": 0.0,
+                "crowding": 0.0
+              }
+            },
+            {
+              "code": "510300.SH",
+              "name": "沪深300ETF",
+              "rank": 5,
+              "score": 54.8171,
+              "strength": 72.8171,
+              "penalty": {
+                "extension": 18.0,
+                "crowding": 0.0
+              }
+            }
+          ]
+        },
+        "latest_alpha_exposure": 0.0
+      },
+      "dividend": {
+        "preference_score": 51.0529,
+        "relative_signal_share": 0.194693,
+        "direction": "neutral_watch",
+        "evidence": [
+          "结构性牛市主线轮动：降低纯防守风格偏好。",
+          "市场宽度低于 25：保留防守风格观察。",
+          "流动性未明显扩张：防守风格保留底仓观察价值。",
+          "主题风险 medium：提高防守风格观察优先级。",
+          "主线高位/涨幅扩张警告：防守风格用于风险对照。",
+          "资产机会分映射：该风格最佳机会分 21.5797。"
+        ],
+        "opportunity": {
+          "asset_count": 2,
+          "average_score": 17.6176,
+          "best_score": 21.5797,
+          "best_rank": 13,
+          "top_assets": [
+            {
+              "code": "510880.SH",
+              "name": "红利ETF",
+              "rank": 13,
+              "score": 21.5797,
+              "strength": 21.5797,
+              "penalty": {
+                "extension": 0.0,
+                "crowding": 0.0
+              }
+            },
+            {
+              "code": "512890.SH",
+              "name": "红利低波ETF",
+              "rank": 16,
+              "score": 13.6556,
+              "strength": 13.6556,
+              "penalty": {
+                "extension": 0.0,
+                "crowding": 0.0
+              }
+            }
+          ]
+        },
+        "latest_alpha_exposure": 0.0
+      }
+    },
+    "dominant_style": "growth",
+    "top_styles": [
+      {
+        "style": "growth",
+        "preference_score": 86.9399,
+        "relative_signal_share": 0.331549,
+        "direction": "strong_preference"
+      },
+      {
+        "style": "small_cap",
+        "preference_score": 62.2577,
+        "relative_signal_share": 0.237423,
+        "direction": "positive_preference"
+      },
+      {
+        "style": "value",
+        "preference_score": 61.9724,
+        "relative_signal_share": 0.236335,
+        "direction": "positive_preference"
+      },
+      {
+        "style": "dividend",
+        "preference_score": 51.0529,
+        "relative_signal_share": 0.194693,
+        "direction": "neutral_watch"
+      }
+    ],
+    "confidence": 0.5706,
+    "reason_codes": [
+      "MACRO_RECOVERY",
+      "STRUCTURAL_BULL_ROTATION",
+      "BULL_DIVERGENCE",
+      "THEME_PERSISTENCE_HIGH",
+      "THEME_RISK_MEDIUM",
+      "LATEST_ALPHA_EXPOSURE_GROWTH",
+      "RESIDUAL_ALPHA_WEAK"
+    ],
+    "interpretation": "This is a non-investable style preference layer. It explains which style beta the system should study under the current macro/structure context, but it is not an ETF weight, position size, trade signal, or backtest result."
+  },
+  "constraints": {
+    "analysis_only": true,
+    "style_preference_only": true,
+    "no_asset_weight": true,
+    "no_etf_allocation": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_backtest": true,
+    "no_parameter_optimization": true,
+    "no_best_style_selection_for_trading": true,
+    "alpha_model_unchanged": true,
+    "router_unchanged": true
+  }
+}

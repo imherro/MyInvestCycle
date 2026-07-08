@@ -314,6 +314,14 @@ def _read_residual_alpha_analysis_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_style_allocation_snapshot_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "style_allocation_snapshot.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 STRATEGY_BACKTEST_IDS = {
     "defensive-dividend": "红利低波 + 现金代理防守策略",
     "industry-momentum": "行业 ETF 动量轮动 + 511880 空仓机制",
@@ -1011,6 +1019,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/style/allocation-snapshot",
+                    "返回 V3.5.1 风格配置引擎基础快照，把宏观、结构、主题风险和 Alpha 风格暴露映射为风格偏好；不是 ETF 权重、仓位或交易信号。",
+                    "regime-aware style preference snapshot",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/strategy-backtests/{strategy_id}",
                     "返回新增策略回测结果，strategy_id 支持 defensive-dividend、industry-momentum、four-asset、max-drawdown-batch、all-weather、equal-weight-reversion-basic、equal-weight-reversion-guarded、free-cash-flow-trend-half、free-cash-flow-trend-full、free-cash-flow-drawdown-rebound、free-cash-flow-buy-hold-480092、free-cash-flow-chinext-dynamic、free-cash-flow-chinext-reversion、free-cash-flow-chinext-balanced-reversion、free-cash-flow-ma-deviation、free-cash-flow-dual-ma-crossover。",
                     "strategy backtest artifact",
@@ -1086,6 +1101,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/alpha/portfolio-risk-validation", "description": "读取 V3.4.3 Alpha 组合风险控制验证。"},
             {"path": "/api/alpha/robustness-validation", "description": "读取 V3.4.4 Alpha 滚动稳健性和风格归因验证。"},
             {"path": "/api/alpha/residual-alpha-analysis", "description": "读取 V3.4.5 残差 Alpha 与因子中性化归因。"},
+            {"path": "/api/style/allocation-snapshot", "description": "读取 V3.5.1 宏观感知风格偏好快照。"},
             {"path": "/strategy/defensive-dividend", "description": "查看红利低波 + 现金代理防守策略。"},
             {"path": "/strategy/industry-momentum", "description": "查看行业 ETF 动量轮动 + 511880 空仓机制策略。"},
             {"path": "/strategy/four-asset", "description": "查看股 / 债 / 金 / 现金四资产轮动策略。"},
@@ -1759,6 +1775,17 @@ def residual_alpha_analysis() -> dict:
     return payload
 
 
+@app.get("/api/style/allocation-snapshot")
+def style_allocation_snapshot() -> dict:
+    payload = _read_style_allocation_snapshot_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Style allocation snapshot artifact missing; run scripts/run_style_allocation_snapshot.py first.",
+        )
+    return payload
+
+
 @app.get("/api/strategy-backtests/{strategy_id}")
 def strategy_suite_backtest(strategy_id: str) -> dict:
     payload = _read_strategy_suite_backtest_payload(strategy_id)
@@ -1831,6 +1858,7 @@ def results_summary(
         alpha_portfolio_risk_validation = _read_alpha_portfolio_risk_validation_payload()
         alpha_robustness_validation = _read_alpha_robustness_validation_payload()
         residual_alpha_analysis = _read_residual_alpha_analysis_payload()
+        style_allocation_snapshot = _read_style_allocation_snapshot_payload()
         strategy_suite_backtests = _read_strategy_suite_summaries()
         if compact:
             etf_rotation_backtest = _compact_backtest_payload(etf_rotation_backtest)
@@ -1877,6 +1905,7 @@ def results_summary(
             "alpha_portfolio_risk_validation": alpha_portfolio_risk_validation,
             "alpha_robustness_validation": alpha_robustness_validation,
             "residual_alpha_analysis": residual_alpha_analysis,
+            "style_allocation_snapshot": style_allocation_snapshot,
             "strategy_suite_backtests": strategy_suite_backtests,
             "shadow_backtest": shadow_backtest,
             "regime_attribution": regime_attribution,
