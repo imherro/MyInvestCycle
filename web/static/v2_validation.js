@@ -220,6 +220,32 @@ function renderFullCycleValidation(payload) {
   );
 }
 
+function renderHistoryExpansion(payload) {
+  const before = payload.available_before || {};
+  const after = payload.after || {};
+  const target = document.getElementById("historyExpansionSummary");
+  if (target) {
+    const rows = [
+      ["目标区间", payload.target || "--"],
+      ["扩展前窗口", `${toIsoDate(before.start)} - ${toIsoDate(before.end)}`],
+      ["扩展后窗口", `${toIsoDate(after.start)} - ${toIsoDate(after.end)}`],
+      ["覆盖状态", payload.coverage_status || "--"],
+      ["完整周期 ready", payload.full_cycle_ready ? "是" : "否"],
+      ["硬缺口", `${after.blocker_count ?? (payload.known_gaps || []).length} 项`],
+    ];
+    target.innerHTML = rows
+      .map(([label, value]) => `<div class="v2-list-row"><span>${label}</span><strong>${value}</strong></div>`)
+      .join("");
+  }
+  const gaps = payload.known_gaps || [];
+  setText(
+    "historyExpansionNote",
+    gaps.length
+      ? `数据基础已扩展到 2015 首个交易日，但仍有显式缺口：${gaps.join("；")}。`
+      : "历史数据基础已覆盖目标窗口。"
+  );
+}
+
 function renderBacktest(payload) {
   const summary = payload.summary || {};
   setText("validationHeadline", `V2 年化 ${fmtPercent(summary.v2_annualized_return)} · Alpha vs 510500 ${fmtPercent(summary.alpha_vs_510500)}`);
@@ -258,6 +284,12 @@ async function loadV2Validation() {
       renderFullCycleValidation(fullCycle);
     } catch (error) {
       setText("fullCycleNote", `完整周期验证产物暂不可用：${error.message}`);
+    }
+    try {
+      const historyExpansion = await getJson("/api/v2/history-expansion");
+      renderHistoryExpansion(historyExpansion);
+    } catch (error) {
+      setText("historyExpansionNote", `历史数据扩展产物暂不可用：${error.message}`);
     }
   } catch (error) {
     setText("validationNote", `加载失败：${error.message}`);

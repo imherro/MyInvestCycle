@@ -274,6 +274,14 @@ def _read_v2_full_cycle_validation_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_history_expansion_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "history_expansion_audit.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 STRATEGY_BACKTEST_IDS = {
     "defensive-dividend": "红利低波 + 现金代理防守策略",
     "industry-momentum": "行业 ETF 动量轮动 + 511880 空仓机制",
@@ -872,6 +880,14 @@ def _api_catalog_payload() -> dict[str, object]:
                     "/api/v2/full-cycle-validation",
                     "返回 V2.6.1 完整周期目标覆盖审计、当前真实可验证窗口、缺口和 V2 baseline/refined/基准对比。",
                     "v2 full-cycle validation audit",
+                    freshness="generated artifact",
+                    safety="read-only artifact",
+                ),
+                _api_endpoint(
+                    "GET",
+                    "/api/v2/history-expansion",
+                    "返回 V2.6.2 历史数据基础扩展审计，展示 2015 起覆盖进展、剩余缺口和数据来源边界。",
+                    "v2 historical data expansion audit",
                     freshness="generated artifact",
                     safety="read-only artifact",
                 ),
@@ -1585,6 +1601,17 @@ def v2_full_cycle_validation() -> dict:
         raise HTTPException(
             status_code=503,
             detail="V2 full-cycle validation artifact missing; run scripts/run_v2_full_cycle_validation.py first.",
+        )
+    return payload
+
+
+@app.get("/api/v2/history-expansion")
+def v2_history_expansion() -> dict:
+    payload = _read_history_expansion_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V2 history expansion artifact missing; run scripts/run_history_expansion.py first.",
         )
     return payload
 

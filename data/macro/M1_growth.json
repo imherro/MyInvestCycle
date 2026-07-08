@@ -1,11 +1,1211 @@
 {
   "metadata": {
     "indicator": "M1_growth",
-    "records": 29,
-    "updated_at": "2026-07-08T05:51:44+00:00",
+    "records": 149,
+    "updated_at": "2026-07-08T07:58:38+00:00",
     "schema": "MacroIndicatorRecord.v1"
   },
   "records": [
+    {
+      "indicator": "M1_growth",
+      "value": 1.2,
+      "observation_date": "20140131",
+      "release_date": "20140215",
+      "effective_date": "20140215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.9,
+      "observation_date": "20140228",
+      "release_date": "20140315",
+      "effective_date": "20140315",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.4,
+      "observation_date": "20140331",
+      "release_date": "20140415",
+      "effective_date": "20140415",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.5,
+      "observation_date": "20140430",
+      "release_date": "20140515",
+      "effective_date": "20140515",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.7,
+      "observation_date": "20140531",
+      "release_date": "20140615",
+      "effective_date": "20140615",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 8.9,
+      "observation_date": "20140630",
+      "release_date": "20140715",
+      "effective_date": "20140715",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.7,
+      "observation_date": "20140731",
+      "release_date": "20140815",
+      "effective_date": "20140815",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.7,
+      "observation_date": "20140831",
+      "release_date": "20140915",
+      "effective_date": "20140915",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.8,
+      "observation_date": "20140930",
+      "release_date": "20141015",
+      "effective_date": "20141015",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.2,
+      "observation_date": "20141031",
+      "release_date": "20141115",
+      "effective_date": "20141115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.2,
+      "observation_date": "20141130",
+      "release_date": "20141215",
+      "effective_date": "20141215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.2,
+      "observation_date": "20141231",
+      "release_date": "20150115",
+      "effective_date": "20150115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 10.6,
+      "observation_date": "20150131",
+      "release_date": "20150215",
+      "effective_date": "20150215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.6,
+      "observation_date": "20150228",
+      "release_date": "20150315",
+      "effective_date": "20150315",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 2.9,
+      "observation_date": "20150331",
+      "release_date": "20150415",
+      "effective_date": "20150415",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.7,
+      "observation_date": "20150430",
+      "release_date": "20150515",
+      "effective_date": "20150515",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.7,
+      "observation_date": "20150531",
+      "release_date": "20150615",
+      "effective_date": "20150615",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.3,
+      "observation_date": "20150630",
+      "release_date": "20150715",
+      "effective_date": "20150715",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.6,
+      "observation_date": "20150731",
+      "release_date": "20150815",
+      "effective_date": "20150815",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 9.3,
+      "observation_date": "20150831",
+      "release_date": "20150915",
+      "effective_date": "20150915",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 11.4,
+      "observation_date": "20150930",
+      "release_date": "20151015",
+      "effective_date": "20151015",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 14.0,
+      "observation_date": "20151031",
+      "release_date": "20151115",
+      "effective_date": "20151115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 15.7,
+      "observation_date": "20151130",
+      "release_date": "20151215",
+      "effective_date": "20151215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 15.2,
+      "observation_date": "20151231",
+      "release_date": "20160115",
+      "effective_date": "20160115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 18.6,
+      "observation_date": "20160131",
+      "release_date": "20160215",
+      "effective_date": "20160215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 17.4,
+      "observation_date": "20160229",
+      "release_date": "20160315",
+      "effective_date": "20160315",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 22.1,
+      "observation_date": "20160331",
+      "release_date": "20160415",
+      "effective_date": "20160415",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 22.9,
+      "observation_date": "20160430",
+      "release_date": "20160515",
+      "effective_date": "20160515",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 23.7,
+      "observation_date": "20160531",
+      "release_date": "20160615",
+      "effective_date": "20160615",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 24.6,
+      "observation_date": "20160630",
+      "release_date": "20160715",
+      "effective_date": "20160715",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 25.4,
+      "observation_date": "20160731",
+      "release_date": "20160815",
+      "effective_date": "20160815",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 25.3,
+      "observation_date": "20160831",
+      "release_date": "20160915",
+      "effective_date": "20160915",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 24.7,
+      "observation_date": "20160930",
+      "release_date": "20161015",
+      "effective_date": "20161015",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 23.9,
+      "observation_date": "20161031",
+      "release_date": "20161115",
+      "effective_date": "20161115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 22.7,
+      "observation_date": "20161130",
+      "release_date": "20161215",
+      "effective_date": "20161215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 21.4,
+      "observation_date": "20161231",
+      "release_date": "20170115",
+      "effective_date": "20170115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 14.5,
+      "observation_date": "20170131",
+      "release_date": "20170215",
+      "effective_date": "20170215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 21.4,
+      "observation_date": "20170228",
+      "release_date": "20170315",
+      "effective_date": "20170315",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 18.8,
+      "observation_date": "20170331",
+      "release_date": "20170415",
+      "effective_date": "20170415",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 18.5,
+      "observation_date": "20170430",
+      "release_date": "20170515",
+      "effective_date": "20170515",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 17.0,
+      "observation_date": "20170531",
+      "release_date": "20170615",
+      "effective_date": "20170615",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 15.0,
+      "observation_date": "20170630",
+      "release_date": "20170715",
+      "effective_date": "20170715",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 15.3,
+      "observation_date": "20170731",
+      "release_date": "20170815",
+      "effective_date": "20170815",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 14.0,
+      "observation_date": "20170831",
+      "release_date": "20170915",
+      "effective_date": "20170915",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 14.0,
+      "observation_date": "20170930",
+      "release_date": "20171015",
+      "effective_date": "20171015",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 13.0,
+      "observation_date": "20171031",
+      "release_date": "20171115",
+      "effective_date": "20171115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 12.7,
+      "observation_date": "20171130",
+      "release_date": "20171215",
+      "effective_date": "20171215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 11.8,
+      "observation_date": "20171231",
+      "release_date": "20180115",
+      "effective_date": "20180115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 15.0,
+      "observation_date": "20180131",
+      "release_date": "20180215",
+      "effective_date": "20180215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 8.5,
+      "observation_date": "20180228",
+      "release_date": "20180315",
+      "effective_date": "20180315",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 7.1,
+      "observation_date": "20180331",
+      "release_date": "20180415",
+      "effective_date": "20180415",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 7.2,
+      "observation_date": "20180430",
+      "release_date": "20180515",
+      "effective_date": "20180515",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.0,
+      "observation_date": "20180531",
+      "release_date": "20180615",
+      "effective_date": "20180615",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.6,
+      "observation_date": "20180630",
+      "release_date": "20180715",
+      "effective_date": "20180715",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.1,
+      "observation_date": "20180731",
+      "release_date": "20180815",
+      "effective_date": "20180815",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.9,
+      "observation_date": "20180831",
+      "release_date": "20180915",
+      "effective_date": "20180915",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.0,
+      "observation_date": "20180930",
+      "release_date": "20181015",
+      "effective_date": "20181015",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 2.7,
+      "observation_date": "20181031",
+      "release_date": "20181115",
+      "effective_date": "20181115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 1.5,
+      "observation_date": "20181130",
+      "release_date": "20181215",
+      "effective_date": "20181215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 1.5,
+      "observation_date": "20181231",
+      "release_date": "20190115",
+      "effective_date": "20190115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 0.4,
+      "observation_date": "20190131",
+      "release_date": "20190215",
+      "effective_date": "20190215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 1.6,
+      "observation_date": "20190228",
+      "release_date": "20190315",
+      "effective_date": "20190315",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.6,
+      "observation_date": "20190331",
+      "release_date": "20190415",
+      "effective_date": "20190415",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 2.9,
+      "observation_date": "20190430",
+      "release_date": "20190515",
+      "effective_date": "20190515",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.4,
+      "observation_date": "20190531",
+      "release_date": "20190615",
+      "effective_date": "20190615",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.4,
+      "observation_date": "20190630",
+      "release_date": "20190715",
+      "effective_date": "20190715",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.1,
+      "observation_date": "20190731",
+      "release_date": "20190815",
+      "effective_date": "20190815",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.4,
+      "observation_date": "20190831",
+      "release_date": "20190915",
+      "effective_date": "20190915",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.4,
+      "observation_date": "20190930",
+      "release_date": "20191015",
+      "effective_date": "20191015",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.3,
+      "observation_date": "20191031",
+      "release_date": "20191115",
+      "effective_date": "20191115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.5,
+      "observation_date": "20191130",
+      "release_date": "20191215",
+      "effective_date": "20191215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.4,
+      "observation_date": "20191231",
+      "release_date": "20200115",
+      "effective_date": "20200115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 0.0,
+      "observation_date": "20200131",
+      "release_date": "20200215",
+      "effective_date": "20200215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.8,
+      "observation_date": "20200229",
+      "release_date": "20200315",
+      "effective_date": "20200315",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.0,
+      "observation_date": "20200331",
+      "release_date": "20200415",
+      "effective_date": "20200415",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.5,
+      "observation_date": "20200430",
+      "release_date": "20200515",
+      "effective_date": "20200515",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.8,
+      "observation_date": "20200531",
+      "release_date": "20200615",
+      "effective_date": "20200615",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.5,
+      "observation_date": "20200630",
+      "release_date": "20200715",
+      "effective_date": "20200715",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.9,
+      "observation_date": "20200731",
+      "release_date": "20200815",
+      "effective_date": "20200815",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 8.0,
+      "observation_date": "20200831",
+      "release_date": "20200915",
+      "effective_date": "20200915",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 8.1,
+      "observation_date": "20200930",
+      "release_date": "20201015",
+      "effective_date": "20201015",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 9.1,
+      "observation_date": "20201031",
+      "release_date": "20201115",
+      "effective_date": "20201115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 10.0,
+      "observation_date": "20201130",
+      "release_date": "20201215",
+      "effective_date": "20201215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 8.6,
+      "observation_date": "20201231",
+      "release_date": "20210115",
+      "effective_date": "20210115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 14.7,
+      "observation_date": "20210131",
+      "release_date": "20210215",
+      "effective_date": "20210215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 7.4,
+      "observation_date": "20210228",
+      "release_date": "20210315",
+      "effective_date": "20210315",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 7.1,
+      "observation_date": "20210331",
+      "release_date": "20210415",
+      "effective_date": "20210415",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.2,
+      "observation_date": "20210430",
+      "release_date": "20210515",
+      "effective_date": "20210515",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.1,
+      "observation_date": "20210531",
+      "release_date": "20210615",
+      "effective_date": "20210615",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.5,
+      "observation_date": "20210630",
+      "release_date": "20210715",
+      "effective_date": "20210715",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.9,
+      "observation_date": "20210731",
+      "release_date": "20210815",
+      "effective_date": "20210815",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.2,
+      "observation_date": "20210831",
+      "release_date": "20210915",
+      "effective_date": "20210915",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.7,
+      "observation_date": "20210930",
+      "release_date": "20211015",
+      "effective_date": "20211015",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 2.8,
+      "observation_date": "20211031",
+      "release_date": "20211115",
+      "effective_date": "20211115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.0,
+      "observation_date": "20211130",
+      "release_date": "20211215",
+      "effective_date": "20211215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.5,
+      "observation_date": "20211231",
+      "release_date": "20220115",
+      "effective_date": "20220115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": -1.9,
+      "observation_date": "20220131",
+      "release_date": "20220215",
+      "effective_date": "20220215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.7,
+      "observation_date": "20220228",
+      "release_date": "20220315",
+      "effective_date": "20220315",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.7,
+      "observation_date": "20220331",
+      "release_date": "20220415",
+      "effective_date": "20220415",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.1,
+      "observation_date": "20220430",
+      "release_date": "20220515",
+      "effective_date": "20220515",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.6,
+      "observation_date": "20220531",
+      "release_date": "20220615",
+      "effective_date": "20220615",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.8,
+      "observation_date": "20220630",
+      "release_date": "20220715",
+      "effective_date": "20220715",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.7,
+      "observation_date": "20220731",
+      "release_date": "20220815",
+      "effective_date": "20220815",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.1,
+      "observation_date": "20220831",
+      "release_date": "20220915",
+      "effective_date": "20220915",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.4,
+      "observation_date": "20220930",
+      "release_date": "20221015",
+      "effective_date": "20221015",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.8,
+      "observation_date": "20221031",
+      "release_date": "20221115",
+      "effective_date": "20221115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.6,
+      "observation_date": "20221130",
+      "release_date": "20221215",
+      "effective_date": "20221215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.7,
+      "observation_date": "20221231",
+      "release_date": "20230115",
+      "effective_date": "20230115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 6.7,
+      "observation_date": "20230131",
+      "release_date": "20230215",
+      "effective_date": "20230215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.8,
+      "observation_date": "20230228",
+      "release_date": "20230315",
+      "effective_date": "20230315",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.1,
+      "observation_date": "20230331",
+      "release_date": "20230415",
+      "effective_date": "20230415",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 5.3,
+      "observation_date": "20230430",
+      "release_date": "20230515",
+      "effective_date": "20230515",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 4.7,
+      "observation_date": "20230531",
+      "release_date": "20230615",
+      "effective_date": "20230615",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 3.1,
+      "observation_date": "20230630",
+      "release_date": "20230715",
+      "effective_date": "20230715",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 2.3,
+      "observation_date": "20230731",
+      "release_date": "20230815",
+      "effective_date": "20230815",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 2.2,
+      "observation_date": "20230831",
+      "release_date": "20230915",
+      "effective_date": "20230915",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 2.1,
+      "observation_date": "20230930",
+      "release_date": "20231015",
+      "effective_date": "20231015",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 1.9,
+      "observation_date": "20231031",
+      "release_date": "20231115",
+      "effective_date": "20231115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 1.3,
+      "observation_date": "20231130",
+      "release_date": "20231215",
+      "effective_date": "20231215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M1_growth",
+      "value": 1.3,
+      "observation_date": "20231231",
+      "release_date": "20240115",
+      "effective_date": "20240115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m1_yoy",
+      "quality_status": "estimated"
+    },
     {
       "indicator": "M1_growth",
       "value": 5.9,

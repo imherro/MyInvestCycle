@@ -1,7 +1,7 @@
 {
   "metadata": {
     "engine": "V2.6.1 Historical Coverage Expansion & Full Cycle Validation",
-    "generated_at": "2026-07-08T07:49:13+00:00",
+    "generated_at": "2026-07-08T08:13:37+00:00",
     "desired_window": {
       "start": "20150101",
       "end": "20260708"
@@ -21,70 +21,59 @@
       "end": "20260708"
     },
     "operational_validation_window": {
-      "start": "20240102",
-      "end": "20260626"
+      "start": "20150105",
+      "end": "20260708"
     },
     "can_cover_desired_window": false,
     "blockers": [
-      "macro M1_growth starts at 20240131",
-      "macro M2_growth starts at 20240131",
-      "macro social_financing_growth starts at 20240131",
       "macro new_loans missing",
-      "macro PMI starts at 20240131",
-      "macro CPI starts at 20240131",
-      "macro PPI starts at 20240131",
-      "macro SHIBOR starts at 20240102",
       "macro CN10Y missing",
-      "macro US10Y starts at 20240102",
-      "macro USD_CNH_offshore starts at 20240101",
       "index 000300.SH starts at 20150105",
-      "market_daily breadth cache coverage below 95%",
-      "hsgt liquidity proxy starts at 20191102",
-      "industry 801010.SI starts at 20240102",
-      "industry 801030.SI starts at 20240102",
-      "industry 801040.SI starts at 20240102",
-      "industry 801050.SI starts at 20240102",
-      "industry 801080.SI starts at 20240102",
-      "industry 801110.SI starts at 20240102",
-      "industry 801120.SI starts at 20240102",
-      "industry 801130.SI starts at 20240102",
-      "industry 801140.SI starts at 20240102",
-      "industry 801150.SI starts at 20240102",
-      "industry 801160.SI starts at 20240102",
-      "industry 801170.SI starts at 20240102",
-      "industry 801180.SI starts at 20240102",
-      "industry 801200.SI starts at 20240102",
-      "industry 801210.SI starts at 20240102",
-      "industry 801230.SI starts at 20240102",
-      "industry 801710.SI starts at 20240102",
-      "industry 801720.SI starts at 20240102",
-      "industry 801730.SI starts at 20240102",
-      "industry 801740.SI starts at 20240102",
-      "ETF proxy 510300.SH starts at 20181029",
-      "ETF proxy 510500.SH starts at 20200102",
-      "ETF proxy 511880.SH starts at 20181029"
+      "industry 801010.SI starts at 20150105",
+      "industry 801030.SI starts at 20150105",
+      "industry 801040.SI starts at 20150105",
+      "industry 801050.SI starts at 20150105",
+      "industry 801080.SI starts at 20150105",
+      "industry 801110.SI starts at 20150105",
+      "industry 801120.SI starts at 20150105",
+      "industry 801130.SI starts at 20150105",
+      "industry 801140.SI starts at 20150105",
+      "industry 801150.SI starts at 20150105",
+      "industry 801160.SI starts at 20150105",
+      "industry 801170.SI starts at 20150105",
+      "industry 801180.SI starts at 20150105",
+      "industry 801200.SI starts at 20150105",
+      "industry 801210.SI starts at 20150105",
+      "industry 801230.SI starts at 20150105",
+      "industry 801710.SI starts at 20150105",
+      "industry 801720.SI starts at 20150105",
+      "industry 801730.SI starts at 20150105",
+      "industry 801740.SI starts at 20150105",
+      "ETF proxy 510300.SH starts at 20150105",
+      "ETF proxy 510500.SH starts at 20150105",
+      "ETF proxy 511880.SH starts at 20150105"
     ],
-    "blocker_count": 37,
+    "blocker_count": 26,
     "modules": {
       "macro": {
         "series": {
           "M1_growth": {
             "available": true,
-            "start": "20240131",
+            "start": "20140131",
             "end": "20260531",
-            "records": 29
+            "records": 149
           },
           "M2_growth": {
             "available": true,
-            "start": "20240131",
+            "start": "20140131",
             "end": "20260531",
-            "records": 29
+            "records": 149
           },
           "social_financing_growth": {
             "available": true,
-            "start": "20240131",
+            "start": "20141231",
             "end": "20260531",
-            "records": 29
+            "records": 119
           },
           "new_loans": {
             "available": false,
@@ -94,27 +83,27 @@
           },
           "PMI": {
             "available": true,
-            "start": "20240131",
+            "start": "20140131",
             "end": "20260531",
-            "records": 29
+            "records": 149
           },
           "CPI": {
             "available": true,
-            "start": "20240131",
+            "start": "20140131",
             "end": "20260531",
-            "records": 29
+            "records": 149
           },
           "PPI": {
             "available": true,
-            "start": "20240131",
+            "start": "20140131",
             "end": "20260531",
-            "records": 29
+            "records": 149
           },
           "SHIBOR": {
             "available": true,
-            "start": "20240102",
+            "start": "20140102",
             "end": "20260708",
-            "records": 625
+            "records": 3099
           },
           "CN10Y": {
             "available": false,
@@ -124,39 +113,30 @@
           },
           "US10Y": {
             "available": true,
-            "start": "20240102",
+            "start": "20140102",
             "end": "20260706",
-            "records": 626
+            "records": 3125
           },
           "USD_CNH_offshore": {
             "available": true,
-            "start": "20240101",
+            "start": "20140102",
             "end": "20260707",
-            "records": 780
+            "records": 3846
           }
         },
-        "common_start": "20240131",
+        "common_start": "20141231",
         "common_end": "20260531",
         "missing": [
           "new_loans",
           "CN10Y"
         ],
-        "first_available_start": "20240101",
+        "first_available_start": "20140102",
         "latest_available_end": "20260708",
         "desired_start": "20150101",
         "desired_end": "20260708",
         "blockers": [
-          "macro M1_growth starts at 20240131",
-          "macro M2_growth starts at 20240131",
-          "macro social_financing_growth starts at 20240131",
           "macro new_loans missing",
-          "macro PMI starts at 20240131",
-          "macro CPI starts at 20240131",
-          "macro PPI starts at 20240131",
-          "macro SHIBOR starts at 20240102",
-          "macro CN10Y missing",
-          "macro US10Y starts at 20240102",
-          "macro USD_CNH_offshore starts at 20240101"
+          "macro CN10Y missing"
         ],
         "note": "Macro cache is local-record based; historical validation must not fabricate pre-cache macro observations."
       },
@@ -168,38 +148,38 @@
               "available": true,
               "file": "data/cache/index_daily_000001_SH.csv",
               "start": "19940103",
-              "end": "20260707",
-              "rows": 7900
+              "end": "20260708",
+              "rows": 7901
             },
             "000300.SH": {
               "label": "沪深300指数",
               "available": true,
               "file": "data/cache/index_daily_000300_SH.csv",
               "start": "20150105",
-              "end": "20260707",
-              "rows": 2795
+              "end": "20260708",
+              "rows": 2796
             },
             "000905.SH": {
               "label": "中证500指数",
               "available": true,
               "file": "data/cache/index_daily_000905_SH.csv",
               "start": "20100104",
-              "end": "20260707",
-              "rows": 4007
+              "end": "20260708",
+              "rows": 4008
             }
           },
           "common_start": "20150105",
-          "common_end": "20260707",
+          "common_end": "20260708",
           "missing": []
         },
         "breadth": {
           "available": true,
           "start": "20150105",
           "end": "20260707",
-          "total_days": 2795,
-          "covered_days": 2395,
-          "missing_days": 400,
-          "coverage_ratio": 0.856887,
+          "total_days": 2796,
+          "covered_days": 2795,
+          "missing_days": 1,
+          "coverage_ratio": 0.999642,
           "available_sample": [
             "20150105",
             "20150106",
@@ -213,30 +193,19 @@
             "20150116"
           ],
           "missing_sample": [
-            "20151216",
-            "20180223",
-            "20180518",
-            "20180521",
-            "20180522",
-            "20180523",
-            "20180524",
-            "20180525",
-            "20180528",
-            "20180529"
+            "20260708"
           ]
         },
         "liquidity_hsgt": {
           "available": true,
-          "file_count": 133,
-          "start": "20191102",
-          "end": "20260707"
+          "file_count": 159,
+          "start": "20150101",
+          "end": "20260708"
         },
-        "common_start": "20191102",
+        "common_start": "20150105",
         "common_end": "20260707",
         "blockers": [
-          "index 000300.SH starts at 20150105",
-          "market_daily breadth cache coverage below 95%",
-          "hsgt liquidity proxy starts at 20191102"
+          "index 000300.SH starts at 20150105"
         ]
       },
       "industry_opportunity": {
@@ -246,283 +215,283 @@
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801010_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801030.SI": {
             "label": "基础化工",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801030_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801040.SI": {
             "label": "钢铁",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801040_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801050.SI": {
             "label": "有色金属",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801050_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801080.SI": {
             "label": "电子",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801080_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801110.SI": {
             "label": "家用电器",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801110_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801120.SI": {
             "label": "食品饮料",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801120_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801130.SI": {
             "label": "纺织服饰",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801130_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801140.SI": {
             "label": "轻工制造",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801140_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801150.SI": {
             "label": "医药生物",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801150_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801160.SI": {
             "label": "公用事业",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801160_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801170.SI": {
             "label": "交通运输",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801170_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801180.SI": {
             "label": "房地产",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801180_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801200.SI": {
             "label": "商贸零售",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801200_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801210.SI": {
             "label": "社会服务",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801210_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801230.SI": {
             "label": "综合",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801230_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801710.SI": {
             "label": "建筑材料",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801710_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801720.SI": {
             "label": "建筑装饰",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801720_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801730.SI": {
             "label": "电力设备",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801730_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801740.SI": {
             "label": "国防军工",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801740_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801750.SI": {
             "label": "计算机",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801750_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801760.SI": {
             "label": "传媒",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801760_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801770.SI": {
             "label": "通信",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801770_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801780.SI": {
             "label": "银行",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801780_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801790.SI": {
             "label": "非银金融",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801790_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801880.SI": {
             "label": "汽车",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801880_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801890.SI": {
             "label": "机械设备",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801890_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801950.SI": {
             "label": "煤炭",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801950_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801960.SI": {
             "label": "石油石化",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801960_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801970.SI": {
             "label": "环保",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801970_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "801980.SI": {
             "label": "美容护理",
             "source_type": "industry_index",
             "available": true,
             "file": "data/cache/index_daily_801980_SI.csv",
-            "start": "20240102",
-            "end": "20260707",
-            "rows": 606
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           }
         },
-        "common_start": "20240102",
-        "common_end": "20260707",
+        "common_start": "20150105",
+        "common_end": "20260708",
         "missing": [],
         "asset_count": 31,
         "available_count": 31,
@@ -537,54 +506,54 @@
           "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\industry\\industry_universe_SW2021_L1.json"
         },
         "blockers": [
-          "industry 801010.SI starts at 20240102",
-          "industry 801030.SI starts at 20240102",
-          "industry 801040.SI starts at 20240102",
-          "industry 801050.SI starts at 20240102",
-          "industry 801080.SI starts at 20240102",
-          "industry 801110.SI starts at 20240102",
-          "industry 801120.SI starts at 20240102",
-          "industry 801130.SI starts at 20240102",
-          "industry 801140.SI starts at 20240102",
-          "industry 801150.SI starts at 20240102",
-          "industry 801160.SI starts at 20240102",
-          "industry 801170.SI starts at 20240102",
-          "industry 801180.SI starts at 20240102",
-          "industry 801200.SI starts at 20240102",
-          "industry 801210.SI starts at 20240102",
-          "industry 801230.SI starts at 20240102",
-          "industry 801710.SI starts at 20240102",
-          "industry 801720.SI starts at 20240102",
-          "industry 801730.SI starts at 20240102",
-          "industry 801740.SI starts at 20240102"
+          "industry 801010.SI starts at 20150105",
+          "industry 801030.SI starts at 20150105",
+          "industry 801040.SI starts at 20150105",
+          "industry 801050.SI starts at 20150105",
+          "industry 801080.SI starts at 20150105",
+          "industry 801110.SI starts at 20150105",
+          "industry 801120.SI starts at 20150105",
+          "industry 801130.SI starts at 20150105",
+          "industry 801140.SI starts at 20150105",
+          "industry 801150.SI starts at 20150105",
+          "industry 801160.SI starts at 20150105",
+          "industry 801170.SI starts at 20150105",
+          "industry 801180.SI starts at 20150105",
+          "industry 801200.SI starts at 20150105",
+          "industry 801210.SI starts at 20150105",
+          "industry 801230.SI starts at 20150105",
+          "industry 801710.SI starts at 20150105",
+          "industry 801720.SI starts at 20150105",
+          "industry 801730.SI starts at 20150105",
+          "industry 801740.SI starts at 20150105"
         ],
         "blocker_count": 31
       },
       "theme_risk": {
         "depends_on": "industry_opportunity top themes and their historical price positions",
-        "common_start": "20240102",
-        "common_end": "20260707",
+        "common_start": "20150105",
+        "common_end": "20260708",
         "blockers": [
-          "industry 801010.SI starts at 20240102",
-          "industry 801030.SI starts at 20240102",
-          "industry 801040.SI starts at 20240102",
-          "industry 801050.SI starts at 20240102",
-          "industry 801080.SI starts at 20240102",
-          "industry 801110.SI starts at 20240102",
-          "industry 801120.SI starts at 20240102",
-          "industry 801130.SI starts at 20240102",
-          "industry 801140.SI starts at 20240102",
-          "industry 801150.SI starts at 20240102",
-          "industry 801160.SI starts at 20240102",
-          "industry 801170.SI starts at 20240102",
-          "industry 801180.SI starts at 20240102",
-          "industry 801200.SI starts at 20240102",
-          "industry 801210.SI starts at 20240102",
-          "industry 801230.SI starts at 20240102",
-          "industry 801710.SI starts at 20240102",
-          "industry 801720.SI starts at 20240102",
-          "industry 801730.SI starts at 20240102",
-          "industry 801740.SI starts at 20240102"
+          "industry 801010.SI starts at 20150105",
+          "industry 801030.SI starts at 20150105",
+          "industry 801040.SI starts at 20150105",
+          "industry 801050.SI starts at 20150105",
+          "industry 801080.SI starts at 20150105",
+          "industry 801110.SI starts at 20150105",
+          "industry 801120.SI starts at 20150105",
+          "industry 801130.SI starts at 20150105",
+          "industry 801140.SI starts at 20150105",
+          "industry 801150.SI starts at 20150105",
+          "industry 801160.SI starts at 20150105",
+          "industry 801170.SI starts at 20150105",
+          "industry 801180.SI starts at 20150105",
+          "industry 801200.SI starts at 20150105",
+          "industry 801210.SI starts at 20150105",
+          "industry 801230.SI starts at 20150105",
+          "industry 801710.SI starts at 20150105",
+          "industry 801720.SI starts at 20150105",
+          "industry 801730.SI starts at 20150105",
+          "industry 801740.SI starts at 20150105"
         ]
       },
       "etf_proxy": {
@@ -593,34 +562,34 @@
             "label": "沪深300ETF",
             "available": true,
             "file": "data/cache/fund_daily_510300_SH.csv",
-            "start": "20181029",
-            "end": "20260626",
-            "rows": 1858
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           },
           "510500.SH": {
             "label": "中证500ETF",
             "available": true,
             "file": "data/cache/fund_daily_510500_SH.csv",
-            "start": "20200102",
-            "end": "20260630",
-            "rows": 1571
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2794
           },
           "511880.SH": {
             "label": "银华日利ETF",
             "available": true,
             "file": "data/cache/fund_daily_511880_SH.csv",
-            "start": "20181029",
-            "end": "20260626",
-            "rows": 1858
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
           }
         },
-        "common_start": "20200102",
-        "common_end": "20260626",
+        "common_start": "20150105",
+        "common_end": "20260708",
         "missing": [],
         "blockers": [
-          "ETF proxy 510300.SH starts at 20181029",
-          "ETF proxy 510500.SH starts at 20200102",
-          "ETF proxy 511880.SH starts at 20181029"
+          "ETF proxy 510300.SH starts at 20150105",
+          "ETF proxy 510500.SH starts at 20150105",
+          "ETF proxy 511880.SH starts at 20150105"
         ]
       },
       "legacy_benchmarks": {
@@ -19265,7 +19234,7 @@
   },
   "history_snapshot_manifest": {
     "engine": "V2.6.1 Historical Snapshot Reconstruction Manifest",
-    "generated_at": "2026-07-08T07:49:13+00:00",
+    "generated_at": "2026-07-08T08:13:37+00:00",
     "storage_policy": "compressed_rebalance_snapshots",
     "reason": "Daily JSON snapshots would duplicate large module payloads; V2.6.1 stores rebalance-date signal snapshots and full daily return series in v2_full_cycle_validation.json.",
     "full_cycle_artifact": "data/v2_full_cycle_validation.json",

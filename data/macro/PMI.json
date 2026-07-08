@@ -1,11 +1,1211 @@
 {
   "metadata": {
     "indicator": "PMI",
-    "records": 29,
-    "updated_at": "2026-07-08T05:51:46+00:00",
+    "records": 149,
+    "updated_at": "2026-07-08T07:58:39+00:00",
     "schema": "MacroIndicatorRecord.v1"
   },
   "records": [
+    {
+      "indicator": "PMI",
+      "value": 50.5,
+      "observation_date": "20140131",
+      "release_date": "20140201",
+      "effective_date": "20140201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.2,
+      "observation_date": "20140228",
+      "release_date": "20140301",
+      "effective_date": "20140301",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.3,
+      "observation_date": "20140331",
+      "release_date": "20140401",
+      "effective_date": "20140401",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.4,
+      "observation_date": "20140430",
+      "release_date": "20140501",
+      "effective_date": "20140501",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.8,
+      "observation_date": "20140531",
+      "release_date": "20140601",
+      "effective_date": "20140601",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.0,
+      "observation_date": "20140630",
+      "release_date": "20140701",
+      "effective_date": "20140701",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.7,
+      "observation_date": "20140731",
+      "release_date": "20140801",
+      "effective_date": "20140801",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.1,
+      "observation_date": "20140831",
+      "release_date": "20140901",
+      "effective_date": "20140901",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.1,
+      "observation_date": "20140930",
+      "release_date": "20141001",
+      "effective_date": "20141001",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.8,
+      "observation_date": "20141031",
+      "release_date": "20141101",
+      "effective_date": "20141101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.3,
+      "observation_date": "20141130",
+      "release_date": "20141201",
+      "effective_date": "20141201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.1,
+      "observation_date": "20141231",
+      "release_date": "20150101",
+      "effective_date": "20150101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.8,
+      "observation_date": "20150131",
+      "release_date": "20150201",
+      "effective_date": "20150201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.9,
+      "observation_date": "20150228",
+      "release_date": "20150301",
+      "effective_date": "20150301",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.1,
+      "observation_date": "20150331",
+      "release_date": "20150401",
+      "effective_date": "20150401",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.1,
+      "observation_date": "20150430",
+      "release_date": "20150501",
+      "effective_date": "20150501",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.2,
+      "observation_date": "20150531",
+      "release_date": "20150601",
+      "effective_date": "20150601",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.2,
+      "observation_date": "20150630",
+      "release_date": "20150701",
+      "effective_date": "20150701",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.0,
+      "observation_date": "20150731",
+      "release_date": "20150801",
+      "effective_date": "20150801",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.7,
+      "observation_date": "20150831",
+      "release_date": "20150901",
+      "effective_date": "20150901",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.8,
+      "observation_date": "20150930",
+      "release_date": "20151001",
+      "effective_date": "20151001",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.8,
+      "observation_date": "20151031",
+      "release_date": "20151101",
+      "effective_date": "20151101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.6,
+      "observation_date": "20151130",
+      "release_date": "20151201",
+      "effective_date": "20151201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.7,
+      "observation_date": "20151231",
+      "release_date": "20160101",
+      "effective_date": "20160101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.4,
+      "observation_date": "20160131",
+      "release_date": "20160201",
+      "effective_date": "20160201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.0,
+      "observation_date": "20160229",
+      "release_date": "20160301",
+      "effective_date": "20160301",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.2,
+      "observation_date": "20160331",
+      "release_date": "20160401",
+      "effective_date": "20160401",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.1,
+      "observation_date": "20160430",
+      "release_date": "20160501",
+      "effective_date": "20160501",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.1,
+      "observation_date": "20160531",
+      "release_date": "20160601",
+      "effective_date": "20160601",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.0,
+      "observation_date": "20160630",
+      "release_date": "20160701",
+      "effective_date": "20160701",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.9,
+      "observation_date": "20160731",
+      "release_date": "20160801",
+      "effective_date": "20160801",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.4,
+      "observation_date": "20160831",
+      "release_date": "20160901",
+      "effective_date": "20160901",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.4,
+      "observation_date": "20160930",
+      "release_date": "20161001",
+      "effective_date": "20161001",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.2,
+      "observation_date": "20161031",
+      "release_date": "20161101",
+      "effective_date": "20161101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.7,
+      "observation_date": "20161130",
+      "release_date": "20161201",
+      "effective_date": "20161201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.4,
+      "observation_date": "20161231",
+      "release_date": "20170101",
+      "effective_date": "20170101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.3,
+      "observation_date": "20170131",
+      "release_date": "20170201",
+      "effective_date": "20170201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.6,
+      "observation_date": "20170228",
+      "release_date": "20170301",
+      "effective_date": "20170301",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.8,
+      "observation_date": "20170331",
+      "release_date": "20170401",
+      "effective_date": "20170401",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.2,
+      "observation_date": "20170430",
+      "release_date": "20170501",
+      "effective_date": "20170501",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.2,
+      "observation_date": "20170531",
+      "release_date": "20170601",
+      "effective_date": "20170601",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.7,
+      "observation_date": "20170630",
+      "release_date": "20170701",
+      "effective_date": "20170701",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.4,
+      "observation_date": "20170731",
+      "release_date": "20170801",
+      "effective_date": "20170801",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.7,
+      "observation_date": "20170831",
+      "release_date": "20170901",
+      "effective_date": "20170901",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 52.4,
+      "observation_date": "20170930",
+      "release_date": "20171001",
+      "effective_date": "20171001",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.6,
+      "observation_date": "20171031",
+      "release_date": "20171101",
+      "effective_date": "20171101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.8,
+      "observation_date": "20171130",
+      "release_date": "20171201",
+      "effective_date": "20171201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.6,
+      "observation_date": "20171231",
+      "release_date": "20180101",
+      "effective_date": "20180101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.3,
+      "observation_date": "20180131",
+      "release_date": "20180201",
+      "effective_date": "20180201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.3,
+      "observation_date": "20180228",
+      "release_date": "20180301",
+      "effective_date": "20180301",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.5,
+      "observation_date": "20180331",
+      "release_date": "20180401",
+      "effective_date": "20180401",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.4,
+      "observation_date": "20180430",
+      "release_date": "20180501",
+      "effective_date": "20180501",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.9,
+      "observation_date": "20180531",
+      "release_date": "20180601",
+      "effective_date": "20180601",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.5,
+      "observation_date": "20180630",
+      "release_date": "20180701",
+      "effective_date": "20180701",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.2,
+      "observation_date": "20180731",
+      "release_date": "20180801",
+      "effective_date": "20180801",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.3,
+      "observation_date": "20180831",
+      "release_date": "20180901",
+      "effective_date": "20180901",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.8,
+      "observation_date": "20180930",
+      "release_date": "20181001",
+      "effective_date": "20181001",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.2,
+      "observation_date": "20181031",
+      "release_date": "20181101",
+      "effective_date": "20181101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.0,
+      "observation_date": "20181130",
+      "release_date": "20181201",
+      "effective_date": "20181201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.4,
+      "observation_date": "20181231",
+      "release_date": "20190101",
+      "effective_date": "20190101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.5,
+      "observation_date": "20190131",
+      "release_date": "20190201",
+      "effective_date": "20190201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.2,
+      "observation_date": "20190228",
+      "release_date": "20190301",
+      "effective_date": "20190301",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.5,
+      "observation_date": "20190331",
+      "release_date": "20190401",
+      "effective_date": "20190401",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.1,
+      "observation_date": "20190430",
+      "release_date": "20190501",
+      "effective_date": "20190501",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.4,
+      "observation_date": "20190531",
+      "release_date": "20190601",
+      "effective_date": "20190601",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.4,
+      "observation_date": "20190630",
+      "release_date": "20190701",
+      "effective_date": "20190701",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.7,
+      "observation_date": "20190731",
+      "release_date": "20190801",
+      "effective_date": "20190801",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.5,
+      "observation_date": "20190831",
+      "release_date": "20190901",
+      "effective_date": "20190901",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.8,
+      "observation_date": "20190930",
+      "release_date": "20191001",
+      "effective_date": "20191001",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.3,
+      "observation_date": "20191031",
+      "release_date": "20191101",
+      "effective_date": "20191101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.2,
+      "observation_date": "20191130",
+      "release_date": "20191201",
+      "effective_date": "20191201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.2,
+      "observation_date": "20191231",
+      "release_date": "20200101",
+      "effective_date": "20200101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.0,
+      "observation_date": "20200131",
+      "release_date": "20200201",
+      "effective_date": "20200201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 35.7,
+      "observation_date": "20200229",
+      "release_date": "20200301",
+      "effective_date": "20200301",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 52.0,
+      "observation_date": "20200331",
+      "release_date": "20200401",
+      "effective_date": "20200401",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.8,
+      "observation_date": "20200430",
+      "release_date": "20200501",
+      "effective_date": "20200501",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.6,
+      "observation_date": "20200531",
+      "release_date": "20200601",
+      "effective_date": "20200601",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.9,
+      "observation_date": "20200630",
+      "release_date": "20200701",
+      "effective_date": "20200701",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.1,
+      "observation_date": "20200731",
+      "release_date": "20200801",
+      "effective_date": "20200801",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.0,
+      "observation_date": "20200831",
+      "release_date": "20200901",
+      "effective_date": "20200901",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.5,
+      "observation_date": "20200930",
+      "release_date": "20201001",
+      "effective_date": "20201001",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.4,
+      "observation_date": "20201031",
+      "release_date": "20201101",
+      "effective_date": "20201101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 52.1,
+      "observation_date": "20201130",
+      "release_date": "20201201",
+      "effective_date": "20201201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.9,
+      "observation_date": "20201231",
+      "release_date": "20210101",
+      "effective_date": "20210101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.3,
+      "observation_date": "20210131",
+      "release_date": "20210201",
+      "effective_date": "20210201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.6,
+      "observation_date": "20210228",
+      "release_date": "20210301",
+      "effective_date": "20210301",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.9,
+      "observation_date": "20210331",
+      "release_date": "20210401",
+      "effective_date": "20210401",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.1,
+      "observation_date": "20210430",
+      "release_date": "20210501",
+      "effective_date": "20210501",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.0,
+      "observation_date": "20210531",
+      "release_date": "20210601",
+      "effective_date": "20210601",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.9,
+      "observation_date": "20210630",
+      "release_date": "20210701",
+      "effective_date": "20210701",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.4,
+      "observation_date": "20210731",
+      "release_date": "20210801",
+      "effective_date": "20210801",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.1,
+      "observation_date": "20210831",
+      "release_date": "20210901",
+      "effective_date": "20210901",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.6,
+      "observation_date": "20210930",
+      "release_date": "20211001",
+      "effective_date": "20211001",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.2,
+      "observation_date": "20211031",
+      "release_date": "20211101",
+      "effective_date": "20211101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.1,
+      "observation_date": "20211130",
+      "release_date": "20211201",
+      "effective_date": "20211201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.3,
+      "observation_date": "20211231",
+      "release_date": "20220101",
+      "effective_date": "20220101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.1,
+      "observation_date": "20220131",
+      "release_date": "20220201",
+      "effective_date": "20220201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.2,
+      "observation_date": "20220228",
+      "release_date": "20220301",
+      "effective_date": "20220301",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.5,
+      "observation_date": "20220331",
+      "release_date": "20220401",
+      "effective_date": "20220401",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 47.4,
+      "observation_date": "20220430",
+      "release_date": "20220501",
+      "effective_date": "20220501",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.6,
+      "observation_date": "20220531",
+      "release_date": "20220601",
+      "effective_date": "20220601",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.2,
+      "observation_date": "20220630",
+      "release_date": "20220701",
+      "effective_date": "20220701",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.0,
+      "observation_date": "20220731",
+      "release_date": "20220801",
+      "effective_date": "20220801",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.4,
+      "observation_date": "20220831",
+      "release_date": "20220901",
+      "effective_date": "20220901",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.1,
+      "observation_date": "20220930",
+      "release_date": "20221001",
+      "effective_date": "20221001",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.2,
+      "observation_date": "20221031",
+      "release_date": "20221101",
+      "effective_date": "20221101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 48.0,
+      "observation_date": "20221130",
+      "release_date": "20221201",
+      "effective_date": "20221201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 47.0,
+      "observation_date": "20221231",
+      "release_date": "20230101",
+      "effective_date": "20230101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.1,
+      "observation_date": "20230131",
+      "release_date": "20230201",
+      "effective_date": "20230201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 52.6,
+      "observation_date": "20230228",
+      "release_date": "20230301",
+      "effective_date": "20230301",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 51.9,
+      "observation_date": "20230331",
+      "release_date": "20230401",
+      "effective_date": "20230401",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.2,
+      "observation_date": "20230430",
+      "release_date": "20230501",
+      "effective_date": "20230501",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 48.8,
+      "observation_date": "20230531",
+      "release_date": "20230601",
+      "effective_date": "20230601",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.0,
+      "observation_date": "20230630",
+      "release_date": "20230701",
+      "effective_date": "20230701",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.3,
+      "observation_date": "20230731",
+      "release_date": "20230801",
+      "effective_date": "20230801",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.7,
+      "observation_date": "20230831",
+      "release_date": "20230901",
+      "effective_date": "20230901",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 50.2,
+      "observation_date": "20230930",
+      "release_date": "20231001",
+      "effective_date": "20231001",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.5,
+      "observation_date": "20231031",
+      "release_date": "20231101",
+      "effective_date": "20231101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.4,
+      "observation_date": "20231130",
+      "release_date": "20231201",
+      "effective_date": "20231201",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PMI",
+      "value": 49.0,
+      "observation_date": "20231231",
+      "release_date": "20240101",
+      "effective_date": "20240101",
+      "frequency": "monthly",
+      "source": "tushare:cn_pmi.PMI010000",
+      "quality_status": "estimated"
+    },
     {
       "indicator": "PMI",
       "value": 49.2,

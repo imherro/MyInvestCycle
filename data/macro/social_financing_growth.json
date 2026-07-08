@@ -1,11 +1,911 @@
 {
   "metadata": {
     "indicator": "social_financing_growth",
-    "records": 29,
-    "updated_at": "2026-07-08T05:51:45+00:00",
+    "records": 119,
+    "updated_at": "2026-07-08T07:58:39+00:00",
     "schema": "MacroIndicatorRecord.v1"
   },
   "records": [
+    {
+      "indicator": "social_financing_growth",
+      "value": 14.330914,
+      "observation_date": "20141231",
+      "release_date": "20150115",
+      "effective_date": "20150115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 12.43692,
+      "observation_date": "20151231",
+      "release_date": "20160115",
+      "effective_date": "20160115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 13.369361,
+      "observation_date": "20160331",
+      "release_date": "20160415",
+      "effective_date": "20160415",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 12.369021,
+      "observation_date": "20160630",
+      "release_date": "20160715",
+      "effective_date": "20160715",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 12.479584,
+      "observation_date": "20160930",
+      "release_date": "20161015",
+      "effective_date": "20161015",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 12.921674,
+      "observation_date": "20161231",
+      "release_date": "20170115",
+      "effective_date": "20170115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 30.06993,
+      "observation_date": "20170131",
+      "release_date": "20170215",
+      "effective_date": "20170215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 29.981757,
+      "observation_date": "20170228",
+      "release_date": "20170315",
+      "effective_date": "20170315",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 29.734024,
+      "observation_date": "20170331",
+      "release_date": "20170415",
+      "effective_date": "20170415",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 30.304279,
+      "observation_date": "20170430",
+      "release_date": "20170515",
+      "effective_date": "20170515",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 30.841249,
+      "observation_date": "20170531",
+      "release_date": "20170615",
+      "effective_date": "20170615",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 31.069667,
+      "observation_date": "20170630",
+      "release_date": "20170715",
+      "effective_date": "20170715",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 32.088697,
+      "observation_date": "20170731",
+      "release_date": "20170815",
+      "effective_date": "20170815",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 32.127361,
+      "observation_date": "20170831",
+      "release_date": "20170915",
+      "effective_date": "20170915",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 32.294898,
+      "observation_date": "20170930",
+      "release_date": "20171015",
+      "effective_date": "20171015",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 32.493604,
+      "observation_date": "20171031",
+      "release_date": "20171115",
+      "effective_date": "20171115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 32.290249,
+      "observation_date": "20171130",
+      "release_date": "20171215",
+      "effective_date": "20171215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 32.002051,
+      "observation_date": "20171231",
+      "release_date": "20180115",
+      "effective_date": "20180115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 13.43543,
+      "observation_date": "20180131",
+      "release_date": "20180215",
+      "effective_date": "20180215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 13.387314,
+      "observation_date": "20180228",
+      "release_date": "20180315",
+      "effective_date": "20180315",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 12.689707,
+      "observation_date": "20180331",
+      "release_date": "20180415",
+      "effective_date": "20180415",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 12.656159,
+      "observation_date": "20180430",
+      "release_date": "20180515",
+      "effective_date": "20180515",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 12.195759,
+      "observation_date": "20180531",
+      "release_date": "20180615",
+      "effective_date": "20180615",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 11.75955,
+      "observation_date": "20180630",
+      "release_date": "20180715",
+      "effective_date": "20180715",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 11.485866,
+      "observation_date": "20180731",
+      "release_date": "20180815",
+      "effective_date": "20180815",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 11.518642,
+      "observation_date": "20180831",
+      "release_date": "20180915",
+      "effective_date": "20180915",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 11.205348,
+      "observation_date": "20180930",
+      "release_date": "20181015",
+      "effective_date": "20181015",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.789265,
+      "observation_date": "20181031",
+      "release_date": "20181115",
+      "effective_date": "20181115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.309026,
+      "observation_date": "20181130",
+      "release_date": "20181215",
+      "effective_date": "20181215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.261765,
+      "observation_date": "20181231",
+      "release_date": "20190115",
+      "effective_date": "20190115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.853121,
+      "observation_date": "20190131",
+      "release_date": "20190215",
+      "effective_date": "20190215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.645085,
+      "observation_date": "20190228",
+      "release_date": "20190315",
+      "effective_date": "20190315",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 11.161516,
+      "observation_date": "20190331",
+      "release_date": "20190415",
+      "effective_date": "20190415",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.803856,
+      "observation_date": "20190430",
+      "release_date": "20190515",
+      "effective_date": "20190515",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 11.028351,
+      "observation_date": "20190531",
+      "release_date": "20190615",
+      "effective_date": "20190615",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 11.195682,
+      "observation_date": "20190630",
+      "release_date": "20190715",
+      "effective_date": "20190715",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.847178,
+      "observation_date": "20190731",
+      "release_date": "20190815",
+      "effective_date": "20190815",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.67772,
+      "observation_date": "20190831",
+      "release_date": "20190915",
+      "effective_date": "20190915",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.668461,
+      "observation_date": "20190930",
+      "release_date": "20191015",
+      "effective_date": "20191015",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.578771,
+      "observation_date": "20191031",
+      "release_date": "20191115",
+      "effective_date": "20191115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.66862,
+      "observation_date": "20191130",
+      "release_date": "20191215",
+      "effective_date": "20191215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.689746,
+      "observation_date": "20191231",
+      "release_date": "20200115",
+      "effective_date": "20200115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.706111,
+      "observation_date": "20200131",
+      "release_date": "20200215",
+      "effective_date": "20200215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.653586,
+      "observation_date": "20200229",
+      "release_date": "20200315",
+      "effective_date": "20200315",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 11.490393,
+      "observation_date": "20200331",
+      "release_date": "20200415",
+      "effective_date": "20200415",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 11.99696,
+      "observation_date": "20200430",
+      "release_date": "20200515",
+      "effective_date": "20200515",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 12.528302,
+      "observation_date": "20200531",
+      "release_date": "20200615",
+      "effective_date": "20200615",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 12.748392,
+      "observation_date": "20200630",
+      "release_date": "20200715",
+      "effective_date": "20200715",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 12.857674,
+      "observation_date": "20200731",
+      "release_date": "20200815",
+      "effective_date": "20200815",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 13.270026,
+      "observation_date": "20200831",
+      "release_date": "20200915",
+      "effective_date": "20200915",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 13.527647,
+      "observation_date": "20200930",
+      "release_date": "20201015",
+      "effective_date": "20201015",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 13.673106,
+      "observation_date": "20201031",
+      "release_date": "20201115",
+      "effective_date": "20201115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 13.631805,
+      "observation_date": "20201130",
+      "release_date": "20201215",
+      "effective_date": "20201215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 13.306275,
+      "observation_date": "20201231",
+      "release_date": "20210115",
+      "effective_date": "20210115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 13.02957,
+      "observation_date": "20210131",
+      "release_date": "20210215",
+      "effective_date": "20210215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 13.294708,
+      "observation_date": "20210228",
+      "release_date": "20210315",
+      "effective_date": "20210315",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 12.31174,
+      "observation_date": "20210331",
+      "release_date": "20210415",
+      "effective_date": "20210415",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 11.662016,
+      "observation_date": "20210430",
+      "release_date": "20210515",
+      "effective_date": "20210515",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 11.029138,
+      "observation_date": "20210531",
+      "release_date": "20210615",
+      "effective_date": "20210615",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.957392,
+      "observation_date": "20210630",
+      "release_date": "20210715",
+      "effective_date": "20210715",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.661106,
+      "observation_date": "20210731",
+      "release_date": "20210815",
+      "effective_date": "20210815",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.320529,
+      "observation_date": "20210831",
+      "release_date": "20210915",
+      "effective_date": "20210915",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 9.998215,
+      "observation_date": "20210930",
+      "release_date": "20211015",
+      "effective_date": "20211015",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.026667,
+      "observation_date": "20211031",
+      "release_date": "20211115",
+      "effective_date": "20211115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.11474,
+      "observation_date": "20211130",
+      "release_date": "20211215",
+      "effective_date": "20211215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.314311,
+      "observation_date": "20211231",
+      "release_date": "20220115",
+      "effective_date": "20220115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.4542,
+      "observation_date": "20220131",
+      "release_date": "20220215",
+      "effective_date": "20220215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.214168,
+      "observation_date": "20220228",
+      "release_date": "20220315",
+      "effective_date": "20220315",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.547936,
+      "observation_date": "20220331",
+      "release_date": "20220415",
+      "effective_date": "20220415",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.238055,
+      "observation_date": "20220430",
+      "release_date": "20220515",
+      "effective_date": "20220515",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.477213,
+      "observation_date": "20220531",
+      "release_date": "20220615",
+      "effective_date": "20220615",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.850245,
+      "observation_date": "20220630",
+      "release_date": "20220715",
+      "effective_date": "20220715",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.721724,
+      "observation_date": "20220731",
+      "release_date": "20220815",
+      "effective_date": "20220815",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.458908,
+      "observation_date": "20220831",
+      "release_date": "20220915",
+      "effective_date": "20220915",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.582698,
+      "observation_date": "20220930",
+      "release_date": "20221015",
+      "effective_date": "20221015",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.331233,
+      "observation_date": "20221031",
+      "release_date": "20221115",
+      "effective_date": "20221115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.032062,
+      "observation_date": "20221130",
+      "release_date": "20221215",
+      "effective_date": "20221215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 9.579142,
+      "observation_date": "20221231",
+      "release_date": "20230115",
+      "effective_date": "20230115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 9.655345,
+      "observation_date": "20230131",
+      "release_date": "20230215",
+      "effective_date": "20230215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.229821,
+      "observation_date": "20230228",
+      "release_date": "20230315",
+      "effective_date": "20230315",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.253969,
+      "observation_date": "20230331",
+      "release_date": "20230415",
+      "effective_date": "20230415",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 10.255154,
+      "observation_date": "20230430",
+      "release_date": "20230515",
+      "effective_date": "20230515",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 9.787363,
+      "observation_date": "20230531",
+      "release_date": "20230615",
+      "effective_date": "20230615",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 9.324518,
+      "observation_date": "20230630",
+      "release_date": "20230715",
+      "effective_date": "20230715",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 9.217677,
+      "observation_date": "20230731",
+      "release_date": "20230815",
+      "effective_date": "20230815",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 9.308463,
+      "observation_date": "20230831",
+      "release_date": "20230915",
+      "effective_date": "20230915",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 9.349772,
+      "observation_date": "20230930",
+      "release_date": "20231015",
+      "effective_date": "20231015",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 9.592291,
+      "observation_date": "20231031",
+      "release_date": "20231115",
+      "effective_date": "20231115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 9.673942,
+      "observation_date": "20231130",
+      "release_date": "20231215",
+      "effective_date": "20231215",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "social_financing_growth",
+      "value": 9.839923,
+      "observation_date": "20231231",
+      "release_date": "20240115",
+      "effective_date": "20240115",
+      "frequency": "monthly",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "quality_status": "estimated"
+    },
     {
       "indicator": "social_financing_growth",
       "value": 9.514718,

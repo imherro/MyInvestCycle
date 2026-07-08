@@ -1,0 +1,1170 @@
+{
+  "engine": "V2.6.2 Historical Data Foundation Expansion",
+  "generated_at": "2026-07-08T08:14:29+00:00",
+  "target": "20150101-20260708",
+  "available_before": {
+    "start": "20240103",
+    "end": "20260626",
+    "blocker_count": 26,
+    "full_cycle_claim": false
+  },
+  "after": {
+    "start": "20150105",
+    "end": "20260708",
+    "blocker_count": 2,
+    "calendar_adjusted_items": 24
+  },
+  "coverage_status": "pass_with_known_gaps",
+  "audit_status": "pass",
+  "full_cycle_ready": false,
+  "known_gaps": [
+    "macro new_loans missing",
+    "macro CN10Y missing"
+  ],
+  "calendar_adjusted_non_blockers": [
+    "index 000300.SH starts at 20150105",
+    "industry 801010.SI starts at 20150105",
+    "industry 801030.SI starts at 20150105",
+    "industry 801040.SI starts at 20150105",
+    "industry 801050.SI starts at 20150105",
+    "industry 801080.SI starts at 20150105",
+    "industry 801110.SI starts at 20150105",
+    "industry 801120.SI starts at 20150105",
+    "industry 801130.SI starts at 20150105",
+    "industry 801140.SI starts at 20150105",
+    "industry 801150.SI starts at 20150105",
+    "industry 801160.SI starts at 20150105",
+    "industry 801170.SI starts at 20150105",
+    "industry 801180.SI starts at 20150105",
+    "industry 801200.SI starts at 20150105",
+    "industry 801210.SI starts at 20150105",
+    "industry 801230.SI starts at 20150105",
+    "industry 801710.SI starts at 20150105",
+    "industry 801720.SI starts at 20150105",
+    "industry 801730.SI starts at 20150105",
+    "industry 801740.SI starts at 20150105",
+    "ETF proxy 510300.SH starts at 20150105",
+    "ETF proxy 510500.SH starts at 20150105",
+    "ETF proxy 511880.SH starts at 20150105"
+  ],
+  "coverage_audit": {
+    "desired_window": {
+      "start": "20150101",
+      "end": "20260708"
+    },
+    "operational_validation_window": {
+      "start": "20150105",
+      "end": "20260708"
+    },
+    "can_cover_desired_window": false,
+    "blockers": [
+      "macro new_loans missing",
+      "macro CN10Y missing",
+      "index 000300.SH starts at 20150105",
+      "industry 801010.SI starts at 20150105",
+      "industry 801030.SI starts at 20150105",
+      "industry 801040.SI starts at 20150105",
+      "industry 801050.SI starts at 20150105",
+      "industry 801080.SI starts at 20150105",
+      "industry 801110.SI starts at 20150105",
+      "industry 801120.SI starts at 20150105",
+      "industry 801130.SI starts at 20150105",
+      "industry 801140.SI starts at 20150105",
+      "industry 801150.SI starts at 20150105",
+      "industry 801160.SI starts at 20150105",
+      "industry 801170.SI starts at 20150105",
+      "industry 801180.SI starts at 20150105",
+      "industry 801200.SI starts at 20150105",
+      "industry 801210.SI starts at 20150105",
+      "industry 801230.SI starts at 20150105",
+      "industry 801710.SI starts at 20150105",
+      "industry 801720.SI starts at 20150105",
+      "industry 801730.SI starts at 20150105",
+      "industry 801740.SI starts at 20150105",
+      "ETF proxy 510300.SH starts at 20150105",
+      "ETF proxy 510500.SH starts at 20150105",
+      "ETF proxy 511880.SH starts at 20150105"
+    ],
+    "blocker_count": 26,
+    "modules": {
+      "macro": {
+        "series": {
+          "M1_growth": {
+            "available": true,
+            "start": "20140131",
+            "end": "20260531",
+            "records": 149
+          },
+          "M2_growth": {
+            "available": true,
+            "start": "20140131",
+            "end": "20260531",
+            "records": 149
+          },
+          "social_financing_growth": {
+            "available": true,
+            "start": "20141231",
+            "end": "20260531",
+            "records": 119
+          },
+          "new_loans": {
+            "available": false,
+            "start": null,
+            "end": null,
+            "records": 0
+          },
+          "PMI": {
+            "available": true,
+            "start": "20140131",
+            "end": "20260531",
+            "records": 149
+          },
+          "CPI": {
+            "available": true,
+            "start": "20140131",
+            "end": "20260531",
+            "records": 149
+          },
+          "PPI": {
+            "available": true,
+            "start": "20140131",
+            "end": "20260531",
+            "records": 149
+          },
+          "SHIBOR": {
+            "available": true,
+            "start": "20140102",
+            "end": "20260708",
+            "records": 3099
+          },
+          "CN10Y": {
+            "available": false,
+            "start": null,
+            "end": null,
+            "records": 0
+          },
+          "US10Y": {
+            "available": true,
+            "start": "20140102",
+            "end": "20260706",
+            "records": 3125
+          },
+          "USD_CNH_offshore": {
+            "available": true,
+            "start": "20140102",
+            "end": "20260707",
+            "records": 3846
+          }
+        },
+        "common_start": "20141231",
+        "common_end": "20260531",
+        "missing": [
+          "new_loans",
+          "CN10Y"
+        ],
+        "first_available_start": "20140102",
+        "latest_available_end": "20260708",
+        "desired_start": "20150101",
+        "desired_end": "20260708",
+        "blockers": [
+          "macro new_loans missing",
+          "macro CN10Y missing"
+        ],
+        "note": "Macro cache is local-record based; historical validation must not fabricate pre-cache macro observations."
+      },
+      "market_structure": {
+        "indexes": {
+          "series": {
+            "000001.SH": {
+              "label": "上证指数",
+              "available": true,
+              "file": "data/cache/index_daily_000001_SH.csv",
+              "start": "19940103",
+              "end": "20260708",
+              "rows": 7901
+            },
+            "000300.SH": {
+              "label": "沪深300指数",
+              "available": true,
+              "file": "data/cache/index_daily_000300_SH.csv",
+              "start": "20150105",
+              "end": "20260708",
+              "rows": 2796
+            },
+            "000905.SH": {
+              "label": "中证500指数",
+              "available": true,
+              "file": "data/cache/index_daily_000905_SH.csv",
+              "start": "20100104",
+              "end": "20260708",
+              "rows": 4008
+            }
+          },
+          "common_start": "20150105",
+          "common_end": "20260708",
+          "missing": []
+        },
+        "breadth": {
+          "available": true,
+          "start": "20150105",
+          "end": "20260707",
+          "total_days": 2796,
+          "covered_days": 2795,
+          "missing_days": 1,
+          "coverage_ratio": 0.999642,
+          "available_sample": [
+            "20150105",
+            "20150106",
+            "20150107",
+            "20150108",
+            "20150109",
+            "20150112",
+            "20150113",
+            "20150114",
+            "20150115",
+            "20150116"
+          ],
+          "missing_sample": [
+            "20260708"
+          ]
+        },
+        "liquidity_hsgt": {
+          "available": true,
+          "file_count": 159,
+          "start": "20150101",
+          "end": "20260708"
+        },
+        "common_start": "20150105",
+        "common_end": "20260707",
+        "blockers": [
+          "index 000300.SH starts at 20150105"
+        ]
+      },
+      "industry_opportunity": {
+        "series": {
+          "801010.SI": {
+            "label": "农林牧渔",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801010_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801030.SI": {
+            "label": "基础化工",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801030_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801040.SI": {
+            "label": "钢铁",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801040_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801050.SI": {
+            "label": "有色金属",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801050_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801080.SI": {
+            "label": "电子",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801080_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801110.SI": {
+            "label": "家用电器",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801110_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801120.SI": {
+            "label": "食品饮料",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801120_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801130.SI": {
+            "label": "纺织服饰",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801130_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801140.SI": {
+            "label": "轻工制造",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801140_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801150.SI": {
+            "label": "医药生物",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801150_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801160.SI": {
+            "label": "公用事业",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801160_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801170.SI": {
+            "label": "交通运输",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801170_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801180.SI": {
+            "label": "房地产",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801180_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801200.SI": {
+            "label": "商贸零售",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801200_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801210.SI": {
+            "label": "社会服务",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801210_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801230.SI": {
+            "label": "综合",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801230_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801710.SI": {
+            "label": "建筑材料",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801710_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801720.SI": {
+            "label": "建筑装饰",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801720_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801730.SI": {
+            "label": "电力设备",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801730_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801740.SI": {
+            "label": "国防军工",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801740_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801750.SI": {
+            "label": "计算机",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801750_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801760.SI": {
+            "label": "传媒",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801760_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801770.SI": {
+            "label": "通信",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801770_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801780.SI": {
+            "label": "银行",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801780_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801790.SI": {
+            "label": "非银金融",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801790_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801880.SI": {
+            "label": "汽车",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801880_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801890.SI": {
+            "label": "机械设备",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801890_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801950.SI": {
+            "label": "煤炭",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801950_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801960.SI": {
+            "label": "石油石化",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801960_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801970.SI": {
+            "label": "环保",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801970_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "801980.SI": {
+            "label": "美容护理",
+            "source_type": "industry_index",
+            "available": true,
+            "file": "data/cache/index_daily_801980_SI.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          }
+        },
+        "common_start": "20150105",
+        "common_end": "20260708",
+        "missing": [],
+        "asset_count": 31,
+        "available_count": 31,
+        "universe": {
+          "source_type": "industry_index",
+          "provider": "Tushare",
+          "source": "index_classify",
+          "index_daily_source": "index_daily",
+          "universe": "SW2021 L1",
+          "industry_count": 31,
+          "loaded_from_cache": true,
+          "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\industry\\industry_universe_SW2021_L1.json"
+        },
+        "blockers": [
+          "industry 801010.SI starts at 20150105",
+          "industry 801030.SI starts at 20150105",
+          "industry 801040.SI starts at 20150105",
+          "industry 801050.SI starts at 20150105",
+          "industry 801080.SI starts at 20150105",
+          "industry 801110.SI starts at 20150105",
+          "industry 801120.SI starts at 20150105",
+          "industry 801130.SI starts at 20150105",
+          "industry 801140.SI starts at 20150105",
+          "industry 801150.SI starts at 20150105",
+          "industry 801160.SI starts at 20150105",
+          "industry 801170.SI starts at 20150105",
+          "industry 801180.SI starts at 20150105",
+          "industry 801200.SI starts at 20150105",
+          "industry 801210.SI starts at 20150105",
+          "industry 801230.SI starts at 20150105",
+          "industry 801710.SI starts at 20150105",
+          "industry 801720.SI starts at 20150105",
+          "industry 801730.SI starts at 20150105",
+          "industry 801740.SI starts at 20150105"
+        ],
+        "blocker_count": 31
+      },
+      "theme_risk": {
+        "depends_on": "industry_opportunity top themes and their historical price positions",
+        "common_start": "20150105",
+        "common_end": "20260708",
+        "blockers": [
+          "industry 801010.SI starts at 20150105",
+          "industry 801030.SI starts at 20150105",
+          "industry 801040.SI starts at 20150105",
+          "industry 801050.SI starts at 20150105",
+          "industry 801080.SI starts at 20150105",
+          "industry 801110.SI starts at 20150105",
+          "industry 801120.SI starts at 20150105",
+          "industry 801130.SI starts at 20150105",
+          "industry 801140.SI starts at 20150105",
+          "industry 801150.SI starts at 20150105",
+          "industry 801160.SI starts at 20150105",
+          "industry 801170.SI starts at 20150105",
+          "industry 801180.SI starts at 20150105",
+          "industry 801200.SI starts at 20150105",
+          "industry 801210.SI starts at 20150105",
+          "industry 801230.SI starts at 20150105",
+          "industry 801710.SI starts at 20150105",
+          "industry 801720.SI starts at 20150105",
+          "industry 801730.SI starts at 20150105",
+          "industry 801740.SI starts at 20150105"
+        ]
+      },
+      "etf_proxy": {
+        "series": {
+          "510300.SH": {
+            "label": "沪深300ETF",
+            "available": true,
+            "file": "data/cache/fund_daily_510300_SH.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "510500.SH": {
+            "label": "中证500ETF",
+            "available": true,
+            "file": "data/cache/fund_daily_510500_SH.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2794
+          },
+          "511880.SH": {
+            "label": "银华日利ETF",
+            "available": true,
+            "file": "data/cache/fund_daily_511880_SH.csv",
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          }
+        },
+        "common_start": "20150105",
+        "common_end": "20260708",
+        "missing": [],
+        "blockers": [
+          "ETF proxy 510300.SH starts at 20150105",
+          "ETF proxy 510500.SH starts at 20150105",
+          "ETF proxy 511880.SH starts at 20150105"
+        ]
+      },
+      "legacy_benchmarks": {
+        "old_s1": {
+          "available": true,
+          "start": "20200102",
+          "end": "20260626",
+          "rows": 1569,
+          "file": "data/shadow_equity_curve.json"
+        },
+        "m2_macro_style": {
+          "available": true,
+          "start": "20200103",
+          "end": "20260625",
+          "rows": 1567,
+          "file": "data/macro_style_etf_backtest.json"
+        }
+      }
+    },
+    "policy": {
+      "do_not_fabricate_history": true,
+      "do_not_treat_partial_cache_as_full_cycle": true,
+      "report_window_gap_in_web": true
+    }
+  },
+  "plan": {
+    "target": "20150101-20260708",
+    "macro_warmup_start": "20140101",
+    "available_before": {
+      "available": true,
+      "validation_window": {
+        "start": "20240103",
+        "end": "20260626"
+      },
+      "operational_validation_window": {
+        "start": "20150105",
+        "end": "20260708"
+      },
+      "blocker_count": 26,
+      "full_cycle_claim": false
+    },
+    "current_coverage": {
+      "operational_validation_window": {
+        "start": "20150105",
+        "end": "20260708"
+      },
+      "blocker_count": 26,
+      "can_cover_desired_window": false
+    },
+    "targets": [
+      {
+        "name": "macro_history",
+        "target_start": "20150101",
+        "target_end": "20260708",
+        "warmup_start": "20140101",
+        "required_items": [
+          "M1_growth",
+          "M2_growth",
+          "social_financing_growth",
+          "PMI",
+          "CPI",
+          "PPI",
+          "SHIBOR",
+          "CN10Y",
+          "USD_CNH_offshore"
+        ],
+        "source": "Tushare macro/fx/rate endpoints via macro.tushare_macro_adapter",
+        "output": "data/macro/*.json"
+      },
+      {
+        "name": "industry_history",
+        "target_start": "20150101",
+        "target_end": "20260708",
+        "warmup_start": null,
+        "required_items": [
+          "SW2021 L1 industry indexes"
+        ],
+        "source": "Tushare index_daily with cached SW2021 L1 universe",
+        "output": "data/cache/index_daily_801xxx_SI.csv"
+      },
+      {
+        "name": "market_structure_history",
+        "target_start": "20150101",
+        "target_end": "20260708",
+        "warmup_start": null,
+        "required_items": [
+          "000001.SH",
+          "000300.SH",
+          "000905.SH",
+          "market_daily breadth cache",
+          "HSGT liquidity proxy"
+        ],
+        "source": "Tushare index_daily, daily market rows and moneyflow_hsgt cache",
+        "output": "data/cache/index_daily_*.csv and data/cache/market_daily_*.csv"
+      },
+      {
+        "name": "etf_proxy_history",
+        "target_start": "20150101",
+        "target_end": "20260708",
+        "warmup_start": null,
+        "required_items": [
+          "510300.SH",
+          "510500.SH",
+          "511880.SH"
+        ],
+        "source": "Tushare fund_daily",
+        "output": "data/cache/fund_daily_*.csv"
+      }
+    ],
+    "constraints": {
+      "data_expansion_only": true,
+      "no_strategy_rule_change": true,
+      "no_threshold_tuning": true,
+      "no_allocation_change": true,
+      "no_new_alpha_factor": true,
+      "no_manual_label_fill": true
+    }
+  },
+  "backfill_report": {
+    "engine": "V2.6.2 Historical Data Foundation Expansion Backfill",
+    "generated_at": "2026-07-08T08:13:54+00:00",
+    "target": {
+      "start": "20150101",
+      "end": "20260708",
+      "macro_warmup_start": "20140101"
+    },
+    "macro": {
+      "target": {
+        "start": "20140101",
+        "end": "20260708"
+      },
+      "results": [
+        {
+          "indicator": "M1_growth",
+          "records": 149,
+          "source": "cn_m.m1_yoy",
+          "status": "ok",
+          "message": "Fetched 149 records at 2026-07-08T16:13:55."
+        },
+        {
+          "indicator": "M2_growth",
+          "records": 149,
+          "source": "cn_m.m2_yoy",
+          "status": "ok",
+          "message": "Fetched 149 records at 2026-07-08T16:13:56."
+        },
+        {
+          "indicator": "social_financing_growth",
+          "records": 119,
+          "source": "sf_month.stk_endval; YoY computed from same month previous year",
+          "status": "ok",
+          "message": "Fetched 119 records at 2026-07-08T16:13:57."
+        },
+        {
+          "indicator": "PMI",
+          "records": 149,
+          "source": "cn_pmi.PMI010000",
+          "status": "ok",
+          "message": "Fetched 149 records at 2026-07-08T16:13:57."
+        },
+        {
+          "indicator": "CPI",
+          "records": 149,
+          "source": "cn_cpi.nt_yoy",
+          "status": "ok",
+          "message": "Fetched 149 records at 2026-07-08T16:13:58."
+        },
+        {
+          "indicator": "PPI",
+          "records": 149,
+          "source": "cn_ppi.ppi_yoy",
+          "status": "ok",
+          "message": "Fetched 149 records at 2026-07-08T16:13:59."
+        },
+        {
+          "indicator": "SHIBOR",
+          "records": 3099,
+          "source": "shibor.3m",
+          "status": "ok",
+          "message": "Fetched 3099 records at 2026-07-08T16:14:03."
+        },
+        {
+          "indicator": "CN10Y",
+          "records": 0,
+          "source": "yc_cb.y10 candidate; permission dependent",
+          "status": "source_error",
+          "message": "Exception: 抱歉，您没有接口(yc_cb)访问权限，权限的具体详情访问：https://tushare.pro/document/1?doc_id=108。"
+        },
+        {
+          "indicator": "USD_CNH_offshore",
+          "records": 3846,
+          "source": "fx_daily.USDCNH.FXCM.bid_close",
+          "status": "ok",
+          "message": "Fetched 3846 records at 2026-07-08T16:14:09."
+        }
+      ],
+      "output_files": {
+        "M1_growth": "data/macro/M1_growth.json",
+        "M2_growth": "data/macro/M2_growth.json",
+        "social_financing_growth": "data/macro/social_financing_growth.json",
+        "PMI": "data/macro/PMI.json",
+        "CPI": "data/macro/CPI.json",
+        "PPI": "data/macro/PPI.json",
+        "SHIBOR": "data/macro/SHIBOR.json",
+        "USD_CNH_offshore": "data/macro/USD_CNH_offshore.json"
+      }
+    },
+    "industry": {
+      "target": {
+        "start": "20150101",
+        "end": "20260708"
+      },
+      "asset_count": 31,
+      "available_count": 31,
+      "status": {
+        "universe": {
+          "source_type": "industry_index",
+          "provider": "Tushare",
+          "source": "index_classify",
+          "index_daily_source": "index_daily",
+          "universe": "SW2021 L1",
+          "industry_count": 31,
+          "loaded_from_cache": true,
+          "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\industry\\industry_universe_SW2021_L1.json"
+        },
+        "requested_range": {
+          "start_date": "20150101",
+          "end_date": "20260708"
+        },
+        "asset_count": 31,
+        "available_count": 31,
+        "errors": {},
+        "source_type": "industry_index"
+      },
+      "ranges": {
+        "801010.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801030.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801040.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801050.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801080.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801110.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801120.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801130.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801140.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801150.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801160.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801170.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801180.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801200.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801210.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801230.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801710.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801720.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801730.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801740.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801750.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801760.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801770.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801780.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801790.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801880.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801890.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801950.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801960.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801970.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "801980.SI": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        }
+      }
+    },
+    "market_structure": {
+      "target": {
+        "start": "20150101",
+        "end": "20260708"
+      },
+      "index_ranges": {
+        "000001.SH": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "000300.SH": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "000905.SH": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        }
+      },
+      "hsgt_yearly_ranges": [
+        {
+          "year": 2015,
+          "rows": 237,
+          "start": "20150105",
+          "end": "20151231"
+        },
+        {
+          "year": 2016,
+          "rows": 235,
+          "start": "20160104",
+          "end": "20161230"
+        },
+        {
+          "year": 2017,
+          "rows": 238,
+          "start": "20170103",
+          "end": "20171229"
+        },
+        {
+          "year": 2018,
+          "rows": 234,
+          "start": "20180102",
+          "end": "20181228"
+        },
+        {
+          "year": 2019,
+          "rows": 238,
+          "start": "20190102",
+          "end": "20191231"
+        },
+        {
+          "year": 2020,
+          "rows": 235,
+          "start": "20200102",
+          "end": "20201231"
+        },
+        {
+          "year": 2021,
+          "rows": 234,
+          "start": "20210104",
+          "end": "20211231"
+        },
+        {
+          "year": 2022,
+          "rows": 236,
+          "start": "20220104",
+          "end": "20221230"
+        },
+        {
+          "year": 2023,
+          "rows": 233,
+          "start": "20230103",
+          "end": "20231229"
+        },
+        {
+          "year": 2024,
+          "rows": 233,
+          "start": "20240102",
+          "end": "20241231"
+        },
+        {
+          "year": 2025,
+          "rows": 237,
+          "start": "20250102",
+          "end": "20251231"
+        },
+        {
+          "year": 2026,
+          "rows": 117,
+          "start": "20260105",
+          "end": "20260707"
+        }
+      ],
+      "errors": {},
+      "market_daily_backfill": "use scripts/full_history_backfill.py for missing daily breadth rows; coverage is audited by expansion_audit"
+    },
+    "etf_proxy": {
+      "target": {
+        "start": "20150101",
+        "end": "20260708"
+      },
+      "ranges": {
+        "510300.SH": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "510500.SH": {
+          "rows": 2794,
+          "start": "20150105",
+          "end": "20260708"
+        },
+        "511880.SH": {
+          "rows": 2796,
+          "start": "20150105",
+          "end": "20260708"
+        }
+      },
+      "errors": {}
+    },
+    "constraints": {
+      "data_expansion_only": true,
+      "no_strategy_rule_change": true,
+      "no_threshold_tuning": true,
+      "no_allocation_change": true,
+      "no_new_alpha_factor": true,
+      "no_manual_label_fill": true
+    }
+  },
+  "source_policy": {
+    "primary_source": "Tushare plus existing local cache",
+    "cache_files_are_not_committed": true,
+    "macro_records_are_committed": true,
+    "missing_data_is_not_fabricated": true,
+    "release_date_required": true,
+    "effective_date_required": true
+  },
+  "constraints": {
+    "data_expansion_only": true,
+    "no_strategy_rule_change": true,
+    "no_threshold_tuning": true,
+    "no_allocation_change": true,
+    "no_new_alpha_factor": true,
+    "no_manual_label_fill": true
+  },
+  "conclusion": [
+    "Historical coverage expanded materially: operational window now reaches the first 2015 trading session where cached market, industry and ETF data are available.",
+    "Coverage audit passes as an explicit data-foundation audit, but full_cycle_ready remains false until CN10Y and new_loans are either sourced or formally removed from required macro inputs.",
+    "No strategy, threshold, allocation or alpha logic was changed."
+  ]
+}

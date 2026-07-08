@@ -1,11 +1,1211 @@
 {
   "metadata": {
     "indicator": "PPI",
-    "records": 29,
-    "updated_at": "2026-07-08T05:51:47+00:00",
+    "records": 149,
+    "updated_at": "2026-07-08T07:58:41+00:00",
     "schema": "MacroIndicatorRecord.v1"
   },
   "records": [
+    {
+      "indicator": "PPI",
+      "value": -1.64,
+      "observation_date": "20140131",
+      "release_date": "20140210",
+      "effective_date": "20140210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.02,
+      "observation_date": "20140228",
+      "release_date": "20140310",
+      "effective_date": "20140310",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.3,
+      "observation_date": "20140331",
+      "release_date": "20140410",
+      "effective_date": "20140410",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.0,
+      "observation_date": "20140430",
+      "release_date": "20140510",
+      "effective_date": "20140510",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -1.45,
+      "observation_date": "20140531",
+      "release_date": "20140610",
+      "effective_date": "20140610",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -1.11,
+      "observation_date": "20140630",
+      "release_date": "20140710",
+      "effective_date": "20140710",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -0.87,
+      "observation_date": "20140731",
+      "release_date": "20140810",
+      "effective_date": "20140810",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -1.2,
+      "observation_date": "20140831",
+      "release_date": "20140910",
+      "effective_date": "20140910",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -1.8,
+      "observation_date": "20140930",
+      "release_date": "20141010",
+      "effective_date": "20141010",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.24,
+      "observation_date": "20141031",
+      "release_date": "20141110",
+      "effective_date": "20141110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.69,
+      "observation_date": "20141130",
+      "release_date": "20141210",
+      "effective_date": "20141210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -3.32,
+      "observation_date": "20141231",
+      "release_date": "20150110",
+      "effective_date": "20150110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -4.32,
+      "observation_date": "20150131",
+      "release_date": "20150210",
+      "effective_date": "20150210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -4.8,
+      "observation_date": "20150228",
+      "release_date": "20150310",
+      "effective_date": "20150310",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -4.56,
+      "observation_date": "20150331",
+      "release_date": "20150410",
+      "effective_date": "20150410",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -4.57,
+      "observation_date": "20150430",
+      "release_date": "20150510",
+      "effective_date": "20150510",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -4.61,
+      "observation_date": "20150531",
+      "release_date": "20150610",
+      "effective_date": "20150610",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -4.81,
+      "observation_date": "20150630",
+      "release_date": "20150710",
+      "effective_date": "20150710",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -5.37,
+      "observation_date": "20150731",
+      "release_date": "20150810",
+      "effective_date": "20150810",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -5.92,
+      "observation_date": "20150831",
+      "release_date": "20150910",
+      "effective_date": "20150910",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -5.95,
+      "observation_date": "20150930",
+      "release_date": "20151010",
+      "effective_date": "20151010",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -5.9,
+      "observation_date": "20151031",
+      "release_date": "20151110",
+      "effective_date": "20151110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -5.9,
+      "observation_date": "20151130",
+      "release_date": "20151210",
+      "effective_date": "20151210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -5.9,
+      "observation_date": "20151231",
+      "release_date": "20160110",
+      "effective_date": "20160110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -5.3,
+      "observation_date": "20160131",
+      "release_date": "20160210",
+      "effective_date": "20160210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -4.9,
+      "observation_date": "20160229",
+      "release_date": "20160310",
+      "effective_date": "20160310",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -4.3,
+      "observation_date": "20160331",
+      "release_date": "20160410",
+      "effective_date": "20160410",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -3.4,
+      "observation_date": "20160430",
+      "release_date": "20160510",
+      "effective_date": "20160510",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.8,
+      "observation_date": "20160531",
+      "release_date": "20160610",
+      "effective_date": "20160610",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.6,
+      "observation_date": "20160630",
+      "release_date": "20160710",
+      "effective_date": "20160710",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -1.7,
+      "observation_date": "20160731",
+      "release_date": "20160810",
+      "effective_date": "20160810",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -0.8,
+      "observation_date": "20160831",
+      "release_date": "20160910",
+      "effective_date": "20160910",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 0.1,
+      "observation_date": "20160930",
+      "release_date": "20161010",
+      "effective_date": "20161010",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 1.2,
+      "observation_date": "20161031",
+      "release_date": "20161110",
+      "effective_date": "20161110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 3.3,
+      "observation_date": "20161130",
+      "release_date": "20161210",
+      "effective_date": "20161210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 5.5,
+      "observation_date": "20161231",
+      "release_date": "20170110",
+      "effective_date": "20170110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 6.9,
+      "observation_date": "20170131",
+      "release_date": "20170210",
+      "effective_date": "20170210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 7.8,
+      "observation_date": "20170228",
+      "release_date": "20170310",
+      "effective_date": "20170310",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 7.6,
+      "observation_date": "20170331",
+      "release_date": "20170410",
+      "effective_date": "20170410",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 6.4,
+      "observation_date": "20170430",
+      "release_date": "20170510",
+      "effective_date": "20170510",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 5.5,
+      "observation_date": "20170531",
+      "release_date": "20170610",
+      "effective_date": "20170610",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 5.5,
+      "observation_date": "20170630",
+      "release_date": "20170710",
+      "effective_date": "20170710",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 5.5,
+      "observation_date": "20170731",
+      "release_date": "20170810",
+      "effective_date": "20170810",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 6.3,
+      "observation_date": "20170831",
+      "release_date": "20170910",
+      "effective_date": "20170910",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 6.9,
+      "observation_date": "20170930",
+      "release_date": "20171010",
+      "effective_date": "20171010",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 6.9,
+      "observation_date": "20171031",
+      "release_date": "20171110",
+      "effective_date": "20171110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 5.8,
+      "observation_date": "20171130",
+      "release_date": "20171210",
+      "effective_date": "20171210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 4.9,
+      "observation_date": "20171231",
+      "release_date": "20180110",
+      "effective_date": "20180110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 4.3,
+      "observation_date": "20180131",
+      "release_date": "20180210",
+      "effective_date": "20180210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 3.7,
+      "observation_date": "20180228",
+      "release_date": "20180310",
+      "effective_date": "20180310",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 3.1,
+      "observation_date": "20180331",
+      "release_date": "20180410",
+      "effective_date": "20180410",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 3.4,
+      "observation_date": "20180430",
+      "release_date": "20180510",
+      "effective_date": "20180510",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 4.1,
+      "observation_date": "20180531",
+      "release_date": "20180610",
+      "effective_date": "20180610",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 4.7,
+      "observation_date": "20180630",
+      "release_date": "20180710",
+      "effective_date": "20180710",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 4.6,
+      "observation_date": "20180731",
+      "release_date": "20180810",
+      "effective_date": "20180810",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 4.1,
+      "observation_date": "20180831",
+      "release_date": "20180910",
+      "effective_date": "20180910",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 3.6,
+      "observation_date": "20180930",
+      "release_date": "20181010",
+      "effective_date": "20181010",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 3.3,
+      "observation_date": "20181031",
+      "release_date": "20181110",
+      "effective_date": "20181110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 2.7,
+      "observation_date": "20181130",
+      "release_date": "20181210",
+      "effective_date": "20181210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 0.9,
+      "observation_date": "20181231",
+      "release_date": "20190110",
+      "effective_date": "20190110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 0.1,
+      "observation_date": "20190131",
+      "release_date": "20190210",
+      "effective_date": "20190210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 0.1,
+      "observation_date": "20190228",
+      "release_date": "20190310",
+      "effective_date": "20190310",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 0.4,
+      "observation_date": "20190331",
+      "release_date": "20190410",
+      "effective_date": "20190410",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 0.9,
+      "observation_date": "20190430",
+      "release_date": "20190510",
+      "effective_date": "20190510",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 0.6,
+      "observation_date": "20190531",
+      "release_date": "20190610",
+      "effective_date": "20190610",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 0.0,
+      "observation_date": "20190630",
+      "release_date": "20190710",
+      "effective_date": "20190710",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -0.3,
+      "observation_date": "20190731",
+      "release_date": "20190810",
+      "effective_date": "20190810",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -0.8,
+      "observation_date": "20190831",
+      "release_date": "20190910",
+      "effective_date": "20190910",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -1.2,
+      "observation_date": "20190930",
+      "release_date": "20191010",
+      "effective_date": "20191010",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -1.6,
+      "observation_date": "20191031",
+      "release_date": "20191110",
+      "effective_date": "20191110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -1.4,
+      "observation_date": "20191130",
+      "release_date": "20191210",
+      "effective_date": "20191210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -0.5,
+      "observation_date": "20191231",
+      "release_date": "20200110",
+      "effective_date": "20200110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 0.1,
+      "observation_date": "20200131",
+      "release_date": "20200210",
+      "effective_date": "20200210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -0.4,
+      "observation_date": "20200229",
+      "release_date": "20200310",
+      "effective_date": "20200310",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -1.5,
+      "observation_date": "20200331",
+      "release_date": "20200410",
+      "effective_date": "20200410",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -3.1,
+      "observation_date": "20200430",
+      "release_date": "20200510",
+      "effective_date": "20200510",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -3.7,
+      "observation_date": "20200531",
+      "release_date": "20200610",
+      "effective_date": "20200610",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -3.0,
+      "observation_date": "20200630",
+      "release_date": "20200710",
+      "effective_date": "20200710",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.4,
+      "observation_date": "20200731",
+      "release_date": "20200810",
+      "effective_date": "20200810",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.0,
+      "observation_date": "20200831",
+      "release_date": "20200910",
+      "effective_date": "20200910",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.1,
+      "observation_date": "20200930",
+      "release_date": "20201010",
+      "effective_date": "20201010",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.1,
+      "observation_date": "20201031",
+      "release_date": "20201110",
+      "effective_date": "20201110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -1.5,
+      "observation_date": "20201130",
+      "release_date": "20201210",
+      "effective_date": "20201210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -0.4,
+      "observation_date": "20201231",
+      "release_date": "20210110",
+      "effective_date": "20210110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 0.3,
+      "observation_date": "20210131",
+      "release_date": "20210210",
+      "effective_date": "20210210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 1.7,
+      "observation_date": "20210228",
+      "release_date": "20210310",
+      "effective_date": "20210310",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 4.4,
+      "observation_date": "20210331",
+      "release_date": "20210410",
+      "effective_date": "20210410",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 6.8,
+      "observation_date": "20210430",
+      "release_date": "20210510",
+      "effective_date": "20210510",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 9.0,
+      "observation_date": "20210531",
+      "release_date": "20210610",
+      "effective_date": "20210610",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 8.8,
+      "observation_date": "20210630",
+      "release_date": "20210710",
+      "effective_date": "20210710",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 9.0,
+      "observation_date": "20210731",
+      "release_date": "20210810",
+      "effective_date": "20210810",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 9.5,
+      "observation_date": "20210831",
+      "release_date": "20210910",
+      "effective_date": "20210910",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 10.7,
+      "observation_date": "20210930",
+      "release_date": "20211010",
+      "effective_date": "20211010",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 13.5,
+      "observation_date": "20211031",
+      "release_date": "20211110",
+      "effective_date": "20211110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 12.9,
+      "observation_date": "20211130",
+      "release_date": "20211210",
+      "effective_date": "20211210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 10.3,
+      "observation_date": "20211231",
+      "release_date": "20220110",
+      "effective_date": "20220110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 9.1,
+      "observation_date": "20220131",
+      "release_date": "20220210",
+      "effective_date": "20220210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 8.8,
+      "observation_date": "20220228",
+      "release_date": "20220310",
+      "effective_date": "20220310",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 8.3,
+      "observation_date": "20220331",
+      "release_date": "20220410",
+      "effective_date": "20220410",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 8.0,
+      "observation_date": "20220430",
+      "release_date": "20220510",
+      "effective_date": "20220510",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 6.4,
+      "observation_date": "20220531",
+      "release_date": "20220610",
+      "effective_date": "20220610",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 6.1,
+      "observation_date": "20220630",
+      "release_date": "20220710",
+      "effective_date": "20220710",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 4.2,
+      "observation_date": "20220731",
+      "release_date": "20220810",
+      "effective_date": "20220810",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 2.3,
+      "observation_date": "20220831",
+      "release_date": "20220910",
+      "effective_date": "20220910",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": 0.9,
+      "observation_date": "20220930",
+      "release_date": "20221010",
+      "effective_date": "20221010",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -1.3,
+      "observation_date": "20221031",
+      "release_date": "20221110",
+      "effective_date": "20221110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -1.3,
+      "observation_date": "20221130",
+      "release_date": "20221210",
+      "effective_date": "20221210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -0.7,
+      "observation_date": "20221231",
+      "release_date": "20230110",
+      "effective_date": "20230110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -0.8,
+      "observation_date": "20230131",
+      "release_date": "20230210",
+      "effective_date": "20230210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -1.4,
+      "observation_date": "20230228",
+      "release_date": "20230310",
+      "effective_date": "20230310",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.5,
+      "observation_date": "20230331",
+      "release_date": "20230410",
+      "effective_date": "20230410",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -3.6,
+      "observation_date": "20230430",
+      "release_date": "20230510",
+      "effective_date": "20230510",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -4.6,
+      "observation_date": "20230531",
+      "release_date": "20230610",
+      "effective_date": "20230610",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -5.4,
+      "observation_date": "20230630",
+      "release_date": "20230710",
+      "effective_date": "20230710",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -4.4,
+      "observation_date": "20230731",
+      "release_date": "20230810",
+      "effective_date": "20230810",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -3.0,
+      "observation_date": "20230831",
+      "release_date": "20230910",
+      "effective_date": "20230910",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.5,
+      "observation_date": "20230930",
+      "release_date": "20231010",
+      "effective_date": "20231010",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.6,
+      "observation_date": "20231031",
+      "release_date": "20231110",
+      "effective_date": "20231110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -3.0,
+      "observation_date": "20231130",
+      "release_date": "20231210",
+      "effective_date": "20231210",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "PPI",
+      "value": -2.7,
+      "observation_date": "20231231",
+      "release_date": "20240110",
+      "effective_date": "20240110",
+      "frequency": "monthly",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "quality_status": "estimated"
+    },
     {
       "indicator": "PPI",
       "value": -2.5,

@@ -1,6 +1,6 @@
 {
   "engine": "V2.6.1 Historical Snapshot Reconstruction Manifest",
-  "generated_at": "2026-07-08T07:49:25+00:00",
+  "generated_at": "2026-07-08T08:16:00+00:00",
   "storage_policy": "compressed_rebalance_snapshots",
   "reason": "Daily JSON snapshots would duplicate large module payloads; V2.6.1 stores rebalance-date signal snapshots and full daily return series in v2_full_cycle_validation.json.",
   "full_cycle_artifact": "data/v2_full_cycle_validation.json",

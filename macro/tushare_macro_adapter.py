@@ -229,9 +229,32 @@ def _records_from_daily_frame(
     return records
 
 
+def _daily_query_ranges(start_date: str | int, end_date: str | int, *, years: int = 2) -> list[tuple[str, str]]:
+    start = pd.to_datetime(normalize_date(start_date), format="%Y%m%d")
+    end = pd.to_datetime(normalize_date(end_date), format="%Y%m%d")
+    ranges: list[tuple[str, str]] = []
+    cursor = start
+    while cursor <= end:
+        chunk_end = min(cursor + pd.DateOffset(years=years) - pd.Timedelta(days=1), end)
+        ranges.append((cursor.strftime("%Y%m%d"), chunk_end.strftime("%Y%m%d")))
+        cursor = chunk_end + pd.Timedelta(days=1)
+    return ranges
+
+
+def _concat_daily_queries(query: Callable[..., pd.DataFrame], start_date: str | int, end_date: str | int, **kwargs: object) -> pd.DataFrame:
+    frames = []
+    for start, end in _daily_query_ranges(start_date, end_date):
+        frame = query(start_date=start, end_date=end, **kwargs)
+        if frame is not None and not frame.empty:
+            frames.append(frame)
+    if not frames:
+        return pd.DataFrame()
+    return pd.concat(frames, ignore_index=True).drop_duplicates()
+
+
 def _fetch_shibor(indicator: str, definition: IndicatorDefinition, start_date: str | int, end_date: str | int) -> list[MacroIndicatorRecord]:
     pro = get_tushare_pro()
-    frame = pro.shibor(start_date=normalize_date(start_date), end_date=normalize_date(end_date))
+    frame = _concat_daily_queries(pro.shibor, start_date, end_date)
     return _records_from_daily_frame(
         indicator=indicator,
         definition=definition,
@@ -263,7 +286,7 @@ def _fetch_cn10y(indicator: str, definition: IndicatorDefinition, start_date: st
 
 def _fetch_us10y(indicator: str, definition: IndicatorDefinition, start_date: str | int, end_date: str | int) -> list[MacroIndicatorRecord]:
     pro = get_tushare_pro()
-    frame = pro.us_tycr(start_date=normalize_date(start_date), end_date=normalize_date(end_date))
+    frame = _concat_daily_queries(pro.us_tycr, start_date, end_date)
     return _records_from_daily_frame(
         indicator=indicator,
         definition=definition,
@@ -276,7 +299,7 @@ def _fetch_us10y(indicator: str, definition: IndicatorDefinition, start_date: st
 
 def _fetch_usd_cny_proxy(indicator: str, definition: IndicatorDefinition, start_date: str | int, end_date: str | int) -> list[MacroIndicatorRecord]:
     pro = get_tushare_pro()
-    frame = pro.fx_daily(ts_code="USDCNH.FXCM", start_date=normalize_date(start_date), end_date=normalize_date(end_date))
+    frame = _concat_daily_queries(pro.fx_daily, start_date, end_date, ts_code="USDCNH.FXCM")
     return _records_from_daily_frame(
         indicator=indicator,
         definition=definition,
