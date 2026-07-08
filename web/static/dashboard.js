@@ -1749,6 +1749,12 @@ function setResultsPanel(results) {
   const riskShadowQualityFramework = riskShadowQuality.quality_audit_framework || {};
   const riskShadowQualityResult = riskShadowQuality.quality_audit_result || {};
   const riskShadowQualityPromotion = riskShadowQuality.promotion_gate || {};
+  const riskShadowWorkflow = results.risk_diagnostic_shadow_first_event_workflow || {};
+  const riskShadowWorkflowSummary = riskShadowWorkflow.summary || {};
+  const riskShadowWorkflowBody = riskShadowWorkflow.first_event_workflow || {};
+  const riskShadowWorkflowRequirements = riskShadowWorkflow.first_event_input_requirements || {};
+  const riskShadowWorkflowQueue = riskShadowWorkflow.quality_audit_queue || {};
+  const riskShadowWorkflowPromotion = riskShadowWorkflow.promotion_gate || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4211,6 +4217,8 @@ function setResultsPanel(results) {
     manual_event_appended_no_trade: "已人工追加/不交易",
     events_pending_manual_review: "待人工复核",
     events_quality_checked_pending_manual_review: "已检查/待人工复核",
+    ready_for_first_manual_event: "等待首个事件",
+    empty_waiting_for_first_manual_event: "空队列/等待事件",
     initialized_empty: "空日志",
     defined_not_instantiated: "已定义/未实例化",
     risk_diagnostic_shadow_framework_defined_observation_only_no_trade: "只观察/不交易",
@@ -4541,6 +4549,35 @@ function setResultsPanel(results) {
     riskShadowQuality.metadata
       ? `V14.6 已建立 shadow event 质量审计：status=${phaseStatusLabel(riskShadowQualitySummary.quality_audit_status)}，event_count=${integerText(riskShadowQualitySummary.event_count)}，checked=${integerText(riskShadowQualitySummary.quality_checked_events)}，auto_decision=false，trade=false；implementation_ready=false。`
       : "V14.6 风险诊断事件质量审计尚未生成。"
+  );
+
+  const riskShadowWorkflowSteps = Array.isArray(riskShadowWorkflowBody.workflow_steps) ? riskShadowWorkflowBody.workflow_steps : [];
+  const riskShadowWorkflowRequiredFields = Array.isArray(riskShadowWorkflowRequirements.event_required_fields) ? riskShadowWorkflowRequirements.event_required_fields : [];
+  const riskShadowWorkflowDedupe = Array.isArray(riskShadowWorkflowRequirements.dedupe_key_fields) ? riskShadowWorkflowRequirements.dedupe_key_fields : [];
+  const riskShadowWorkflowBlockers = Array.isArray(riskShadowWorkflowPromotion.blocking_reasons) ? riskShadowWorkflowPromotion.blocking_reasons : [];
+  setText("riskShadowWorkflowStatus", phaseStatusLabel(riskShadowWorkflowSummary.workflow_status));
+  setText("riskShadowWorkflowEvents", integerText(riskShadowWorkflowSummary.event_count));
+  setText("riskShadowWorkflowQueue", integerText(riskShadowWorkflowSummary.quality_queue_count));
+  setText("riskShadowWorkflowAuto", riskShadowWorkflowSummary.auto_event_generation_enabled === false ? "否" : "--");
+  setText("riskShadowWorkflowTrade", riskShadowWorkflowSummary.trade_enabled === false ? "否" : "--");
+  setHtml("riskShadowWorkflowRows", [
+    ["流程步骤", `${integerText(riskShadowWorkflowSteps.length)} 步`, riskShadowWorkflowSteps.map((step) => step.step_id).join("；") || "--"],
+    ["事件字段", `${integerText(riskShadowWorkflowRequiredFields.length)} 项`, riskShadowWorkflowRequiredFields.join("；") || "--"],
+    ["去重字段", `${integerText(riskShadowWorkflowDedupe.length)} 项`, riskShadowWorkflowDedupe.join("；") || "--"],
+    ["质量队列", phaseStatusLabel(riskShadowWorkflowQueue.queue_status), `queued=${integerText(riskShadowWorkflowQueue.queued_event_count)}`],
+    ["阻断项", `${integerText(riskShadowWorkflowBlockers.length)} 项`, riskShadowWorkflowBlockers.join("；") || "--"],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  setText(
+    "riskShadowWorkflowConclusion",
+    riskShadowWorkflow.metadata
+      ? `V14.7 已定义首个人工 shadow event 流程：workflow=${phaseStatusLabel(riskShadowWorkflowSummary.workflow_status)}，event_count=${integerText(riskShadowWorkflowSummary.event_count)}，queue=${integerText(riskShadowWorkflowSummary.quality_queue_count)}，auto_event=false，trade=false；implementation_ready=false。`
+      : "V14.7 风险诊断首个事件流程尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

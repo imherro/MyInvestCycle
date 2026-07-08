@@ -1924,6 +1924,37 @@
           <p class="result-note" id="riskShadowQualityConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="定义首个人工 shadow event 的完整流程：人工 JSON、结构校验、source hash、去重、无交易校验、质量审计队列和后续 outcome review；不会自动扫描市场或生成事件。">风险诊断首个事件流程</h2>
+            <span class="panel-kicker">V14.7</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>流程状态</span>
+              <strong id="riskShadowWorkflowStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>当前事件</span>
+              <strong id="riskShadowWorkflowEvents">--</strong>
+            </div>
+            <div class="result-row">
+              <span>队列事件</span>
+              <strong id="riskShadowWorkflowQueue">--</strong>
+            </div>
+            <div class="result-row">
+              <span>自动生成</span>
+              <strong id="riskShadowWorkflowAuto">--</strong>
+            </div>
+            <div class="result-row">
+              <span>交易启用</span>
+              <strong id="riskShadowWorkflowTrade">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="riskShadowWorkflowRows"></div>
+          <p class="result-note" id="riskShadowWorkflowConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -2014,7 +2045,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-risk-shadow-quality-audit-1"></script>
+    <script src="/static/dashboard.js?v=20260708-risk-shadow-first-event-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

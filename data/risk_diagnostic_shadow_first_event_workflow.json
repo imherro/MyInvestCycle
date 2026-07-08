@@ -1,0 +1,304 @@
+{
+  "metadata": {
+    "engine": "V14.7 Risk Diagnostic Shadow Observation First Event Workflow",
+    "generated_at": "2026-07-08T23:40:41+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v14_3_observation_log": "data/risk_diagnostic_shadow_observation_log.json",
+      "v14_5_manual_capture": "data/risk_diagnostic_shadow_manual_event_capture.json",
+      "v14_6_quality_audit": "data/risk_diagnostic_shadow_event_quality_audit.json"
+    },
+    "input_hashes": {
+      "v14_3_observation_log": "4879f7b395eda4164ffba049d5970287d1df314ffd7c2010cab1d89f2b32d2ef",
+      "v14_5_manual_capture": "4d2c900ecfe24b14d2d3999d21e5517af15617af3b8cca6b9b12e5a5e881700b",
+      "v14_6_quality_audit": "a5321b3dc6fe358da9c13b680fa62321896d029449c1f8d25acbf8aa52f31f56"
+    },
+    "purpose": "Define the first manual shadow event workflow without automatically creating events, scanning markets, judging risk or trading."
+  },
+  "summary": {
+    "component_id": "risk_diagnostic_layer",
+    "workflow_status": "ready_for_first_manual_event",
+    "event_count": 0,
+    "quality_queue_count": 0,
+    "auto_scan_enabled": false,
+    "auto_event_generation_enabled": false,
+    "auto_decision_enabled": false,
+    "auto_warning_enabled": false,
+    "trade_enabled": false,
+    "position_adjustment_enabled": false,
+    "implementation_gate_result": "blocked",
+    "implementation_ready": false,
+    "investable_output": false,
+    "strategy_output_generated": false,
+    "allocation_output_generated": false,
+    "trade_ready": false,
+    "conclusion": "risk_diagnostic_shadow_first_event_workflow_ready_no_event_no_trade",
+    "key_read": "V14.7 defines the human workflow for the first shadow event; no event is created in this run."
+  },
+  "source_observation_log": {
+    "source_observation_status": "active",
+    "source_log_status": "active_empty",
+    "source_event_count": 0,
+    "source_auto_trigger_enabled": false,
+    "source_trade_enabled": false,
+    "source_hash": "4879f7b395eda4164ffba049d5970287d1df314ffd7c2010cab1d89f2b32d2ef"
+  },
+  "source_manual_capture": {
+    "source_manual_capture_status": "ready_for_manual_input",
+    "source_submitted_event_count": 0,
+    "source_trade_enabled": false,
+    "source_hash": "4d2c900ecfe24b14d2d3999d21e5517af15617af3b8cca6b9b12e5a5e881700b"
+  },
+  "source_quality_audit": {
+    "source_quality_audit_status": "no_events_available",
+    "source_quality_checked_events": 0,
+    "source_trade_enabled": false,
+    "source_hash": "a5321b3dc6fe358da9c13b680fa62321896d029449c1f8d25acbf8aa52f31f56"
+  },
+  "first_event_workflow": {
+    "workflow_step_count": 7,
+    "workflow_steps": [
+      {
+        "step_order": 1,
+        "step_id": "manual_event_json_preparation",
+        "description": "Human prepares one event JSON outside automatic market scanning.",
+        "automatic_execution_enabled": false,
+        "trade_enabled": false,
+        "implementation_ready_after_step": false
+      },
+      {
+        "step_order": 2,
+        "step_id": "schema_validation",
+        "description": "Validate required event fields and nested context/review fields.",
+        "automatic_execution_enabled": false,
+        "trade_enabled": false,
+        "implementation_ready_after_step": false
+      },
+      {
+        "step_order": 3,
+        "step_id": "source_hash_validation",
+        "description": "Validate source lineage and sha256 artifact hash.",
+        "automatic_execution_enabled": false,
+        "trade_enabled": false,
+        "implementation_ready_after_step": false
+      },
+      {
+        "step_order": 4,
+        "step_id": "duplicate_check",
+        "description": "Reject duplicate event id or duplicate event-time/source hash key.",
+        "automatic_execution_enabled": false,
+        "trade_enabled": false,
+        "implementation_ready_after_step": false
+      },
+      {
+        "step_order": 5,
+        "step_id": "no_trade_check",
+        "description": "Reject any event that enables orders, broker, position or risk-control action.",
+        "automatic_execution_enabled": false,
+        "trade_enabled": false,
+        "implementation_ready_after_step": false
+      },
+      {
+        "step_order": 6,
+        "step_id": "quality_audit_queue",
+        "description": "Queue the event for no-trade quality audit and manual review.",
+        "automatic_execution_enabled": false,
+        "trade_enabled": false,
+        "implementation_ready_after_step": false
+      },
+      {
+        "step_order": 7,
+        "step_id": "later_outcome_review_placeholder",
+        "description": "Require later outcome, false warning and missed risk review before promotion.",
+        "automatic_execution_enabled": false,
+        "trade_enabled": false,
+        "implementation_ready_after_step": false
+      }
+    ],
+    "manual_event_required": true,
+    "auto_event_allowed": false,
+    "manual_review_required": true,
+    "workflow_note": "The workflow starts only after a human supplies a no-trade event JSON."
+  },
+  "first_event_input_requirements": {
+    "event_required_fields": [
+      "event_id",
+      "event_time",
+      "market_data_as_of",
+      "component_id",
+      "warning_event_type",
+      "context_snapshot",
+      "source_lineage",
+      "no_trade_observation",
+      "later_outcome_review",
+      "manual_review_state"
+    ],
+    "context_snapshot_required_fields": [
+      "market_phase",
+      "risk_state",
+      "opportunity_state",
+      "risk_gradient_bucket",
+      "risk_gradient_score",
+      "protection_bucket",
+      "protection_score",
+      "two_axis_context"
+    ],
+    "source_lineage_required_fields": [
+      "source_artifact_hash",
+      "event_schema_version",
+      "created_by"
+    ],
+    "later_outcome_review_required_fields": [
+      "review_time",
+      "review_window_id",
+      "later_risk_outcome",
+      "false_warning_review",
+      "missed_risk_review",
+      "stability_review_note"
+    ],
+    "dedupe_key_fields": [
+      "event_time",
+      "market_data_as_of",
+      "warning_event_type",
+      "source_artifact_hash"
+    ],
+    "event_integrity_checks": [
+      "schema_completeness",
+      "source_hash",
+      "duplicate_key",
+      "timestamp_consistency"
+    ],
+    "research_quality_checks": [
+      "context_snapshot_completeness",
+      "later_outcome_completeness",
+      "false_warning_review_completeness",
+      "missed_risk_review_completeness"
+    ],
+    "boundary_checks": [
+      "no_trade",
+      "no_allocation",
+      "no_automatic_decision"
+    ]
+  },
+  "quality_audit_queue": {
+    "queue_status": "empty_waiting_for_first_manual_event",
+    "queued_event_count": 0,
+    "automatic_queue_population_enabled": false,
+    "next_allowed_input": "human_supplied_no_trade_event_json"
+  },
+  "no_trade_guardrails": {
+    "trade_enabled": false,
+    "order_generation_enabled": false,
+    "broker_connection_enabled": false,
+    "position_adjustment_enabled": false,
+    "auto_risk_control_enabled": false
+  },
+  "promotion_gate": {
+    "promotion_allowed": false,
+    "implementation_ready": false,
+    "blocking_reasons": [
+      "first_manual_event_not_submitted",
+      "quality_audit_queue_empty",
+      "later_outcome_review_missing",
+      "manual_review_not_approved",
+      "workflow_only"
+    ]
+  },
+  "time_safety": {
+    "uses_v14_3_v14_5_v14_6_artifacts_only": true,
+    "input_hashes_recorded": true,
+    "does_not_read_market_price_data": true,
+    "does_not_scan_market": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "does_not_auto_generate_event": true,
+    "does_not_auto_generate_warning": true,
+    "does_not_auto_judge_risk": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "first_event_workflow_only": true,
+    "ready_for_first_manual_event": true,
+    "no_event_created": true,
+    "manual_event_required": true,
+    "manual_review_required": true,
+    "quality_audit_required": true,
+    "does_not_auto_scan_market": true,
+    "does_not_auto_generate_event": true,
+    "does_not_auto_generate_warning": true,
+    "does_not_auto_judge_risk": true,
+    "does_not_enable_auto_risk_control": true,
+    "does_not_adjust_position": true,
+    "does_not_adjust_exposure": true,
+    "does_not_generate_strategy": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_component_id": "risk_diagnostic_layer",
+    "checked_workflow_status": "ready_for_first_manual_event",
+    "checked_event_count": 0,
+    "checked_quality_queue_count": 0,
+    "checked_trade_enabled": false,
+    "checked_implementation_ready": false,
+    "checked_constraints": [
+      "first_event_workflow_only",
+      "ready_for_first_manual_event",
+      "no_event_created",
+      "manual_event_required",
+      "manual_review_required",
+      "quality_audit_required",
+      "does_not_auto_scan_market",
+      "does_not_auto_generate_event",
+      "does_not_auto_generate_warning",
+      "does_not_auto_judge_risk",
+      "does_not_enable_auto_risk_control",
+      "does_not_adjust_position",
+      "does_not_adjust_exposure",
+      "does_not_generate_strategy",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}

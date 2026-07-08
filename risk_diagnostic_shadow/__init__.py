@@ -16,6 +16,11 @@ from risk_diagnostic_shadow.event_quality_audit import (
     validate_risk_diagnostic_shadow_event_quality_audit,
     write_risk_diagnostic_shadow_event_quality_audit,
 )
+from risk_diagnostic_shadow.first_event_workflow import (
+    build_risk_diagnostic_shadow_first_event_workflow,
+    validate_risk_diagnostic_shadow_first_event_workflow,
+    write_risk_diagnostic_shadow_first_event_workflow,
+)
 from risk_diagnostic_shadow.observation_logger import (
     append_no_trade_observation_event,
     build_risk_diagnostic_shadow_observation_log,
@@ -32,6 +37,7 @@ __all__ = [
     "append_no_trade_observation_event",
     "append_manual_shadow_event",
     "build_risk_diagnostic_shadow_event_quality_audit",
+    "build_risk_diagnostic_shadow_first_event_workflow",
     "build_risk_diagnostic_shadow_framework",
     "build_risk_diagnostic_shadow_manual_event_capture_status",
     "build_risk_diagnostic_shadow_observation_log",
@@ -39,12 +45,14 @@ __all__ = [
     "capture_manual_shadow_event_from_file",
     "validate_manual_shadow_event",
     "validate_risk_diagnostic_shadow_event_quality_audit",
+    "validate_risk_diagnostic_shadow_first_event_workflow",
     "validate_risk_diagnostic_shadow_framework",
     "validate_risk_diagnostic_shadow_manual_event_capture",
     "validate_risk_diagnostic_shadow_observation_log",
     "validate_risk_diagnostic_shadow_observation_review",
     "write_risk_diagnostic_shadow_framework",
     "write_risk_diagnostic_shadow_event_quality_audit",
+    "write_risk_diagnostic_shadow_first_event_workflow",
     "write_risk_diagnostic_shadow_manual_event_capture_status",
     "write_risk_diagnostic_shadow_observation_log",
     "write_risk_diagnostic_shadow_observation_review",
