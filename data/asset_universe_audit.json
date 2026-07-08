@@ -1,0 +1,344 @@
+{
+  "metadata": {
+    "engine": "V3.1.1 Asset Universe Coverage Audit",
+    "generated_at": "2026-07-08T09:39:20+00:00",
+    "registry": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\asset_registry.json",
+    "target_window": {
+      "start": "20150105",
+      "end": "20260708"
+    },
+    "purpose": "Coverage audit only; no scoring, no ranking, no allocation, no backtest."
+  },
+  "summary": {
+    "total_assets": 17,
+    "enabled_assets": 17,
+    "category_counts": {
+      "broad": 5,
+      "style": 2,
+      "industry": 10
+    },
+    "missing_history": [],
+    "coverage_start": "20210204",
+    "coverage_end": "20260625",
+    "target_window_fully_covered": false,
+    "target_blockers": [
+      "159915.SZ starts at 20181029",
+      "512100.SH starts at 20181029",
+      "510050.SH starts at 20181029",
+      "510880.SH starts at 20181029",
+      "512890.SH starts at 20190118",
+      "512000.SH starts at 20181029",
+      "512800.SH starts at 20181029",
+      "512690.SH starts at 20190506",
+      "512480.SH starts at 20190612",
+      "512170.SH starts at 20190617",
+      "512660.SH starts at 20181029",
+      "515790.SH starts at 20201218",
+      "516160.SH starts at 20210204",
+      "515000.SH starts at 20190816",
+      "588000.SH starts at 20201116"
+    ]
+  },
+  "asset_coverage": [
+    {
+      "code": "510300.SH",
+      "name": "沪深300ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_510300_SH.csv",
+      "start": "20150105",
+      "end": "20260708",
+      "rows": 2796,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "510500.SH",
+      "name": "中证500ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_510500_SH.csv",
+      "start": "20150105",
+      "end": "20260708",
+      "rows": 2794,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "159915.SZ",
+      "name": "创业板ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_159915_SZ.csv",
+      "start": "20181029",
+      "end": "20260626",
+      "rows": 1857,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "512100.SH",
+      "name": "中证1000ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_512100_SH.csv",
+      "start": "20181029",
+      "end": "20260625",
+      "rows": 1856,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "510050.SH",
+      "name": "上证50ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_510050_SH.csv",
+      "start": "20181029",
+      "end": "20260625",
+      "rows": 1857,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "510880.SH",
+      "name": "红利ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_510880_SH.csv",
+      "start": "20181029",
+      "end": "20260626",
+      "rows": 1858,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "512890.SH",
+      "name": "红利低波ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_512890_SH.csv",
+      "start": "20190118",
+      "end": "20260625",
+      "rows": 1799,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "512000.SH",
+      "name": "证券ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_512000_SH.csv",
+      "start": "20181029",
+      "end": "20260625",
+      "rows": 1857,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "512800.SH",
+      "name": "银行ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_512800_SH.csv",
+      "start": "20181029",
+      "end": "20260625",
+      "rows": 1857,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "512690.SH",
+      "name": "酒ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_512690_SH.csv",
+      "start": "20190506",
+      "end": "20260625",
+      "rows": 1732,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "512480.SH",
+      "name": "半导体ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_512480_SH.csv",
+      "start": "20190612",
+      "end": "20260625",
+      "rows": 1706,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "512170.SH",
+      "name": "医疗ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_512170_SH.csv",
+      "start": "20190617",
+      "end": "20260625",
+      "rows": 1703,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "512660.SH",
+      "name": "军工ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_512660_SH.csv",
+      "start": "20181029",
+      "end": "20260625",
+      "rows": 1857,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "515790.SH",
+      "name": "光伏ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_515790_SH.csv",
+      "start": "20201218",
+      "end": "20260625",
+      "rows": 1335,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "516160.SH",
+      "name": "新能源ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_516160_SH.csv",
+      "start": "20210204",
+      "end": "20260625",
+      "rows": 1302,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "515000.SH",
+      "name": "科技ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_515000_SH.csv",
+      "start": "20190816",
+      "end": "20260625",
+      "rows": 1660,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    },
+    {
+      "code": "588000.SH",
+      "name": "科创50ETF",
+      "available": true,
+      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\fund_daily_588000_SH.csv",
+      "start": "20201116",
+      "end": "20260625",
+      "rows": 1359,
+      "columns": [
+        "trade_date",
+        "close",
+        "volume",
+        "amount",
+        "pct_chg",
+        "pre_close"
+      ]
+    }
+  ],
+  "constraints": {
+    "etf_only": true,
+    "no_single_stock_selection": true,
+    "no_opportunity_score": true,
+    "no_ranking": true,
+    "no_allocation": true,
+    "no_backtest": true,
+    "no_trade_execution": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  }
+}
