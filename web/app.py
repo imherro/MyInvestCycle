@@ -724,6 +724,14 @@ def _read_research_decision_scenario_audit_payload() -> dict[str, object] | None
     return payload if isinstance(payload, dict) else None
 
 
+def _read_research_decision_contradiction_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "research_decision_contradiction.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -1310,6 +1318,27 @@ def _compact_research_decision_scenario_audit_payload(payload: dict[str, object]
     scenarios = payload.get("scenarios")
     if isinstance(scenarios, list):
         compact["scenarios"] = scenarios
+    return compact
+
+
+def _compact_research_decision_contradiction_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    compact = {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "focus_policy",
+            "time_safety",
+            "data_quality",
+            "constraints",
+        )
+        if key in payload
+    }
+    rows = payload.get("attributions")
+    if isinstance(rows, list):
+        compact["attributions"] = rows
     return compact
 
 
@@ -2205,6 +2234,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/decision/contradiction-attribution",
+                    "返回 V8.3 Research Decision Contradiction Attribution，归因 2015、2018、2021、2024-2026 等重点场景的解释失败原因；不修改 V6/V7，不新增状态、评分、配置或交易。",
+                    "research decision contradiction attribution",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -2351,6 +2387,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/opportunity/v7-architecture", "description": "读取 V7.5 机会研究层冻结摘要：保留层、拒绝项和不可评分/排名/配置/交易边界。"},
             {"path": "/api/decision/research-context", "description": "读取 V8.1 研究决策整合语境：V6 风险上下文 + V7 机会研究，只读且不输出资产/排名/配置/交易。"},
             {"path": "/api/decision/scenario-audit", "description": "读取 V8.2 历史情景解释审计：固定场景一致性、切换稳定、矛盾样本和覆盖缺口。"},
+            {"path": "/api/decision/contradiction-attribution", "description": "读取 V8.3 矛盾场景归因：解释研究语境失败原因，不改规则、不输出策略。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -3425,6 +3462,17 @@ def research_decision_scenario_audit() -> dict:
     return payload
 
 
+@app.get("/api/decision/contradiction-attribution")
+def research_decision_contradiction() -> dict:
+    payload = _read_research_decision_contradiction_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Research decision contradiction artifact missing; run scripts/run_research_decision_contradiction.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -3588,6 +3636,7 @@ def results_summary(
         opportunity_v7_architecture = _read_opportunity_v7_architecture_payload()
         research_decision_context = _read_research_decision_context_payload()
         research_decision_scenario_audit = _read_research_decision_scenario_audit_payload()
+        research_decision_contradiction = _read_research_decision_contradiction_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -3629,6 +3678,7 @@ def results_summary(
             opportunity_v7_architecture = _compact_opportunity_v7_architecture_payload(opportunity_v7_architecture)
             research_decision_context = _compact_research_decision_context_payload(research_decision_context)
             research_decision_scenario_audit = _compact_research_decision_scenario_audit_payload(research_decision_scenario_audit)
+            research_decision_contradiction = _compact_research_decision_contradiction_payload(research_decision_contradiction)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -3707,6 +3757,7 @@ def results_summary(
             "opportunity_v7_architecture": opportunity_v7_architecture,
             "research_decision_context": research_decision_context,
             "research_decision_scenario_audit": research_decision_scenario_audit,
+            "research_decision_contradiction": research_decision_contradiction,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,

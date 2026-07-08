@@ -1,0 +1,539 @@
+{
+  "metadata": {
+    "engine": "V8.3 Research Decision Contradiction Attribution",
+    "generated_at": "2026-07-08T19:22:39+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "scenario_audit": "data/research_decision_scenario_audit.json",
+      "research_decision_context": "data/research_decision_context.json",
+      "two_axis_context": "data/two_axis_context_validation.json",
+      "opportunity_feature_attribution": "data/opportunity_feature_attribution.json"
+    },
+    "purpose": "Attribute why V8.1 research context fails in selected historical scenarios; no rule changes, score, rank, allocation, or trade output."
+  },
+  "summary": {
+    "base_decision_context": "risk_controlled_opportunity_watch",
+    "base_research_posture": "observe_without_selection",
+    "scenario_count": 6,
+    "focus_scenario_count": 5,
+    "attribution_count": 5,
+    "contradiction_type_counts": {
+      "monitor_only_no_primary_contradiction": 1,
+      "participation_context_during_bear": 1,
+      "persistent_wait_during_style_divergence": 1,
+      "rapid_context_switching": 1,
+      "structural_market_opportunity_not_captured": 1
+    },
+    "possible_reason_counts": {
+      "macro_context_transition_noise": 1,
+      "opportunity_axis_weak_and_width_index_divergence": 1,
+      "risk_axis_lag_or_structural_rotation_missed": 1,
+      "scenario_not_primary_failure_case": 1,
+      "style_divergence_not_resolved_by_current_context": 1
+    },
+    "opportunity_context_status": "feature_attribution_not_ready_for_opportunity_score",
+    "ready_for_scoring": false,
+    "ready_for_ranking": false,
+    "ready_for_allocation": false,
+    "ready_for_trade": false,
+    "conclusion": "contradiction_attribution_research_only_no_rule_change",
+    "key_read": "V8.3 explains failure modes in low-consistency scenarios but does not change models, states, thresholds, allocations, or trades."
+  },
+  "attributions": [
+    {
+      "scenario": "2015_bull_bear_transition",
+      "name": "2015 牛熊转换",
+      "consistency": "low",
+      "dominant_context": "WAIT",
+      "observation_count": 12,
+      "transition_rate": 0.818182,
+      "contradiction_count": 7,
+      "contradiction_rate": 0.583333,
+      "contradiction_type": "rapid_context_switching",
+      "possible_reason": "macro_context_transition_noise",
+      "confidence_level": "medium",
+      "evidence": {
+        "dominant_context_share": 0.416667,
+        "market_phase_distribution": {
+          "EARLY_CYCLE": {
+            "count": 11,
+            "share": 0.916667
+          },
+          "EXPANSION": {
+            "count": 1,
+            "share": 0.083333
+          }
+        },
+        "two_axis_distribution": {
+          "AVOID": {
+            "count": 3,
+            "share": 0.25
+          },
+          "PARTICIPATE": {
+            "count": 2,
+            "share": 0.166667
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "count": 2,
+            "share": 0.166667
+          },
+          "WAIT": {
+            "count": 5,
+            "share": 0.416667
+          }
+        },
+        "decision_mode_counts": {
+          "PROTECTED_PARTICIPATION": 4,
+          "SELECTIVE_PARTICIPATION": 8
+        },
+        "risk_state_counts": {
+          "CROWDED": 12
+        },
+        "opportunity_state_counts": {
+          "BULL_EXPANSION": 1,
+          "EARLY_RECOVERY": 11
+        },
+        "contradiction_examples": [
+          {
+            "date": "20150407",
+            "two_axis_label": "PROTECT_BUT_PARTICIPATE",
+            "decision_mode": "PROTECTED_PARTICIPATION",
+            "contradictions": [
+              {
+                "type": "large_drawdown_with_non_defensive_level",
+                "severity": "medium",
+                "evidence": {
+                  "exposure_level": "BALANCED",
+                  "future_environment": "drawdown_stress"
+                }
+              }
+            ]
+          },
+          {
+            "date": "20150706",
+            "two_axis_label": "WAIT",
+            "decision_mode": "SELECTIVE_PARTICIPATION",
+            "contradictions": [
+              {
+                "type": "large_drawdown_with_non_defensive_level",
+                "severity": "medium",
+                "evidence": {
+                  "exposure_level": "BALANCED",
+                  "future_environment": "drawdown_stress"
+                }
+              }
+            ]
+          },
+          {
+            "date": "20150803",
+            "two_axis_label": "AVOID",
+            "decision_mode": "PROTECTED_PARTICIPATION",
+            "contradictions": [
+              {
+                "type": "large_drawdown_with_non_defensive_level",
+                "severity": "medium",
+                "evidence": {
+                  "exposure_level": "BALANCED",
+                  "future_environment": "drawdown_stress"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "research_only": true,
+      "no_rule_change": true
+    },
+    {
+      "scenario": "2018_bear",
+      "name": "2018 熊市",
+      "consistency": "low",
+      "dominant_context": "PARTICIPATE",
+      "observation_count": 12,
+      "transition_rate": 0.0,
+      "contradiction_count": 5,
+      "contradiction_rate": 0.416667,
+      "contradiction_type": "participation_context_during_bear",
+      "possible_reason": "risk_axis_lag_or_structural_rotation_missed",
+      "confidence_level": "medium",
+      "evidence": {
+        "dominant_context_share": 1.0,
+        "market_phase_distribution": {
+          "EARLY_CYCLE": {
+            "count": 3,
+            "share": 0.25
+          },
+          "ROTATION": {
+            "count": 9,
+            "share": 0.75
+          }
+        },
+        "two_axis_distribution": {
+          "PARTICIPATE": {
+            "count": 12,
+            "share": 1.0
+          }
+        },
+        "decision_mode_counts": {
+          "SELECTIVE_PARTICIPATION": 12
+        },
+        "risk_state_counts": {
+          "CROWDED": 10,
+          "LOW_RISK": 1,
+          "NORMAL": 1
+        },
+        "opportunity_state_counts": {
+          "EARLY_RECOVERY": 3,
+          "STRUCTURAL_ROTATION": 9
+        },
+        "contradiction_examples": [
+          {
+            "date": "20180116",
+            "two_axis_label": "PARTICIPATE",
+            "decision_mode": "SELECTIVE_PARTICIPATION",
+            "contradictions": [
+              {
+                "type": "large_drawdown_with_non_defensive_level",
+                "severity": "medium",
+                "evidence": {
+                  "exposure_level": "BALANCED",
+                  "future_environment": "drawdown_stress"
+                }
+              }
+            ]
+          },
+          {
+            "date": "20180213",
+            "two_axis_label": "PARTICIPATE",
+            "decision_mode": "SELECTIVE_PARTICIPATION",
+            "contradictions": [
+              {
+                "type": "large_drawdown_with_non_defensive_level",
+                "severity": "medium",
+                "evidence": {
+                  "exposure_level": "BALANCED",
+                  "future_environment": "drawdown_stress"
+                }
+              }
+            ]
+          },
+          {
+            "date": "20180320",
+            "two_axis_label": "PARTICIPATE",
+            "decision_mode": "SELECTIVE_PARTICIPATION",
+            "contradictions": [
+              {
+                "type": "large_drawdown_with_non_defensive_level",
+                "severity": "medium",
+                "evidence": {
+                  "exposure_level": "BALANCED",
+                  "future_environment": "drawdown_stress"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "research_only": true,
+      "no_rule_change": true
+    },
+    {
+      "scenario": "2021_core_asset_divergence",
+      "name": "2021 核心资产分化",
+      "consistency": "low",
+      "dominant_context": "WAIT",
+      "observation_count": 11,
+      "transition_rate": 0.0,
+      "contradiction_count": 3,
+      "contradiction_rate": 0.272727,
+      "contradiction_type": "persistent_wait_during_style_divergence",
+      "possible_reason": "style_divergence_not_resolved_by_current_context",
+      "confidence_level": "low",
+      "evidence": {
+        "dominant_context_share": 1.0,
+        "market_phase_distribution": {
+          "CONTRACTION": {
+            "count": 2,
+            "share": 0.181818
+          },
+          "EARLY_CYCLE": {
+            "count": 3,
+            "share": 0.272727
+          },
+          "LATE_CYCLE": {
+            "count": 3,
+            "share": 0.272727
+          },
+          "ROTATION": {
+            "count": 1,
+            "share": 0.090909
+          },
+          "UNKNOWN": {
+            "count": 2,
+            "share": 0.181818
+          }
+        },
+        "two_axis_distribution": {
+          "WAIT": {
+            "count": 11,
+            "share": 1.0
+          }
+        },
+        "decision_mode_counts": {
+          "SELECTIVE_PARTICIPATION": 5,
+          "WAIT": 6
+        },
+        "risk_state_counts": {
+          "CROWDED": 7,
+          "NORMAL": 4
+        },
+        "opportunity_state_counts": {
+          "EARLY_RECOVERY": 8,
+          "STRUCTURAL_ROTATION": 3
+        },
+        "contradiction_examples": [
+          {
+            "date": "20211103",
+            "two_axis_label": "WAIT",
+            "decision_mode": "SELECTIVE_PARTICIPATION",
+            "contradictions": [
+              {
+                "type": "large_drawdown_with_non_defensive_level",
+                "severity": "medium",
+                "evidence": {
+                  "exposure_level": "BALANCED",
+                  "future_environment": "drawdown_stress"
+                }
+              }
+            ]
+          },
+          {
+            "date": "20211201",
+            "two_axis_label": "WAIT",
+            "decision_mode": "SELECTIVE_PARTICIPATION",
+            "contradictions": [
+              {
+                "type": "large_drawdown_with_non_defensive_level",
+                "severity": "medium",
+                "evidence": {
+                  "exposure_level": "BALANCED",
+                  "future_environment": "drawdown_stress"
+                }
+              }
+            ]
+          },
+          {
+            "date": "20211229",
+            "two_axis_label": "WAIT",
+            "decision_mode": "WAIT",
+            "contradictions": [
+              {
+                "type": "large_drawdown_with_non_defensive_level",
+                "severity": "medium",
+                "evidence": {
+                  "exposure_level": "BALANCED",
+                  "future_environment": "drawdown_stress"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "research_only": true,
+      "no_rule_change": true
+    },
+    {
+      "scenario": "2022_bear",
+      "name": "2022 熊市",
+      "consistency": "medium",
+      "dominant_context": "WAIT",
+      "observation_count": 12,
+      "transition_rate": 0.363636,
+      "contradiction_count": 1,
+      "contradiction_rate": 0.083333,
+      "contradiction_type": "monitor_only_no_primary_contradiction",
+      "possible_reason": "scenario_not_primary_failure_case",
+      "confidence_level": "low",
+      "evidence": {
+        "dominant_context_share": 0.75,
+        "market_phase_distribution": {
+          "CONTRACTION": {
+            "count": 6,
+            "share": 0.5
+          },
+          "EARLY_CYCLE": {
+            "count": 3,
+            "share": 0.25
+          },
+          "ROTATION": {
+            "count": 1,
+            "share": 0.083333
+          },
+          "UNKNOWN": {
+            "count": 2,
+            "share": 0.166667
+          }
+        },
+        "two_axis_distribution": {
+          "AVOID": {
+            "count": 3,
+            "share": 0.25
+          },
+          "WAIT": {
+            "count": 9,
+            "share": 0.75
+          }
+        },
+        "decision_mode_counts": {
+          "DEFENSIVE": 2,
+          "PROTECTED_PARTICIPATION": 1,
+          "SELECTIVE_PARTICIPATION": 3,
+          "WAIT": 6
+        },
+        "risk_state_counts": {
+          "CROWDED": 10,
+          "NORMAL": 2
+        },
+        "opportunity_state_counts": {
+          "EARLY_RECOVERY": 10,
+          "STRUCTURAL_ROTATION": 2
+        },
+        "contradiction_examples": [
+          {
+            "date": "20220303",
+            "two_axis_label": "WAIT",
+            "decision_mode": "SELECTIVE_PARTICIPATION",
+            "contradictions": [
+              {
+                "type": "large_drawdown_with_non_defensive_level",
+                "severity": "medium",
+                "evidence": {
+                  "exposure_level": "BALANCED",
+                  "future_environment": "drawdown_stress"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "research_only": true,
+      "no_rule_change": true
+    },
+    {
+      "scenario": "2024_2026_structural_market",
+      "name": "2024-2026 结构行情",
+      "consistency": "medium",
+      "dominant_context": "WAIT",
+      "observation_count": 16,
+      "transition_rate": 0.466667,
+      "contradiction_count": 0,
+      "contradiction_rate": 0.0,
+      "contradiction_type": "structural_market_opportunity_not_captured",
+      "possible_reason": "opportunity_axis_weak_and_width_index_divergence",
+      "confidence_level": "low",
+      "evidence": {
+        "dominant_context_share": 0.75,
+        "market_phase_distribution": {
+          "CONTRACTION": {
+            "count": 3,
+            "share": 0.1875
+          },
+          "EARLY_CYCLE": {
+            "count": 3,
+            "share": 0.1875
+          },
+          "LATE_CYCLE": {
+            "count": 4,
+            "share": 0.25
+          },
+          "ROTATION": {
+            "count": 1,
+            "share": 0.0625
+          },
+          "UNKNOWN": {
+            "count": 5,
+            "share": 0.3125
+          }
+        },
+        "two_axis_distribution": {
+          "AVOID": {
+            "count": 4,
+            "share": 0.25
+          },
+          "WAIT": {
+            "count": 12,
+            "share": 0.75
+          }
+        },
+        "decision_mode_counts": {
+          "DEFENSIVE": 2,
+          "FULL_PARTICIPATION": 3,
+          "SELECTIVE_PARTICIPATION": 6,
+          "WAIT": 5
+        },
+        "risk_state_counts": {
+          "CROWDED": 12,
+          "NORMAL": 4
+        },
+        "opportunity_state_counts": {
+          "BULL_EXPANSION": 3,
+          "EARLY_RECOVERY": 8,
+          "STRUCTURAL_ROTATION": 5
+        },
+        "contradiction_examples": []
+      },
+      "research_only": true,
+      "no_rule_change": true
+    }
+  ],
+  "focus_policy": {
+    "included_when_consistency_low": true,
+    "included_when_contradiction_count_positive": true,
+    "always_include_structural_market": true,
+    "primary_focus_scenarios": [
+      "2015_bull_bear_transition",
+      "2018_bear",
+      "2021_core_asset_divergence",
+      "2022_bear",
+      "2024_2026_structural_market"
+    ]
+  },
+  "time_safety": {
+    "uses_existing_v8_2_output_only": true,
+    "uses_existing_v8_1_output_only": true,
+    "uses_existing_v6_rows_only": true,
+    "uses_existing_v7_attribution_only": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true
+  },
+  "data_quality": {
+    "fixed_attribution_rules": true,
+    "no_new_state": true,
+    "no_new_feature_search": true,
+    "no_scoring": true,
+    "no_ranking": true,
+    "no_top_n": true,
+    "no_allocation": true,
+    "no_backtest": true,
+    "no_parameter_optimization": true
+  },
+  "constraints": {
+    "attribution_only": true,
+    "research_only": true,
+    "does_not_modify_v6": true,
+    "does_not_modify_v7": true,
+    "does_not_add_state": true,
+    "does_not_create_opportunity_score": true,
+    "does_not_rank_assets": true,
+    "does_not_select_top_assets": true,
+    "does_not_generate_position": true,
+    "no_percentage_exposure": true,
+    "no_etf_code": true,
+    "no_asset_weight": true,
+    "no_portfolio_weight": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_parameter_optimization": true
+  }
+}

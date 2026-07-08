@@ -1653,6 +1653,9 @@ function setResultsPanel(results) {
   const scenarioAudit = results.research_decision_scenario_audit || {};
   const scenarioAuditSummary = scenarioAudit.summary || {};
   const scenarioAuditRows = scenarioAudit.scenarios || [];
+  const contradictionAudit = results.research_decision_contradiction || {};
+  const contradictionSummary = contradictionAudit.summary || {};
+  const contradictionRows = contradictionAudit.attributions || [];
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3353,6 +3356,36 @@ function setResultsPanel(results) {
     scenarioAudit.metadata
       ? `V8.2 固定 ${integerText(scenarioAuditSummary.scenario_count)} 个历史场景做解释审计：一致性 ${consistencySummaryText}，主导语境 ${Object.entries(scenarioDominantCounts).map(([key, value]) => `${key} ${integerText(value)}`).join(" / ") || "--"}。该层只暴露解释稳定性问题，不使用收益指标，也不生成策略、评分、排名或配置。`
       : "V8.2 历史情景解释审计尚未生成。"
+  );
+
+  const contradictionTypeCounts = contradictionSummary.contradiction_type_counts || {};
+  const contradictionReasonCounts = contradictionSummary.possible_reason_counts || {};
+  const contradictionReadyFlagsOff =
+    contradictionSummary.ready_for_scoring === false &&
+    contradictionSummary.ready_for_ranking === false &&
+    contradictionSummary.ready_for_allocation === false &&
+    contradictionSummary.ready_for_trade === false;
+  const contradictionTypeText = Object.entries(contradictionTypeCounts)
+    .map(([key, value]) => `${key} ${integerText(value)}`)
+    .join(" / ") || "--";
+  setText("contradictionFocusCount", integerText(contradictionSummary.focus_scenario_count));
+  setText("contradictionAttributionCount", integerText(contradictionSummary.attribution_count));
+  setText("contradictionTypeSummary", contradictionTypeText);
+  setText("contradictionBoundary", contradictionReadyFlagsOff ? "不改规则/不配置/不交易" : "需复核");
+  setHtml("contradictionRows", contradictionRows
+    .map((row) => `
+      <div class="duration-row">
+        <span>${escapeHtml(row.name || row.scenario || "--")}</span>
+        <strong>${escapeHtml(row.contradiction_type || "--")}</strong>
+        <em>${escapeHtml(row.possible_reason || "--")} · 矛盾 ${integerText(row.contradiction_count)} · 切换 ${percentText(row.transition_rate)} · ${escapeHtml(row.confidence_level || "--")}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "contradictionConclusion",
+    contradictionAudit.metadata
+      ? `V8.3 对 ${integerText(contradictionSummary.focus_scenario_count)} 个重点场景做失败归因：${contradictionTypeText}。可能原因分布：${Object.entries(contradictionReasonCounts).map(([key, value]) => `${key} ${integerText(value)}`).join(" / ") || "--"}。该层只解释失败来源，不修改 V6/V7、不新增状态、不生成评分、配置或交易。`
+      : "V8.3 研究语境矛盾归因尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
