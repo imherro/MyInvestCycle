@@ -1,0 +1,1776 @@
+{
+  "metadata": {
+    "engine": "V3.2.3 Regime-Conditioned Opportunity Validation",
+    "generated_at": "2026-07-08T10:12:58+00:00",
+    "window": {
+      "start": "20150105",
+      "end": "20260708"
+    },
+    "score_date_count": 78,
+    "score_start": "20200218",
+    "score_end": "20260625",
+    "step_sessions": 20,
+    "min_score_sessions": 260,
+    "horizons": [
+      5,
+      20,
+      60
+    ],
+    "state_source": "data/v2_full_cycle_backtest.json",
+    "score_formula": {
+      "strength": {
+        "momentum": 0.35,
+        "relative_strength": 0.25,
+        "trend_quality": 0.2,
+        "risk_adjusted": 0.1,
+        "persistence": 0.1
+      },
+      "formula_changed_from_v3_2_1": false
+    }
+  },
+  "regime_rules": {
+    "HIGH_CROWDING": "theme_risk_level=high or allocation_structural_state=STRUCTURAL_BULL_OVERHEATED",
+    "STRUCTURAL_BULL": "structural_state=STRUCTURAL_BULL_ROTATION and not high crowding",
+    "BROAD_BULL": "structural_state=BROAD_BULL and not high crowding",
+    "BEAR": "structural_state=BEAR and not high crowding",
+    "RANGE": "structural_state=RANGE and not high crowding"
+  },
+  "summary": {
+    "asset_count": 17,
+    "source_methods": {
+      "direct_etf_history_only": 7,
+      "research_only": 10
+    },
+    "score_date_regime_counts": {
+      "STRUCTURAL_BULL": 19,
+      "RANGE": 50,
+      "BROAD_BULL": 8,
+      "BEAR_REBOUND": 1
+    }
+  },
+  "research_proxy_validation": {
+    "regime_bucket": {
+      "5d": {
+        "BEAR_REBOUND": {
+          "observation_count": 17,
+          "date_count": 1,
+          "rank_ic": 0.29484,
+          "top_bucket_return": 0.014991,
+          "bottom_bucket_return": -0.015356,
+          "spread": 0.030347,
+          "factor_ic": {
+            "momentum": 0.206388,
+            "relative_strength": 0.292383,
+            "trend_quality": 0.556695,
+            "risk_adjusted": 0.326781,
+            "persistence": 0.194103
+          }
+        },
+        "BROAD_BULL": {
+          "observation_count": 136,
+          "date_count": 8,
+          "rank_ic": 0.016892,
+          "top_bucket_return": -0.00042,
+          "bottom_bucket_return": -0.003555,
+          "spread": 0.003135,
+          "factor_ic": {
+            "momentum": 0.030098,
+            "relative_strength": 0.02672,
+            "trend_quality": 0.152387,
+            "risk_adjusted": 0.015971,
+            "persistence": 0.016515
+          }
+        },
+        "RANGE": {
+          "observation_count": 850,
+          "date_count": 50,
+          "rank_ic": 0.071843,
+          "top_bucket_return": 0.007515,
+          "bottom_bucket_return": 0.006832,
+          "spread": 0.000683,
+          "factor_ic": {
+            "momentum": 0.089015,
+            "relative_strength": 0.051794,
+            "trend_quality": 0.110036,
+            "risk_adjusted": 0.080295,
+            "persistence": 0.025847
+          }
+        },
+        "STRUCTURAL_BULL": {
+          "observation_count": 318,
+          "date_count": 19,
+          "rank_ic": -0.06749,
+          "top_bucket_return": 0.000633,
+          "bottom_bucket_return": 0.010428,
+          "spread": -0.009795,
+          "factor_ic": {
+            "momentum": -0.053456,
+            "relative_strength": -0.106766,
+            "trend_quality": -0.07157,
+            "risk_adjusted": -0.076512,
+            "persistence": -0.154175
+          }
+        }
+      },
+      "20d": {
+        "BEAR_REBOUND": {
+          "observation_count": 17,
+          "date_count": 1,
+          "rank_ic": -0.066339,
+          "top_bucket_return": -0.006123,
+          "bottom_bucket_return": -0.008539,
+          "spread": 0.002416,
+          "factor_ic": {
+            "momentum": -0.19656,
+            "relative_strength": 0.007371,
+            "trend_quality": 0.011024,
+            "risk_adjusted": -0.12285,
+            "persistence": -0.272727
+          }
+        },
+        "BROAD_BULL": {
+          "observation_count": 136,
+          "date_count": 8,
+          "rank_ic": 0.025491,
+          "top_bucket_return": -0.003176,
+          "bottom_bucket_return": -0.02382,
+          "spread": 0.020645,
+          "factor_ic": {
+            "momentum": 0.009828,
+            "relative_strength": 0.011978,
+            "trend_quality": -0.075717,
+            "risk_adjusted": 0.048218,
+            "persistence": -0.199196
+          }
+        },
+        "RANGE": {
+          "observation_count": 850,
+          "date_count": 50,
+          "rank_ic": 0.005848,
+          "top_bucket_return": 0.006515,
+          "bottom_bucket_return": 0.005981,
+          "spread": 0.000535,
+          "factor_ic": {
+            "momentum": 0.041258,
+            "relative_strength": -0.006732,
+            "trend_quality": 0.026605,
+            "risk_adjusted": -0.004226,
+            "persistence": 0.018208
+          }
+        },
+        "STRUCTURAL_BULL": {
+          "observation_count": 306,
+          "date_count": 18,
+          "rank_ic": -0.1911,
+          "top_bucket_return": -0.040824,
+          "bottom_bucket_return": 0.018194,
+          "spread": -0.059017,
+          "factor_ic": {
+            "momentum": -0.182664,
+            "relative_strength": -0.185367,
+            "trend_quality": -0.082949,
+            "risk_adjusted": -0.143735,
+            "persistence": 0.001947
+          }
+        }
+      },
+      "60d": {
+        "BEAR_REBOUND": {
+          "observation_count": 17,
+          "date_count": 1,
+          "rank_ic": 0.542998,
+          "top_bucket_return": 0.066012,
+          "bottom_bucket_return": -0.023636,
+          "spread": 0.089648,
+          "factor_ic": {
+            "momentum": 0.432432,
+            "relative_strength": 0.560197,
+            "trend_quality": 0.533269,
+            "risk_adjusted": 0.503686,
+            "persistence": 0.272727
+          }
+        },
+        "BROAD_BULL": {
+          "observation_count": 119,
+          "date_count": 7,
+          "rank_ic": 0.083187,
+          "top_bucket_return": 0.048713,
+          "bottom_bucket_return": -0.030486,
+          "spread": 0.0792,
+          "factor_ic": {
+            "momentum": 0.052299,
+            "relative_strength": 0.073008,
+            "trend_quality": -0.0643,
+            "risk_adjusted": 0.164268,
+            "persistence": -0.031663
+          }
+        },
+        "RANGE": {
+          "observation_count": 833,
+          "date_count": 49,
+          "rank_ic": -0.062077,
+          "top_bucket_return": 0.00701,
+          "bottom_bucket_return": 0.019253,
+          "spread": -0.012244,
+          "factor_ic": {
+            "momentum": -0.058852,
+            "relative_strength": -0.069649,
+            "trend_quality": -0.049331,
+            "risk_adjusted": -0.062027,
+            "persistence": -0.035378
+          }
+        },
+        "STRUCTURAL_BULL": {
+          "observation_count": 306,
+          "date_count": 18,
+          "rank_ic": 0.04368,
+          "top_bucket_return": 0.01402,
+          "bottom_bucket_return": 0.025456,
+          "spread": -0.011436,
+          "factor_ic": {
+            "momentum": -0.037563,
+            "relative_strength": 0.064155,
+            "trend_quality": 0.081665,
+            "risk_adjusted": 0.121758,
+            "persistence": 0.215506
+          }
+        }
+      }
+    },
+    "structural_state": {
+      "5d": {
+        "BEAR_REBOUND": {
+          "observation_count": 17,
+          "date_count": 1,
+          "rank_ic": 0.29484,
+          "top_bucket_return": 0.014991,
+          "bottom_bucket_return": -0.015356,
+          "spread": 0.030347,
+          "factor_ic": {
+            "momentum": 0.206388,
+            "relative_strength": 0.292383,
+            "trend_quality": 0.556695,
+            "risk_adjusted": 0.326781,
+            "persistence": 0.194103
+          }
+        },
+        "BROAD_BULL": {
+          "observation_count": 136,
+          "date_count": 8,
+          "rank_ic": 0.016892,
+          "top_bucket_return": -0.00042,
+          "bottom_bucket_return": -0.003555,
+          "spread": 0.003135,
+          "factor_ic": {
+            "momentum": 0.030098,
+            "relative_strength": 0.02672,
+            "trend_quality": 0.152387,
+            "risk_adjusted": 0.015971,
+            "persistence": 0.016515
+          }
+        },
+        "RANGE": {
+          "observation_count": 850,
+          "date_count": 50,
+          "rank_ic": 0.071843,
+          "top_bucket_return": 0.007515,
+          "bottom_bucket_return": 0.006832,
+          "spread": 0.000683,
+          "factor_ic": {
+            "momentum": 0.089015,
+            "relative_strength": 0.051794,
+            "trend_quality": 0.110036,
+            "risk_adjusted": 0.080295,
+            "persistence": 0.025847
+          }
+        },
+        "STRUCTURAL_BULL_ROTATION": {
+          "observation_count": 318,
+          "date_count": 19,
+          "rank_ic": -0.06749,
+          "top_bucket_return": 0.000633,
+          "bottom_bucket_return": 0.010428,
+          "spread": -0.009795,
+          "factor_ic": {
+            "momentum": -0.053456,
+            "relative_strength": -0.106766,
+            "trend_quality": -0.07157,
+            "risk_adjusted": -0.076512,
+            "persistence": -0.154175
+          }
+        }
+      },
+      "20d": {
+        "BEAR_REBOUND": {
+          "observation_count": 17,
+          "date_count": 1,
+          "rank_ic": -0.066339,
+          "top_bucket_return": -0.006123,
+          "bottom_bucket_return": -0.008539,
+          "spread": 0.002416,
+          "factor_ic": {
+            "momentum": -0.19656,
+            "relative_strength": 0.007371,
+            "trend_quality": 0.011024,
+            "risk_adjusted": -0.12285,
+            "persistence": -0.272727
+          }
+        },
+        "BROAD_BULL": {
+          "observation_count": 136,
+          "date_count": 8,
+          "rank_ic": 0.025491,
+          "top_bucket_return": -0.003176,
+          "bottom_bucket_return": -0.02382,
+          "spread": 0.020645,
+          "factor_ic": {
+            "momentum": 0.009828,
+            "relative_strength": 0.011978,
+            "trend_quality": -0.075717,
+            "risk_adjusted": 0.048218,
+            "persistence": -0.199196
+          }
+        },
+        "RANGE": {
+          "observation_count": 850,
+          "date_count": 50,
+          "rank_ic": 0.005848,
+          "top_bucket_return": 0.006515,
+          "bottom_bucket_return": 0.005981,
+          "spread": 0.000535,
+          "factor_ic": {
+            "momentum": 0.041258,
+            "relative_strength": -0.006732,
+            "trend_quality": 0.026605,
+            "risk_adjusted": -0.004226,
+            "persistence": 0.018208
+          }
+        },
+        "STRUCTURAL_BULL_ROTATION": {
+          "observation_count": 306,
+          "date_count": 18,
+          "rank_ic": -0.1911,
+          "top_bucket_return": -0.040824,
+          "bottom_bucket_return": 0.018194,
+          "spread": -0.059017,
+          "factor_ic": {
+            "momentum": -0.182664,
+            "relative_strength": -0.185367,
+            "trend_quality": -0.082949,
+            "risk_adjusted": -0.143735,
+            "persistence": 0.001947
+          }
+        }
+      },
+      "60d": {
+        "BEAR_REBOUND": {
+          "observation_count": 17,
+          "date_count": 1,
+          "rank_ic": 0.542998,
+          "top_bucket_return": 0.066012,
+          "bottom_bucket_return": -0.023636,
+          "spread": 0.089648,
+          "factor_ic": {
+            "momentum": 0.432432,
+            "relative_strength": 0.560197,
+            "trend_quality": 0.533269,
+            "risk_adjusted": 0.503686,
+            "persistence": 0.272727
+          }
+        },
+        "BROAD_BULL": {
+          "observation_count": 119,
+          "date_count": 7,
+          "rank_ic": 0.083187,
+          "top_bucket_return": 0.048713,
+          "bottom_bucket_return": -0.030486,
+          "spread": 0.0792,
+          "factor_ic": {
+            "momentum": 0.052299,
+            "relative_strength": 0.073008,
+            "trend_quality": -0.0643,
+            "risk_adjusted": 0.164268,
+            "persistence": -0.031663
+          }
+        },
+        "RANGE": {
+          "observation_count": 833,
+          "date_count": 49,
+          "rank_ic": -0.062077,
+          "top_bucket_return": 0.00701,
+          "bottom_bucket_return": 0.019253,
+          "spread": -0.012244,
+          "factor_ic": {
+            "momentum": -0.058852,
+            "relative_strength": -0.069649,
+            "trend_quality": -0.049331,
+            "risk_adjusted": -0.062027,
+            "persistence": -0.035378
+          }
+        },
+        "STRUCTURAL_BULL_ROTATION": {
+          "observation_count": 306,
+          "date_count": 18,
+          "rank_ic": 0.04368,
+          "top_bucket_return": 0.01402,
+          "bottom_bucket_return": 0.025456,
+          "spread": -0.011436,
+          "factor_ic": {
+            "momentum": -0.037563,
+            "relative_strength": 0.064155,
+            "trend_quality": 0.081665,
+            "risk_adjusted": 0.121758,
+            "persistence": 0.215506
+          }
+        }
+      }
+    },
+    "macro_state": {
+      "5d": {
+        "BOTTOMING": {
+          "observation_count": 102,
+          "date_count": 6,
+          "rank_ic": -0.021294,
+          "top_bucket_return": 0.028926,
+          "bottom_bucket_return": 0.05447,
+          "spread": -0.025544,
+          "factor_ic": {
+            "momentum": 0.078624,
+            "relative_strength": -0.001228,
+            "trend_quality": -0.061793,
+            "risk_adjusted": 0.0819,
+            "persistence": -0.197789
+          }
+        },
+        "RANGE": {
+          "observation_count": 68,
+          "date_count": 4,
+          "rank_ic": -0.088452,
+          "top_bucket_return": -0.037793,
+          "bottom_bucket_return": -0.026615,
+          "spread": -0.011178,
+          "factor_ic": {
+            "momentum": -0.04054,
+            "relative_strength": -0.133907,
+            "trend_quality": 0.108873,
+            "risk_adjusted": -0.062039,
+            "persistence": -0.00896
+          }
+        },
+        "RECOVERY": {
+          "observation_count": 1151,
+          "date_count": 68,
+          "rank_ic": 0.047373,
+          "top_bucket_return": 0.005545,
+          "bottom_bucket_return": 0.004053,
+          "spread": 0.001492,
+          "factor_ic": {
+            "momentum": 0.052539,
+            "relative_strength": 0.023681,
+            "trend_quality": 0.086074,
+            "risk_adjusted": 0.040769,
+            "persistence": -0.001297
+          }
+        }
+      },
+      "20d": {
+        "BOTTOMING": {
+          "observation_count": 102,
+          "date_count": 6,
+          "rank_ic": -0.043407,
+          "top_bucket_return": 0.013607,
+          "bottom_bucket_return": 0.052191,
+          "spread": -0.038585,
+          "factor_ic": {
+            "momentum": 0.017608,
+            "relative_strength": 0.005324,
+            "trend_quality": 0.02418,
+            "risk_adjusted": 0.020475,
+            "persistence": -0.108108
+          }
+        },
+        "RANGE": {
+          "observation_count": 68,
+          "date_count": 4,
+          "rank_ic": -0.064496,
+          "top_bucket_return": -0.020078,
+          "bottom_bucket_return": -0.017798,
+          "spread": -0.00228,
+          "factor_ic": {
+            "momentum": 0.087838,
+            "relative_strength": -0.095823,
+            "trend_quality": 0.068983,
+            "risk_adjusted": -0.060811,
+            "persistence": -0.05443
+          }
+        },
+        "RECOVERY": {
+          "observation_count": 1139,
+          "date_count": 67,
+          "rank_ic": -0.037185,
+          "top_bucket_return": -0.006596,
+          "bottom_bucket_return": 0.002768,
+          "spread": -0.009364,
+          "factor_ic": {
+            "momentum": -0.026865,
+            "relative_strength": -0.04804,
+            "trend_quality": -0.01759,
+            "risk_adjusted": -0.036048,
+            "persistence": -0.000813
+          }
+        }
+      },
+      "60d": {
+        "BOTTOMING": {
+          "observation_count": 102,
+          "date_count": 6,
+          "rank_ic": -0.035626,
+          "top_bucket_return": 0.039249,
+          "bottom_bucket_return": 0.114338,
+          "spread": -0.075089,
+          "factor_ic": {
+            "momentum": 0.006961,
+            "relative_strength": -0.040541,
+            "trend_quality": -0.015715,
+            "risk_adjusted": 0.033989,
+            "persistence": 0.056102
+          }
+        },
+        "RANGE": {
+          "observation_count": 68,
+          "date_count": 4,
+          "rank_ic": -0.08231,
+          "top_bucket_return": 0.000258,
+          "bottom_bucket_return": 0.048109,
+          "spread": -0.047852,
+          "factor_ic": {
+            "momentum": -0.039312,
+            "relative_strength": -0.094594,
+            "trend_quality": 0.039949,
+            "risk_adjusted": 0.001228,
+            "persistence": -0.037955
+          }
+        },
+        "RECOVERY": {
+          "observation_count": 1105,
+          "date_count": 65,
+          "rank_ic": -0.009034,
+          "top_bucket_return": 0.01179,
+          "bottom_bucket_return": 0.004402,
+          "spread": 0.007388,
+          "factor_ic": {
+            "momentum": -0.040706,
+            "relative_strength": -0.008694,
+            "trend_quality": -0.014302,
+            "risk_adjusted": 0.009185,
+            "persistence": 0.030952
+          }
+        }
+      }
+    },
+    "market_structure_state": {
+      "5d": {
+        "BEAR_BREAKDOWN": {
+          "observation_count": 119,
+          "date_count": 7,
+          "rank_ic": -0.213759,
+          "top_bucket_return": -0.007175,
+          "bottom_bucket_return": -0.001766,
+          "spread": -0.005409,
+          "factor_ic": {
+            "momentum": -0.214812,
+            "relative_strength": -0.207792,
+            "trend_quality": -0.093347,
+            "risk_adjusted": -0.170586,
+            "persistence": -0.112268
+          }
+        },
+        "BEAR_RALLY": {
+          "observation_count": 221,
+          "date_count": 13,
+          "rank_ic": 0.066717,
+          "top_bucket_return": 0.02348,
+          "bottom_bucket_return": 0.032312,
+          "spread": -0.008832,
+          "factor_ic": {
+            "momentum": 0.130732,
+            "relative_strength": 0.05481,
+            "trend_quality": 0.131987,
+            "risk_adjusted": 0.116802,
+            "persistence": -0.065227
+          }
+        },
+        "BULL_BROADENING": {
+          "observation_count": 136,
+          "date_count": 8,
+          "rank_ic": 0.016892,
+          "top_bucket_return": -0.00042,
+          "bottom_bucket_return": -0.003555,
+          "spread": 0.003135,
+          "factor_ic": {
+            "momentum": 0.030098,
+            "relative_strength": 0.02672,
+            "trend_quality": 0.152387,
+            "risk_adjusted": 0.015971,
+            "persistence": 0.016515
+          }
+        },
+        "BULL_DIVERGENCE": {
+          "observation_count": 204,
+          "date_count": 12,
+          "rank_ic": 0.067977,
+          "top_bucket_return": -0.004098,
+          "bottom_bucket_return": -0.001578,
+          "spread": -0.00252,
+          "factor_ic": {
+            "momentum": 0.154586,
+            "relative_strength": 0.039926,
+            "trend_quality": 0.056267,
+            "risk_adjusted": 0.052006,
+            "persistence": 0.087399
+          }
+        },
+        "RANGE_ACCUMULATION": {
+          "observation_count": 641,
+          "date_count": 38,
+          "rank_ic": 0.06363,
+          "top_bucket_return": 0.005183,
+          "bottom_bucket_return": 0.00357,
+          "spread": 0.001614,
+          "factor_ic": {
+            "momentum": 0.041858,
+            "relative_strength": 0.029379,
+            "trend_quality": 0.077922,
+            "risk_adjusted": 0.051037,
+            "persistence": -0.022575
+          }
+        }
+      },
+      "20d": {
+        "BEAR_BREAKDOWN": {
+          "observation_count": 119,
+          "date_count": 7,
+          "rank_ic": -0.056862,
+          "top_bucket_return": 0.00639,
+          "bottom_bucket_return": 0.012962,
+          "spread": -0.006572,
+          "factor_ic": {
+            "momentum": -0.09126,
+            "relative_strength": -0.035802,
+            "trend_quality": 0.032399,
+            "risk_adjusted": 0.007371,
+            "persistence": 0.142799
+          }
+        },
+        "BEAR_RALLY": {
+          "observation_count": 221,
+          "date_count": 13,
+          "rank_ic": -0.02835,
+          "top_bucket_return": 0.017895,
+          "bottom_bucket_return": 0.027521,
+          "spread": -0.009626,
+          "factor_ic": {
+            "momentum": -0.010351,
+            "relative_strength": -0.04347,
+            "trend_quality": -0.023875,
+            "risk_adjusted": -0.063315,
+            "persistence": -0.030159
+          }
+        },
+        "BULL_BROADENING": {
+          "observation_count": 136,
+          "date_count": 8,
+          "rank_ic": 0.025491,
+          "top_bucket_return": -0.003176,
+          "bottom_bucket_return": -0.02382,
+          "spread": 0.020645,
+          "factor_ic": {
+            "momentum": 0.009828,
+            "relative_strength": 0.011978,
+            "trend_quality": -0.075717,
+            "risk_adjusted": 0.048218,
+            "persistence": -0.199196
+          }
+        },
+        "BULL_DIVERGENCE": {
+          "observation_count": 204,
+          "date_count": 12,
+          "rank_ic": 0.041564,
+          "top_bucket_return": 0.019965,
+          "bottom_bucket_return": 0.016801,
+          "spread": 0.003164,
+          "factor_ic": {
+            "momentum": 0.141482,
+            "relative_strength": 0.115684,
+            "trend_quality": 0.068787,
+            "risk_adjusted": 0.078215,
+            "persistence": 0.234039
+          }
+        },
+        "RANGE_ACCUMULATION": {
+          "observation_count": 629,
+          "date_count": 37,
+          "rank_ic": -0.07962,
+          "top_bucket_return": -0.025193,
+          "bottom_bucket_return": -0.000869,
+          "spread": -0.024324,
+          "factor_ic": {
+            "momentum": -0.063406,
+            "relative_strength": -0.114549,
+            "trend_quality": -0.024153,
+            "risk_adjusted": -0.083472,
+            "persistence": -0.074142
+          }
+        }
+      },
+      "60d": {
+        "BEAR_BREAKDOWN": {
+          "observation_count": 119,
+          "date_count": 7,
+          "rank_ic": -0.044577,
+          "top_bucket_return": 0.040846,
+          "bottom_bucket_return": 0.069262,
+          "spread": -0.028416,
+          "factor_ic": {
+            "momentum": 0.004212,
+            "relative_strength": -0.0351,
+            "trend_quality": 0.018624,
+            "risk_adjusted": -0.010179,
+            "persistence": -0.097958
+          }
+        },
+        "BEAR_RALLY": {
+          "observation_count": 221,
+          "date_count": 13,
+          "rank_ic": 0.007938,
+          "top_bucket_return": 0.042651,
+          "bottom_bucket_return": 0.029779,
+          "spread": 0.012872,
+          "factor_ic": {
+            "momentum": 0.038274,
+            "relative_strength": -0.014364,
+            "trend_quality": 0.044413,
+            "risk_adjusted": 0.010773,
+            "persistence": -0.092174
+          }
+        },
+        "BULL_BROADENING": {
+          "observation_count": 119,
+          "date_count": 7,
+          "rank_ic": 0.083187,
+          "top_bucket_return": 0.048713,
+          "bottom_bucket_return": -0.030486,
+          "spread": 0.0792,
+          "factor_ic": {
+            "momentum": 0.052299,
+            "relative_strength": 0.073008,
+            "trend_quality": -0.0643,
+            "risk_adjusted": 0.164268,
+            "persistence": -0.031663
+          }
+        },
+        "BULL_DIVERGENCE": {
+          "observation_count": 187,
+          "date_count": 11,
+          "rank_ic": 0.123297,
+          "top_bucket_return": 0.067923,
+          "bottom_bucket_return": 0.022855,
+          "spread": 0.045069,
+          "factor_ic": {
+            "momentum": 0.083091,
+            "relative_strength": 0.150547,
+            "trend_quality": 0.030421,
+            "risk_adjusted": 0.128434,
+            "persistence": 0.304678
+          }
+        },
+        "RANGE_ACCUMULATION": {
+          "observation_count": 629,
+          "date_count": 37,
+          "rank_ic": -0.077296,
+          "top_bucket_return": -0.025019,
+          "bottom_bucket_return": 0.006882,
+          "spread": -0.031901,
+          "factor_ic": {
+            "momentum": -0.123473,
+            "relative_strength": -0.078956,
+            "trend_quality": -0.039361,
+            "risk_adjusted": -0.049339,
+            "persistence": 0.025698
+          }
+        }
+      }
+    },
+    "theme_risk_level": {
+      "5d": {
+        "low": {
+          "observation_count": 1122,
+          "date_count": 66,
+          "rank_ic": -0.015355,
+          "top_bucket_return": 0.004539,
+          "bottom_bucket_return": 0.009428,
+          "spread": -0.004889,
+          "factor_ic": {
+            "momentum": 0.01925,
+            "relative_strength": -0.036388,
+            "trend_quality": 0.048927,
+            "risk_adjusted": -0.000334,
+            "persistence": -0.061743
+          }
+        },
+        "medium": {
+          "observation_count": 199,
+          "date_count": 12,
+          "rank_ic": 0.312771,
+          "top_bucket_return": 0.008322,
+          "bottom_bucket_return": -0.010524,
+          "spread": 0.018846,
+          "factor_ic": {
+            "momentum": 0.217644,
+            "relative_strength": 0.289076,
+            "trend_quality": 0.224046,
+            "risk_adjusted": 0.253135,
+            "persistence": 0.230355
+          }
+        }
+      },
+      "20d": {
+        "low": {
+          "observation_count": 1122,
+          "date_count": 66,
+          "rank_ic": -0.039349,
+          "top_bucket_return": -0.0028,
+          "bottom_bucket_return": 0.008827,
+          "spread": -0.011627,
+          "factor_ic": {
+            "momentum": -0.016328,
+            "relative_strength": -0.044784,
+            "trend_quality": -0.014908,
+            "risk_adjusted": -0.031494,
+            "persistence": -0.022724
+          }
+        },
+        "medium": {
+          "observation_count": 187,
+          "date_count": 11,
+          "rank_ic": -0.037525,
+          "top_bucket_return": -0.023254,
+          "bottom_bucket_return": -0.014104,
+          "spread": -0.00915,
+          "factor_ic": {
+            "momentum": -0.024123,
+            "relative_strength": -0.055841,
+            "trend_quality": 0.020585,
+            "risk_adjusted": -0.041546,
+            "persistence": 0.052635
+          }
+        }
+      },
+      "60d": {
+        "low": {
+          "observation_count": 1105,
+          "date_count": 65,
+          "rank_ic": -0.017501,
+          "top_bucket_return": 0.008575,
+          "bottom_bucket_return": 0.013693,
+          "spread": -0.005119,
+          "factor_ic": {
+            "momentum": -0.03016,
+            "relative_strength": -0.019656,
+            "trend_quality": -0.023056,
+            "risk_adjusted": 0.013495,
+            "persistence": 0.043327
+          }
+        },
+        "medium": {
+          "observation_count": 170,
+          "date_count": 10,
+          "rank_ic": 0.000737,
+          "top_bucket_return": 0.04455,
+          "bottom_bucket_return": 0.027452,
+          "spread": 0.017098,
+          "factor_ic": {
+            "momentum": -0.080098,
+            "relative_strength": 0.009091,
+            "trend_quality": 0.063453,
+            "risk_adjusted": -0.007125,
+            "persistence": -0.06196
+          }
+        }
+      }
+    }
+  },
+  "tradable_etf_validation": {
+    "regime_bucket": {
+      "5d": {
+        "BEAR_REBOUND": {
+          "observation_count": 17,
+          "date_count": 1,
+          "rank_ic": 0.499387,
+          "top_bucket_return": 0.014056,
+          "bottom_bucket_return": -0.019588,
+          "spread": 0.033643,
+          "factor_ic": {
+            "momentum": 0.33497,
+            "relative_strength": 0.477301,
+            "trend_quality": 0.557388,
+            "risk_adjusted": 0.511657,
+            "persistence": 0.079755
+          }
+        },
+        "BROAD_BULL": {
+          "observation_count": 129,
+          "date_count": 8,
+          "rank_ic": 0.067333,
+          "top_bucket_return": -0.002364,
+          "bottom_bucket_return": -0.000904,
+          "spread": -0.00146,
+          "factor_ic": {
+            "momentum": 0.09212,
+            "relative_strength": 0.059462,
+            "trend_quality": 0.128423,
+            "risk_adjusted": 0.053407,
+            "persistence": 0.00109
+          }
+        },
+        "RANGE": {
+          "observation_count": 841,
+          "date_count": 50,
+          "rank_ic": 0.073281,
+          "top_bucket_return": 0.006093,
+          "bottom_bucket_return": 0.011083,
+          "spread": -0.004989,
+          "factor_ic": {
+            "momentum": 0.091421,
+            "relative_strength": 0.062196,
+            "trend_quality": 0.093275,
+            "risk_adjusted": 0.079767,
+            "persistence": 0.023197
+          }
+        },
+        "STRUCTURAL_BULL": {
+          "observation_count": 291,
+          "date_count": 19,
+          "rank_ic": -0.023591,
+          "top_bucket_return": 0.002278,
+          "bottom_bucket_return": 0.012254,
+          "spread": -0.009976,
+          "factor_ic": {
+            "momentum": 0.009042,
+            "relative_strength": -0.055271,
+            "trend_quality": 0.021531,
+            "risk_adjusted": -0.045226,
+            "persistence": -0.130668
+          }
+        }
+      },
+      "20d": {
+        "BEAR_REBOUND": {
+          "observation_count": 17,
+          "date_count": 1,
+          "rank_ic": 0.204908,
+          "top_bucket_return": -0.006493,
+          "bottom_bucket_return": -0.026736,
+          "spread": 0.020243,
+          "factor_ic": {
+            "momentum": 0.123926,
+            "relative_strength": 0.214724,
+            "trend_quality": 0.132122,
+            "risk_adjusted": 0.057669,
+            "persistence": 0.040491
+          }
+        },
+        "BROAD_BULL": {
+          "observation_count": 129,
+          "date_count": 8,
+          "rank_ic": -0.018411,
+          "top_bucket_return": -0.00957,
+          "bottom_bucket_return": -0.010091,
+          "spread": 0.00052,
+          "factor_ic": {
+            "momentum": -0.036734,
+            "relative_strength": -0.05166,
+            "trend_quality": -0.097913,
+            "risk_adjusted": -0.008954,
+            "persistence": -0.212925
+          }
+        },
+        "RANGE": {
+          "observation_count": 841,
+          "date_count": 50,
+          "rank_ic": 0.019438,
+          "top_bucket_return": -0.0016,
+          "bottom_bucket_return": 0.009913,
+          "spread": -0.011513,
+          "factor_ic": {
+            "momentum": 0.037903,
+            "relative_strength": 0.014382,
+            "trend_quality": 0.057684,
+            "risk_adjusted": 0.014467,
+            "persistence": 0.061792
+          }
+        },
+        "STRUCTURAL_BULL": {
+          "observation_count": 289,
+          "date_count": 18,
+          "rank_ic": -0.160884,
+          "top_bucket_return": -0.035114,
+          "bottom_bucket_return": 0.029904,
+          "spread": -0.065018,
+          "factor_ic": {
+            "momentum": -0.149418,
+            "relative_strength": -0.16783,
+            "trend_quality": -0.057395,
+            "risk_adjusted": -0.140313,
+            "persistence": -0.017423
+          }
+        }
+      },
+      "60d": {
+        "BEAR_REBOUND": {
+          "observation_count": 17,
+          "date_count": 1,
+          "rank_ic": 0.703068,
+          "top_bucket_return": 0.065837,
+          "bottom_bucket_return": -0.048852,
+          "spread": 0.114689,
+          "factor_ic": {
+            "momentum": 0.646626,
+            "relative_strength": 0.666258,
+            "trend_quality": 0.583537,
+            "risk_adjusted": 0.590184,
+            "persistence": 0.357055
+          }
+        },
+        "BROAD_BULL": {
+          "observation_count": 112,
+          "date_count": 7,
+          "rank_ic": 0.14136,
+          "top_bucket_return": 0.041883,
+          "bottom_bucket_return": -0.012591,
+          "spread": 0.054474,
+          "factor_ic": {
+            "momentum": 0.087892,
+            "relative_strength": 0.088218,
+            "trend_quality": -0.031717,
+            "risk_adjusted": 0.193723,
+            "persistence": 0.079047
+          }
+        },
+        "RANGE": {
+          "observation_count": 824,
+          "date_count": 49,
+          "rank_ic": -0.038535,
+          "top_bucket_return": -0.012599,
+          "bottom_bucket_return": 0.018214,
+          "spread": -0.030813,
+          "factor_ic": {
+            "momentum": -0.037009,
+            "relative_strength": -0.038215,
+            "trend_quality": 0.002453,
+            "risk_adjusted": -0.044308,
+            "persistence": -0.002376
+          }
+        },
+        "STRUCTURAL_BULL": {
+          "observation_count": 289,
+          "date_count": 18,
+          "rank_ic": 0.066256,
+          "top_bucket_return": -0.009316,
+          "bottom_bucket_return": 0.027491,
+          "spread": -0.036807,
+          "factor_ic": {
+            "momentum": -0.007961,
+            "relative_strength": 0.068642,
+            "trend_quality": 0.106401,
+            "risk_adjusted": 0.115799,
+            "persistence": 0.137571
+          }
+        }
+      }
+    },
+    "structural_state": {
+      "5d": {
+        "BEAR_REBOUND": {
+          "observation_count": 17,
+          "date_count": 1,
+          "rank_ic": 0.499387,
+          "top_bucket_return": 0.014056,
+          "bottom_bucket_return": -0.019588,
+          "spread": 0.033643,
+          "factor_ic": {
+            "momentum": 0.33497,
+            "relative_strength": 0.477301,
+            "trend_quality": 0.557388,
+            "risk_adjusted": 0.511657,
+            "persistence": 0.079755
+          }
+        },
+        "BROAD_BULL": {
+          "observation_count": 129,
+          "date_count": 8,
+          "rank_ic": 0.067333,
+          "top_bucket_return": -0.002364,
+          "bottom_bucket_return": -0.000904,
+          "spread": -0.00146,
+          "factor_ic": {
+            "momentum": 0.09212,
+            "relative_strength": 0.059462,
+            "trend_quality": 0.128423,
+            "risk_adjusted": 0.053407,
+            "persistence": 0.00109
+          }
+        },
+        "RANGE": {
+          "observation_count": 841,
+          "date_count": 50,
+          "rank_ic": 0.073281,
+          "top_bucket_return": 0.006093,
+          "bottom_bucket_return": 0.011083,
+          "spread": -0.004989,
+          "factor_ic": {
+            "momentum": 0.091421,
+            "relative_strength": 0.062196,
+            "trend_quality": 0.093275,
+            "risk_adjusted": 0.079767,
+            "persistence": 0.023197
+          }
+        },
+        "STRUCTURAL_BULL_ROTATION": {
+          "observation_count": 291,
+          "date_count": 19,
+          "rank_ic": -0.023591,
+          "top_bucket_return": 0.002278,
+          "bottom_bucket_return": 0.012254,
+          "spread": -0.009976,
+          "factor_ic": {
+            "momentum": 0.009042,
+            "relative_strength": -0.055271,
+            "trend_quality": 0.021531,
+            "risk_adjusted": -0.045226,
+            "persistence": -0.130668
+          }
+        }
+      },
+      "20d": {
+        "BEAR_REBOUND": {
+          "observation_count": 17,
+          "date_count": 1,
+          "rank_ic": 0.204908,
+          "top_bucket_return": -0.006493,
+          "bottom_bucket_return": -0.026736,
+          "spread": 0.020243,
+          "factor_ic": {
+            "momentum": 0.123926,
+            "relative_strength": 0.214724,
+            "trend_quality": 0.132122,
+            "risk_adjusted": 0.057669,
+            "persistence": 0.040491
+          }
+        },
+        "BROAD_BULL": {
+          "observation_count": 129,
+          "date_count": 8,
+          "rank_ic": -0.018411,
+          "top_bucket_return": -0.00957,
+          "bottom_bucket_return": -0.010091,
+          "spread": 0.00052,
+          "factor_ic": {
+            "momentum": -0.036734,
+            "relative_strength": -0.05166,
+            "trend_quality": -0.097913,
+            "risk_adjusted": -0.008954,
+            "persistence": -0.212925
+          }
+        },
+        "RANGE": {
+          "observation_count": 841,
+          "date_count": 50,
+          "rank_ic": 0.019438,
+          "top_bucket_return": -0.0016,
+          "bottom_bucket_return": 0.009913,
+          "spread": -0.011513,
+          "factor_ic": {
+            "momentum": 0.037903,
+            "relative_strength": 0.014382,
+            "trend_quality": 0.057684,
+            "risk_adjusted": 0.014467,
+            "persistence": 0.061792
+          }
+        },
+        "STRUCTURAL_BULL_ROTATION": {
+          "observation_count": 289,
+          "date_count": 18,
+          "rank_ic": -0.160884,
+          "top_bucket_return": -0.035114,
+          "bottom_bucket_return": 0.029904,
+          "spread": -0.065018,
+          "factor_ic": {
+            "momentum": -0.149418,
+            "relative_strength": -0.16783,
+            "trend_quality": -0.057395,
+            "risk_adjusted": -0.140313,
+            "persistence": -0.017423
+          }
+        }
+      },
+      "60d": {
+        "BEAR_REBOUND": {
+          "observation_count": 17,
+          "date_count": 1,
+          "rank_ic": 0.703068,
+          "top_bucket_return": 0.065837,
+          "bottom_bucket_return": -0.048852,
+          "spread": 0.114689,
+          "factor_ic": {
+            "momentum": 0.646626,
+            "relative_strength": 0.666258,
+            "trend_quality": 0.583537,
+            "risk_adjusted": 0.590184,
+            "persistence": 0.357055
+          }
+        },
+        "BROAD_BULL": {
+          "observation_count": 112,
+          "date_count": 7,
+          "rank_ic": 0.14136,
+          "top_bucket_return": 0.041883,
+          "bottom_bucket_return": -0.012591,
+          "spread": 0.054474,
+          "factor_ic": {
+            "momentum": 0.087892,
+            "relative_strength": 0.088218,
+            "trend_quality": -0.031717,
+            "risk_adjusted": 0.193723,
+            "persistence": 0.079047
+          }
+        },
+        "RANGE": {
+          "observation_count": 824,
+          "date_count": 49,
+          "rank_ic": -0.038535,
+          "top_bucket_return": -0.012599,
+          "bottom_bucket_return": 0.018214,
+          "spread": -0.030813,
+          "factor_ic": {
+            "momentum": -0.037009,
+            "relative_strength": -0.038215,
+            "trend_quality": 0.002453,
+            "risk_adjusted": -0.044308,
+            "persistence": -0.002376
+          }
+        },
+        "STRUCTURAL_BULL_ROTATION": {
+          "observation_count": 289,
+          "date_count": 18,
+          "rank_ic": 0.066256,
+          "top_bucket_return": -0.009316,
+          "bottom_bucket_return": 0.027491,
+          "spread": -0.036807,
+          "factor_ic": {
+            "momentum": -0.007961,
+            "relative_strength": 0.068642,
+            "trend_quality": 0.106401,
+            "risk_adjusted": 0.115799,
+            "persistence": 0.137571
+          }
+        }
+      }
+    },
+    "macro_state": {
+      "5d": {
+        "BOTTOMING": {
+          "observation_count": 102,
+          "date_count": 6,
+          "rank_ic": -0.000409,
+          "top_bucket_return": 0.032749,
+          "bottom_bucket_return": 0.085215,
+          "spread": -0.052466,
+          "factor_ic": {
+            "momentum": 0.063395,
+            "relative_strength": -0.033947,
+            "trend_quality": 0.000712,
+            "risk_adjusted": 0.056851,
+            "persistence": -0.199182
+          }
+        },
+        "RANGE": {
+          "observation_count": 68,
+          "date_count": 4,
+          "rank_ic": -0.170859,
+          "top_bucket_return": -0.044596,
+          "bottom_bucket_return": -0.01951,
+          "spread": -0.025086,
+          "factor_ic": {
+            "momentum": -0.103374,
+            "relative_strength": -0.197239,
+            "trend_quality": -0.027317,
+            "risk_adjusted": -0.161657,
+            "persistence": -0.084626
+          }
+        },
+        "RECOVERY": {
+          "observation_count": 1108,
+          "date_count": 68,
+          "rank_ic": 0.07408,
+          "top_bucket_return": 0.004817,
+          "bottom_bucket_return": 0.004696,
+          "spread": 0.00012,
+          "factor_ic": {
+            "momentum": 0.087147,
+            "relative_strength": 0.060605,
+            "trend_quality": 0.100613,
+            "risk_adjusted": 0.065951,
+            "persistence": 0.006416
+          }
+        }
+      },
+      "20d": {
+        "BOTTOMING": {
+          "observation_count": 102,
+          "date_count": 6,
+          "rank_ic": 0.09407,
+          "top_bucket_return": 0.019282,
+          "bottom_bucket_return": 0.06496,
+          "spread": -0.045678,
+          "factor_ic": {
+            "momentum": 0.176278,
+            "relative_strength": 0.110429,
+            "trend_quality": 0.154547,
+            "risk_adjusted": 0.157873,
+            "persistence": 0.03681
+          }
+        },
+        "RANGE": {
+          "observation_count": 68,
+          "date_count": 4,
+          "rank_ic": -0.012962,
+          "top_bucket_return": -0.028521,
+          "bottom_bucket_return": -0.018916,
+          "spread": -0.009604,
+          "factor_ic": {
+            "momentum": 0.119272,
+            "relative_strength": -0.018785,
+            "trend_quality": 0.088572,
+            "risk_adjusted": -0.026163,
+            "persistence": 0.105997
+          }
+        },
+        "RECOVERY": {
+          "observation_count": 1106,
+          "date_count": 67,
+          "rank_ic": -0.035507,
+          "top_bucket_return": -0.011891,
+          "bottom_bucket_return": 0.00914,
+          "spread": -0.021031,
+          "factor_ic": {
+            "momentum": -0.037299,
+            "relative_strength": -0.046087,
+            "trend_quality": -0.001219,
+            "risk_adjusted": -0.039684,
+            "persistence": 0.006988
+          }
+        }
+      },
+      "60d": {
+        "BOTTOMING": {
+          "observation_count": 102,
+          "date_count": 6,
+          "rank_ic": -0.006953,
+          "top_bucket_return": 0.045409,
+          "bottom_bucket_return": 0.104799,
+          "spread": -0.05939,
+          "factor_ic": {
+            "momentum": 0.050307,
+            "relative_strength": -0.015542,
+            "trend_quality": 0.038901,
+            "risk_adjusted": 0.05726,
+            "persistence": 0.022904
+          }
+        },
+        "RANGE": {
+          "observation_count": 68,
+          "date_count": 4,
+          "rank_ic": -0.074233,
+          "top_bucket_return": -0.005872,
+          "bottom_bucket_return": 0.035665,
+          "spread": -0.041537,
+          "factor_ic": {
+            "momentum": -0.041718,
+            "relative_strength": -0.080982,
+            "trend_quality": 0.110762,
+            "risk_adjusted": -0.006135,
+            "persistence": 0.099312
+          }
+        },
+        "RECOVERY": {
+          "observation_count": 1072,
+          "date_count": 65,
+          "rank_ic": 0.020548,
+          "top_bucket_return": -0.010385,
+          "bottom_bucket_return": 0.007367,
+          "spread": -0.017752,
+          "factor_ic": {
+            "momentum": -0.012767,
+            "relative_strength": 0.016369,
+            "trend_quality": 0.026469,
+            "risk_adjusted": 0.0237,
+            "persistence": 0.042086
+          }
+        }
+      }
+    },
+    "market_structure_state": {
+      "5d": {
+        "BEAR_BREAKDOWN": {
+          "observation_count": 119,
+          "date_count": 7,
+          "rank_ic": -0.19702,
+          "top_bucket_return": -0.009304,
+          "bottom_bucket_return": -0.002131,
+          "spread": -0.007173,
+          "factor_ic": {
+            "momentum": -0.189658,
+            "relative_strength": -0.19036,
+            "trend_quality": -0.103262,
+            "risk_adjusted": -0.176687,
+            "persistence": -0.1409
+          }
+        },
+        "BEAR_RALLY": {
+          "observation_count": 218,
+          "date_count": 13,
+          "rank_ic": 0.095082,
+          "top_bucket_return": 0.024005,
+          "bottom_bucket_return": 0.043496,
+          "spread": -0.019491,
+          "factor_ic": {
+            "momentum": 0.161969,
+            "relative_strength": 0.076155,
+            "trend_quality": 0.152813,
+            "risk_adjusted": 0.130004,
+            "persistence": -0.042873
+          }
+        },
+        "BULL_BROADENING": {
+          "observation_count": 129,
+          "date_count": 8,
+          "rank_ic": 0.067333,
+          "top_bucket_return": -0.002364,
+          "bottom_bucket_return": -0.000904,
+          "spread": -0.00146,
+          "factor_ic": {
+            "momentum": 0.09212,
+            "relative_strength": 0.059462,
+            "trend_quality": 0.128423,
+            "risk_adjusted": 0.053407,
+            "persistence": 0.00109
+          }
+        },
+        "BULL_DIVERGENCE": {
+          "observation_count": 196,
+          "date_count": 12,
+          "rank_ic": 0.050367,
+          "top_bucket_return": -0.00727,
+          "bottom_bucket_return": -0.002543,
+          "spread": -0.004727,
+          "factor_ic": {
+            "momentum": 0.120027,
+            "relative_strength": 0.025457,
+            "trend_quality": 0.029746,
+            "risk_adjusted": 0.028807,
+            "persistence": 0.055929
+          }
+        },
+        "RANGE_ACCUMULATION": {
+          "observation_count": 616,
+          "date_count": 38,
+          "rank_ic": 0.088581,
+          "top_bucket_return": 0.005406,
+          "bottom_bucket_return": 0.006354,
+          "spread": -0.000948,
+          "factor_ic": {
+            "momentum": 0.077039,
+            "relative_strength": 0.07106,
+            "trend_quality": 0.107784,
+            "risk_adjusted": 0.078027,
+            "persistence": -0.006484
+          }
+        }
+      },
+      "20d": {
+        "BEAR_BREAKDOWN": {
+          "observation_count": 119,
+          "date_count": 7,
+          "rank_ic": -0.042113,
+          "top_bucket_return": 0.004882,
+          "bottom_bucket_return": 0.008256,
+          "spread": -0.003374,
+          "factor_ic": {
+            "momentum": -0.069969,
+            "relative_strength": -0.030717,
+            "trend_quality": 0.146048,
+            "risk_adjusted": 0.026067,
+            "persistence": 0.191666
+          }
+        },
+        "BEAR_RALLY": {
+          "observation_count": 218,
+          "date_count": 13,
+          "rank_ic": 0.051202,
+          "top_bucket_return": 0.018116,
+          "bottom_bucket_return": 0.034364,
+          "spread": -0.016248,
+          "factor_ic": {
+            "momentum": 0.061501,
+            "relative_strength": 0.027587,
+            "trend_quality": 0.045831,
+            "risk_adjusted": 0.013587,
+            "persistence": 0.007126
+          }
+        },
+        "BULL_BROADENING": {
+          "observation_count": 129,
+          "date_count": 8,
+          "rank_ic": -0.018411,
+          "top_bucket_return": -0.00957,
+          "bottom_bucket_return": -0.010091,
+          "spread": 0.00052,
+          "factor_ic": {
+            "momentum": -0.036734,
+            "relative_strength": -0.05166,
+            "trend_quality": -0.097913,
+            "risk_adjusted": -0.008954,
+            "persistence": -0.212925
+          }
+        },
+        "BULL_DIVERGENCE": {
+          "observation_count": 196,
+          "date_count": 12,
+          "rank_ic": -0.039663,
+          "top_bucket_return": 0.013035,
+          "bottom_bucket_return": 0.021356,
+          "spread": -0.008321,
+          "factor_ic": {
+            "momentum": 0.044827,
+            "relative_strength": 0.03397,
+            "trend_quality": 0.039404,
+            "risk_adjusted": -0.007872,
+            "persistence": 0.201477
+          }
+        },
+        "RANGE_ACCUMULATION": {
+          "observation_count": 614,
+          "date_count": 37,
+          "rank_ic": -0.043621,
+          "top_bucket_return": -0.030937,
+          "bottom_bucket_return": 0.006659,
+          "spread": -0.037595,
+          "factor_ic": {
+            "momentum": -0.041029,
+            "relative_strength": -0.071308,
+            "trend_quality": -0.002913,
+            "risk_adjusted": -0.054304,
+            "persistence": -0.027988
+          }
+        }
+      },
+      "60d": {
+        "BEAR_BREAKDOWN": {
+          "observation_count": 119,
+          "date_count": 7,
+          "rank_ic": -0.025767,
+          "top_bucket_return": 0.041582,
+          "bottom_bucket_return": 0.038004,
+          "spread": 0.003579,
+          "factor_ic": {
+            "momentum": 0.014198,
+            "relative_strength": -0.011744,
+            "trend_quality": 0.063485,
+            "risk_adjusted": -0.001227,
+            "persistence": -0.077671
+          }
+        },
+        "BEAR_RALLY": {
+          "observation_count": 218,
+          "date_count": 13,
+          "rank_ic": 0.061912,
+          "top_bucket_return": 0.045687,
+          "bottom_bucket_return": 0.032824,
+          "spread": 0.012863,
+          "factor_ic": {
+            "momentum": 0.111002,
+            "relative_strength": 0.031537,
+            "trend_quality": 0.105527,
+            "risk_adjusted": 0.055812,
+            "persistence": -0.037268
+          }
+        },
+        "BULL_BROADENING": {
+          "observation_count": 112,
+          "date_count": 7,
+          "rank_ic": 0.14136,
+          "top_bucket_return": 0.041883,
+          "bottom_bucket_return": -0.012591,
+          "spread": 0.054474,
+          "factor_ic": {
+            "momentum": 0.087892,
+            "relative_strength": 0.088218,
+            "trend_quality": -0.031717,
+            "risk_adjusted": 0.193723,
+            "persistence": 0.079047
+          }
+        },
+        "BULL_DIVERGENCE": {
+          "observation_count": 179,
+          "date_count": 11,
+          "rank_ic": 0.004149,
+          "top_bucket_return": 0.041371,
+          "bottom_bucket_return": 0.006914,
+          "spread": 0.034457,
+          "factor_ic": {
+            "momentum": -0.061294,
+            "relative_strength": 0.007861,
+            "trend_quality": -0.028372,
+            "risk_adjusted": 0.001538,
+            "persistence": 0.235502
+          }
+        },
+        "RANGE_ACCUMULATION": {
+          "observation_count": 614,
+          "date_count": 37,
+          "rank_ic": -0.01791,
+          "top_bucket_return": -0.055657,
+          "bottom_bucket_return": 0.015396,
+          "spread": -0.071054,
+          "factor_ic": {
+            "momentum": -0.058874,
+            "relative_strength": -0.010405,
+            "trend_quality": 0.03013,
+            "risk_adjusted": -0.006227,
+            "persistence": 0.031204
+          }
+        }
+      }
+    },
+    "theme_risk_level": {
+      "5d": {
+        "low": {
+          "observation_count": 1098,
+          "date_count": 66,
+          "rank_ic": -0.002073,
+          "top_bucket_return": 0.004292,
+          "bottom_bucket_return": 0.012738,
+          "spread": -0.008446,
+          "factor_ic": {
+            "momentum": 0.031305,
+            "relative_strength": -0.019366,
+            "trend_quality": 0.052318,
+            "risk_adjusted": 0.002584,
+            "persistence": -0.066129
+          }
+        },
+        "medium": {
+          "observation_count": 180,
+          "date_count": 12,
+          "rank_ic": 0.401302,
+          "top_bucket_return": 0.00523,
+          "bottom_bucket_return": -0.008437,
+          "spread": 0.013667,
+          "factor_ic": {
+            "momentum": 0.339962,
+            "relative_strength": 0.395094,
+            "trend_quality": 0.289374,
+            "risk_adjusted": 0.358425,
+            "persistence": 0.296438
+          }
+        }
+      },
+      "20d": {
+        "low": {
+          "observation_count": 1098,
+          "date_count": 66,
+          "rank_ic": -0.022222,
+          "top_bucket_return": -0.009577,
+          "bottom_bucket_return": 0.015339,
+          "spread": -0.024916,
+          "factor_ic": {
+            "momentum": -0.008627,
+            "relative_strength": -0.030317,
+            "trend_quality": 0.012434,
+            "risk_adjusted": -0.02185,
+            "persistence": 0.018845
+          }
+        },
+        "medium": {
+          "observation_count": 178,
+          "date_count": 11,
+          "rank_ic": -0.036342,
+          "top_bucket_return": -0.014821,
+          "bottom_bucket_return": -0.007814,
+          "spread": -0.007006,
+          "factor_ic": {
+            "momentum": -0.0359,
+            "relative_strength": -0.04541,
+            "trend_quality": 0.034478,
+            "risk_adjusted": -0.034015,
+            "persistence": -0.011884
+          }
+        }
+      },
+      "60d": {
+        "low": {
+          "observation_count": 1081,
+          "date_count": 65,
+          "rank_ic": 0.002074,
+          "top_bucket_return": -0.015223,
+          "bottom_bucket_return": 0.014499,
+          "spread": -0.029722,
+          "factor_ic": {
+            "momentum": -0.017505,
+            "relative_strength": -0.009126,
+            "trend_quality": 0.012772,
+            "risk_adjusted": 0.014071,
+            "persistence": 0.051095
+          }
+        },
+        "medium": {
+          "observation_count": 161,
+          "date_count": 10,
+          "rank_ic": 0.08622,
+          "top_bucket_return": 0.056345,
+          "bottom_bucket_return": 0.030785,
+          "spread": 0.02556,
+          "factor_ic": {
+            "momentum": 0.044292,
+            "relative_strength": 0.124001,
+            "trend_quality": 0.156677,
+            "risk_adjusted": 0.094491,
+            "persistence": -0.005094
+          }
+        }
+      }
+    }
+  },
+  "constraints": {
+    "uses_existing_score": true,
+    "formula_changed_from_v3_2_1": false,
+    "walk_forward": true,
+    "no_future_data": true,
+    "state_signal_uses_last_known_signal": true,
+    "proxy_return_and_etf_return_separated": true,
+    "no_new_factor": true,
+    "no_allocation": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_backtest_portfolio": true,
+    "no_parameter_optimization": true,
+    "does_not_modify_v2": true
+  },
+  "notes": [
+    "Each observation is assigned the latest V2 state signal whose signal date is not after the score date.",
+    "This module slices validation results by state; it does not change the score, add factors, or produce allocation."
+  ]
+}
