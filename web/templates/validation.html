@@ -260,6 +260,34 @@
           <p class="result-note" id="phaseEffectivenessConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="把固定 V4.4 政策模式映射为 DEFENSIVE/LOW/BALANCED/HIGH/OFFENSIVE 定性暴露等级，历史重放检查高风险环境是否过于激进、强机会环境是否过度保守；只做模拟验证，不输出仓位百分比、ETF、权重或交易信号。">定性暴露等级模拟</h2>
+            <span class="panel-kicker">V5.1</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>当前等级</span>
+              <strong id="exposureSimulationCurrent">--</strong>
+            </div>
+            <div class="result-row">
+              <span>重放样本</span>
+              <strong id="exposureSimulationRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>矛盾率</span>
+              <strong id="exposureSimulationContradictionRate">--</strong>
+            </div>
+            <div class="result-row">
+              <span>机会错失率</span>
+              <strong id="exposureSimulationOpportunityMissRate">--</strong>
+            </div>
+          </div>
+          <div class="alpha-source-list" id="exposureSimulationDistribution"></div>
+          <div class="duration-list" id="exposureSimulationPeriods"></div>
+          <p class="result-note" id="exposureSimulationConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -350,7 +378,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-phase-effectiveness-1"></script>
+    <script src="/static/dashboard.js?v=20260708-exposure-simulation-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

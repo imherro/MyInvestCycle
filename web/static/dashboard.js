@@ -521,6 +521,31 @@ function phaseReviewItemLabel(value) {
   return labels[value] || value || "--";
 }
 
+function qualitativeExposureLabel(value) {
+  const labels = {
+    DEFENSIVE: "防守",
+    LOW: "低暴露",
+    BALANCED: "均衡",
+    HIGH: "高暴露",
+    OFFENSIVE: "进攻",
+  };
+  return labels[value] || value || "--";
+}
+
+function exposureBandLabel(value) {
+  const labels = {
+    defensive_research_exposure: "防守研究暴露",
+    low_research_exposure: "低研究暴露",
+    balanced_research_exposure: "均衡研究暴露",
+    balanced_with_controls: "均衡但保留控制",
+    selective_balanced_research_exposure: "选择性均衡",
+    high_research_exposure: "高研究暴露",
+    risk_reduced_research_exposure: "风险压降",
+    late_cycle_crowding_control: "后期拥挤控制",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1123,6 +1148,10 @@ function setResultsPanel(results) {
   const phaseEffectiveness = results.phase_effectiveness || {};
   const phaseEffectivenessSummary = phaseEffectiveness.summary || {};
   const phaseModelComparison = phaseEffectivenessSummary.model_comparison || {};
+  const exposureSimulation = results.exposure_simulation || {};
+  const exposureSimulationCurrent = exposureSimulation.current || {};
+  const exposureSimulationSummary = exposureSimulation.summary || {};
+  const exposureSimulationAudit = exposureSimulationSummary.audit || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -1731,6 +1760,45 @@ function setResultsPanel(results) {
     phaseEffectiveness.metadata
       ? `V4.7 固定 V4.6 阶段规则做审计：${phaseEffectivenessVerdictLabel(phaseModelComparison.phase_vs_structural)}，Phase 风险区分 ${percentText(phaseModelComparison.phase_high_risk_rate_spread)}，旧结构 ${percentText(phaseModelComparison.structural_high_risk_rate_spread)}，复核项 ${integerText(phaseEffectivenessSummary.review_item_count)} 个。该层不调阈值、不输出仓位或交易。`
       : "V4.7 阶段解释力复核尚未生成。"
+  );
+
+  setText("exposureSimulationCurrent", qualitativeExposureLabel(exposureSimulationCurrent.exposure_level));
+  setText("exposureSimulationRows", integerText(exposureSimulationSummary.replay_count));
+  setText("exposureSimulationContradictionRate", percentText(exposureSimulationAudit.contradiction_rate));
+  setText("exposureSimulationOpportunityMissRate", percentText(exposureSimulationAudit.opportunity_miss_rate));
+  const exposureDistribution = exposureSimulationSummary.exposure_level_distribution || {};
+  setHtml("exposureSimulationDistribution", Object.entries(exposureDistribution)
+    .sort(([, a], [, b]) => (b.share || 0) - (a.share || 0))
+    .map(
+      ([level, item]) => `
+        <div class="alpha-source-row">
+          <span>${qualitativeExposureLabel(level)}</span>
+          <strong>${percentText(item.share)}</strong>
+        </div>
+      `
+    )
+    .join(""));
+  setHtml("exposureSimulationPeriods", (exposureSimulation.period_validation || [])
+    .map(
+      (period) => {
+        const distribution = period.exposure_level_distribution || {};
+        const [dominantLevel, dominantItem] = Object.entries(distribution)
+          .sort(([, a], [, b]) => (b.share || 0) - (a.share || 0))[0] || ["--", {}];
+        return `
+          <div class="duration-row">
+            <span>${escapeHtml(period.label || period.period || "--")}</span>
+            <strong>${qualitativeExposureLabel(dominantLevel)}</strong>
+            <em>矛盾 ${percentText(period.contradiction_rate)} · ${integerText(period.usable_rows)} 次 · ${percentText(dominantItem.share)}</em>
+          </div>
+        `;
+      }
+    )
+    .join(""));
+  setText(
+    "exposureSimulationConclusion",
+    exposureSimulation.metadata
+      ? `V5.1 当前定性等级为${qualitativeExposureLabel(exposureSimulationCurrent.exposure_level)}（${exposureBandLabel(exposureSimulationCurrent.exposure_band)}）：历史重放 ${integerText(exposureSimulationSummary.replay_count)} 次，矛盾率 ${percentText(exposureSimulationAudit.contradiction_rate)}，机会错失率 ${percentText(exposureSimulationAudit.opportunity_miss_rate)}。该层只做模拟验证，不输出仓位百分比、ETF、权重或交易信号。`
+      : "V5.1 定性暴露等级模拟尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
