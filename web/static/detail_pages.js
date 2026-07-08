@@ -385,6 +385,14 @@ function setProbabilityRow(id, value) {
   setText(id, percentText(value));
 }
 
+function forecastCaveatText(confidence) {
+  const dominant = confidence?.dominant_outcome || "最高概率情形";
+  const dominantProbability = percentText(confidence?.dominant_probability);
+  const gap = percentText(confidence?.probability_gap);
+  const level = confidence?.level_label || "--";
+  return `${dominant}只是当前样本中的最高概率，概率 ${dominantProbability}，领先第二情形 ${gap}；展望置信度为${level}，不应解读为确定方向。`;
+}
+
 async function renderCycleTrackPage() {
   const track = await getJson("/api/regime/cycle/track");
   const cycle = track.cycle || {};
@@ -402,6 +410,7 @@ async function renderCycleTrackPage() {
   setProbabilityRow("probContinue", probabilities.continue);
   setProbabilityRow("probRange", probabilities.range);
   setProbabilityRow("probWeaken", probabilities.weaken);
+  setText("forecastCaveat", forecastCaveatText(confidence));
   setText("forecastConfidenceReason", confidence.reason || "--");
   const explanation = forecast.explanation || {};
   setText("explanationSummary", explanation.summary || "--");

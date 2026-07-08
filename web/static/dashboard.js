@@ -9,12 +9,40 @@ function setRegimePanel(current) {
   if (!panel) return;
   const color = REGIME_COLORS[current.regime] || REGIME_COLORS.range;
   panel.style.borderLeftColor = color;
-  setText("regimeName", regimeLabel(current.regime));
+  setText("regimeName", shortTermRegimeLabel(current.regime));
   const name = document.getElementById("regimeName");
   if (name) name.style.color = color;
-  setText("asOf", toIsoDate(current.as_of));
+  setText("asOf", `数据基准日 ${toIsoDate(current.as_of)}`);
+  setText("dataAsOfValue", toIsoDate(current.as_of));
   setText("confidenceValue", scorePercent(current.confidence));
   setText("regimeScoreValue", scorePercent(current.regime_score));
+}
+
+function shortTermRegimeLabel(regime) {
+  const labels = {
+    bull: "短期强势",
+    bear: "短期弱势",
+    range: "短期震荡",
+    transition: "短期分歧",
+    recovery: "短期修复",
+    contraction: "风险收缩",
+  };
+  return labels[regime] || regimeLabel(regime);
+}
+
+function setRegimeContextNote(current, cycle) {
+  const currentLabel = shortTermRegimeLabel(current?.regime);
+  const cycleState = cycle?.current_cycle?.state;
+  const cycleLabel = cycleState ? `${regimeLabel(cycleState)}主周期` : "长期主周期";
+  const drivers = [];
+  if (typeof current?.trend_score === "number") drivers.push(`趋势 ${scorePercent(current.trend_score)}`);
+  if (typeof current?.breadth_score === "number") drivers.push(`宽度 ${scorePercent(current.breadth_score)}`);
+  const driverText = drivers.length ? `，当前主要证据是${drivers.join("、")}` : "";
+  const asOfText = current?.as_of ? `数据基准日 ${toIsoDate(current.as_of)}。` : "";
+  setText(
+    "regimeContextNote",
+    `${asOfText}短期风控状态为“${currentLabel}”，只代表趋势、宽度、流动性、波动稳定性的短期温度${driverText}；长期判断仍按“${cycleLabel}”单独观察。`
+  );
 }
 
 function setScoreList(scores) {
@@ -49,7 +77,7 @@ function setCyclePanel(phase) {
   const title = document.getElementById("cycleTitle");
   if (!title) return;
   const color = REGIME_COLORS[phase.regime] || REGIME_COLORS.range;
-  title.textContent = `${regimeLabel(phase.regime)}大周期`;
+  title.textContent = `${regimeLabel(phase.regime)}主周期`;
   title.style.color = color;
   setText("cycleStart", `${toIsoDate(phase.startDate)} · 上证 ${phase.startClose}`);
   setText("cycleEnd", phase.endDate ? toIsoDate(phase.endDate) : "进行中");
@@ -1308,6 +1336,7 @@ async function loadDashboard() {
       if (document.getElementById("radarChart")) renderRadar("radarChart", current.sub_scores);
     }
     if (cycle) setCyclePanel(phaseFromMajorCycle(cycle));
+    if (current && cycle) setRegimeContextNote(current, cycle);
     if (results) setResultsPanel(results);
     if (results && document.getElementById("shadowEquityChart")) renderShadowEquityChart("shadowEquityChart", results.shadow_backtest || {});
     if (results && document.getElementById("rotationBacktestChart")) renderEtfRotationBacktestChart("rotationBacktestChart", results.etf_rotation_backtest || {});

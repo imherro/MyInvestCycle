@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle 宏观周期</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260629-channels-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260708-regime-copy-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body data-page="dashboard">
@@ -13,7 +13,7 @@
       <header class="topbar">
         <div>
           <p class="eyebrow">MyInvestCycle</p>
-          <h1>A股宏观周期状态</h1>
+          <h1>A股宏观周期总览</h1>
         </div>
         <button class="refresh-button" id="refreshButton" type="button">刷新</button>
       </header>
@@ -51,33 +51,38 @@
 
       <section class="status-grid" aria-live="polite">
         <article class="regime-panel" id="regimePanel">
-          <div class="panel-label">当前状态</div>
+          <div class="panel-label">短期风控状态</div>
           <div class="regime-name" id="regimeName">--</div>
           <div class="as-of" id="asOf">--</div>
         </article>
         <article class="metric-panel">
-          <div class="panel-label">置信度</div>
+          <div class="panel-label">短期置信度</div>
           <div class="metric-value" id="confidenceValue">--</div>
         </article>
         <article class="metric-panel">
-          <div class="panel-label">综合分</div>
+          <div class="panel-label">短期综合分</div>
           <div class="metric-value" id="regimeScoreValue">--</div>
         </article>
+        <article class="metric-panel">
+          <div class="panel-label">数据基准日</div>
+          <div class="metric-value metric-date" id="dataAsOfValue">--</div>
+        </article>
       </section>
+      <p class="context-note" id="regimeContextNote">--</p>
 
       <section class="channel-section" id="cycle-channel">
         <div class="dashboard-section-heading">
           <div>
             <span>Macro Cycle</span>
-            <h2>宏观周期判断</h2>
+            <h2>长期主周期判断</h2>
           </div>
-          <p>首页只保留宏观层信息：当前牛熊状态、本轮周期位置和四维评分。</p>
+          <p>首页把短期风控温度、长期主周期和四维评分分开显示，避免把不同模型口径混成一个牛熊结论。</p>
         </div>
 
         <section class="cycle-score-row">
           <section class="cycle-panel" aria-live="polite">
             <div class="cycle-cell cycle-state-cell">
-              <div class="panel-label">当前阶段定位</div>
+              <div class="panel-label">长期阶段定位</div>
               <div class="cycle-title" id="cycleTitle">--</div>
             </div>
             <div class="cycle-cell">
@@ -96,7 +101,7 @@
 
           <article class="chart-panel radar-panel">
             <div class="panel-heading">
-              <h2 class="help-title" tabindex="0" data-help="把趋势、宽度、流动性和波动稳定性合成当前市场状态的基础证据。">四维评分</h2>
+              <h2 class="help-title" tabindex="0" data-help="短期风控状态的证据来源：趋势、宽度、流动性和波动稳定性。它不等同于长期牛熊主周期。">短期四维评分</h2>
             </div>
             <div class="compact-scores" id="scoreList"></div>
             <div class="chart-box radar-box" id="radarChart"></div>
@@ -107,8 +112,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260629-channels-1"></script>
+    <script src="/static/charts.js?v=20260708-regime-copy-1"></script>
+    <script src="/static/dashboard.js?v=20260708-regime-copy-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

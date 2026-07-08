@@ -85,9 +85,21 @@ h2 {
 
 .status-grid {
   display: grid;
-  grid-template-columns: minmax(260px, 1.35fr) repeat(2, minmax(160px, 0.85fr));
+  grid-template-columns: minmax(260px, 1.25fr) repeat(3, minmax(150px, 0.72fr));
   gap: 14px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
+}
+
+.context-note {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  border: 1px solid rgba(38, 99, 235, 0.18);
+  border-radius: 8px;
+  background: rgba(38, 99, 235, 0.06);
+  color: #31405f;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.55;
 }
 
 .regime-panel,
@@ -188,6 +200,11 @@ h2 {
   font-size: 34px;
   font-weight: 800;
   line-height: 1;
+}
+
+.metric-date {
+  font-size: 28px;
+  white-space: nowrap;
 }
 
 .compact-scores {
@@ -1846,6 +1863,15 @@ h2 {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.55;
+}
+
+.warning-note {
+  padding: 9px 10px;
+  border: 1px solid rgba(198, 146, 20, 0.28);
+  border-radius: 8px;
+  background: rgba(198, 146, 20, 0.09);
+  color: #745a12;
+  font-weight: 750;
 }
 
 .duration-list {
