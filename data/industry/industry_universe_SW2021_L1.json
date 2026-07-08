@@ -1,0 +1,199 @@
+{
+  "metadata": {
+    "source_type": "industry_index",
+    "provider": "Tushare",
+    "source": "index_classify",
+    "index_daily_source": "index_daily",
+    "universe": "SW2021 L1",
+    "industry_count": 31,
+    "loaded_from_cache": false
+  },
+  "assets": [
+    {
+      "code": "801010.SI",
+      "name": "农林牧渔",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801030.SI",
+      "name": "基础化工",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801040.SI",
+      "name": "钢铁",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801050.SI",
+      "name": "有色金属",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801080.SI",
+      "name": "电子",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801110.SI",
+      "name": "家用电器",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801120.SI",
+      "name": "食品饮料",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801130.SI",
+      "name": "纺织服饰",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801140.SI",
+      "name": "轻工制造",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801150.SI",
+      "name": "医药生物",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801160.SI",
+      "name": "公用事业",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801170.SI",
+      "name": "交通运输",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801180.SI",
+      "name": "房地产",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801200.SI",
+      "name": "商贸零售",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801210.SI",
+      "name": "社会服务",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801230.SI",
+      "name": "综合",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801710.SI",
+      "name": "建筑材料",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801720.SI",
+      "name": "建筑装饰",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801730.SI",
+      "name": "电力设备",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801740.SI",
+      "name": "国防军工",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801750.SI",
+      "name": "计算机",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801760.SI",
+      "name": "传媒",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801770.SI",
+      "name": "通信",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801780.SI",
+      "name": "银行",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801790.SI",
+      "name": "非银金融",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801880.SI",
+      "name": "汽车",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801890.SI",
+      "name": "机械设备",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801950.SI",
+      "name": "煤炭",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801960.SI",
+      "name": "石油石化",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801970.SI",
+      "name": "环保",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    },
+    {
+      "code": "801980.SI",
+      "name": "美容护理",
+      "source_type": "industry_index",
+      "source": "tushare.index_classify:index_daily:SW2021:L1"
+    }
+  ]
+}

@@ -1,0 +1,861 @@
+{
+  "engine": "V2.3.2 Industry / Theme Opportunity Engine",
+  "requested_as_of": "20260708",
+  "as_of": "20260707",
+  "generated_at": "2026-07-08T06:19:39+00:00",
+  "source_type": "industry_index",
+  "industry_opportunity_score": 65.4773,
+  "industry_strength": 55.1048,
+  "theme_persistence": 82.7922,
+  "top_themes": [
+    {
+      "code": "801080.SI",
+      "name": "电子",
+      "source_type": "industry_index",
+      "strength": 83.1613,
+      "persistence": 98.1931,
+      "composite_score": 89.4747,
+      "return_20d": 0.189673,
+      "return_60d": 0.561513,
+      "relative_60d": 0.504641
+    },
+    {
+      "code": "801710.SI",
+      "name": "建筑材料",
+      "source_type": "industry_index",
+      "strength": 79.4839,
+      "persistence": 92.6125,
+      "composite_score": 84.9979,
+      "return_20d": 0.117915,
+      "return_60d": 0.164263,
+      "relative_60d": 0.107391
+    },
+    {
+      "code": "801890.SI",
+      "name": "机械设备",
+      "source_type": "industry_index",
+      "strength": 72.3871,
+      "persistence": 89.2948,
+      "composite_score": 79.4883,
+      "return_20d": 0.01228,
+      "return_60d": 0.116947,
+      "relative_60d": 0.060075
+    },
+    {
+      "code": "801770.SI",
+      "name": "通信",
+      "source_type": "industry_index",
+      "strength": 61.3548,
+      "persistence": 86.7098,
+      "composite_score": 72.0039,
+      "return_20d": -0.046067,
+      "return_60d": 0.264943,
+      "relative_60d": 0.208071
+    },
+    {
+      "code": "801790.SI",
+      "name": "非银金融",
+      "source_type": "industry_index",
+      "strength": 83.6129,
+      "persistence": 39.8011,
+      "composite_score": 65.2119,
+      "return_20d": 0.061966,
+      "return_60d": -0.023074,
+      "relative_60d": -0.079947
+    },
+    {
+      "code": "801030.SI",
+      "name": "基础化工",
+      "source_type": "industry_index",
+      "strength": 67.4194,
+      "persistence": 47.1508,
+      "composite_score": 58.9066,
+      "return_20d": 0.032224,
+      "return_60d": -0.054098,
+      "relative_60d": -0.11097
+    },
+    {
+      "code": "801230.SI",
+      "name": "综合",
+      "source_type": "industry_index",
+      "strength": 74.5161,
+      "persistence": 29.7543,
+      "composite_score": 55.7161,
+      "return_20d": 0.021955,
+      "return_60d": -0.050463,
+      "relative_60d": -0.107335
+    },
+    {
+      "code": "801780.SI",
+      "name": "银行",
+      "source_type": "industry_index",
+      "strength": 70.0,
+      "persistence": 34.6149,
+      "composite_score": 55.1383,
+      "return_20d": -0.042585,
+      "return_60d": -0.05008,
+      "relative_60d": -0.106952
+    }
+  ],
+  "metrics": {
+    "industry_breadth": 0.0968,
+    "positive_industry_ratio": 0.3226,
+    "top_industry_ratio": 0.2581,
+    "rotation_health": 54.3613,
+    "theme_persistence_score": 82.7922,
+    "ranking_observations": 1860
+  },
+  "benchmark_returns": {
+    "by_code": {
+      "000300.SH": {
+        "return_5d": -0.037588698857428104,
+        "return_20d": 0.016680669304149465,
+        "return_60d": 0.042803612881662234
+      },
+      "000905.SH": {
+        "return_5d": -0.057863844665667186,
+        "return_20d": 0.06847979222681166,
+        "return_60d": 0.0709408391861368
+      }
+    },
+    "average": {
+      "return_5d": -0.047726271761547645,
+      "return_20d": 0.042580230765480565,
+      "return_60d": 0.05687222603389952
+    }
+  },
+  "industries": [
+    {
+      "code": "801790.SI",
+      "name": "非银金融",
+      "source_type": "industry_index",
+      "return_5d": 0.012525,
+      "return_20d": 0.061966,
+      "return_60d": -0.023074,
+      "relative_60d": -0.079947,
+      "rank_percentile": 83.6129,
+      "strength_score": 83.6129
+    },
+    {
+      "code": "801080.SI",
+      "name": "电子",
+      "source_type": "industry_index",
+      "return_5d": -0.116226,
+      "return_20d": 0.189673,
+      "return_60d": 0.561513,
+      "relative_60d": 0.504641,
+      "rank_percentile": 83.1613,
+      "strength_score": 83.1613
+    },
+    {
+      "code": "801710.SI",
+      "name": "建筑材料",
+      "source_type": "industry_index",
+      "return_5d": -0.109188,
+      "return_20d": 0.117915,
+      "return_60d": 0.164263,
+      "relative_60d": 0.107391,
+      "rank_percentile": 79.4839,
+      "strength_score": 79.4839
+    },
+    {
+      "code": "801230.SI",
+      "name": "综合",
+      "source_type": "industry_index",
+      "return_5d": 0.010177,
+      "return_20d": 0.021955,
+      "return_60d": -0.050463,
+      "relative_60d": -0.107335,
+      "rank_percentile": 74.5161,
+      "strength_score": 74.5161
+    },
+    {
+      "code": "801110.SI",
+      "name": "家用电器",
+      "source_type": "industry_index",
+      "return_5d": 0.016225,
+      "return_20d": -0.036252,
+      "return_60d": -0.021425,
+      "relative_60d": -0.078297,
+      "rank_percentile": 74.4516,
+      "strength_score": 74.4516
+    },
+    {
+      "code": "801740.SI",
+      "name": "国防军工",
+      "source_type": "industry_index",
+      "return_5d": -0.02145,
+      "return_20d": 0.02467,
+      "return_60d": -0.049797,
+      "relative_60d": -0.10667,
+      "rank_percentile": 72.9677,
+      "strength_score": 72.9677
+    },
+    {
+      "code": "801890.SI",
+      "name": "机械设备",
+      "source_type": "industry_index",
+      "return_5d": -0.043584,
+      "return_20d": 0.01228,
+      "return_60d": 0.116947,
+      "relative_60d": 0.060075,
+      "rank_percentile": 72.3871,
+      "strength_score": 72.3871
+    },
+    {
+      "code": "801780.SI",
+      "name": "银行",
+      "source_type": "industry_index",
+      "return_5d": 0.037872,
+      "return_20d": -0.042585,
+      "return_60d": -0.05008,
+      "relative_60d": -0.106952,
+      "rank_percentile": 70.0,
+      "strength_score": 70.0
+    },
+    {
+      "code": "801150.SI",
+      "name": "医药生物",
+      "source_type": "industry_index",
+      "return_5d": 0.025748,
+      "return_20d": 0.065473,
+      "return_60d": -0.104568,
+      "relative_60d": -0.16144,
+      "rank_percentile": 68.6452,
+      "strength_score": 68.6452
+    },
+    {
+      "code": "801030.SI",
+      "name": "基础化工",
+      "source_type": "industry_index",
+      "return_5d": -0.039786,
+      "return_20d": 0.032224,
+      "return_60d": -0.054098,
+      "relative_60d": -0.11097,
+      "rank_percentile": 67.4194,
+      "strength_score": 67.4194
+    },
+    {
+      "code": "801130.SI",
+      "name": "纺织服饰",
+      "source_type": "industry_index",
+      "return_5d": 0.02398,
+      "return_20d": -0.004189,
+      "return_60d": -0.092516,
+      "relative_60d": -0.149388,
+      "rank_percentile": 63.0323,
+      "strength_score": 63.0323
+    },
+    {
+      "code": "801970.SI",
+      "name": "环保",
+      "source_type": "industry_index",
+      "return_5d": -5.8e-05,
+      "return_20d": -0.018011,
+      "return_60d": -0.063422,
+      "relative_60d": -0.120295,
+      "rank_percentile": 61.7419,
+      "strength_score": 61.7419
+    },
+    {
+      "code": "801770.SI",
+      "name": "通信",
+      "source_type": "industry_index",
+      "return_5d": -0.137514,
+      "return_20d": -0.046067,
+      "return_60d": 0.264943,
+      "relative_60d": 0.208071,
+      "rank_percentile": 61.3548,
+      "strength_score": 61.3548
+    },
+    {
+      "code": "801170.SI",
+      "name": "交通运输",
+      "source_type": "industry_index",
+      "return_5d": 0.025824,
+      "return_20d": -0.022881,
+      "return_60d": -0.130983,
+      "relative_60d": -0.187855,
+      "rank_percentile": 54.0645,
+      "strength_score": 54.0645
+    },
+    {
+      "code": "801010.SI",
+      "name": "农林牧渔",
+      "source_type": "industry_index",
+      "return_5d": 0.061173,
+      "return_20d": 0.012316,
+      "return_60d": -0.17303,
+      "relative_60d": -0.229902,
+      "rank_percentile": 53.4839,
+      "strength_score": 53.4839
+    },
+    {
+      "code": "801730.SI",
+      "name": "电力设备",
+      "source_type": "industry_index",
+      "return_5d": -0.066969,
+      "return_20d": -0.037123,
+      "return_60d": -0.05994,
+      "relative_60d": -0.116812,
+      "rank_percentile": 52.7097,
+      "strength_score": 52.7097
+    },
+    {
+      "code": "801050.SI",
+      "name": "有色金属",
+      "source_type": "industry_index",
+      "return_5d": -0.029749,
+      "return_20d": 0.001106,
+      "return_60d": -0.119275,
+      "relative_60d": -0.176147,
+      "rank_percentile": 48.3226,
+      "strength_score": 48.3226
+    },
+    {
+      "code": "801950.SI",
+      "name": "煤炭",
+      "source_type": "industry_index",
+      "return_5d": 0.069355,
+      "return_20d": -0.151808,
+      "return_60d": -0.067002,
+      "relative_60d": -0.123874,
+      "rank_percentile": 48.0645,
+      "strength_score": 48.0645
+    },
+    {
+      "code": "801880.SI",
+      "name": "汽车",
+      "source_type": "industry_index",
+      "return_5d": 0.032599,
+      "return_20d": -0.058669,
+      "return_60d": -0.113635,
+      "relative_60d": -0.170507,
+      "rank_percentile": 46.5161,
+      "strength_score": 46.5161
+    },
+    {
+      "code": "801180.SI",
+      "name": "房地产",
+      "source_type": "industry_index",
+      "return_5d": -0.003106,
+      "return_20d": -0.059604,
+      "return_60d": -0.102282,
+      "relative_60d": -0.159154,
+      "rank_percentile": 42.3226,
+      "strength_score": 42.3226
+    },
+    {
+      "code": "801160.SI",
+      "name": "公用事业",
+      "source_type": "industry_index",
+      "return_5d": -0.013081,
+      "return_20d": -0.096268,
+      "return_60d": -0.061805,
+      "relative_60d": -0.118677,
+      "rank_percentile": 41.7419,
+      "strength_score": 41.7419
+    },
+    {
+      "code": "801720.SI",
+      "name": "建筑装饰",
+      "source_type": "industry_index",
+      "return_5d": -0.025788,
+      "return_20d": -0.02999,
+      "return_60d": -0.131504,
+      "relative_60d": -0.188377,
+      "rank_percentile": 41.5484,
+      "strength_score": 41.5484
+    },
+    {
+      "code": "801750.SI",
+      "name": "计算机",
+      "source_type": "industry_index",
+      "return_5d": -0.045287,
+      "return_20d": -0.039987,
+      "return_60d": -0.135088,
+      "relative_60d": -0.19196,
+      "rank_percentile": 34.5161,
+      "strength_score": 34.5161
+    },
+    {
+      "code": "801980.SI",
+      "name": "美容护理",
+      "source_type": "industry_index",
+      "return_5d": 0.012226,
+      "return_20d": -0.04351,
+      "return_60d": -0.183709,
+      "relative_60d": -0.240581,
+      "rank_percentile": 33.6774,
+      "strength_score": 33.6774
+    },
+    {
+      "code": "801210.SI",
+      "name": "社会服务",
+      "source_type": "industry_index",
+      "return_5d": -0.008284,
+      "return_20d": -0.049828,
+      "return_60d": -0.166623,
+      "relative_60d": -0.223495,
+      "rank_percentile": 31.8065,
+      "strength_score": 31.8065
+    },
+    {
+      "code": "801120.SI",
+      "name": "食品饮料",
+      "source_type": "industry_index",
+      "return_5d": 0.004333,
+      "return_20d": -0.057585,
+      "return_60d": -0.178793,
+      "relative_60d": -0.235665,
+      "rank_percentile": 31.0323,
+      "strength_score": 31.0323
+    },
+    {
+      "code": "801140.SI",
+      "name": "轻工制造",
+      "source_type": "industry_index",
+      "return_5d": -0.006591,
+      "return_20d": -0.067383,
+      "return_60d": -0.153076,
+      "relative_60d": -0.209948,
+      "rank_percentile": 27.8065,
+      "strength_score": 27.8065
+    },
+    {
+      "code": "801760.SI",
+      "name": "传媒",
+      "source_type": "industry_index",
+      "return_5d": -0.00461,
+      "return_20d": -0.057974,
+      "return_60d": -0.19463,
+      "relative_60d": -0.251502,
+      "rank_percentile": 24.4516,
+      "strength_score": 24.4516
+    },
+    {
+      "code": "801960.SI",
+      "name": "石油石化",
+      "source_type": "industry_index",
+      "return_5d": 0.034531,
+      "return_20d": -0.10331,
+      "return_60d": -0.198786,
+      "relative_60d": -0.255658,
+      "rank_percentile": 21.5484,
+      "strength_score": 21.5484
+    },
+    {
+      "code": "801040.SI",
+      "name": "钢铁",
+      "source_type": "industry_index",
+      "return_5d": -0.003077,
+      "return_20d": -0.060556,
+      "return_60d": -0.213012,
+      "relative_60d": -0.269884,
+      "rank_percentile": 17.6774,
+      "strength_score": 17.6774
+    },
+    {
+      "code": "801200.SI",
+      "name": "商贸零售",
+      "source_type": "industry_index",
+      "return_5d": -0.008331,
+      "return_20d": -0.09184,
+      "return_60d": -0.197867,
+      "relative_60d": -0.254739,
+      "rank_percentile": 15.9355,
+      "strength_score": 15.9355
+    }
+  ],
+  "persistence_by_industry": [
+    {
+      "code": "801080.SI",
+      "name": "电子",
+      "source_type": "industry_index",
+      "latest_rank": 100.0,
+      "top20_hit_ratio": 1.0,
+      "top40_hit_ratio": 1.0,
+      "top60_hit_ratio": 0.95,
+      "avg_rank60": 94.621,
+      "persistence_score": 98.1931
+    },
+    {
+      "code": "801710.SI",
+      "name": "建筑材料",
+      "source_type": "industry_index",
+      "latest_rank": 95.0,
+      "top20_hit_ratio": 1.0,
+      "top40_hit_ratio": 0.875,
+      "top60_hit_ratio": 0.9,
+      "avg_rank60": 88.25,
+      "persistence_score": 92.6125
+    },
+    {
+      "code": "801890.SI",
+      "name": "机械设备",
+      "source_type": "industry_index",
+      "latest_rank": 83.0645,
+      "top20_hit_ratio": 1.0,
+      "top40_hit_ratio": 0.975,
+      "top60_hit_ratio": 0.7,
+      "avg_rank60": 84.0887,
+      "persistence_score": 89.2948
+    },
+    {
+      "code": "801770.SI",
+      "name": "通信",
+      "source_type": "industry_index",
+      "latest_rank": 70.6452,
+      "top20_hit_ratio": 0.8,
+      "top40_hit_ratio": 0.9,
+      "top60_hit_ratio": 0.9333,
+      "avg_rank60": 96.5242,
+      "persistence_score": 86.7098
+    },
+    {
+      "code": "801030.SI",
+      "name": "基础化工",
+      "source_type": "industry_index",
+      "latest_rank": 78.2258,
+      "top20_hit_ratio": 0.6,
+      "top40_hit_ratio": 0.3,
+      "top60_hit_ratio": 0.2,
+      "avg_rank60": 65.5215,
+      "persistence_score": 47.1508
+    },
+    {
+      "code": "801790.SI",
+      "name": "非银金融",
+      "source_type": "industry_index",
+      "latest_rank": 86.7742,
+      "top20_hit_ratio": 0.5,
+      "top40_hit_ratio": 0.25,
+      "top60_hit_ratio": 0.1667,
+      "avg_rank60": 43.6022,
+      "persistence_score": 39.8011
+    },
+    {
+      "code": "801160.SI",
+      "name": "公用事业",
+      "source_type": "industry_index",
+      "latest_rank": 39.8387,
+      "top20_hit_ratio": 0.1,
+      "top40_hit_ratio": 0.5,
+      "top60_hit_ratio": 0.3333,
+      "avg_rank60": 65.2688,
+      "persistence_score": 35.9409
+    },
+    {
+      "code": "801780.SI",
+      "name": "银行",
+      "source_type": "industry_index",
+      "latest_rank": 62.9032,
+      "top20_hit_ratio": 0.35,
+      "top40_hit_ratio": 0.225,
+      "top60_hit_ratio": 0.15,
+      "avg_rank60": 61.3306,
+      "persistence_score": 34.6149
+    },
+    {
+      "code": "801050.SI",
+      "name": "有色金属",
+      "source_type": "industry_index",
+      "latest_rank": 55.0,
+      "top20_hit_ratio": 0.35,
+      "top40_hit_ratio": 0.175,
+      "top60_hit_ratio": 0.1333,
+      "avg_rank60": 54.3737,
+      "persistence_score": 31.1977
+    },
+    {
+      "code": "801230.SI",
+      "name": "综合",
+      "source_type": "industry_index",
+      "latest_rank": 77.0968,
+      "top20_hit_ratio": 0.1,
+      "top40_hit_ratio": 0.2,
+      "top60_hit_ratio": 0.2167,
+      "avg_rank60": 64.7419,
+      "persistence_score": 29.7543
+    },
+    {
+      "code": "801730.SI",
+      "name": "电力设备",
+      "source_type": "industry_index",
+      "latest_rank": 60.4839,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.225,
+      "top60_hit_ratio": 0.3333,
+      "avg_rank60": 72.707,
+      "persistence_score": 29.2461
+    },
+    {
+      "code": "801950.SI",
+      "name": "煤炭",
+      "source_type": "industry_index",
+      "latest_rank": 33.3871,
+      "top20_hit_ratio": 0.2,
+      "top40_hit_ratio": 0.25,
+      "top60_hit_ratio": 0.2,
+      "avg_rank60": 60.4274,
+      "persistence_score": 28.6528
+    },
+    {
+      "code": "801110.SI",
+      "name": "家用电器",
+      "source_type": "industry_index",
+      "latest_rank": 72.5806,
+      "top20_hit_ratio": 0.1,
+      "top40_hit_ratio": 0.075,
+      "top60_hit_ratio": 0.05,
+      "avg_rank60": 63.7258,
+      "persistence_score": 22.6919
+    },
+    {
+      "code": "801740.SI",
+      "name": "国防军工",
+      "source_type": "industry_index",
+      "latest_rank": 82.0968,
+      "top20_hit_ratio": 0.1,
+      "top40_hit_ratio": 0.05,
+      "top60_hit_ratio": 0.0333,
+      "avg_rank60": 50.1935,
+      "persistence_score": 20.6554
+    },
+    {
+      "code": "801970.SI",
+      "name": "环保",
+      "source_type": "industry_index",
+      "latest_rank": 62.7419,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.025,
+      "top60_hit_ratio": 0.0167,
+      "avg_rank60": 69.5672,
+      "persistence_score": 17.6676
+    },
+    {
+      "code": "801130.SI",
+      "name": "纺织服饰",
+      "source_type": "industry_index",
+      "latest_rank": 60.6452,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 50.0753,
+      "persistence_score": 13.5758
+    },
+    {
+      "code": "801150.SI",
+      "name": "医药生物",
+      "source_type": "industry_index",
+      "latest_rank": 68.7097,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 41.7124,
+      "persistence_score": 13.1278
+    },
+    {
+      "code": "801720.SI",
+      "name": "建筑装饰",
+      "source_type": "industry_index",
+      "latest_rank": 45.6452,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 51.1237,
+      "persistence_score": 12.2331
+    },
+    {
+      "code": "801170.SI",
+      "name": "交通运输",
+      "source_type": "industry_index",
+      "latest_rank": 48.871,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 45.5941,
+      "persistence_score": 11.7262
+    },
+    {
+      "code": "801880.SI",
+      "name": "汽车",
+      "source_type": "industry_index",
+      "latest_rank": 36.4516,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 49.5027,
+      "persistence_score": 11.0706
+    },
+    {
+      "code": "801180.SI",
+      "name": "房地产",
+      "source_type": "industry_index",
+      "latest_rank": 38.5484,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 43.1828,
+      "persistence_score": 10.3323
+    },
+    {
+      "code": "801750.SI",
+      "name": "计算机",
+      "source_type": "industry_index",
+      "latest_rank": 39.5161,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 39.7688,
+      "persistence_score": 9.9169
+    },
+    {
+      "code": "801140.SI",
+      "name": "轻工制造",
+      "source_type": "industry_index",
+      "latest_rank": 23.2258,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 42.6882,
+      "persistence_score": 8.7258
+    },
+    {
+      "code": "801010.SI",
+      "name": "农林牧渔",
+      "source_type": "industry_index",
+      "latest_rank": 47.2581,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 19.8306,
+      "persistence_score": 7.7004
+    },
+    {
+      "code": "801120.SI",
+      "name": "食品饮料",
+      "source_type": "industry_index",
+      "latest_rank": 25.1613,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 33.4086,
+      "persistence_score": 7.5274
+    },
+    {
+      "code": "801210.SI",
+      "name": "社会服务",
+      "source_type": "industry_index",
+      "latest_rank": 30.1613,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 30.0242,
+      "persistence_score": 7.5198
+    },
+    {
+      "code": "801960.SI",
+      "name": "石油石化",
+      "source_type": "industry_index",
+      "latest_rank": 6.4516,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 34.4892,
+      "persistence_score": 5.8185
+    },
+    {
+      "code": "801980.SI",
+      "name": "美容护理",
+      "source_type": "industry_index",
+      "latest_rank": 27.7419,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 18.4113,
+      "persistence_score": 5.5359
+    },
+    {
+      "code": "801760.SI",
+      "name": "传媒",
+      "source_type": "industry_index",
+      "latest_rank": 20.1613,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 22.129,
+      "persistence_score": 5.3355
+    },
+    {
+      "code": "801040.SI",
+      "name": "钢铁",
+      "source_type": "industry_index",
+      "latest_rank": 10.4839,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 24.6129,
+      "persistence_score": 4.7403
+    },
+    {
+      "code": "801200.SI",
+      "name": "商贸零售",
+      "source_type": "industry_index",
+      "latest_rank": 11.129,
+      "top20_hit_ratio": 0.0,
+      "top40_hit_ratio": 0.0,
+      "top60_hit_ratio": 0.0,
+      "avg_rank60": 18.5027,
+      "persistence_score": 3.8883
+    }
+  ],
+  "data_quality": {
+    "industry": {
+      "universe": {
+        "source_type": "industry_index",
+        "provider": "Tushare",
+        "source": "index_classify",
+        "index_daily_source": "index_daily",
+        "universe": "SW2021 L1",
+        "industry_count": 31,
+        "loaded_from_cache": false,
+        "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\industry\\industry_universe_SW2021_L1.json"
+      },
+      "requested_range": {
+        "start_date": "20240101",
+        "end_date": "20260708"
+      },
+      "asset_count": 31,
+      "available_count": 31,
+      "errors": {},
+      "source_type": "industry_index"
+    },
+    "benchmark": {
+      "benchmark_codes": [
+        "000300.SH",
+        "000905.SH"
+      ],
+      "available_count": 2,
+      "errors": {}
+    },
+    "required_for_structural_bull_rotation": {
+      "industry_strength": 55.1048,
+      "theme_persistence": 82.7922
+    },
+    "no_future_data": true
+  },
+  "constraints": {
+    "no_etf_allocation": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_backtest": true,
+    "industry_or_theme_research_only": true
+  },
+  "explanation": [
+    "source_type=industry_index; 行业机会分只表示结构性赚钱效应强弱，不是买卖建议。",
+    "industry_opportunity_score=65.5; 由行业强度、主线持续性和轮动健康度组合得到。",
+    "当前排名靠前的行业/主题是：电子、建筑材料、机械设备。",
+    "V2.3.2 不输出仓位、不输出 ETF 配置、不输出交易信号、不做回测。"
+  ]
+}

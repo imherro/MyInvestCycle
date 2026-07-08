@@ -44,6 +44,7 @@ from macro.indicator_registry import registry_as_dict
 from macro.macro_cycle_engine import build_macro_cycle_snapshot
 from macro.macro_loader import DEFAULT_MACRO_INDICATORS, load_macro_indicators
 from market_structure.structure_engine import build_structure_snapshot
+from industry_structure.opportunity_engine import build_industry_opportunity_snapshot
 
 
 app = FastAPI(title="MyInvestCycle Regime API", version="0.8")
@@ -709,6 +710,24 @@ def _api_catalog_payload() -> dict[str, object]:
             ],
         },
         {
+            "name": "V2 行业/主题机会",
+            "description": "识别是否存在结构性赚钱机会和持续主线，只输出行业强度、主线持续性和数据来源；不输出仓位、ETF 配置或交易信号。",
+            "endpoints": [
+                _api_endpoint(
+                    "GET",
+                    "/api/industry/opportunity",
+                    "返回 V2.3 Industry / Theme Opportunity Engine 的行业机会分、主线持续性、Top 行业和数据质量。",
+                    "industry opportunity snapshot",
+                    params=[
+                        {"name": "date", "required": "false", "format": "YYYYMMDD"},
+                        {"name": "start_date", "required": "false", "format": "YYYYMMDD"},
+                        {"name": "cache_only", "required": "false", "format": "boolean"},
+                    ],
+                    freshness="Tushare industry index cache",
+                ),
+            ],
+        },
+        {
             "name": "后市展望与历史回顾",
             "description": "历史周期切分、后市展望和概率展望。",
             "endpoints": [
@@ -1236,6 +1255,19 @@ def structure_current(
         date_text or _today_text(),
         start_date=start_date,
         history_sample_size=history_sample_size,
+        cache_only=cache_only,
+    )
+
+
+@app.get("/api/industry/opportunity")
+def industry_opportunity(
+    date_text: str | None = Query(None, alias="date", description="Decision date, YYYYMMDD. Defaults to today."),
+    start_date: str = Query("20240101", description="Industry history start date, YYYYMMDD."),
+    cache_only: bool = Query(True, description="Use local cache only for Web/API reads."),
+) -> dict:
+    return build_industry_opportunity_snapshot(
+        date_text or _today_text(),
+        start_date=start_date,
         cache_only=cache_only,
     )
 
