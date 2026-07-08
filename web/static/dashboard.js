@@ -1734,6 +1734,11 @@ function setResultsPanel(results) {
   const riskShadowLogControls = riskShadowLog.observation_controls || {};
   const riskShadowLogBody = riskShadowLog.shadow_observation_log || {};
   const riskShadowLogPromotion = riskShadowLog.promotion_gate || {};
+  const riskShadowReview = results.risk_diagnostic_shadow_observation_review || {};
+  const riskShadowReviewSummary = riskShadowReview.summary || {};
+  const riskShadowReviewFramework = riskShadowReview.review_framework || {};
+  const riskShadowReviewResult = riskShadowReview.review_result || {};
+  const riskShadowReviewPromotion = riskShadowReview.promotion_gate || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4189,6 +4194,7 @@ function setResultsPanel(results) {
     planned: "已规划",
     active: "已启用",
     active_empty: "启用/空日志",
+    no_events_available: "无事件可复核",
     initialized_empty: "空日志",
     defined_not_instantiated: "已定义/未实例化",
     risk_diagnostic_shadow_framework_defined_observation_only_no_trade: "只观察/不交易",
@@ -4435,6 +4441,32 @@ function setResultsPanel(results) {
     riskShadowLog.metadata
       ? `V14.3 已初始化 active 空日志：event_count=${integerText(riskShadowLogSummary.event_count)}，manual_append_only=${riskShadowLogSummary.manual_append_only ? "true" : "false"}，auto_trigger=false，trade=false；implementation_ready=false。`
       : "V14.3 风险诊断影子观察日志尚未生成。"
+  );
+
+  const riskShadowReviewChecks = Array.isArray(riskShadowReviewFramework.review_checks) ? riskShadowReviewFramework.review_checks : [];
+  const riskShadowReviewBlockers = Array.isArray(riskShadowReviewPromotion.blocking_reasons) ? riskShadowReviewPromotion.blocking_reasons : [];
+  setText("riskShadowReviewFramework", phaseStatusLabel(riskShadowReviewSummary.review_framework_status));
+  setText("riskShadowReviewStatus", phaseStatusLabel(riskShadowReviewSummary.review_status));
+  setText("riskShadowReviewEvents", integerText(riskShadowReviewSummary.event_count));
+  setText("riskShadowReviewCount", integerText(riskShadowReviewSummary.reviewed_event_count));
+  setText("riskShadowReviewTrade", riskShadowReviewSummary.trade_enabled === false ? "否" : "--");
+  setHtml("riskShadowReviewRows", [
+    ["复核检查", `${integerText(riskShadowReviewChecks.length)} 项`, riskShadowReviewChecks.join("；") || "--"],
+    ["复核结果", phaseStatusLabel(riskShadowReviewResult.review_status), "当前没有 shadow event，因此不生成 event review。"],
+    ["自动决策", riskShadowReviewFramework.auto_decision_allowed === false ? "关闭" : "--", "复核框架不允许自动风险判断。"],
+    ["阻断项", `${integerText(riskShadowReviewBlockers.length)} 项`, riskShadowReviewBlockers.join("；") || "--"],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  setText(
+    "riskShadowReviewConclusion",
+    riskShadowReview.metadata
+      ? `V14.4 已定义 shadow event 人工复核框架：review_status=${phaseStatusLabel(riskShadowReviewSummary.review_status)}，event_count=${integerText(riskShadowReviewSummary.event_count)}，reviewed=${integerText(riskShadowReviewSummary.reviewed_event_count)}，trade=false；implementation_ready=false。`
+      : "V14.4 风险诊断影子事件复核尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
