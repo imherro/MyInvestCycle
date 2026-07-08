@@ -1769,6 +1769,37 @@
           <p class="result-note" id="riskEvidenceConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="定义风险诊断层的无交易影子观察日志：未来只记录预警事件、上下文快照和后验结果，不触发自动风控、减仓、仓位调整或交易。">风险诊断影子观察框架</h2>
+            <span class="panel-kicker">V14.2</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>框架状态</span>
+              <strong id="riskShadowStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>影子状态</span>
+              <strong id="riskShadowPlan">--</strong>
+            </div>
+            <div class="result-row">
+              <span>事件数量</span>
+              <strong id="riskShadowEvents">--</strong>
+            </div>
+            <div class="result-row">
+              <span>交易启用</span>
+              <strong id="riskShadowTrade">--</strong>
+            </div>
+            <div class="result-row">
+              <span>实现就绪</span>
+              <strong id="riskShadowReady">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="riskShadowRows"></div>
+          <p class="result-note" id="riskShadowConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -1859,7 +1890,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-risk-evidence-package-1"></script>
+    <script src="/static/dashboard.js?v=20260708-risk-shadow-framework-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

@@ -1724,6 +1724,11 @@ function setResultsPanel(results) {
   const riskEvidenceBoundary = riskEvidence.boundary_violation_scan || {};
   const riskEvidenceValidatorResult = riskEvidence.v13_2_validator_result || {};
   const riskEvidenceAuditProjection = riskEvidence.v12_3_audit_projection || {};
+  const riskShadow = results.risk_diagnostic_shadow_framework || {};
+  const riskShadowSummary = riskShadow.summary || {};
+  const riskShadowSchema = riskShadow.event_log_schema || {};
+  const riskShadowGuardrails = riskShadow.no_trade_guardrails || {};
+  const riskShadowPromotion = riskShadow.promotion_gate || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4153,6 +4158,7 @@ function setResultsPanel(results) {
     defined: "已定义",
     not_started: "未启动",
     blocked: "已阻断",
+    defined: "已定义",
     observation_only: "仅观察",
     research_governance_only: "仅研究治理",
     isolated_not_ready: "隔离/未就绪",
@@ -4175,6 +4181,10 @@ function setResultsPanel(results) {
     submitted_inconclusive: "已提交/不确定",
     submitted_negative: "已提交/负面",
     submitted_missing_required_live_log: "缺 live shadow",
+    planned: "已规划",
+    initialized_empty: "空日志",
+    defined_not_instantiated: "已定义/未实例化",
+    risk_diagnostic_shadow_framework_defined_observation_only_no_trade: "只观察/不交易",
   }[value] || value || "--");
   setText("phaseClosureStatus", phaseStatusLabel(phaseClosureSummary.research_phase));
   setText("phaseClosureRisk", phaseStatusLabel(phaseClosureSummary.risk_research_status));
@@ -4367,6 +4377,32 @@ function setResultsPanel(results) {
     riskEvidence.metadata
       ? `V14.1 已提交 risk_diagnostic_layer 证据包，V13.2 校验结果为${phaseStatusLabel(riskEvidenceValidatorResult.package_status)}，V12.3 投影审计为${phaseStatusLabel(riskEvidenceAuditProjection.audit_decision)}；由于误报、漏报、跨周期稳定性和 live shadow 缺口，implementation_ready=false。`
       : "V14.1 风险诊断层证据包尚未生成。"
+  );
+
+  const riskShadowFields = Array.isArray(riskShadowSchema.required_event_fields) ? riskShadowSchema.required_event_fields : [];
+  const riskShadowBlockers = Array.isArray(riskShadowPromotion.blocking_reasons) ? riskShadowPromotion.blocking_reasons : [];
+  setText("riskShadowStatus", phaseStatusLabel(riskShadowSummary.shadow_framework_status));
+  setText("riskShadowPlan", phaseStatusLabel(riskShadowSummary.shadow_status));
+  setText("riskShadowEvents", integerText(riskShadowSummary.live_event_count));
+  setText("riskShadowTrade", riskShadowSummary.trade_enabled === false ? "否" : "--");
+  setText("riskShadowReady", riskShadowSummary.implementation_ready === false ? "否" : "--");
+  setHtml("riskShadowRows", [
+    ["事件字段", `${integerText(riskShadowFields.length)} 项`, "未来 observation event 的必填记录字段。"],
+    ["空日志", riskShadowSummary.live_event_count === 0 ? "0 条" : integerText(riskShadowSummary.live_event_count), "当前不生成 warning event。"],
+    ["交易护栏", riskShadowGuardrails.trade_enabled === false && riskShadowGuardrails.position_adjustment_enabled === false ? "关闭" : "--", "交易、订单、券商连接和仓位调整均关闭。"],
+    ["阻断项", `${integerText(riskShadowBlockers.length)} 项`, riskShadowBlockers.join("；") || "--"],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  setText(
+    "riskShadowConclusion",
+    riskShadow.metadata
+      ? `V14.2 已定义 risk_diagnostic_layer 的无交易影子观察框架：shadow_status=${phaseStatusLabel(riskShadowSummary.shadow_status)}，live events=${integerText(riskShadowSummary.live_event_count)}，交易和仓位调整均关闭；implementation_ready=false。`
+      : "V14.2 风险诊断影子观察框架尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

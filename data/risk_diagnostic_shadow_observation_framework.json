@@ -1,0 +1,224 @@
+{
+  "metadata": {
+    "engine": "V14.2 Risk Diagnostic Shadow Observation Framework",
+    "generated_at": "2026-07-08T22:55:25+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v14_1_risk_diagnostic_evidence_package": "data/risk_diagnostic_evidence_package.json",
+      "v13_4_governance_freeze": "data/implementation_readiness_governance_freeze.json"
+    },
+    "input_hashes": {
+      "v14_1_risk_diagnostic_evidence_package": "abb4af97ca78fc56a832dfc841fb39691d5f8c25ed925990dab9a2f825ac4705",
+      "v13_4_governance_freeze": "325897429b5f3ff525471b7f0d4d698e256321181b3e61aabeda694b175bef3a"
+    },
+    "purpose": "Define a no-trade shadow observation framework for risk diagnostic warnings without generating events, positions, allocations or trades."
+  },
+  "summary": {
+    "component_id": "risk_diagnostic_layer",
+    "shadow_framework_status": "defined",
+    "shadow_status": "planned",
+    "observation_only": true,
+    "live_event_count": 0,
+    "trade_enabled": false,
+    "position_adjustment_enabled": false,
+    "implementation_gate_result": "blocked",
+    "implementation_ready": false,
+    "investable_output": false,
+    "strategy_output_generated": false,
+    "allocation_output_generated": false,
+    "trade_ready": false,
+    "conclusion": "risk_diagnostic_shadow_framework_defined_observation_only_no_trade",
+    "key_read": "V14.2 defines the empty no-trade observation log and review schema needed after V14.1; it does not emit warnings or alter exposure."
+  },
+  "source_evidence_package": {
+    "component_id": "risk_diagnostic_layer",
+    "source_package_status": "submitted_blocked_phase_0",
+    "source_evidence_status": "submitted",
+    "source_implementation_ready": false,
+    "source_shadow_observation_required": true,
+    "source_hash": "abb4af97ca78fc56a832dfc841fb39691d5f8c25ed925990dab9a2f825ac4705"
+  },
+  "event_log_schema": {
+    "schema_status": "defined",
+    "required_event_fields": [
+      "event_id",
+      "event_time",
+      "market_data_as_of",
+      "component_id",
+      "warning_event_type",
+      "context_snapshot",
+      "source_lineage",
+      "no_trade_observation",
+      "later_outcome_review",
+      "manual_review_state"
+    ],
+    "context_snapshot_fields": [
+      "market_phase",
+      "risk_state",
+      "opportunity_state",
+      "risk_gradient_bucket",
+      "risk_gradient_score",
+      "protection_bucket",
+      "protection_score",
+      "two_axis_context"
+    ],
+    "later_outcome_review_fields": [
+      "review_time",
+      "review_window_id",
+      "later_risk_outcome",
+      "false_warning_review",
+      "missed_risk_review",
+      "stability_review_note"
+    ],
+    "immutable_lineage_fields": [
+      "source_artifact_hash",
+      "event_schema_version",
+      "created_by"
+    ],
+    "schema_note": "Fields describe what a future warning observation must record; this run creates no warning event."
+  },
+  "warning_event_template": {
+    "template_status": "defined_not_instantiated",
+    "event_id": "future_generated_unique_id",
+    "event_time": "future_observation_time",
+    "component_id": "risk_diagnostic_layer",
+    "warning_event_type": "future_risk_diagnostic_warning",
+    "context_snapshot": {
+      "market_phase": "future_observed_value",
+      "risk_state": "future_observed_value",
+      "opportunity_state": "future_observed_value",
+      "risk_gradient_bucket": "future_observed_value",
+      "risk_gradient_score": "future_observed_value",
+      "protection_bucket": "future_observed_value",
+      "protection_score": "future_observed_value",
+      "two_axis_context": "future_observed_value"
+    },
+    "source_lineage": {
+      "source_artifact_hash": "future_source_hash",
+      "event_schema_version": "v14.2"
+    },
+    "no_trade_observation": {
+      "trade_enabled": false,
+      "order_generation_enabled": false,
+      "broker_connection_enabled": false,
+      "position_adjustment_enabled": false
+    },
+    "later_outcome_review": {
+      "review_time": "future_review_value",
+      "review_window_id": "future_review_value",
+      "later_risk_outcome": "future_review_value",
+      "false_warning_review": "future_review_value",
+      "missed_risk_review": "future_review_value",
+      "stability_review_note": "future_review_value"
+    },
+    "manual_review_state": "future_manual_review_required"
+  },
+  "shadow_observation_log": {
+    "log_status": "initialized_empty",
+    "component_id": "risk_diagnostic_layer",
+    "live_event_count": 0,
+    "events": [],
+    "next_allowed_action": "append_future_no_trade_observation_event_after_market_data_freeze"
+  },
+  "no_trade_guardrails": {
+    "trade_enabled": false,
+    "order_generation_enabled": false,
+    "broker_connection_enabled": false,
+    "position_adjustment_enabled": false,
+    "auto_risk_control_enabled": false,
+    "guardrail_note": "Observation records may be appended later, but they cannot trigger risk control, position change or trading."
+  },
+  "promotion_gate": {
+    "promotion_allowed": false,
+    "implementation_ready": false,
+    "required_before_promotion": [
+      "future_warning_events_logged",
+      "later_outcome_reviews_completed",
+      "false_warning_and_missed_risk_cases_reviewed",
+      "manual_review_approved"
+    ],
+    "blocking_reasons": [
+      "live_shadow_observation_log_missing",
+      "no_later_outcome_review_yet",
+      "manual_review_not_approved",
+      "v14_1_package_blocked_phase_0"
+    ]
+  },
+  "time_safety": {
+    "uses_v14_1_evidence_package_only": true,
+    "input_hashes_recorded": true,
+    "does_not_read_market_price_data": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_warning_event": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "shadow_framework_only": true,
+    "observation_only": true,
+    "does_not_generate_warning_event": true,
+    "does_not_enable_auto_risk_control": true,
+    "does_not_adjust_position": true,
+    "does_not_generate_strategy": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_component_id": "risk_diagnostic_layer",
+    "checked_shadow_status": "planned",
+    "checked_live_event_count": 0,
+    "checked_trade_enabled": false,
+    "checked_implementation_ready": false,
+    "checked_constraints": [
+      "shadow_framework_only",
+      "observation_only",
+      "does_not_generate_warning_event",
+      "does_not_enable_auto_risk_control",
+      "does_not_adjust_position",
+      "does_not_generate_strategy",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}
