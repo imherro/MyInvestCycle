@@ -732,6 +732,116 @@ def _read_research_decision_contradiction_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_research_decision_v8_architecture_payload() -> dict[str, object] | None:
+    doc_path = ROOT_DIR / "docs" / "research_decision_v8_architecture.md"
+    if not doc_path.exists():
+        return None
+
+    context = _read_research_decision_context_payload() or {}
+    scenario = _read_research_decision_scenario_audit_payload() or {}
+    contradiction = _read_research_decision_contradiction_payload() or {}
+    context_summary = context.get("summary") if isinstance(context, dict) else {}
+    scenario_summary = scenario.get("summary") if isinstance(scenario, dict) else {}
+    contradiction_summary = contradiction.get("summary") if isinstance(contradiction, dict) else {}
+    retained_layers = [
+        {
+            "version": "V8.1",
+            "name": "Research Decision Context",
+            "artifact": "data/research_decision_context.json",
+            "status": "retained",
+            "role": "连接 V6 风险上下文与 V7 机会研究状态，只生成研究语境。",
+        },
+        {
+            "version": "V8.2",
+            "name": "Historical Scenario Audit",
+            "artifact": "data/research_decision_scenario_audit.json",
+            "status": "retained",
+            "role": "固定历史场景的一致性、切换、矛盾和覆盖审计。",
+        },
+        {
+            "version": "V8.3",
+            "name": "Contradiction Attribution",
+            "artifact": "data/research_decision_contradiction.json",
+            "status": "retained",
+            "role": "归因重点历史场景中的解释失败原因，不修改规则。",
+        },
+    ]
+    rejected_outputs = [
+        {"name": "Score", "status": "rejected", "reason": "V8 只解释研究语境，不证明预测能力。"},
+        {"name": "Ranking", "status": "rejected", "reason": "V7 机会排名仍未验证。"},
+        {"name": "Asset Selection", "status": "rejected", "reason": "V8 不输出资产。"},
+        {"name": "Top N", "status": "rejected", "reason": "没有验证通过的排名层。"},
+        {"name": "Allocation", "status": "rejected", "reason": "V8 不是配置引擎。"},
+        {"name": "ETF Weight", "status": "rejected", "reason": "V8 不产生可交易权重。"},
+        {"name": "Trading", "status": "rejected", "reason": "本层为研究只读。"},
+        {"name": "New State", "status": "rejected", "reason": "V8.3 只解释失败，不修改状态体系。"},
+        {"name": "V6/V7 Modification", "status": "rejected", "reason": "V8 只消费冻结的 V6/V7 产物。"},
+    ]
+    return {
+        "metadata": {
+            "engine": "V8.4 Research Decision Architecture Freeze & Summary",
+            "status": "frozen",
+            "doc_path": "docs/research_decision_v8_architecture.md",
+            "audit_script": "scripts/audit_v8_architecture_consistency.py",
+            "source_layers": ["V8.1", "V8.2", "V8.3"],
+        },
+        "summary": {
+            "freeze_status": "frozen",
+            "retained_layer_count": len(retained_layers),
+            "rejected_output_count": len(rejected_outputs),
+            "ready_for_scoring": False,
+            "ready_for_ranking": False,
+            "ready_for_allocation": False,
+            "ready_for_trade": False,
+            "conclusion": "v8_research_interpretation_frozen_no_strategy",
+            "key_read": "V8 is frozen as a research interpretation layer; it does not create score, ranking, asset selection, allocation, ETF weights, or trades.",
+        },
+        "retained_layers": retained_layers,
+        "rejected_outputs": rejected_outputs,
+        "evidence": {
+            "v8_1_decision_context": (
+                context_summary.get("decision_context") if isinstance(context_summary, dict) else None
+            ),
+            "v8_1_research_posture": (
+                context_summary.get("research_posture") if isinstance(context_summary, dict) else None
+            ),
+            "v8_2_scenario_count": (
+                scenario_summary.get("scenario_count") if isinstance(scenario_summary, dict) else None
+            ),
+            "v8_2_consistency_counts": (
+                scenario_summary.get("consistency_counts") if isinstance(scenario_summary, dict) else {}
+            ),
+            "v8_3_focus_scenario_count": (
+                contradiction_summary.get("focus_scenario_count") if isinstance(contradiction_summary, dict) else None
+            ),
+            "v8_3_attribution_count": (
+                contradiction_summary.get("attribution_count") if isinstance(contradiction_summary, dict) else None
+            ),
+            "v8_3_contradiction_type_counts": (
+                contradiction_summary.get("contradiction_type_counts") if isinstance(contradiction_summary, dict) else {}
+            ),
+        },
+        "constraints": {
+            "research_only": True,
+            "does_not_create_opportunity_score": True,
+            "does_not_rank_assets": True,
+            "does_not_select_top_assets": True,
+            "does_not_generate_position": True,
+            "does_not_modify_v6": True,
+            "does_not_modify_v7": True,
+            "does_not_add_state": True,
+            "no_percentage_exposure": True,
+            "no_etf_code": True,
+            "no_asset_weight": True,
+            "no_portfolio_weight": True,
+            "no_trade_signal": True,
+            "no_order_generation": True,
+            "no_broker_connection": True,
+            "no_parameter_optimization_for_investable_output": True,
+        },
+    }
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -1340,6 +1450,23 @@ def _compact_research_decision_contradiction_payload(payload: dict[str, object] 
     if isinstance(rows, list):
         compact["attributions"] = rows
     return compact
+
+
+def _compact_research_decision_v8_architecture_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "retained_layers",
+            "rejected_outputs",
+            "evidence",
+            "constraints",
+        )
+        if key in payload
+    }
 
 
 def _event_summary(rows: list[dict], event_key: str = "label") -> dict[str, object]:
@@ -2241,6 +2368,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/decision/v8-architecture",
+                    "返回 V8.4 Research Decision Architecture Freeze，汇总 V8.1-V8.3 保留层、显式拒绝的评分/排名/资产选择/配置/交易输出，以及冻结边界审计脚本。",
+                    "research decision V8 architecture freeze",
+                    freshness="generated doc and existing artifacts",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -2388,6 +2522,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/decision/research-context", "description": "读取 V8.1 研究决策整合语境：V6 风险上下文 + V7 机会研究，只读且不输出资产/排名/配置/交易。"},
             {"path": "/api/decision/scenario-audit", "description": "读取 V8.2 历史情景解释审计：固定场景一致性、切换稳定、矛盾样本和覆盖缺口。"},
             {"path": "/api/decision/contradiction-attribution", "description": "读取 V8.3 矛盾场景归因：解释研究语境失败原因，不改规则、不输出策略。"},
+            {"path": "/api/decision/v8-architecture", "description": "读取 V8.4 研究决策架构冻结摘要：V8.1-V8.3 保留层、拒绝项和不可策略化边界。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -3473,6 +3608,17 @@ def research_decision_contradiction() -> dict:
     return payload
 
 
+@app.get("/api/decision/v8-architecture")
+def research_decision_v8_architecture() -> dict:
+    payload = _read_research_decision_v8_architecture_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Research decision V8 architecture document missing; add docs/research_decision_v8_architecture.md first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -3637,6 +3783,7 @@ def results_summary(
         research_decision_context = _read_research_decision_context_payload()
         research_decision_scenario_audit = _read_research_decision_scenario_audit_payload()
         research_decision_contradiction = _read_research_decision_contradiction_payload()
+        research_decision_v8_architecture = _read_research_decision_v8_architecture_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -3679,6 +3826,7 @@ def results_summary(
             research_decision_context = _compact_research_decision_context_payload(research_decision_context)
             research_decision_scenario_audit = _compact_research_decision_scenario_audit_payload(research_decision_scenario_audit)
             research_decision_contradiction = _compact_research_decision_contradiction_payload(research_decision_contradiction)
+            research_decision_v8_architecture = _compact_research_decision_v8_architecture_payload(research_decision_v8_architecture)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -3758,6 +3906,7 @@ def results_summary(
             "research_decision_context": research_decision_context,
             "research_decision_scenario_audit": research_decision_scenario_audit,
             "research_decision_contradiction": research_decision_contradiction,
+            "research_decision_v8_architecture": research_decision_v8_architecture,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,

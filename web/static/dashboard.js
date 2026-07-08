@@ -1656,6 +1656,11 @@ function setResultsPanel(results) {
   const contradictionAudit = results.research_decision_contradiction || {};
   const contradictionSummary = contradictionAudit.summary || {};
   const contradictionRows = contradictionAudit.attributions || [];
+  const v8Architecture = results.research_decision_v8_architecture || {};
+  const v8ArchitectureSummary = v8Architecture.summary || {};
+  const v8ArchitectureLayers = v8Architecture.retained_layers || [];
+  const v8ArchitectureRejected = v8Architecture.rejected_outputs || [];
+  const v8ArchitectureEvidence = v8Architecture.evidence || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3386,6 +3391,45 @@ function setResultsPanel(results) {
     contradictionAudit.metadata
       ? `V8.3 对 ${integerText(contradictionSummary.focus_scenario_count)} 个重点场景做失败归因：${contradictionTypeText}。可能原因分布：${Object.entries(contradictionReasonCounts).map(([key, value]) => `${key} ${integerText(value)}`).join(" / ") || "--"}。该层只解释失败来源，不修改 V6/V7、不新增状态、不生成评分、配置或交易。`
       : "V8.3 研究语境矛盾归因尚未生成。"
+  );
+
+  const v8ArchitectureReadyFlagsOff =
+    v8ArchitectureSummary.ready_for_scoring === false &&
+    v8ArchitectureSummary.ready_for_ranking === false &&
+    v8ArchitectureSummary.ready_for_allocation === false &&
+    v8ArchitectureSummary.ready_for_trade === false;
+  setText("v8ArchitectureStatus", v8ArchitectureSummary.freeze_status === "frozen" ? "已冻结" : "--");
+  setText(
+    "v8ArchitectureLayers",
+    v8ArchitectureSummary.retained_layer_count ? `${integerText(v8ArchitectureSummary.retained_layer_count)} 层` : "--"
+  );
+  setText(
+    "v8ArchitectureRejected",
+    v8ArchitectureSummary.rejected_output_count ? `${integerText(v8ArchitectureSummary.rejected_output_count)} 项` : "--"
+  );
+  setText("v8ArchitectureBoundary", v8ArchitectureReadyFlagsOff ? "不可策略化/配置/交易" : "需复核");
+  setHtml("v8ArchitectureLayerList", v8ArchitectureLayers
+    .map((layer) => `
+      <div class="duration-row">
+        <span>${escapeHtml(layer.version || "--")} · ${escapeHtml(layer.name || "--")}</span>
+        <strong>${escapeHtml(layer.status || "--")}</strong>
+        <em>${escapeHtml(layer.role || "")}</em>
+      </div>
+    `)
+    .join(""));
+  setHtml("v8ArchitectureRejectedList", v8ArchitectureRejected
+    .map((item) => `
+      <div>
+        <strong>${escapeHtml(item.name || "--")} · ${escapeHtml(item.status || "--")}</strong>
+        <span>${escapeHtml(item.reason || "")}</span>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "v8ArchitectureConclusion",
+    v8Architecture.metadata
+      ? `V8.4 冻结 V8 研究解释架构：V8.1=${escapeHtml(v8ArchitectureEvidence.v8_1_decision_context || "--")}，V8.2 场景 ${integerText(v8ArchitectureEvidence.v8_2_scenario_count)} 个，一致性 ${Object.entries(v8ArchitectureEvidence.v8_2_consistency_counts || {}).map(([key, value]) => `${key} ${integerText(value)}`).join(" / ") || "--"}，V8.3 归因 ${integerText(v8ArchitectureEvidence.v8_3_attribution_count)} 条。该层不生成评分、排名、资产选择、配置、ETF 权重或交易。`
+      : "V8.4 研究决策架构冻结摘要尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
