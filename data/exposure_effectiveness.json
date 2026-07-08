@@ -1,0 +1,752 @@
+{
+  "metadata": {
+    "engine": "V5.2 Exposure Level Effectiveness Audit & Calibration Review",
+    "generated_at": "2026-07-08T14:58:39+00:00",
+    "as_of": "20260707",
+    "source_engine": "V5.1 Adaptive Exposure Policy Simulation Foundation",
+    "purpose": "Audit fixed V5.1 qualitative exposure levels for risk/opportunity separation without changing rules."
+  },
+  "current": {
+    "policy_mode": "late_cycle_control",
+    "exposure_level": "LOW",
+    "exposure_band": "low_research_exposure",
+    "reasons": [
+      "macro_recovery",
+      "structural_rotation",
+      "bull_divergence",
+      "trend_strong",
+      "theme_persistence_high",
+      "industry_breadth_narrow",
+      "single_theme_concentration",
+      "crowding_elevated",
+      "price_extension_high",
+      "theme_risk_medium"
+    ],
+    "blocked": [
+      "aggressive_expansion",
+      "new_unconfirmed_beta"
+    ],
+    "explanation": "Policy mode late_cycle_control maps to qualitative exposure level LOW under phase LATE_CYCLE and risk state CROWDED; this is simulation-only.",
+    "constraints": {
+      "simulation_only": true,
+      "qualitative_level_only": true,
+      "no_percentage": true,
+      "no_weight": true,
+      "no_trade": true
+    },
+    "as_of": "20260707"
+  },
+  "summary": {
+    "replay_count": 140,
+    "usable_rows": 134,
+    "level_effectiveness": {
+      "DEFENSIVE": {
+        "level": "DEFENSIVE",
+        "total_count": 6,
+        "total_share": 0.042857,
+        "usable_rows": 6,
+        "future_high_risk_count": 2,
+        "future_high_risk_rate": 0.333333,
+        "future_drawdown_gt_15_count": 2,
+        "future_drawdown_gt_15_rate": 0.333333,
+        "future_opportunity_count": 0,
+        "future_opportunity_rate": 0.0,
+        "contradiction_count": 0,
+        "contradiction_rate": 0.0,
+        "opportunity_miss_count": 0,
+        "opportunity_miss_rate": 0.0,
+        "future_environment_distribution": {
+          "drawdown_stress": {
+            "count": 2,
+            "share": 0.333333
+          },
+          "range_mixed": {
+            "count": 4,
+            "share": 0.666667
+          }
+        },
+        "contradiction_type_distribution": {},
+        "interpretation": "sample_too_sparse"
+      },
+      "LOW": {
+        "level": "LOW",
+        "total_count": 15,
+        "total_share": 0.107143,
+        "usable_rows": 13,
+        "future_high_risk_count": 1,
+        "future_high_risk_rate": 0.076923,
+        "future_drawdown_gt_15_count": 0,
+        "future_drawdown_gt_15_rate": 0.0,
+        "future_opportunity_count": 3,
+        "future_opportunity_rate": 0.230769,
+        "contradiction_count": 3,
+        "contradiction_rate": 0.230769,
+        "opportunity_miss_count": 3,
+        "opportunity_miss_rate": 0.230769,
+        "future_environment_distribution": {
+          "drawdown_stress": {
+            "count": 1,
+            "share": 0.076923
+          },
+          "positive_range": {
+            "count": 2,
+            "share": 0.153846
+          },
+          "range_mixed": {
+            "count": 6,
+            "share": 0.461538
+          },
+          "strong_uptrend": {
+            "count": 2,
+            "share": 0.153846
+          },
+          "weak_or_flat": {
+            "count": 2,
+            "share": 0.153846
+          }
+        },
+        "contradiction_type_distribution": {
+          "strong_opportunity_with_low_exposure_level": {
+            "count": 3,
+            "share": 1.0
+          }
+        },
+        "interpretation": "possible_opportunity_miss_bucket"
+      },
+      "BALANCED": {
+        "level": "BALANCED",
+        "total_count": 119,
+        "total_share": 0.85,
+        "usable_rows": 115,
+        "future_high_risk_count": 26,
+        "future_high_risk_rate": 0.226087,
+        "future_drawdown_gt_15_count": 16,
+        "future_drawdown_gt_15_rate": 0.13913,
+        "future_opportunity_count": 17,
+        "future_opportunity_rate": 0.147826,
+        "contradiction_count": 16,
+        "contradiction_rate": 0.13913,
+        "opportunity_miss_count": 0,
+        "opportunity_miss_rate": 0.0,
+        "future_environment_distribution": {
+          "drawdown_stress": {
+            "count": 24,
+            "share": 0.208696
+          },
+          "high_volatility": {
+            "count": 2,
+            "share": 0.017391
+          },
+          "positive_range": {
+            "count": 25,
+            "share": 0.217391
+          },
+          "range_mixed": {
+            "count": 33,
+            "share": 0.286957
+          },
+          "strong_uptrend": {
+            "count": 15,
+            "share": 0.130435
+          },
+          "weak_or_flat": {
+            "count": 16,
+            "share": 0.13913
+          }
+        },
+        "contradiction_type_distribution": {
+          "large_drawdown_with_non_defensive_level": {
+            "count": 16,
+            "share": 1.0
+          }
+        },
+        "interpretation": "too_wide_bucket"
+      },
+      "HIGH": {
+        "level": "HIGH",
+        "total_count": 0,
+        "total_share": 0.0,
+        "usable_rows": 0,
+        "future_high_risk_count": 0,
+        "future_high_risk_rate": 0.0,
+        "future_drawdown_gt_15_count": 0,
+        "future_drawdown_gt_15_rate": 0.0,
+        "future_opportunity_count": 0,
+        "future_opportunity_rate": 0.0,
+        "contradiction_count": 0,
+        "contradiction_rate": 0.0,
+        "opportunity_miss_count": 0,
+        "opportunity_miss_rate": 0.0,
+        "future_environment_distribution": {},
+        "contradiction_type_distribution": {},
+        "interpretation": "missing_bucket"
+      },
+      "OFFENSIVE": {
+        "level": "OFFENSIVE",
+        "total_count": 0,
+        "total_share": 0.0,
+        "usable_rows": 0,
+        "future_high_risk_count": 0,
+        "future_high_risk_rate": 0.0,
+        "future_drawdown_gt_15_count": 0,
+        "future_drawdown_gt_15_rate": 0.0,
+        "future_opportunity_count": 0,
+        "future_opportunity_rate": 0.0,
+        "contradiction_count": 0,
+        "contradiction_rate": 0.0,
+        "opportunity_miss_count": 0,
+        "opportunity_miss_rate": 0.0,
+        "future_environment_distribution": {},
+        "contradiction_type_distribution": {},
+        "interpretation": "missing_bucket"
+      }
+    },
+    "distribution_review": {
+      "status": "balanced_bucket_too_dominant",
+      "dominant_level": "BALANCED",
+      "dominant_count": 119,
+      "dominant_share": 0.85,
+      "missing_levels": [
+        "HIGH",
+        "OFFENSIVE"
+      ],
+      "sparse_levels": [
+        "DEFENSIVE"
+      ]
+    },
+    "ordering_review": {
+      "usable_levels": [
+        "DEFENSIVE",
+        "LOW",
+        "BALANCED"
+      ],
+      "risk_rates": {
+        "DEFENSIVE": 0.333333,
+        "LOW": 0.076923,
+        "BALANCED": 0.226087
+      },
+      "opportunity_rates": {
+        "DEFENSIVE": 0.0,
+        "LOW": 0.230769,
+        "BALANCED": 0.147826
+      },
+      "risk_monotonic_expected": false,
+      "opportunity_monotonic_expected": false,
+      "issue_count": 3,
+      "issues": [
+        {
+          "type": "risk_rate_rebounds_at_higher_level",
+          "from_level": "LOW",
+          "to_level": "BALANCED",
+          "from_rate": 0.076923,
+          "to_rate": 0.226087
+        },
+        {
+          "type": "opportunity_rate_declines_at_higher_level",
+          "from_level": "LOW",
+          "to_level": "BALANCED",
+          "from_rate": 0.230769,
+          "to_rate": 0.147826
+        },
+        {
+          "type": "missing_levels_prevent_full_order_test",
+          "levels": [
+            "HIGH",
+            "OFFENSIVE"
+          ]
+        }
+      ],
+      "status": "ordering_review_needed"
+    },
+    "high_offensive_absence": {
+      "missing_positive_levels": [
+        "HIGH",
+        "OFFENSIVE"
+      ],
+      "policy_mode_distribution": {
+        "late_cycle_control": {
+          "count": 7,
+          "share": 0.05
+        },
+        "participate_selectively": {
+          "count": 9,
+          "share": 0.064286
+        },
+        "participate_with_control": {
+          "count": 97,
+          "share": 0.692857
+        },
+        "protect_capital": {
+          "count": 6,
+          "share": 0.042857
+        },
+        "rebuild_risk": {
+          "count": 15,
+          "share": 0.107143
+        },
+        "watch_only": {
+          "count": 6,
+          "share": 0.042857
+        }
+      },
+      "top_source_contexts": [
+        {
+          "opportunity_state": "EARLY_RECOVERY",
+          "risk_state": "CROWDED",
+          "market_phase": "EARLY_CYCLE",
+          "count": 33,
+          "share": 0.235714
+        },
+        {
+          "opportunity_state": "STRUCTURAL_ROTATION",
+          "risk_state": "CROWDED",
+          "market_phase": "ROTATION",
+          "count": 20,
+          "share": 0.142857
+        },
+        {
+          "opportunity_state": "EARLY_RECOVERY",
+          "risk_state": "CROWDED",
+          "market_phase": "CONTRACTION",
+          "count": 10,
+          "share": 0.071429
+        },
+        {
+          "opportunity_state": "EARLY_RECOVERY",
+          "risk_state": "NORMAL",
+          "market_phase": "EARLY_CYCLE",
+          "count": 6,
+          "share": 0.042857
+        },
+        {
+          "opportunity_state": "EARLY_RECOVERY",
+          "risk_state": "CROWDED",
+          "market_phase": "UNKNOWN",
+          "count": 6,
+          "share": 0.042857
+        },
+        {
+          "opportunity_state": "LATE_BULL",
+          "risk_state": "CROWDED",
+          "market_phase": "LATE_CYCLE",
+          "count": 6,
+          "share": 0.042857
+        },
+        {
+          "opportunity_state": "LATE_BULL",
+          "risk_state": "HIGH_RISK",
+          "market_phase": "LATE_CYCLE",
+          "count": 5,
+          "share": 0.035714
+        },
+        {
+          "opportunity_state": "STRUCTURAL_ROTATION",
+          "risk_state": "CROWDED",
+          "market_phase": "CONTRACTION",
+          "count": 5,
+          "share": 0.035714
+        }
+      ],
+      "strict_positive_combo_count": 0,
+      "reasons": [
+        "source_policy_never_emits_participate_mode",
+        "positive_exposure_levels_have_no_historical_rows",
+        "strict_bull_expansion_low_risk_expansion_combo_absent"
+      ],
+      "interpretation": "positive_exposure_not_observed_in_fixed_v5_1"
+    },
+    "review_items": [
+      {
+        "type": "balanced_bucket_too_dominant",
+        "severity": "high",
+        "evidence": {
+          "dominant_level": "BALANCED",
+          "dominant_share": 0.85
+        }
+      },
+      {
+        "type": "missing_exposure_level",
+        "severity": "medium",
+        "evidence": {
+          "level": "HIGH"
+        }
+      },
+      {
+        "type": "missing_exposure_level",
+        "severity": "medium",
+        "evidence": {
+          "level": "OFFENSIVE"
+        }
+      },
+      {
+        "type": "balanced_risk_higher_than_low",
+        "severity": "high",
+        "evidence": {
+          "balanced_high_risk_rate": 0.226087,
+          "low_high_risk_rate": 0.076923
+        }
+      },
+      {
+        "type": "exposure_ordering_not_proven",
+        "severity": "high",
+        "evidence": {
+          "issue_count": 3
+        }
+      }
+    ],
+    "review_item_count": 5,
+    "key_read": "Exposure levels are not yet proven as an ordered signal. Dominant level is BALANCED with share 0.85; ordering_status=ordering_review_needed."
+  },
+  "period_validation": [
+    {
+      "period": "2015_bull_bear",
+      "label": "2015 bull/bear",
+      "window": {
+        "start": "20150101",
+        "end": "20151231"
+      },
+      "signal_count": 13,
+      "usable_rows": 13,
+      "exposure_level_distribution": {
+        "BALANCED": {
+          "count": 11,
+          "share": 0.846154
+        },
+        "DEFENSIVE": {
+          "count": 2,
+          "share": 0.153846
+        }
+      },
+      "future_high_risk_rate": 0.769231,
+      "future_opportunity_rate": 0.076923,
+      "contradiction_rate": 0.538462
+    },
+    {
+      "period": "2018_bear",
+      "label": "2018 bear",
+      "window": {
+        "start": "20180101",
+        "end": "20181231"
+      },
+      "signal_count": 12,
+      "usable_rows": 12,
+      "exposure_level_distribution": {
+        "BALANCED": {
+          "count": 12,
+          "share": 1.0
+        }
+      },
+      "future_high_risk_rate": 0.5,
+      "future_opportunity_rate": 0.25,
+      "contradiction_rate": 0.416667
+    },
+    {
+      "period": "2020_covid_recovery",
+      "label": "2020 covid/recovery",
+      "window": {
+        "start": "20200101",
+        "end": "20201231"
+      },
+      "signal_count": 12,
+      "usable_rows": 12,
+      "exposure_level_distribution": {
+        "BALANCED": {
+          "count": 10,
+          "share": 0.833333
+        },
+        "LOW": {
+          "count": 2,
+          "share": 0.166667
+        }
+      },
+      "future_high_risk_rate": 0.166667,
+      "future_opportunity_rate": 0.333333,
+      "contradiction_rate": 0.0
+    },
+    {
+      "period": "2021_core_asset",
+      "label": "2021 core asset divergence",
+      "window": {
+        "start": "20210101",
+        "end": "20211231"
+      },
+      "signal_count": 13,
+      "usable_rows": 13,
+      "exposure_level_distribution": {
+        "BALANCED": {
+          "count": 11,
+          "share": 0.846154
+        },
+        "DEFENSIVE": {
+          "count": 1,
+          "share": 0.076923
+        },
+        "LOW": {
+          "count": 1,
+          "share": 0.076923
+        }
+      },
+      "future_high_risk_rate": 0.230769,
+      "future_opportunity_rate": 0.0,
+      "contradiction_rate": 0.230769
+    },
+    {
+      "period": "2022_bear",
+      "label": "2022 bear",
+      "window": {
+        "start": "20220101",
+        "end": "20221231"
+      },
+      "signal_count": 12,
+      "usable_rows": 12,
+      "exposure_level_distribution": {
+        "BALANCED": {
+          "count": 12,
+          "share": 1.0
+        }
+      },
+      "future_high_risk_rate": 0.416667,
+      "future_opportunity_rate": 0.083333,
+      "contradiction_rate": 0.083333
+    },
+    {
+      "period": "2024_2026_structural",
+      "label": "2024-2026 structural bull",
+      "window": {
+        "start": "20240101",
+        "end": "20261231"
+      },
+      "signal_count": 30,
+      "usable_rows": 24,
+      "exposure_level_distribution": {
+        "BALANCED": {
+          "count": 20,
+          "share": 0.666667
+        },
+        "DEFENSIVE": {
+          "count": 1,
+          "share": 0.033333
+        },
+        "LOW": {
+          "count": 9,
+          "share": 0.3
+        }
+      },
+      "future_high_risk_rate": 0.041667,
+      "future_opportunity_rate": 0.333333,
+      "contradiction_rate": 0.125
+    }
+  ],
+  "sample_review_rows": [
+    {
+      "date": "20150407",
+      "exposure_level": "BALANCED",
+      "policy_mode": "participate_with_control",
+      "future_environment": "drawdown_stress",
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ]
+    },
+    {
+      "date": "20150706",
+      "exposure_level": "BALANCED",
+      "policy_mode": "participate_with_control",
+      "future_environment": "drawdown_stress",
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ]
+    },
+    {
+      "date": "20150803",
+      "exposure_level": "BALANCED",
+      "policy_mode": "participate_with_control",
+      "future_environment": "drawdown_stress",
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ]
+    },
+    {
+      "date": "20150831",
+      "exposure_level": "BALANCED",
+      "policy_mode": "participate_with_control",
+      "future_environment": "drawdown_stress",
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ]
+    },
+    {
+      "date": "20151104",
+      "exposure_level": "BALANCED",
+      "policy_mode": "participate_with_control",
+      "future_environment": "drawdown_stress",
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ]
+    },
+    {
+      "date": "20151202",
+      "exposure_level": "BALANCED",
+      "policy_mode": "participate_with_control",
+      "future_environment": "drawdown_stress",
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ]
+    },
+    {
+      "date": "20151230",
+      "exposure_level": "BALANCED",
+      "policy_mode": "participate_with_control",
+      "future_environment": "drawdown_stress",
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ]
+    },
+    {
+      "date": "20180116",
+      "exposure_level": "BALANCED",
+      "policy_mode": "participate_with_control",
+      "future_environment": "drawdown_stress",
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ]
+    },
+    {
+      "date": "20180213",
+      "exposure_level": "BALANCED",
+      "policy_mode": "participate_with_control",
+      "future_environment": "drawdown_stress",
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ]
+    },
+    {
+      "date": "20180320",
+      "exposure_level": "BALANCED",
+      "policy_mode": "rebuild_risk",
+      "future_environment": "drawdown_stress",
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ]
+    },
+    {
+      "date": "20180419",
+      "exposure_level": "BALANCED",
+      "policy_mode": "participate_with_control",
+      "future_environment": "drawdown_stress",
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ]
+    },
+    {
+      "date": "20180521",
+      "exposure_level": "BALANCED",
+      "policy_mode": "participate_selectively",
+      "future_environment": "drawdown_stress",
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ]
+    }
+  ],
+  "data_quality": {
+    "uses_fixed_v5_1_exposure_simulation": true,
+    "future_labels_used_for_validation_only": true,
+    "qualitative_levels_only": true,
+    "does_not_modify_mapper": true
+  },
+  "constraints": {
+    "audit_only": true,
+    "does_not_modify_v5_1_rules": true,
+    "no_percentage_exposure": true,
+    "no_etf_code": true,
+    "no_asset_weight": true,
+    "no_portfolio_weight": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_return_optimization": true
+  }
+}

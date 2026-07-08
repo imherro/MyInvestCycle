@@ -546,6 +546,40 @@ function exposureBandLabel(value) {
   return labels[value] || value || "--";
 }
 
+function exposureEffectivenessStatusLabel(value) {
+  const labels = {
+    balanced_bucket_too_dominant: "BALANCED 过度集中",
+    missing_positive_or_defensive_buckets: "存在缺失等级",
+    usable_distribution: "分布可用",
+    ordering_review_needed: "有序性待复核",
+    ordered: "有序性通过",
+  };
+  return labels[value] || value || "--";
+}
+
+function exposureEffectivenessInterpretationLabel(value) {
+  const labels = {
+    missing_bucket: "缺失样本",
+    sample_too_sparse: "样本太少",
+    too_wide_bucket: "桶过宽",
+    risk_too_high_for_level: "风险偏高",
+    possible_opportunity_miss_bucket: "可能错失机会",
+    contradiction_review_needed: "矛盾需复核",
+    acceptable_for_now: "暂可接受",
+  };
+  return labels[value] || value || "--";
+}
+
+function exposureEffectivenessReviewLabel(value) {
+  const labels = {
+    balanced_bucket_too_dominant: "BALANCED 过度集中",
+    missing_exposure_level: "暴露等级缺失",
+    balanced_risk_higher_than_low: "BALANCED 风险高于 LOW",
+    exposure_ordering_not_proven: "有序性未证明",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1152,6 +1186,11 @@ function setResultsPanel(results) {
   const exposureSimulationCurrent = exposureSimulation.current || {};
   const exposureSimulationSummary = exposureSimulation.summary || {};
   const exposureSimulationAudit = exposureSimulationSummary.audit || {};
+  const exposureEffectiveness = results.exposure_effectiveness || {};
+  const exposureEffectivenessSummary = exposureEffectiveness.summary || {};
+  const exposureEffectivenessDistribution = exposureEffectivenessSummary.distribution_review || {};
+  const exposureEffectivenessOrdering = exposureEffectivenessSummary.ordering_review || {};
+  const exposureEffectivenessAbsence = exposureEffectivenessSummary.high_offensive_absence || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -1799,6 +1838,50 @@ function setResultsPanel(results) {
     exposureSimulation.metadata
       ? `V5.1 当前定性等级为${qualitativeExposureLabel(exposureSimulationCurrent.exposure_level)}（${exposureBandLabel(exposureSimulationCurrent.exposure_band)}）：历史重放 ${integerText(exposureSimulationSummary.replay_count)} 次，矛盾率 ${percentText(exposureSimulationAudit.contradiction_rate)}，机会错失率 ${percentText(exposureSimulationAudit.opportunity_miss_rate)}。该层只做模拟验证，不输出仓位百分比、ETF、权重或交易信号。`
       : "V5.1 定性暴露等级模拟尚未生成。"
+  );
+
+  setText(
+    "exposureEffectivenessDominant",
+    exposureEffectivenessDistribution.dominant_level
+      ? `${qualitativeExposureLabel(exposureEffectivenessDistribution.dominant_level)} ${percentText(exposureEffectivenessDistribution.dominant_share)}`
+      : "--"
+  );
+  setText("exposureEffectivenessOrdering", exposureEffectivenessStatusLabel(exposureEffectivenessOrdering.status));
+  setText(
+    "exposureEffectivenessMissing",
+    (exposureEffectivenessDistribution.missing_levels || []).length
+      ? exposureEffectivenessDistribution.missing_levels.map(qualitativeExposureLabel).join(" / ")
+      : "--"
+  );
+  setText("exposureEffectivenessReviewItems", integerText(exposureEffectivenessSummary.review_item_count));
+  const levelEffectiveness = exposureEffectivenessSummary.level_effectiveness || {};
+  setHtml("exposureEffectivenessLevels", Object.entries(levelEffectiveness)
+    .map(
+      ([level, item]) => `
+        <div class="alpha-source-row">
+          <span>${qualitativeExposureLabel(level)} · ${exposureEffectivenessInterpretationLabel(item.interpretation)}</span>
+          <strong>风险 ${percentText(item.future_high_risk_rate)} / 机会 ${percentText(item.future_opportunity_rate)}</strong>
+        </div>
+      `
+    )
+    .join(""));
+  setHtml("exposureEffectivenessReviewList", (exposureEffectivenessSummary.review_items || [])
+    .slice(0, 6)
+    .map(
+      (item) => `
+        <div class="duration-row">
+          <span>${exposureEffectivenessReviewLabel(item.type)}</span>
+          <strong>${item.severity || "--"}</strong>
+          <em>${item.evidence?.level ? qualitativeExposureLabel(item.evidence.level) : `问题 ${integerText(item.evidence?.issue_count)}`}</em>
+        </div>
+      `
+    )
+    .join(""));
+  setText(
+    "exposureEffectivenessConclusion",
+    exposureEffectiveness.metadata
+      ? `V5.2 固定 V5.1 不改规则做审计：${exposureEffectivenessSummary.key_read || "暴露等级有效性待复核"} 缺失 ${((exposureEffectivenessAbsence.missing_positive_levels || []).map(qualitativeExposureLabel).join(" / ")) || "无"}；该层只做审计，不输出仓位、ETF、权重或交易。`
+      : "V5.2 暴露等级有效性审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
