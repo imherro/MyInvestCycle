@@ -3,6 +3,7 @@ from asset_opportunity.alpha_model_engine import build_alpha_model_snapshot
 from asset_opportunity.alpha_model_validation import build_alpha_model_validation
 from asset_opportunity.alpha_portfolio_engine import build_alpha_portfolio_plan
 from asset_opportunity.alpha_portfolio_simulator import build_alpha_portfolio_simulation
+from asset_opportunity.alpha_style_attribution import asset_style_map, dominant_style, style_exposure_for_codes
 from asset_opportunity.asset_loader import asset_history_coverage, load_asset_history
 from asset_opportunity.asset_registry import DEFAULT_ASSETS, build_asset_registry, read_asset_registry, write_asset_registry
 from asset_opportunity.asset_schema import AssetRecord
@@ -24,8 +25,11 @@ __all__ = [
     "build_asset_registry",
     "build_opportunity_validation",
     "build_regime_conditioned_validation",
+    "asset_style_map",
     "default_risk_control_scenarios",
+    "dominant_style",
     "load_asset_history",
     "read_asset_registry",
+    "style_exposure_for_codes",
     "write_asset_registry",
 ]

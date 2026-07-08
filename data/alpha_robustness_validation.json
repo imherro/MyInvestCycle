@@ -1,0 +1,1194 @@
+{
+  "metadata": {
+    "engine": "V3.4.4 Alpha Portfolio Robustness & Style Attribution Validation",
+    "generated_at": "2026-07-08T11:26:01+00:00",
+    "window": {
+      "start": "20150105",
+      "end": "20260708"
+    },
+    "primary_series": "tradable_etf.router_selected_model_top3",
+    "rebalance_step": 60,
+    "transaction_cost": 0.001,
+    "minimum_holding_days": 20
+  },
+  "periods": [
+    {
+      "label": "2020-2021",
+      "window": {
+        "start": "20200101",
+        "end": "20211231"
+      },
+      "portfolio": {
+        "start": "20200219",
+        "end": "20211231",
+        "observations": 458,
+        "total_return": 0.587748,
+        "cagr": 0.290374,
+        "volatility": 0.252037,
+        "max_drawdown": -0.248793,
+        "sharpe": 1.152107,
+        "calmar": 1.167128
+      },
+      "opportunity_score_top3": {
+        "start": "20200219",
+        "end": "20211231",
+        "observations": 458,
+        "total_return": 0.236577,
+        "cagr": 0.124224,
+        "volatility": 0.229386,
+        "max_drawdown": -0.222852,
+        "sharpe": 0.541549,
+        "calmar": 0.557429
+      },
+      "broad_benchmarks": {
+        "510300.SH": {
+          "start": "20200219",
+          "end": "20211231",
+          "observations": 458,
+          "total_return": 0.239604,
+          "cagr": 0.125741,
+          "volatility": 0.20268,
+          "max_drawdown": -0.171861,
+          "sharpe": 0.620389,
+          "calmar": 0.731641
+        },
+        "510500.SH": {
+          "start": "20200219",
+          "end": "20211231",
+          "observations": 458,
+          "total_return": 0.361134,
+          "cagr": 0.185321,
+          "volatility": 0.191766,
+          "max_drawdown": -0.149867,
+          "sharpe": 0.96639,
+          "calmar": 1.236569
+        }
+      },
+      "style_benchmarks": {
+        "159915.SZ": {
+          "name": "创业板ETF",
+          "style": "growth_technology",
+          "coverage": {
+            "start": "20181029",
+            "end": "20260626",
+            "rows": 1857
+          },
+          "metrics": {
+            "start": "20200102",
+            "end": "20211231",
+            "observations": 485,
+            "total_return": 0.823229,
+            "cagr": 0.36713,
+            "volatility": 0.297675,
+            "max_drawdown": -0.227756,
+            "sharpe": 1.233327,
+            "calmar": 1.611947
+          }
+        },
+        "588000.SH": {
+          "name": "科创50ETF",
+          "style": "growth_technology",
+          "coverage": {
+            "start": "20201116",
+            "end": "20260625",
+            "rows": 1359
+          },
+          "metrics": {
+            "start": "20201116",
+            "end": "20211231",
+            "observations": 277,
+            "total_return": -0.008874,
+            "cagr": -0.008105,
+            "volatility": 0.233091,
+            "max_drawdown": -0.184177,
+            "sharpe": -0.034774,
+            "calmar": -0.044009
+          }
+        },
+        "512480.SH": {
+          "name": "半导体ETF",
+          "style": "growth_technology",
+          "coverage": {
+            "start": "20190612",
+            "end": "20260625",
+            "rows": 1706
+          },
+          "metrics": {
+            "start": "20200102",
+            "end": "20211231",
+            "observations": 485,
+            "total_return": -0.128686,
+            "cagr": -0.069211,
+            "volatility": 0.542281,
+            "max_drawdown": -0.665028,
+            "sharpe": -0.127629,
+            "calmar": -0.104072
+          }
+        },
+        "510880.SH": {
+          "name": "红利ETF",
+          "style": "dividend_defensive",
+          "coverage": {
+            "start": "20181029",
+            "end": "20260626",
+            "rows": 1858
+          },
+          "metrics": {
+            "start": "20200102",
+            "end": "20211231",
+            "observations": 486,
+            "total_return": -0.019768,
+            "cagr": -0.01032,
+            "volatility": 0.192325,
+            "max_drawdown": -0.212428,
+            "sharpe": -0.053662,
+            "calmar": -0.048583
+          }
+        },
+        "510300.SH": {
+          "name": "沪深300ETF",
+          "style": "value_large",
+          "coverage": {
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "metrics": {
+            "start": "20200102",
+            "end": "20211231",
+            "observations": 486,
+            "total_return": 0.207038,
+            "cagr": 0.10271,
+            "volatility": 0.211096,
+            "max_drawdown": -0.171861,
+            "sharpe": 0.486554,
+            "calmar": 0.597632
+          }
+        },
+        "510500.SH": {
+          "name": "中证500ETF",
+          "style": "mid_small",
+          "coverage": {
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2794
+          },
+          "metrics": {
+            "start": "20200102",
+            "end": "20211231",
+            "observations": 486,
+            "total_return": 0.420609,
+            "cagr": 0.200118,
+            "volatility": 0.203521,
+            "max_drawdown": -0.149867,
+            "sharpe": 0.983277,
+            "calmar": 1.335305
+          }
+        }
+      },
+      "style_exposure": {
+        "label": "2020-2021",
+        "window": {
+          "start": "20200101",
+          "end": "20211231"
+        },
+        "observations": 458,
+        "average_style_exposure": {
+          "consumer": 0.131004,
+          "defense": 0.131004,
+          "dividend_defensive": 0.027656,
+          "financial_value": 0.043668,
+          "growth_technology": 0.262009,
+          "healthcare": 0.027656,
+          "new_energy": 0.349345,
+          "value_large": 0.027656
+        },
+        "dominant_style": {
+          "style": "new_energy",
+          "share": 0.349345,
+          "level": "diversified"
+        }
+      },
+      "spreads": {
+        "vs_opportunity_score_top3": {
+          "cagr": 0.16615,
+          "total_return": 0.351171,
+          "sharpe": 0.610558
+        },
+        "vs_510300.SH": {
+          "cagr": 0.187664,
+          "total_return": 0.38071,
+          "sharpe": 0.665553
+        },
+        "vs_510500.SH": {
+          "cagr": 0.090256,
+          "total_return": 0.167139,
+          "sharpe": 0.16883
+        },
+        "vs_159915.SZ": {
+          "cagr": -0.076756,
+          "total_return": -0.235481,
+          "sharpe": -0.08122
+        },
+        "vs_588000.SH": {
+          "cagr": 0.298479,
+          "total_return": 0.596622,
+          "sharpe": 1.186881
+        },
+        "vs_512480.SH": {
+          "cagr": 0.359585,
+          "total_return": 0.716434,
+          "sharpe": 1.279736
+        },
+        "vs_510880.SH": {
+          "cagr": 0.300694,
+          "total_return": 0.607516,
+          "sharpe": 1.205769
+        }
+      }
+    },
+    {
+      "label": "2022",
+      "window": {
+        "start": "20220101",
+        "end": "20221231"
+      },
+      "portfolio": {
+        "start": "20220104",
+        "end": "20221230",
+        "observations": 242,
+        "total_return": -0.088124,
+        "cagr": -0.091956,
+        "volatility": 0.200484,
+        "max_drawdown": -0.186767,
+        "sharpe": -0.458668,
+        "calmar": -0.492354
+      },
+      "opportunity_score_top3": {
+        "start": "20220104",
+        "end": "20221230",
+        "observations": 242,
+        "total_return": 0.206421,
+        "cagr": 0.216799,
+        "volatility": 0.651112,
+        "max_drawdown": -0.218039,
+        "sharpe": 0.332967,
+        "calmar": 0.994312
+      },
+      "broad_benchmarks": {
+        "510300.SH": {
+          "start": "20220104",
+          "end": "20221230",
+          "observations": 242,
+          "total_return": -0.210822,
+          "cagr": -0.219304,
+          "volatility": 0.201908,
+          "max_drawdown": -0.285571,
+          "sharpe": -1.086162,
+          "calmar": -0.767951
+        },
+        "510500.SH": {
+          "start": "20220104",
+          "end": "20221230",
+          "observations": 242,
+          "total_return": -0.28772,
+          "cagr": -0.298665,
+          "volatility": 0.25403,
+          "max_drawdown": -0.316758,
+          "sharpe": -1.175708,
+          "calmar": -0.942882
+        }
+      },
+      "style_benchmarks": {
+        "159915.SZ": {
+          "name": "创业板ETF",
+          "style": "growth_technology",
+          "coverage": {
+            "start": "20181029",
+            "end": "20260626",
+            "rows": 1857
+          },
+          "metrics": {
+            "start": "20220104",
+            "end": "20221230",
+            "observations": 242,
+            "total_return": -0.277425,
+            "cagr": -0.288062,
+            "volatility": 0.280996,
+            "max_drawdown": -0.338618,
+            "sharpe": -1.025148,
+            "calmar": -0.8507
+          }
+        },
+        "588000.SH": {
+          "name": "科创50ETF",
+          "style": "growth_technology",
+          "coverage": {
+            "start": "20201116",
+            "end": "20260625",
+            "rows": 1359
+          },
+          "metrics": {
+            "start": "20220104",
+            "end": "20221230",
+            "observations": 242,
+            "total_return": -0.293661,
+            "cagr": -0.304781,
+            "volatility": 0.267808,
+            "max_drawdown": -0.359859,
+            "sharpe": -1.138057,
+            "calmar": -0.846945
+          }
+        },
+        "512480.SH": {
+          "name": "半导体ETF",
+          "style": "growth_technology",
+          "coverage": {
+            "start": "20190612",
+            "end": "20260625",
+            "rows": 1706
+          },
+          "metrics": {
+            "start": "20220104",
+            "end": "20221230",
+            "observations": 242,
+            "total_return": -0.354232,
+            "cagr": -0.366994,
+            "volatility": 0.346406,
+            "max_drawdown": -0.413009,
+            "sharpe": -1.059433,
+            "calmar": -0.888586
+          }
+        },
+        "510880.SH": {
+          "name": "红利ETF",
+          "style": "dividend_defensive",
+          "coverage": {
+            "start": "20181029",
+            "end": "20260626",
+            "rows": 1858
+          },
+          "metrics": {
+            "start": "20220104",
+            "end": "20221230",
+            "observations": 242,
+            "total_return": -0.018848,
+            "cagr": -0.0197,
+            "volatility": 0.189622,
+            "max_drawdown": -0.116151,
+            "sharpe": -0.10389,
+            "calmar": -0.169605
+          }
+        },
+        "510300.SH": {
+          "name": "沪深300ETF",
+          "style": "value_large",
+          "coverage": {
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "metrics": {
+            "start": "20220104",
+            "end": "20221230",
+            "observations": 242,
+            "total_return": -0.210822,
+            "cagr": -0.219304,
+            "volatility": 0.201908,
+            "max_drawdown": -0.285571,
+            "sharpe": -1.086159,
+            "calmar": -0.767951
+          }
+        },
+        "510500.SH": {
+          "name": "中证500ETF",
+          "style": "mid_small",
+          "coverage": {
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2794
+          },
+          "metrics": {
+            "start": "20220104",
+            "end": "20221230",
+            "observations": 242,
+            "total_return": -0.287719,
+            "cagr": -0.298664,
+            "volatility": 0.254031,
+            "max_drawdown": -0.316757,
+            "sharpe": -1.175699,
+            "calmar": -0.942882
+          }
+        }
+      },
+      "style_exposure": {
+        "label": "2022",
+        "window": {
+          "start": "20220101",
+          "end": "20221231"
+        },
+        "observations": 242,
+        "average_style_exposure": {
+          "dividend_defensive": 0.112948,
+          "financial_value": 0.30303,
+          "healthcare": 0.112948,
+          "mid_small": 0.082645,
+          "value_large": 0.38843
+        },
+        "dominant_style": {
+          "style": "value_large",
+          "share": 0.38843,
+          "level": "diversified"
+        }
+      },
+      "spreads": {
+        "vs_opportunity_score_top3": {
+          "cagr": -0.308755,
+          "total_return": -0.294545,
+          "sharpe": -0.791635
+        },
+        "vs_510300.SH": {
+          "cagr": 0.127348,
+          "total_return": 0.122698,
+          "sharpe": 0.627491
+        },
+        "vs_510500.SH": {
+          "cagr": 0.206708,
+          "total_return": 0.199595,
+          "sharpe": 0.717031
+        },
+        "vs_159915.SZ": {
+          "cagr": 0.196106,
+          "total_return": 0.189301,
+          "sharpe": 0.56648
+        },
+        "vs_588000.SH": {
+          "cagr": 0.212825,
+          "total_return": 0.205537,
+          "sharpe": 0.679389
+        },
+        "vs_512480.SH": {
+          "cagr": 0.275038,
+          "total_return": 0.266108,
+          "sharpe": 0.600765
+        },
+        "vs_510880.SH": {
+          "cagr": -0.072256,
+          "total_return": -0.069276,
+          "sharpe": -0.354778
+        }
+      }
+    },
+    {
+      "label": "2023",
+      "window": {
+        "start": "20230101",
+        "end": "20231231"
+      },
+      "portfolio": {
+        "start": "20230103",
+        "end": "20231229",
+        "observations": 242,
+        "total_return": -0.113298,
+        "cagr": -0.118151,
+        "volatility": 0.16381,
+        "max_drawdown": -0.229318,
+        "sharpe": -0.72127,
+        "calmar": -0.515228
+      },
+      "opportunity_score_top3": {
+        "start": "20230103",
+        "end": "20231229",
+        "observations": 242,
+        "total_return": -0.126683,
+        "cagr": -0.132066,
+        "volatility": 0.159762,
+        "max_drawdown": -0.243981,
+        "sharpe": -0.826638,
+        "calmar": -0.541295
+      },
+      "broad_benchmarks": {
+        "510300.SH": {
+          "start": "20230103",
+          "end": "20231229",
+          "observations": 242,
+          "total_return": -0.113953,
+          "cagr": -0.118832,
+          "volatility": 0.132679,
+          "max_drawdown": -0.198811,
+          "sharpe": -0.895637,
+          "calmar": -0.597716
+        },
+        "510500.SH": {
+          "start": "20230103",
+          "end": "20231229",
+          "observations": 242,
+          "total_return": -0.075545,
+          "cagr": -0.078854,
+          "volatility": 0.125906,
+          "max_drawdown": -0.172818,
+          "sharpe": -0.626291,
+          "calmar": -0.456282
+        }
+      },
+      "style_benchmarks": {
+        "159915.SZ": {
+          "name": "创业板ETF",
+          "style": "growth_technology",
+          "coverage": {
+            "start": "20181029",
+            "end": "20260626",
+            "rows": 1857
+          },
+          "metrics": {
+            "start": "20230103",
+            "end": "20231229",
+            "observations": 242,
+            "total_return": -0.195282,
+            "cagr": -0.203223,
+            "volatility": 0.178966,
+            "max_drawdown": -0.308238,
+            "sharpe": -1.135537,
+            "calmar": -0.659304
+          }
+        },
+        "588000.SH": {
+          "name": "科创50ETF",
+          "style": "growth_technology",
+          "coverage": {
+            "start": "20201116",
+            "end": "20260625",
+            "rows": 1359
+          },
+          "metrics": {
+            "start": "20230103",
+            "end": "20231229",
+            "observations": 242,
+            "total_return": -0.123167,
+            "cagr": -0.128412,
+            "volatility": 0.199688,
+            "max_drawdown": -0.283237,
+            "sharpe": -0.64306,
+            "calmar": -0.453372
+          }
+        },
+        "512480.SH": {
+          "name": "半导体ETF",
+          "style": "growth_technology",
+          "coverage": {
+            "start": "20190612",
+            "end": "20260625",
+            "rows": 1706
+          },
+          "metrics": {
+            "start": "20230103",
+            "end": "20231229",
+            "observations": 242,
+            "total_return": -0.038277,
+            "cagr": -0.039989,
+            "volatility": 0.2695,
+            "max_drawdown": -0.300363,
+            "sharpe": -0.148381,
+            "calmar": -0.133135
+          }
+        },
+        "510880.SH": {
+          "name": "红利ETF",
+          "style": "dividend_defensive",
+          "coverage": {
+            "start": "20181029",
+            "end": "20260626",
+            "rows": 1858
+          },
+          "metrics": {
+            "start": "20230103",
+            "end": "20231229",
+            "observations": 242,
+            "total_return": 0.019124,
+            "cagr": 0.020006,
+            "volatility": 0.118942,
+            "max_drawdown": -0.119114,
+            "sharpe": 0.168196,
+            "calmar": 0.167953
+          }
+        },
+        "510300.SH": {
+          "name": "沪深300ETF",
+          "style": "value_large",
+          "coverage": {
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "metrics": {
+            "start": "20230103",
+            "end": "20231229",
+            "observations": 242,
+            "total_return": -0.113953,
+            "cagr": -0.118832,
+            "volatility": 0.132678,
+            "max_drawdown": -0.198811,
+            "sharpe": -0.895645,
+            "calmar": -0.597716
+          }
+        },
+        "510500.SH": {
+          "name": "中证500ETF",
+          "style": "mid_small",
+          "coverage": {
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2794
+          },
+          "metrics": {
+            "start": "20230103",
+            "end": "20231229",
+            "observations": 242,
+            "total_return": -0.075544,
+            "cagr": -0.078852,
+            "volatility": 0.125907,
+            "max_drawdown": -0.172819,
+            "sharpe": -0.626278,
+            "calmar": -0.456271
+          }
+        }
+      },
+      "style_exposure": {
+        "label": "2023",
+        "window": {
+          "start": "20230101",
+          "end": "20231231"
+        },
+        "observations": 242,
+        "average_style_exposure": {
+          "dividend_defensive": 0.165289,
+          "financial_value": 0.027548,
+          "growth_technology": 0.082645,
+          "healthcare": 0.082645,
+          "mid_small": 0.247934,
+          "new_energy": 0.198347,
+          "value_large": 0.195592
+        },
+        "dominant_style": {
+          "style": "mid_small",
+          "share": 0.247934,
+          "level": "diversified"
+        }
+      },
+      "spreads": {
+        "vs_opportunity_score_top3": {
+          "cagr": 0.013915,
+          "total_return": 0.013385,
+          "sharpe": 0.105368
+        },
+        "vs_510300.SH": {
+          "cagr": 0.000681,
+          "total_return": 0.000655,
+          "sharpe": 0.174375
+        },
+        "vs_510500.SH": {
+          "cagr": -0.039299,
+          "total_return": -0.037754,
+          "sharpe": -0.094992
+        },
+        "vs_159915.SZ": {
+          "cagr": 0.085072,
+          "total_return": 0.081984,
+          "sharpe": 0.414267
+        },
+        "vs_588000.SH": {
+          "cagr": 0.010261,
+          "total_return": 0.009869,
+          "sharpe": -0.07821
+        },
+        "vs_512480.SH": {
+          "cagr": -0.078162,
+          "total_return": -0.075021,
+          "sharpe": -0.572889
+        },
+        "vs_510880.SH": {
+          "cagr": -0.138157,
+          "total_return": -0.132422,
+          "sharpe": -0.889466
+        }
+      }
+    },
+    {
+      "label": "2024-2026",
+      "window": {
+        "start": "20240101",
+        "end": "20260708"
+      },
+      "portfolio": {
+        "start": "20240102",
+        "end": "20260708",
+        "observations": 607,
+        "total_return": 0.673243,
+        "cagr": 0.238697,
+        "volatility": 0.272674,
+        "max_drawdown": -0.190954,
+        "sharpe": 0.875395,
+        "calmar": 1.250027
+      },
+      "opportunity_score_top3": {
+        "start": "20240102",
+        "end": "20260708",
+        "observations": 607,
+        "total_return": 0.242711,
+        "cagr": 0.094569,
+        "volatility": 0.271322,
+        "max_drawdown": -0.203567,
+        "sharpe": 0.348548,
+        "calmar": 0.464557
+      },
+      "broad_benchmarks": {
+        "510300.SH": {
+          "start": "20240102",
+          "end": "20260708",
+          "observations": 607,
+          "total_return": 0.389517,
+          "cagr": 0.146592,
+          "volatility": 0.189505,
+          "max_drawdown": -0.162511,
+          "sharpe": 0.773551,
+          "calmar": 0.902041
+        },
+        "510500.SH": {
+          "start": "20240102",
+          "end": "20260708",
+          "observations": 607,
+          "total_return": 0.555576,
+          "cagr": 0.201701,
+          "volatility": 0.253268,
+          "max_drawdown": -0.198653,
+          "sharpe": 0.796393,
+          "calmar": 1.015344
+        }
+      },
+      "style_benchmarks": {
+        "159915.SZ": {
+          "name": "创业板ETF",
+          "style": "growth_technology",
+          "coverage": {
+            "start": "20181029",
+            "end": "20260626",
+            "rows": 1857
+          },
+          "metrics": {
+            "start": "20240102",
+            "end": "20260626",
+            "observations": 599,
+            "total_return": 1.333887,
+            "cagr": 0.429258,
+            "volatility": 0.366563,
+            "max_drawdown": -0.337191,
+            "sharpe": 1.171033,
+            "calmar": 1.273039
+          }
+        },
+        "588000.SH": {
+          "name": "科创50ETF",
+          "style": "growth_technology",
+          "coverage": {
+            "start": "20201116",
+            "end": "20260625",
+            "rows": 1359
+          },
+          "metrics": {
+            "start": "20240102",
+            "end": "20260625",
+            "observations": 598,
+            "total_return": 1.458239,
+            "cagr": 0.461795,
+            "volatility": 0.377974,
+            "max_drawdown": -0.239278,
+            "sharpe": 1.221764,
+            "calmar": 1.929953
+          }
+        },
+        "512480.SH": {
+          "name": "半导体ETF",
+          "style": "growth_technology",
+          "coverage": {
+            "start": "20190612",
+            "end": "20260625",
+            "rows": 1706
+          },
+          "metrics": {
+            "start": "20240102",
+            "end": "20260625",
+            "observations": 598,
+            "total_return": 2.511392,
+            "cagr": 0.699232,
+            "volatility": 0.392574,
+            "max_drawdown": -0.268355,
+            "sharpe": 1.781145,
+            "calmar": 2.605622
+          }
+        },
+        "510880.SH": {
+          "name": "红利ETF",
+          "style": "dividend_defensive",
+          "coverage": {
+            "start": "20181029",
+            "end": "20260626",
+            "rows": 1858
+          },
+          "metrics": {
+            "start": "20240102",
+            "end": "20260626",
+            "observations": 599,
+            "total_return": -0.005387,
+            "cagr": -0.002274,
+            "volatility": 0.168619,
+            "max_drawdown": -0.140568,
+            "sharpe": -0.013484,
+            "calmar": -0.016175
+          }
+        },
+        "510300.SH": {
+          "name": "沪深300ETF",
+          "style": "value_large",
+          "coverage": {
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2796
+          },
+          "metrics": {
+            "start": "20240102",
+            "end": "20260708",
+            "observations": 607,
+            "total_return": 0.389516,
+            "cagr": 0.146591,
+            "volatility": 0.189506,
+            "max_drawdown": -0.162511,
+            "sharpe": 0.773546,
+            "calmar": 0.902039
+          }
+        },
+        "510500.SH": {
+          "name": "中证500ETF",
+          "style": "mid_small",
+          "coverage": {
+            "start": "20150105",
+            "end": "20260708",
+            "rows": 2794
+          },
+          "metrics": {
+            "start": "20240102",
+            "end": "20260708",
+            "observations": 607,
+            "total_return": 0.555576,
+            "cagr": 0.201701,
+            "volatility": 0.253268,
+            "max_drawdown": -0.198653,
+            "sharpe": 0.796394,
+            "calmar": 1.015344
+          }
+        }
+      },
+      "style_exposure": {
+        "label": "2024-2026",
+        "window": {
+          "start": "20240101",
+          "end": "20260708"
+        },
+        "observations": 607,
+        "average_style_exposure": {
+          "consumer": 0.164744,
+          "defense": 0.032949,
+          "dividend_defensive": 0.164745,
+          "financial_value": 0.164744,
+          "growth_technology": 0.212521,
+          "healthcare": 0.131796,
+          "mid_small": 0.032949,
+          "new_energy": 0.052718,
+          "value_large": 0.042834
+        },
+        "dominant_style": {
+          "style": "growth_technology",
+          "share": 0.212521,
+          "level": "diversified"
+        }
+      },
+      "spreads": {
+        "vs_opportunity_score_top3": {
+          "cagr": 0.144128,
+          "total_return": 0.430532,
+          "sharpe": 0.526847
+        },
+        "vs_510300.SH": {
+          "cagr": 0.092106,
+          "total_return": 0.283727,
+          "sharpe": 0.101849
+        },
+        "vs_510500.SH": {
+          "cagr": 0.036996,
+          "total_return": 0.117667,
+          "sharpe": 0.079001
+        },
+        "vs_159915.SZ": {
+          "cagr": -0.190561,
+          "total_return": -0.660644,
+          "sharpe": -0.295638
+        },
+        "vs_588000.SH": {
+          "cagr": -0.223098,
+          "total_return": -0.784996,
+          "sharpe": -0.346369
+        },
+        "vs_512480.SH": {
+          "cagr": -0.460535,
+          "total_return": -1.838149,
+          "sharpe": -0.90575
+        },
+        "vs_510880.SH": {
+          "cagr": 0.240971,
+          "total_return": 0.67863,
+          "sharpe": 0.888879
+        }
+      }
+    }
+  ],
+  "style_exposure": {
+    "metadata": {
+      "engine": "V3.4.4 Style Exposure Analysis",
+      "window": {
+        "start": "20150105",
+        "end": "20260708"
+      },
+      "model_label": "router_selected_model",
+      "top_n": 3,
+      "rebalance_step": 60
+    },
+    "style_benchmarks": [
+      {
+        "code": "159915.SZ",
+        "name": "创业板ETF",
+        "style": "growth_technology"
+      },
+      {
+        "code": "588000.SH",
+        "name": "科创50ETF",
+        "style": "growth_technology"
+      },
+      {
+        "code": "512480.SH",
+        "name": "半导体ETF",
+        "style": "growth_technology"
+      },
+      {
+        "code": "510880.SH",
+        "name": "红利ETF",
+        "style": "dividend_defensive"
+      },
+      {
+        "code": "510300.SH",
+        "name": "沪深300ETF",
+        "style": "value_large"
+      },
+      {
+        "code": "510500.SH",
+        "name": "中证500ETF",
+        "style": "mid_small"
+      }
+    ],
+    "periods": [
+      {
+        "label": "2020-2021",
+        "window": {
+          "start": "20200101",
+          "end": "20211231"
+        },
+        "observations": 458,
+        "average_style_exposure": {
+          "consumer": 0.131004,
+          "defense": 0.131004,
+          "dividend_defensive": 0.027656,
+          "financial_value": 0.043668,
+          "growth_technology": 0.262009,
+          "healthcare": 0.027656,
+          "new_energy": 0.349345,
+          "value_large": 0.027656
+        },
+        "dominant_style": {
+          "style": "new_energy",
+          "share": 0.349345,
+          "level": "diversified"
+        }
+      },
+      {
+        "label": "2022",
+        "window": {
+          "start": "20220101",
+          "end": "20221231"
+        },
+        "observations": 242,
+        "average_style_exposure": {
+          "dividend_defensive": 0.112948,
+          "financial_value": 0.30303,
+          "healthcare": 0.112948,
+          "mid_small": 0.082645,
+          "value_large": 0.38843
+        },
+        "dominant_style": {
+          "style": "value_large",
+          "share": 0.38843,
+          "level": "diversified"
+        }
+      },
+      {
+        "label": "2023",
+        "window": {
+          "start": "20230101",
+          "end": "20231231"
+        },
+        "observations": 242,
+        "average_style_exposure": {
+          "dividend_defensive": 0.165289,
+          "financial_value": 0.027548,
+          "growth_technology": 0.082645,
+          "healthcare": 0.082645,
+          "mid_small": 0.247934,
+          "new_energy": 0.198347,
+          "value_large": 0.195592
+        },
+        "dominant_style": {
+          "style": "mid_small",
+          "share": 0.247934,
+          "level": "diversified"
+        }
+      },
+      {
+        "label": "2024-2026",
+        "window": {
+          "start": "20240101",
+          "end": "20260708"
+        },
+        "observations": 607,
+        "average_style_exposure": {
+          "consumer": 0.164744,
+          "defense": 0.032949,
+          "dividend_defensive": 0.164745,
+          "financial_value": 0.164744,
+          "growth_technology": 0.212521,
+          "healthcare": 0.131796,
+          "mid_small": 0.032949,
+          "new_energy": 0.052718,
+          "value_large": 0.042834
+        },
+        "dominant_style": {
+          "style": "growth_technology",
+          "share": 0.212521,
+          "level": "diversified"
+        }
+      }
+    ],
+    "latest_exposure": {
+      "date": "20260708",
+      "codes": [
+        "159915.SZ",
+        "512480.SH",
+        "588000.SH"
+      ],
+      "exposure": {
+        "growth_technology": 1.0
+      },
+      "dominant": {
+        "style": "growth_technology",
+        "share": 1.0,
+        "level": "high"
+      }
+    },
+    "selected_code_counts": {
+      "159915.SZ": 6,
+      "510050.SH": 2,
+      "510300.SH": 7,
+      "510500.SH": 4,
+      "510880.SH": 5,
+      "512000.SH": 4,
+      "512100.SH": 1,
+      "512170.SH": 7,
+      "512480.SH": 3,
+      "512660.SH": 4,
+      "512690.SH": 8,
+      "512800.SH": 6,
+      "512890.SH": 4,
+      "515000.SH": 2,
+      "515790.SH": 5,
+      "516160.SH": 7,
+      "588000.SH": 3
+    },
+    "constraints": {
+      "analysis_only": true,
+      "model_unchanged": true,
+      "router_unchanged": true,
+      "top_n_unchanged": true,
+      "rebalance_step_unchanged": true,
+      "no_theme_cap": true,
+      "no_allocation": true,
+      "no_trade_signal": true
+    }
+  },
+  "style_benchmark_universe": [
+    {
+      "code": "159915.SZ",
+      "name": "创业板ETF",
+      "style": "growth_technology"
+    },
+    {
+      "code": "588000.SH",
+      "name": "科创50ETF",
+      "style": "growth_technology"
+    },
+    {
+      "code": "512480.SH",
+      "name": "半导体ETF",
+      "style": "growth_technology"
+    },
+    {
+      "code": "510880.SH",
+      "name": "红利ETF",
+      "style": "dividend_defensive"
+    },
+    {
+      "code": "510300.SH",
+      "name": "沪深300ETF",
+      "style": "value_large"
+    },
+    {
+      "code": "510500.SH",
+      "name": "中证500ETF",
+      "style": "mid_small"
+    }
+  ],
+  "summary": {
+    "positive_vs_510500_periods": [
+      "2020-2021",
+      "2022",
+      "2024-2026"
+    ],
+    "growth_technology_dominant_periods": [],
+    "latest_dominant_style": {
+      "style": "growth_technology",
+      "share": 1.0,
+      "level": "high"
+    },
+    "style_beta_warning": true,
+    "interpretation": "If growth_technology dominates exposure and style benchmarks explain returns, treat gains as style beta until out-of-sample evidence proves otherwise."
+  },
+  "constraints": {
+    "analysis_only": true,
+    "model_unchanged": true,
+    "router_unchanged": true,
+    "top_n_unchanged": true,
+    "step60_not_promoted_to_default": true,
+    "no_parameter_optimization": true,
+    "no_best_parameter_selection": true,
+    "no_theme_cap": true,
+    "no_allocation": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  }
+}
