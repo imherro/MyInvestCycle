@@ -1026,6 +1026,14 @@ def _read_risk_diagnostic_shadow_first_event_workflow_payload() -> dict[str, obj
     return payload if isinstance(payload, dict) else None
 
 
+def _read_risk_diagnostic_shadow_event_input_package_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "risk_diagnostic_shadow_event_input_package.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -2193,6 +2201,31 @@ def _compact_risk_diagnostic_shadow_first_event_workflow_payload(payload: dict[s
             "first_event_workflow",
             "first_event_input_requirements",
             "quality_audit_queue",
+            "no_trade_guardrails",
+            "promotion_gate",
+            "time_safety",
+            "constraints",
+            "forbidden_outputs",
+            "audit",
+        )
+        if key in payload
+    }
+
+
+def _compact_risk_diagnostic_shadow_event_input_package_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "source_first_event_workflow",
+            "event_template",
+            "json_schema",
+            "validation_cli",
+            "manual_submission_interface",
+            "current_submission_result",
             "no_trade_guardrails",
             "promotion_gate",
             "time_safety",
@@ -3455,6 +3488,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/implementation-readiness/risk-diagnostic-shadow-event-input-package",
+                    "返回 V14.8 First Manual Shadow Event Submission Input Package：人工事件输入模板、JSON schema 和只校验不提交的 CLI；当前 event_submitted=false。",
+                    "risk diagnostic shadow event input package",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -3633,6 +3673,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/implementation-readiness/risk-diagnostic-shadow-manual-capture", "description": "读取 V14.5 风险诊断人工事件录入能力：默认不提交事件，只定义手工事件文件追加、去重和无交易校验。"},
             {"path": "/api/implementation-readiness/risk-diagnostic-shadow-quality-audit", "description": "读取 V14.6 风险诊断事件质量审计：当前无事件可审计，未来只检查人工事件质量，不自动决策不交易。"},
             {"path": "/api/implementation-readiness/risk-diagnostic-shadow-first-event-workflow", "description": "读取 V14.7 风险诊断首个人工事件流程：当前可准备首个事件，但不自动扫描、不生成事件、不交易。"},
+            {"path": "/api/implementation-readiness/risk-diagnostic-shadow-event-input-package", "description": "读取 V14.8 风险诊断人工事件输入包：模板和校验 CLI 已就绪，当前未提交事件。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -4982,6 +5023,17 @@ def risk_diagnostic_shadow_first_event_workflow() -> dict:
     return payload
 
 
+@app.get("/api/implementation-readiness/risk-diagnostic-shadow-event-input-package")
+def risk_diagnostic_shadow_event_input_package() -> dict:
+    payload = _read_risk_diagnostic_shadow_event_input_package_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Risk diagnostic shadow event input package artifact missing; run scripts/run_risk_diagnostic_shadow_event_input_package.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -5247,6 +5299,7 @@ def results_summary(
         risk_diagnostic_shadow_manual_event_capture = _read_risk_diagnostic_shadow_manual_event_capture_payload()
         risk_diagnostic_shadow_event_quality_audit = _read_risk_diagnostic_shadow_event_quality_audit_payload()
         risk_diagnostic_shadow_first_event_workflow = _read_risk_diagnostic_shadow_first_event_workflow_payload()
+        risk_diagnostic_shadow_event_input_package = _read_risk_diagnostic_shadow_event_input_package_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -5320,6 +5373,7 @@ def results_summary(
             risk_diagnostic_shadow_manual_event_capture = _compact_risk_diagnostic_shadow_manual_event_capture_payload(risk_diagnostic_shadow_manual_event_capture)
             risk_diagnostic_shadow_event_quality_audit = _compact_risk_diagnostic_shadow_event_quality_audit_payload(risk_diagnostic_shadow_event_quality_audit)
             risk_diagnostic_shadow_first_event_workflow = _compact_risk_diagnostic_shadow_first_event_workflow_payload(risk_diagnostic_shadow_first_event_workflow)
+            risk_diagnostic_shadow_event_input_package = _compact_risk_diagnostic_shadow_event_input_package_payload(risk_diagnostic_shadow_event_input_package)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -5430,6 +5484,7 @@ def results_summary(
             "risk_diagnostic_shadow_manual_event_capture": risk_diagnostic_shadow_manual_event_capture,
             "risk_diagnostic_shadow_event_quality_audit": risk_diagnostic_shadow_event_quality_audit,
             "risk_diagnostic_shadow_first_event_workflow": risk_diagnostic_shadow_first_event_workflow,
+            "risk_diagnostic_shadow_event_input_package": risk_diagnostic_shadow_event_input_package,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,

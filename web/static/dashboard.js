@@ -1755,6 +1755,13 @@ function setResultsPanel(results) {
   const riskShadowWorkflowRequirements = riskShadowWorkflow.first_event_input_requirements || {};
   const riskShadowWorkflowQueue = riskShadowWorkflow.quality_audit_queue || {};
   const riskShadowWorkflowPromotion = riskShadowWorkflow.promotion_gate || {};
+  const riskShadowInput = results.risk_diagnostic_shadow_event_input_package || {};
+  const riskShadowInputSummary = riskShadowInput.summary || {};
+  const riskShadowInputTemplate = riskShadowInput.event_template || {};
+  const riskShadowInputSchema = riskShadowInput.json_schema || {};
+  const riskShadowInputCli = riskShadowInput.validation_cli || {};
+  const riskShadowInputResult = riskShadowInput.current_submission_result || {};
+  const riskShadowInputPromotion = riskShadowInput.promotion_gate || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4219,6 +4226,10 @@ function setResultsPanel(results) {
     events_quality_checked_pending_manual_review: "已检查/待人工复核",
     ready_for_first_manual_event: "等待首个事件",
     empty_waiting_for_first_manual_event: "空队列/等待事件",
+    ready: "已就绪",
+    no_event_file_supplied: "未提供事件文件",
+    valid_not_submitted: "有效/未提交",
+    invalid_event_file: "事件文件无效",
     initialized_empty: "空日志",
     defined_not_instantiated: "已定义/未实例化",
     risk_diagnostic_shadow_framework_defined_observation_only_no_trade: "只观察/不交易",
@@ -4578,6 +4589,34 @@ function setResultsPanel(results) {
     riskShadowWorkflow.metadata
       ? `V14.7 已定义首个人工 shadow event 流程：workflow=${phaseStatusLabel(riskShadowWorkflowSummary.workflow_status)}，event_count=${integerText(riskShadowWorkflowSummary.event_count)}，queue=${integerText(riskShadowWorkflowSummary.quality_queue_count)}，auto_event=false，trade=false；implementation_ready=false。`
       : "V14.7 风险诊断首个事件流程尚未生成。"
+  );
+
+  const riskShadowInputRequired = Array.isArray(riskShadowInputSchema.required) ? riskShadowInputSchema.required : [];
+  const riskShadowInputBlockers = Array.isArray(riskShadowInputPromotion.blocking_reasons) ? riskShadowInputPromotion.blocking_reasons : [];
+  const riskShadowInputNoTrade = riskShadowInputTemplate.no_trade_observation || {};
+  setText("riskShadowInputStatus", phaseStatusLabel(riskShadowInputSummary.template_status));
+  setText("riskShadowInputSubmitted", riskShadowInputSummary.event_submitted === false ? "否" : "--");
+  setText("riskShadowInputValidated", integerText(riskShadowInputSummary.validated_event_count));
+  setText("riskShadowInputCli", riskShadowInputCli.validates_only === true ? "是" : "--");
+  setText("riskShadowInputTrade", riskShadowInputSummary.trade_enabled === false ? "否" : "--");
+  setHtml("riskShadowInputRows", [
+    ["必填字段", `${integerText(riskShadowInputRequired.length)} 项`, riskShadowInputRequired.join("；") || "--"],
+    ["校验脚本", riskShadowInputCli.script || "--", riskShadowInputCli.usage || "--"],
+    ["当前结果", phaseStatusLabel(riskShadowInputResult.validation_status), riskShadowInputResult.result_note || "--"],
+    ["无交易模板", riskShadowInputNoTrade.trade_enabled === false ? "已关闭" : "--", "order/broker/position 均要求 false"],
+    ["阻断项", `${integerText(riskShadowInputBlockers.length)} 项`, riskShadowInputBlockers.join("；") || "--"],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  setText(
+    "riskShadowInputConclusion",
+    riskShadowInput.metadata
+      ? `V14.8 已建立首个人工 shadow event 输入包：template=${phaseStatusLabel(riskShadowInputSummary.template_status)}，event_submitted=${riskShadowInputSummary.event_submitted === false ? "false" : "--"}，validated=${integerText(riskShadowInputSummary.validated_event_count)}，auto_event=false，trade=false；implementation_ready=false。`
+      : "V14.8 风险诊断事件输入包尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

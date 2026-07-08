@@ -1,0 +1,37 @@
+{
+  "event_id": "",
+  "event_time": "",
+  "market_data_as_of": "",
+  "component_id": "risk_diagnostic_layer",
+  "warning_event_type": "",
+  "context_snapshot": {
+    "market_phase": "",
+    "risk_state": "",
+    "opportunity_state": "",
+    "risk_gradient_bucket": "",
+    "risk_gradient_score": "",
+    "protection_bucket": "",
+    "protection_score": "",
+    "two_axis_context": ""
+  },
+  "source_lineage": {
+    "source_artifact_hash": "",
+    "event_schema_version": "v14.8",
+    "created_by": ""
+  },
+  "no_trade_observation": {
+    "trade_enabled": false,
+    "order_generation_enabled": false,
+    "broker_connection_enabled": false,
+    "position_adjustment_enabled": false
+  },
+  "later_outcome_review": {
+    "review_time": null,
+    "review_window_id": null,
+    "later_risk_outcome": null,
+    "false_warning_review": null,
+    "missed_risk_review": null,
+    "stability_review_note": null
+  },
+  "manual_review_state": "submitted_pending_later_outcome_review"
+}

@@ -1,0 +1,337 @@
+{
+  "metadata": {
+    "engine": "V14.8 Risk Diagnostic Shadow First Event Submission Input Package",
+    "generated_at": "2026-07-08T23:51:13+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v14_7_first_event_workflow": "data/risk_diagnostic_shadow_first_event_workflow.json"
+    },
+    "input_hashes": {
+      "v14_7_first_event_workflow": "714280b5245aa3c0f760e6ec145f8bfd242826bb1a0320566ce7df3f96214378"
+    },
+    "purpose": "Provide the manual event input template and validation CLI without submitting an event or generating decisions."
+  },
+  "summary": {
+    "component_id": "risk_diagnostic_layer",
+    "template_status": "ready",
+    "event_submitted": false,
+    "validated_event_count": 0,
+    "auto_scan_enabled": false,
+    "auto_event_generation_enabled": false,
+    "auto_decision_enabled": false,
+    "auto_warning_enabled": false,
+    "trade_enabled": false,
+    "position_adjustment_enabled": false,
+    "implementation_gate_result": "blocked",
+    "implementation_ready": false,
+    "investable_output": false,
+    "strategy_output_generated": false,
+    "allocation_output_generated": false,
+    "trade_ready": false,
+    "conclusion": "risk_diagnostic_shadow_event_input_template_ready_no_submission_no_trade",
+    "key_read": "V14.8 provides the first manual event input package; no event file is submitted by default."
+  },
+  "source_first_event_workflow": {
+    "source_workflow_status": "ready_for_first_manual_event",
+    "source_event_count": 0,
+    "source_quality_queue_count": 0,
+    "source_trade_enabled": false,
+    "source_hash": "714280b5245aa3c0f760e6ec145f8bfd242826bb1a0320566ce7df3f96214378"
+  },
+  "event_template": {
+    "event_id": "",
+    "event_time": "",
+    "market_data_as_of": "",
+    "component_id": "risk_diagnostic_layer",
+    "warning_event_type": "",
+    "context_snapshot": {
+      "market_phase": "",
+      "risk_state": "",
+      "opportunity_state": "",
+      "risk_gradient_bucket": "",
+      "risk_gradient_score": "",
+      "protection_bucket": "",
+      "protection_score": "",
+      "two_axis_context": ""
+    },
+    "source_lineage": {
+      "source_artifact_hash": "",
+      "event_schema_version": "v14.8",
+      "created_by": ""
+    },
+    "no_trade_observation": {
+      "trade_enabled": false,
+      "order_generation_enabled": false,
+      "broker_connection_enabled": false,
+      "position_adjustment_enabled": false
+    },
+    "later_outcome_review": {
+      "review_time": null,
+      "review_window_id": null,
+      "later_risk_outcome": null,
+      "false_warning_review": null,
+      "missed_risk_review": null,
+      "stability_review_note": null
+    },
+    "manual_review_state": "submitted_pending_later_outcome_review"
+  },
+  "json_schema": {
+    "schema_version": "v14.8",
+    "type": "object",
+    "required": [
+      "event_id",
+      "event_time",
+      "market_data_as_of",
+      "component_id",
+      "warning_event_type",
+      "context_snapshot",
+      "source_lineage",
+      "no_trade_observation",
+      "later_outcome_review",
+      "manual_review_state"
+    ],
+    "properties": {
+      "event_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "event_time": {
+        "type": "string",
+        "minLength": 1
+      },
+      "market_data_as_of": {
+        "type": "string",
+        "minLength": 1
+      },
+      "component_id": {
+        "type": "string",
+        "const": "risk_diagnostic_layer"
+      },
+      "warning_event_type": {
+        "type": "string",
+        "minLength": 1
+      },
+      "context_snapshot": {
+        "type": "object",
+        "required": [
+          "market_phase",
+          "risk_state",
+          "opportunity_state",
+          "risk_gradient_bucket",
+          "risk_gradient_score",
+          "protection_bucket",
+          "protection_score",
+          "two_axis_context"
+        ],
+        "additionalProperties": true
+      },
+      "source_lineage": {
+        "type": "object",
+        "required": [
+          "source_artifact_hash",
+          "event_schema_version",
+          "created_by"
+        ],
+        "properties": {
+          "source_artifact_hash": {
+            "type": "string",
+            "minLength": 64,
+            "maxLength": 64
+          },
+          "event_schema_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "created_by": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": true
+      },
+      "no_trade_observation": {
+        "type": "object",
+        "required": [
+          "trade_enabled",
+          "order_generation_enabled",
+          "broker_connection_enabled",
+          "position_adjustment_enabled"
+        ],
+        "properties": {
+          "trade_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "order_generation_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "broker_connection_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "position_adjustment_enabled": {
+            "type": "boolean",
+            "const": false
+          }
+        },
+        "additionalProperties": true
+      },
+      "later_outcome_review": {
+        "type": "object",
+        "required": [
+          "review_time",
+          "review_window_id",
+          "later_risk_outcome",
+          "false_warning_review",
+          "missed_risk_review",
+          "stability_review_note"
+        ],
+        "additionalProperties": true
+      },
+      "manual_review_state": {
+        "type": "string",
+        "enum": [
+          "manual_review_approved_observation_only",
+          "manual_review_in_progress",
+          "manual_review_rejected",
+          "submitted_pending_later_outcome_review",
+          "submitted_pending_manual_review"
+        ]
+      }
+    },
+    "additionalProperties": false
+  },
+  "validation_cli": {
+    "script": "scripts/validate_risk_diagnostic_shadow_event_input.py",
+    "usage": "python scripts\\validate_risk_diagnostic_shadow_event_input.py --event-file path\\to\\manual_event.json",
+    "validates_only": true,
+    "append_to_log_enabled": false,
+    "requires_explicit_event_file": true
+  },
+  "manual_submission_interface": {
+    "interface_status": "template_and_cli_ready",
+    "web_upload_enabled": false,
+    "event_file_required": true,
+    "manual_submit_requires_explicit_user_approval": true
+  },
+  "current_submission_result": {
+    "event_file_supplied": false,
+    "validation_status": "no_event_file_supplied",
+    "event_submitted": false,
+    "validated_event_count": 0,
+    "result_note": "No event file is supplied in this package generation run."
+  },
+  "no_trade_guardrails": {
+    "trade_enabled": false,
+    "order_generation_enabled": false,
+    "broker_connection_enabled": false,
+    "position_adjustment_enabled": false,
+    "auto_risk_control_enabled": false
+  },
+  "promotion_gate": {
+    "promotion_allowed": false,
+    "implementation_ready": false,
+    "blocking_reasons": [
+      "event_input_package_only",
+      "first_manual_event_not_submitted",
+      "event_file_not_validated",
+      "manual_review_not_approved"
+    ]
+  },
+  "time_safety": {
+    "uses_v14_7_first_event_workflow_only": true,
+    "input_hashes_recorded": true,
+    "does_not_read_market_price_data": true,
+    "does_not_scan_market": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "does_not_auto_generate_event": true,
+    "does_not_auto_generate_warning": true,
+    "does_not_auto_judge_risk": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "event_input_package_only": true,
+    "template_ready": true,
+    "event_submitted_false": true,
+    "validation_cli_only": true,
+    "does_not_append_event": true,
+    "does_not_auto_scan_market": true,
+    "does_not_auto_generate_event": true,
+    "does_not_auto_generate_warning": true,
+    "does_not_auto_judge_risk": true,
+    "does_not_enable_auto_risk_control": true,
+    "does_not_adjust_position": true,
+    "does_not_adjust_exposure": true,
+    "does_not_generate_strategy": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_component_id": "risk_diagnostic_layer",
+    "checked_template_status": "ready",
+    "checked_event_submitted": false,
+    "checked_validated_event_count": 0,
+    "checked_trade_enabled": false,
+    "checked_implementation_ready": false,
+    "checked_constraints": [
+      "event_input_package_only",
+      "template_ready",
+      "event_submitted_false",
+      "validation_cli_only",
+      "does_not_append_event",
+      "does_not_auto_scan_market",
+      "does_not_auto_generate_event",
+      "does_not_auto_generate_warning",
+      "does_not_auto_judge_risk",
+      "does_not_enable_auto_risk_control",
+      "does_not_adjust_position",
+      "does_not_adjust_exposure",
+      "does_not_generate_strategy",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}
