@@ -1010,6 +1010,14 @@ def _read_risk_diagnostic_shadow_manual_event_capture_payload() -> dict[str, obj
     return payload if isinstance(payload, dict) else None
 
 
+def _read_risk_diagnostic_shadow_event_quality_audit_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "risk_diagnostic_shadow_event_quality_audit.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -2129,6 +2137,29 @@ def _compact_risk_diagnostic_shadow_manual_event_capture_payload(payload: dict[s
             "source_observation_log",
             "manual_capture_controls",
             "current_capture_result",
+            "no_trade_guardrails",
+            "promotion_gate",
+            "time_safety",
+            "constraints",
+            "forbidden_outputs",
+            "audit",
+        )
+        if key in payload
+    }
+
+
+def _compact_risk_diagnostic_shadow_event_quality_audit_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "source_observation_log",
+            "source_manual_capture",
+            "quality_audit_framework",
+            "quality_audit_result",
             "no_trade_guardrails",
             "promotion_gate",
             "time_safety",
@@ -3377,6 +3408,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/implementation-readiness/risk-diagnostic-shadow-quality-audit",
+                    "返回 V14.6 Risk Diagnostic Shadow Event Quality Audit：检查未来人工事件的完整性、source hash、去重、后验复核字段和无交易边界；当前 no_events_available。",
+                    "risk diagnostic shadow event quality audit",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -3553,6 +3591,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/implementation-readiness/risk-diagnostic-shadow-log", "description": "读取 V14.3 风险诊断影子观察日志：active 空日志，事件数 0，仅允许未来手动追加无交易观察。"},
             {"path": "/api/implementation-readiness/risk-diagnostic-shadow-review", "description": "读取 V14.4 风险诊断影子事件复核框架：当前无事件可复核，不自动判断风险、不配置不交易。"},
             {"path": "/api/implementation-readiness/risk-diagnostic-shadow-manual-capture", "description": "读取 V14.5 风险诊断人工事件录入能力：默认不提交事件，只定义手工事件文件追加、去重和无交易校验。"},
+            {"path": "/api/implementation-readiness/risk-diagnostic-shadow-quality-audit", "description": "读取 V14.6 风险诊断事件质量审计：当前无事件可审计，未来只检查人工事件质量，不自动决策不交易。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -4880,6 +4919,17 @@ def risk_diagnostic_shadow_manual_event_capture() -> dict:
     return payload
 
 
+@app.get("/api/implementation-readiness/risk-diagnostic-shadow-quality-audit")
+def risk_diagnostic_shadow_event_quality_audit() -> dict:
+    payload = _read_risk_diagnostic_shadow_event_quality_audit_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Risk diagnostic shadow event quality audit artifact missing; run scripts/run_risk_diagnostic_shadow_event_quality_audit.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -5143,6 +5193,7 @@ def results_summary(
         risk_diagnostic_shadow_observation_log = _read_risk_diagnostic_shadow_observation_log_payload()
         risk_diagnostic_shadow_observation_review = _read_risk_diagnostic_shadow_observation_review_payload()
         risk_diagnostic_shadow_manual_event_capture = _read_risk_diagnostic_shadow_manual_event_capture_payload()
+        risk_diagnostic_shadow_event_quality_audit = _read_risk_diagnostic_shadow_event_quality_audit_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -5214,6 +5265,7 @@ def results_summary(
             risk_diagnostic_shadow_observation_log = _compact_risk_diagnostic_shadow_observation_log_payload(risk_diagnostic_shadow_observation_log)
             risk_diagnostic_shadow_observation_review = _compact_risk_diagnostic_shadow_observation_review_payload(risk_diagnostic_shadow_observation_review)
             risk_diagnostic_shadow_manual_event_capture = _compact_risk_diagnostic_shadow_manual_event_capture_payload(risk_diagnostic_shadow_manual_event_capture)
+            risk_diagnostic_shadow_event_quality_audit = _compact_risk_diagnostic_shadow_event_quality_audit_payload(risk_diagnostic_shadow_event_quality_audit)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -5322,6 +5374,7 @@ def results_summary(
             "risk_diagnostic_shadow_observation_log": risk_diagnostic_shadow_observation_log,
             "risk_diagnostic_shadow_observation_review": risk_diagnostic_shadow_observation_review,
             "risk_diagnostic_shadow_manual_event_capture": risk_diagnostic_shadow_manual_event_capture,
+            "risk_diagnostic_shadow_event_quality_audit": risk_diagnostic_shadow_event_quality_audit,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,

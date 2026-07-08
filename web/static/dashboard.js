@@ -1744,6 +1744,11 @@ function setResultsPanel(results) {
   const riskShadowCaptureControls = riskShadowCapture.manual_capture_controls || {};
   const riskShadowCaptureResult = riskShadowCapture.current_capture_result || {};
   const riskShadowCapturePromotion = riskShadowCapture.promotion_gate || {};
+  const riskShadowQuality = results.risk_diagnostic_shadow_event_quality_audit || {};
+  const riskShadowQualitySummary = riskShadowQuality.summary || {};
+  const riskShadowQualityFramework = riskShadowQuality.quality_audit_framework || {};
+  const riskShadowQualityResult = riskShadowQuality.quality_audit_result || {};
+  const riskShadowQualityPromotion = riskShadowQuality.promotion_gate || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4205,6 +4210,7 @@ function setResultsPanel(results) {
     no_event_submitted: "本次未提交",
     manual_event_appended_no_trade: "已人工追加/不交易",
     events_pending_manual_review: "待人工复核",
+    events_quality_checked_pending_manual_review: "已检查/待人工复核",
     initialized_empty: "空日志",
     defined_not_instantiated: "已定义/未实例化",
     risk_diagnostic_shadow_framework_defined_observation_only_no_trade: "只观察/不交易",
@@ -4505,6 +4511,36 @@ function setResultsPanel(results) {
     riskShadowCapture.metadata
       ? `V14.5 已建立人工 no-trade shadow event 录入能力：source_events=${integerText(riskShadowCaptureSummary.source_event_count)}，submitted=${integerText(riskShadowCaptureSummary.submitted_event_count)}，auto_trigger=false，trade=false；implementation_ready=false。`
       : "V14.5 风险诊断人工事件录入状态尚未生成。"
+  );
+
+  const riskShadowQualityIntegrity = Array.isArray(riskShadowQualityFramework.event_integrity_checks) ? riskShadowQualityFramework.event_integrity_checks : [];
+  const riskShadowQualityResearch = Array.isArray(riskShadowQualityFramework.research_quality_checks) ? riskShadowQualityFramework.research_quality_checks : [];
+  const riskShadowQualityBoundary = Array.isArray(riskShadowQualityFramework.boundary_checks) ? riskShadowQualityFramework.boundary_checks : [];
+  const riskShadowQualityReviews = Array.isArray(riskShadowQualityResult.event_quality_reviews) ? riskShadowQualityResult.event_quality_reviews : [];
+  const riskShadowQualityBlockers = Array.isArray(riskShadowQualityPromotion.blocking_reasons) ? riskShadowQualityPromotion.blocking_reasons : [];
+  setText("riskShadowQualityStatus", phaseStatusLabel(riskShadowQualitySummary.quality_audit_status));
+  setText("riskShadowQualityEvents", integerText(riskShadowQualitySummary.event_count));
+  setText("riskShadowQualityChecked", integerText(riskShadowQualitySummary.quality_checked_events));
+  setText("riskShadowQualityAuto", riskShadowQualitySummary.auto_decision_enabled === false ? "否" : "--");
+  setText("riskShadowQualityTrade", riskShadowQualitySummary.trade_enabled === false ? "否" : "--");
+  setHtml("riskShadowQualityRows", [
+    ["事件完整性", `${integerText(riskShadowQualityIntegrity.length)} 项`, riskShadowQualityIntegrity.join("；") || "--"],
+    ["研究质量", `${integerText(riskShadowQualityResearch.length)} 项`, riskShadowQualityResearch.join("；") || "--"],
+    ["边界检查", `${integerText(riskShadowQualityBoundary.length)} 项`, riskShadowQualityBoundary.join("；") || "--"],
+    ["质量记录", `${integerText(riskShadowQualityReviews.length)} 条`, riskShadowQualityResult.result_note || "--"],
+    ["阻断项", `${integerText(riskShadowQualityBlockers.length)} 项`, riskShadowQualityBlockers.join("；") || "--"],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  setText(
+    "riskShadowQualityConclusion",
+    riskShadowQuality.metadata
+      ? `V14.6 已建立 shadow event 质量审计：status=${phaseStatusLabel(riskShadowQualitySummary.quality_audit_status)}，event_count=${integerText(riskShadowQualitySummary.event_count)}，checked=${integerText(riskShadowQualitySummary.quality_checked_events)}，auto_decision=false，trade=false；implementation_ready=false。`
+      : "V14.6 风险诊断事件质量审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

@@ -1893,6 +1893,37 @@
           <p class="result-note" id="riskShadowCaptureConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="定义未来人工 shadow event 的质量审计：检查字段完整性、source hash、去重、时间一致性、后验复核字段和无交易边界；当前没有事件可审计。">风险诊断事件质量审计</h2>
+            <span class="panel-kicker">V14.6</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>审计状态</span>
+              <strong id="riskShadowQualityStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>事件数量</span>
+              <strong id="riskShadowQualityEvents">--</strong>
+            </div>
+            <div class="result-row">
+              <span>已检查</span>
+              <strong id="riskShadowQualityChecked">--</strong>
+            </div>
+            <div class="result-row">
+              <span>自动决策</span>
+              <strong id="riskShadowQualityAuto">--</strong>
+            </div>
+            <div class="result-row">
+              <span>交易启用</span>
+              <strong id="riskShadowQualityTrade">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="riskShadowQualityRows"></div>
+          <p class="result-note" id="riskShadowQualityConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -1983,7 +2014,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-risk-shadow-manual-capture-1"></script>
+    <script src="/static/dashboard.js?v=20260708-risk-shadow-quality-audit-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
