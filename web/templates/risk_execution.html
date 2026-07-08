@@ -205,6 +205,34 @@
           <p class="result-note" id="opportunityRiskPolicyConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="在机会和风险之外新增市场阶段第三维：Early、Expansion、Rotation、Late、Contraction。用于解释同样拥挤在不同阶段的含义，不输出仓位、ETF、权重或交易。">市场阶段第三维</h2>
+            <span class="panel-kicker">V4.6</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>当前阶段</span>
+              <strong id="marketPhaseCurrent">--</strong>
+            </div>
+            <div class="result-row">
+              <span>历史重放</span>
+              <strong id="marketPhaseReplay">--</strong>
+            </div>
+            <div class="result-row">
+              <span>风险区分</span>
+              <strong id="marketPhaseRiskSpread">--</strong>
+            </div>
+            <div class="result-row">
+              <span>验证读数</span>
+              <strong id="marketPhaseValidationRead">--</strong>
+            </div>
+          </div>
+          <div class="route-pill-list" id="marketPhaseEvidence"></div>
+          <div class="alpha-source-list" id="marketPhaseDistribution"></div>
+          <p class="result-note" id="marketPhaseConclusion">--</p>
+        </article>
+
         <article class="chart-panel result-panel strategy-route-panel">
           <div class="panel-heading">
             <h2 class="help-title" tabindex="0" data-help="显示当前允许启用哪些策略、禁用哪些策略，以及资金在策略之间如何分配。">策略路由</h2>
@@ -313,7 +341,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-policy-effectiveness-1"></script>
+    <script src="/static/dashboard.js?v=20260708-market-phase-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

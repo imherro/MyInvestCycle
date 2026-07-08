@@ -378,6 +378,14 @@ def _read_policy_effectiveness_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_market_phase_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "market_phase_snapshot.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -511,6 +519,16 @@ def _compact_policy_effectiveness_payload(payload: dict[str, object] | None) -> 
     return {
         key: payload[key]
         for key in ("metadata", "summary", "model_comparison", "period_validation", "data_quality", "constraints")
+        if key in payload
+    }
+
+
+def _compact_market_phase_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in ("metadata", "current", "historical_summary", "period_validation", "data_quality", "constraints")
         if key in payload
     }
 
@@ -1211,6 +1229,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/allocation/market-phase",
+                    "返回 V4.6 Market Phase Classification Layer，在机会和风险之外新增 Early/Expansion/Rotation/Late/Contraction 第三维阶段解释，并做历史重放；不输出仓位、ETF、权重或交易。",
+                    "market phase classification layer",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -1329,6 +1354,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/allocation/opportunity-risk", "description": "读取 V4.3 机会状态与风险状态二维拆分。"},
             {"path": "/api/allocation/opportunity-risk-policy", "description": "读取 V4.4 机会-风险到定性政策模式的映射验证。"},
             {"path": "/api/allocation/policy-effectiveness", "description": "读取 V4.5 政策模式解释力与反事实矛盾审计。"},
+            {"path": "/api/allocation/market-phase", "description": "读取 V4.6 市场阶段第三维分类。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -2095,6 +2121,17 @@ def policy_effectiveness() -> dict:
     return payload
 
 
+@app.get("/api/allocation/market-phase")
+def market_phase() -> dict:
+    payload = _read_market_phase_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Market phase artifact missing; run scripts/run_market_phase_snapshot.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -2230,6 +2267,7 @@ def results_summary(
         opportunity_risk_snapshot = _read_opportunity_risk_snapshot_payload()
         opportunity_risk_policy = _read_opportunity_risk_policy_payload()
         policy_effectiveness = _read_policy_effectiveness_payload()
+        market_phase = _read_market_phase_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -2243,6 +2281,7 @@ def results_summary(
             opportunity_risk_snapshot = _compact_opportunity_risk_payload(opportunity_risk_snapshot)
             opportunity_risk_policy = _compact_opportunity_risk_policy_payload(opportunity_risk_policy)
             policy_effectiveness = _compact_policy_effectiveness_payload(policy_effectiveness)
+            market_phase = _compact_market_phase_payload(market_phase)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -2293,6 +2332,7 @@ def results_summary(
             "opportunity_risk_snapshot": opportunity_risk_snapshot,
             "opportunity_risk_policy": opportunity_risk_policy,
             "policy_effectiveness": policy_effectiveness,
+            "market_phase": market_phase,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,
@@ -2340,6 +2380,7 @@ def results_summary(
                 "V4.3 已把机会状态与风险状态拆成两个轴，识别结构机会和拥挤高位风险是否同时存在；该层仍不输出仓位、ETF 或交易。",
                 "V4.4 已把机会状态 + 风险状态映射为定性政策模式，并用历史状态重放验证政策模式分布；该层仍不输出仓位、ETF、权重或交易。",
                 "V4.5 已固定 V4.4 规则做反事实解释力审计，比较 structural_state、机会风险二维状态和 policy_mode 对未来环境标签的区分力；该层不调阈值、不生成仓位或交易。",
+                "V4.6 已新增市场阶段第三维，把同样的机会/风险拆成 Early、Expansion、Rotation、Late、Contraction 等阶段解释；该层仍不输出仓位、ETF、权重或交易。",
                 "S1.1 已新增仓位风控回测，用历史 R2 动态仓位回放 510500 基准收益，输出权益曲线、Alpha 和回撤。",
                 "S1.2 已按牛熊状态拆解风控仓位策略收益来源，识别牛市参与不足是主要拖累，熊市防守是主要正贡献。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",

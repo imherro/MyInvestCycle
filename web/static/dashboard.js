@@ -457,6 +457,52 @@ function policyUsefulnessLabel(value) {
   return labels[value] || value || "--";
 }
 
+function marketPhaseLabel(value) {
+  const labels = {
+    EARLY_CYCLE: "早期修复",
+    EXPANSION: "扩张阶段",
+    ROTATION: "结构轮动",
+    LATE_CYCLE: "后期阶段",
+    CONTRACTION: "收缩阶段",
+    UNKNOWN: "未知",
+  };
+  return labels[value] || value || "--";
+}
+
+function marketPhaseEvidenceLabel(value) {
+  const labels = {
+    limited_structural_context: "结构字段有限",
+    macro_recovery: "宏观修复",
+    macro_or_structure_weak: "宏观/结构转弱",
+    trend_strong: "趋势强",
+    trend_weak: "趋势弱",
+    breadth_expanding: "宽度扩张",
+    breadth_narrow: "宽度窄",
+    liquidity_supportive: "流动性支持",
+    liquidity_weak: "流动性弱",
+    theme_persistence_high: "主线持续",
+    industry_breadth_narrow: "行业宽度窄",
+    industry_breadth_broad: "行业扩散",
+    single_theme_concentration: "单主线集中",
+    crowding_high: "拥挤高",
+    price_extension_high: "涨幅延伸高",
+    risk_pressure_high: "风险压力高",
+    late_opportunity_state: "后期机会状态",
+    bull_expansion_state: "扩张状态",
+    structural_rotation_state: "结构轮动状态",
+    early_recovery_state: "早期修复状态",
+  };
+  return labels[value] || value || "--";
+}
+
+function marketPhaseValidationLabel(value) {
+  const labels = {
+    phase_adds_risk_environment_separation: "阶段优于旧结构",
+    phase_not_yet_better_than_structural: "暂未优于旧结构",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1052,6 +1098,10 @@ function setResultsPanel(results) {
   const policyEffectivenessSummary = policyEffectiveness.summary || {};
   const policyUsefulness = policyEffectivenessSummary.policy_usefulness || {};
   const policyContradictionAudit = policyEffectivenessSummary.contradiction_audit || {};
+  const marketPhase = results.market_phase || {};
+  const marketPhaseCurrent = marketPhase.current || {};
+  const marketPhaseHistory = marketPhase.historical_summary || {};
+  const marketPhaseValidation = marketPhaseHistory.future_validation || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -1201,6 +1251,36 @@ function setResultsPanel(results) {
     opportunityRiskPolicy.metadata
       ? `V4.4 当前映射为${opportunityRiskPolicyModeLabel(opportunityRiskPolicyCurrent.policy_mode)}：${opportunityRiskPolicyCurrent.interpretation || "该层只给出定性政策模式"}。允许/禁止动作均为研究约束，不是仓位、ETF、权重或交易信号。`
       : "V4.4 机会-风险政策映射尚未生成。"
+  );
+
+  setText("marketPhaseCurrent", marketPhaseLabel(marketPhaseCurrent.phase));
+  setText("marketPhaseReplay", integerText(marketPhaseHistory.replay_count));
+  setText("marketPhaseRiskSpread", percentText(marketPhaseValidation.phase_high_risk_rate_spread));
+  setText("marketPhaseValidationRead", marketPhaseValidationLabel(marketPhaseValidation.phase_vs_structural_read));
+  setHtml("marketPhaseEvidence", (marketPhaseCurrent.evidence || []).length
+    ? marketPhaseCurrent.evidence
+        .slice(0, 8)
+        .map((item) => `<span>${marketPhaseEvidenceLabel(item)}</span>`)
+        .join("")
+    : "<em>暂无证据链</em>");
+  const marketPhaseDistribution = marketPhaseHistory.phase_distribution || {};
+  setHtml("marketPhaseDistribution", Object.entries(marketPhaseDistribution)
+    .sort(([, a], [, b]) => (b.share || 0) - (a.share || 0))
+    .slice(0, 6)
+    .map(
+      ([phase, item]) => `
+        <div class="alpha-source-row">
+          <span>${marketPhaseLabel(phase)}</span>
+          <strong>${percentText(item.share)}</strong>
+        </div>
+      `
+    )
+    .join(""));
+  setText(
+    "marketPhaseConclusion",
+    marketPhase.metadata
+      ? `V4.6 当前为${marketPhaseLabel(marketPhaseCurrent.phase)}：${marketPhaseCurrent.interpretation || "阶段解释尚缺"}。阶段风险区分 ${percentText(marketPhaseValidation.phase_high_risk_rate_spread)}，${marketPhaseValidationLabel(marketPhaseValidation.phase_vs_structural_read)}；该层不输出仓位、ETF、权重或交易。`
+      : "V4.6 市场阶段第三维尚未生成。"
   );
 
   const enabledStrategies = route.enabled_strategies || [];
