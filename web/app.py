@@ -606,6 +606,7 @@ def _api_catalog_payload() -> dict[str, object]:
             "description": "页面入口、接口目录和自动生成文档。",
             "endpoints": [
                 _api_endpoint("GET", "/", "打开宏观周期总览首页。", "HTML dashboard", freshness="page"),
+                _api_endpoint("GET", "/v2", "打开 V2 研究总览，展示宏观、结构、行业机会、主题风险、配置意图和决策追踪。", "HTML dashboard", freshness="page"),
                 _api_endpoint("GET", "/risk-execution", "兼容旧链接；风控执行内容已合并到首页展示。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategies", "打开策略回测频道，集中查看策略信号、关键回测摘要和策略入口。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/validation", "打开验证归因频道，集中查看仓位风控回测、Regime 归因、结构事件和模型验证。", "HTML page", freshness="page"),
@@ -798,6 +799,17 @@ def _api_catalog_payload() -> dict[str, object]:
                     ],
                     freshness="allocation intent cache",
                 ),
+                _api_endpoint(
+                    "GET",
+                    "/api/v2/overview",
+                    "返回 V2 研究总览聚合结果，串联宏观、结构、行业机会、结构牛、主题风险、配置意图和决策追踪。",
+                    "v2 overview snapshot",
+                    params=[
+                        {"name": "date", "required": "false", "format": "YYYYMMDD"},
+                        {"name": "cache_only", "required": "false", "format": "boolean"},
+                    ],
+                    freshness="current v2 cache",
+                ),
             ],
         },
         {
@@ -973,6 +985,11 @@ def health() -> dict[str, str]:
 @app.get("/", response_class=HTMLResponse)
 def dashboard():
     return FileResponse(ROOT_DIR / "web" / "templates" / "dashboard.html")
+
+
+@app.get("/v2", response_class=HTMLResponse)
+def v2_dashboard_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "v2_dashboard.html")
 
 
 @app.get("/risk-execution", response_class=HTMLResponse)
@@ -1389,6 +1406,73 @@ def allocation_trace(
         date_text or _today_text(),
         cache_only=cache_only,
     )
+
+
+@app.get("/api/v2/overview")
+def v2_overview(
+    date_text: str | None = Query(None, alias="date", description="Decision date, YYYYMMDD. Defaults to today."),
+    cache_only: bool = Query(True, description="Use local cache only for Web/API reads."),
+) -> dict:
+    requested_date = date_text or _today_text()
+    macro = build_macro_cycle_snapshot(requested_date, start_date="20240101")
+    structure = build_structure_snapshot(
+        requested_date,
+        start_date="20150101",
+        history_sample_size=30,
+        cache_only=cache_only,
+    )
+    industry = build_industry_opportunity_snapshot(
+        requested_date,
+        start_date="20240101",
+        cache_only=cache_only,
+    )
+    structural = build_structural_bull_snapshot(
+        requested_date,
+        macro_payload=macro,
+        structure_payload=structure,
+        industry_payload=industry,
+        cache_only=cache_only,
+    )
+    theme_risk = build_theme_risk_snapshot(
+        requested_date,
+        industry_payload=industry,
+        start_date="20240101",
+        cache_only=cache_only,
+    )
+    allocation = build_allocation_intent_snapshot(
+        requested_date,
+        structural_payload=structural,
+        theme_risk_payload=theme_risk,
+        cache_only=cache_only,
+    )
+    trace = build_allocation_trace_snapshot(
+        requested_date,
+        allocation_payload=allocation,
+        cache_only=cache_only,
+    )
+    return {
+        "engine": "V2.4.3 V2 Research Dashboard Overview",
+        "requested_as_of": normalize_trade_date(requested_date),
+        "as_of": trace.get("as_of") or allocation.get("as_of"),
+        "modules": {
+            "macro": macro,
+            "market_structure": structure,
+            "industry_opportunity": industry,
+            "structural_bull": structural,
+            "theme_risk": theme_risk,
+            "allocation_intent": allocation,
+            "decision_trace": trace,
+        },
+        "constraints": {
+            "read_only": True,
+            "does_not_change_engine_outputs": True,
+            "no_etf": True,
+            "no_single_stock": True,
+            "no_trade": True,
+            "no_order": True,
+            "no_backtest": True,
+        },
+    }
 
 
 @app.get("/api/style/rotation-signal")

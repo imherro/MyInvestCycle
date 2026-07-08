@@ -23,6 +23,154 @@ body {
   font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
 }
 
+.v2-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.v2-hero span,
+.v2-card span,
+.v2-row span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.v2-hero h2 {
+  margin-top: 4px;
+  font-size: 22px;
+}
+
+.v2-hero-metrics,
+.v2-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.v2-hero-metrics div,
+.v2-metric-grid div {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.v2-hero-metrics strong,
+.v2-metric-grid strong,
+.v2-row strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+.v2-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.v2-card,
+.v2-trace-panel {
+  padding: 16px;
+}
+
+.v2-metric-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 12px;
+}
+
+.v2-row,
+.v2-list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+}
+
+.v2-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.v2-tag,
+.v2-warning,
+.v2-empty {
+  width: fit-content;
+  max-width: 100%;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: #eef3ff;
+  color: #24416f;
+  font-size: 12px;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.v2-warning {
+  background: #fff4e5;
+  color: #8a4b00;
+}
+
+.v2-trace-panel {
+  margin-top: 14px;
+}
+
+.v2-trace {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.v2-trace-step {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.v2-trace-step span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.v2-trace-step strong {
+  display: block;
+  margin-top: 6px;
+  overflow-wrap: anywhere;
+}
+
+.v2-trace-step p {
+  margin: 8px 0 0;
+  color: #40506d;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 860px) {
+  .v2-hero {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .v2-hero-metrics,
+  .v2-dashboard-grid,
+  .v2-trace {
+    grid-template-columns: 1fr;
+  }
+}
+
 .shell {
   width: min(1440px, calc(100vw - 40px));
   margin: 0 auto;
