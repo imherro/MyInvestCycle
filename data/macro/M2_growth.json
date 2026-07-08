@@ -1,0 +1,300 @@
+{
+  "metadata": {
+    "indicator": "M2_growth",
+    "records": 29,
+    "updated_at": "2026-07-08T05:51:44+00:00",
+    "schema": "MacroIndicatorRecord.v1"
+  },
+  "records": [
+    {
+      "indicator": "M2_growth",
+      "value": 8.7,
+      "observation_date": "20240131",
+      "release_date": "20240215",
+      "effective_date": "20240215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 8.7,
+      "observation_date": "20240229",
+      "release_date": "20240315",
+      "effective_date": "20240315",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 8.3,
+      "observation_date": "20240331",
+      "release_date": "20240415",
+      "effective_date": "20240415",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 7.2,
+      "observation_date": "20240430",
+      "release_date": "20240515",
+      "effective_date": "20240515",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 7.0,
+      "observation_date": "20240531",
+      "release_date": "20240615",
+      "effective_date": "20240615",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 6.2,
+      "observation_date": "20240630",
+      "release_date": "20240715",
+      "effective_date": "20240715",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 6.3,
+      "observation_date": "20240731",
+      "release_date": "20240815",
+      "effective_date": "20240815",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 6.3,
+      "observation_date": "20240831",
+      "release_date": "20240915",
+      "effective_date": "20240915",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 6.8,
+      "observation_date": "20240930",
+      "release_date": "20241015",
+      "effective_date": "20241015",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 7.5,
+      "observation_date": "20241031",
+      "release_date": "20241115",
+      "effective_date": "20241115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 7.1,
+      "observation_date": "20241130",
+      "release_date": "20241215",
+      "effective_date": "20241215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 7.3,
+      "observation_date": "20241231",
+      "release_date": "20250115",
+      "effective_date": "20250115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 7.0,
+      "observation_date": "20250131",
+      "release_date": "20250215",
+      "effective_date": "20250215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 7.0,
+      "observation_date": "20250228",
+      "release_date": "20250315",
+      "effective_date": "20250315",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 7.0,
+      "observation_date": "20250331",
+      "release_date": "20250415",
+      "effective_date": "20250415",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 8.0,
+      "observation_date": "20250430",
+      "release_date": "20250515",
+      "effective_date": "20250515",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 7.9,
+      "observation_date": "20250531",
+      "release_date": "20250615",
+      "effective_date": "20250615",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 8.3,
+      "observation_date": "20250630",
+      "release_date": "20250715",
+      "effective_date": "20250715",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 8.8,
+      "observation_date": "20250731",
+      "release_date": "20250815",
+      "effective_date": "20250815",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 8.8,
+      "observation_date": "20250831",
+      "release_date": "20250915",
+      "effective_date": "20250915",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 8.4,
+      "observation_date": "20250930",
+      "release_date": "20251015",
+      "effective_date": "20251015",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 8.2,
+      "observation_date": "20251031",
+      "release_date": "20251115",
+      "effective_date": "20251115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 8.0,
+      "observation_date": "20251130",
+      "release_date": "20251215",
+      "effective_date": "20251215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 8.5,
+      "observation_date": "20251231",
+      "release_date": "20260115",
+      "effective_date": "20260115",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 9.0,
+      "observation_date": "20260131",
+      "release_date": "20260215",
+      "effective_date": "20260215",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 9.0,
+      "observation_date": "20260228",
+      "release_date": "20260315",
+      "effective_date": "20260315",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 8.5,
+      "observation_date": "20260331",
+      "release_date": "20260415",
+      "effective_date": "20260415",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 8.6,
+      "observation_date": "20260430",
+      "release_date": "20260515",
+      "effective_date": "20260515",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    },
+    {
+      "indicator": "M2_growth",
+      "value": 8.6,
+      "observation_date": "20260531",
+      "release_date": "20260615",
+      "effective_date": "20260615",
+      "frequency": "monthly",
+      "source": "tushare:cn_m.m2_yoy",
+      "quality_status": "estimated"
+    }
+  ]
+}

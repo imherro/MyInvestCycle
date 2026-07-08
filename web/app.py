@@ -39,6 +39,9 @@ from core.strategy_router import build_strategy_route
 from engine.cycle_detector import detect_current_cycle_track, detect_major_cycles
 from engine.market_engine import analyze_index_regime
 from engine.regime_explainer import explain_regime
+from macro.data_quality import audit_macro_records
+from macro.indicator_registry import registry_as_dict
+from macro.macro_loader import DEFAULT_MACRO_INDICATORS, load_macro_indicators
 
 
 app = FastAPI(title="MyInvestCycle Regime API", version="0.8")
@@ -656,6 +659,24 @@ def _api_catalog_payload() -> dict[str, object]:
             ],
         },
         {
+            "name": "V2 宏观数据基础",
+            "description": "V2 Macro Data Foundation 的只读状态，展示指标注册表、缓存覆盖和时间安全审计；不判断牛熊、不计算仓位。",
+            "endpoints": [
+                _api_endpoint(
+                    "GET",
+                    "/api/macro/data-status",
+                    "返回宏观指标注册表、本地缓存可用性、缺失指标和未来函数检查结果。",
+                    "macro data audit",
+                    params=[
+                        {"name": "start_date", "required": "false", "format": "YYYYMMDD"},
+                        {"name": "end_date", "required": "false", "format": "YYYYMMDD"},
+                        {"name": "decision_date", "required": "false", "format": "YYYYMMDD"},
+                    ],
+                    freshness="local macro cache",
+                ),
+            ],
+        },
+        {
             "name": "后市展望与历史回顾",
             "description": "历史周期切分、后市展望和概率展望。",
             "endpoints": [
@@ -1128,6 +1149,40 @@ def style_current() -> dict:
         raise
     except Exception as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
+@app.get("/api/macro/data-status")
+def macro_data_status(
+    start_date: str = Query("20240101", description="Observation start date, YYYYMMDD."),
+    end_date: str | None = Query(None, description="Observation end date, YYYYMMDD. Defaults to today."),
+    decision_date: str | None = Query(None, description="Decision date for future-leakage checks, YYYYMMDD."),
+) -> dict:
+    resolved_end = end_date or _today_text()
+    resolved_decision = decision_date or resolved_end
+    records_by_indicator = load_macro_indicators(DEFAULT_MACRO_INDICATORS, start_date, resolved_end)
+    audit = audit_macro_records(
+        records_by_indicator,
+        required_indicators=DEFAULT_MACRO_INDICATORS,
+        decision_date=resolved_decision,
+    )
+    return {
+        "engine": "V2.1 Macro Data Foundation",
+        "registry": registry_as_dict(),
+        "audit": audit,
+        "requested_range": {
+            "start_date": start_date,
+            "end_date": resolved_end,
+            "decision_date": resolved_decision,
+        },
+        "constraints": {
+            "no_macro_score": True,
+            "no_macro_state": True,
+            "no_bull_bear_judgement": True,
+            "no_position_sizing": True,
+            "no_etf_allocation": True,
+            "no_backtest": True,
+        },
+    }
 
 
 @app.get("/api/style/rotation-signal")

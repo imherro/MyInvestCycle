@@ -1,0 +1,6270 @@
+{
+  "metadata": {
+    "indicator": "US10Y",
+    "records": 626,
+    "updated_at": "2026-07-08T05:51:48+00:00",
+    "schema": "MacroIndicatorRecord.v1"
+  },
+  "records": [
+    {
+      "indicator": "US10Y",
+      "value": 3.95,
+      "observation_date": "20240102",
+      "release_date": "20240102",
+      "effective_date": "20240102",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.91,
+      "observation_date": "20240103",
+      "release_date": "20240103",
+      "effective_date": "20240103",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.99,
+      "observation_date": "20240104",
+      "release_date": "20240104",
+      "effective_date": "20240104",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.05,
+      "observation_date": "20240105",
+      "release_date": "20240105",
+      "effective_date": "20240105",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.01,
+      "observation_date": "20240108",
+      "release_date": "20240108",
+      "effective_date": "20240108",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.02,
+      "observation_date": "20240109",
+      "release_date": "20240109",
+      "effective_date": "20240109",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.04,
+      "observation_date": "20240110",
+      "release_date": "20240110",
+      "effective_date": "20240110",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.98,
+      "observation_date": "20240111",
+      "release_date": "20240111",
+      "effective_date": "20240111",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.96,
+      "observation_date": "20240112",
+      "release_date": "20240112",
+      "effective_date": "20240112",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.07,
+      "observation_date": "20240116",
+      "release_date": "20240116",
+      "effective_date": "20240116",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.1,
+      "observation_date": "20240117",
+      "release_date": "20240117",
+      "effective_date": "20240117",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.14,
+      "observation_date": "20240118",
+      "release_date": "20240118",
+      "effective_date": "20240118",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20240119",
+      "release_date": "20240119",
+      "effective_date": "20240119",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.11,
+      "observation_date": "20240122",
+      "release_date": "20240122",
+      "effective_date": "20240122",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.14,
+      "observation_date": "20240123",
+      "release_date": "20240123",
+      "effective_date": "20240123",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.18,
+      "observation_date": "20240124",
+      "release_date": "20240124",
+      "effective_date": "20240124",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.14,
+      "observation_date": "20240125",
+      "release_date": "20240125",
+      "effective_date": "20240125",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20240126",
+      "release_date": "20240126",
+      "effective_date": "20240126",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.08,
+      "observation_date": "20240129",
+      "release_date": "20240129",
+      "effective_date": "20240129",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.06,
+      "observation_date": "20240130",
+      "release_date": "20240130",
+      "effective_date": "20240130",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.99,
+      "observation_date": "20240131",
+      "release_date": "20240131",
+      "effective_date": "20240131",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.87,
+      "observation_date": "20240201",
+      "release_date": "20240201",
+      "effective_date": "20240201",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.03,
+      "observation_date": "20240202",
+      "release_date": "20240202",
+      "effective_date": "20240202",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20240205",
+      "release_date": "20240205",
+      "effective_date": "20240205",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.09,
+      "observation_date": "20240206",
+      "release_date": "20240206",
+      "effective_date": "20240206",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.09,
+      "observation_date": "20240207",
+      "release_date": "20240207",
+      "effective_date": "20240207",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20240208",
+      "release_date": "20240208",
+      "effective_date": "20240208",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20240209",
+      "release_date": "20240209",
+      "effective_date": "20240209",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20240212",
+      "release_date": "20240212",
+      "effective_date": "20240212",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.31,
+      "observation_date": "20240213",
+      "release_date": "20240213",
+      "effective_date": "20240213",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.27,
+      "observation_date": "20240214",
+      "release_date": "20240214",
+      "effective_date": "20240214",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.24,
+      "observation_date": "20240215",
+      "release_date": "20240215",
+      "effective_date": "20240215",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20240216",
+      "release_date": "20240216",
+      "effective_date": "20240216",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.27,
+      "observation_date": "20240220",
+      "release_date": "20240220",
+      "effective_date": "20240220",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.32,
+      "observation_date": "20240221",
+      "release_date": "20240221",
+      "effective_date": "20240221",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.33,
+      "observation_date": "20240222",
+      "release_date": "20240222",
+      "effective_date": "20240222",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20240223",
+      "release_date": "20240223",
+      "effective_date": "20240223",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20240226",
+      "release_date": "20240226",
+      "effective_date": "20240226",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.31,
+      "observation_date": "20240227",
+      "release_date": "20240227",
+      "effective_date": "20240227",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.27,
+      "observation_date": "20240228",
+      "release_date": "20240228",
+      "effective_date": "20240228",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20240229",
+      "release_date": "20240229",
+      "effective_date": "20240229",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.19,
+      "observation_date": "20240301",
+      "release_date": "20240301",
+      "effective_date": "20240301",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20240304",
+      "release_date": "20240304",
+      "effective_date": "20240304",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.13,
+      "observation_date": "20240305",
+      "release_date": "20240305",
+      "effective_date": "20240305",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.11,
+      "observation_date": "20240306",
+      "release_date": "20240306",
+      "effective_date": "20240306",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.09,
+      "observation_date": "20240307",
+      "release_date": "20240307",
+      "effective_date": "20240307",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.09,
+      "observation_date": "20240308",
+      "release_date": "20240308",
+      "effective_date": "20240308",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.1,
+      "observation_date": "20240311",
+      "release_date": "20240311",
+      "effective_date": "20240311",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.16,
+      "observation_date": "20240312",
+      "release_date": "20240312",
+      "effective_date": "20240312",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.19,
+      "observation_date": "20240313",
+      "release_date": "20240313",
+      "effective_date": "20240313",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20240314",
+      "release_date": "20240314",
+      "effective_date": "20240314",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.31,
+      "observation_date": "20240315",
+      "release_date": "20240315",
+      "effective_date": "20240315",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.34,
+      "observation_date": "20240318",
+      "release_date": "20240318",
+      "effective_date": "20240318",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20240319",
+      "release_date": "20240319",
+      "effective_date": "20240319",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.27,
+      "observation_date": "20240320",
+      "release_date": "20240320",
+      "effective_date": "20240320",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.27,
+      "observation_date": "20240321",
+      "release_date": "20240321",
+      "effective_date": "20240321",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20240322",
+      "release_date": "20240322",
+      "effective_date": "20240322",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20240325",
+      "release_date": "20240325",
+      "effective_date": "20240325",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.24,
+      "observation_date": "20240326",
+      "release_date": "20240326",
+      "effective_date": "20240326",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.2,
+      "observation_date": "20240327",
+      "release_date": "20240327",
+      "effective_date": "20240327",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.2,
+      "observation_date": "20240328",
+      "release_date": "20240328",
+      "effective_date": "20240328",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.33,
+      "observation_date": "20240401",
+      "release_date": "20240401",
+      "effective_date": "20240401",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.36,
+      "observation_date": "20240402",
+      "release_date": "20240402",
+      "effective_date": "20240402",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.36,
+      "observation_date": "20240403",
+      "release_date": "20240403",
+      "effective_date": "20240403",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.31,
+      "observation_date": "20240404",
+      "release_date": "20240404",
+      "effective_date": "20240404",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.39,
+      "observation_date": "20240405",
+      "release_date": "20240405",
+      "effective_date": "20240405",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.42,
+      "observation_date": "20240408",
+      "release_date": "20240408",
+      "effective_date": "20240408",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.36,
+      "observation_date": "20240409",
+      "release_date": "20240409",
+      "effective_date": "20240409",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.55,
+      "observation_date": "20240410",
+      "release_date": "20240410",
+      "effective_date": "20240410",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.56,
+      "observation_date": "20240411",
+      "release_date": "20240411",
+      "effective_date": "20240411",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.5,
+      "observation_date": "20240412",
+      "release_date": "20240412",
+      "effective_date": "20240412",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.63,
+      "observation_date": "20240415",
+      "release_date": "20240415",
+      "effective_date": "20240415",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.67,
+      "observation_date": "20240416",
+      "release_date": "20240416",
+      "effective_date": "20240416",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.59,
+      "observation_date": "20240417",
+      "release_date": "20240417",
+      "effective_date": "20240417",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.64,
+      "observation_date": "20240418",
+      "release_date": "20240418",
+      "effective_date": "20240418",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.62,
+      "observation_date": "20240419",
+      "release_date": "20240419",
+      "effective_date": "20240419",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.62,
+      "observation_date": "20240422",
+      "release_date": "20240422",
+      "effective_date": "20240422",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.61,
+      "observation_date": "20240423",
+      "release_date": "20240423",
+      "effective_date": "20240423",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.65,
+      "observation_date": "20240424",
+      "release_date": "20240424",
+      "effective_date": "20240424",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.7,
+      "observation_date": "20240425",
+      "release_date": "20240425",
+      "effective_date": "20240425",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.67,
+      "observation_date": "20240426",
+      "release_date": "20240426",
+      "effective_date": "20240426",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.63,
+      "observation_date": "20240429",
+      "release_date": "20240429",
+      "effective_date": "20240429",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.69,
+      "observation_date": "20240430",
+      "release_date": "20240430",
+      "effective_date": "20240430",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.63,
+      "observation_date": "20240501",
+      "release_date": "20240501",
+      "effective_date": "20240501",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.58,
+      "observation_date": "20240502",
+      "release_date": "20240502",
+      "effective_date": "20240502",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.5,
+      "observation_date": "20240503",
+      "release_date": "20240503",
+      "effective_date": "20240503",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.49,
+      "observation_date": "20240506",
+      "release_date": "20240506",
+      "effective_date": "20240506",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.47,
+      "observation_date": "20240507",
+      "release_date": "20240507",
+      "effective_date": "20240507",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.48,
+      "observation_date": "20240508",
+      "release_date": "20240508",
+      "effective_date": "20240508",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.45,
+      "observation_date": "20240509",
+      "release_date": "20240509",
+      "effective_date": "20240509",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.5,
+      "observation_date": "20240510",
+      "release_date": "20240510",
+      "effective_date": "20240510",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.48,
+      "observation_date": "20240513",
+      "release_date": "20240513",
+      "effective_date": "20240513",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.45,
+      "observation_date": "20240514",
+      "release_date": "20240514",
+      "effective_date": "20240514",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.36,
+      "observation_date": "20240515",
+      "release_date": "20240515",
+      "effective_date": "20240515",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.38,
+      "observation_date": "20240516",
+      "release_date": "20240516",
+      "effective_date": "20240516",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.42,
+      "observation_date": "20240517",
+      "release_date": "20240517",
+      "effective_date": "20240517",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.44,
+      "observation_date": "20240520",
+      "release_date": "20240520",
+      "effective_date": "20240520",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.41,
+      "observation_date": "20240521",
+      "release_date": "20240521",
+      "effective_date": "20240521",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20240522",
+      "release_date": "20240522",
+      "effective_date": "20240522",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.47,
+      "observation_date": "20240523",
+      "release_date": "20240523",
+      "effective_date": "20240523",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.46,
+      "observation_date": "20240524",
+      "release_date": "20240524",
+      "effective_date": "20240524",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.54,
+      "observation_date": "20240528",
+      "release_date": "20240528",
+      "effective_date": "20240528",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.61,
+      "observation_date": "20240529",
+      "release_date": "20240529",
+      "effective_date": "20240529",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.55,
+      "observation_date": "20240530",
+      "release_date": "20240530",
+      "effective_date": "20240530",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.51,
+      "observation_date": "20240531",
+      "release_date": "20240531",
+      "effective_date": "20240531",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.41,
+      "observation_date": "20240603",
+      "release_date": "20240603",
+      "effective_date": "20240603",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.33,
+      "observation_date": "20240604",
+      "release_date": "20240604",
+      "effective_date": "20240604",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20240605",
+      "release_date": "20240605",
+      "effective_date": "20240605",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20240606",
+      "release_date": "20240606",
+      "effective_date": "20240606",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20240607",
+      "release_date": "20240607",
+      "effective_date": "20240607",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.47,
+      "observation_date": "20240610",
+      "release_date": "20240610",
+      "effective_date": "20240610",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.39,
+      "observation_date": "20240611",
+      "release_date": "20240611",
+      "effective_date": "20240611",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.31,
+      "observation_date": "20240612",
+      "release_date": "20240612",
+      "effective_date": "20240612",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.24,
+      "observation_date": "20240613",
+      "release_date": "20240613",
+      "effective_date": "20240613",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.2,
+      "observation_date": "20240614",
+      "release_date": "20240614",
+      "effective_date": "20240614",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20240617",
+      "release_date": "20240617",
+      "effective_date": "20240617",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20240618",
+      "release_date": "20240618",
+      "effective_date": "20240618",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20240620",
+      "release_date": "20240620",
+      "effective_date": "20240620",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20240621",
+      "release_date": "20240621",
+      "effective_date": "20240621",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20240624",
+      "release_date": "20240624",
+      "effective_date": "20240624",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.23,
+      "observation_date": "20240625",
+      "release_date": "20240625",
+      "effective_date": "20240625",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.32,
+      "observation_date": "20240626",
+      "release_date": "20240626",
+      "effective_date": "20240626",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20240627",
+      "release_date": "20240627",
+      "effective_date": "20240627",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.36,
+      "observation_date": "20240628",
+      "release_date": "20240628",
+      "effective_date": "20240628",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.48,
+      "observation_date": "20240701",
+      "release_date": "20240701",
+      "effective_date": "20240701",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20240702",
+      "release_date": "20240702",
+      "effective_date": "20240702",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.36,
+      "observation_date": "20240703",
+      "release_date": "20240703",
+      "effective_date": "20240703",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20240705",
+      "release_date": "20240705",
+      "effective_date": "20240705",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20240708",
+      "release_date": "20240708",
+      "effective_date": "20240708",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20240709",
+      "release_date": "20240709",
+      "effective_date": "20240709",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20240710",
+      "release_date": "20240710",
+      "effective_date": "20240710",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.2,
+      "observation_date": "20240711",
+      "release_date": "20240711",
+      "effective_date": "20240711",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.18,
+      "observation_date": "20240712",
+      "release_date": "20240712",
+      "effective_date": "20240712",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.23,
+      "observation_date": "20240715",
+      "release_date": "20240715",
+      "effective_date": "20240715",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20240716",
+      "release_date": "20240716",
+      "effective_date": "20240716",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.16,
+      "observation_date": "20240717",
+      "release_date": "20240717",
+      "effective_date": "20240717",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.2,
+      "observation_date": "20240718",
+      "release_date": "20240718",
+      "effective_date": "20240718",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20240719",
+      "release_date": "20240719",
+      "effective_date": "20240719",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20240722",
+      "release_date": "20240722",
+      "effective_date": "20240722",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20240723",
+      "release_date": "20240723",
+      "effective_date": "20240723",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20240724",
+      "release_date": "20240724",
+      "effective_date": "20240724",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.27,
+      "observation_date": "20240725",
+      "release_date": "20240725",
+      "effective_date": "20240725",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.2,
+      "observation_date": "20240726",
+      "release_date": "20240726",
+      "effective_date": "20240726",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20240729",
+      "release_date": "20240729",
+      "effective_date": "20240729",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20240730",
+      "release_date": "20240730",
+      "effective_date": "20240730",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.09,
+      "observation_date": "20240731",
+      "release_date": "20240731",
+      "effective_date": "20240731",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.99,
+      "observation_date": "20240801",
+      "release_date": "20240801",
+      "effective_date": "20240801",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.8,
+      "observation_date": "20240802",
+      "release_date": "20240802",
+      "effective_date": "20240802",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.78,
+      "observation_date": "20240805",
+      "release_date": "20240805",
+      "effective_date": "20240805",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.9,
+      "observation_date": "20240806",
+      "release_date": "20240806",
+      "effective_date": "20240806",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.96,
+      "observation_date": "20240807",
+      "release_date": "20240807",
+      "effective_date": "20240807",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.99,
+      "observation_date": "20240808",
+      "release_date": "20240808",
+      "effective_date": "20240808",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.94,
+      "observation_date": "20240809",
+      "release_date": "20240809",
+      "effective_date": "20240809",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.9,
+      "observation_date": "20240812",
+      "release_date": "20240812",
+      "effective_date": "20240812",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.85,
+      "observation_date": "20240813",
+      "release_date": "20240813",
+      "effective_date": "20240813",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.83,
+      "observation_date": "20240814",
+      "release_date": "20240814",
+      "effective_date": "20240814",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.92,
+      "observation_date": "20240815",
+      "release_date": "20240815",
+      "effective_date": "20240815",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.89,
+      "observation_date": "20240816",
+      "release_date": "20240816",
+      "effective_date": "20240816",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.86,
+      "observation_date": "20240819",
+      "release_date": "20240819",
+      "effective_date": "20240819",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.82,
+      "observation_date": "20240820",
+      "release_date": "20240820",
+      "effective_date": "20240820",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.79,
+      "observation_date": "20240821",
+      "release_date": "20240821",
+      "effective_date": "20240821",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.86,
+      "observation_date": "20240822",
+      "release_date": "20240822",
+      "effective_date": "20240822",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.81,
+      "observation_date": "20240823",
+      "release_date": "20240823",
+      "effective_date": "20240823",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.82,
+      "observation_date": "20240826",
+      "release_date": "20240826",
+      "effective_date": "20240826",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.83,
+      "observation_date": "20240827",
+      "release_date": "20240827",
+      "effective_date": "20240827",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.84,
+      "observation_date": "20240828",
+      "release_date": "20240828",
+      "effective_date": "20240828",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.87,
+      "observation_date": "20240829",
+      "release_date": "20240829",
+      "effective_date": "20240829",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.91,
+      "observation_date": "20240830",
+      "release_date": "20240830",
+      "effective_date": "20240830",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.84,
+      "observation_date": "20240903",
+      "release_date": "20240903",
+      "effective_date": "20240903",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.77,
+      "observation_date": "20240904",
+      "release_date": "20240904",
+      "effective_date": "20240904",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.73,
+      "observation_date": "20240905",
+      "release_date": "20240905",
+      "effective_date": "20240905",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.72,
+      "observation_date": "20240906",
+      "release_date": "20240906",
+      "effective_date": "20240906",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.7,
+      "observation_date": "20240909",
+      "release_date": "20240909",
+      "effective_date": "20240909",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.65,
+      "observation_date": "20240910",
+      "release_date": "20240910",
+      "effective_date": "20240910",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.65,
+      "observation_date": "20240911",
+      "release_date": "20240911",
+      "effective_date": "20240911",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.68,
+      "observation_date": "20240912",
+      "release_date": "20240912",
+      "effective_date": "20240912",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.66,
+      "observation_date": "20240913",
+      "release_date": "20240913",
+      "effective_date": "20240913",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.63,
+      "observation_date": "20240916",
+      "release_date": "20240916",
+      "effective_date": "20240916",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.65,
+      "observation_date": "20240917",
+      "release_date": "20240917",
+      "effective_date": "20240917",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.7,
+      "observation_date": "20240918",
+      "release_date": "20240918",
+      "effective_date": "20240918",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.73,
+      "observation_date": "20240919",
+      "release_date": "20240919",
+      "effective_date": "20240919",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.73,
+      "observation_date": "20240920",
+      "release_date": "20240920",
+      "effective_date": "20240920",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.75,
+      "observation_date": "20240923",
+      "release_date": "20240923",
+      "effective_date": "20240923",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.74,
+      "observation_date": "20240924",
+      "release_date": "20240924",
+      "effective_date": "20240924",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.79,
+      "observation_date": "20240925",
+      "release_date": "20240925",
+      "effective_date": "20240925",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.79,
+      "observation_date": "20240926",
+      "release_date": "20240926",
+      "effective_date": "20240926",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.75,
+      "observation_date": "20240927",
+      "release_date": "20240927",
+      "effective_date": "20240927",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.81,
+      "observation_date": "20240930",
+      "release_date": "20240930",
+      "effective_date": "20240930",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.74,
+      "observation_date": "20241001",
+      "release_date": "20241001",
+      "effective_date": "20241001",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.79,
+      "observation_date": "20241002",
+      "release_date": "20241002",
+      "effective_date": "20241002",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.85,
+      "observation_date": "20241003",
+      "release_date": "20241003",
+      "effective_date": "20241003",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.98,
+      "observation_date": "20241004",
+      "release_date": "20241004",
+      "effective_date": "20241004",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.03,
+      "observation_date": "20241007",
+      "release_date": "20241007",
+      "effective_date": "20241007",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.04,
+      "observation_date": "20241008",
+      "release_date": "20241008",
+      "effective_date": "20241008",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.06,
+      "observation_date": "20241009",
+      "release_date": "20241009",
+      "effective_date": "20241009",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.09,
+      "observation_date": "20241010",
+      "release_date": "20241010",
+      "effective_date": "20241010",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.08,
+      "observation_date": "20241011",
+      "release_date": "20241011",
+      "effective_date": "20241011",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.03,
+      "observation_date": "20241015",
+      "release_date": "20241015",
+      "effective_date": "20241015",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.02,
+      "observation_date": "20241016",
+      "release_date": "20241016",
+      "effective_date": "20241016",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.09,
+      "observation_date": "20241017",
+      "release_date": "20241017",
+      "effective_date": "20241017",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.08,
+      "observation_date": "20241018",
+      "release_date": "20241018",
+      "effective_date": "20241018",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.19,
+      "observation_date": "20241021",
+      "release_date": "20241021",
+      "effective_date": "20241021",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.2,
+      "observation_date": "20241022",
+      "release_date": "20241022",
+      "effective_date": "20241022",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.24,
+      "observation_date": "20241023",
+      "release_date": "20241023",
+      "effective_date": "20241023",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.21,
+      "observation_date": "20241024",
+      "release_date": "20241024",
+      "effective_date": "20241024",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20241025",
+      "release_date": "20241025",
+      "effective_date": "20241025",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20241028",
+      "release_date": "20241028",
+      "effective_date": "20241028",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20241029",
+      "release_date": "20241029",
+      "effective_date": "20241029",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20241030",
+      "release_date": "20241030",
+      "effective_date": "20241030",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20241031",
+      "release_date": "20241031",
+      "effective_date": "20241031",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.37,
+      "observation_date": "20241101",
+      "release_date": "20241101",
+      "effective_date": "20241101",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.31,
+      "observation_date": "20241104",
+      "release_date": "20241104",
+      "effective_date": "20241104",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20241105",
+      "release_date": "20241105",
+      "effective_date": "20241105",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.42,
+      "observation_date": "20241106",
+      "release_date": "20241106",
+      "effective_date": "20241106",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.31,
+      "observation_date": "20241107",
+      "release_date": "20241107",
+      "effective_date": "20241107",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20241108",
+      "release_date": "20241108",
+      "effective_date": "20241108",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20241112",
+      "release_date": "20241112",
+      "effective_date": "20241112",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.44,
+      "observation_date": "20241113",
+      "release_date": "20241113",
+      "effective_date": "20241113",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20241114",
+      "release_date": "20241114",
+      "effective_date": "20241114",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20241115",
+      "release_date": "20241115",
+      "effective_date": "20241115",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.42,
+      "observation_date": "20241118",
+      "release_date": "20241118",
+      "effective_date": "20241118",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.39,
+      "observation_date": "20241119",
+      "release_date": "20241119",
+      "effective_date": "20241119",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.41,
+      "observation_date": "20241120",
+      "release_date": "20241120",
+      "effective_date": "20241120",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20241121",
+      "release_date": "20241121",
+      "effective_date": "20241121",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.41,
+      "observation_date": "20241122",
+      "release_date": "20241122",
+      "effective_date": "20241122",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.27,
+      "observation_date": "20241125",
+      "release_date": "20241125",
+      "effective_date": "20241125",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20241126",
+      "release_date": "20241126",
+      "effective_date": "20241126",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20241127",
+      "release_date": "20241127",
+      "effective_date": "20241127",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.18,
+      "observation_date": "20241129",
+      "release_date": "20241129",
+      "effective_date": "20241129",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.19,
+      "observation_date": "20241202",
+      "release_date": "20241202",
+      "effective_date": "20241202",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.23,
+      "observation_date": "20241203",
+      "release_date": "20241203",
+      "effective_date": "20241203",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.19,
+      "observation_date": "20241204",
+      "release_date": "20241204",
+      "effective_date": "20241204",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20241205",
+      "release_date": "20241205",
+      "effective_date": "20241205",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20241206",
+      "release_date": "20241206",
+      "effective_date": "20241206",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.2,
+      "observation_date": "20241209",
+      "release_date": "20241209",
+      "effective_date": "20241209",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20241210",
+      "release_date": "20241210",
+      "effective_date": "20241210",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20241211",
+      "release_date": "20241211",
+      "effective_date": "20241211",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.32,
+      "observation_date": "20241212",
+      "release_date": "20241212",
+      "effective_date": "20241212",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.4,
+      "observation_date": "20241213",
+      "release_date": "20241213",
+      "effective_date": "20241213",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.39,
+      "observation_date": "20241216",
+      "release_date": "20241216",
+      "effective_date": "20241216",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.4,
+      "observation_date": "20241217",
+      "release_date": "20241217",
+      "effective_date": "20241217",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.5,
+      "observation_date": "20241218",
+      "release_date": "20241218",
+      "effective_date": "20241218",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.57,
+      "observation_date": "20241219",
+      "release_date": "20241219",
+      "effective_date": "20241219",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.52,
+      "observation_date": "20241220",
+      "release_date": "20241220",
+      "effective_date": "20241220",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.59,
+      "observation_date": "20241223",
+      "release_date": "20241223",
+      "effective_date": "20241223",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.59,
+      "observation_date": "20241224",
+      "release_date": "20241224",
+      "effective_date": "20241224",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.58,
+      "observation_date": "20241226",
+      "release_date": "20241226",
+      "effective_date": "20241226",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.62,
+      "observation_date": "20241227",
+      "release_date": "20241227",
+      "effective_date": "20241227",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.55,
+      "observation_date": "20241230",
+      "release_date": "20241230",
+      "effective_date": "20241230",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.58,
+      "observation_date": "20241231",
+      "release_date": "20241231",
+      "effective_date": "20241231",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.57,
+      "observation_date": "20250102",
+      "release_date": "20250102",
+      "effective_date": "20250102",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.6,
+      "observation_date": "20250103",
+      "release_date": "20250103",
+      "effective_date": "20250103",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.62,
+      "observation_date": "20250106",
+      "release_date": "20250106",
+      "effective_date": "20250106",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.67,
+      "observation_date": "20250107",
+      "release_date": "20250107",
+      "effective_date": "20250107",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.67,
+      "observation_date": "20250108",
+      "release_date": "20250108",
+      "effective_date": "20250108",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.68,
+      "observation_date": "20250109",
+      "release_date": "20250109",
+      "effective_date": "20250109",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.77,
+      "observation_date": "20250110",
+      "release_date": "20250110",
+      "effective_date": "20250110",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.79,
+      "observation_date": "20250113",
+      "release_date": "20250113",
+      "effective_date": "20250113",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.78,
+      "observation_date": "20250114",
+      "release_date": "20250114",
+      "effective_date": "20250114",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.66,
+      "observation_date": "20250115",
+      "release_date": "20250115",
+      "effective_date": "20250115",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.61,
+      "observation_date": "20250116",
+      "release_date": "20250116",
+      "effective_date": "20250116",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.61,
+      "observation_date": "20250117",
+      "release_date": "20250117",
+      "effective_date": "20250117",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.57,
+      "observation_date": "20250121",
+      "release_date": "20250121",
+      "effective_date": "20250121",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.6,
+      "observation_date": "20250122",
+      "release_date": "20250122",
+      "effective_date": "20250122",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.65,
+      "observation_date": "20250123",
+      "release_date": "20250123",
+      "effective_date": "20250123",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.63,
+      "observation_date": "20250124",
+      "release_date": "20250124",
+      "effective_date": "20250124",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.53,
+      "observation_date": "20250127",
+      "release_date": "20250127",
+      "effective_date": "20250127",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.55,
+      "observation_date": "20250128",
+      "release_date": "20250128",
+      "effective_date": "20250128",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.55,
+      "observation_date": "20250129",
+      "release_date": "20250129",
+      "effective_date": "20250129",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.52,
+      "observation_date": "20250130",
+      "release_date": "20250130",
+      "effective_date": "20250130",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.58,
+      "observation_date": "20250131",
+      "release_date": "20250131",
+      "effective_date": "20250131",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.54,
+      "observation_date": "20250203",
+      "release_date": "20250203",
+      "effective_date": "20250203",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.52,
+      "observation_date": "20250204",
+      "release_date": "20250204",
+      "effective_date": "20250204",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20250205",
+      "release_date": "20250205",
+      "effective_date": "20250205",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.45,
+      "observation_date": "20250206",
+      "release_date": "20250206",
+      "effective_date": "20250206",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.49,
+      "observation_date": "20250207",
+      "release_date": "20250207",
+      "effective_date": "20250207",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.51,
+      "observation_date": "20250210",
+      "release_date": "20250210",
+      "effective_date": "20250210",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.54,
+      "observation_date": "20250211",
+      "release_date": "20250211",
+      "effective_date": "20250211",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.62,
+      "observation_date": "20250212",
+      "release_date": "20250212",
+      "effective_date": "20250212",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.52,
+      "observation_date": "20250213",
+      "release_date": "20250213",
+      "effective_date": "20250213",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.47,
+      "observation_date": "20250214",
+      "release_date": "20250214",
+      "effective_date": "20250214",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.55,
+      "observation_date": "20250218",
+      "release_date": "20250218",
+      "effective_date": "20250218",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.53,
+      "observation_date": "20250219",
+      "release_date": "20250219",
+      "effective_date": "20250219",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.5,
+      "observation_date": "20250220",
+      "release_date": "20250220",
+      "effective_date": "20250220",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.42,
+      "observation_date": "20250221",
+      "release_date": "20250221",
+      "effective_date": "20250221",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.4,
+      "observation_date": "20250224",
+      "release_date": "20250224",
+      "effective_date": "20250224",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20250225",
+      "release_date": "20250225",
+      "effective_date": "20250225",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20250226",
+      "release_date": "20250226",
+      "effective_date": "20250226",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20250227",
+      "release_date": "20250227",
+      "effective_date": "20250227",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.24,
+      "observation_date": "20250228",
+      "release_date": "20250228",
+      "effective_date": "20250228",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.16,
+      "observation_date": "20250303",
+      "release_date": "20250303",
+      "effective_date": "20250303",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20250304",
+      "release_date": "20250304",
+      "effective_date": "20250304",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20250305",
+      "release_date": "20250305",
+      "effective_date": "20250305",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20250306",
+      "release_date": "20250306",
+      "effective_date": "20250306",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.32,
+      "observation_date": "20250307",
+      "release_date": "20250307",
+      "effective_date": "20250307",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20250310",
+      "release_date": "20250310",
+      "effective_date": "20250310",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20250311",
+      "release_date": "20250311",
+      "effective_date": "20250311",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.32,
+      "observation_date": "20250312",
+      "release_date": "20250312",
+      "effective_date": "20250312",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.27,
+      "observation_date": "20250313",
+      "release_date": "20250313",
+      "effective_date": "20250313",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.31,
+      "observation_date": "20250314",
+      "release_date": "20250314",
+      "effective_date": "20250314",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.31,
+      "observation_date": "20250317",
+      "release_date": "20250317",
+      "effective_date": "20250317",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20250318",
+      "release_date": "20250318",
+      "effective_date": "20250318",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20250319",
+      "release_date": "20250319",
+      "effective_date": "20250319",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.24,
+      "observation_date": "20250320",
+      "release_date": "20250320",
+      "effective_date": "20250320",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20250321",
+      "release_date": "20250321",
+      "effective_date": "20250321",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.34,
+      "observation_date": "20250324",
+      "release_date": "20250324",
+      "effective_date": "20250324",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.31,
+      "observation_date": "20250325",
+      "release_date": "20250325",
+      "effective_date": "20250325",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.35,
+      "observation_date": "20250326",
+      "release_date": "20250326",
+      "effective_date": "20250326",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.38,
+      "observation_date": "20250327",
+      "release_date": "20250327",
+      "effective_date": "20250327",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.27,
+      "observation_date": "20250328",
+      "release_date": "20250328",
+      "effective_date": "20250328",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.23,
+      "observation_date": "20250331",
+      "release_date": "20250331",
+      "effective_date": "20250331",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20250401",
+      "release_date": "20250401",
+      "effective_date": "20250401",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.2,
+      "observation_date": "20250402",
+      "release_date": "20250402",
+      "effective_date": "20250402",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.06,
+      "observation_date": "20250403",
+      "release_date": "20250403",
+      "effective_date": "20250403",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.01,
+      "observation_date": "20250404",
+      "release_date": "20250404",
+      "effective_date": "20250404",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20250407",
+      "release_date": "20250407",
+      "effective_date": "20250407",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20250408",
+      "release_date": "20250408",
+      "effective_date": "20250408",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.34,
+      "observation_date": "20250409",
+      "release_date": "20250409",
+      "effective_date": "20250409",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.4,
+      "observation_date": "20250410",
+      "release_date": "20250410",
+      "effective_date": "20250410",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.48,
+      "observation_date": "20250411",
+      "release_date": "20250411",
+      "effective_date": "20250411",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.38,
+      "observation_date": "20250414",
+      "release_date": "20250414",
+      "effective_date": "20250414",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.35,
+      "observation_date": "20250415",
+      "release_date": "20250415",
+      "effective_date": "20250415",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20250416",
+      "release_date": "20250416",
+      "effective_date": "20250416",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.34,
+      "observation_date": "20250417",
+      "release_date": "20250417",
+      "effective_date": "20250417",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.42,
+      "observation_date": "20250421",
+      "release_date": "20250421",
+      "effective_date": "20250421",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.41,
+      "observation_date": "20250422",
+      "release_date": "20250422",
+      "effective_date": "20250422",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.4,
+      "observation_date": "20250423",
+      "release_date": "20250423",
+      "effective_date": "20250423",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.32,
+      "observation_date": "20250424",
+      "release_date": "20250424",
+      "effective_date": "20250424",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20250425",
+      "release_date": "20250425",
+      "effective_date": "20250425",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.23,
+      "observation_date": "20250428",
+      "release_date": "20250428",
+      "effective_date": "20250428",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.19,
+      "observation_date": "20250429",
+      "release_date": "20250429",
+      "effective_date": "20250429",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20250430",
+      "release_date": "20250430",
+      "effective_date": "20250430",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20250501",
+      "release_date": "20250501",
+      "effective_date": "20250501",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.33,
+      "observation_date": "20250502",
+      "release_date": "20250502",
+      "effective_date": "20250502",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.36,
+      "observation_date": "20250505",
+      "release_date": "20250505",
+      "effective_date": "20250505",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20250506",
+      "release_date": "20250506",
+      "effective_date": "20250506",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20250507",
+      "release_date": "20250507",
+      "effective_date": "20250507",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.37,
+      "observation_date": "20250508",
+      "release_date": "20250508",
+      "effective_date": "20250508",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.37,
+      "observation_date": "20250509",
+      "release_date": "20250509",
+      "effective_date": "20250509",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.45,
+      "observation_date": "20250512",
+      "release_date": "20250512",
+      "effective_date": "20250512",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.49,
+      "observation_date": "20250513",
+      "release_date": "20250513",
+      "effective_date": "20250513",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.53,
+      "observation_date": "20250514",
+      "release_date": "20250514",
+      "effective_date": "20250514",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.45,
+      "observation_date": "20250515",
+      "release_date": "20250515",
+      "effective_date": "20250515",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20250516",
+      "release_date": "20250516",
+      "effective_date": "20250516",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.46,
+      "observation_date": "20250519",
+      "release_date": "20250519",
+      "effective_date": "20250519",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.48,
+      "observation_date": "20250520",
+      "release_date": "20250520",
+      "effective_date": "20250520",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.58,
+      "observation_date": "20250521",
+      "release_date": "20250521",
+      "effective_date": "20250521",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.54,
+      "observation_date": "20250522",
+      "release_date": "20250522",
+      "effective_date": "20250522",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.51,
+      "observation_date": "20250523",
+      "release_date": "20250523",
+      "effective_date": "20250523",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20250527",
+      "release_date": "20250527",
+      "effective_date": "20250527",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.47,
+      "observation_date": "20250528",
+      "release_date": "20250528",
+      "effective_date": "20250528",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20250529",
+      "release_date": "20250529",
+      "effective_date": "20250529",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.41,
+      "observation_date": "20250530",
+      "release_date": "20250530",
+      "effective_date": "20250530",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.46,
+      "observation_date": "20250602",
+      "release_date": "20250602",
+      "effective_date": "20250602",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.46,
+      "observation_date": "20250603",
+      "release_date": "20250603",
+      "effective_date": "20250603",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.37,
+      "observation_date": "20250604",
+      "release_date": "20250604",
+      "effective_date": "20250604",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.4,
+      "observation_date": "20250605",
+      "release_date": "20250605",
+      "effective_date": "20250605",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.51,
+      "observation_date": "20250606",
+      "release_date": "20250606",
+      "effective_date": "20250606",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.49,
+      "observation_date": "20250609",
+      "release_date": "20250609",
+      "effective_date": "20250609",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.47,
+      "observation_date": "20250610",
+      "release_date": "20250610",
+      "effective_date": "20250610",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.41,
+      "observation_date": "20250611",
+      "release_date": "20250611",
+      "effective_date": "20250611",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.36,
+      "observation_date": "20250612",
+      "release_date": "20250612",
+      "effective_date": "20250612",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.41,
+      "observation_date": "20250613",
+      "release_date": "20250613",
+      "effective_date": "20250613",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.46,
+      "observation_date": "20250616",
+      "release_date": "20250616",
+      "effective_date": "20250616",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.39,
+      "observation_date": "20250617",
+      "release_date": "20250617",
+      "effective_date": "20250617",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.38,
+      "observation_date": "20250618",
+      "release_date": "20250618",
+      "effective_date": "20250618",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.38,
+      "observation_date": "20250620",
+      "release_date": "20250620",
+      "effective_date": "20250620",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.34,
+      "observation_date": "20250623",
+      "release_date": "20250623",
+      "effective_date": "20250623",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20250624",
+      "release_date": "20250624",
+      "effective_date": "20250624",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20250625",
+      "release_date": "20250625",
+      "effective_date": "20250625",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20250626",
+      "release_date": "20250626",
+      "effective_date": "20250626",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20250627",
+      "release_date": "20250627",
+      "effective_date": "20250627",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.24,
+      "observation_date": "20250630",
+      "release_date": "20250630",
+      "effective_date": "20250630",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20250701",
+      "release_date": "20250701",
+      "effective_date": "20250701",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20250702",
+      "release_date": "20250702",
+      "effective_date": "20250702",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.35,
+      "observation_date": "20250703",
+      "release_date": "20250703",
+      "effective_date": "20250703",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.4,
+      "observation_date": "20250707",
+      "release_date": "20250707",
+      "effective_date": "20250707",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.42,
+      "observation_date": "20250708",
+      "release_date": "20250708",
+      "effective_date": "20250708",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.34,
+      "observation_date": "20250709",
+      "release_date": "20250709",
+      "effective_date": "20250709",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.35,
+      "observation_date": "20250710",
+      "release_date": "20250710",
+      "effective_date": "20250710",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20250711",
+      "release_date": "20250711",
+      "effective_date": "20250711",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20250714",
+      "release_date": "20250714",
+      "effective_date": "20250714",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.5,
+      "observation_date": "20250715",
+      "release_date": "20250715",
+      "effective_date": "20250715",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.46,
+      "observation_date": "20250716",
+      "release_date": "20250716",
+      "effective_date": "20250716",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.47,
+      "observation_date": "20250717",
+      "release_date": "20250717",
+      "effective_date": "20250717",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.44,
+      "observation_date": "20250718",
+      "release_date": "20250718",
+      "effective_date": "20250718",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.38,
+      "observation_date": "20250721",
+      "release_date": "20250721",
+      "effective_date": "20250721",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.35,
+      "observation_date": "20250722",
+      "release_date": "20250722",
+      "effective_date": "20250722",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.4,
+      "observation_date": "20250723",
+      "release_date": "20250723",
+      "effective_date": "20250723",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20250724",
+      "release_date": "20250724",
+      "effective_date": "20250724",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.4,
+      "observation_date": "20250725",
+      "release_date": "20250725",
+      "effective_date": "20250725",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.42,
+      "observation_date": "20250728",
+      "release_date": "20250728",
+      "effective_date": "20250728",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.34,
+      "observation_date": "20250729",
+      "release_date": "20250729",
+      "effective_date": "20250729",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.38,
+      "observation_date": "20250730",
+      "release_date": "20250730",
+      "effective_date": "20250730",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.37,
+      "observation_date": "20250731",
+      "release_date": "20250731",
+      "effective_date": "20250731",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.23,
+      "observation_date": "20250801",
+      "release_date": "20250801",
+      "effective_date": "20250801",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20250804",
+      "release_date": "20250804",
+      "effective_date": "20250804",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20250805",
+      "release_date": "20250805",
+      "effective_date": "20250805",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20250806",
+      "release_date": "20250806",
+      "effective_date": "20250806",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.23,
+      "observation_date": "20250807",
+      "release_date": "20250807",
+      "effective_date": "20250807",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.27,
+      "observation_date": "20250808",
+      "release_date": "20250808",
+      "effective_date": "20250808",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.27,
+      "observation_date": "20250811",
+      "release_date": "20250811",
+      "effective_date": "20250811",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20250812",
+      "release_date": "20250812",
+      "effective_date": "20250812",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.24,
+      "observation_date": "20250813",
+      "release_date": "20250813",
+      "effective_date": "20250813",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20250814",
+      "release_date": "20250814",
+      "effective_date": "20250814",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.33,
+      "observation_date": "20250815",
+      "release_date": "20250815",
+      "effective_date": "20250815",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.34,
+      "observation_date": "20250818",
+      "release_date": "20250818",
+      "effective_date": "20250818",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20250819",
+      "release_date": "20250819",
+      "effective_date": "20250819",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20250820",
+      "release_date": "20250820",
+      "effective_date": "20250820",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.33,
+      "observation_date": "20250821",
+      "release_date": "20250821",
+      "effective_date": "20250821",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20250822",
+      "release_date": "20250822",
+      "effective_date": "20250822",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20250825",
+      "release_date": "20250825",
+      "effective_date": "20250825",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20250826",
+      "release_date": "20250826",
+      "effective_date": "20250826",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.24,
+      "observation_date": "20250827",
+      "release_date": "20250827",
+      "effective_date": "20250827",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20250828",
+      "release_date": "20250828",
+      "effective_date": "20250828",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.23,
+      "observation_date": "20250829",
+      "release_date": "20250829",
+      "effective_date": "20250829",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20250902",
+      "release_date": "20250902",
+      "effective_date": "20250902",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20250903",
+      "release_date": "20250903",
+      "effective_date": "20250903",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20250904",
+      "release_date": "20250904",
+      "effective_date": "20250904",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.1,
+      "observation_date": "20250905",
+      "release_date": "20250905",
+      "effective_date": "20250905",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.05,
+      "observation_date": "20250908",
+      "release_date": "20250908",
+      "effective_date": "20250908",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.08,
+      "observation_date": "20250909",
+      "release_date": "20250909",
+      "effective_date": "20250909",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.04,
+      "observation_date": "20250910",
+      "release_date": "20250910",
+      "effective_date": "20250910",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.01,
+      "observation_date": "20250911",
+      "release_date": "20250911",
+      "effective_date": "20250911",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.06,
+      "observation_date": "20250912",
+      "release_date": "20250912",
+      "effective_date": "20250912",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.05,
+      "observation_date": "20250915",
+      "release_date": "20250915",
+      "effective_date": "20250915",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.04,
+      "observation_date": "20250916",
+      "release_date": "20250916",
+      "effective_date": "20250916",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.06,
+      "observation_date": "20250917",
+      "release_date": "20250917",
+      "effective_date": "20250917",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.11,
+      "observation_date": "20250918",
+      "release_date": "20250918",
+      "effective_date": "20250918",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.14,
+      "observation_date": "20250919",
+      "release_date": "20250919",
+      "effective_date": "20250919",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20250922",
+      "release_date": "20250922",
+      "effective_date": "20250922",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.12,
+      "observation_date": "20250923",
+      "release_date": "20250923",
+      "effective_date": "20250923",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.16,
+      "observation_date": "20250924",
+      "release_date": "20250924",
+      "effective_date": "20250924",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.18,
+      "observation_date": "20250925",
+      "release_date": "20250925",
+      "effective_date": "20250925",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.2,
+      "observation_date": "20250926",
+      "release_date": "20250926",
+      "effective_date": "20250926",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20250929",
+      "release_date": "20250929",
+      "effective_date": "20250929",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.16,
+      "observation_date": "20250930",
+      "release_date": "20250930",
+      "effective_date": "20250930",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.12,
+      "observation_date": "20251001",
+      "release_date": "20251001",
+      "effective_date": "20251001",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.1,
+      "observation_date": "20251002",
+      "release_date": "20251002",
+      "effective_date": "20251002",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.13,
+      "observation_date": "20251003",
+      "release_date": "20251003",
+      "effective_date": "20251003",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.18,
+      "observation_date": "20251006",
+      "release_date": "20251006",
+      "effective_date": "20251006",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.14,
+      "observation_date": "20251007",
+      "release_date": "20251007",
+      "effective_date": "20251007",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.13,
+      "observation_date": "20251008",
+      "release_date": "20251008",
+      "effective_date": "20251008",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.14,
+      "observation_date": "20251009",
+      "release_date": "20251009",
+      "effective_date": "20251009",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.05,
+      "observation_date": "20251010",
+      "release_date": "20251010",
+      "effective_date": "20251010",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.03,
+      "observation_date": "20251014",
+      "release_date": "20251014",
+      "effective_date": "20251014",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.05,
+      "observation_date": "20251015",
+      "release_date": "20251015",
+      "effective_date": "20251015",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.99,
+      "observation_date": "20251016",
+      "release_date": "20251016",
+      "effective_date": "20251016",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.02,
+      "observation_date": "20251017",
+      "release_date": "20251017",
+      "effective_date": "20251017",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.0,
+      "observation_date": "20251020",
+      "release_date": "20251020",
+      "effective_date": "20251020",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.98,
+      "observation_date": "20251021",
+      "release_date": "20251021",
+      "effective_date": "20251021",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.97,
+      "observation_date": "20251022",
+      "release_date": "20251022",
+      "effective_date": "20251022",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.01,
+      "observation_date": "20251023",
+      "release_date": "20251023",
+      "effective_date": "20251023",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.02,
+      "observation_date": "20251024",
+      "release_date": "20251024",
+      "effective_date": "20251024",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.01,
+      "observation_date": "20251027",
+      "release_date": "20251027",
+      "effective_date": "20251027",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.99,
+      "observation_date": "20251028",
+      "release_date": "20251028",
+      "effective_date": "20251028",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.08,
+      "observation_date": "20251029",
+      "release_date": "20251029",
+      "effective_date": "20251029",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.11,
+      "observation_date": "20251030",
+      "release_date": "20251030",
+      "effective_date": "20251030",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.11,
+      "observation_date": "20251031",
+      "release_date": "20251031",
+      "effective_date": "20251031",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.13,
+      "observation_date": "20251103",
+      "release_date": "20251103",
+      "effective_date": "20251103",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.1,
+      "observation_date": "20251104",
+      "release_date": "20251104",
+      "effective_date": "20251104",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20251105",
+      "release_date": "20251105",
+      "effective_date": "20251105",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.11,
+      "observation_date": "20251106",
+      "release_date": "20251106",
+      "effective_date": "20251106",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.11,
+      "observation_date": "20251107",
+      "release_date": "20251107",
+      "effective_date": "20251107",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.13,
+      "observation_date": "20251110",
+      "release_date": "20251110",
+      "effective_date": "20251110",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.08,
+      "observation_date": "20251112",
+      "release_date": "20251112",
+      "effective_date": "20251112",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.11,
+      "observation_date": "20251113",
+      "release_date": "20251113",
+      "effective_date": "20251113",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.14,
+      "observation_date": "20251114",
+      "release_date": "20251114",
+      "effective_date": "20251114",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.13,
+      "observation_date": "20251117",
+      "release_date": "20251117",
+      "effective_date": "20251117",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.12,
+      "observation_date": "20251118",
+      "release_date": "20251118",
+      "effective_date": "20251118",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.13,
+      "observation_date": "20251119",
+      "release_date": "20251119",
+      "effective_date": "20251119",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.1,
+      "observation_date": "20251120",
+      "release_date": "20251120",
+      "effective_date": "20251120",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.06,
+      "observation_date": "20251121",
+      "release_date": "20251121",
+      "effective_date": "20251121",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.04,
+      "observation_date": "20251124",
+      "release_date": "20251124",
+      "effective_date": "20251124",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.01,
+      "observation_date": "20251125",
+      "release_date": "20251125",
+      "effective_date": "20251125",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.0,
+      "observation_date": "20251126",
+      "release_date": "20251126",
+      "effective_date": "20251126",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.02,
+      "observation_date": "20251128",
+      "release_date": "20251128",
+      "effective_date": "20251128",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.09,
+      "observation_date": "20251201",
+      "release_date": "20251201",
+      "effective_date": "20251201",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.09,
+      "observation_date": "20251202",
+      "release_date": "20251202",
+      "effective_date": "20251202",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.06,
+      "observation_date": "20251203",
+      "release_date": "20251203",
+      "effective_date": "20251203",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.11,
+      "observation_date": "20251204",
+      "release_date": "20251204",
+      "effective_date": "20251204",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.14,
+      "observation_date": "20251205",
+      "release_date": "20251205",
+      "effective_date": "20251205",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20251208",
+      "release_date": "20251208",
+      "effective_date": "20251208",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.18,
+      "observation_date": "20251209",
+      "release_date": "20251209",
+      "effective_date": "20251209",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.13,
+      "observation_date": "20251210",
+      "release_date": "20251210",
+      "effective_date": "20251210",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.14,
+      "observation_date": "20251211",
+      "release_date": "20251211",
+      "effective_date": "20251211",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.19,
+      "observation_date": "20251212",
+      "release_date": "20251212",
+      "effective_date": "20251212",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.18,
+      "observation_date": "20251215",
+      "release_date": "20251215",
+      "effective_date": "20251215",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20251216",
+      "release_date": "20251216",
+      "effective_date": "20251216",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.16,
+      "observation_date": "20251217",
+      "release_date": "20251217",
+      "effective_date": "20251217",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.12,
+      "observation_date": "20251218",
+      "release_date": "20251218",
+      "effective_date": "20251218",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.16,
+      "observation_date": "20251219",
+      "release_date": "20251219",
+      "effective_date": "20251219",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20251222",
+      "release_date": "20251222",
+      "effective_date": "20251222",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.18,
+      "observation_date": "20251223",
+      "release_date": "20251223",
+      "effective_date": "20251223",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20251224",
+      "release_date": "20251224",
+      "effective_date": "20251224",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.14,
+      "observation_date": "20251226",
+      "release_date": "20251226",
+      "effective_date": "20251226",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.12,
+      "observation_date": "20251229",
+      "release_date": "20251229",
+      "effective_date": "20251229",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.14,
+      "observation_date": "20251230",
+      "release_date": "20251230",
+      "effective_date": "20251230",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.18,
+      "observation_date": "20251231",
+      "release_date": "20251231",
+      "effective_date": "20251231",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.19,
+      "observation_date": "20260102",
+      "release_date": "20260102",
+      "effective_date": "20260102",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20260105",
+      "release_date": "20260105",
+      "effective_date": "20260105",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.18,
+      "observation_date": "20260106",
+      "release_date": "20260106",
+      "effective_date": "20260106",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20260107",
+      "release_date": "20260107",
+      "effective_date": "20260107",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.19,
+      "observation_date": "20260108",
+      "release_date": "20260108",
+      "effective_date": "20260108",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.18,
+      "observation_date": "20260109",
+      "release_date": "20260109",
+      "effective_date": "20260109",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.19,
+      "observation_date": "20260112",
+      "release_date": "20260112",
+      "effective_date": "20260112",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.18,
+      "observation_date": "20260113",
+      "release_date": "20260113",
+      "effective_date": "20260113",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20260114",
+      "release_date": "20260114",
+      "effective_date": "20260114",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.17,
+      "observation_date": "20260115",
+      "release_date": "20260115",
+      "effective_date": "20260115",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.24,
+      "observation_date": "20260116",
+      "release_date": "20260116",
+      "effective_date": "20260116",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20260120",
+      "release_date": "20260120",
+      "effective_date": "20260120",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20260121",
+      "release_date": "20260121",
+      "effective_date": "20260121",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20260122",
+      "release_date": "20260122",
+      "effective_date": "20260122",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.24,
+      "observation_date": "20260123",
+      "release_date": "20260123",
+      "effective_date": "20260123",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20260126",
+      "release_date": "20260126",
+      "effective_date": "20260126",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.24,
+      "observation_date": "20260127",
+      "release_date": "20260127",
+      "effective_date": "20260127",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20260128",
+      "release_date": "20260128",
+      "effective_date": "20260128",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.24,
+      "observation_date": "20260129",
+      "release_date": "20260129",
+      "effective_date": "20260129",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20260130",
+      "release_date": "20260130",
+      "effective_date": "20260130",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20260202",
+      "release_date": "20260202",
+      "effective_date": "20260202",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20260203",
+      "release_date": "20260203",
+      "effective_date": "20260203",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20260204",
+      "release_date": "20260204",
+      "effective_date": "20260204",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.21,
+      "observation_date": "20260205",
+      "release_date": "20260205",
+      "effective_date": "20260205",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20260206",
+      "release_date": "20260206",
+      "effective_date": "20260206",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.22,
+      "observation_date": "20260209",
+      "release_date": "20260209",
+      "effective_date": "20260209",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.16,
+      "observation_date": "20260210",
+      "release_date": "20260210",
+      "effective_date": "20260210",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.18,
+      "observation_date": "20260211",
+      "release_date": "20260211",
+      "effective_date": "20260211",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.09,
+      "observation_date": "20260212",
+      "release_date": "20260212",
+      "effective_date": "20260212",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.04,
+      "observation_date": "20260213",
+      "release_date": "20260213",
+      "effective_date": "20260213",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.05,
+      "observation_date": "20260217",
+      "release_date": "20260217",
+      "effective_date": "20260217",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.09,
+      "observation_date": "20260218",
+      "release_date": "20260218",
+      "effective_date": "20260218",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.08,
+      "observation_date": "20260219",
+      "release_date": "20260219",
+      "effective_date": "20260219",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.08,
+      "observation_date": "20260220",
+      "release_date": "20260220",
+      "effective_date": "20260220",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.03,
+      "observation_date": "20260223",
+      "release_date": "20260223",
+      "effective_date": "20260223",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.04,
+      "observation_date": "20260224",
+      "release_date": "20260224",
+      "effective_date": "20260224",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.05,
+      "observation_date": "20260225",
+      "release_date": "20260225",
+      "effective_date": "20260225",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.02,
+      "observation_date": "20260226",
+      "release_date": "20260226",
+      "effective_date": "20260226",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 3.97,
+      "observation_date": "20260227",
+      "release_date": "20260227",
+      "effective_date": "20260227",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.05,
+      "observation_date": "20260302",
+      "release_date": "20260302",
+      "effective_date": "20260302",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.06,
+      "observation_date": "20260303",
+      "release_date": "20260303",
+      "effective_date": "20260303",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.09,
+      "observation_date": "20260304",
+      "release_date": "20260304",
+      "effective_date": "20260304",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.13,
+      "observation_date": "20260305",
+      "release_date": "20260305",
+      "effective_date": "20260305",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20260306",
+      "release_date": "20260306",
+      "effective_date": "20260306",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.12,
+      "observation_date": "20260309",
+      "release_date": "20260309",
+      "effective_date": "20260309",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.15,
+      "observation_date": "20260310",
+      "release_date": "20260310",
+      "effective_date": "20260310",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.21,
+      "observation_date": "20260311",
+      "release_date": "20260311",
+      "effective_date": "20260311",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.27,
+      "observation_date": "20260312",
+      "release_date": "20260312",
+      "effective_date": "20260312",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.28,
+      "observation_date": "20260313",
+      "release_date": "20260313",
+      "effective_date": "20260313",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.23,
+      "observation_date": "20260316",
+      "release_date": "20260316",
+      "effective_date": "20260316",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.2,
+      "observation_date": "20260317",
+      "release_date": "20260317",
+      "effective_date": "20260317",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20260318",
+      "release_date": "20260318",
+      "effective_date": "20260318",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.25,
+      "observation_date": "20260319",
+      "release_date": "20260319",
+      "effective_date": "20260319",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.39,
+      "observation_date": "20260320",
+      "release_date": "20260320",
+      "effective_date": "20260320",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.34,
+      "observation_date": "20260323",
+      "release_date": "20260323",
+      "effective_date": "20260323",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.39,
+      "observation_date": "20260324",
+      "release_date": "20260324",
+      "effective_date": "20260324",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.33,
+      "observation_date": "20260325",
+      "release_date": "20260325",
+      "effective_date": "20260325",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.42,
+      "observation_date": "20260326",
+      "release_date": "20260326",
+      "effective_date": "20260326",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.44,
+      "observation_date": "20260327",
+      "release_date": "20260327",
+      "effective_date": "20260327",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.35,
+      "observation_date": "20260330",
+      "release_date": "20260330",
+      "effective_date": "20260330",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20260331",
+      "release_date": "20260331",
+      "effective_date": "20260331",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.33,
+      "observation_date": "20260401",
+      "release_date": "20260401",
+      "effective_date": "20260401",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.31,
+      "observation_date": "20260402",
+      "release_date": "20260402",
+      "effective_date": "20260402",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.35,
+      "observation_date": "20260403",
+      "release_date": "20260403",
+      "effective_date": "20260403",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.34,
+      "observation_date": "20260406",
+      "release_date": "20260406",
+      "effective_date": "20260406",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.33,
+      "observation_date": "20260407",
+      "release_date": "20260407",
+      "effective_date": "20260407",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20260408",
+      "release_date": "20260408",
+      "effective_date": "20260408",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20260409",
+      "release_date": "20260409",
+      "effective_date": "20260409",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.31,
+      "observation_date": "20260410",
+      "release_date": "20260410",
+      "effective_date": "20260410",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20260413",
+      "release_date": "20260413",
+      "effective_date": "20260413",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20260414",
+      "release_date": "20260414",
+      "effective_date": "20260414",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.29,
+      "observation_date": "20260415",
+      "release_date": "20260415",
+      "effective_date": "20260415",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.32,
+      "observation_date": "20260416",
+      "release_date": "20260416",
+      "effective_date": "20260416",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20260417",
+      "release_date": "20260417",
+      "effective_date": "20260417",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.26,
+      "observation_date": "20260420",
+      "release_date": "20260420",
+      "effective_date": "20260420",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20260421",
+      "release_date": "20260421",
+      "effective_date": "20260421",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.3,
+      "observation_date": "20260422",
+      "release_date": "20260422",
+      "effective_date": "20260422",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.34,
+      "observation_date": "20260423",
+      "release_date": "20260423",
+      "effective_date": "20260423",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.31,
+      "observation_date": "20260424",
+      "release_date": "20260424",
+      "effective_date": "20260424",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.35,
+      "observation_date": "20260427",
+      "release_date": "20260427",
+      "effective_date": "20260427",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.36,
+      "observation_date": "20260428",
+      "release_date": "20260428",
+      "effective_date": "20260428",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.42,
+      "observation_date": "20260429",
+      "release_date": "20260429",
+      "effective_date": "20260429",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.4,
+      "observation_date": "20260430",
+      "release_date": "20260430",
+      "effective_date": "20260430",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.39,
+      "observation_date": "20260501",
+      "release_date": "20260501",
+      "effective_date": "20260501",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.45,
+      "observation_date": "20260504",
+      "release_date": "20260504",
+      "effective_date": "20260504",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20260505",
+      "release_date": "20260505",
+      "effective_date": "20260505",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.36,
+      "observation_date": "20260506",
+      "release_date": "20260506",
+      "effective_date": "20260506",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.41,
+      "observation_date": "20260507",
+      "release_date": "20260507",
+      "effective_date": "20260507",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.38,
+      "observation_date": "20260508",
+      "release_date": "20260508",
+      "effective_date": "20260508",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.42,
+      "observation_date": "20260511",
+      "release_date": "20260511",
+      "effective_date": "20260511",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.46,
+      "observation_date": "20260512",
+      "release_date": "20260512",
+      "effective_date": "20260512",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.46,
+      "observation_date": "20260513",
+      "release_date": "20260513",
+      "effective_date": "20260513",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.47,
+      "observation_date": "20260514",
+      "release_date": "20260514",
+      "effective_date": "20260514",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.59,
+      "observation_date": "20260515",
+      "release_date": "20260515",
+      "effective_date": "20260515",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.61,
+      "observation_date": "20260518",
+      "release_date": "20260518",
+      "effective_date": "20260518",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.67,
+      "observation_date": "20260519",
+      "release_date": "20260519",
+      "effective_date": "20260519",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.57,
+      "observation_date": "20260520",
+      "release_date": "20260520",
+      "effective_date": "20260520",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.57,
+      "observation_date": "20260521",
+      "release_date": "20260521",
+      "effective_date": "20260521",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.56,
+      "observation_date": "20260522",
+      "release_date": "20260522",
+      "effective_date": "20260522",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.5,
+      "observation_date": "20260526",
+      "release_date": "20260526",
+      "effective_date": "20260526",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.48,
+      "observation_date": "20260527",
+      "release_date": "20260527",
+      "effective_date": "20260527",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.45,
+      "observation_date": "20260528",
+      "release_date": "20260528",
+      "effective_date": "20260528",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.45,
+      "observation_date": "20260529",
+      "release_date": "20260529",
+      "effective_date": "20260529",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.47,
+      "observation_date": "20260601",
+      "release_date": "20260601",
+      "effective_date": "20260601",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.46,
+      "observation_date": "20260602",
+      "release_date": "20260602",
+      "effective_date": "20260602",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.49,
+      "observation_date": "20260603",
+      "release_date": "20260603",
+      "effective_date": "20260603",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.47,
+      "observation_date": "20260604",
+      "release_date": "20260604",
+      "effective_date": "20260604",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.55,
+      "observation_date": "20260605",
+      "release_date": "20260605",
+      "effective_date": "20260605",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.56,
+      "observation_date": "20260608",
+      "release_date": "20260608",
+      "effective_date": "20260608",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.53,
+      "observation_date": "20260609",
+      "release_date": "20260609",
+      "effective_date": "20260609",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.55,
+      "observation_date": "20260610",
+      "release_date": "20260610",
+      "effective_date": "20260610",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.45,
+      "observation_date": "20260611",
+      "release_date": "20260611",
+      "effective_date": "20260611",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.48,
+      "observation_date": "20260612",
+      "release_date": "20260612",
+      "effective_date": "20260612",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.47,
+      "observation_date": "20260615",
+      "release_date": "20260615",
+      "effective_date": "20260615",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.43,
+      "observation_date": "20260616",
+      "release_date": "20260616",
+      "effective_date": "20260616",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.49,
+      "observation_date": "20260617",
+      "release_date": "20260617",
+      "effective_date": "20260617",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.46,
+      "observation_date": "20260618",
+      "release_date": "20260618",
+      "effective_date": "20260618",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.51,
+      "observation_date": "20260622",
+      "release_date": "20260622",
+      "effective_date": "20260622",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.5,
+      "observation_date": "20260623",
+      "release_date": "20260623",
+      "effective_date": "20260623",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.41,
+      "observation_date": "20260624",
+      "release_date": "20260624",
+      "effective_date": "20260624",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.4,
+      "observation_date": "20260625",
+      "release_date": "20260625",
+      "effective_date": "20260625",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.38,
+      "observation_date": "20260626",
+      "release_date": "20260626",
+      "effective_date": "20260626",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.38,
+      "observation_date": "20260629",
+      "release_date": "20260629",
+      "effective_date": "20260629",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.44,
+      "observation_date": "20260630",
+      "release_date": "20260630",
+      "effective_date": "20260630",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.48,
+      "observation_date": "20260701",
+      "release_date": "20260701",
+      "effective_date": "20260701",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.49,
+      "observation_date": "20260702",
+      "release_date": "20260702",
+      "effective_date": "20260702",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    },
+    {
+      "indicator": "US10Y",
+      "value": 4.48,
+      "observation_date": "20260706",
+      "release_date": "20260706",
+      "effective_date": "20260706",
+      "frequency": "daily",
+      "source": "tushare:us_tycr.y10",
+      "quality_status": "valid"
+    }
+  ]
+}

@@ -7,21 +7,11 @@ import re
 from typing import Iterable
 
 from config import DATA_DIR
+from macro.indicator_registry import get_all_indicators
 from macro.schema import MacroIndicatorRecord, normalize_date
 
 
-DEFAULT_MACRO_INDICATORS = (
-    "M1_growth",
-    "M2_growth",
-    "social_financing_growth",
-    "PMI",
-    "CPI",
-    "PPI",
-    "SHIBOR",
-    "CN10Y",
-    "US10Y",
-    "USD_CNY",
-)
+DEFAULT_MACRO_INDICATORS = get_all_indicators()
 
 DEFAULT_MACRO_DATA_DIR = DATA_DIR / "macro"
 

@@ -9,6 +9,7 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from macro.data_quality import audit_macro_records
+from macro.indicator_registry import get_all_indicators, get_indicator_definition
 from macro.macro_loader import load_macro_indicator
 from macro.release_calendar import is_available, is_record_available
 from macro.schema import MacroIndicatorRecord
@@ -65,10 +66,21 @@ def test_loader_and_audit_detect_future_leakage() -> None:
         assert report["future_leakage"] is True
 
 
+def test_indicator_registry_has_required_definitions() -> None:
+    indicators = get_all_indicators()
+    assert "M2_growth" in indicators
+    assert "new_loans" in indicators
+    definition = get_indicator_definition("M2_growth")
+    assert definition.category == "credit"
+    assert definition.source == "tushare"
+    assert definition.release_lag_days >= 0
+
+
 def main() -> None:
     test_release_calendar_blocks_future_release()
     test_record_availability_uses_effective_date()
     test_loader_and_audit_detect_future_leakage()
+    test_indicator_registry_has_required_definitions()
 
 
 if __name__ == "__main__":
