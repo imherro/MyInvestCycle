@@ -344,6 +344,33 @@
           <p class="result-note" id="exposureContextConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="基于 V5.3 的 BALANCED 拆解结果，审计 BALANCED_RISK、BALANCED_OPPORTUNITY、BALANCED_NEUTRAL 研究候选标签的样本数、稳定性和置信度；不修改 mapper、不新增正式等级、不输出仓位或交易。">BALANCED 候选状态审计</h2>
+            <span class="panel-kicker">V5.4</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>质量状态</span>
+              <strong id="balancedContextStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>正式规则</span>
+              <strong id="balancedContextReady">--</strong>
+            </div>
+            <div class="result-row">
+              <span>候选数</span>
+              <strong id="balancedContextCount">--</strong>
+            </div>
+            <div class="result-row">
+              <span>复核项</span>
+              <strong id="balancedContextReviewItems">--</strong>
+            </div>
+          </div>
+          <div class="alpha-source-list" id="balancedContextCandidates"></div>
+          <p class="result-note" id="balancedContextConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -434,7 +461,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-exposure-context-1"></script>
+    <script src="/static/dashboard.js?v=20260708-balanced-context-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

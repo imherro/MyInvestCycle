@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "engine": "V5.4 Balanced Context Candidate State Audit",
+    "generated_at": "2026-07-08T15:16:22+00:00",
+    "as_of": "20260707",
+    "source_engine": "V5.3 Exposure Context Decomposition Audit",
+    "purpose": "Audit research-only BALANCED sub-state candidates without changing exposure rules."
+  },
+  "summary": {
+    "balanced_usable_rows": 115,
+    "candidate_quality": {
+      "status": "candidate_not_ready_for_mapper_change",
+      "low_confidence_candidates": [
+        "BALANCED_RISK",
+        "BALANCED_OPPORTUNITY",
+        "BALANCED_NEUTRAL"
+      ],
+      "missing_candidates": [],
+      "ready_for_formal_rule": false,
+      "reason": "Candidates are research labels only; stability and confidence are not high enough for rule changes."
+    },
+    "candidate_count": 3,
+    "review_items": [
+      {
+        "type": "candidate_low_confidence",
+        "severity": "medium",
+        "evidence": {
+          "candidate": "BALANCED_RISK",
+          "confidence": "low_medium"
+        }
+      },
+      {
+        "type": "candidate_low_confidence",
+        "severity": "medium",
+        "evidence": {
+          "candidate": "BALANCED_OPPORTUNITY",
+          "confidence": "low_medium"
+        }
+      },
+      {
+        "type": "candidate_low_confidence",
+        "severity": "medium",
+        "evidence": {
+          "candidate": "BALANCED_NEUTRAL",
+          "confidence": "low"
+        }
+      },
+      {
+        "type": "do_not_modify_mapper_yet",
+        "severity": "high",
+        "evidence": {
+          "status": "candidate_not_ready_for_mapper_change"
+        }
+      }
+    ],
+    "key_read": "BALANCED candidate states remain research-only. quality_status=candidate_not_ready_for_mapper_change; ready_for_formal_rule=False.",
+    "review_item_count": 4
+  },
+  "candidate_states": {
+    "BALANCED_RISK": {
+      "candidate": "BALANCED_RISK",
+      "research_label_only": true,
+      "context_count": 3,
+      "sample_count": 15,
+      "share_of_balanced": 0.130435,
+      "future_failure_rate": 0.466667,
+      "future_high_risk_rate": 0.466667,
+      "future_opportunity_rate": 0.2,
+      "stability": "low_medium",
+      "confidence": "low_medium",
+      "dominant_contexts": [
+        {
+          "opportunity_state": "EARLY_RECOVERY",
+          "risk_state": "NORMAL",
+          "market_phase": "EARLY_CYCLE",
+          "sample_count": 6,
+          "failure_rate": 0.666667,
+          "opportunity_rate": 0.0
+        },
+        {
+          "opportunity_state": "EARLY_RECOVERY",
+          "risk_state": "CROWDED",
+          "market_phase": "UNKNOWN",
+          "sample_count": 6,
+          "failure_rate": 0.333333,
+          "opportunity_rate": 0.333333
+        },
+        {
+          "opportunity_state": "BULL_EXPANSION",
+          "risk_state": "CROWDED",
+          "market_phase": "LATE_CYCLE",
+          "sample_count": 3,
+          "failure_rate": 0.333333,
+          "opportunity_rate": 0.333333
+        }
+      ]
+    },
+    "BALANCED_OPPORTUNITY": {
+      "candidate": "BALANCED_OPPORTUNITY",
+      "research_label_only": true,
+      "context_count": 3,
+      "sample_count": 10,
+      "share_of_balanced": 0.086957,
+      "future_failure_rate": 0.0,
+      "future_high_risk_rate": 0.0,
+      "future_opportunity_rate": 0.3,
+      "stability": "low_medium",
+      "confidence": "low_medium",
+      "dominant_contexts": [
+        {
+          "opportunity_state": "STRUCTURAL_ROTATION",
+          "risk_state": "CROWDED",
+          "market_phase": "LATE_CYCLE",
+          "sample_count": 4,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.25
+        },
+        {
+          "opportunity_state": "STRUCTURAL_ROTATION",
+          "risk_state": "NORMAL",
+          "market_phase": "ROTATION",
+          "sample_count": 3,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.333333
+        },
+        {
+          "opportunity_state": "EARLY_RECOVERY",
+          "risk_state": "NORMAL",
+          "market_phase": "UNKNOWN",
+          "sample_count": 3,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.333333
+        }
+      ]
+    },
+    "BALANCED_NEUTRAL": {
+      "candidate": "BALANCED_NEUTRAL",
+      "research_label_only": true,
+      "context_count": 19,
+      "sample_count": 90,
+      "share_of_balanced": 0.782609,
+      "future_failure_rate": 0.211111,
+      "future_high_risk_rate": 0.211111,
+      "future_opportunity_rate": 0.122222,
+      "stability": "medium",
+      "confidence": "low",
+      "dominant_contexts": [
+        {
+          "opportunity_state": "EARLY_RECOVERY",
+          "risk_state": "CROWDED",
+          "market_phase": "EARLY_CYCLE",
+          "sample_count": 33,
+          "failure_rate": 0.242424,
+          "opportunity_rate": 0.121212
+        },
+        {
+          "opportunity_state": "STRUCTURAL_ROTATION",
+          "risk_state": "CROWDED",
+          "market_phase": "ROTATION",
+          "sample_count": 20,
+          "failure_rate": 0.15,
+          "opportunity_rate": 0.15
+        },
+        {
+          "opportunity_state": "EARLY_RECOVERY",
+          "risk_state": "CROWDED",
+          "market_phase": "CONTRACTION",
+          "sample_count": 10,
+          "failure_rate": 0.1,
+          "opportunity_rate": 0.2
+        },
+        {
+          "opportunity_state": "STRUCTURAL_ROTATION",
+          "risk_state": "CROWDED",
+          "market_phase": "CONTRACTION",
+          "sample_count": 5,
+          "failure_rate": 0.2,
+          "opportunity_rate": 0.0
+        },
+        {
+          "opportunity_state": "EARLY_RECOVERY",
+          "risk_state": "CROWDED",
+          "market_phase": "LATE_CYCLE",
+          "sample_count": 3,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.0
+        },
+        {
+          "opportunity_state": "BULL_EXPANSION",
+          "risk_state": "CROWDED",
+          "market_phase": "EXPANSION",
+          "sample_count": 2,
+          "failure_rate": 0.5,
+          "opportunity_rate": 0.0
+        }
+      ]
+    }
+  },
+  "source_reason_summary": {
+    "risk_reasons": [
+      {
+        "reason": "price_extension_high",
+        "count": 20,
+        "share_of_balanced": 0.173913,
+        "failure_rate": 0.25,
+        "missed_opportunity_rate": 0.1,
+        "future_high_risk_rate": 0.25,
+        "future_opportunity_rate": 0.1
+      },
+      {
+        "reason": "liquidity_supportive",
+        "count": 17,
+        "share_of_balanced": 0.147826,
+        "failure_rate": 0.294118,
+        "missed_opportunity_rate": 0.176471,
+        "future_high_risk_rate": 0.294118,
+        "future_opportunity_rate": 0.176471
+      }
+    ],
+    "opportunity_reasons": [
+      {
+        "reason": "industry_breadth_narrow",
+        "count": 56,
+        "share_of_balanced": 0.486957,
+        "failure_rate": 0.196429,
+        "missed_opportunity_rate": 0.214286,
+        "future_high_risk_rate": 0.196429,
+        "future_opportunity_rate": 0.214286
+      },
+      {
+        "reason": "trend_strong",
+        "count": 25,
+        "share_of_balanced": 0.217391,
+        "failure_rate": 0.16,
+        "missed_opportunity_rate": 0.2,
+        "future_high_risk_rate": 0.16,
+        "future_opportunity_rate": 0.2
+      }
+    ],
+    "reason_distribution": {
+      "breadth_expanding": {
+        "count": 1,
+        "share": 0.076923
+      },
+      "broad_bull_structure": {
+        "count": 1,
+        "share": 0.076923
+      },
+      "bull_divergence": {
+        "count": 1,
+        "share": 0.076923
+      },
+      "crowding_elevated": {
+        "count": 1,
+        "share": 0.076923
+      },
+      "industry_breadth_narrow": {
+        "count": 1,
+        "share": 0.076923
+      },
+      "liquidity_supportive": {
+        "count": 1,
+        "share": 0.076923
+      },
+      "macro_recovery": {
+        "count": 1,
+        "share": 0.076923
+      },
+      "price_extension_high": {
+        "count": 1,
+        "share": 0.076923
+      },
+      "single_theme_concentration": {
+        "count": 1,
+        "share": 0.076923
+      },
+      "structural_rotation": {
+        "count": 1,
+        "share": 0.076923
+      },
+      "theme_persistence_high": {
+        "count": 1,
+        "share": 0.076923
+      },
+      "theme_risk_medium": {
+        "count": 1,
+        "share": 0.076923
+      },
+      "trend_strong": {
+        "count": 1,
+        "share": 0.076923
+      }
+    }
+  },
+  "source_context_count": 25,
+  "data_quality": {
+    "uses_fixed_v5_3_context_analysis": true,
+    "balanced_context_only": true,
+    "research_labels_only": true,
+    "future_labels_used_for_candidate_quality_only": true
+  },
+  "constraints": {
+    "audit_only": true,
+    "does_not_modify_v5_1_rules": true,
+    "does_not_add_formal_exposure_levels": true,
+    "research_labels_only": true,
+    "balanced_analysis_only": true,
+    "no_percentage_exposure": true,
+    "no_etf_code": true,
+    "no_asset_weight": true,
+    "no_portfolio_weight": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_parameter_optimization": true,
+    "no_return_optimization": true
+  }
+}

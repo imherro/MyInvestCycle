@@ -597,6 +597,27 @@ function exposureContextRecommendationLabel(value) {
   return labels[value] || value || "--";
 }
 
+function balancedCandidateLabel(value) {
+  const labels = {
+    BALANCED_RISK: "风险候选",
+    BALANCED_OPPORTUNITY: "机会候选",
+    BALANCED_NEUTRAL: "中性候选",
+  };
+  return labels[value] || value || "--";
+}
+
+function balancedCandidateQualityLabel(value) {
+  const labels = {
+    candidate_not_ready_for_mapper_change: "不可进正式规则",
+    candidate_quality_review_passed: "质量初步通过",
+    low: "低",
+    low_medium: "中低",
+    medium: "中",
+    high: "高",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1211,6 +1232,9 @@ function setResultsPanel(results) {
   const exposureContext = results.exposure_context_analysis || {};
   const exposureContextSummary = exposureContext.summary || {};
   const exposureContextSplit = exposureContextSummary.split_candidates || {};
+  const balancedContextAudit = results.balanced_context_audit || {};
+  const balancedContextSummary = balancedContextAudit.summary || {};
+  const balancedContextQuality = balancedContextSummary.candidate_quality || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -1937,6 +1961,28 @@ function setResultsPanel(results) {
     exposureContext.metadata
       ? `V5.3 只拆解 BALANCED：${exposureContextSummary.key_read || "上下文拆解待生成"} 当前源数据缺少完整数值型宏观/结构字段，暂用 evidence flags 代理；该层不改规则、不新增等级、不输出交易。`
       : "V5.3 BALANCED 上下文拆解尚未生成。"
+  );
+
+  setText("balancedContextStatus", balancedCandidateQualityLabel(balancedContextQuality.status));
+  setText("balancedContextReady", balancedContextQuality.ready_for_formal_rule === true ? "可进入" : "不可进入");
+  setText("balancedContextCount", integerText(balancedContextSummary.candidate_count));
+  setText("balancedContextReviewItems", integerText(balancedContextSummary.review_item_count));
+  const candidateStates = balancedContextAudit.candidate_states || {};
+  setHtml("balancedContextCandidates", Object.entries(candidateStates)
+    .map(
+      ([candidate, item]) => `
+        <div class="alpha-source-row">
+          <span>${balancedCandidateLabel(candidate)} · 置信 ${balancedCandidateQualityLabel(item.confidence)} · 稳定 ${balancedCandidateQualityLabel(item.stability)}</span>
+          <strong>${integerText(item.sample_count)} 次 · ${percentText(item.share_of_balanced)}</strong>
+        </div>
+      `
+    )
+    .join(""));
+  setText(
+    "balancedContextConclusion",
+    balancedContextAudit.metadata
+      ? `V5.4 候选状态仍为研究标签：${balancedContextSummary.key_read || "候选质量审计待生成"} 不能作为正式 mapper 或仓位规则。`
+      : "V5.4 BALANCED 候选状态审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
