@@ -866,6 +866,14 @@ def _read_allocation_research_execution_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_allocation_research_result_review_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "allocation_research_result_review.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -1597,6 +1605,26 @@ def _compact_allocation_research_execution_payload(payload: dict[str, object] | 
             "metadata",
             "summary",
             "execution_runs",
+            "source_layer_evidence",
+            "time_safety",
+            "constraints",
+            "forbidden_outputs",
+            "audit",
+        )
+        if key in payload
+    }
+
+
+def _compact_allocation_research_result_review_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "hypothesis_review",
+            "decision_boundary_audit",
             "source_layer_evidence",
             "time_safety",
             "constraints",
@@ -2718,6 +2746,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/allocation-research/result-review",
+                    "返回 V10.2 Allocation Research Result Review，审查 V10.1 执行结果并冻结 H2/H4 决策边界；不策略化、不配置、不优化、不交易。",
+                    "allocation research result review",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -2876,6 +2911,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/allocation-research/research-candidate-deep-validation", "description": "读取 V9.8 研究候选深度验证：只深化 H2/H4 的研究证据，不策略化、不配置、不交易。"},
             {"path": "/api/allocation-research/evidence-freeze", "description": "读取 V9.9 配置研究证据冻结：固化 H1-H4 状态和决策边界，不进入策略或配置。"},
             {"path": "/api/allocation-research/execution-runs", "description": "读取 V10.1 配置研究执行记录：只执行冻结研究实验流程，不生成资产、权重、配置或交易。"},
+            {"path": "/api/allocation-research/result-review", "description": "读取 V10.2 配置研究结果审查：只审查 H2/H4 执行结果，不策略化、不配置、不交易。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -4005,6 +4041,17 @@ def allocation_research_execution_runs() -> dict:
     return payload
 
 
+@app.get("/api/allocation-research/result-review")
+def allocation_research_result_review() -> dict:
+    payload = _read_allocation_research_result_review_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Allocation research result review artifact missing; run scripts/run_allocation_research_result_review.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -4250,6 +4297,7 @@ def results_summary(
         allocation_research_architecture = _read_allocation_research_architecture_payload()
         allocation_research_evidence_freeze = _read_allocation_research_evidence_freeze_payload()
         allocation_research_execution = _read_allocation_research_execution_payload()
+        allocation_research_result_review = _read_allocation_research_result_review_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -4303,6 +4351,7 @@ def results_summary(
             allocation_research_architecture = _compact_allocation_research_architecture_payload(allocation_research_architecture)
             allocation_research_evidence_freeze = _compact_allocation_research_evidence_freeze_payload(allocation_research_evidence_freeze)
             allocation_research_execution = _compact_allocation_research_execution_payload(allocation_research_execution)
+            allocation_research_result_review = _compact_allocation_research_result_review_payload(allocation_research_result_review)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -4393,6 +4442,7 @@ def results_summary(
             "allocation_research_architecture": allocation_research_architecture,
             "allocation_research_evidence_freeze": allocation_research_evidence_freeze,
             "allocation_research_execution": allocation_research_execution,
+            "allocation_research_result_review": allocation_research_result_review,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,

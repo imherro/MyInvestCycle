@@ -1672,6 +1672,9 @@ function setResultsPanel(results) {
   const allocationExecution = results.allocation_research_execution || {};
   const allocationExecutionSummary = allocationExecution.summary || {};
   const allocationExecutionRows = Array.isArray(allocationExecution.execution_runs) ? allocationExecution.execution_runs : [];
+  const allocationReview = results.allocation_research_result_review || {};
+  const allocationReviewSummary = allocationReview.summary || {};
+  const allocationReviewRows = allocationReview.hypothesis_review || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -3876,6 +3879,45 @@ function setResultsPanel(results) {
     allocationExecution.metadata
       ? `V10.1 只执行冻结研究实验记录：运行 ${integerText(allocationExecutionSummary.run_count)} 条，完成 ${integerText(allocationExecutionSummary.completed_run_count)} 条；H2 仍不确定，H4 为研究支持。input_hash 已记录，仍不生成资产、ETF、权重、配置、优化或交易。`
       : "V10.1 配置研究执行框架尚未生成。"
+  );
+
+  const allocationReviewReadyFlagsOff =
+    allocationReviewSummary.promotion_allowed === false &&
+    allocationReviewSummary.strategy_promotion === false &&
+    allocationReviewSummary.allocation_ready === false &&
+    allocationReviewSummary.investable_output === false &&
+    allocationReviewSummary.investable_output_generated === false &&
+    allocationReviewSummary.ready_for_asset_selection === false &&
+    allocationReviewSummary.ready_for_etf_mapping === false &&
+    allocationReviewSummary.ready_for_weight_generation === false &&
+    allocationReviewSummary.ready_for_optimization === false &&
+    allocationReviewSummary.ready_for_trade === false;
+  const allocationReviewStatusLabel = (status) => ({
+    continue_research: "继续研究",
+    retain_research_only: "保留研究",
+    pause_research: "暂停研究",
+    reject_for_now: "暂拒",
+  }[status] || status || "--");
+  const allocationReviewEntries = Object.entries(allocationReviewRows || {});
+  setText("allocationReviewStatus", allocationReviewSummary.research_review_status === "completed" ? "已完成" : "--");
+  setText("allocationReviewCount", integerText(allocationReviewSummary.reviewed_hypothesis_count));
+  setText("allocationReviewContinue", integerText(allocationReviewSummary.continue_research_count));
+  setText("allocationReviewRetain", integerText(allocationReviewSummary.retain_research_only_count));
+  setText("allocationReviewBoundary", allocationReviewReadyFlagsOff ? "只审查/不配置/不优化/不交易" : "需复核");
+  setHtml("allocationReviewRows", allocationReviewEntries
+    .map(([id, row]) => `
+      <div class="duration-row">
+        <span>${escapeHtml(id)} · ${escapeHtml(row.execution_result || "--")}</span>
+        <strong>${escapeHtml(allocationReviewStatusLabel(row.status))}</strong>
+        <em>${escapeHtml(row.reason || "--")}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "allocationReviewConclusion",
+    allocationReview.metadata
+      ? `V10.2 只审查 V10.1 研究执行结果：H2 继续研究但不升级，H4 保留为研究流程门禁。promotion_allowed=false、allocation_ready=false，仍不生成资产、ETF、权重、配置、优化或交易。`
+      : "V10.2 配置研究结果审查尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

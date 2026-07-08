@@ -1,0 +1,180 @@
+{
+  "metadata": {
+    "engine": "V10.2 Allocation Research Result Review & Decision Boundary Audit",
+    "generated_at": "2026-07-08T21:00:33+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v10_1_execution_runs": "data/allocation_research_execution_runs.json",
+      "v9_9_evidence_freeze": "data/allocation_research_evidence_freeze.json"
+    },
+    "input_hashes": {
+      "v10_1_execution_runs": "598a803356f8d827e8d4bb70d055e302c0ea0896a716ad543110623abf731a6b",
+      "v9_9_evidence_freeze": "d796cbadbe2d21170347b16acef4192411007b8bdc59dd94e6a50386e2e978e1"
+    },
+    "purpose": "Review V10.1 research execution results and freeze decision boundaries without producing strategy, allocation, asset, ETF, weight, optimization, or trade outputs."
+  },
+  "summary": {
+    "research_review_status": "completed",
+    "reviewed_hypothesis_count": 2,
+    "continue_research_count": 1,
+    "retain_research_only_count": 1,
+    "pause_research_count": 0,
+    "reject_for_now_count": 0,
+    "promotion_allowed": false,
+    "strategy_promotion": false,
+    "allocation_ready": false,
+    "investable_output": false,
+    "investable_output_generated": false,
+    "ready_for_asset_selection": false,
+    "ready_for_etf_mapping": false,
+    "ready_for_weight_generation": false,
+    "ready_for_optimization": false,
+    "ready_for_trade": false,
+    "conclusion": "allocation_research_result_review_completed_no_strategy_no_allocation",
+    "key_read": "V10.2 reviews H2/H4 execution results only: H2 continues research without promotion; H4 is retained as research-only process gate. No allocation output is ready."
+  },
+  "hypothesis_review": {
+    "H2": {
+      "hypothesis_id": "H2",
+      "status": "continue_research",
+      "execution_result": "inconclusive",
+      "source_hypothesis_status": "inconclusive",
+      "reason": "risk evidence is visible, but cross-scenario stability remains incomplete",
+      "review_decision": "continue only as non-investable risk-protection research",
+      "allowed_next_step": "manual_research_review_only",
+      "promotion_allowed": false,
+      "strategy_promotion": false,
+      "allocation_ready": false,
+      "investable_output": false
+    },
+    "H4": {
+      "hypothesis_id": "H4",
+      "status": "retain_research_only",
+      "execution_result": "supported",
+      "source_hypothesis_status": "supported_research_only",
+      "reason": "contradiction-first gate has process value, but it is not an investable rule",
+      "review_decision": "retain as research governance gate only",
+      "allowed_next_step": "manual_research_review_only",
+      "promotion_allowed": false,
+      "strategy_promotion": false,
+      "allocation_ready": false,
+      "investable_output": false
+    }
+  },
+  "decision_boundary_audit": {
+    "h2_boundary": "risk_protection_research_only_not_stable_enough_for_configuration",
+    "h4_boundary": "contradiction_gate_governance_only_not_investable_rule",
+    "global_boundary": "manual_research_review_only_no_strategy_no_allocation_no_trade"
+  },
+  "source_layer_evidence": {
+    "v10_1_summary": {
+      "execution_phase": "V10.1",
+      "source_research_state": "frozen",
+      "run_count": 2,
+      "completed_run_count": 2,
+      "supported_count": 1,
+      "inconclusive_count": 1,
+      "unsupported_count": 0,
+      "promotion_allowed": false,
+      "strategy_promotion": false,
+      "allocation_ready": false,
+      "investable_output": false,
+      "investable_output_generated": false,
+      "ready_for_asset_selection": false,
+      "ready_for_etf_mapping": false,
+      "ready_for_weight_generation": false,
+      "ready_for_optimization": false,
+      "ready_for_trade": false,
+      "conclusion": "allocation_research_execution_records_completed_no_strategy_no_allocation",
+      "key_read": "V10.1 creates reproducible research execution records for H2 and H4 only; H2 remains inconclusive and H4 supported research-only. No allocation or trading output is ready."
+    },
+    "v9_9_summary": {
+      "research_state": "frozen",
+      "evidence_scope": "V9.1-V9.8",
+      "hypothesis_count": 4,
+      "retained_research_direction_count": 2,
+      "paused_research_direction_count": 2,
+      "supported_research_only_count": 1,
+      "inconclusive_research_count": 1,
+      "promotion_allowed": false,
+      "strategy_promotion": false,
+      "allocation_ready": false,
+      "investable_output": false,
+      "investable_output_generated": false,
+      "ready_for_asset_selection": false,
+      "ready_for_etf_mapping": false,
+      "ready_for_weight_generation": false,
+      "ready_for_optimization": false,
+      "ready_for_trade": false,
+      "conclusion": "allocation_research_evidence_frozen_no_strategy_no_allocation",
+      "key_read": "V9 evidence is frozen: H2 and H4 remain research directions only; H1 and H3 are paused; no allocation, strategy, optimization, or trade output is ready."
+    }
+  },
+  "time_safety": {
+    "uses_v10_1_execution_only": true,
+    "uses_v9_9_evidence_freeze_only": true,
+    "input_hashes_recorded": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "does_not_run_market_backtest": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "research_only": true,
+    "result_review_only": true,
+    "uses_v10_1_execution_only": true,
+    "uses_v9_9_evidence_freeze_only": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_review_count": 2,
+    "checked_constraints": [
+      "research_only",
+      "result_review_only",
+      "uses_v10_1_execution_only",
+      "uses_v9_9_evidence_freeze_only",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}
