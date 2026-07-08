@@ -47,6 +47,7 @@ from market_structure.structure_engine import build_structure_snapshot
 from industry_structure.opportunity_engine import build_industry_opportunity_snapshot
 from structural_bull.structural_bull_engine import build_structural_bull_snapshot
 from theme_risk.opportunity_quality_engine import build_theme_risk_snapshot
+from adaptive_allocation.allocation_engine import build_allocation_intent_snapshot
 
 
 app = FastAPI(title="MyInvestCycle Regime API", version="0.8")
@@ -765,6 +766,23 @@ def _api_catalog_payload() -> dict[str, object]:
             ],
         },
         {
+            "name": "V2 配置意图",
+            "description": "融合宏观、结构、行业机会和主题风险，只输出风险预算、权益区间和风格偏好；不输出 ETF 代码、买卖或下单。",
+            "endpoints": [
+                _api_endpoint(
+                    "GET",
+                    "/api/allocation/intent",
+                    "返回 V2.4 Adaptive Allocation Intent Engine 的配置意图、证据链和边界约束。",
+                    "allocation intent snapshot",
+                    params=[
+                        {"name": "date", "required": "false", "format": "YYYYMMDD"},
+                        {"name": "cache_only", "required": "false", "format": "boolean"},
+                    ],
+                    freshness="macro, structure, opportunity and theme risk cache",
+                ),
+            ],
+        },
+        {
             "name": "后市展望与历史回顾",
             "description": "历史周期切分、后市展望和概率展望。",
             "endpoints": [
@@ -1329,6 +1347,17 @@ def theme_risk_current(
     return build_theme_risk_snapshot(
         date_text or _today_text(),
         start_date=start_date,
+        cache_only=cache_only,
+    )
+
+
+@app.get("/api/allocation/intent")
+def allocation_intent(
+    date_text: str | None = Query(None, alias="date", description="Decision date, YYYYMMDD. Defaults to today."),
+    cache_only: bool = Query(True, description="Use local cache only for Web/API reads."),
+) -> dict:
+    return build_allocation_intent_snapshot(
+        date_text or _today_text(),
         cache_only=cache_only,
     )
 
