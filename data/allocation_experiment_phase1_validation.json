@@ -1,0 +1,213 @@
+{
+  "metadata": {
+    "engine": "V9.6 Allocation Research Experiment Phase 1 Validation",
+    "generated_at": "2026-07-08T20:21:40+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v6_two_axis_context_validation": "data/two_axis_context_validation.json",
+      "v7_opportunity_feature_attribution": "data/opportunity_feature_attribution.json",
+      "v8_research_decision_context": "data/research_decision_context.json",
+      "v8_research_decision_scenario_audit": "data/research_decision_scenario_audit.json",
+      "v8_research_decision_contradiction": "data/research_decision_contradiction.json",
+      "v9_5_phase0_experiment_results": "data/allocation_experiment_results_phase0.json"
+    },
+    "purpose": "Validate predeclared research experiments with frozen artifacts while forbidding investable outputs."
+  },
+  "summary": {
+    "source_context": "risk_controlled_opportunity_watch",
+    "validation_result_count": 4,
+    "supported_count": 2,
+    "unsupported_count": 0,
+    "inconclusive_count": 2,
+    "promotion_allowed": false,
+    "ready_for_asset_selection": false,
+    "ready_for_etf_mapping": false,
+    "ready_for_weight_generation": false,
+    "ready_for_optimization": false,
+    "ready_for_trade": false,
+    "promoted_to_candidate": false,
+    "investable_output_generated": false,
+    "conclusion": "allocation_experiment_phase1_validated_research_only_no_promotion",
+    "key_read": "Phase 1 produces research validation statuses only; no asset selection, ETF mapping, weights, optimization, candidate promotion, or trades are allowed."
+  },
+  "schema": {
+    "schema_version": "V9.6",
+    "purpose": "Validate predeclared allocation research experiments with frozen research artifacts only.",
+    "allowed_inputs": [
+      "v6_two_axis_context_validation",
+      "v7_opportunity_feature_attribution",
+      "v8_research_decision_context",
+      "v8_research_decision_scenario_audit",
+      "v8_research_decision_contradiction",
+      "v9_5_phase0_experiment_results"
+    ],
+    "result_fields": [
+      "experiment_id",
+      "validation_status",
+      "out_of_sample_status",
+      "drawdown_audit_status",
+      "contradiction_audit_status",
+      "regime_stability_status",
+      "time_safety_status",
+      "promotion_allowed",
+      "investable_output"
+    ],
+    "allowed_validation_status": [
+      "supported",
+      "unsupported",
+      "inconclusive"
+    ],
+    "required_hash_algorithm": "sha256",
+    "forbidden_outputs": [
+      "asset_selection",
+      "etf_mapping",
+      "portfolio_weight",
+      "top_n",
+      "exposure_percent",
+      "buy_signal",
+      "sell_signal",
+      "rebalance_instruction",
+      "broker_order",
+      "optimization"
+    ]
+  },
+  "freeze_hashes": {
+    "v6_two_axis_context_validation": "12cf495b73bd83f85e0c2df7e7ce44cd6aafe1c119a376efb1106d49186feffb",
+    "v7_opportunity_feature_attribution": "2c164d60b7b21c30cddd9ceca2b5edf67ec1844228a81344ac59870f93b8ecc9",
+    "v8_research_decision_context": "37abb2e32352e7742f682f377e491bc9b5bab29f0e9df36bbab87fc49d673a28",
+    "v8_research_decision_scenario_audit": "03ed2fa697dc72f36b87ba4607f7c6fdd640fbe8d275d5e9d9fccdb026c9fdf2",
+    "v8_research_decision_contradiction": "50ac212852ad8ce091add217a41236f1ddccb23073ab0c6ab64cd61e109d44ca",
+    "v9_5_phase0_experiment_results": "e9af0392f59f7fbb75810007433ac72b0b6745bc53ce372e9311d64864b994b0"
+  },
+  "source_layer_evidence": {
+    "v6_conclusion": "risk_axis_visible_opportunity_axis_weak",
+    "v7_conclusion": "feature_attribution_not_ready_for_opportunity_score",
+    "v8_decision_context": "risk_controlled_opportunity_watch",
+    "v8_consistency_counts": {
+      "low": 3,
+      "medium": 3
+    },
+    "v8_contradiction_type_counts": {
+      "monitor_only_no_primary_contradiction": 1,
+      "participation_context_during_bear": 1,
+      "persistent_wait_during_style_divergence": 1,
+      "rapid_context_switching": 1,
+      "structural_market_opportunity_not_captured": 1
+    }
+  },
+  "validation_results": [
+    {
+      "experiment_id": "H1",
+      "phase0_validation_result": "design_pass_market_not_evaluated",
+      "validation_status": "inconclusive",
+      "out_of_sample_status": "evaluated_from_frozen_scenario_audit",
+      "drawdown_audit_status": "proxied_by_frozen_risk_context",
+      "contradiction_audit_status": "evaluated_from_frozen_contradiction_attribution",
+      "regime_stability_status": "evaluated_from_frozen_scenario_consistency",
+      "time_safety_status": "frozen_artifact_hash_recorded",
+      "promotion_allowed": false,
+      "investable_output": false,
+      "finding": "Risk context is measurable, but opportunity evidence remains not ready for an opportunity score."
+    },
+    {
+      "experiment_id": "H2",
+      "phase0_validation_result": "design_pass_market_not_evaluated",
+      "validation_status": "supported",
+      "out_of_sample_status": "evaluated_from_frozen_scenario_audit",
+      "drawdown_audit_status": "proxied_by_frozen_risk_context",
+      "contradiction_audit_status": "evaluated_from_frozen_contradiction_attribution",
+      "regime_stability_status": "evaluated_from_frozen_scenario_consistency",
+      "time_safety_status": "frozen_artifact_hash_recorded",
+      "promotion_allowed": false,
+      "investable_output": false,
+      "finding": "Risk axis remains visible and stronger than opportunity axis in frozen V6 evidence."
+    },
+    {
+      "experiment_id": "H3",
+      "phase0_validation_result": "design_pass_market_not_evaluated",
+      "validation_status": "inconclusive",
+      "out_of_sample_status": "evaluated_from_frozen_scenario_audit",
+      "drawdown_audit_status": "proxied_by_frozen_risk_context",
+      "contradiction_audit_status": "evaluated_from_frozen_contradiction_attribution",
+      "regime_stability_status": "evaluated_from_frozen_scenario_consistency",
+      "time_safety_status": "frozen_artifact_hash_recorded",
+      "promotion_allowed": false,
+      "investable_output": false,
+      "finding": "Frozen V8 contradiction attribution still flags structural opportunity capture as an unresolved gap."
+    },
+    {
+      "experiment_id": "H4",
+      "phase0_validation_result": "design_pass_market_not_evaluated",
+      "validation_status": "supported",
+      "out_of_sample_status": "evaluated_from_frozen_scenario_audit",
+      "drawdown_audit_status": "proxied_by_frozen_risk_context",
+      "contradiction_audit_status": "evaluated_from_frozen_contradiction_attribution",
+      "regime_stability_status": "evaluated_from_frozen_scenario_consistency",
+      "time_safety_status": "frozen_artifact_hash_recorded",
+      "promotion_allowed": false,
+      "investable_output": false,
+      "finding": "Frozen scenario audit and contradiction attribution support a contradiction-first promotion gate."
+    }
+  ],
+  "time_safety": {
+    "uses_frozen_artifacts_only": true,
+    "input_hashes_recorded": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "no_result_based_template_changes": true
+  },
+  "data_quality": {
+    "no_asset_selection": true,
+    "no_etf_mapping": true,
+    "no_weight_generation": true,
+    "no_parameter_scan": true,
+    "no_optimization": true,
+    "phase1_outputs_research_only": true
+  },
+  "constraints": {
+    "research_only": true,
+    "phase1_validation_only": true,
+    "uses_frozen_artifacts_only": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_exposure_percent": true,
+    "does_not_optimize_parameters": true,
+    "no_buy_sell_signal": true,
+    "no_rebalance_instruction": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "promotion_allowed_false": true
+  },
+  "audit": {
+    "audit_status": "passed",
+    "checked_result_count": 4,
+    "checked_constraints": [
+      "research_only",
+      "phase1_validation_only",
+      "uses_frozen_artifacts_only",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_exposure_percent",
+      "does_not_optimize_parameters",
+      "no_buy_sell_signal",
+      "no_rebalance_instruction",
+      "no_order_generation",
+      "no_broker_connection",
+      "promotion_allowed_false"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n"
+    ]
+  }
+}

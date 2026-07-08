@@ -1681,6 +1681,10 @@ function setResultsPanel(results) {
   const allocationExperimentResultSummary = allocationExperimentResults.summary || {};
   const allocationExperimentResultRows = Array.isArray(allocationExperimentResults.experiment_results) ? allocationExperimentResults.experiment_results : [];
   const allocationExperimentScope = allocationExperimentResults.execution_scope || {};
+  const allocationPhase1 = results.allocation_experiment_phase1_validation || {};
+  const allocationPhase1Summary = allocationPhase1.summary || {};
+  const allocationPhase1Rows = Array.isArray(allocationPhase1.validation_results) ? allocationPhase1.validation_results : [];
+  const allocationPhase1Hashes = allocationPhase1.freeze_hashes || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3673,6 +3677,35 @@ function setResultsPanel(results) {
     allocationExperimentResults.metadata
       ? `V9.5 Phase 0 只执行预声明模板的研究纪律检查：执行 ${integerText(allocationExperimentResultSummary.executed_experiment_count)} 个，design pass ${integerText(allocationExperimentResultSummary.design_pass_count)} 个，市场验证结果 ${integerText(allocationExperimentResultSummary.market_validation_result_count)} 个。执行范围：market_data_loaded=${allocationExperimentScope.market_data_loaded === false ? "false" : "--"}，performance_measured=${allocationExperimentScope.performance_measured === false ? "false" : "--"}；不可用于资产选择、ETF 映射、权重、优化或交易。`
       : "V9.5 配置研究实验 Phase 0 结果尚未生成。"
+  );
+
+  const allocationPhase1ReadyFlagsOff =
+    allocationPhase1Summary.ready_for_asset_selection === false &&
+    allocationPhase1Summary.ready_for_etf_mapping === false &&
+    allocationPhase1Summary.ready_for_weight_generation === false &&
+    allocationPhase1Summary.ready_for_optimization === false &&
+    allocationPhase1Summary.ready_for_trade === false &&
+    allocationPhase1Summary.promoted_to_candidate === false &&
+    allocationPhase1Summary.investable_output_generated === false;
+  setText("allocationPhase1Status", allocationPhase1Summary.conclusion ? "研究验证完成" : "--");
+  setText("allocationPhase1Supported", integerText(allocationPhase1Summary.supported_count));
+  setText("allocationPhase1Inconclusive", integerText(allocationPhase1Summary.inconclusive_count));
+  setText("allocationPhase1Hashes", `${integerText(Object.keys(allocationPhase1Hashes).length)} 个`);
+  setText("allocationPhase1Boundary", allocationPhase1ReadyFlagsOff ? "不晋级/不选资产/不映射ETF/不生成权重/不交易" : "需复核");
+  setHtml("allocationPhase1Rows", allocationPhase1Rows
+    .map((row) => `
+      <div class="duration-row">
+        <span>${escapeHtml(row.experiment_id || "--")}</span>
+        <strong>${escapeHtml(row.validation_status || "--")}</strong>
+        <em>${escapeHtml(row.finding || "")}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "allocationPhase1Conclusion",
+    allocationPhase1.metadata
+      ? `V9.6 使用冻结输入做研究验证：supported ${integerText(allocationPhase1Summary.supported_count)}、inconclusive ${integerText(allocationPhase1Summary.inconclusive_count)}、unsupported ${integerText(allocationPhase1Summary.unsupported_count)}；输入哈希 ${integerText(Object.keys(allocationPhase1Hashes).length)} 个。promotion_allowed=false，不能用于资产、ETF、权重、优化或交易。`
+      : "V9.6 配置研究实验 Phase 1 验证尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
