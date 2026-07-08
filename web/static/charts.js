@@ -108,6 +108,110 @@ function renderRadar(elementId, scores) {
   );
 }
 
+const SCORE_SIGNAL_STATES = {
+  weak: {
+    label: "趋势宽度共振弱",
+    shortLabel: "共振弱",
+    color: "rgba(23, 136, 91, 0.16)",
+    textColor: "#11754d",
+    labelY: 1.08,
+  },
+  liquidity: {
+    label: "流动性修复",
+    shortLabel: "流动性修复",
+    color: "rgba(245, 158, 11, 0.15)",
+    textColor: "#b45309",
+    labelY: 1.03,
+  },
+  relief: {
+    label: "短期风险解除",
+    shortLabel: "风险解除",
+    color: "rgba(199, 61, 61, 0.15)",
+    textColor: "#b12f2f",
+    labelY: 0.98,
+  },
+};
+
+function addIsoDays(isoDate, days) {
+  const date = new Date(`${isoDate}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return isoDate;
+  date.setDate(date.getDate() + days);
+  return date.toISOString().slice(0, 10);
+}
+
+function rollingScore(items, index, key, windowSize = 5) {
+  const values = items
+    .slice(Math.max(0, index - windowSize + 1), index + 1)
+    .map((item) => item.scores?.[key])
+    .filter((value) => typeof value === "number");
+  if (!values.length) return null;
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function classifyScoreSignal(items, index) {
+  const trend = rollingScore(items, index, "trend");
+  const breadth = rollingScore(items, index, "breadth");
+  const liquidity = rollingScore(items, index, "liquidity");
+  const volatility = rollingScore(items, index, "volatility");
+  const composite = rollingScore(items, index, "regime_score");
+  const previousLiquidity = rollingScore(items, Math.max(0, index - 20), "liquidity") ?? liquidity;
+  const liquidityDelta = typeof liquidity === "number" && typeof previousLiquidity === "number" ? liquidity - previousLiquidity : 0;
+
+  if (typeof trend === "number" && typeof breadth === "number" && trend <= 0.42 && breadth <= 0.38) {
+    return "weak";
+  }
+  if (
+    typeof composite === "number" &&
+    typeof trend === "number" &&
+    typeof breadth === "number" &&
+    typeof liquidity === "number" &&
+    typeof volatility === "number" &&
+    composite >= 0.55 &&
+    trend >= 0.45 &&
+    breadth >= 0.45 &&
+    liquidity >= 0.45 &&
+    volatility >= 0.45
+  ) {
+    return "relief";
+  }
+  if (
+    typeof liquidity === "number" &&
+    typeof composite === "number" &&
+    liquidity >= 0.48 &&
+    liquidityDelta >= 0.06 &&
+    composite >= 0.35
+  ) {
+    return "liquidity";
+  }
+  return null;
+}
+
+function buildScoreSignalIntervals(items) {
+  const intervals = [];
+  let activeKey = null;
+  let startIndex = 0;
+
+  const closeActive = (endIndex) => {
+    if (!activeKey) return;
+    const sessions = endIndex - startIndex + 1;
+    const isLatest = endIndex === items.length - 1;
+    if (sessions >= 3 || isLatest) {
+      intervals.push({ key: activeKey, startIndex, endIndex, sessions, isLatest });
+    }
+  };
+
+  items.forEach((item, index) => {
+    const key = classifyScoreSignal(items, index);
+    if (key !== activeKey) {
+      closeActive(index - 1);
+      activeKey = key;
+      startIndex = index;
+    }
+  });
+  closeActive(items.length - 1);
+  return intervals;
+}
+
 function renderScoreHistoryChart(elementId, history) {
   const items = history?.items || [];
   if (!items.length) {
@@ -115,6 +219,46 @@ function renderScoreHistoryChart(elementId, history) {
     return;
   }
   const x = items.map((item) => toIsoDate(item.as_of));
+  const signalIntervals = buildScoreSignalIntervals(items);
+  const signalShapes = signalIntervals.map((interval) => {
+    const state = SCORE_SIGNAL_STATES[interval.key];
+    const x0 = x[interval.startIndex];
+    const endDate = x[interval.endIndex];
+    const x1 = interval.endIndex < x.length - 1 ? x[interval.endIndex + 1] : addIsoDays(endDate, 4);
+    return {
+      type: "rect",
+      xref: "x",
+      yref: "paper",
+      x0,
+      x1,
+      y0: 0,
+      y1: 1,
+      fillcolor: state.color,
+      line: { width: 0 },
+      layer: "below",
+    };
+  });
+  const signalAnnotations = signalIntervals
+    .filter((interval) => interval.sessions >= 4 || interval.isLatest)
+    .map((interval) => {
+      const state = SCORE_SIGNAL_STATES[interval.key];
+      const start = x[interval.startIndex];
+      const end = x[interval.endIndex];
+      return {
+        x: interval.isLatest ? addIsoDays(end, 2) : start,
+        xref: "x",
+        y: state.labelY,
+        yref: "paper",
+        text: interval.isLatest ? `当前：${state.shortLabel}` : state.shortLabel,
+        showarrow: false,
+        xanchor: interval.isLatest ? "right" : "left",
+        font: { size: 11, color: state.textColor },
+        bgcolor: "rgba(255,255,255,0.82)",
+        bordercolor: state.textColor,
+        borderwidth: 1,
+        borderpad: 3,
+      };
+    });
   const scoreSeries = [
     { key: "regime_score", name: "综合分", color: "#111827", width: 3.4, rank: 1 },
     { key: "trend", name: "趋势", color: "#2563eb", width: 2.1, rank: 2 },
@@ -147,8 +291,8 @@ function renderScoreHistoryChart(elementId, history) {
     elementId,
     [indexTrace, ...scoreTraces],
     {
-      ...baseLayout(330),
-      margin: { l: 44, r: 58, t: 14, b: 52 },
+      ...baseLayout(360),
+      margin: { l: 44, r: 58, t: 48, b: 54 },
       hovermode: "x unified",
       xaxis: { tickformat: "%Y-%m", gridcolor: "#edf0f5" },
       yaxis: {
@@ -165,7 +309,9 @@ function renderScoreHistoryChart(elementId, history) {
         showgrid: false,
         zeroline: false,
       },
-      legend: { orientation: "h", x: 0, y: -0.2, font: { size: 12 } },
+      shapes: signalShapes,
+      annotations: signalAnnotations,
+      legend: { orientation: "h", x: 0, y: -0.17, font: { size: 12 } },
     },
     { responsive: true, displayModeBar: false }
   );
