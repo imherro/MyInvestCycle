@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "engine": "V3.5.5 Historical Style Context Coverage Audit",
+    "generated_at": "2026-07-08T12:48:38+00:00",
+    "source_engine": "V3.5.5 Historical Style Context Feature Expansion",
+    "requested_window": {
+      "start": "20150105",
+      "end": "20260708"
+    },
+    "row_count": 141,
+    "actual_start": "20150105",
+    "actual_end": "20260708"
+  },
+  "summary": {
+    "fully_populated_rows": 80,
+    "fully_populated_rate": 0.567376,
+    "field_coverage": {
+      "industry_breadth": {
+        "available": 141,
+        "missing": 0,
+        "coverage_rate": 1.0
+      },
+      "positive_industry_ratio": {
+        "available": 141,
+        "missing": 0,
+        "coverage_rate": 1.0
+      },
+      "top_industry_ratio": {
+        "available": 141,
+        "missing": 0,
+        "coverage_rate": 1.0
+      },
+      "theme_persistence": {
+        "available": 141,
+        "missing": 0,
+        "coverage_rate": 1.0
+      },
+      "crowding_score": {
+        "available": 141,
+        "missing": 0,
+        "coverage_rate": 1.0
+      },
+      "price_extension": {
+        "available": 141,
+        "missing": 0,
+        "coverage_rate": 1.0
+      },
+      "theme_risk_level": {
+        "available": 141,
+        "missing": 0,
+        "coverage_rate": 1.0
+      },
+      "trend": {
+        "available": 80,
+        "missing": 61,
+        "coverage_rate": 0.567376
+      },
+      "breadth": {
+        "available": 80,
+        "missing": 61,
+        "coverage_rate": 0.567376
+      },
+      "liquidity": {
+        "available": 80,
+        "missing": 61,
+        "coverage_rate": 0.567376
+      },
+      "volatility": {
+        "available": 80,
+        "missing": 61,
+        "coverage_rate": 0.567376
+      },
+      "pressure": {
+        "available": 80,
+        "missing": 61,
+        "coverage_rate": 0.567376
+      }
+    },
+    "known_limitations": [
+      "Market structure fields before the first structural_hazard_dataset date are unavailable and remain null.",
+      "Industry and theme context is reconstructed from local historical index caches only; no live refresh is performed.",
+      "price_extension is a price-position proxy based on top theme valuation pressure, not fundamental valuation."
+    ]
+  },
+  "constraints": {
+    "coverage_audit_only": true,
+    "no_future_data": true,
+    "no_model_change": true,
+    "no_trade_signal": true,
+    "no_allocation": true
+  }
+}

@@ -346,6 +346,22 @@ def _read_structural_style_failure_analysis_payload() -> dict[str, object] | Non
     return payload if isinstance(payload, dict) else None
 
 
+def _read_historical_style_context_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "historical_style_context.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
+def _read_historical_style_context_coverage_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "historical_style_context_coverage.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 STRATEGY_BACKTEST_IDS = {
     "defensive-dividend": "红利低波 + 现金代理防守策略",
     "industry-momentum": "行业 ETF 动量轮动 + 511880 空仓机制",
@@ -1071,6 +1087,20 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/style/historical-context",
+                    "返回 V3.5.5 历史风格上下文特征，按历史日期重建行业扩散、主线持续性、拥挤风险和价格延伸代理；只读研究数据，不修改策略。",
+                    "historical style context features",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
+                    "/api/style/historical-context-coverage",
+                    "返回 V3.5.5 历史风格上下文字段覆盖率审计，披露完整覆盖、缺失字段和数据安全边界。",
+                    "historical style context coverage audit",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/strategy-backtests/{strategy_id}",
                     "返回新增策略回测结果，strategy_id 支持 defensive-dividend、industry-momentum、four-asset、max-drawdown-batch、all-weather、equal-weight-reversion-basic、equal-weight-reversion-guarded、free-cash-flow-trend-half、free-cash-flow-trend-full、free-cash-flow-drawdown-rebound、free-cash-flow-buy-hold-480092、free-cash-flow-chinext-dynamic、free-cash-flow-chinext-reversion、free-cash-flow-chinext-balanced-reversion、free-cash-flow-ma-deviation、free-cash-flow-dual-ma-crossover。",
                     "strategy backtest artifact",
@@ -1150,6 +1180,8 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/style/validation", "description": "读取 V3.5.2 风格偏好验证与归因。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
+            {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
+            {"path": "/api/style/historical-context-coverage", "description": "读取 V3.5.5 历史风格上下文覆盖审计。"},
             {"path": "/strategy/defensive-dividend", "description": "查看红利低波 + 现金代理防守策略。"},
             {"path": "/strategy/industry-momentum", "description": "查看行业 ETF 动量轮动 + 511880 空仓机制策略。"},
             {"path": "/strategy/four-asset", "description": "查看股 / 债 / 金 / 现金四资产轮动策略。"},
@@ -1867,6 +1899,28 @@ def structural_style_failure_analysis() -> dict:
     return payload
 
 
+@app.get("/api/style/historical-context")
+def historical_style_context() -> dict:
+    payload = _read_historical_style_context_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Historical style context artifact missing; run scripts/build_historical_style_context.py first.",
+        )
+    return payload
+
+
+@app.get("/api/style/historical-context-coverage")
+def historical_style_context_coverage() -> dict:
+    payload = _read_historical_style_context_coverage_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Historical style context coverage artifact missing; run scripts/audit_style_context_coverage.py first.",
+        )
+    return payload
+
+
 @app.get("/api/strategy-backtests/{strategy_id}")
 def strategy_suite_backtest(strategy_id: str) -> dict:
     payload = _read_strategy_suite_backtest_payload(strategy_id)
@@ -1943,6 +1997,8 @@ def results_summary(
         style_validation = _read_style_validation_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
+        historical_style_context = _read_historical_style_context_payload()
+        historical_style_context_coverage = _read_historical_style_context_coverage_payload()
         strategy_suite_backtests = _read_strategy_suite_summaries()
         if compact:
             etf_rotation_backtest = _compact_backtest_payload(etf_rotation_backtest)
@@ -1993,6 +2049,8 @@ def results_summary(
             "style_validation": style_validation,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
+            "historical_style_context": historical_style_context,
+            "historical_style_context_coverage": historical_style_context_coverage,
             "strategy_suite_backtests": strategy_suite_backtests,
             "shadow_backtest": shadow_backtest,
             "regime_attribution": regime_attribution,
