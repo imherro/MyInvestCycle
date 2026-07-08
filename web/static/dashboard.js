@@ -1689,6 +1689,10 @@ function setResultsPanel(results) {
   const h2FreezeSummary = h2Freeze.summary || {};
   const h2FreezeConclusion = h2Freeze.final_conclusion || {};
   const h2FreezeEvidence = h2Freeze.evidence || {};
+  const phaseClosure = results.research_phase_closure || {};
+  const phaseClosureSummary = phaseClosure.summary || {};
+  const phaseClosureValidated = Array.isArray(phaseClosure.validated_for_observation_only) ? phaseClosure.validated_for_observation_only : [];
+  const phaseClosureNotVerified = Array.isArray(phaseClosure.not_verified_for_investment_use) ? phaseClosure.not_verified_for_investment_use : [];
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4105,6 +4109,43 @@ function setResultsPanel(results) {
     h2Freeze.metadata
       ? `V11.3 冻结 H2 外部验证结论：风险证据可见，但跨周期稳定不足、近期样本不足、结构机会冲突未解决。研究决策为${h2DecisionLabel(h2FreezeConclusion.research_decision)}，不修改 H2，不调阈值，不加特征，不生成资产、ETF、权重、配置、优化或交易。`
       : "V11.3 H2 外部验证结果冻结尚未生成。"
+  );
+
+  const phaseStatusLabel = (value) => ({
+    closed: "已关闭",
+    validated_for_observation_only: "仅观察可用",
+    research_value_supported_observation_only: "观察价值支持",
+    validated_for_research_governance_only: "仅研究治理",
+    not_ready: "未就绪",
+    disabled: "已禁用",
+    research_phase_closed_project_not_complete: "研究阶段收口/项目未完成",
+  }[value] || value || "--");
+  setText("phaseClosureStatus", phaseStatusLabel(phaseClosureSummary.research_phase));
+  setText("phaseClosureRisk", phaseStatusLabel(phaseClosureSummary.risk_research_status));
+  setText("phaseClosureOpportunity", phaseStatusLabel(phaseClosureSummary.opportunity_research_status));
+  setText("phaseClosureAllocation", phaseStatusLabel(phaseClosureSummary.allocation_status));
+  setText("phaseClosureTrading", phaseStatusLabel(phaseClosureSummary.trading_status));
+  setHtml("phaseClosureRows", [
+    ...phaseClosureValidated.map((row) => `
+      <div class="duration-row">
+        <span>${escapeHtml(row.layer || "--")}</span>
+        <strong>${escapeHtml(phaseStatusLabel(row.status))}</strong>
+        <em>${escapeHtml(row.basis || "--")}</em>
+      </div>
+    `),
+    ...phaseClosureNotVerified.map((item) => `
+      <div class="duration-row">
+        <span>${escapeHtml(item)}</span>
+        <strong>未验证</strong>
+        <em>不能进入策略、配置或交易。</em>
+      </div>
+    `),
+  ].join(""));
+  setText(
+    "phaseClosureConclusion",
+    phaseClosure.metadata
+      ? `V11.4 冻结 V6-V11 研究阶段：风险诊断仅限观察，保护研究和矛盾治理有研究价值；机会预测、配置 Alpha、资产选择、组合构建未验证，交易保持禁用。该结论关闭研究阶段，但不代表整个项目已完成。`
+      : "V11.4 研究阶段最终冻结尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

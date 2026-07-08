@@ -1,0 +1,199 @@
+{
+  "metadata": {
+    "engine": "V11.4 Research Phase Closure & Final Architecture Freeze",
+    "generated_at": "2026-07-08T21:35:06+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v6_architecture": "docs/adaptive_exposure_v6_architecture.md",
+      "v7_architecture": "docs/opportunity_research_v7_architecture.md",
+      "v8_architecture": "docs/research_decision_v8_architecture.md",
+      "v10_final_boundary": "data/allocation_research_final_boundary.json",
+      "v11_h2_result_freeze": "data/h2_external_validation_result_freeze.json"
+    },
+    "input_hashes": {
+      "v6_architecture": "4c8cee3f22bb71b83d4f2b719e3ffdef53c6cda981b96e81dfe6b233a94f7e59",
+      "v7_architecture": "3dd08503f087de652299abd22fd329c529ca709f6b1131fae1946e17926da495",
+      "v8_architecture": "3697c0a5b1f131c8418a8538824546723cf6339fc6e8644e04d95e10b8c165af",
+      "v10_final_boundary": "6121cf0be52241fd835b34748c662725736e6f7fd964d98a76b55327cd0b3b6d",
+      "v11_h2_result_freeze": "e045b28baeb66f36c1e569253cd3ce2b5a5ceeb49ada5b11520e549c49625376"
+    },
+    "purpose": "Close the V6-V11 research architecture phase without creating a strategy, allocation, asset, ETF, weight, optimization, or trading output."
+  },
+  "summary": {
+    "research_phase": "closed",
+    "closure_status": "final_architecture_frozen",
+    "risk_research_status": "validated_for_observation_only",
+    "protection_research_status": "research_value_supported_observation_only",
+    "contradiction_governance_status": "validated_for_research_governance_only",
+    "opportunity_research_status": "not_ready",
+    "allocation_status": "not_ready",
+    "asset_selection_status": "disabled",
+    "portfolio_construction_status": "not_ready",
+    "trading_status": "disabled",
+    "automatic_allocation_status": "disabled",
+    "project_completion_status": "research_phase_closed_project_not_complete",
+    "promotion_allowed": false,
+    "strategy_promotion": false,
+    "allocation_ready": false,
+    "investable_output": false,
+    "investable_output_generated": false,
+    "ready_for_asset_selection": false,
+    "ready_for_etf_mapping": false,
+    "ready_for_weight_generation": false,
+    "ready_for_optimization": false,
+    "ready_for_trade": false,
+    "conclusion": "v6_to_v11_research_phase_closed_no_strategy_no_allocation",
+    "key_read": "V6-V11 research architecture is closed; risk diagnostics are observation-only, opportunity and allocation remain not ready, trading remains disabled."
+  },
+  "validated_for_observation_only": [
+    {
+      "layer": "risk_diagnostic_layer",
+      "status": "validated_for_observation_only",
+      "basis": "V6 risk architecture and V11 H2 freeze"
+    },
+    {
+      "layer": "protection_research_value",
+      "status": "supported_observation_only",
+      "basis": "V6.4/V6.5/V11 H2 adverse-risk evidence"
+    },
+    {
+      "layer": "contradiction_governance_value",
+      "status": "supported_research_governance_only",
+      "basis": "V8/V10 H4 governance boundary"
+    }
+  ],
+  "not_verified_for_investment_use": [
+    "opportunity_prediction",
+    "allocation_alpha",
+    "asset_selection",
+    "portfolio_construction",
+    "strategy_promotion",
+    "automatic_allocation",
+    "trading_signal_generation"
+  ],
+  "permanent_prohibitions": [
+    "automatic_allocation",
+    "automatic_trading",
+    "broker_connection",
+    "order_generation",
+    "portfolio_weight_generation",
+    "etf_mapping_for_execution",
+    "asset_selection_for_execution",
+    "parameter_optimization_for_investable_output"
+  ],
+  "phase_evidence": {
+    "v6": {
+      "status": "frozen",
+      "role": "risk architecture and diagnostics",
+      "source_present": true
+    },
+    "v7": {
+      "status": "frozen",
+      "role": "opportunity research foundation, not scoring or ranking",
+      "source_present": true
+    },
+    "v8": {
+      "status": "frozen",
+      "role": "research interpretation and contradiction attribution",
+      "source_present": true
+    },
+    "v9_v10": {
+      "status": "frozen",
+      "role": "allocation research governance and final boundary",
+      "summary": {
+        "research_phase_status": "completed",
+        "direction_count": 4,
+        "continue_external_validation_count": 1,
+        "research_governance_only_count": 1,
+        "frozen_no_external_validation_count": 2,
+        "promotion_allowed": false,
+        "strategy_promotion": false,
+        "allocation_ready": false,
+        "investable_output": false,
+        "investable_output_generated": false,
+        "ready_for_asset_selection": false,
+        "ready_for_etf_mapping": false,
+        "ready_for_weight_generation": false,
+        "ready_for_optimization": false,
+        "ready_for_trade": false,
+        "conclusion": "allocation_research_final_boundary_completed_no_strategy_no_allocation",
+        "key_read": "Final V9-V10 boundary: H2 may continue external validation only; H4 remains research governance only; H1/H3 stay frozen. No allocation output is ready."
+      }
+    },
+    "v11": {
+      "status": "frozen",
+      "role": "H2 external validation and final interpretation",
+      "h2_status": "inconclusive",
+      "research_decision": "continue_observation_only"
+    }
+  },
+  "time_safety": {
+    "uses_frozen_v6_to_v11_sources_only": true,
+    "input_hashes_recorded": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "does_not_run_market_backtest": true,
+    "does_not_optimize_parameters": true,
+    "does_not_add_research_layer": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "research_only": true,
+    "phase_closure_only": true,
+    "uses_frozen_v6_to_v11_sources_only": true,
+    "does_not_add_research_layer": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_research_phase": "closed",
+    "checked_project_completion_status": "research_phase_closed_project_not_complete",
+    "checked_constraints": [
+      "research_only",
+      "phase_closure_only",
+      "uses_frozen_v6_to_v11_sources_only",
+      "does_not_add_research_layer",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}
