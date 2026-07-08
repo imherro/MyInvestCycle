@@ -1,0 +1,390 @@
+{
+  "metadata": {
+    "engine": "V3.4.5 Residual Alpha Attribution & Factor Neutralization Analysis",
+    "generated_at": "2026-07-08T11:34:26+00:00",
+    "window": {
+      "start": "20150105",
+      "end": "20260708"
+    },
+    "primary_series": "tradable_etf.router_selected_model_top3",
+    "rebalance_step": 60,
+    "transaction_cost": 0.001
+  },
+  "factor_universe": [
+    {
+      "code": "510300.SH",
+      "name": "沪深300ETF",
+      "factor": "market_large",
+      "available": true,
+      "coverage": {
+        "start": "20150105",
+        "end": "20260708",
+        "rows": 2796
+      }
+    },
+    {
+      "code": "510500.SH",
+      "name": "中证500ETF",
+      "factor": "mid_small",
+      "available": true,
+      "coverage": {
+        "start": "20150105",
+        "end": "20260708",
+        "rows": 2794
+      }
+    },
+    {
+      "code": "159915.SZ",
+      "name": "创业板ETF",
+      "factor": "growth_chinext",
+      "available": true,
+      "coverage": {
+        "start": "20181029",
+        "end": "20260626",
+        "rows": 1857
+      }
+    },
+    {
+      "code": "588000.SH",
+      "name": "科创50ETF",
+      "factor": "growth_star50",
+      "available": true,
+      "coverage": {
+        "start": "20201116",
+        "end": "20260625",
+        "rows": 1359
+      }
+    },
+    {
+      "code": "512480.SH",
+      "name": "半导体ETF",
+      "factor": "semiconductor",
+      "available": true,
+      "coverage": {
+        "start": "20190612",
+        "end": "20260625",
+        "rows": 1706
+      }
+    },
+    {
+      "code": "510880.SH",
+      "name": "红利ETF",
+      "factor": "dividend_value",
+      "available": true,
+      "coverage": {
+        "start": "20181029",
+        "end": "20260626",
+        "rows": 1858
+      }
+    }
+  ],
+  "periods": [
+    {
+      "label": "2020-2021",
+      "window": {
+        "start": "20200101",
+        "end": "20211231"
+      },
+      "portfolio_metrics": {
+        "start": "20200220",
+        "end": "20211231",
+        "observations": 457,
+        "total_return": 0.560602,
+        "cagr": 0.278849,
+        "volatility": 0.252312,
+        "max_drawdown": -0.248793,
+        "sharpe": 1.105178,
+        "calmar": 1.120808
+      },
+      "factor_model": {
+        "available": true,
+        "observations": 274,
+        "start": "20201117",
+        "end": "20211231",
+        "target_col": "portfolio",
+        "factors": [
+          "market_large",
+          "mid_small",
+          "growth_chinext",
+          "growth_star50",
+          "semiconductor",
+          "dividend_value"
+        ],
+        "intercept_daily": 0.00015225,
+        "intercept_annualized_linear": 0.038367,
+        "betas": {
+          "market_large": 0.181932,
+          "mid_small": 0.587629,
+          "growth_chinext": 0.401281,
+          "growth_star50": 0.010124,
+          "semiconductor": -0.017736,
+          "dividend_value": -0.194302
+        },
+        "r_squared": 0.629774,
+        "factor_contribution_sum": {
+          "market_large": -0.001717,
+          "mid_small": 0.086109,
+          "growth_chinext": 0.085853,
+          "growth_star50": -0.000142,
+          "semiconductor": 0.004789,
+          "dividend_value": 0.002882
+        },
+        "linear_return_sum": {
+          "portfolio": 0.219492,
+          "factor_part": 0.177775,
+          "neutralized_residual_alpha": 0.041717
+        }
+      },
+      "factor_neutral_residual_metrics": {
+        "start": "20201117",
+        "end": "20211231",
+        "observations": 274,
+        "total_return": 0.021404,
+        "cagr": 0.019741,
+        "volatility": 0.151977,
+        "max_drawdown": -0.148321,
+        "sharpe": 0.129896,
+        "calmar": 0.133099
+      }
+    },
+    {
+      "label": "2022",
+      "window": {
+        "start": "20220101",
+        "end": "20221231"
+      },
+      "portfolio_metrics": {
+        "start": "20220104",
+        "end": "20221230",
+        "observations": 242,
+        "total_return": -0.088124,
+        "cagr": -0.091955,
+        "volatility": 0.200643,
+        "max_drawdown": -0.186767,
+        "sharpe": -0.458303,
+        "calmar": -0.492353
+      },
+      "factor_model": {
+        "available": true,
+        "observations": 242,
+        "start": "20220104",
+        "end": "20221230",
+        "target_col": "portfolio",
+        "factors": [
+          "market_large",
+          "mid_small",
+          "growth_chinext",
+          "growth_star50",
+          "semiconductor",
+          "dividend_value"
+        ],
+        "intercept_daily": 0.00041473,
+        "intercept_annualized_linear": 0.104513,
+        "betas": {
+          "market_large": 0.856835,
+          "mid_small": 0.04167,
+          "growth_chinext": -0.074084,
+          "growth_star50": 0.082511,
+          "semiconductor": -0.058346,
+          "dividend_value": 0.163638
+        },
+        "r_squared": 0.875563,
+        "factor_contribution_sum": {
+          "market_large": -0.189124,
+          "mid_small": -0.012768,
+          "growth_chinext": 0.022736,
+          "growth_star50": -0.027653,
+          "semiconductor": 0.023232,
+          "dividend_value": 0.002107
+        },
+        "linear_return_sum": {
+          "portfolio": -0.081106,
+          "factor_part": -0.181472,
+          "neutralized_residual_alpha": 0.100365
+        }
+      },
+      "factor_neutral_residual_metrics": {
+        "start": "20220104",
+        "end": "20221230",
+        "observations": 242,
+        "total_return": 0.112039,
+        "cagr": 0.117442,
+        "volatility": 0.070778,
+        "max_drawdown": -0.036938,
+        "sharpe": 1.659302,
+        "calmar": 3.179463
+      }
+    },
+    {
+      "label": "2023",
+      "window": {
+        "start": "20230101",
+        "end": "20231231"
+      },
+      "portfolio_metrics": {
+        "start": "20230103",
+        "end": "20231229",
+        "observations": 242,
+        "total_return": -0.113298,
+        "cagr": -0.118151,
+        "volatility": 0.163842,
+        "max_drawdown": -0.229318,
+        "sharpe": -0.721129,
+        "calmar": -0.515227
+      },
+      "factor_model": {
+        "available": true,
+        "observations": 242,
+        "start": "20230103",
+        "end": "20231229",
+        "target_col": "portfolio",
+        "factors": [
+          "market_large",
+          "mid_small",
+          "growth_chinext",
+          "growth_star50",
+          "semiconductor",
+          "dividend_value"
+        ],
+        "intercept_daily": 7.863e-05,
+        "intercept_annualized_linear": 0.019815,
+        "betas": {
+          "market_large": 0.355712,
+          "mid_small": 0.313956,
+          "growth_chinext": 0.314548,
+          "growth_star50": 0.074459,
+          "semiconductor": -0.053554,
+          "dividend_value": 0.0887
+        },
+        "r_squared": 0.737796,
+        "factor_contribution_sum": {
+          "market_large": -0.039044,
+          "mid_small": -0.017848,
+          "growth_chinext": -0.062127,
+          "growth_star50": -0.006882,
+          "semiconductor": -0.000547,
+          "dividend_value": 0.002684
+        },
+        "linear_return_sum": {
+          "portfolio": -0.104735,
+          "factor_part": -0.123764,
+          "neutralized_residual_alpha": 0.019029
+        }
+      },
+      "factor_neutral_residual_metrics": {
+        "start": "20230103",
+        "end": "20231229",
+        "observations": 242,
+        "total_return": 0.02109,
+        "cagr": 0.022063,
+        "volatility": 0.083896,
+        "max_drawdown": -0.07276,
+        "sharpe": 0.262975,
+        "calmar": 0.303227
+      }
+    },
+    {
+      "label": "2024-2026",
+      "window": {
+        "start": "20240101",
+        "end": "20260708"
+      },
+      "portfolio_metrics": {
+        "start": "20240102",
+        "end": "20260708",
+        "observations": 607,
+        "total_return": 0.673243,
+        "cagr": 0.238697,
+        "volatility": 0.272958,
+        "max_drawdown": -0.190953,
+        "sharpe": 0.874483,
+        "calmar": 1.250028
+      },
+      "factor_model": {
+        "available": true,
+        "observations": 598,
+        "start": "20240102",
+        "end": "20260625",
+        "target_col": "portfolio",
+        "factors": [
+          "market_large",
+          "mid_small",
+          "growth_chinext",
+          "growth_star50",
+          "semiconductor",
+          "dividend_value"
+        ],
+        "intercept_daily": 0.00014128,
+        "intercept_annualized_linear": 0.035602,
+        "betas": {
+          "market_large": 0.753193,
+          "mid_small": 0.071731,
+          "growth_chinext": 0.023891,
+          "growth_star50": 0.161724,
+          "semiconductor": -0.016388,
+          "dividend_value": -0.070799
+        },
+        "r_squared": 0.572311,
+        "factor_contribution_sum": {
+          "market_large": 0.307852,
+          "mid_small": 0.041157,
+          "growth_chinext": 0.024509,
+          "growth_star50": 0.170074,
+          "semiconductor": -0.023286,
+          "dividend_value": -0.004183
+        },
+        "linear_return_sum": {
+          "portfolio": 0.600607,
+          "factor_part": 0.516124,
+          "neutralized_residual_alpha": 0.084483
+        }
+      },
+      "factor_neutral_residual_metrics": {
+        "start": "20240102",
+        "end": "20260625",
+        "observations": 598,
+        "total_return": 0.051143,
+        "cagr": 0.021277,
+        "volatility": 0.179738,
+        "max_drawdown": -0.285644,
+        "sharpe": 0.11838,
+        "calmar": 0.074489
+      }
+    }
+  ],
+  "summary": {
+    "positive_residual_alpha_periods": [
+      "2020-2021",
+      "2022",
+      "2023",
+      "2024-2026"
+    ],
+    "residual_alpha_persistent": true,
+    "residual_cagr_by_period": {
+      "2020-2021": 0.019741,
+      "2022": 0.117442,
+      "2023": 0.022063,
+      "2024-2026": 0.021277
+    },
+    "economically_meaningful_residual_alpha_periods": [
+      "2022"
+    ],
+    "economic_strength": "weak_or_inconclusive",
+    "interpretation": "Residual alpha is the factor-neutralized return after removing fitted market and style factor returns; this is an in-sample attribution, not a prediction."
+  },
+  "constraints": {
+    "analysis_only": true,
+    "ordinary_linear_regression_only": true,
+    "no_machine_learning_prediction": true,
+    "model_unchanged": true,
+    "router_unchanged": true,
+    "top_n_unchanged": true,
+    "step60_not_promoted_to_default": true,
+    "no_parameter_optimization": true,
+    "no_theme_cap": true,
+    "no_allocation": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  }
+}

@@ -11,6 +11,7 @@ from asset_opportunity.opportunity_score_engine import build_asset_opportunity_s
 from asset_opportunity.opportunity_validation import build_opportunity_validation
 from asset_opportunity.portfolio_risk_control import default_risk_control_scenarios
 from asset_opportunity.regime_conditioned_validation import build_regime_conditioned_validation
+from asset_opportunity.residual_alpha_analysis import fit_linear_factor_model, metrics_from_returns
 
 __all__ = [
     "AssetRecord",
@@ -28,7 +29,9 @@ __all__ = [
     "asset_style_map",
     "default_risk_control_scenarios",
     "dominant_style",
+    "fit_linear_factor_model",
     "load_asset_history",
+    "metrics_from_returns",
     "read_asset_registry",
     "style_exposure_for_codes",
     "write_asset_registry",
