@@ -1,0 +1,2383 @@
+{
+  "metadata": {
+    "engine": "V3.5.6 Structural Bull Style Context Re-Attribution",
+    "generated_at": "2026-07-08T12:55:46+00:00",
+    "source_style_validation_engine": "V3.5.2 Style Preference Validation & Attribution Engine",
+    "source_context_engine": "V3.5.5 Historical Style Context Feature Expansion",
+    "context_window": {
+      "start": "20150105",
+      "end": "20260708"
+    },
+    "validation_scope": "STRUCTURAL_BULL_CONTEXT_REATTRIBUTION"
+  },
+  "summary": {
+    "edge_status_after_context_attribution": "diagnostic_only",
+    "tradable_20d_case_counts": {
+      "total": 32,
+      "success": 17,
+      "failure": 15,
+      "success_rate": 0.53125
+    },
+    "tradable_60d_case_counts": {
+      "total": 31,
+      "success": 12,
+      "failure": 19,
+      "success_rate": 0.387097
+    },
+    "tradable_20d_hypotheses": [
+      {
+        "hypothesis": "success_needs_theme_persistence_and_industry_breadth",
+        "finding": "structural_bull_style_works_better_when_theme_persistence_and_breadth_are_higher",
+        "confidence": "low",
+        "support_score": 1,
+        "evidence_fields": {
+          "theme_persistence": {
+            "success_mean": 69.804076,
+            "failure_mean": 66.631833,
+            "success_minus_failure": 3.172243
+          },
+          "industry_breadth": {
+            "success_mean": 0.567371,
+            "failure_mean": 0.51614,
+            "success_minus_failure": 0.051231
+          },
+          "positive_industry_ratio": {
+            "success_mean": 0.713471,
+            "failure_mean": 0.66452,
+            "success_minus_failure": 0.048951
+          }
+        }
+      },
+      {
+        "hypothesis": "failure_when_single_theme_or_crowding_is_high",
+        "finding": "structural_bull_style_fails_more_often_when_crowding_or_price_extension_is_higher",
+        "confidence": "low",
+        "support_score": 1,
+        "evidence_fields": {
+          "crowding_score": {
+            "success_mean": 33.641653,
+            "failure_mean": 34.820133,
+            "success_minus_failure": -1.17848
+          },
+          "price_extension": {
+            "success_mean": 74.793229,
+            "failure_mean": 76.278867,
+            "success_minus_failure": -1.485638
+          },
+          "industry_breadth": {
+            "success_mean": 0.567371,
+            "failure_mean": 0.51614,
+            "success_minus_failure": 0.051231
+          }
+        }
+      },
+      {
+        "hypothesis": "failure_when_style_signal_has_low_incremental_information",
+        "finding": "structural_bull_style_filter_adds_less_when_style_pool_overlaps_baseline",
+        "confidence": "low",
+        "support_score": 2,
+        "evidence_fields": {
+          "baseline_style_overlap_count": {
+            "success_mean": 0.529412,
+            "failure_mean": 0.8,
+            "success_minus_failure": -0.270588
+          },
+          "baseline_style_overlap_ratio": {
+            "success_mean": 0.17647,
+            "failure_mean": 0.266667,
+            "success_minus_failure": -0.090197
+          }
+        }
+      }
+    ],
+    "tradable_60d_hypotheses": [
+      {
+        "hypothesis": "success_needs_theme_persistence_and_industry_breadth",
+        "finding": "structural_bull_style_works_better_when_theme_persistence_and_breadth_are_higher",
+        "confidence": "low",
+        "support_score": 2,
+        "evidence_fields": {
+          "theme_persistence": {
+            "success_mean": 65.9726,
+            "failure_mean": 69.813605,
+            "success_minus_failure": -3.841005
+          },
+          "industry_breadth": {
+            "success_mean": 0.631733,
+            "failure_mean": 0.499158,
+            "success_minus_failure": 0.132575
+          },
+          "positive_industry_ratio": {
+            "success_mean": 0.774192,
+            "failure_mean": 0.645163,
+            "success_minus_failure": 0.129029
+          }
+        }
+      },
+      {
+        "hypothesis": "failure_when_single_theme_or_crowding_is_high",
+        "finding": "structural_bull_style_fails_more_often_when_crowding_or_price_extension_is_higher",
+        "confidence": "low",
+        "support_score": 1,
+        "evidence_fields": {
+          "crowding_score": {
+            "success_mean": 33.204342,
+            "failure_mean": 34.665611,
+            "success_minus_failure": -1.461269
+          },
+          "price_extension": {
+            "success_mean": 75.114775,
+            "failure_mean": 74.978,
+            "success_minus_failure": 0.136775
+          },
+          "industry_breadth": {
+            "success_mean": 0.631733,
+            "failure_mean": 0.499158,
+            "success_minus_failure": 0.132575
+          }
+        }
+      },
+      {
+        "hypothesis": "failure_when_style_signal_has_low_incremental_information",
+        "finding": "structural_bull_style_filter_adds_less_when_style_pool_overlaps_baseline",
+        "confidence": "low",
+        "support_score": 2,
+        "evidence_fields": {
+          "baseline_style_overlap_count": {
+            "success_mean": 0.5,
+            "failure_mean": 0.736842,
+            "success_minus_failure": -0.236842
+          },
+          "baseline_style_overlap_ratio": {
+            "success_mean": 0.166666,
+            "failure_mean": 0.245614,
+            "success_minus_failure": -0.078948
+          }
+        }
+      }
+    ],
+    "interpretation": "This layer joins V3.5.5 historical context to V3.5.4 structural-bull success/failure samples. It is attribution only and does not produce style weights, allocation, or trades."
+  },
+  "results": {
+    "research_proxy": {
+      "20d": {
+        "case_counts": {
+          "total": 32,
+          "success": 18,
+          "failure": 14,
+          "success_rate": 0.5625
+        },
+        "success": {
+          "count": 18,
+          "mean_relative_to_baseline": 0.063171,
+          "mean_baseline_return": -0.021832,
+          "mean_style_aware_return": 0.041338,
+          "mean_style_ic": 0.366667,
+          "dominant_style_distribution": {
+            "growth": 18
+          },
+          "theme_risk_level_distribution": {
+            "low": 16,
+            "medium": 2
+          },
+          "context_means": {
+            "industry_breadth": 0.571689,
+            "positive_industry_ratio": 0.724011,
+            "top_industry_ratio": 0.238356,
+            "theme_persistence": 69.003617,
+            "crowding_score": 32.678633,
+            "price_extension": 73.236061,
+            "trend": 0.778889,
+            "breadth": 0.289444,
+            "liquidity": 0.427222,
+            "volatility": 0.714444,
+            "pressure": 0.489444
+          },
+          "selection_diagnostics": {
+            "baseline_style_overlap_count": 0.5,
+            "baseline_style_overlap_ratio": 0.166666,
+            "style_score_margin": 13.976711,
+            "dominant_score": 68.926572
+          }
+        },
+        "failure": {
+          "count": 14,
+          "mean_relative_to_baseline": -0.022144,
+          "mean_baseline_return": 0.002084,
+          "mean_style_aware_return": -0.02006,
+          "mean_style_ic": -0.285714,
+          "dominant_style_distribution": {
+            "growth": 14
+          },
+          "theme_risk_level_distribution": {
+            "low": 12,
+            "medium": 2
+          },
+          "context_means": {
+            "industry_breadth": 0.506929,
+            "positive_industry_ratio": 0.647471,
+            "top_industry_ratio": 0.218886,
+            "theme_persistence": 67.434407,
+            "crowding_score": 36.142479,
+            "price_extension": 78.387057,
+            "trend": 0.764286,
+            "breadth": 0.361429,
+            "liquidity": 0.466429,
+            "volatility": 0.65,
+            "pressure": 0.404286
+          },
+          "selection_diagnostics": {
+            "baseline_style_overlap_count": 0.857143,
+            "baseline_style_overlap_ratio": 0.285714,
+            "style_score_margin": 13.052414,
+            "dominant_score": 69.258086
+          }
+        },
+        "context_differences": {
+          "breadth": {
+            "success_mean": 0.289444,
+            "failure_mean": 0.361429,
+            "success_minus_failure": -0.071985
+          },
+          "crowding_score": {
+            "success_mean": 32.678633,
+            "failure_mean": 36.142479,
+            "success_minus_failure": -3.463846
+          },
+          "industry_breadth": {
+            "success_mean": 0.571689,
+            "failure_mean": 0.506929,
+            "success_minus_failure": 0.06476
+          },
+          "liquidity": {
+            "success_mean": 0.427222,
+            "failure_mean": 0.466429,
+            "success_minus_failure": -0.039207
+          },
+          "positive_industry_ratio": {
+            "success_mean": 0.724011,
+            "failure_mean": 0.647471,
+            "success_minus_failure": 0.07654
+          },
+          "pressure": {
+            "success_mean": 0.489444,
+            "failure_mean": 0.404286,
+            "success_minus_failure": 0.085158
+          },
+          "price_extension": {
+            "success_mean": 73.236061,
+            "failure_mean": 78.387057,
+            "success_minus_failure": -5.150996
+          },
+          "theme_persistence": {
+            "success_mean": 69.003617,
+            "failure_mean": 67.434407,
+            "success_minus_failure": 1.56921
+          },
+          "top_industry_ratio": {
+            "success_mean": 0.238356,
+            "failure_mean": 0.218886,
+            "success_minus_failure": 0.01947
+          },
+          "trend": {
+            "success_mean": 0.778889,
+            "failure_mean": 0.764286,
+            "success_minus_failure": 0.014603
+          },
+          "volatility": {
+            "success_mean": 0.714444,
+            "failure_mean": 0.65,
+            "success_minus_failure": 0.064444
+          }
+        },
+        "selection_differences": {
+          "baseline_style_overlap_count": {
+            "success_mean": 0.5,
+            "failure_mean": 0.857143,
+            "success_minus_failure": -0.357143
+          },
+          "baseline_style_overlap_ratio": {
+            "success_mean": 0.166666,
+            "failure_mean": 0.285714,
+            "success_minus_failure": -0.119048
+          },
+          "dominant_score": {
+            "success_mean": 68.926572,
+            "failure_mean": 69.258086,
+            "success_minus_failure": -0.331514
+          },
+          "style_score_margin": {
+            "success_mean": 13.976711,
+            "failure_mean": 13.052414,
+            "success_minus_failure": 0.924297
+          }
+        },
+        "hypothesis_tests": [
+          {
+            "hypothesis": "success_needs_theme_persistence_and_industry_breadth",
+            "finding": "structural_bull_style_works_better_when_theme_persistence_and_breadth_are_higher",
+            "confidence": "low",
+            "support_score": 2,
+            "evidence_fields": {
+              "theme_persistence": {
+                "success_mean": 69.003617,
+                "failure_mean": 67.434407,
+                "success_minus_failure": 1.56921
+              },
+              "industry_breadth": {
+                "success_mean": 0.571689,
+                "failure_mean": 0.506929,
+                "success_minus_failure": 0.06476
+              },
+              "positive_industry_ratio": {
+                "success_mean": 0.724011,
+                "failure_mean": 0.647471,
+                "success_minus_failure": 0.07654
+              }
+            }
+          },
+          {
+            "hypothesis": "failure_when_single_theme_or_crowding_is_high",
+            "finding": "structural_bull_style_fails_more_often_when_crowding_or_price_extension_is_higher",
+            "confidence": "low",
+            "support_score": 2,
+            "evidence_fields": {
+              "crowding_score": {
+                "success_mean": 32.678633,
+                "failure_mean": 36.142479,
+                "success_minus_failure": -3.463846
+              },
+              "price_extension": {
+                "success_mean": 73.236061,
+                "failure_mean": 78.387057,
+                "success_minus_failure": -5.150996
+              },
+              "industry_breadth": {
+                "success_mean": 0.571689,
+                "failure_mean": 0.506929,
+                "success_minus_failure": 0.06476
+              }
+            }
+          },
+          {
+            "hypothesis": "failure_when_style_signal_has_low_incremental_information",
+            "finding": "structural_bull_style_filter_adds_less_when_style_pool_overlaps_baseline",
+            "confidence": "low",
+            "support_score": 2,
+            "evidence_fields": {
+              "baseline_style_overlap_count": {
+                "success_mean": 0.5,
+                "failure_mean": 0.857143,
+                "success_minus_failure": -0.357143
+              },
+              "baseline_style_overlap_ratio": {
+                "success_mean": 0.166666,
+                "failure_mean": 0.285714,
+                "success_minus_failure": -0.119048
+              }
+            }
+          }
+        ],
+        "case_examples": {
+          "success": [
+            {
+              "date": "20211012",
+              "context_date": "20210927",
+              "dominant_style": "growth",
+              "baseline_return": -0.171049,
+              "style_aware_return": 0.086734,
+              "relative_to_baseline": 0.257784,
+              "style_context": {
+                "industry_breadth": 0.1935,
+                "positive_industry_ratio": 0.4516,
+                "top_industry_ratio": 0.129,
+                "theme_persistence": 77.2251,
+                "crowding_score": 43.11,
+                "price_extension": 72.982,
+                "theme_risk_level": "low",
+                "trend": 0.73,
+                "breadth": 0.18,
+                "liquidity": 0.36,
+                "volatility": 0.73,
+                "pressure": 0.55
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 59.1618,
+                "style_score_margin": 3.6116,
+                "style_score_concentration": 0.275604,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20260527",
+              "context_date": "20260519",
+              "dominant_style": "growth",
+              "baseline_return": -0.014269,
+              "style_aware_return": 0.157167,
+              "relative_to_baseline": 0.171437,
+              "style_context": {
+                "industry_breadth": 0.3226,
+                "positive_industry_ratio": 0.5484,
+                "top_industry_ratio": 0.2903,
+                "theme_persistence": 68.0171,
+                "crowding_score": 37.1114,
+                "price_extension": 89.7086,
+                "theme_risk_level": "low",
+                "trend": 0.75,
+                "breadth": 0.55,
+                "liquidity": 0.46,
+                "volatility": 0.76,
+                "pressure": 0.2
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 70.9551,
+                "style_score_margin": 16.5741,
+                "style_score_concentration": 0.320563,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20210610",
+              "context_date": "20210602",
+              "dominant_style": "growth",
+              "baseline_return": -0.031723,
+              "style_aware_return": 0.088736,
+              "relative_to_baseline": 0.120459,
+              "style_context": {
+                "industry_breadth": 0.5484,
+                "positive_industry_ratio": 0.9032,
+                "top_industry_ratio": 0.2581,
+                "theme_persistence": 57.3017,
+                "crowding_score": 24.4014,
+                "price_extension": 62.7194,
+                "theme_risk_level": "low",
+                "trend": 0.77,
+                "breadth": 0.28,
+                "liquidity": 0.6,
+                "volatility": 0.71,
+                "pressure": 0.49
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 73.0111,
+                "style_score_margin": 20.0108,
+                "style_score_concentration": 0.336472,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20230505",
+              "context_date": "20230424",
+              "dominant_style": "growth",
+              "baseline_return": -0.053758,
+              "style_aware_return": 0.034662,
+              "relative_to_baseline": 0.08842,
+              "style_context": {
+                "industry_breadth": 0.1613,
+                "positive_industry_ratio": 0.2258,
+                "top_industry_ratio": 0.2581,
+                "theme_persistence": 84.1769,
+                "crowding_score": 52.1967,
+                "price_extension": 67.3183,
+                "theme_risk_level": "medium",
+                "trend": 0.73,
+                "breadth": 0.31,
+                "liquidity": 0.43,
+                "volatility": 0.75,
+                "pressure": 0.42
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 59.5321,
+                "style_score_margin": 4.9253,
+                "style_score_concentration": 0.273443,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250725",
+              "context_date": "20250717",
+              "dominant_style": "growth",
+              "baseline_return": 0.09542,
+              "style_aware_return": 0.175107,
+              "relative_to_baseline": 0.079687,
+              "style_context": {
+                "industry_breadth": 0.871,
+                "positive_industry_ratio": 0.9355,
+                "top_industry_ratio": 0.2581,
+                "theme_persistence": 62.7605,
+                "crowding_score": 28.2396,
+                "price_extension": 72.9116,
+                "theme_risk_level": "low",
+                "trend": 0.79,
+                "breadth": 0.51,
+                "liquidity": 0.53,
+                "volatility": 0.84,
+                "pressure": 0.28
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 76.9102,
+                "style_score_margin": 21.8286,
+                "style_score_concentration": 0.350289,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ],
+          "failure": [
+            {
+              "date": "20210108",
+              "context_date": "20201230",
+              "dominant_style": "growth",
+              "baseline_return": 0.004528,
+              "style_aware_return": -0.048413,
+              "relative_to_baseline": -0.052941,
+              "style_context": {
+                "industry_breadth": 0.2258,
+                "positive_industry_ratio": 0.2258,
+                "top_industry_ratio": 0.2903,
+                "theme_persistence": 67.3809,
+                "crowding_score": 51.5778,
+                "price_extension": 81.2849,
+                "theme_risk_level": "medium",
+                "trend": 0.74,
+                "breadth": 0.41,
+                "liquidity": 0.51,
+                "volatility": 0.72,
+                "pressure": 0.33
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 71.982,
+                "style_score_margin": 16.6798,
+                "style_score_concentration": 0.330224,
+                "dominant_style_forward_rank": 2,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20200812",
+              "context_date": "20200804",
+              "dominant_style": "growth",
+              "baseline_return": 0.002438,
+              "style_aware_return": -0.050307,
+              "relative_to_baseline": -0.052745,
+              "style_context": {
+                "industry_breadth": 0.7742,
+                "positive_industry_ratio": 0.7742,
+                "top_industry_ratio": 0.2258,
+                "theme_persistence": 70.9125,
+                "crowding_score": 36.8036,
+                "price_extension": 95.6437,
+                "theme_risk_level": "low",
+                "trend": 0.86,
+                "breadth": 0.32,
+                "liquidity": 0.5,
+                "volatility": 0.33,
+                "pressure": 0.54
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 66.2134,
+                "style_score_margin": 14.7787,
+                "style_score_concentration": 0.308684,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20230206",
+              "context_date": "20230120",
+              "dominant_style": "growth",
+              "baseline_return": 0.02117,
+              "style_aware_return": -0.017894,
+              "relative_to_baseline": -0.039064,
+              "style_context": {
+                "industry_breadth": 0.9355,
+                "positive_industry_ratio": 1.0,
+                "top_industry_ratio": 0.1613,
+                "theme_persistence": 59.3172,
+                "crowding_score": 25.708,
+                "price_extension": 67.8125,
+                "theme_risk_level": "low",
+                "trend": 0.81,
+                "breadth": 0.55,
+                "liquidity": 0.57,
+                "volatility": 0.82,
+                "pressure": 0.26
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 68.4008,
+                "style_score_margin": 12.1607,
+                "style_score_concentration": 0.309257,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20240430",
+              "context_date": "20240422",
+              "dominant_style": "growth",
+              "baseline_return": 0.016209,
+              "style_aware_return": -0.01638,
+              "relative_to_baseline": -0.032589,
+              "style_context": {
+                "industry_breadth": 0.2581,
+                "positive_industry_ratio": 0.2581,
+                "top_industry_ratio": 0.2258,
+                "theme_persistence": 62.8194,
+                "crowding_score": 39.0035,
+                "price_extension": 56.6979,
+                "theme_risk_level": "low",
+                "trend": 0.75,
+                "breadth": 0.3,
+                "liquidity": 0.36,
+                "volatility": 0.67,
+                "pressure": 0.45
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 75.2833,
+                "style_score_margin": 16.7599,
+                "style_score_concentration": 0.310088,
+                "dominant_style_forward_rank": 3,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20240329",
+              "context_date": "20240321",
+              "dominant_style": "growth",
+              "baseline_return": 0.030856,
+              "style_aware_return": 0.00669,
+              "relative_to_baseline": -0.024166,
+              "style_context": {
+                "industry_breadth": 0.4194,
+                "positive_industry_ratio": 0.871,
+                "top_industry_ratio": 0.0968,
+                "theme_persistence": 61.6578,
+                "crowding_score": 24.5491,
+                "price_extension": 64.6508,
+                "theme_risk_level": "low",
+                "trend": 0.78,
+                "breadth": 0.34,
+                "liquidity": 0.42,
+                "volatility": 0.7,
+                "pressure": 0.44
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 63.1472,
+                "style_score_margin": 5.0383,
+                "style_score_concentration": 0.285186,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ]
+        },
+        "constraints": {
+          "context_join_uses_same_day_or_prior_context": true,
+          "future_returns_used_only_for_case_labels": true,
+          "diagnostic_only": true
+        }
+      },
+      "60d": {
+        "case_counts": {
+          "total": 31,
+          "success": 14,
+          "failure": 17,
+          "success_rate": 0.451613
+        },
+        "success": {
+          "count": 14,
+          "mean_relative_to_baseline": 0.128955,
+          "mean_baseline_return": 0.010619,
+          "mean_style_aware_return": 0.139574,
+          "mean_style_ic": 0.428571,
+          "dominant_style_distribution": {
+            "growth": 14
+          },
+          "theme_risk_level_distribution": {
+            "low": 12,
+            "medium": 2
+          },
+          "context_means": {
+            "industry_breadth": 0.546093,
+            "positive_industry_ratio": 0.691243,
+            "top_industry_ratio": 0.239643,
+            "theme_persistence": 68.449257,
+            "crowding_score": 34.582714,
+            "price_extension": 72.412221,
+            "trend": 0.765714,
+            "breadth": 0.286429,
+            "liquidity": 0.459286,
+            "volatility": 0.686429,
+            "pressure": 0.479286
+          },
+          "selection_diagnostics": {
+            "baseline_style_overlap_count": 0.5,
+            "baseline_style_overlap_ratio": 0.166666,
+            "style_score_margin": 13.175757,
+            "dominant_score": 68.818393
+          }
+        },
+        "failure": {
+          "count": 17,
+          "mean_relative_to_baseline": -0.035044,
+          "mean_baseline_return": -0.004432,
+          "mean_style_aware_return": -0.039477,
+          "mean_style_ic": -0.270588,
+          "dominant_style_distribution": {
+            "growth": 17
+          },
+          "theme_risk_level_distribution": {
+            "low": 15,
+            "medium": 2
+          },
+          "context_means": {
+            "industry_breadth": 0.554088,
+            "positive_industry_ratio": 0.698294,
+            "top_industry_ratio": 0.218206,
+            "theme_persistence": 68.225888,
+            "crowding_score": 33.702394,
+            "price_extension": 77.187541,
+            "trend": 0.779412,
+            "breadth": 0.335882,
+            "liquidity": 0.431176,
+            "volatility": 0.681765,
+            "pressure": 0.444706
+          },
+          "selection_diagnostics": {
+            "baseline_style_overlap_count": 0.764706,
+            "baseline_style_overlap_ratio": 0.254902,
+            "style_score_margin": 13.722347,
+            "dominant_score": 69.169347
+          }
+        },
+        "context_differences": {
+          "breadth": {
+            "success_mean": 0.286429,
+            "failure_mean": 0.335882,
+            "success_minus_failure": -0.049453
+          },
+          "crowding_score": {
+            "success_mean": 34.582714,
+            "failure_mean": 33.702394,
+            "success_minus_failure": 0.88032
+          },
+          "industry_breadth": {
+            "success_mean": 0.546093,
+            "failure_mean": 0.554088,
+            "success_minus_failure": -0.007995
+          },
+          "liquidity": {
+            "success_mean": 0.459286,
+            "failure_mean": 0.431176,
+            "success_minus_failure": 0.02811
+          },
+          "positive_industry_ratio": {
+            "success_mean": 0.691243,
+            "failure_mean": 0.698294,
+            "success_minus_failure": -0.007051
+          },
+          "pressure": {
+            "success_mean": 0.479286,
+            "failure_mean": 0.444706,
+            "success_minus_failure": 0.03458
+          },
+          "price_extension": {
+            "success_mean": 72.412221,
+            "failure_mean": 77.187541,
+            "success_minus_failure": -4.77532
+          },
+          "theme_persistence": {
+            "success_mean": 68.449257,
+            "failure_mean": 68.225888,
+            "success_minus_failure": 0.223369
+          },
+          "top_industry_ratio": {
+            "success_mean": 0.239643,
+            "failure_mean": 0.218206,
+            "success_minus_failure": 0.021437
+          },
+          "trend": {
+            "success_mean": 0.765714,
+            "failure_mean": 0.779412,
+            "success_minus_failure": -0.013698
+          },
+          "volatility": {
+            "success_mean": 0.686429,
+            "failure_mean": 0.681765,
+            "success_minus_failure": 0.004664
+          }
+        },
+        "selection_differences": {
+          "baseline_style_overlap_count": {
+            "success_mean": 0.5,
+            "failure_mean": 0.764706,
+            "success_minus_failure": -0.264706
+          },
+          "baseline_style_overlap_ratio": {
+            "success_mean": 0.166666,
+            "failure_mean": 0.254902,
+            "success_minus_failure": -0.088236
+          },
+          "dominant_score": {
+            "success_mean": 68.818393,
+            "failure_mean": 69.169347,
+            "success_minus_failure": -0.350954
+          },
+          "style_score_margin": {
+            "success_mean": 13.175757,
+            "failure_mean": 13.722347,
+            "success_minus_failure": -0.54659
+          }
+        },
+        "hypothesis_tests": [
+          {
+            "hypothesis": "success_needs_theme_persistence_and_industry_breadth",
+            "finding": "structural_bull_style_works_better_when_theme_persistence_and_breadth_are_higher",
+            "confidence": "not_supported",
+            "support_score": 0,
+            "evidence_fields": {
+              "theme_persistence": {
+                "success_mean": 68.449257,
+                "failure_mean": 68.225888,
+                "success_minus_failure": 0.223369
+              },
+              "industry_breadth": {
+                "success_mean": 0.546093,
+                "failure_mean": 0.554088,
+                "success_minus_failure": -0.007995
+              },
+              "positive_industry_ratio": {
+                "success_mean": 0.691243,
+                "failure_mean": 0.698294,
+                "success_minus_failure": -0.007051
+              }
+            }
+          },
+          {
+            "hypothesis": "failure_when_single_theme_or_crowding_is_high",
+            "finding": "structural_bull_style_fails_more_often_when_crowding_or_price_extension_is_higher",
+            "confidence": "not_supported",
+            "support_score": 0,
+            "evidence_fields": {
+              "crowding_score": {
+                "success_mean": 34.582714,
+                "failure_mean": 33.702394,
+                "success_minus_failure": 0.88032
+              },
+              "price_extension": {
+                "success_mean": 72.412221,
+                "failure_mean": 77.187541,
+                "success_minus_failure": -4.77532
+              },
+              "industry_breadth": {
+                "success_mean": 0.546093,
+                "failure_mean": 0.554088,
+                "success_minus_failure": -0.007995
+              }
+            }
+          },
+          {
+            "hypothesis": "failure_when_style_signal_has_low_incremental_information",
+            "finding": "structural_bull_style_filter_adds_less_when_style_pool_overlaps_baseline",
+            "confidence": "low",
+            "support_score": 2,
+            "evidence_fields": {
+              "baseline_style_overlap_count": {
+                "success_mean": 0.5,
+                "failure_mean": 0.764706,
+                "success_minus_failure": -0.264706
+              },
+              "baseline_style_overlap_ratio": {
+                "success_mean": 0.166666,
+                "failure_mean": 0.254902,
+                "success_minus_failure": -0.088236
+              }
+            }
+          }
+        ],
+        "case_examples": {
+          "success": [
+            {
+              "date": "20250627",
+              "context_date": "20250619",
+              "dominant_style": "growth",
+              "baseline_return": 0.003952,
+              "style_aware_return": 0.424033,
+              "relative_to_baseline": 0.420081,
+              "style_context": {
+                "industry_breadth": 0.0645,
+                "positive_industry_ratio": 0.2258,
+                "top_industry_ratio": 0.2903,
+                "theme_persistence": 64.9322,
+                "crowding_score": 52.0165,
+                "price_extension": 46.6088,
+                "theme_risk_level": "medium",
+                "trend": 0.69,
+                "breadth": 0.12,
+                "liquidity": 0.44,
+                "volatility": 0.84,
+                "pressure": 0.57
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 71.1875,
+                "style_score_margin": 13.056,
+                "style_score_concentration": 0.308362,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20260226",
+              "context_date": "20260210",
+              "dominant_style": "growth",
+              "baseline_return": -0.040916,
+              "style_aware_return": 0.285412,
+              "relative_to_baseline": 0.326328,
+              "style_context": {
+                "industry_breadth": 0.5484,
+                "positive_industry_ratio": 0.7097,
+                "top_industry_ratio": 0.2258,
+                "theme_persistence": 72.0317,
+                "crowding_score": 27.3875,
+                "price_extension": 74.4347,
+                "theme_risk_level": "low",
+                "trend": 0.72,
+                "breadth": 0.33,
+                "liquidity": 0.04,
+                "volatility": 0.71,
+                "pressure": 0.39
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 67.7899,
+                "style_score_margin": 13.345,
+                "style_score_concentration": 0.307074,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20211012",
+              "context_date": "20210927",
+              "dominant_style": "growth",
+              "baseline_return": -0.143752,
+              "style_aware_return": 0.066629,
+              "relative_to_baseline": 0.210382,
+              "style_context": {
+                "industry_breadth": 0.1935,
+                "positive_industry_ratio": 0.4516,
+                "top_industry_ratio": 0.129,
+                "theme_persistence": 77.2251,
+                "crowding_score": 43.11,
+                "price_extension": 72.982,
+                "theme_risk_level": "low",
+                "trend": 0.73,
+                "breadth": 0.18,
+                "liquidity": 0.36,
+                "volatility": 0.73,
+                "pressure": 0.55
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 59.1618,
+                "style_score_margin": 3.6116,
+                "style_score_concentration": 0.275604,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250529",
+              "context_date": "20250521",
+              "dominant_style": "growth",
+              "baseline_return": 0.154841,
+              "style_aware_return": 0.337596,
+              "relative_to_baseline": 0.182756,
+              "style_context": {
+                "industry_breadth": 0.6452,
+                "positive_industry_ratio": 0.9032,
+                "top_industry_ratio": 0.2258,
+                "theme_persistence": 49.9883,
+                "crowding_score": 27.2997,
+                "price_extension": 67.7562,
+                "theme_risk_level": "low",
+                "trend": 0.74,
+                "breadth": 0.25,
+                "liquidity": 0.39,
+                "volatility": 0.84,
+                "pressure": 0.49
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 62.902,
+                "style_score_margin": 7.8311,
+                "style_score_concentration": 0.288574,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250725",
+              "context_date": "20250717",
+              "dominant_style": "growth",
+              "baseline_return": 0.240067,
+              "style_aware_return": 0.405196,
+              "relative_to_baseline": 0.165129,
+              "style_context": {
+                "industry_breadth": 0.871,
+                "positive_industry_ratio": 0.9355,
+                "top_industry_ratio": 0.2581,
+                "theme_persistence": 62.7605,
+                "crowding_score": 28.2396,
+                "price_extension": 72.9116,
+                "theme_risk_level": "low",
+                "trend": 0.79,
+                "breadth": 0.51,
+                "liquidity": 0.53,
+                "volatility": 0.84,
+                "pressure": 0.28
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 76.9102,
+                "style_score_margin": 21.8286,
+                "style_score_concentration": 0.350289,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ],
+          "failure": [
+            {
+              "date": "20230206",
+              "context_date": "20230120",
+              "dominant_style": "growth",
+              "baseline_return": 0.020264,
+              "style_aware_return": -0.079839,
+              "relative_to_baseline": -0.100103,
+              "style_context": {
+                "industry_breadth": 0.9355,
+                "positive_industry_ratio": 1.0,
+                "top_industry_ratio": 0.1613,
+                "theme_persistence": 59.3172,
+                "crowding_score": 25.708,
+                "price_extension": 67.8125,
+                "theme_risk_level": "low",
+                "trend": 0.81,
+                "breadth": 0.55,
+                "liquidity": 0.57,
+                "volatility": 0.82,
+                "pressure": 0.26
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 68.4008,
+                "style_score_margin": 12.1607,
+                "style_score_concentration": 0.309257,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20200812",
+              "context_date": "20200804",
+              "dominant_style": "growth",
+              "baseline_return": 0.105205,
+              "style_aware_return": 0.013979,
+              "relative_to_baseline": -0.091226,
+              "style_context": {
+                "industry_breadth": 0.7742,
+                "positive_industry_ratio": 0.7742,
+                "top_industry_ratio": 0.2258,
+                "theme_persistence": 70.9125,
+                "crowding_score": 36.8036,
+                "price_extension": 95.6437,
+                "theme_risk_level": "low",
+                "trend": 0.86,
+                "breadth": 0.32,
+                "liquidity": 0.5,
+                "volatility": 0.33,
+                "pressure": 0.54
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 66.2134,
+                "style_score_margin": 14.7787,
+                "style_score_concentration": 0.308684,
+                "dominant_style_forward_rank": 3,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20201210",
+              "context_date": "20201202",
+              "dominant_style": "growth",
+              "baseline_return": 0.036965,
+              "style_aware_return": -0.048306,
+              "relative_to_baseline": -0.085271,
+              "style_context": {
+                "industry_breadth": 0.4194,
+                "positive_industry_ratio": 0.7742,
+                "top_industry_ratio": 0.1935,
+                "theme_persistence": 74.2066,
+                "crowding_score": 26.9634,
+                "price_extension": 73.6221,
+                "theme_risk_level": "low",
+                "trend": 0.76,
+                "breadth": 0.39,
+                "liquidity": 0.54,
+                "volatility": 0.69,
+                "pressure": 0.37
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 71.0252,
+                "style_score_margin": 13.8636,
+                "style_score_concentration": 0.327848,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20210709",
+              "context_date": "20210701",
+              "dominant_style": "growth",
+              "baseline_return": -0.013807,
+              "style_aware_return": -0.092234,
+              "relative_to_baseline": -0.078427,
+              "style_context": {
+                "industry_breadth": 0.3871,
+                "positive_industry_ratio": 0.4194,
+                "top_industry_ratio": 0.2258,
+                "theme_persistence": 59.9493,
+                "crowding_score": 32.5669,
+                "price_extension": 72.1088,
+                "theme_risk_level": "low",
+                "trend": 0.72,
+                "breadth": 0.23,
+                "liquidity": 0.46,
+                "volatility": 0.79,
+                "pressure": 0.49
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 70.4561,
+                "style_score_margin": 14.1822,
+                "style_score_concentration": 0.324499,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20240329",
+              "context_date": "20240321",
+              "dominant_style": "growth",
+              "baseline_return": 0.045234,
+              "style_aware_return": -0.014307,
+              "relative_to_baseline": -0.059541,
+              "style_context": {
+                "industry_breadth": 0.4194,
+                "positive_industry_ratio": 0.871,
+                "top_industry_ratio": 0.0968,
+                "theme_persistence": 61.6578,
+                "crowding_score": 24.5491,
+                "price_extension": 64.6508,
+                "theme_risk_level": "low",
+                "trend": 0.78,
+                "breadth": 0.34,
+                "liquidity": 0.42,
+                "volatility": 0.7,
+                "pressure": 0.44
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 63.1472,
+                "style_score_margin": 5.0383,
+                "style_score_concentration": 0.285186,
+                "dominant_style_forward_rank": 3,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ]
+        },
+        "constraints": {
+          "context_join_uses_same_day_or_prior_context": true,
+          "future_returns_used_only_for_case_labels": true,
+          "diagnostic_only": true
+        }
+      }
+    },
+    "tradable_etf": {
+      "20d": {
+        "case_counts": {
+          "total": 32,
+          "success": 17,
+          "failure": 15,
+          "success_rate": 0.53125
+        },
+        "success": {
+          "count": 17,
+          "mean_relative_to_baseline": 0.071842,
+          "mean_baseline_return": -0.028603,
+          "mean_style_aware_return": 0.043239,
+          "mean_style_ic": 0.458824,
+          "dominant_style_distribution": {
+            "growth": 17
+          },
+          "theme_risk_level_distribution": {
+            "low": 15,
+            "medium": 2
+          },
+          "context_means": {
+            "industry_breadth": 0.567371,
+            "positive_industry_ratio": 0.713471,
+            "top_industry_ratio": 0.248582,
+            "theme_persistence": 69.804076,
+            "crowding_score": 33.641653,
+            "price_extension": 74.793229,
+            "trend": 0.784706,
+            "breadth": 0.315882,
+            "liquidity": 0.368235,
+            "volatility": 0.682941,
+            "pressure": 0.468824
+          },
+          "selection_diagnostics": {
+            "baseline_style_overlap_count": 0.529412,
+            "baseline_style_overlap_ratio": 0.17647,
+            "style_score_margin": 14.384376,
+            "dominant_score": 68.968882
+          }
+        },
+        "failure": {
+          "count": 15,
+          "mean_relative_to_baseline": -0.031574,
+          "mean_baseline_return": -0.006265,
+          "mean_style_aware_return": -0.037839,
+          "mean_style_ic": -0.36,
+          "dominant_style_distribution": {
+            "growth": 15
+          },
+          "theme_risk_level_distribution": {
+            "low": 13,
+            "medium": 2
+          },
+          "context_means": {
+            "industry_breadth": 0.51614,
+            "positive_industry_ratio": 0.66452,
+            "top_industry_ratio": 0.208593,
+            "theme_persistence": 66.631833,
+            "crowding_score": 34.820133,
+            "price_extension": 76.278867,
+            "trend": 0.758667,
+            "breadth": 0.326667,
+            "liquidity": 0.530667,
+            "volatility": 0.69,
+            "pressure": 0.433333
+          },
+          "selection_diagnostics": {
+            "baseline_style_overlap_count": 0.8,
+            "baseline_style_overlap_ratio": 0.266667,
+            "style_score_margin": 12.652013,
+            "dominant_score": 69.188033
+          }
+        },
+        "context_differences": {
+          "breadth": {
+            "success_mean": 0.315882,
+            "failure_mean": 0.326667,
+            "success_minus_failure": -0.010785
+          },
+          "crowding_score": {
+            "success_mean": 33.641653,
+            "failure_mean": 34.820133,
+            "success_minus_failure": -1.17848
+          },
+          "industry_breadth": {
+            "success_mean": 0.567371,
+            "failure_mean": 0.51614,
+            "success_minus_failure": 0.051231
+          },
+          "liquidity": {
+            "success_mean": 0.368235,
+            "failure_mean": 0.530667,
+            "success_minus_failure": -0.162432
+          },
+          "positive_industry_ratio": {
+            "success_mean": 0.713471,
+            "failure_mean": 0.66452,
+            "success_minus_failure": 0.048951
+          },
+          "pressure": {
+            "success_mean": 0.468824,
+            "failure_mean": 0.433333,
+            "success_minus_failure": 0.035491
+          },
+          "price_extension": {
+            "success_mean": 74.793229,
+            "failure_mean": 76.278867,
+            "success_minus_failure": -1.485638
+          },
+          "theme_persistence": {
+            "success_mean": 69.804076,
+            "failure_mean": 66.631833,
+            "success_minus_failure": 3.172243
+          },
+          "top_industry_ratio": {
+            "success_mean": 0.248582,
+            "failure_mean": 0.208593,
+            "success_minus_failure": 0.039989
+          },
+          "trend": {
+            "success_mean": 0.784706,
+            "failure_mean": 0.758667,
+            "success_minus_failure": 0.026039
+          },
+          "volatility": {
+            "success_mean": 0.682941,
+            "failure_mean": 0.69,
+            "success_minus_failure": -0.007059
+          }
+        },
+        "selection_differences": {
+          "baseline_style_overlap_count": {
+            "success_mean": 0.529412,
+            "failure_mean": 0.8,
+            "success_minus_failure": -0.270588
+          },
+          "baseline_style_overlap_ratio": {
+            "success_mean": 0.17647,
+            "failure_mean": 0.266667,
+            "success_minus_failure": -0.090197
+          },
+          "dominant_score": {
+            "success_mean": 68.968882,
+            "failure_mean": 69.188033,
+            "success_minus_failure": -0.219151
+          },
+          "style_score_margin": {
+            "success_mean": 14.384376,
+            "failure_mean": 12.652013,
+            "success_minus_failure": 1.732363
+          }
+        },
+        "hypothesis_tests": [
+          {
+            "hypothesis": "success_needs_theme_persistence_and_industry_breadth",
+            "finding": "structural_bull_style_works_better_when_theme_persistence_and_breadth_are_higher",
+            "confidence": "low",
+            "support_score": 1,
+            "evidence_fields": {
+              "theme_persistence": {
+                "success_mean": 69.804076,
+                "failure_mean": 66.631833,
+                "success_minus_failure": 3.172243
+              },
+              "industry_breadth": {
+                "success_mean": 0.567371,
+                "failure_mean": 0.51614,
+                "success_minus_failure": 0.051231
+              },
+              "positive_industry_ratio": {
+                "success_mean": 0.713471,
+                "failure_mean": 0.66452,
+                "success_minus_failure": 0.048951
+              }
+            }
+          },
+          {
+            "hypothesis": "failure_when_single_theme_or_crowding_is_high",
+            "finding": "structural_bull_style_fails_more_often_when_crowding_or_price_extension_is_higher",
+            "confidence": "low",
+            "support_score": 1,
+            "evidence_fields": {
+              "crowding_score": {
+                "success_mean": 33.641653,
+                "failure_mean": 34.820133,
+                "success_minus_failure": -1.17848
+              },
+              "price_extension": {
+                "success_mean": 74.793229,
+                "failure_mean": 76.278867,
+                "success_minus_failure": -1.485638
+              },
+              "industry_breadth": {
+                "success_mean": 0.567371,
+                "failure_mean": 0.51614,
+                "success_minus_failure": 0.051231
+              }
+            }
+          },
+          {
+            "hypothesis": "failure_when_style_signal_has_low_incremental_information",
+            "finding": "structural_bull_style_filter_adds_less_when_style_pool_overlaps_baseline",
+            "confidence": "low",
+            "support_score": 2,
+            "evidence_fields": {
+              "baseline_style_overlap_count": {
+                "success_mean": 0.529412,
+                "failure_mean": 0.8,
+                "success_minus_failure": -0.270588
+              },
+              "baseline_style_overlap_ratio": {
+                "success_mean": 0.17647,
+                "failure_mean": 0.266667,
+                "success_minus_failure": -0.090197
+              }
+            }
+          }
+        ],
+        "case_examples": {
+          "success": [
+            {
+              "date": "20211012",
+              "context_date": "20210927",
+              "dominant_style": "growth",
+              "baseline_return": -0.163591,
+              "style_aware_return": 0.091935,
+              "relative_to_baseline": 0.255526,
+              "style_context": {
+                "industry_breadth": 0.1935,
+                "positive_industry_ratio": 0.4516,
+                "top_industry_ratio": 0.129,
+                "theme_persistence": 77.2251,
+                "crowding_score": 43.11,
+                "price_extension": 72.982,
+                "theme_risk_level": "low",
+                "trend": 0.73,
+                "breadth": 0.18,
+                "liquidity": 0.36,
+                "volatility": 0.73,
+                "pressure": 0.55
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 59.1618,
+                "style_score_margin": 3.6116,
+                "style_score_concentration": 0.275604,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250627",
+              "context_date": "20250619",
+              "dominant_style": "growth",
+              "baseline_return": -0.116972,
+              "style_aware_return": 0.072014,
+              "relative_to_baseline": 0.188986,
+              "style_context": {
+                "industry_breadth": 0.0645,
+                "positive_industry_ratio": 0.2258,
+                "top_industry_ratio": 0.2903,
+                "theme_persistence": 64.9322,
+                "crowding_score": 52.0165,
+                "price_extension": 46.6088,
+                "theme_risk_level": "medium",
+                "trend": 0.69,
+                "breadth": 0.12,
+                "liquidity": 0.44,
+                "volatility": 0.84,
+                "pressure": 0.57
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 71.1875,
+                "style_score_margin": 13.056,
+                "style_score_concentration": 0.308362,
+                "dominant_style_forward_rank": 2,
+                "best_future_style": "small_cap",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20260527",
+              "context_date": "20260519",
+              "dominant_style": "growth",
+              "baseline_return": -0.02539,
+              "style_aware_return": 0.14934,
+              "relative_to_baseline": 0.17473,
+              "style_context": {
+                "industry_breadth": 0.3226,
+                "positive_industry_ratio": 0.5484,
+                "top_industry_ratio": 0.2903,
+                "theme_persistence": 68.0171,
+                "crowding_score": 37.1114,
+                "price_extension": 89.7086,
+                "theme_risk_level": "low",
+                "trend": 0.75,
+                "breadth": 0.55,
+                "liquidity": 0.46,
+                "volatility": 0.76,
+                "pressure": 0.2
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 70.9551,
+                "style_score_margin": 16.5741,
+                "style_score_concentration": 0.320563,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20210610",
+              "context_date": "20210602",
+              "dominant_style": "growth",
+              "baseline_return": -0.013498,
+              "style_aware_return": 0.112449,
+              "relative_to_baseline": 0.125947,
+              "style_context": {
+                "industry_breadth": 0.5484,
+                "positive_industry_ratio": 0.9032,
+                "top_industry_ratio": 0.2581,
+                "theme_persistence": 57.3017,
+                "crowding_score": 24.4014,
+                "price_extension": 62.7194,
+                "theme_risk_level": "low",
+                "trend": 0.77,
+                "breadth": 0.28,
+                "liquidity": 0.6,
+                "volatility": 0.71,
+                "pressure": 0.49
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 73.0111,
+                "style_score_margin": 20.0108,
+                "style_score_concentration": 0.336472,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250725",
+              "context_date": "20250717",
+              "dominant_style": "growth",
+              "baseline_return": 0.084273,
+              "style_aware_return": 0.184339,
+              "relative_to_baseline": 0.100066,
+              "style_context": {
+                "industry_breadth": 0.871,
+                "positive_industry_ratio": 0.9355,
+                "top_industry_ratio": 0.2581,
+                "theme_persistence": 62.7605,
+                "crowding_score": 28.2396,
+                "price_extension": 72.9116,
+                "theme_risk_level": "low",
+                "trend": 0.79,
+                "breadth": 0.51,
+                "liquidity": 0.53,
+                "volatility": 0.84,
+                "pressure": 0.28
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 76.9102,
+                "style_score_margin": 21.8286,
+                "style_score_concentration": 0.350289,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ],
+          "failure": [
+            {
+              "date": "20210312",
+              "context_date": "20210304",
+              "dominant_style": "growth",
+              "baseline_return": -0.047848,
+              "style_aware_return": -0.166288,
+              "relative_to_baseline": -0.118441,
+              "style_context": {
+                "industry_breadth": 0.3871,
+                "positive_industry_ratio": 0.6452,
+                "top_industry_ratio": 0.1613,
+                "theme_persistence": 72.705,
+                "crowding_score": 28.4792,
+                "price_extension": 73.49,
+                "theme_risk_level": "low",
+                "trend": 0.7,
+                "breadth": 0.25,
+                "liquidity": 0.53,
+                "volatility": 0.55,
+                "pressure": 0.45
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 64.0928,
+                "style_score_margin": 6.6947,
+                "style_score_concentration": 0.289408,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20200812",
+              "context_date": "20200804",
+              "dominant_style": "growth",
+              "baseline_return": -0.006289,
+              "style_aware_return": -0.09835,
+              "relative_to_baseline": -0.09206,
+              "style_context": {
+                "industry_breadth": 0.7742,
+                "positive_industry_ratio": 0.7742,
+                "top_industry_ratio": 0.2258,
+                "theme_persistence": 70.9125,
+                "crowding_score": 36.8036,
+                "price_extension": 95.6437,
+                "theme_risk_level": "low",
+                "trend": 0.86,
+                "breadth": 0.32,
+                "liquidity": 0.5,
+                "volatility": 0.33,
+                "pressure": 0.54
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 66.2134,
+                "style_score_margin": 14.7787,
+                "style_score_concentration": 0.308684,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20260121",
+              "context_date": "20260113",
+              "dominant_style": "growth",
+              "baseline_return": 0.033458,
+              "style_aware_return": -0.014111,
+              "relative_to_baseline": -0.047569,
+              "style_context": {
+                "industry_breadth": 0.8387,
+                "positive_industry_ratio": 0.9677,
+                "top_industry_ratio": 0.2581,
+                "theme_persistence": 65.1177,
+                "crowding_score": 37.3628,
+                "price_extension": 98.3237,
+                "theme_risk_level": "low",
+                "trend": 0.81,
+                "breadth": 0.26,
+                "liquidity": 1.0,
+                "volatility": 0.76,
+                "pressure": 0.55
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 67.3569,
+                "style_score_margin": 8.431,
+                "style_score_concentration": 0.316529,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20240430",
+              "context_date": "20240422",
+              "dominant_style": "growth",
+              "baseline_return": 0.016199,
+              "style_aware_return": -0.024064,
+              "relative_to_baseline": -0.040263,
+              "style_context": {
+                "industry_breadth": 0.2581,
+                "positive_industry_ratio": 0.2581,
+                "top_industry_ratio": 0.2258,
+                "theme_persistence": 62.8194,
+                "crowding_score": 39.0035,
+                "price_extension": 56.6979,
+                "theme_risk_level": "low",
+                "trend": 0.75,
+                "breadth": 0.3,
+                "liquidity": 0.36,
+                "volatility": 0.67,
+                "pressure": 0.45
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 75.2833,
+                "style_score_margin": 16.7599,
+                "style_score_concentration": 0.310088,
+                "dominant_style_forward_rank": 3,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20230206",
+              "context_date": "20230120",
+              "dominant_style": "growth",
+              "baseline_return": 0.013758,
+              "style_aware_return": -0.020993,
+              "relative_to_baseline": -0.034752,
+              "style_context": {
+                "industry_breadth": 0.9355,
+                "positive_industry_ratio": 1.0,
+                "top_industry_ratio": 0.1613,
+                "theme_persistence": 59.3172,
+                "crowding_score": 25.708,
+                "price_extension": 67.8125,
+                "theme_risk_level": "low",
+                "trend": 0.81,
+                "breadth": 0.55,
+                "liquidity": 0.57,
+                "volatility": 0.82,
+                "pressure": 0.26
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 68.4008,
+                "style_score_margin": 12.1607,
+                "style_score_concentration": 0.309257,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ]
+        },
+        "constraints": {
+          "context_join_uses_same_day_or_prior_context": true,
+          "future_returns_used_only_for_case_labels": true,
+          "diagnostic_only": true
+        }
+      },
+      "60d": {
+        "case_counts": {
+          "total": 31,
+          "success": 12,
+          "failure": 19,
+          "success_rate": 0.387097
+        },
+        "success": {
+          "count": 12,
+          "mean_relative_to_baseline": 0.162876,
+          "mean_baseline_return": -0.025299,
+          "mean_style_aware_return": 0.137577,
+          "mean_style_ic": 0.4,
+          "dominant_style_distribution": {
+            "growth": 12
+          },
+          "theme_risk_level_distribution": {
+            "low": 11,
+            "medium": 1
+          },
+          "context_means": {
+            "industry_breadth": 0.631733,
+            "positive_industry_ratio": 0.774192,
+            "top_industry_ratio": 0.241942,
+            "theme_persistence": 65.9726,
+            "crowding_score": 33.204342,
+            "price_extension": 75.114775,
+            "trend": 0.7825,
+            "breadth": 0.273333,
+            "liquidity": 0.451667,
+            "volatility": 0.696667,
+            "pressure": 0.509167
+          },
+          "selection_diagnostics": {
+            "baseline_style_overlap_count": 0.5,
+            "baseline_style_overlap_ratio": 0.166666,
+            "style_score_margin": 14.26185,
+            "dominant_score": 69.3723
+          }
+        },
+        "failure": {
+          "count": 19,
+          "mean_relative_to_baseline": -0.054475,
+          "mean_baseline_return": -0.012302,
+          "mean_style_aware_return": -0.066776,
+          "mean_style_ic": -0.389474,
+          "dominant_style_distribution": {
+            "growth": 19
+          },
+          "theme_risk_level_distribution": {
+            "low": 16,
+            "medium": 3
+          },
+          "context_means": {
+            "industry_breadth": 0.499158,
+            "positive_industry_ratio": 0.645163,
+            "top_industry_ratio": 0.219011,
+            "theme_persistence": 69.813605,
+            "crowding_score": 34.665611,
+            "price_extension": 74.978,
+            "trend": 0.767368,
+            "breadth": 0.338947,
+            "liquidity": 0.438947,
+            "volatility": 0.675789,
+            "pressure": 0.429474
+          },
+          "selection_diagnostics": {
+            "baseline_style_overlap_count": 0.736842,
+            "baseline_style_overlap_ratio": 0.245614,
+            "style_score_margin": 12.978858,
+            "dominant_score": 68.782568
+          }
+        },
+        "context_differences": {
+          "breadth": {
+            "success_mean": 0.273333,
+            "failure_mean": 0.338947,
+            "success_minus_failure": -0.065614
+          },
+          "crowding_score": {
+            "success_mean": 33.204342,
+            "failure_mean": 34.665611,
+            "success_minus_failure": -1.461269
+          },
+          "industry_breadth": {
+            "success_mean": 0.631733,
+            "failure_mean": 0.499158,
+            "success_minus_failure": 0.132575
+          },
+          "liquidity": {
+            "success_mean": 0.451667,
+            "failure_mean": 0.438947,
+            "success_minus_failure": 0.01272
+          },
+          "positive_industry_ratio": {
+            "success_mean": 0.774192,
+            "failure_mean": 0.645163,
+            "success_minus_failure": 0.129029
+          },
+          "pressure": {
+            "success_mean": 0.509167,
+            "failure_mean": 0.429474,
+            "success_minus_failure": 0.079693
+          },
+          "price_extension": {
+            "success_mean": 75.114775,
+            "failure_mean": 74.978,
+            "success_minus_failure": 0.136775
+          },
+          "theme_persistence": {
+            "success_mean": 65.9726,
+            "failure_mean": 69.813605,
+            "success_minus_failure": -3.841005
+          },
+          "top_industry_ratio": {
+            "success_mean": 0.241942,
+            "failure_mean": 0.219011,
+            "success_minus_failure": 0.022931
+          },
+          "trend": {
+            "success_mean": 0.7825,
+            "failure_mean": 0.767368,
+            "success_minus_failure": 0.015132
+          },
+          "volatility": {
+            "success_mean": 0.696667,
+            "failure_mean": 0.675789,
+            "success_minus_failure": 0.020878
+          }
+        },
+        "selection_differences": {
+          "baseline_style_overlap_count": {
+            "success_mean": 0.5,
+            "failure_mean": 0.736842,
+            "success_minus_failure": -0.236842
+          },
+          "baseline_style_overlap_ratio": {
+            "success_mean": 0.166666,
+            "failure_mean": 0.245614,
+            "success_minus_failure": -0.078948
+          },
+          "dominant_score": {
+            "success_mean": 69.3723,
+            "failure_mean": 68.782568,
+            "success_minus_failure": 0.589732
+          },
+          "style_score_margin": {
+            "success_mean": 14.26185,
+            "failure_mean": 12.978858,
+            "success_minus_failure": 1.282992
+          }
+        },
+        "hypothesis_tests": [
+          {
+            "hypothesis": "success_needs_theme_persistence_and_industry_breadth",
+            "finding": "structural_bull_style_works_better_when_theme_persistence_and_breadth_are_higher",
+            "confidence": "low",
+            "support_score": 2,
+            "evidence_fields": {
+              "theme_persistence": {
+                "success_mean": 65.9726,
+                "failure_mean": 69.813605,
+                "success_minus_failure": -3.841005
+              },
+              "industry_breadth": {
+                "success_mean": 0.631733,
+                "failure_mean": 0.499158,
+                "success_minus_failure": 0.132575
+              },
+              "positive_industry_ratio": {
+                "success_mean": 0.774192,
+                "failure_mean": 0.645163,
+                "success_minus_failure": 0.129029
+              }
+            }
+          },
+          {
+            "hypothesis": "failure_when_single_theme_or_crowding_is_high",
+            "finding": "structural_bull_style_fails_more_often_when_crowding_or_price_extension_is_higher",
+            "confidence": "low",
+            "support_score": 1,
+            "evidence_fields": {
+              "crowding_score": {
+                "success_mean": 33.204342,
+                "failure_mean": 34.665611,
+                "success_minus_failure": -1.461269
+              },
+              "price_extension": {
+                "success_mean": 75.114775,
+                "failure_mean": 74.978,
+                "success_minus_failure": 0.136775
+              },
+              "industry_breadth": {
+                "success_mean": 0.631733,
+                "failure_mean": 0.499158,
+                "success_minus_failure": 0.132575
+              }
+            }
+          },
+          {
+            "hypothesis": "failure_when_style_signal_has_low_incremental_information",
+            "finding": "structural_bull_style_filter_adds_less_when_style_pool_overlaps_baseline",
+            "confidence": "low",
+            "support_score": 2,
+            "evidence_fields": {
+              "baseline_style_overlap_count": {
+                "success_mean": 0.5,
+                "failure_mean": 0.736842,
+                "success_minus_failure": -0.236842
+              },
+              "baseline_style_overlap_ratio": {
+                "success_mean": 0.166666,
+                "failure_mean": 0.245614,
+                "success_minus_failure": -0.078948
+              }
+            }
+          }
+        ],
+        "case_examples": {
+          "success": [
+            {
+              "date": "20250627",
+              "context_date": "20250619",
+              "dominant_style": "growth",
+              "baseline_return": -0.304512,
+              "style_aware_return": 0.398676,
+              "relative_to_baseline": 0.703189,
+              "style_context": {
+                "industry_breadth": 0.0645,
+                "positive_industry_ratio": 0.2258,
+                "top_industry_ratio": 0.2903,
+                "theme_persistence": 64.9322,
+                "crowding_score": 52.0165,
+                "price_extension": 46.6088,
+                "theme_risk_level": "medium",
+                "trend": 0.69,
+                "breadth": 0.12,
+                "liquidity": 0.44,
+                "volatility": 0.84,
+                "pressure": 0.57
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 71.1875,
+                "style_score_margin": 13.056,
+                "style_score_concentration": 0.308362,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250529",
+              "context_date": "20250521",
+              "dominant_style": "growth",
+              "baseline_return": -0.025677,
+              "style_aware_return": 0.302404,
+              "relative_to_baseline": 0.328081,
+              "style_context": {
+                "industry_breadth": 0.6452,
+                "positive_industry_ratio": 0.9032,
+                "top_industry_ratio": 0.2258,
+                "theme_persistence": 49.9883,
+                "crowding_score": 27.2997,
+                "price_extension": 67.7562,
+                "theme_risk_level": "low",
+                "trend": 0.74,
+                "breadth": 0.25,
+                "liquidity": 0.39,
+                "volatility": 0.84,
+                "pressure": 0.49
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 62.902,
+                "style_score_margin": 7.8311,
+                "style_score_concentration": 0.288574,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20260226",
+              "context_date": "20260210",
+              "dominant_style": "growth",
+              "baseline_return": -0.045778,
+              "style_aware_return": 0.256944,
+              "relative_to_baseline": 0.302721,
+              "style_context": {
+                "industry_breadth": 0.5484,
+                "positive_industry_ratio": 0.7097,
+                "top_industry_ratio": 0.2258,
+                "theme_persistence": 72.0317,
+                "crowding_score": 27.3875,
+                "price_extension": 74.4347,
+                "theme_risk_level": "low",
+                "trend": 0.72,
+                "breadth": 0.33,
+                "liquidity": 0.04,
+                "volatility": 0.71,
+                "pressure": 0.39
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 67.7899,
+                "style_score_margin": 13.345,
+                "style_score_concentration": 0.307074,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250725",
+              "context_date": "20250717",
+              "dominant_style": "growth",
+              "baseline_return": 0.248753,
+              "style_aware_return": 0.411883,
+              "relative_to_baseline": 0.16313,
+              "style_context": {
+                "industry_breadth": 0.871,
+                "positive_industry_ratio": 0.9355,
+                "top_industry_ratio": 0.2581,
+                "theme_persistence": 62.7605,
+                "crowding_score": 28.2396,
+                "price_extension": 72.9116,
+                "theme_risk_level": "low",
+                "trend": 0.79,
+                "breadth": 0.51,
+                "liquidity": 0.53,
+                "volatility": 0.84,
+                "pressure": 0.28
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 76.9102,
+                "style_score_margin": 21.8286,
+                "style_score_concentration": 0.350289,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20211012",
+              "context_date": "20210927",
+              "dominant_style": "growth",
+              "baseline_return": -0.142791,
+              "style_aware_return": 0.017718,
+              "relative_to_baseline": 0.160509,
+              "style_context": {
+                "industry_breadth": 0.1935,
+                "positive_industry_ratio": 0.4516,
+                "top_industry_ratio": 0.129,
+                "theme_persistence": 77.2251,
+                "crowding_score": 43.11,
+                "price_extension": 72.982,
+                "theme_risk_level": "low",
+                "trend": 0.73,
+                "breadth": 0.18,
+                "liquidity": 0.36,
+                "volatility": 0.73,
+                "pressure": 0.55
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 59.1618,
+                "style_score_margin": 3.6116,
+                "style_score_concentration": 0.275604,
+                "dominant_style_forward_rank": 2,
+                "best_future_style": "small_cap",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ],
+          "failure": [
+            {
+              "date": "20210108",
+              "context_date": "20201230",
+              "dominant_style": "growth",
+              "baseline_return": -0.107082,
+              "style_aware_return": -0.260998,
+              "relative_to_baseline": -0.153915,
+              "style_context": {
+                "industry_breadth": 0.2258,
+                "positive_industry_ratio": 0.2258,
+                "top_industry_ratio": 0.2903,
+                "theme_persistence": 67.3809,
+                "crowding_score": 51.5778,
+                "price_extension": 81.2849,
+                "theme_risk_level": "medium",
+                "trend": 0.74,
+                "breadth": 0.41,
+                "liquidity": 0.51,
+                "volatility": 0.72,
+                "pressure": 0.33
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 71.982,
+                "style_score_margin": 16.6798,
+                "style_score_concentration": 0.330224,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20201210",
+              "context_date": "20201202",
+              "dominant_style": "growth",
+              "baseline_return": 0.03452,
+              "style_aware_return": -0.083351,
+              "relative_to_baseline": -0.117871,
+              "style_context": {
+                "industry_breadth": 0.4194,
+                "positive_industry_ratio": 0.7742,
+                "top_industry_ratio": 0.1935,
+                "theme_persistence": 74.2066,
+                "crowding_score": 26.9634,
+                "price_extension": 73.6221,
+                "theme_risk_level": "low",
+                "trend": 0.76,
+                "breadth": 0.39,
+                "liquidity": 0.54,
+                "volatility": 0.69,
+                "pressure": 0.37
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 71.0252,
+                "style_score_margin": 13.8636,
+                "style_score_concentration": 0.327848,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20210205",
+              "context_date": "20210128",
+              "dominant_style": "growth",
+              "baseline_return": -0.089195,
+              "style_aware_return": -0.20611,
+              "relative_to_baseline": -0.116915,
+              "style_context": {
+                "industry_breadth": 0.5484,
+                "positive_industry_ratio": 0.5806,
+                "top_industry_ratio": 0.2258,
+                "theme_persistence": 75.4636,
+                "crowding_score": 27.61,
+                "price_extension": 68.8482,
+                "theme_risk_level": "low",
+                "trend": 0.8,
+                "breadth": 0.22,
+                "liquidity": 0.15,
+                "volatility": 0.63,
+                "pressure": 0.58
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 69.7946,
+                "style_score_margin": 14.3867,
+                "style_score_concentration": 0.326956,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20210709",
+              "context_date": "20210701",
+              "dominant_style": "growth",
+              "baseline_return": -0.013807,
+              "style_aware_return": -0.127711,
+              "relative_to_baseline": -0.113904,
+              "style_context": {
+                "industry_breadth": 0.3871,
+                "positive_industry_ratio": 0.4194,
+                "top_industry_ratio": 0.2258,
+                "theme_persistence": 59.9493,
+                "crowding_score": 32.5669,
+                "price_extension": 72.1088,
+                "theme_risk_level": "low",
+                "trend": 0.72,
+                "breadth": 0.23,
+                "liquidity": 0.46,
+                "volatility": 0.79,
+                "pressure": 0.49
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 70.4561,
+                "style_score_margin": 14.1822,
+                "style_score_concentration": 0.324499,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20200715",
+              "context_date": "20200707",
+              "dominant_style": "growth",
+              "baseline_return": 0.01263,
+              "style_aware_return": -0.096425,
+              "relative_to_baseline": -0.109055,
+              "style_context": {
+                "industry_breadth": 0.9677,
+                "positive_industry_ratio": 1.0,
+                "top_industry_ratio": 0.2903,
+                "theme_persistence": 84.4315,
+                "crowding_score": 36.8152,
+                "price_extension": 98.5066,
+                "theme_risk_level": "low",
+                "trend": 0.93,
+                "breadth": 0.52,
+                "liquidity": 1.0,
+                "volatility": 0.48,
+                "pressure": 0.41
+              },
+              "selection_diagnostics": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 78.1627,
+                "style_score_margin": 27.3635,
+                "style_score_concentration": 0.353304,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ]
+        },
+        "constraints": {
+          "context_join_uses_same_day_or_prior_context": true,
+          "future_returns_used_only_for_case_labels": true,
+          "diagnostic_only": true
+        }
+      }
+    }
+  },
+  "constraints": {
+    "research_attribution_only": true,
+    "uses_historical_style_context": true,
+    "structural_bull_only": true,
+    "context_join_uses_same_day_or_prior_context": true,
+    "style_preference_formula_unchanged": true,
+    "router_unchanged": true,
+    "alpha_model_unchanged": true,
+    "no_retraining": true,
+    "no_parameter_optimization": true,
+    "no_style_weight": true,
+    "no_etf_allocation": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_order_generation": true
+  }
+}

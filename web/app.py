@@ -362,6 +362,14 @@ def _read_historical_style_context_coverage_payload() -> dict[str, object] | Non
     return payload if isinstance(payload, dict) else None
 
 
+def _read_structural_style_context_attribution_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "structural_style_context_attribution.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 STRATEGY_BACKTEST_IDS = {
     "defensive-dividend": "红利低波 + 现金代理防守策略",
     "industry-momentum": "行业 ETF 动量轮动 + 511880 空仓机制",
@@ -1101,6 +1109,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/style/structural-bull-context-attribution",
+                    "返回 V3.5.6 结构牛风格上下文再归因，把历史风格上下文字段 join 回成功/失败样本，检验行业扩散、主题持续、拥挤和重叠度假设；只读研究归因。",
+                    "structural bull style context re-attribution",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/strategy-backtests/{strategy_id}",
                     "返回新增策略回测结果，strategy_id 支持 defensive-dividend、industry-momentum、four-asset、max-drawdown-batch、all-weather、equal-weight-reversion-basic、equal-weight-reversion-guarded、free-cash-flow-trend-half、free-cash-flow-trend-full、free-cash-flow-drawdown-rebound、free-cash-flow-buy-hold-480092、free-cash-flow-chinext-dynamic、free-cash-flow-chinext-reversion、free-cash-flow-chinext-balanced-reversion、free-cash-flow-ma-deviation、free-cash-flow-dual-ma-crossover。",
                     "strategy backtest artifact",
@@ -1182,6 +1197,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
             {"path": "/api/style/historical-context-coverage", "description": "读取 V3.5.5 历史风格上下文覆盖审计。"},
+            {"path": "/api/style/structural-bull-context-attribution", "description": "读取 V3.5.6 结构牛风格上下文再归因。"},
             {"path": "/strategy/defensive-dividend", "description": "查看红利低波 + 现金代理防守策略。"},
             {"path": "/strategy/industry-momentum", "description": "查看行业 ETF 动量轮动 + 511880 空仓机制策略。"},
             {"path": "/strategy/four-asset", "description": "查看股 / 债 / 金 / 现金四资产轮动策略。"},
@@ -1921,6 +1937,17 @@ def historical_style_context_coverage() -> dict:
     return payload
 
 
+@app.get("/api/style/structural-bull-context-attribution")
+def structural_style_context_attribution() -> dict:
+    payload = _read_structural_style_context_attribution_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Structural style context attribution artifact missing; run scripts/run_structural_style_context_attribution.py first.",
+        )
+    return payload
+
+
 @app.get("/api/strategy-backtests/{strategy_id}")
 def strategy_suite_backtest(strategy_id: str) -> dict:
     payload = _read_strategy_suite_backtest_payload(strategy_id)
@@ -1999,6 +2026,7 @@ def results_summary(
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
         historical_style_context_coverage = _read_historical_style_context_coverage_payload()
+        structural_style_context_attribution = _read_structural_style_context_attribution_payload()
         strategy_suite_backtests = _read_strategy_suite_summaries()
         if compact:
             etf_rotation_backtest = _compact_backtest_payload(etf_rotation_backtest)
@@ -2051,6 +2079,7 @@ def results_summary(
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,
             "historical_style_context_coverage": historical_style_context_coverage,
+            "structural_style_context_attribution": structural_style_context_attribution,
             "strategy_suite_backtests": strategy_suite_backtests,
             "shadow_backtest": shadow_backtest,
             "regime_attribution": regime_attribution,
