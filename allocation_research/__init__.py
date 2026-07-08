@@ -8,6 +8,11 @@ from allocation_research.allocation_research_evidence_freeze import (
     validate_allocation_research_evidence_freeze,
     write_allocation_research_evidence_freeze,
 )
+from allocation_research.allocation_research_execution_framework import (
+    build_allocation_research_execution_framework,
+    validate_allocation_research_execution_framework,
+    write_allocation_research_execution_framework,
+)
 from allocation_research.allocation_research_schema import build_allocation_research_schema
 from allocation_research.allocation_hypothesis_audit import (
     build_allocation_hypothesis_framework,
@@ -61,6 +66,7 @@ __all__ = [
     "build_allocation_hypothesis_schema",
     "build_allocation_research_architecture",
     "build_allocation_research_evidence_freeze",
+    "build_allocation_research_execution_framework",
     "build_allocation_research_schema",
     "build_allocation_validation_plan",
     "build_allocation_validation_plan_schema",
@@ -72,6 +78,7 @@ __all__ = [
     "validate_allocation_hypothesis_framework",
     "validate_allocation_research_boundary",
     "validate_allocation_research_evidence_freeze",
+    "validate_allocation_research_execution_framework",
     "validate_allocation_validation_plan",
     "validate_research_candidate_deep_validation",
     "validate_research_candidate_promotion_gate",
@@ -81,6 +88,7 @@ __all__ = [
     "write_allocation_hypothesis_framework",
     "write_allocation_research_architecture",
     "write_allocation_research_evidence_freeze",
+    "write_allocation_research_execution_framework",
     "write_allocation_validation_plan",
     "write_research_candidate_deep_validation",
     "write_research_candidate_promotion_gate",

@@ -1303,6 +1303,37 @@
           <p class="result-note" id="allocationEvidenceConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="执行 V10.1 配置研究执行框架：只基于 V9.9 冻结证据和冻结 V6/V7/V8 产物生成 H2/H4 可复现实验运行记录、run_id 与 input_hash；不选资产、不映射 ETF、不生成权重、不优化、不交易。">配置研究执行框架</h2>
+            <span class="panel-kicker">V10.1</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>执行状态</span>
+              <strong id="allocationExecutionStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>运行记录</span>
+              <strong id="allocationExecutionRuns">--</strong>
+            </div>
+            <div class="result-row">
+              <span>支持</span>
+              <strong id="allocationExecutionSupported">--</strong>
+            </div>
+            <div class="result-row">
+              <span>不确定</span>
+              <strong id="allocationExecutionInconclusive">--</strong>
+            </div>
+            <div class="result-row">
+              <span>输出边界</span>
+              <strong id="allocationExecutionBoundary">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="allocationExecutionRows"></div>
+          <p class="result-note" id="allocationExecutionConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -1393,7 +1424,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-allocation-evidence-freeze-1"></script>
+    <script src="/static/dashboard.js?v=20260708-allocation-execution-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

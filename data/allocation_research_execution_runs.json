@@ -1,0 +1,328 @@
+{
+  "metadata": {
+    "engine": "V10.1 Allocation Research Execution Framework",
+    "generated_at": "2026-07-08T20:53:23+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v9_9_evidence_freeze": "data/allocation_research_evidence_freeze.json",
+      "v6_risk": "data/two_axis_context_validation.json",
+      "v7_opportunity": "data/opportunity_feature_attribution.json",
+      "v8_context": "data/research_decision_context.json",
+      "v8_scenario": "data/research_decision_scenario_audit.json",
+      "v8_contradiction": "data/research_decision_contradiction.json"
+    },
+    "input_hashes": {
+      "v9_9_evidence_freeze": "d796cbadbe2d21170347b16acef4192411007b8bdc59dd94e6a50386e2e978e1",
+      "v6_risk": "12cf495b73bd83f85e0c2df7e7ce44cd6aafe1c119a376efb1106d49186feffb",
+      "v7_opportunity": "2c164d60b7b21c30cddd9ceca2b5edf67ec1844228a81344ac59870f93b8ecc9",
+      "v8_context": "37abb2e32352e7742f682f377e491bc9b5bab29f0e9df36bbab87fc49d673a28",
+      "v8_scenario": "03ed2fa697dc72f36b87ba4607f7c6fdd640fbe8d275d5e9d9fccdb026c9fdf2",
+      "v8_contradiction": "50ac212852ad8ce091add217a41236f1ddccb23073ab0c6ab64cd61e109d44ca"
+    },
+    "purpose": "Execute frozen allocation research experiments as reproducible research records without producing asset, ETF, weight, allocation, optimization, or trade outputs."
+  },
+  "summary": {
+    "execution_phase": "V10.1",
+    "source_research_state": "frozen",
+    "run_count": 2,
+    "completed_run_count": 2,
+    "supported_count": 1,
+    "inconclusive_count": 1,
+    "unsupported_count": 0,
+    "promotion_allowed": false,
+    "strategy_promotion": false,
+    "allocation_ready": false,
+    "investable_output": false,
+    "investable_output_generated": false,
+    "ready_for_asset_selection": false,
+    "ready_for_etf_mapping": false,
+    "ready_for_weight_generation": false,
+    "ready_for_optimization": false,
+    "ready_for_trade": false,
+    "conclusion": "allocation_research_execution_records_completed_no_strategy_no_allocation",
+    "key_read": "V10.1 creates reproducible research execution records for H2 and H4 only; H2 remains inconclusive and H4 supported research-only. No allocation or trading output is ready."
+  },
+  "execution_runs": [
+    {
+      "experiment_id": "H2",
+      "run_id": "V10_1_H2_20260707",
+      "input_hash": "7f732b278a937c8145188ae726cdb8beb6feaaad67dd3dd013bda80187c13fdf",
+      "status": "completed",
+      "result": "inconclusive",
+      "research_only": true,
+      "source_hypothesis_status": "inconclusive",
+      "execution_scope": "frozen_evidence_replay",
+      "evidence_checks": {
+        "risk_axis_status": "risk_axis_visible_opportunity_axis_weak",
+        "risk_spread": 0.337209,
+        "opportunity_spread": 0.162791,
+        "opportunity_status": "feature_attribution_not_ready_for_opportunity_score",
+        "scenario_low_consistency_count": 3,
+        "scenario_medium_consistency_count": 3,
+        "risk_axis_lag_case_count": 1,
+        "result_basis": "frozen_evidence_supports_risk_attention_but_not_cross_scenario_stability"
+      },
+      "promotion_allowed": false,
+      "strategy_promotion": false,
+      "allocation_ready": false,
+      "investable_output": false,
+      "boundary": "Research execution record only; do not convert to assets, ETFs, weights, allocation, optimization, or trades."
+    },
+    {
+      "experiment_id": "H4",
+      "run_id": "V10_1_H4_20260707",
+      "input_hash": "de9a122684f7640aed3b09b34bad68feb3b94eb124cdb2ded6e63404e4367471",
+      "status": "completed",
+      "result": "supported",
+      "research_only": true,
+      "source_hypothesis_status": "supported_research_only",
+      "execution_scope": "frozen_evidence_replay",
+      "evidence_checks": {
+        "research_context": "risk_controlled_opportunity_watch",
+        "focus_scenario_count": 5,
+        "attribution_count": 5,
+        "contradiction_type_count": 5,
+        "result_basis": "frozen_contradiction_attribution_supports_research_gate_discipline_only"
+      },
+      "promotion_allowed": false,
+      "strategy_promotion": false,
+      "allocation_ready": false,
+      "investable_output": false,
+      "boundary": "Research execution record only; do not convert to assets, ETFs, weights, allocation, optimization, or trades."
+    }
+  ],
+  "source_layer_evidence": {
+    "v9_9_summary": {
+      "research_state": "frozen",
+      "evidence_scope": "V9.1-V9.8",
+      "hypothesis_count": 4,
+      "retained_research_direction_count": 2,
+      "paused_research_direction_count": 2,
+      "supported_research_only_count": 1,
+      "inconclusive_research_count": 1,
+      "promotion_allowed": false,
+      "strategy_promotion": false,
+      "allocation_ready": false,
+      "investable_output": false,
+      "investable_output_generated": false,
+      "ready_for_asset_selection": false,
+      "ready_for_etf_mapping": false,
+      "ready_for_weight_generation": false,
+      "ready_for_optimization": false,
+      "ready_for_trade": false,
+      "conclusion": "allocation_research_evidence_frozen_no_strategy_no_allocation",
+      "key_read": "V9 evidence is frozen: H2 and H4 remain research directions only; H1 and H3 are paused; no allocation, strategy, optimization, or trade output is ready."
+    },
+    "v6_risk_summary": {
+      "joined_sample_count": 115,
+      "two_axis_distribution": {
+        "AVOID": {
+          "count": 16,
+          "share": 0.13913
+        },
+        "PARTICIPATE": {
+          "count": 43,
+          "share": 0.373913
+        },
+        "PROTECT_BUT_PARTICIPATE": {
+          "count": 4,
+          "share": 0.034783
+        },
+        "WAIT": {
+          "count": 52,
+          "share": 0.452174
+        }
+      },
+      "two_axis_risk_spread": 0.337209,
+      "two_axis_opportunity_spread": 0.162791,
+      "exposure_level_risk_spread": 0.0,
+      "decision_mode_risk_spread": 0.357143,
+      "participate_opportunity_lift": 0.014965,
+      "avoid_risk_lift": 0.023913,
+      "protect_but_participate_risk_lift": 0.273913,
+      "ready_for_mapper_change": false,
+      "ready_for_exposure_change": false,
+      "conclusion": "risk_axis_visible_opportunity_axis_weak",
+      "review_items": [
+        {
+          "type": "participation_axis_opportunity_lift_weak",
+          "severity": "high",
+          "evidence": {
+            "lift": 0.014965
+          }
+        },
+        {
+          "type": "two_axis_risk_spread_not_better_than_existing_labels",
+          "severity": "medium",
+          "evidence": {
+            "minus_exposure": 0.337209,
+            "minus_decision": -0.019934
+          }
+        },
+        {
+          "type": "two_axis_context_research_only_do_not_modify_exposure",
+          "severity": "high",
+          "evidence": {
+            "reason": "V6.5 audits fixed V6.3 scores only; no mapper, exposure, ETF, weight, or trade change."
+          }
+        }
+      ],
+      "review_item_count": 3,
+      "key_read": "The two-axis map is a research-only environment map built from fixed V6.3 participation/protection buckets."
+    },
+    "v7_opportunity_summary": {
+      "source_result_count": 42,
+      "attribution_count": 42,
+      "retention_counts": {
+        "insufficient": 6,
+        "reject_for_now": 18,
+        "research_candidate": 1,
+        "watch": 17
+      },
+      "regime_consistency_counts": {
+        "consistent_context_signal": 7,
+        "mixed_or_conflicting_context_signal": 23,
+        "no_regime_signal": 6,
+        "single_context_signal": 6
+      },
+      "ready_for_scoring": false,
+      "ready_for_ranking": false,
+      "ready_for_allocation": false,
+      "ready_for_trade": false,
+      "conclusion": "feature_attribution_not_ready_for_opportunity_score",
+      "key_read": "V7.4 keeps feature attribution research-only; retention labels are not scores, weights, ranks, or trading instructions."
+    },
+    "v8_context_summary": {
+      "decision_context": "risk_controlled_opportunity_watch",
+      "research_posture": "observe_without_selection",
+      "risk_context_status": "risk_axis_visible_opportunity_axis_weak",
+      "opportunity_context_status": "feature_attribution_not_ready_for_opportunity_score",
+      "retained_context_layer_count": 3,
+      "opportunity_research_candidate_count": 1,
+      "opportunity_watch_count": 17,
+      "ready_for_scoring": false,
+      "ready_for_ranking": false,
+      "ready_for_allocation": false,
+      "ready_for_trade": false,
+      "key_read": "V8.1 links V6 risk context and V7 opportunity research for explanation only; it is not a decision rule, ranker, allocation model, or trading signal."
+    },
+    "v8_scenario_summary": {
+      "base_decision_context": "risk_controlled_opportunity_watch",
+      "base_research_posture": "observe_without_selection",
+      "scenario_count": 6,
+      "covered_scenario_count": 6,
+      "consistency_counts": {
+        "low": 3,
+        "medium": 3
+      },
+      "dominant_context_counts": {
+        "PARTICIPATE": 1,
+        "WAIT": 5
+      },
+      "average_transition_rate": 0.422896,
+      "contradiction_case_count": 16,
+      "missing_context_case_count": 0,
+      "ready_for_scoring": false,
+      "ready_for_ranking": false,
+      "ready_for_allocation": false,
+      "ready_for_trade": false,
+      "conclusion": "scenario_explanation_audit_only_no_strategy",
+      "key_read": "V8.2 checks historical explanation consistency only; it does not use returns, produce rankings, allocate assets, or trade."
+    },
+    "v8_contradiction_summary": {
+      "base_decision_context": "risk_controlled_opportunity_watch",
+      "base_research_posture": "observe_without_selection",
+      "scenario_count": 6,
+      "focus_scenario_count": 5,
+      "attribution_count": 5,
+      "contradiction_type_counts": {
+        "monitor_only_no_primary_contradiction": 1,
+        "participation_context_during_bear": 1,
+        "persistent_wait_during_style_divergence": 1,
+        "rapid_context_switching": 1,
+        "structural_market_opportunity_not_captured": 1
+      },
+      "possible_reason_counts": {
+        "macro_context_transition_noise": 1,
+        "opportunity_axis_weak_and_width_index_divergence": 1,
+        "risk_axis_lag_or_structural_rotation_missed": 1,
+        "scenario_not_primary_failure_case": 1,
+        "style_divergence_not_resolved_by_current_context": 1
+      },
+      "opportunity_context_status": "feature_attribution_not_ready_for_opportunity_score",
+      "ready_for_scoring": false,
+      "ready_for_ranking": false,
+      "ready_for_allocation": false,
+      "ready_for_trade": false,
+      "conclusion": "contradiction_attribution_research_only_no_rule_change",
+      "key_read": "V8.3 explains failure modes in low-consistency scenarios but does not change models, states, thresholds, allocations, or trades."
+    }
+  },
+  "time_safety": {
+    "uses_frozen_v9_9_evidence_only": true,
+    "uses_frozen_v6_v7_v8_artifacts_only": true,
+    "input_hashes_recorded": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "does_not_run_market_backtest": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "research_only": true,
+    "execution_framework_only": true,
+    "uses_frozen_v9_9_evidence_only": true,
+    "uses_frozen_v6_v7_v8_artifacts_only": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_run_count": 2,
+    "checked_constraints": [
+      "research_only",
+      "execution_framework_only",
+      "uses_frozen_v9_9_evidence_only",
+      "uses_frozen_v6_v7_v8_artifacts_only",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}

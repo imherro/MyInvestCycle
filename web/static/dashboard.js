@@ -1669,6 +1669,9 @@ function setResultsPanel(results) {
   const allocationEvidenceSummary = allocationEvidenceFreeze.summary || {};
   const allocationEvidenceStatus = allocationEvidenceFreeze.hypothesis_status || {};
   const allocationEvidenceBoundarySummary = allocationEvidenceFreeze.decision_boundary_summary || {};
+  const allocationExecution = results.allocation_research_execution || {};
+  const allocationExecutionSummary = allocationExecution.summary || {};
+  const allocationExecutionRows = Array.isArray(allocationExecution.execution_runs) ? allocationExecution.execution_runs : [];
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -3836,6 +3839,43 @@ function setResultsPanel(results) {
     allocationEvidenceFreeze.metadata
       ? `V9.9 冻结 V9.1-V9.8 证据：保留研究方向 ${integerText(allocationEvidenceSummary.retained_research_direction_count)} 个，暂停 ${integerText(allocationEvidenceSummary.paused_research_direction_count)} 个；H2 为不确定研究方向，H4 为研究支持但不可策略化。禁止继续增加状态、假设或解释层：${allocationEvidenceProhibited.slice(0, 3).map((item) => escapeHtml(item)).join(" / ") || "--"}。`
       : "V9.9 配置研究证据冻结尚未生成。"
+  );
+
+  const allocationExecutionReadyFlagsOff =
+    allocationExecutionSummary.promotion_allowed === false &&
+    allocationExecutionSummary.strategy_promotion === false &&
+    allocationExecutionSummary.allocation_ready === false &&
+    allocationExecutionSummary.investable_output === false &&
+    allocationExecutionSummary.investable_output_generated === false &&
+    allocationExecutionSummary.ready_for_asset_selection === false &&
+    allocationExecutionSummary.ready_for_etf_mapping === false &&
+    allocationExecutionSummary.ready_for_weight_generation === false &&
+    allocationExecutionSummary.ready_for_optimization === false &&
+    allocationExecutionSummary.ready_for_trade === false;
+  const allocationExecutionResultLabel = (result) => ({
+    supported: "支持",
+    inconclusive: "不确定",
+    unsupported: "不支持",
+  }[result] || result || "--");
+  setText("allocationExecutionStatus", allocationExecutionSummary.completed_run_count === allocationExecutionSummary.run_count ? "已完成" : "--");
+  setText("allocationExecutionRuns", integerText(allocationExecutionSummary.run_count));
+  setText("allocationExecutionSupported", integerText(allocationExecutionSummary.supported_count));
+  setText("allocationExecutionInconclusive", integerText(allocationExecutionSummary.inconclusive_count));
+  setText("allocationExecutionBoundary", allocationExecutionReadyFlagsOff ? "只记录实验/不配置/不优化/不交易" : "需复核");
+  setHtml("allocationExecutionRows", allocationExecutionRows
+    .map((row) => `
+      <div class="duration-row">
+        <span>${escapeHtml(row.experiment_id || "--")} · ${escapeHtml(row.run_id || "--")}</span>
+        <strong>${escapeHtml(allocationExecutionResultLabel(row.result))}</strong>
+        <em>${escapeHtml(row.execution_scope || "--")} · hash ${escapeHtml(String(row.input_hash || "").slice(0, 10))}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "allocationExecutionConclusion",
+    allocationExecution.metadata
+      ? `V10.1 只执行冻结研究实验记录：运行 ${integerText(allocationExecutionSummary.run_count)} 条，完成 ${integerText(allocationExecutionSummary.completed_run_count)} 条；H2 仍不确定，H4 为研究支持。input_hash 已记录，仍不生成资产、ETF、权重、配置、优化或交易。`
+      : "V10.1 配置研究执行框架尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
