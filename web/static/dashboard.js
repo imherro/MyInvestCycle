@@ -503,6 +503,24 @@ function marketPhaseValidationLabel(value) {
   return labels[value] || value || "--";
 }
 
+function phaseEffectivenessVerdictLabel(value) {
+  const labels = {
+    underperform: "暂未优于旧结构",
+    outperform: "优于旧结构",
+  };
+  return labels[value] || value || "--";
+}
+
+function phaseReviewItemLabel(value) {
+  const labels = {
+    phase_not_better_than_structural: "Phase 未优于旧结构",
+    expansion_sample_too_sparse: "扩张样本太少",
+    late_cycle_not_risk_enriched: "后期风险未富集",
+    bear_period_phase_miss_cases: "熊市阶段漏判",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1102,6 +1120,9 @@ function setResultsPanel(results) {
   const marketPhaseCurrent = marketPhase.current || {};
   const marketPhaseHistory = marketPhase.historical_summary || {};
   const marketPhaseValidation = marketPhaseHistory.future_validation || {};
+  const phaseEffectiveness = results.phase_effectiveness || {};
+  const phaseEffectivenessSummary = phaseEffectiveness.summary || {};
+  const phaseModelComparison = phaseEffectivenessSummary.model_comparison || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -1675,6 +1696,41 @@ function setResultsPanel(results) {
     policyEffectiveness.metadata
       ? `V4.5 固定 V4.4 规则做事后审计：${policyUsefulnessLabel(policyUsefulness.status)}，主模式 ${opportunityRiskPolicyModeLabel(policyUsefulness.top_policy_mode)} 占 ${percentText(policyUsefulness.top_policy_mode_share)}，矛盾率 ${percentText(policyContradictionAudit.contradiction_rate)}。该层只验证解释力，不调阈值、不输出仓位或交易。`
       : "V4.5 政策解释力审计尚未生成。"
+  );
+
+  setText("phaseEffectivenessRows", integerText(phaseEffectivenessSummary.usable_rows));
+  setText("phaseEffectivenessSpread", percentText(phaseModelComparison.phase_high_risk_rate_spread));
+  setText("phaseEffectivenessStructuralSpread", percentText(phaseModelComparison.structural_high_risk_rate_spread));
+  setText("phaseEffectivenessReviewItems", integerText(phaseEffectivenessSummary.review_item_count));
+  setHtml("phaseEffectivenessReviewList", (phaseEffectivenessSummary.review_items || [])
+    .slice(0, 5)
+    .map(
+      (item) => `
+        <div class="alpha-source-row">
+          <span>${phaseReviewItemLabel(item.type)}</span>
+          <strong>${item.severity || "--"}</strong>
+        </div>
+      `
+    )
+    .join(""));
+  setHtml("phaseEffectivenessPeriodCases", (phaseEffectiveness.period_error_cases || [])
+    .filter((period) => (period.error_case_count || 0) > 0)
+    .slice(0, 5)
+    .map(
+      (period) => `
+        <div class="duration-row">
+          <span>${escapeHtml(period.label || period.period || "--")}</span>
+          <strong>${integerText(period.error_case_count)}</strong>
+          <em>${integerText(period.usable_rows)} 次样本</em>
+        </div>
+      `
+    )
+    .join(""));
+  setText(
+    "phaseEffectivenessConclusion",
+    phaseEffectiveness.metadata
+      ? `V4.7 固定 V4.6 阶段规则做审计：${phaseEffectivenessVerdictLabel(phaseModelComparison.phase_vs_structural)}，Phase 风险区分 ${percentText(phaseModelComparison.phase_high_risk_rate_spread)}，旧结构 ${percentText(phaseModelComparison.structural_high_risk_rate_spread)}，复核项 ${integerText(phaseEffectivenessSummary.review_item_count)} 个。该层不调阈值、不输出仓位或交易。`
+      : "V4.7 阶段解释力复核尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

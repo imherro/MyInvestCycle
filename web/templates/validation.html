@@ -232,6 +232,34 @@
           <p class="result-note" id="policyEffectivenessConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="固定 V4.6 市场阶段规则不变，审计 phase 是否比旧 structural_state 更能区分未来风险，并列出阶段转移异常和重点错误案例；不调阈值、不输出仓位或交易。">阶段解释力复核</h2>
+            <span class="panel-kicker">V4.7</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>样本</span>
+              <strong id="phaseEffectivenessRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>Phase 区分</span>
+              <strong id="phaseEffectivenessSpread">--</strong>
+            </div>
+            <div class="result-row">
+              <span>结构区分</span>
+              <strong id="phaseEffectivenessStructuralSpread">--</strong>
+            </div>
+            <div class="result-row">
+              <span>复核项</span>
+              <strong id="phaseEffectivenessReviewItems">--</strong>
+            </div>
+          </div>
+          <div class="alpha-source-list" id="phaseEffectivenessReviewList"></div>
+          <div class="duration-list" id="phaseEffectivenessPeriodCases"></div>
+          <p class="result-note" id="phaseEffectivenessConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -322,7 +350,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-market-phase-1"></script>
+    <script src="/static/dashboard.js?v=20260708-phase-effectiveness-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
