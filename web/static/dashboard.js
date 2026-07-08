@@ -1665,6 +1665,10 @@ function setResultsPanel(results) {
   const allocationResearchSummary = allocationResearch.summary || {};
   const allocationResearchSchema = allocationResearch.schema || {};
   const allocationResearchEvidence = allocationResearch.source_layer_evidence || {};
+  const allocationHypotheses = results.allocation_research_hypotheses || {};
+  const allocationHypothesesSummary = allocationHypotheses.summary || {};
+  const allocationHypothesesSchema = allocationHypotheses.schema || {};
+  const allocationHypothesisRows = Array.isArray(allocationHypotheses.hypotheses) ? allocationHypotheses.hypotheses : [];
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3482,6 +3486,48 @@ function setResultsPanel(results) {
     allocationResearch.metadata
       ? `V9.1 只定义未来配置研究的架构边界：允许使用冻结 V6/V7/V8 作为输入，但必须先补齐 ${allocationFutureEvidence.map((item) => escapeHtml(item)).join(" / ") || "未来证据"}，当前结论为 ${escapeHtml(allocationResearchSummary.conclusion || "--")}。禁止输出：${allocationForbiddenOutputs.map((item) => escapeHtml(item)).join(" / ") || "--"}。`
       : "V9.1 配置研究架构基础尚未生成。"
+  );
+
+  const allocationHypothesisReadyFlagsOff =
+    allocationHypothesesSummary.hypothesis_framework_ready === false &&
+    allocationHypothesesSummary.ready_for_asset_selection === false &&
+    allocationHypothesesSummary.ready_for_etf_mapping === false &&
+    allocationHypothesesSummary.ready_for_weight_generation === false &&
+    allocationHypothesesSummary.ready_for_backtest === false &&
+    allocationHypothesesSummary.ready_for_optimization === false &&
+    allocationHypothesesSummary.ready_for_trade === false;
+  const allocationHypothesisValidation = Array.isArray(allocationHypothesesSchema.required_validation)
+    ? allocationHypothesesSchema.required_validation
+    : [];
+  const allocationHypothesisForbidden = Array.isArray(allocationHypothesesSchema.forbidden_outputs)
+    ? allocationHypothesesSchema.forbidden_outputs
+    : [];
+  setText("allocationHypothesisStatus", allocationHypothesesSummary.hypothesis_framework_ready === false ? "未验证" : "--");
+  setText(
+    "allocationHypothesisCount",
+    allocationHypothesesSummary.hypothesis_count != null
+      ? `${integerText(allocationHypothesesSummary.hypothesis_count)} 条`
+      : "--"
+  );
+  setText(
+    "allocationHypothesisValidation",
+    allocationHypothesisValidation.length ? `${integerText(allocationHypothesisValidation.length)} 项` : "--"
+  );
+  setText("allocationHypothesisBoundary", allocationHypothesisReadyFlagsOff ? "不选资产/不映射ETF/不生成权重/不回测/不交易" : "需复核");
+  setHtml("allocationHypothesisRows", allocationHypothesisRows
+    .map((row) => `
+      <div class="duration-row">
+        <span>${escapeHtml(row.id || "--")} · ${escapeHtml(row.name || "--")}</span>
+        <strong>${escapeHtml(row.status || "--")}</strong>
+        <em>${escapeHtml(row.research_question || "")}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "allocationHypothesisConclusion",
+    allocationHypotheses.metadata
+      ? `V9.2 只定义 ${integerText(allocationHypothesesSummary.hypothesis_count)} 条未来配置研究假设，全部保持 ${escapeHtml(allocationHypothesesSchema.required_status || "unvalidated")}；后续必须先完成 ${allocationHypothesisValidation.map((item) => escapeHtml(item)).join(" / ") || "验证"}。禁止输出：${allocationHypothesisForbidden.map((item) => escapeHtml(item)).join(" / ") || "--"}。`
+      : "V9.2 配置研究假设框架尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

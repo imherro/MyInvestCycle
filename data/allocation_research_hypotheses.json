@@ -1,0 +1,279 @@
+{
+  "metadata": {
+    "engine": "V9.2 Allocation Research Hypothesis Framework",
+    "generated_at": "2026-07-08T19:50:10+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v9_1_allocation_research_architecture": "data/allocation_research_architecture.json"
+    },
+    "purpose": "Define unvalidated future allocation research hypotheses; no assets, ETFs, weights, backtests, optimization, or trades."
+  },
+  "summary": {
+    "source_context": "risk_controlled_opportunity_watch",
+    "source_conclusion": "allocation_research_architecture_defined_not_ready",
+    "hypothesis_count": 4,
+    "unvalidated_count": 4,
+    "validated_count": 0,
+    "hypothesis_framework_ready": false,
+    "ready_for_asset_selection": false,
+    "ready_for_etf_mapping": false,
+    "ready_for_weight_generation": false,
+    "ready_for_backtest": false,
+    "ready_for_optimization": false,
+    "ready_for_trade": false,
+    "conclusion": "allocation_hypothesis_framework_defined_unvalidated",
+    "key_read": "V9.2 defines research hypotheses only; every hypothesis must pass future out-of-sample, drawdown, contradiction, and time-safety audits before any later candidate work."
+  },
+  "schema": {
+    "schema_version": "V9.2",
+    "purpose": "Define unvalidated allocation research hypotheses without producing investable outputs.",
+    "allowed_input": {
+      "field": "allocation_research_architecture",
+      "source": "V9.1 Allocation Research Architecture Foundation",
+      "description": "Use only V9.1 boundary, frozen V6/V7/V8 source evidence, readiness flags, and forbidden outputs."
+    },
+    "hypothesis_fields": [
+      "id",
+      "name",
+      "research_question",
+      "hypothesis",
+      "source_context",
+      "required_validation",
+      "invalidation_conditions",
+      "status",
+      "forbidden_interpretation"
+    ],
+    "required_status": "unvalidated",
+    "required_validation": [
+      "out_of_sample_test",
+      "drawdown_audit",
+      "contradiction_audit",
+      "time_safety_audit",
+      "research_only_report"
+    ],
+    "forbidden_outputs": [
+      "portfolio_weight",
+      "asset_selection",
+      "etf_mapping",
+      "top_n",
+      "exposure_percent",
+      "buy_signal",
+      "sell_signal",
+      "rebalance_instruction",
+      "broker_order",
+      "backtest_result",
+      "optimization"
+    ]
+  },
+  "source_layer_evidence": {
+    "v9_1_summary": {
+      "environment_context": "risk_controlled_opportunity_watch",
+      "risk_state": "risk_axis_visible_opportunity_axis_weak",
+      "opportunity_state": "feature_attribution_not_ready_for_opportunity_score",
+      "research_interpretation_state": "contradiction_attribution_research_only_no_rule_change",
+      "scenario_consistency_counts": {
+        "low": 3,
+        "medium": 3
+      },
+      "allocation_research_ready": false,
+      "ready_for_asset_selection": false,
+      "ready_for_etf_mapping": false,
+      "ready_for_weight_generation": false,
+      "ready_for_backtest": false,
+      "ready_for_trade": false,
+      "conclusion": "allocation_research_architecture_defined_not_ready",
+      "key_read": "V9.1 defines the allocation research boundary only; it does not generate assets, ETF mappings, weights, backtests, or trades."
+    },
+    "v6_v7_v8_evidence": {
+      "v6_risk_context": {
+        "conclusion": "risk_axis_visible_opportunity_axis_weak",
+        "two_axis_risk_spread": 0.337209,
+        "two_axis_opportunity_spread": 0.162791
+      },
+      "v7_opportunity_research": {
+        "conclusion": "feature_attribution_not_ready_for_opportunity_score",
+        "retention_counts": {
+          "insufficient": 6,
+          "reject_for_now": 18,
+          "research_candidate": 1,
+          "watch": 17
+        }
+      },
+      "v8_research_interpretation": {
+        "decision_context": "risk_controlled_opportunity_watch",
+        "scenario_consistency_counts": {
+          "low": 3,
+          "medium": 3
+        },
+        "contradiction_type_counts": {
+          "monitor_only_no_primary_contradiction": 1,
+          "participation_context_during_bear": 1,
+          "persistent_wait_during_style_divergence": 1,
+          "rapid_context_switching": 1,
+          "structural_market_opportunity_not_captured": 1
+        }
+      }
+    }
+  },
+  "hypotheses": [
+    {
+      "id": "H1",
+      "name": "risk_relief_opportunity_readiness",
+      "research_question": "Can risk relief and improving opportunity evidence jointly explain better future participation research outcomes?",
+      "hypothesis": "When frozen risk evidence weakens and opportunity research evidence improves from watch status toward validated candidates, future research may test a more constructive participation posture.",
+      "source_context": [
+        "V6 risk axis",
+        "V7 opportunity readiness",
+        "V8 risk controlled opportunity watch"
+      ],
+      "required_validation": [
+        "out_of_sample_test",
+        "drawdown_audit",
+        "contradiction_audit",
+        "time_safety_audit",
+        "research_only_report"
+      ],
+      "invalidation_conditions": [
+        "opportunity evidence remains unvalidated",
+        "drawdown audit shows risk relief is unstable",
+        "contradiction audit finds repeated false participation context"
+      ],
+      "status": "unvalidated",
+      "forbidden_interpretation": "Do not convert this hypothesis into assets, ETFs, weights, exposure percentages, rebalancing, or trades."
+    },
+    {
+      "id": "H2",
+      "name": "risk_dominant_protection_persistence",
+      "research_question": "When the risk axis dominates the opportunity axis, should allocation research first test protection quality instead of opportunity seeking?",
+      "hypothesis": "If risk evidence remains materially stronger than opportunity evidence, future research should test whether a protection-first posture explains outcomes better than opportunity pursuit.",
+      "source_context": [
+        "V6 risk spread",
+        "V7 insufficient opportunity score readiness",
+        "V8 contradiction attribution"
+      ],
+      "required_validation": [
+        "out_of_sample_test",
+        "drawdown_audit",
+        "contradiction_audit",
+        "time_safety_audit",
+        "research_only_report"
+      ],
+      "invalidation_conditions": [
+        "protection posture fails drawdown audit",
+        "opportunity evidence becomes independently validated",
+        "historical contradiction audit shows persistent opportunity miss"
+      ],
+      "status": "unvalidated",
+      "forbidden_interpretation": "Do not convert this hypothesis into cash level, asset exclusion, ETF mapping, or trade timing."
+    },
+    {
+      "id": "H3",
+      "name": "structural_opportunity_independent_confirmation",
+      "research_question": "Can structural opportunity be confirmed independently when broad index evidence is mixed?",
+      "hypothesis": "If broad index context is mixed but structure-aware opportunity evidence improves, future research should test whether opportunity confirmation can be separated from broad-market regime labels.",
+      "source_context": [
+        "V7 feature attribution",
+        "V8 structural market opportunity not captured",
+        "V9.1 research boundary"
+      ],
+      "required_validation": [
+        "out_of_sample_test",
+        "drawdown_audit",
+        "contradiction_audit",
+        "time_safety_audit",
+        "research_only_report"
+      ],
+      "invalidation_conditions": [
+        "structural opportunity evidence cannot pass time-safety audit",
+        "contradiction audit shows broad regime dominates structural evidence",
+        "out-of-sample test cannot separate structure from broad beta"
+      ],
+      "status": "unvalidated",
+      "forbidden_interpretation": "Do not map this hypothesis to industries, ETFs, themes, weights, or rotation rules."
+    },
+    {
+      "id": "H4",
+      "name": "contradiction_first_promotion_gate",
+      "research_question": "Should recurring contradiction types gate promotion from research hypothesis to any later allocation candidate?",
+      "hypothesis": "If rapid context switching, bear participation, persistent waiting, or structural opportunity misses recur, future research should require contradiction clearance before promoting any candidate.",
+      "source_context": [
+        "V8 scenario audit",
+        "V8 contradiction attribution",
+        "V9.1 readiness flags"
+      ],
+      "required_validation": [
+        "out_of_sample_test",
+        "drawdown_audit",
+        "contradiction_audit",
+        "time_safety_audit",
+        "research_only_report"
+      ],
+      "invalidation_conditions": [
+        "contradiction types are not reproducible out of sample",
+        "contradiction audit is too sparse for a promotion gate",
+        "time-safety audit cannot reproduce source context"
+      ],
+      "status": "unvalidated",
+      "forbidden_interpretation": "Do not treat this gate as a buy, sell, rebalance, ranking, or optimization rule."
+    }
+  ],
+  "time_safety": {
+    "uses_v9_1_artifact_only": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "future_returns_not_used": true
+  },
+  "data_quality": {
+    "no_asset_data_loaded": true,
+    "no_etf_data_loaded": true,
+    "no_backtest": true,
+    "no_parameter_scan": true,
+    "no_optimization": true,
+    "all_hypotheses_unvalidated": true
+  },
+  "constraints": {
+    "research_only": true,
+    "hypotheses_only": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_exposure_percent": true,
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "no_buy_sell_signal": true,
+    "no_rebalance_instruction": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "audit": {
+    "audit_status": "passed",
+    "checked_hypothesis_count": 4,
+    "checked_constraints": [
+      "research_only",
+      "hypotheses_only",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_exposure_percent",
+      "does_not_run_backtest",
+      "does_not_optimize_parameters",
+      "no_buy_sell_signal",
+      "no_rebalance_instruction",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "backtest_result",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n"
+    ]
+  }
+}
