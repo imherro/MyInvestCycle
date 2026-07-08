@@ -10,14 +10,24 @@ from allocation_research.allocation_hypothesis_audit import (
     write_allocation_hypothesis_framework,
 )
 from allocation_research.allocation_hypothesis_schema import build_allocation_hypothesis_schema
+from allocation_research.allocation_validation_plan_audit import (
+    build_allocation_validation_plan,
+    validate_allocation_validation_plan,
+    write_allocation_validation_plan,
+)
+from allocation_research.allocation_validation_plan_schema import build_allocation_validation_plan_schema
 
 __all__ = [
     "build_allocation_hypothesis_framework",
     "build_allocation_hypothesis_schema",
     "build_allocation_research_architecture",
     "build_allocation_research_schema",
+    "build_allocation_validation_plan",
+    "build_allocation_validation_plan_schema",
     "validate_allocation_hypothesis_framework",
     "validate_allocation_research_boundary",
+    "validate_allocation_validation_plan",
     "write_allocation_hypothesis_framework",
     "write_allocation_research_architecture",
+    "write_allocation_validation_plan",
 ]

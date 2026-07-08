@@ -1669,6 +1669,10 @@ function setResultsPanel(results) {
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
   const allocationHypothesisRows = Array.isArray(allocationHypotheses.hypotheses) ? allocationHypotheses.hypotheses : [];
+  const allocationValidationPlan = results.allocation_validation_plan || {};
+  const allocationValidationSummary = allocationValidationPlan.summary || {};
+  const allocationValidationSchema = allocationValidationPlan.schema || {};
+  const allocationValidationRows = Array.isArray(allocationValidationPlan.validation_plans) ? allocationValidationPlan.validation_plans : [];
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3528,6 +3532,50 @@ function setResultsPanel(results) {
     allocationHypotheses.metadata
       ? `V9.2 只定义 ${integerText(allocationHypothesesSummary.hypothesis_count)} 条未来配置研究假设，全部保持 ${escapeHtml(allocationHypothesesSchema.required_status || "unvalidated")}；后续必须先完成 ${allocationHypothesisValidation.map((item) => escapeHtml(item)).join(" / ") || "验证"}。禁止输出：${allocationHypothesisForbidden.map((item) => escapeHtml(item)).join(" / ") || "--"}。`
       : "V9.2 配置研究假设框架尚未生成。"
+  );
+
+  const allocationValidationReadyFlagsOff =
+    allocationValidationSummary.validation_plan_ready === false &&
+    allocationValidationSummary.validation_executed === false &&
+    allocationValidationSummary.ready_for_asset_selection === false &&
+    allocationValidationSummary.ready_for_etf_mapping === false &&
+    allocationValidationSummary.ready_for_weight_generation === false &&
+    allocationValidationSummary.ready_for_backtest === false &&
+    allocationValidationSummary.ready_for_optimization === false &&
+    allocationValidationSummary.ready_for_trade === false;
+  const allocationValidationEvidence = Array.isArray(allocationValidationSchema.required_evidence)
+    ? allocationValidationSchema.required_evidence
+    : [];
+  const allocationValidationAntiOverfit = Array.isArray(allocationValidationSchema.required_anti_overfitting_rules)
+    ? allocationValidationSchema.required_anti_overfitting_rules
+    : [];
+  const allocationValidationForbidden = Array.isArray(allocationValidationSchema.forbidden_outputs)
+    ? allocationValidationSchema.forbidden_outputs
+    : [];
+  setText("allocationValidationStatus", allocationValidationSummary.validation_executed === false ? "计划未执行" : "--");
+  setText(
+    "allocationValidationCount",
+    allocationValidationSummary.validation_plan_count != null
+      ? `${integerText(allocationValidationSummary.validation_plan_count)} 个`
+      : "--"
+  );
+  setText("allocationValidationEvidence", allocationValidationEvidence.length ? `${integerText(allocationValidationEvidence.length)} 项` : "--");
+  setText("allocationValidationAntiOverfit", allocationValidationAntiOverfit.length ? `${integerText(allocationValidationAntiOverfit.length)} 条` : "--");
+  setText("allocationValidationBoundary", allocationValidationReadyFlagsOff ? "只设计验证/不执行/不出结果/不优化/不交易" : "需复核");
+  setHtml("allocationValidationRows", allocationValidationRows
+    .map((row) => `
+      <div class="duration-row">
+        <span>${escapeHtml(row.hypothesis_id || "--")} · ${escapeHtml(row.hypothesis_name || "--")}</span>
+        <strong>${escapeHtml(row.execution_status || "--")}</strong>
+        <em>${escapeHtml(row.validation_objective || "")}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "allocationValidationConclusion",
+    allocationValidationPlan.metadata
+      ? `V9.3 只为 ${integerText(allocationValidationSummary.validation_plan_count)} 个假设设计验证计划，执行数 ${integerText(allocationValidationSummary.executed_plan_count)}；要求 ${allocationValidationEvidence.map((item) => escapeHtml(item)).join(" / ") || "验证设计"}，防过拟合规则 ${allocationValidationAntiOverfit.map((item) => escapeHtml(item)).join(" / ") || "--"}。禁止输出：${allocationValidationForbidden.map((item) => escapeHtml(item)).join(" / ") || "--"}。`
+      : "V9.3 配置研究验证计划尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

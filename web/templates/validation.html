@@ -1090,6 +1090,37 @@
           <p class="result-note" id="allocationHypothesisConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="定义 V9.3 配置研究验证计划：只说明如何验证 V9.2 假设，包括样本外、回撤、矛盾、稳定性和防过拟合要求；不执行验证、不输出回测结果、不做优化或交易。">配置研究验证计划</h2>
+            <span class="panel-kicker">V9.3</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>执行状态</span>
+              <strong id="allocationValidationStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>计划数量</span>
+              <strong id="allocationValidationCount">--</strong>
+            </div>
+            <div class="result-row">
+              <span>证据要求</span>
+              <strong id="allocationValidationEvidence">--</strong>
+            </div>
+            <div class="result-row">
+              <span>防过拟合</span>
+              <strong id="allocationValidationAntiOverfit">--</strong>
+            </div>
+            <div class="result-row">
+              <span>输出边界</span>
+              <strong id="allocationValidationBoundary">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="allocationValidationRows"></div>
+          <p class="result-note" id="allocationValidationConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -1180,7 +1211,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-allocation-hypothesis-1"></script>
+    <script src="/static/dashboard.js?v=20260708-allocation-validation-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

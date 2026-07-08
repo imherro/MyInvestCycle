@@ -1,0 +1,278 @@
+{
+  "metadata": {
+    "engine": "V9.3 Allocation Research Validation Plan Framework",
+    "generated_at": "2026-07-08T19:58:48+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v9_2_allocation_research_hypotheses": "data/allocation_research_hypotheses.json"
+    },
+    "purpose": "Design validation plans for V9.2 hypotheses without executing validation or producing investable outputs."
+  },
+  "summary": {
+    "source_context": "risk_controlled_opportunity_watch",
+    "source_conclusion": "allocation_hypothesis_framework_defined_unvalidated",
+    "hypothesis_count": 4,
+    "validation_plan_count": 4,
+    "executed_plan_count": 0,
+    "validation_plan_ready": false,
+    "validation_executed": false,
+    "ready_for_asset_selection": false,
+    "ready_for_etf_mapping": false,
+    "ready_for_weight_generation": false,
+    "ready_for_backtest": false,
+    "ready_for_optimization": false,
+    "ready_for_trade": false,
+    "conclusion": "allocation_validation_plan_defined_not_executed",
+    "key_read": "V9.3 defines validation plans only; it does not execute tests, produce results, optimize, or promote candidates."
+  },
+  "schema": {
+    "schema_version": "V9.3",
+    "purpose": "Define how to validate V9.2 allocation research hypotheses without executing validation.",
+    "allowed_input": {
+      "field": "allocation_research_hypotheses",
+      "source": "V9.2 Allocation Research Hypothesis Framework",
+      "description": "Use only hypothesis identifiers, research questions, required validation items, and unvalidated status."
+    },
+    "plan_fields": [
+      "hypothesis_id",
+      "validation_objective",
+      "required_evidence",
+      "failure_criteria",
+      "anti_overfitting_rules",
+      "execution_status",
+      "forbidden_interpretation"
+    ],
+    "required_evidence": [
+      "out_of_sample_test_design",
+      "walk_forward_design",
+      "drawdown_audit_design",
+      "contradiction_audit_design",
+      "regime_stability_design",
+      "time_safety_audit_design",
+      "research_only_report_design"
+    ],
+    "required_anti_overfitting_rules": [
+      "no_parameter_search",
+      "no_best_period_selection",
+      "no_threshold_optimization",
+      "no_result_based_candidate_promotion",
+      "predeclare_failure_criteria"
+    ],
+    "required_execution_status": "planned_not_executed",
+    "forbidden_outputs": [
+      "asset_selection",
+      "etf_mapping",
+      "portfolio_weight",
+      "top_n",
+      "exposure_percent",
+      "buy_signal",
+      "sell_signal",
+      "rebalance_instruction",
+      "broker_order",
+      "backtest_result",
+      "optimization",
+      "validation_result"
+    ]
+  },
+  "source_layer_evidence": {
+    "v9_2_summary": {
+      "source_context": "risk_controlled_opportunity_watch",
+      "source_conclusion": "allocation_research_architecture_defined_not_ready",
+      "hypothesis_count": 4,
+      "unvalidated_count": 4,
+      "validated_count": 0,
+      "hypothesis_framework_ready": false,
+      "ready_for_asset_selection": false,
+      "ready_for_etf_mapping": false,
+      "ready_for_weight_generation": false,
+      "ready_for_backtest": false,
+      "ready_for_optimization": false,
+      "ready_for_trade": false,
+      "conclusion": "allocation_hypothesis_framework_defined_unvalidated",
+      "key_read": "V9.2 defines research hypotheses only; every hypothesis must pass future out-of-sample, drawdown, contradiction, and time-safety audits before any later candidate work."
+    },
+    "hypothesis_ids": [
+      "H1",
+      "H2",
+      "H3",
+      "H4"
+    ]
+  },
+  "validation_plans": [
+    {
+      "hypothesis_id": "H1",
+      "hypothesis_name": "risk_relief_opportunity_readiness",
+      "validation_objective": "Verify whether risk relief and improving opportunity readiness can be evaluated together without creating a configuration rule.",
+      "required_evidence": [
+        "out_of_sample_test_design",
+        "walk_forward_design",
+        "drawdown_audit_design",
+        "contradiction_audit_design",
+        "regime_stability_design",
+        "time_safety_audit_design",
+        "research_only_report_design"
+      ],
+      "failure_criteria": [
+        "out_of_sample_relationship_not_reproduced",
+        "drawdown_audit_shows_risk_relief_unstable",
+        "contradiction_audit_finds_false_participation_context"
+      ],
+      "anti_overfitting_rules": [
+        "no_parameter_search",
+        "no_best_period_selection",
+        "no_threshold_optimization",
+        "no_result_based_candidate_promotion",
+        "predeclare_failure_criteria"
+      ],
+      "execution_status": "planned_not_executed",
+      "forbidden_interpretation": "This plan must not be read as assets, ETFs, weights, exposure percentages, backtest results, optimization, or trades."
+    },
+    {
+      "hypothesis_id": "H2",
+      "hypothesis_name": "risk_dominant_protection_persistence",
+      "validation_objective": "Verify whether risk-dominant environments should prioritize protection-quality evidence before any later candidate promotion.",
+      "required_evidence": [
+        "out_of_sample_test_design",
+        "walk_forward_design",
+        "drawdown_audit_design",
+        "contradiction_audit_design",
+        "regime_stability_design",
+        "time_safety_audit_design",
+        "research_only_report_design"
+      ],
+      "failure_criteria": [
+        "protection_quality_not_stable_out_of_sample",
+        "opportunity_miss_contradictions_increase",
+        "risk_dominance_signal_not_time_safe"
+      ],
+      "anti_overfitting_rules": [
+        "no_parameter_search",
+        "no_best_period_selection",
+        "no_threshold_optimization",
+        "no_result_based_candidate_promotion",
+        "predeclare_failure_criteria"
+      ],
+      "execution_status": "planned_not_executed",
+      "forbidden_interpretation": "This plan must not be read as assets, ETFs, weights, exposure percentages, backtest results, optimization, or trades."
+    },
+    {
+      "hypothesis_id": "H3",
+      "hypothesis_name": "structural_opportunity_independent_confirmation",
+      "validation_objective": "Verify whether structural opportunity evidence can be confirmed independently from broad-market regime labels.",
+      "required_evidence": [
+        "out_of_sample_test_design",
+        "walk_forward_design",
+        "drawdown_audit_design",
+        "contradiction_audit_design",
+        "regime_stability_design",
+        "time_safety_audit_design",
+        "research_only_report_design"
+      ],
+      "failure_criteria": [
+        "structural_evidence_fails_time_safety",
+        "broad_regime_explains_context_better",
+        "walk_forward_design_cannot_separate_structure_from_broad_beta"
+      ],
+      "anti_overfitting_rules": [
+        "no_parameter_search",
+        "no_best_period_selection",
+        "no_threshold_optimization",
+        "no_result_based_candidate_promotion",
+        "predeclare_failure_criteria"
+      ],
+      "execution_status": "planned_not_executed",
+      "forbidden_interpretation": "This plan must not be read as assets, ETFs, weights, exposure percentages, backtest results, optimization, or trades."
+    },
+    {
+      "hypothesis_id": "H4",
+      "hypothesis_name": "contradiction_first_promotion_gate",
+      "validation_objective": "Verify whether recurring contradiction types should block promotion from research hypothesis to any later candidate stage.",
+      "required_evidence": [
+        "out_of_sample_test_design",
+        "walk_forward_design",
+        "drawdown_audit_design",
+        "contradiction_audit_design",
+        "regime_stability_design",
+        "time_safety_audit_design",
+        "research_only_report_design"
+      ],
+      "failure_criteria": [
+        "contradiction_types_not_reproducible",
+        "gate_too_sparse_for_research_use",
+        "predeclared_failure_criteria_not_auditable"
+      ],
+      "anti_overfitting_rules": [
+        "no_parameter_search",
+        "no_best_period_selection",
+        "no_threshold_optimization",
+        "no_result_based_candidate_promotion",
+        "predeclare_failure_criteria"
+      ],
+      "execution_status": "planned_not_executed",
+      "forbidden_interpretation": "This plan must not be read as assets, ETFs, weights, exposure percentages, backtest results, optimization, or trades."
+    }
+  ],
+  "time_safety": {
+    "uses_v9_2_artifact_only": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "future_returns_not_used": true,
+    "validation_not_executed": true
+  },
+  "data_quality": {
+    "no_asset_data_loaded": true,
+    "no_etf_data_loaded": true,
+    "no_backtest": true,
+    "no_parameter_scan": true,
+    "no_optimization": true,
+    "no_validation_result": true
+  },
+  "constraints": {
+    "research_only": true,
+    "plan_only": true,
+    "does_not_execute_validation": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_exposure_percent": true,
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "no_buy_sell_signal": true,
+    "no_rebalance_instruction": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "audit": {
+    "audit_status": "passed",
+    "checked_plan_count": 4,
+    "checked_constraints": [
+      "research_only",
+      "plan_only",
+      "does_not_execute_validation",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_exposure_percent",
+      "does_not_run_backtest",
+      "does_not_optimize_parameters",
+      "no_buy_sell_signal",
+      "no_rebalance_instruction",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "backtest_result",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "validation_result"
+    ]
+  }
+}

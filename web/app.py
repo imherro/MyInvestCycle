@@ -858,6 +858,14 @@ def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_allocation_validation_plan_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "allocation_validation_plan.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -1514,6 +1522,25 @@ def _compact_allocation_research_hypotheses_payload(payload: dict[str, object] |
             "summary",
             "schema",
             "hypotheses",
+            "time_safety",
+            "data_quality",
+            "constraints",
+            "audit",
+        )
+        if key in payload
+    }
+
+
+def _compact_allocation_validation_plan_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "schema",
+            "validation_plans",
             "time_safety",
             "data_quality",
             "constraints",
@@ -2443,6 +2470,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/allocation-research/validation-plan",
+                    "返回 V9.3 Allocation Research Validation Plan Framework，只设计 V9.2 假设的验证方法；不执行验证、不输出回测结果、不做参数优化或交易。",
+                    "allocation research validation plan",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -2593,6 +2627,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/decision/v8-architecture", "description": "读取 V8.4 研究决策架构冻结摘要：V8.1-V8.3 保留层、拒绝项和不可策略化边界。"},
             {"path": "/api/allocation-research/architecture", "description": "读取 V9.1 配置研究架构基础：输入、未来证据要求、禁止输出和未就绪状态。"},
             {"path": "/api/allocation-research/hypotheses", "description": "读取 V9.2 配置研究假设框架：仅列出未验证假设和验证要求，不输出资产、ETF、权重、回测或交易。"},
+            {"path": "/api/allocation-research/validation-plan", "description": "读取 V9.3 配置研究验证计划：只设计样本外、回撤、矛盾、稳定性和防过拟合验证方法，不执行验证。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -3711,6 +3746,17 @@ def allocation_research_hypotheses() -> dict:
     return payload
 
 
+@app.get("/api/allocation-research/validation-plan")
+def allocation_validation_plan() -> dict:
+    payload = _read_allocation_validation_plan_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Allocation validation plan artifact missing; run scripts/run_allocation_validation_plan.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -3878,6 +3924,7 @@ def results_summary(
         research_decision_v8_architecture = _read_research_decision_v8_architecture_payload()
         allocation_research_architecture = _read_allocation_research_architecture_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
+        allocation_validation_plan = _read_allocation_validation_plan_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -3923,6 +3970,7 @@ def results_summary(
             research_decision_v8_architecture = _compact_research_decision_v8_architecture_payload(research_decision_v8_architecture)
             allocation_research_architecture = _compact_allocation_research_architecture_payload(allocation_research_architecture)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
+            allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -4005,6 +4053,7 @@ def results_summary(
             "research_decision_v8_architecture": research_decision_v8_architecture,
             "allocation_research_architecture": allocation_research_architecture,
             "allocation_research_hypotheses": allocation_research_hypotheses,
+            "allocation_validation_plan": allocation_validation_plan,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,
