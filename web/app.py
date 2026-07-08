@@ -250,6 +250,14 @@ def _read_v2_allocation_backtest_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_v2_policy_sensitivity_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "v2_policy_sensitivity.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 STRATEGY_BACKTEST_IDS = {
     "defensive-dividend": "红利低波 + 现金代理防守策略",
     "industry-momentum": "行业 ETF 动量轮动 + 511880 空仓机制",
@@ -824,6 +832,14 @@ def _api_catalog_payload() -> dict[str, object]:
                     "/api/v2/backtest",
                     "返回 V2.5.1 配置意图验证回测结果，包含 T+1 净值曲线、宽基/旧系统基准对比和状态归因。",
                     "v2 allocation validation backtest",
+                    freshness="generated artifact",
+                    safety="read-only artifact",
+                ),
+                _api_endpoint(
+                    "GET",
+                    "/api/v2/policy-sensitivity",
+                    "返回 V2.5.2 风险预算映射敏感性结果和长历史覆盖审计。",
+                    "v2 allocation policy sensitivity",
                     freshness="generated artifact",
                     safety="read-only artifact",
                 ),
@@ -1504,6 +1520,17 @@ def v2_allocation_backtest() -> dict:
         raise HTTPException(
             status_code=503,
             detail="V2 allocation backtest artifact missing; run scripts/run_v2_allocation_backtest.py first.",
+        )
+    return payload
+
+
+@app.get("/api/v2/policy-sensitivity")
+def v2_policy_sensitivity() -> dict:
+    payload = _read_v2_policy_sensitivity_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V2 policy sensitivity artifact missing; run scripts/run_v2_policy_sensitivity.py first.",
         )
     return payload
 

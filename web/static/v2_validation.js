@@ -114,6 +114,54 @@ function renderStateTable(attribution) {
     .join("");
 }
 
+function renderPolicySensitivity(payload) {
+  const sensitivity = payload.sensitivity || {};
+  const variants = sensitivity.variants || {};
+  const target = document.getElementById("policyRows");
+  if (target) {
+    target.innerHTML = Object.values(variants)
+      .map((item) => {
+        const summary = item.summary || {};
+        return `<tr>
+          <td><strong>${item.label || item.variant_id}</strong><br><span>${item.description || ""}</span></td>
+          <td>${fmtPercent(summary.v2_total_return)}</td>
+          <td>${fmtPercent(summary.v2_annualized_return)}</td>
+          <td>${fmtPercent(summary.v2_max_drawdown)}</td>
+          <td>${fmtNumber(summary.v2_calmar)}</td>
+          <td>${fmtPercent(summary.average_exposure)}</td>
+          <td>${fmtPercent(summary.alpha_vs_510500)}</td>
+        </tr>`;
+      })
+      .join("");
+  }
+  const best = sensitivity.best_by || {};
+  setText(
+    "policyBestNote",
+    `年化最优：${best.annualized_return?.label || "--"}；回撤最稳：${best.max_drawdown?.label || "--"}；Calmar 最优：${best.calmar?.label || "--"}。`
+  );
+}
+
+function renderCoverageAudit(payload) {
+  const audit = payload.coverage_audit || {};
+  const target = document.getElementById("coverageRows");
+  if (target) {
+    const rows = Object.entries(audit.series || {});
+    target.innerHTML = rows
+      .map(([name, item]) => `<div class="v2-list-row">
+        <span>${name}</span>
+        <strong>${item.start || "--"} - ${item.end || "--"}</strong>
+      </div>`)
+      .join("");
+  }
+  const common = audit.common_available_window || {};
+  const desired = audit.desired_window || {};
+  const blockers = audit.blockers || [];
+  setText(
+    "coverageNote",
+    `目标长历史 ${toIsoDate(desired.start)} - ${toIsoDate(desired.end)}；当前共同可用 ${toIsoDate(common.start)} - ${toIsoDate(common.end)}。${blockers.length ? "存在覆盖缺口，页面不把短样本冒充完整长周期。" : "覆盖完整。"}`
+  );
+}
+
 function renderBacktest(payload) {
   const summary = payload.summary || {};
   setText("validationHeadline", `V2 年化 ${fmtPercent(summary.v2_annualized_return)} · Alpha vs 510500 ${fmtPercent(summary.alpha_vs_510500)}`);
@@ -139,6 +187,14 @@ async function loadV2Validation() {
     setText("validationNote", "加载中...");
     const payload = await getJson("/api/v2/backtest");
     renderBacktest(payload);
+    try {
+      const sensitivity = await getJson("/api/v2/policy-sensitivity");
+      renderPolicySensitivity(sensitivity);
+      renderCoverageAudit(sensitivity);
+    } catch (error) {
+      setText("policyBestNote", `敏感性产物暂不可用：${error.message}`);
+      setText("coverageNote", "覆盖审计暂不可用。");
+    }
   } catch (error) {
     setText("validationNote", `加载失败：${error.message}`);
   }

@@ -108,9 +108,9 @@ def _risk_budget_from_snapshot(snapshot: Mapping[str, object]) -> str:
     return str(intent.get("risk_budget") or "medium")
 
 
-def _exposure_from_snapshot(snapshot: Mapping[str, object]) -> float:
+def _exposure_from_snapshot(snapshot: Mapping[str, object], exposure_map: Mapping[str, float]) -> float:
     risk_budget = _risk_budget_from_snapshot(snapshot)
-    return RISK_BUDGET_EXPOSURE.get(risk_budget, RISK_BUDGET_EXPOSURE["medium"])
+    return float(exposure_map.get(risk_budget, exposure_map.get("medium", RISK_BUDGET_EXPOSURE["medium"])))
 
 
 def _state_from_evidence(snapshot: Mapping[str, object], section: str, key: str = "state") -> object:
@@ -123,9 +123,14 @@ def _state_from_evidence(snapshot: Mapping[str, object], section: str, key: str 
     return payload.get(key)
 
 
-def _signal_record(date_text: str, snapshot: Mapping[str, object], previous_weights: Mapping[str, float]) -> dict[str, object]:
+def _signal_record(
+    date_text: str,
+    snapshot: Mapping[str, object],
+    previous_weights: Mapping[str, float],
+    exposure_map: Mapping[str, float],
+) -> dict[str, object]:
     risk_budget = _risk_budget_from_snapshot(snapshot)
-    exposure = _exposure_from_snapshot(snapshot)
+    exposure = _exposure_from_snapshot(snapshot, exposure_map)
     weights = _target_weights(exposure)
     return {
         "date": date_text,
@@ -247,6 +252,7 @@ def run_v2_allocation_backtest(
     m2_backtest_path: str | Path = DATA_DIR / "macro_style_etf_backtest.json",
     snapshot_builder: SnapshotBuilder | None = None,
     price_history: Mapping[str, pd.DataFrame] | None = None,
+    exposure_map: Mapping[str, float] | None = None,
 ) -> dict[str, object]:
     start = normalize_trade_date(start_date)
     end = normalize_trade_date(end_date)
@@ -264,6 +270,7 @@ def run_v2_allocation_backtest(
     builder = snapshot_builder or (
         lambda signal_date: build_allocation_intent_snapshot(signal_date, cache_only=cache_only)
     )
+    resolved_exposure_map = {**RISK_BUDGET_EXPOSURE, **dict(exposure_map or {})}
 
     current_signal: dict[str, object] | None = None
     current_weights: dict[str, float] = {}
@@ -305,7 +312,7 @@ def run_v2_allocation_backtest(
             except Exception as exc:
                 snapshot_errors[date_text] = str(exc)
                 continue
-            signal = _signal_record(date_text, snapshot, current_weights)
+            signal = _signal_record(date_text, snapshot, current_weights, resolved_exposure_map)
             new_weights = signal["target_weights"]
             current_signal = signal
             current_weights = dict(new_weights)
@@ -381,7 +388,7 @@ def run_v2_allocation_backtest(
             "no_order_generation": True,
             "no_broker_connection": True,
             "mapping_contract": {
-                "intent_to_exposure": RISK_BUDGET_EXPOSURE,
+                "intent_to_exposure": resolved_exposure_map,
                 "equity_proxy": "50% 510300.SH + 50% 510500.SH inside the V2 exposure band",
                 "cash_proxy": CASH_PROXY_CODE,
                 "purpose": "validation proxy only, not ETF candidate mapping or executable allocation",

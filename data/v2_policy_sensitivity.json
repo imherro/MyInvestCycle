@@ -1,0 +1,503 @@
+{
+  "engine": "V2.5.2 Allocation Policy Calibration & Walk-forward Validation Extension",
+  "generated_at": "2026-07-08T07:12:38+00:00",
+  "sensitivity": {
+    "engine": "V2.5.2 Allocation Policy Calibration & Exposure Sensitivity",
+    "requested_window": {
+      "start_date": "20240101",
+      "end_date": "20260708"
+    },
+    "rebalance_every_sessions": 20,
+    "signal_history": {
+      "source": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\v2_allocation_backtest.json",
+      "available": true,
+      "signal_count": 30,
+      "start": "20240102",
+      "end": "20260601"
+    },
+    "variants": {
+      "baseline": {
+        "variant_id": "baseline",
+        "label": "A baseline",
+        "description": "当前默认映射，风险预算偏均衡。",
+        "exposure_map": {
+          "defensive": 0.15,
+          "low": 0.4,
+          "medium": 0.6,
+          "medium_high": 0.7,
+          "high": 0.8
+        },
+        "summary": {
+          "start_date": "20240103",
+          "end_date": "20260626",
+          "effective_price_start": "20240102",
+          "effective_price_end": "20260626",
+          "sessions": 598,
+          "rebalance_count": 30,
+          "rebalance_every_sessions": 20,
+          "v2_total_return": 0.351915,
+          "v2_annualized_return": 0.135488,
+          "v2_max_drawdown": -0.091678,
+          "v2_sharpe": 1.049182,
+          "v2_calmar": 1.477871,
+          "benchmark_510300_return": 0.522931,
+          "benchmark_510500_return": 0.676991,
+          "old_s1_return": 0.15735,
+          "m2_macro_style_return": 0.281298,
+          "alpha_vs_510300": -0.171016,
+          "alpha_vs_510500": -0.325077,
+          "alpha_vs_old_s1": 0.194565,
+          "alpha_vs_m2_macro_style": 0.070617,
+          "benchmark_510300_max_drawdown": -0.162507,
+          "benchmark_510500_max_drawdown": -0.185807,
+          "old_s1_max_drawdown": -0.06149,
+          "m2_macro_style_max_drawdown": -0.132294,
+          "average_exposure": 0.598328,
+          "average_turnover": 0.005936,
+          "cumulative_turnover": 3.55
+        },
+        "performance_metrics": {
+          "sessions": 598,
+          "total_return": 0.351915,
+          "annualized_return": 0.135488,
+          "annualized_volatility": 0.129051,
+          "sharpe": 1.049182,
+          "max_drawdown": -0.091678,
+          "calmar": 1.477871
+        },
+        "policy_contribution": {
+          "structural_state_contribution": [
+            {
+              "state": "BEAR_REBOUND",
+              "sessions": 20,
+              "average_exposure": 0.4,
+              "strategy_return": -0.019497,
+              "benchmark_return": -0.060445,
+              "alpha": 0.040948,
+              "missed_beta": -0.040948,
+              "hit_rate": 0.5
+            },
+            {
+              "state": "BROAD_BULL",
+              "sessions": 100,
+              "average_exposure": 0.78,
+              "strategy_return": 0.119907,
+              "benchmark_return": 0.207427,
+              "alpha": -0.08752,
+              "missed_beta": 0.08752,
+              "hit_rate": 0.4
+            },
+            {
+              "state": "RANGE",
+              "sessions": 260,
+              "average_exposure": 0.55,
+              "strategy_return": 0.326022,
+              "benchmark_return": 0.70586,
+              "alpha": -0.379838,
+              "missed_beta": 0.379838,
+              "hit_rate": 0.465385
+            },
+            {
+              "state": "STRUCTURAL_BULL_ROTATION",
+              "sessions": 178,
+              "average_exposure": 0.689888,
+              "strategy_return": -0.077241,
+              "benchmark_return": -0.12322,
+              "alpha": 0.045979,
+              "missed_beta": -0.045979,
+              "hit_rate": 0.505618
+            },
+            {
+              "state": "WEAK_MARKET",
+              "sessions": 40,
+              "average_exposure": 0.15,
+              "strategy_return": 0.006189,
+              "benchmark_return": -0.011643,
+              "alpha": 0.017832,
+              "missed_beta": -0.017832,
+              "hit_rate": 0.675
+            }
+          ],
+          "structural_bull_rotation": {
+            "state": "STRUCTURAL_BULL_ROTATION",
+            "sessions": 178,
+            "average_exposure": 0.689888,
+            "strategy_return": -0.077241,
+            "benchmark_return": -0.12322,
+            "alpha": 0.045979,
+            "missed_beta": -0.045979,
+            "hit_rate": 0.505618
+          },
+          "interpretation": [
+            "missed_beta = 510500 benchmark return - V2 strategy return within the same state bucket.",
+            "Positive missed_beta means the policy under-participated versus the 510500 beta proxy.",
+            "This is calibration evidence only; it is not a trade or ETF recommendation."
+          ]
+        },
+        "validation": {
+          "walk_forward_t_plus_1": true,
+          "uses_hypothetical_exposure_only": true,
+          "compares_510300": true,
+          "compares_510500": true,
+          "compares_old_s1": true,
+          "compares_m2_macro_style": true,
+          "snapshot_error_count": 0,
+          "effective_start_after_first_signal": "20240103"
+        }
+      },
+      "higher_participation": {
+        "variant_id": "higher_participation",
+        "label": "B higher participation",
+        "description": "提高 medium/medium_high/high 的权益参与度，测试结构牛期间是否改善收益。",
+        "exposure_map": {
+          "defensive": 0.15,
+          "low": 0.45,
+          "medium": 0.7,
+          "medium_high": 0.85,
+          "high": 0.95
+        },
+        "summary": {
+          "start_date": "20240103",
+          "end_date": "20260626",
+          "effective_price_start": "20240102",
+          "effective_price_end": "20260626",
+          "sessions": 598,
+          "rebalance_count": 30,
+          "rebalance_every_sessions": 20,
+          "v2_total_return": 0.403506,
+          "v2_annualized_return": 0.153551,
+          "v2_max_drawdown": -0.109761,
+          "v2_sharpe": 1.011406,
+          "v2_calmar": 1.398957,
+          "benchmark_510300_return": 0.522931,
+          "benchmark_510500_return": 0.676991,
+          "old_s1_return": 0.15735,
+          "m2_macro_style_return": 0.281298,
+          "alpha_vs_510300": -0.119425,
+          "alpha_vs_510500": -0.273485,
+          "alpha_vs_old_s1": 0.246156,
+          "alpha_vs_m2_macro_style": 0.122208,
+          "benchmark_510300_max_drawdown": -0.162507,
+          "benchmark_510500_max_drawdown": -0.185807,
+          "old_s1_max_drawdown": -0.06149,
+          "m2_macro_style_max_drawdown": -0.132294,
+          "average_exposure": 0.706689,
+          "average_turnover": 0.007274,
+          "cumulative_turnover": 4.35
+        },
+        "performance_metrics": {
+          "sessions": 598,
+          "total_return": 0.403506,
+          "annualized_return": 0.153551,
+          "annualized_volatility": 0.152781,
+          "sharpe": 1.011406,
+          "max_drawdown": -0.109761,
+          "calmar": 1.398957
+        },
+        "policy_contribution": {
+          "structural_state_contribution": [
+            {
+              "state": "BEAR_REBOUND",
+              "sessions": 20,
+              "average_exposure": 0.45,
+              "strategy_return": -0.022037,
+              "benchmark_return": -0.060445,
+              "alpha": 0.038408,
+              "missed_beta": -0.038408,
+              "hit_rate": 0.5
+            },
+            {
+              "state": "BROAD_BULL",
+              "sessions": 100,
+              "average_exposure": 0.93,
+              "strategy_return": 0.142849,
+              "benchmark_return": 0.207427,
+              "alpha": -0.064578,
+              "missed_beta": 0.064578,
+              "hit_rate": 0.4
+            },
+            {
+              "state": "RANGE",
+              "sessions": 260,
+              "average_exposure": 0.638462,
+              "strategy_return": 0.382112,
+              "benchmark_return": 0.70586,
+              "alpha": -0.323748,
+              "missed_beta": 0.323748,
+              "hit_rate": 0.461538
+            },
+            {
+              "state": "STRUCTURAL_BULL_ROTATION",
+              "sessions": 178,
+              "average_exposure": 0.834831,
+              "strategy_return": -0.097016,
+              "benchmark_return": -0.12322,
+              "alpha": 0.026204,
+              "missed_beta": -0.026204,
+              "hit_rate": 0.5
+            },
+            {
+              "state": "WEAK_MARKET",
+              "sessions": 40,
+              "average_exposure": 0.15,
+              "strategy_return": 0.006189,
+              "benchmark_return": -0.011643,
+              "alpha": 0.017832,
+              "missed_beta": -0.017832,
+              "hit_rate": 0.675
+            }
+          ],
+          "structural_bull_rotation": {
+            "state": "STRUCTURAL_BULL_ROTATION",
+            "sessions": 178,
+            "average_exposure": 0.834831,
+            "strategy_return": -0.097016,
+            "benchmark_return": -0.12322,
+            "alpha": 0.026204,
+            "missed_beta": -0.026204,
+            "hit_rate": 0.5
+          },
+          "interpretation": [
+            "missed_beta = 510500 benchmark return - V2 strategy return within the same state bucket.",
+            "Positive missed_beta means the policy under-participated versus the 510500 beta proxy.",
+            "This is calibration evidence only; it is not a trade or ETF recommendation."
+          ]
+        },
+        "validation": {
+          "walk_forward_t_plus_1": true,
+          "uses_hypothetical_exposure_only": true,
+          "compares_510300": true,
+          "compares_510500": true,
+          "compares_old_s1": true,
+          "compares_m2_macro_style": true,
+          "snapshot_error_count": 0,
+          "effective_start_after_first_signal": "20240103"
+        }
+      },
+      "conservative": {
+        "variant_id": "conservative",
+        "label": "C conservative",
+        "description": "降低中高风险预算映射，测试更防守方案的回撤收益比。",
+        "exposure_map": {
+          "defensive": 0.1,
+          "low": 0.3,
+          "medium": 0.5,
+          "medium_high": 0.65,
+          "high": 0.8
+        },
+        "summary": {
+          "start_date": "20240103",
+          "end_date": "20260626",
+          "effective_price_start": "20240102",
+          "effective_price_end": "20260626",
+          "sessions": 598,
+          "rebalance_count": 30,
+          "rebalance_every_sessions": 20,
+          "v2_total_return": 0.299907,
+          "v2_annualized_return": 0.116872,
+          "v2_max_drawdown": -0.080438,
+          "v2_sharpe": 1.02217,
+          "v2_calmar": 1.452939,
+          "benchmark_510300_return": 0.522931,
+          "benchmark_510500_return": 0.676991,
+          "old_s1_return": 0.15735,
+          "m2_macro_style_return": 0.281298,
+          "alpha_vs_510300": -0.223023,
+          "alpha_vs_510500": -0.377084,
+          "alpha_vs_old_s1": 0.142558,
+          "alpha_vs_m2_macro_style": 0.018609,
+          "benchmark_510300_max_drawdown": -0.162507,
+          "benchmark_510500_max_drawdown": -0.185807,
+          "old_s1_max_drawdown": -0.06149,
+          "m2_macro_style_max_drawdown": -0.132294,
+          "average_exposure": 0.531773,
+          "average_turnover": 0.007358,
+          "cumulative_turnover": 4.4
+        },
+        "performance_metrics": {
+          "sessions": 598,
+          "total_return": 0.299907,
+          "annualized_return": 0.116872,
+          "annualized_volatility": 0.114562,
+          "sharpe": 1.02217,
+          "max_drawdown": -0.080438,
+          "calmar": 1.452939
+        },
+        "policy_contribution": {
+          "structural_state_contribution": [
+            {
+              "state": "BEAR_REBOUND",
+              "sessions": 20,
+              "average_exposure": 0.3,
+              "strategy_return": -0.014406,
+              "benchmark_return": -0.060445,
+              "alpha": 0.046039,
+              "missed_beta": -0.046039,
+              "hit_rate": 0.5
+            },
+            {
+              "state": "BROAD_BULL",
+              "sessions": 100,
+              "average_exposure": 0.77,
+              "strategy_return": 0.117585,
+              "benchmark_return": 0.207427,
+              "alpha": -0.089842,
+              "missed_beta": 0.089842,
+              "hit_rate": 0.4
+            },
+            {
+              "state": "RANGE",
+              "sessions": 260,
+              "average_exposure": 0.453846,
+              "strategy_return": 0.265978,
+              "benchmark_return": 0.70586,
+              "alpha": -0.439882,
+              "missed_beta": 0.439882,
+              "hit_rate": 0.461538
+            },
+            {
+              "state": "STRUCTURAL_BULL_ROTATION",
+              "sessions": 178,
+              "average_exposure": 0.634831,
+              "strategy_return": -0.072637,
+              "benchmark_return": -0.12322,
+              "alpha": 0.050583,
+              "missed_beta": -0.050583,
+              "hit_rate": 0.511236
+            },
+            {
+              "state": "WEAK_MARKET",
+              "sessions": 40,
+              "average_exposure": 0.1,
+              "strategy_return": 0.005212,
+              "benchmark_return": -0.011643,
+              "alpha": 0.016855,
+              "missed_beta": -0.016855,
+              "hit_rate": 0.65
+            }
+          ],
+          "structural_bull_rotation": {
+            "state": "STRUCTURAL_BULL_ROTATION",
+            "sessions": 178,
+            "average_exposure": 0.634831,
+            "strategy_return": -0.072637,
+            "benchmark_return": -0.12322,
+            "alpha": 0.050583,
+            "missed_beta": -0.050583,
+            "hit_rate": 0.511236
+          },
+          "interpretation": [
+            "missed_beta = 510500 benchmark return - V2 strategy return within the same state bucket.",
+            "Positive missed_beta means the policy under-participated versus the 510500 beta proxy.",
+            "This is calibration evidence only; it is not a trade or ETF recommendation."
+          ]
+        },
+        "validation": {
+          "walk_forward_t_plus_1": true,
+          "uses_hypothetical_exposure_only": true,
+          "compares_510300": true,
+          "compares_510500": true,
+          "compares_old_s1": true,
+          "compares_m2_macro_style": true,
+          "snapshot_error_count": 0,
+          "effective_start_after_first_signal": "20240103"
+        }
+      }
+    },
+    "best_by": {
+      "annualized_return": {
+        "variant_id": "higher_participation",
+        "label": "B higher participation",
+        "metric": "v2_annualized_return",
+        "value": 0.153551
+      },
+      "max_drawdown": {
+        "variant_id": "conservative",
+        "label": "C conservative",
+        "metric": "v2_max_drawdown",
+        "value": -0.080438
+      },
+      "calmar": {
+        "variant_id": "baseline",
+        "label": "A baseline",
+        "metric": "v2_calmar",
+        "value": 1.477871
+      },
+      "sharpe": {
+        "variant_id": "baseline",
+        "label": "A baseline",
+        "metric": "v2_sharpe",
+        "value": 1.049182
+      }
+    },
+    "constraints": {
+      "calibration_only": true,
+      "no_etf_selection": true,
+      "no_single_stock": true,
+      "no_trade_execution": true,
+      "no_order": true,
+      "no_new_alpha_factor": true
+    }
+  },
+  "coverage_audit": {
+    "desired_window": {
+      "start": "20150101",
+      "end": "20260708"
+    },
+    "common_available_window": {
+      "start": "20240102",
+      "end": "20260626"
+    },
+    "can_cover_desired_window": false,
+    "series": {
+      "industry_opportunity_proxy": {
+        "file": "index_daily_801080_SI.csv",
+        "available": true,
+        "start": "20240102",
+        "end": "20260707",
+        "rows": 606
+      },
+      "benchmark_510300": {
+        "file": "fund_daily_510300_SH.csv",
+        "available": true,
+        "start": "20181029",
+        "end": "20260626",
+        "rows": 1858
+      },
+      "benchmark_510500": {
+        "file": "fund_daily_510500_SH.csv",
+        "available": true,
+        "start": "20200102",
+        "end": "20260630",
+        "rows": 1571
+      },
+      "cash_proxy_511880": {
+        "file": "fund_daily_511880_SH.csv",
+        "available": true,
+        "start": "20181029",
+        "end": "20260626",
+        "rows": 1858
+      }
+    },
+    "blockers": [
+      "industry_opportunity_proxy starts at 20240102, later than desired 20150101",
+      "industry_opportunity_proxy ends at 20260707, earlier than desired 20260708",
+      "benchmark_510300 starts at 20181029, later than desired 20150101",
+      "benchmark_510300 ends at 20260626, earlier than desired 20260708",
+      "benchmark_510500 starts at 20200102, later than desired 20150101",
+      "benchmark_510500 ends at 20260630, earlier than desired 20260708",
+      "cash_proxy_511880 starts at 20181029, later than desired 20150101",
+      "cash_proxy_511880 ends at 20260626, earlier than desired 20260708"
+    ],
+    "policy": {
+      "do_not_backfill_silently": true,
+      "do_not_treat_partial_cache_as_full_history": true,
+      "report_window_gap_in_web": true
+    }
+  },
+  "conclusion": [
+    "Sensitivity compares risk-budget-to-exposure mappings on the same walk-forward V2 signal history.",
+    "Long-history extension is blocked until industry opportunity and proxy price coverage are available for the desired window.",
+    "No ETF selection, single-stock selection, trade execution, order generation or new alpha factor is introduced."
+  ]
+}

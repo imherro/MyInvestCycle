@@ -121,6 +121,39 @@
 
       <article class="chart-panel">
         <div class="panel-heading">
+          <h2>Policy Sensitivity</h2>
+          <span class="panel-kicker">V2.5.2</span>
+        </div>
+        <div class="table-wrap">
+          <table class="v2-table">
+            <thead>
+              <tr>
+                <th>方案</th>
+                <th>总收益</th>
+                <th>年化</th>
+                <th>最大回撤</th>
+                <th>Calmar</th>
+                <th>平均暴露</th>
+                <th>Alpha vs 510500</th>
+              </tr>
+            </thead>
+            <tbody id="policyRows"></tbody>
+          </table>
+        </div>
+        <p class="result-note" id="policyBestNote">--</p>
+      </article>
+
+      <article class="chart-panel">
+        <div class="panel-heading">
+          <h2>历史覆盖审计</h2>
+          <span class="panel-kicker">Coverage</span>
+        </div>
+        <div class="v2-list" id="coverageRows"></div>
+        <p class="result-note" id="coverageNote">--</p>
+      </article>
+
+      <article class="chart-panel">
+        <div class="panel-heading">
           <h2>状态归因</h2>
           <span class="panel-kicker">Structural State</span>
         </div>
