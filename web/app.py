@@ -48,6 +48,7 @@ from industry_structure.opportunity_engine import build_industry_opportunity_sna
 from structural_bull.structural_bull_engine import build_structural_bull_snapshot
 from theme_risk.opportunity_quality_engine import build_theme_risk_snapshot
 from adaptive_allocation.allocation_engine import build_allocation_intent_snapshot
+from adaptive_allocation.decision_trace import build_allocation_trace_snapshot
 
 
 app = FastAPI(title="MyInvestCycle Regime API", version="0.8")
@@ -783,6 +784,23 @@ def _api_catalog_payload() -> dict[str, object]:
             ],
         },
         {
+            "name": "V2 配置决策追踪",
+            "description": "解释从宏观、结构、行业机会、主题风险到配置意图的调整路径和冲突项；不改变配置意图。",
+            "endpoints": [
+                _api_endpoint(
+                    "GET",
+                    "/api/allocation/trace",
+                    "返回 V2.4 Allocation Decision Trace 的分层影响、调整路径、冲突检测和审计结果。",
+                    "allocation decision trace",
+                    params=[
+                        {"name": "date", "required": "false", "format": "YYYYMMDD"},
+                        {"name": "cache_only", "required": "false", "format": "boolean"},
+                    ],
+                    freshness="allocation intent cache",
+                ),
+            ],
+        },
+        {
             "name": "后市展望与历史回顾",
             "description": "历史周期切分、后市展望和概率展望。",
             "endpoints": [
@@ -1357,6 +1375,17 @@ def allocation_intent(
     cache_only: bool = Query(True, description="Use local cache only for Web/API reads."),
 ) -> dict:
     return build_allocation_intent_snapshot(
+        date_text or _today_text(),
+        cache_only=cache_only,
+    )
+
+
+@app.get("/api/allocation/trace")
+def allocation_trace(
+    date_text: str | None = Query(None, alias="date", description="Decision date, YYYYMMDD. Defaults to today."),
+    cache_only: bool = Query(True, description="Use local cache only for Web/API reads."),
+) -> dict:
+    return build_allocation_trace_snapshot(
         date_text or _today_text(),
         cache_only=cache_only,
     )

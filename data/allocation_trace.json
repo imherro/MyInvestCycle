@@ -1,0 +1,90 @@
+{
+  "engine": "V2.4.2 Allocation Decision Trace & Explainability Layer",
+  "requested_as_of": "20260708",
+  "as_of": "20260707",
+  "generated_at": "2026-07-08T06:37:30+00:00",
+  "decision_trace": {
+    "macro": {
+      "state": "RECOVERY",
+      "score": 73.3665,
+      "impact": "supportive",
+      "reason": "宏观状态决定风险预算是否有顺风或逆风。"
+    },
+    "structure": {
+      "state": "BULL_DIVERGENCE",
+      "breadth": 14.59,
+      "impact": "neutral_positive_but_narrow",
+      "reason": "市场结构决定权益参与是全面扩散还是结构分化。"
+    },
+    "industry": {
+      "industry_strength": 55.1048,
+      "theme_persistence": 82.7922,
+      "impact": "positive_structural_opportunity",
+      "reason": "行业机会决定是否存在持续主线。"
+    },
+    "theme_risk": {
+      "level": "medium",
+      "quality_score": 63.3204,
+      "crowding_score": 56.1413,
+      "impact": "reduce_risk",
+      "reason": "主题风险决定是否降低风险预算。"
+    },
+    "adjustment_path": [
+      {
+        "step": "base_from_structural_state",
+        "value": "medium_high",
+        "reason": "STRUCTURAL_BULL_ROTATION sets the base risk budget."
+      },
+      {
+        "step": "theme_risk_adjustment",
+        "delta": -1,
+        "result": "medium",
+        "reason": "theme_risk_level=medium adjusts the base budget."
+      }
+    ],
+    "conflicts": [
+      "index_trend_strong_but_breadth_weak"
+    ],
+    "final_intent": {
+      "risk_budget": "medium",
+      "equity_exposure_range": "50-70%",
+      "style_preference": [
+        "industry_rotation",
+        "growth",
+        "relative_strength",
+        "quality_filter",
+        "theme_persistence"
+      ]
+    }
+  },
+  "allocation_intent": {
+    "equity_exposure_range": "50-70%",
+    "risk_budget": "medium",
+    "style_preference": [
+      "industry_rotation",
+      "growth",
+      "relative_strength",
+      "quality_filter",
+      "theme_persistence"
+    ],
+    "allocation_philosophy": "risk-budget intent only; no ETF, no order, no execution."
+  },
+  "audit": {
+    "passed": true,
+    "violations": [],
+    "no_future_data": true,
+    "does_not_change_allocation_intent": true
+  },
+  "data_quality": {
+    "allocation_as_of": "20260707",
+    "no_future_data": true
+  },
+  "constraints": {
+    "does_not_change_allocation_intent": true,
+    "no_etf": true,
+    "no_single_stock": true,
+    "no_trade": true,
+    "no_order": true,
+    "no_backtest": true
+  }
+}
