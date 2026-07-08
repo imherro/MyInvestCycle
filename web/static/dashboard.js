@@ -1701,6 +1701,9 @@ function setResultsPanel(results) {
   const readinessSpecSummary = readinessSpec.summary || {};
   const readinessSpecComponents = Array.isArray(readinessSpec.component_readiness_specifications) ? readinessSpec.component_readiness_specifications : [];
   const readinessSpecGates = Array.isArray(readinessSpec.global_readiness_gates) ? readinessSpec.global_readiness_gates : [];
+  const readinessAudit = results.implementation_readiness_evidence_audit || {};
+  const readinessAuditSummary = readinessAudit.summary || {};
+  const readinessAuditComponents = Array.isArray(readinessAudit.component_audits) ? readinessAudit.component_audits : [];
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4135,6 +4138,7 @@ function setResultsPanel(results) {
     isolated_not_ready: "隔离/未就绪",
     not_ready_evidence_required: "未就绪/需证据",
     not_evaluated: "未评价",
+    not_submitted: "未提交",
   }[value] || value || "--");
   setText("phaseClosureStatus", phaseStatusLabel(phaseClosureSummary.research_phase));
   setText("phaseClosureRisk", phaseStatusLabel(phaseClosureSummary.risk_research_status));
@@ -4200,6 +4204,28 @@ function setResultsPanel(results) {
     readinessSpec.metadata
       ? `V12.2 只定义未来实现就绪证据标准：${integerText(readinessSpecSummary.component_spec_count)} 个组件标准、${integerText(readinessSpecSummary.global_gate_count)} 个全局门槛，所有证据当前均未评价，实现门禁仍为${phaseStatusLabel(readinessSpecSummary.implementation_gate_result)}。`
       : "V12.2 实现就绪证据标准尚未生成。"
+  );
+
+  setText("readinessAuditStatus", phaseStatusLabel(readinessAuditSummary.audit_framework_status));
+  setText("readinessAuditPackage", phaseStatusLabel(readinessAuditSummary.evidence_package_status));
+  setText("readinessAuditComponents", `${integerText(readinessAuditSummary.component_audit_count)} 个`);
+  setText("readinessAuditReady", `${integerText(readinessAuditSummary.implementation_ready_component_count)} 个`);
+  setText("readinessAuditGate", phaseStatusLabel(readinessAuditSummary.implementation_gate_result));
+  setHtml("readinessAuditRows", readinessAuditComponents.map((row) => {
+    const missing = Array.isArray(row.required_evidence_missing) ? row.required_evidence_missing.length : 0;
+    return `
+      <div class="duration-row">
+        <span>${escapeHtml(row.component_id || "--")}</span>
+        <strong>${escapeHtml(phaseStatusLabel(row.audit_status))}</strong>
+        <em>缺失 ${integerText(missing)} 项证据；${escapeHtml(row.audit_decision || "--")}</em>
+      </div>
+    `;
+  }).join(""));
+  setText(
+    "readinessAuditConclusion",
+    readinessAudit.metadata
+      ? `V12.3 只定义未来 evidence package 审计框架：当前证据包${phaseStatusLabel(readinessAuditSummary.evidence_package_status)}，${integerText(readinessAuditSummary.component_audit_count)} 个组件全部未提交证据，ready 组件 ${integerText(readinessAuditSummary.implementation_ready_component_count)} 个，实现门禁仍为${phaseStatusLabel(readinessAuditSummary.implementation_gate_result)}。`
+      : "V12.3 实现证据审计框架尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

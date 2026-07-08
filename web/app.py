@@ -930,6 +930,14 @@ def _read_implementation_readiness_evidence_specification_payload() -> dict[str,
     return payload if isinstance(payload, dict) else None
 
 
+def _read_implementation_readiness_evidence_audit_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "implementation_readiness_evidence_audit.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -1826,6 +1834,28 @@ def _compact_implementation_readiness_evidence_specification_payload(payload: di
             "global_readiness_gates",
             "prohibited_shortcuts",
             "source_boundary_evidence",
+            "time_safety",
+            "constraints",
+            "forbidden_outputs",
+            "audit",
+        )
+        if key in payload
+    }
+
+
+def _compact_implementation_readiness_evidence_audit_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "audit_schema",
+            "component_audits",
+            "global_gate_audits",
+            "future_package_contract",
+            "source_specification_evidence",
             "time_safety",
             "constraints",
             "forbidden_outputs",
@@ -3002,6 +3032,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/implementation-readiness/evidence-audit",
+                    "返回 V12.3 Implementation Readiness Evidence Audit Framework，定义未来 evidence package 审计框架；当前 package 未提交，所有组件保持 blocked，不评估收益、不生成策略、资产、ETF、权重、配置或交易。",
+                    "implementation readiness evidence audit framework",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -3168,6 +3205,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/research-phase/closure", "description": "读取 V11.4 研究阶段关闭与最终架构冻结：V6-V11 收口，风险仅观察用，机会/配置/交易未就绪。"},
             {"path": "/api/implementation-boundary/research-to-implementation", "description": "读取 V12.1 研究到实现隔离边界：定义可观察候选、隔离项和进入实现前的额外验证要求。"},
             {"path": "/api/implementation-readiness/evidence-specification", "description": "读取 V12.2 实现就绪证据标准：定义未来允许进入实现前必须满足的证据，不评价证据、不输出策略。"},
+            {"path": "/api/implementation-readiness/evidence-audit", "description": "读取 V12.3 实现证据审计框架：定义未来 evidence package 审计方式；当前未提交证据，所有组件 blocked。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -4385,6 +4423,17 @@ def implementation_readiness_evidence_specification() -> dict:
     return payload
 
 
+@app.get("/api/implementation-readiness/evidence-audit")
+def implementation_readiness_evidence_audit() -> dict:
+    payload = _read_implementation_readiness_evidence_audit_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Implementation readiness evidence audit artifact missing; run scripts/run_implementation_readiness_evidence_audit.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -4638,6 +4687,7 @@ def results_summary(
         research_phase_closure = _read_research_phase_closure_payload()
         research_to_implementation_boundary = _read_research_to_implementation_boundary_payload()
         implementation_readiness_evidence_specification = _read_implementation_readiness_evidence_specification_payload()
+        implementation_readiness_evidence_audit = _read_implementation_readiness_evidence_audit_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -4699,6 +4749,7 @@ def results_summary(
             research_phase_closure = _compact_research_phase_closure_payload(research_phase_closure)
             research_to_implementation_boundary = _compact_research_to_implementation_boundary_payload(research_to_implementation_boundary)
             implementation_readiness_evidence_specification = _compact_implementation_readiness_evidence_specification_payload(implementation_readiness_evidence_specification)
+            implementation_readiness_evidence_audit = _compact_implementation_readiness_evidence_audit_payload(implementation_readiness_evidence_audit)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -4797,6 +4848,7 @@ def results_summary(
             "research_phase_closure": research_phase_closure,
             "research_to_implementation_boundary": research_to_implementation_boundary,
             "implementation_readiness_evidence_specification": implementation_readiness_evidence_specification,
+            "implementation_readiness_evidence_audit": implementation_readiness_evidence_audit,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,
