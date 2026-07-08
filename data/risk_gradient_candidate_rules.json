@@ -1,0 +1,993 @@
+{
+  "metadata": {
+    "engine": "V5.13 Risk Gradient Minimal Rule Candidate Audit",
+    "generated_at": "2026-07-08T16:59:31+00:00",
+    "as_of": "20260707",
+    "source_engine": "V5.12 Risk Gradient Conditional Validation",
+    "purpose": "Audit a small set of V5.12-derived risk candidates without creating formal rules."
+  },
+  "summary": {
+    "source_rows": 115,
+    "source_candidate_count": 5,
+    "candidate_count": 5,
+    "primary_research_candidate_count": 2,
+    "secondary_watch_candidate_count": 3,
+    "ready_for_rule_count": 0,
+    "recommended_research_candidates": [
+      {
+        "rule_id": "R1",
+        "candidate": "EARLY_CYCLE+CROWDED",
+        "tier": "primary_research_candidate",
+        "lift": 0.183784
+      },
+      {
+        "rule_id": "R2",
+        "candidate": "CROWDED",
+        "tier": "primary_research_candidate",
+        "lift": 0.150621
+      },
+      {
+        "rule_id": "R3",
+        "candidate": "EARLY_CYCLE",
+        "tier": "secondary_watch_candidate",
+        "lift": 0.13913
+      },
+      {
+        "rule_id": "R4",
+        "candidate": "CONTRACTION+CROWDED",
+        "tier": "secondary_watch_candidate",
+        "lift": 0.116667
+      },
+      {
+        "rule_id": "R5",
+        "candidate": "EARLY_RECOVERY+EARLY_CYCLE",
+        "tier": "secondary_watch_candidate",
+        "lift": 0.107317
+      }
+    ],
+    "ready_for_mapper_change": false,
+    "conclusion": "minimal_candidates_found_but_none_rule_ready",
+    "review_items": [
+      {
+        "type": "minimal_primary_candidates_found",
+        "severity": "medium",
+        "evidence": [
+          {
+            "rule_id": "R1",
+            "candidate": "EARLY_CYCLE+CROWDED",
+            "lift": 0.183784
+          },
+          {
+            "rule_id": "R2",
+            "candidate": "CROWDED",
+            "lift": 0.150621
+          }
+        ]
+      },
+      {
+        "type": "no_candidate_rule_ready",
+        "severity": "high",
+        "evidence": {
+          "reason": "All candidates lack enough period stability for formal rules."
+        }
+      },
+      {
+        "type": "candidate_audit_research_only_do_not_modify_mapper",
+        "severity": "high",
+        "evidence": {
+          "reason": "V5.13 audits minimal candidates only; no mapper, exposure, ETF, trade, or parameter search."
+        }
+      }
+    ],
+    "review_item_count": 3,
+    "key_read": "A small candidate set exists, led by CROWDED and EARLY_CYCLE+CROWDED, but every candidate remains research-only because period stability is not strong enough."
+  },
+  "candidate_rules": [
+    {
+      "rule_id": "R1",
+      "candidate": "EARLY_CYCLE+CROWDED",
+      "source_condition_type": "composite:market_phase+risk_state",
+      "fields": [
+        "market_phase",
+        "risk_state"
+      ],
+      "values": [
+        "EARLY_CYCLE",
+        "CROWDED"
+      ],
+      "trigger": "risk_gradient_bucket == high_risk",
+      "sample_count": 37,
+      "trigger_sample_count": 5,
+      "base_failure_rate": 0.216216,
+      "trigger_failure_rate": 0.4,
+      "high_risk_lift": 0.183784,
+      "period_coverage": [
+        {
+          "period": "2015-2017",
+          "start_date": "20150101",
+          "end_date": "20171231",
+          "sample_count": 19,
+          "trigger_sample_count": 3,
+          "base_failure_rate": 0.368421,
+          "trigger_failure_rate": 0.666667,
+          "lift": 0.298246,
+          "status": "positive"
+        },
+        {
+          "period": "2018",
+          "start_date": "20180101",
+          "end_date": "20181231",
+          "sample_count": 2,
+          "trigger_sample_count": 0,
+          "base_failure_rate": 0.5,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2020",
+          "start_date": "20200101",
+          "end_date": "20201231",
+          "sample_count": 3,
+          "trigger_sample_count": 0,
+          "base_failure_rate": 0.0,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2021",
+          "start_date": "20210101",
+          "end_date": "20211231",
+          "sample_count": 0,
+          "trigger_sample_count": 0,
+          "base_failure_rate": null,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2022",
+          "start_date": "20220101",
+          "end_date": "20221231",
+          "sample_count": 2,
+          "trigger_sample_count": 1,
+          "base_failure_rate": 0.0,
+          "trigger_failure_rate": 0.0,
+          "lift": 0.0,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2024-2026",
+          "start_date": "20240101",
+          "end_date": "20261231",
+          "sample_count": 3,
+          "trigger_sample_count": 0,
+          "base_failure_rate": 0.0,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        }
+      ],
+      "stability": {
+        "label": "insufficient_evidence",
+        "evaluated_period_count": 1,
+        "positive_period_count": 1,
+        "negative_period_count": 0,
+        "insufficient_period_count": 5,
+        "positive_periods": [
+          "2015-2017"
+        ],
+        "negative_periods": []
+      },
+      "research_tier": "primary_research_candidate",
+      "worth_continuing_research": true,
+      "ready_for_rule": false,
+      "not_rule_ready_reasons": [
+        "research_only_candidate",
+        "period_stability_not_strong_enough",
+        "no_exposure_or_return_backtest",
+        "small_trigger_samples_in_multiple_periods"
+      ],
+      "outcome_distribution": {
+        "failure": {
+          "count": 8,
+          "share": 0.216216
+        },
+        "missed_opportunity": {
+          "count": 5,
+          "share": 0.135135
+        },
+        "neutral": {
+          "count": 24,
+          "share": 0.648649
+        }
+      },
+      "trigger_sample_rows": [
+        {
+          "date": "20150105",
+          "outcome": "failure",
+          "risk_gradient_score": 73.1309,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20150202",
+          "outcome": "missed_opportunity",
+          "risk_gradient_score": 74.4677,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20150803",
+          "outcome": "failure",
+          "risk_gradient_score": 66.5591,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20221226",
+          "outcome": "neutral",
+          "risk_gradient_score": 73.5058,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20230529",
+          "outcome": "neutral",
+          "risk_gradient_score": 66.1815,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        }
+      ]
+    },
+    {
+      "rule_id": "R2",
+      "candidate": "CROWDED",
+      "source_condition_type": "dimension:risk_state",
+      "fields": [
+        "risk_state"
+      ],
+      "values": [
+        "CROWDED"
+      ],
+      "trigger": "risk_gradient_bucket == high_risk",
+      "sample_count": 92,
+      "trigger_sample_count": 14,
+      "base_failure_rate": 0.206522,
+      "trigger_failure_rate": 0.357143,
+      "high_risk_lift": 0.150621,
+      "period_coverage": [
+        {
+          "period": "2015-2017",
+          "start_date": "20150101",
+          "end_date": "20171231",
+          "sample_count": 29,
+          "trigger_sample_count": 4,
+          "base_failure_rate": 0.275862,
+          "trigger_failure_rate": 0.75,
+          "lift": 0.474138,
+          "status": "positive"
+        },
+        {
+          "period": "2018",
+          "start_date": "20180101",
+          "end_date": "20181231",
+          "sample_count": 10,
+          "trigger_sample_count": 0,
+          "base_failure_rate": 0.4,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_trigger_sample"
+        },
+        {
+          "period": "2020",
+          "start_date": "20200101",
+          "end_date": "20201231",
+          "sample_count": 9,
+          "trigger_sample_count": 1,
+          "base_failure_rate": 0.222222,
+          "trigger_failure_rate": 1.0,
+          "lift": 0.777778,
+          "status": "insufficient_trigger_sample"
+        },
+        {
+          "period": "2021",
+          "start_date": "20210101",
+          "end_date": "20211231",
+          "sample_count": 7,
+          "trigger_sample_count": 0,
+          "base_failure_rate": 0.142857,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_trigger_sample"
+        },
+        {
+          "period": "2022",
+          "start_date": "20220101",
+          "end_date": "20221231",
+          "sample_count": 10,
+          "trigger_sample_count": 3,
+          "base_failure_rate": 0.3,
+          "trigger_failure_rate": 0.333333,
+          "lift": 0.033333,
+          "status": "flat"
+        },
+        {
+          "period": "2024-2026",
+          "start_date": "20240101",
+          "end_date": "20261231",
+          "sample_count": 12,
+          "trigger_sample_count": 2,
+          "base_failure_rate": 0.083333,
+          "trigger_failure_rate": 0.0,
+          "lift": -0.083333,
+          "status": "insufficient_trigger_sample"
+        }
+      ],
+      "stability": {
+        "label": "insufficient_evidence",
+        "evaluated_period_count": 2,
+        "positive_period_count": 1,
+        "negative_period_count": 0,
+        "insufficient_period_count": 4,
+        "positive_periods": [
+          "2015-2017"
+        ],
+        "negative_periods": []
+      },
+      "research_tier": "primary_research_candidate",
+      "worth_continuing_research": true,
+      "ready_for_rule": false,
+      "not_rule_ready_reasons": [
+        "research_only_candidate",
+        "period_stability_not_strong_enough",
+        "no_exposure_or_return_backtest",
+        "small_trigger_samples_in_multiple_periods"
+      ],
+      "outcome_distribution": {
+        "failure": {
+          "count": 19,
+          "share": 0.206522
+        },
+        "missed_opportunity": {
+          "count": 14,
+          "share": 0.152174
+        },
+        "neutral": {
+          "count": 59,
+          "share": 0.641304
+        }
+      },
+      "trigger_sample_rows": [
+        {
+          "date": "20150105",
+          "outcome": "failure",
+          "risk_gradient_score": 73.1309,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20150202",
+          "outcome": "missed_opportunity",
+          "risk_gradient_score": 74.4677,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20150407",
+          "outcome": "failure",
+          "risk_gradient_score": 69.42,
+          "opportunity_state": "BULL_EXPANSION",
+          "market_phase": "EXPANSION",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20150803",
+          "outcome": "failure",
+          "risk_gradient_score": 66.5591,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20200311",
+          "outcome": "failure",
+          "risk_gradient_score": 68.7081,
+          "opportunity_state": "STRUCTURAL_ROTATION",
+          "market_phase": "CONTRACTION",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20220127",
+          "outcome": "failure",
+          "risk_gradient_score": 66.3783,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "CONTRACTION",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20220926",
+          "outcome": "neutral",
+          "risk_gradient_score": 68.4672,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "CONTRACTION",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20221226",
+          "outcome": "neutral",
+          "risk_gradient_score": 73.5058,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20230529",
+          "outcome": "neutral",
+          "risk_gradient_score": 66.1815,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20230628",
+          "outcome": "neutral",
+          "risk_gradient_score": 68.5991,
+          "opportunity_state": "STRUCTURAL_ROTATION",
+          "market_phase": "CONTRACTION",
+          "risk_state": "CROWDED"
+        }
+      ]
+    },
+    {
+      "rule_id": "R3",
+      "candidate": "EARLY_CYCLE",
+      "source_condition_type": "dimension:market_phase",
+      "fields": [
+        "market_phase"
+      ],
+      "values": [
+        "EARLY_CYCLE"
+      ],
+      "trigger": "risk_gradient_bucket == high_risk",
+      "sample_count": 46,
+      "trigger_sample_count": 5,
+      "base_failure_rate": 0.26087,
+      "trigger_failure_rate": 0.4,
+      "high_risk_lift": 0.13913,
+      "period_coverage": [
+        {
+          "period": "2015-2017",
+          "start_date": "20150101",
+          "end_date": "20171231",
+          "sample_count": 22,
+          "trigger_sample_count": 3,
+          "base_failure_rate": 0.318182,
+          "trigger_failure_rate": 0.666667,
+          "lift": 0.348485,
+          "status": "positive"
+        },
+        {
+          "period": "2018",
+          "start_date": "20180101",
+          "end_date": "20181231",
+          "sample_count": 3,
+          "trigger_sample_count": 0,
+          "base_failure_rate": 0.666667,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2020",
+          "start_date": "20200101",
+          "end_date": "20201231",
+          "sample_count": 4,
+          "trigger_sample_count": 0,
+          "base_failure_rate": 0.0,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2021",
+          "start_date": "20210101",
+          "end_date": "20211231",
+          "sample_count": 3,
+          "trigger_sample_count": 0,
+          "base_failure_rate": 0.666667,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2022",
+          "start_date": "20220101",
+          "end_date": "20221231",
+          "sample_count": 3,
+          "trigger_sample_count": 1,
+          "base_failure_rate": 0.333333,
+          "trigger_failure_rate": 0.0,
+          "lift": -0.333333,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2024-2026",
+          "start_date": "20240101",
+          "end_date": "20261231",
+          "sample_count": 3,
+          "trigger_sample_count": 0,
+          "base_failure_rate": 0.0,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        }
+      ],
+      "stability": {
+        "label": "insufficient_evidence",
+        "evaluated_period_count": 1,
+        "positive_period_count": 1,
+        "negative_period_count": 0,
+        "insufficient_period_count": 5,
+        "positive_periods": [
+          "2015-2017"
+        ],
+        "negative_periods": []
+      },
+      "research_tier": "secondary_watch_candidate",
+      "worth_continuing_research": true,
+      "ready_for_rule": false,
+      "not_rule_ready_reasons": [
+        "research_only_candidate",
+        "period_stability_not_strong_enough",
+        "no_exposure_or_return_backtest",
+        "small_trigger_samples_in_multiple_periods"
+      ],
+      "outcome_distribution": {
+        "failure": {
+          "count": 12,
+          "share": 0.26087
+        },
+        "missed_opportunity": {
+          "count": 6,
+          "share": 0.130435
+        },
+        "neutral": {
+          "count": 28,
+          "share": 0.608696
+        }
+      },
+      "trigger_sample_rows": [
+        {
+          "date": "20150105",
+          "outcome": "failure",
+          "risk_gradient_score": 73.1309,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20150202",
+          "outcome": "missed_opportunity",
+          "risk_gradient_score": 74.4677,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20150803",
+          "outcome": "failure",
+          "risk_gradient_score": 66.5591,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20221226",
+          "outcome": "neutral",
+          "risk_gradient_score": 73.5058,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20230529",
+          "outcome": "neutral",
+          "risk_gradient_score": 66.1815,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        }
+      ]
+    },
+    {
+      "rule_id": "R4",
+      "candidate": "CONTRACTION+CROWDED",
+      "source_condition_type": "composite:market_phase+risk_state",
+      "fields": [
+        "market_phase",
+        "risk_state"
+      ],
+      "values": [
+        "CONTRACTION",
+        "CROWDED"
+      ],
+      "trigger": "risk_gradient_bucket == high_risk",
+      "sample_count": 15,
+      "trigger_sample_count": 8,
+      "base_failure_rate": 0.133333,
+      "trigger_failure_rate": 0.25,
+      "high_risk_lift": 0.116667,
+      "period_coverage": [
+        {
+          "period": "2015-2017",
+          "start_date": "20150101",
+          "end_date": "20171231",
+          "sample_count": 0,
+          "trigger_sample_count": 0,
+          "base_failure_rate": null,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2018",
+          "start_date": "20180101",
+          "end_date": "20181231",
+          "sample_count": 0,
+          "trigger_sample_count": 0,
+          "base_failure_rate": null,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2020",
+          "start_date": "20200101",
+          "end_date": "20201231",
+          "sample_count": 1,
+          "trigger_sample_count": 1,
+          "base_failure_rate": 1.0,
+          "trigger_failure_rate": 1.0,
+          "lift": 0.0,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2021",
+          "start_date": "20210101",
+          "end_date": "20211231",
+          "sample_count": 2,
+          "trigger_sample_count": 0,
+          "base_failure_rate": 0.0,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2022",
+          "start_date": "20220101",
+          "end_date": "20221231",
+          "sample_count": 5,
+          "trigger_sample_count": 2,
+          "base_failure_rate": 0.2,
+          "trigger_failure_rate": 0.5,
+          "lift": 0.3,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2024-2026",
+          "start_date": "20240101",
+          "end_date": "20261231",
+          "sample_count": 3,
+          "trigger_sample_count": 2,
+          "base_failure_rate": 0.0,
+          "trigger_failure_rate": 0.0,
+          "lift": 0.0,
+          "status": "insufficient_total_sample"
+        }
+      ],
+      "stability": {
+        "label": "insufficient_evidence",
+        "evaluated_period_count": 0,
+        "positive_period_count": 0,
+        "negative_period_count": 0,
+        "insufficient_period_count": 6,
+        "positive_periods": [],
+        "negative_periods": []
+      },
+      "research_tier": "secondary_watch_candidate",
+      "worth_continuing_research": true,
+      "ready_for_rule": false,
+      "not_rule_ready_reasons": [
+        "research_only_candidate",
+        "period_stability_not_strong_enough",
+        "no_exposure_or_return_backtest",
+        "small_trigger_samples_in_multiple_periods"
+      ],
+      "outcome_distribution": {
+        "failure": {
+          "count": 2,
+          "share": 0.133333
+        },
+        "missed_opportunity": {
+          "count": 2,
+          "share": 0.133333
+        },
+        "neutral": {
+          "count": 11,
+          "share": 0.733333
+        }
+      },
+      "trigger_sample_rows": [
+        {
+          "date": "20200311",
+          "outcome": "failure",
+          "risk_gradient_score": 68.7081,
+          "opportunity_state": "STRUCTURAL_ROTATION",
+          "market_phase": "CONTRACTION",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20220127",
+          "outcome": "failure",
+          "risk_gradient_score": 66.3783,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "CONTRACTION",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20220926",
+          "outcome": "neutral",
+          "risk_gradient_score": 68.4672,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "CONTRACTION",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20230628",
+          "outcome": "neutral",
+          "risk_gradient_score": 68.5991,
+          "opportunity_state": "STRUCTURAL_ROTATION",
+          "market_phase": "CONTRACTION",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20230726",
+          "outcome": "neutral",
+          "risk_gradient_score": 69.2582,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "CONTRACTION",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20231221",
+          "outcome": "neutral",
+          "risk_gradient_score": 65.7773,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "CONTRACTION",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20240119",
+          "outcome": "neutral",
+          "risk_gradient_score": 67.6419,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "CONTRACTION",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20250422",
+          "outcome": "missed_opportunity",
+          "risk_gradient_score": 68.1773,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "CONTRACTION",
+          "risk_state": "CROWDED"
+        }
+      ]
+    },
+    {
+      "rule_id": "R5",
+      "candidate": "EARLY_RECOVERY+EARLY_CYCLE",
+      "source_condition_type": "composite:opportunity_state+market_phase",
+      "fields": [
+        "opportunity_state",
+        "market_phase"
+      ],
+      "values": [
+        "EARLY_RECOVERY",
+        "EARLY_CYCLE"
+      ],
+      "trigger": "risk_gradient_bucket == high_risk",
+      "sample_count": 41,
+      "trigger_sample_count": 5,
+      "base_failure_rate": 0.292683,
+      "trigger_failure_rate": 0.4,
+      "high_risk_lift": 0.107317,
+      "period_coverage": [
+        {
+          "period": "2015-2017",
+          "start_date": "20150101",
+          "end_date": "20171231",
+          "sample_count": 22,
+          "trigger_sample_count": 3,
+          "base_failure_rate": 0.318182,
+          "trigger_failure_rate": 0.666667,
+          "lift": 0.348485,
+          "status": "positive"
+        },
+        {
+          "period": "2018",
+          "start_date": "20180101",
+          "end_date": "20181231",
+          "sample_count": 3,
+          "trigger_sample_count": 0,
+          "base_failure_rate": 0.666667,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2020",
+          "start_date": "20200101",
+          "end_date": "20201231",
+          "sample_count": 0,
+          "trigger_sample_count": 0,
+          "base_failure_rate": null,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2021",
+          "start_date": "20210101",
+          "end_date": "20211231",
+          "sample_count": 3,
+          "trigger_sample_count": 0,
+          "base_failure_rate": 0.666667,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2022",
+          "start_date": "20220101",
+          "end_date": "20221231",
+          "sample_count": 3,
+          "trigger_sample_count": 1,
+          "base_failure_rate": 0.333333,
+          "trigger_failure_rate": 0.0,
+          "lift": -0.333333,
+          "status": "insufficient_total_sample"
+        },
+        {
+          "period": "2024-2026",
+          "start_date": "20240101",
+          "end_date": "20261231",
+          "sample_count": 2,
+          "trigger_sample_count": 0,
+          "base_failure_rate": 0.0,
+          "trigger_failure_rate": null,
+          "lift": null,
+          "status": "insufficient_total_sample"
+        }
+      ],
+      "stability": {
+        "label": "insufficient_evidence",
+        "evaluated_period_count": 1,
+        "positive_period_count": 1,
+        "negative_period_count": 0,
+        "insufficient_period_count": 5,
+        "positive_periods": [
+          "2015-2017"
+        ],
+        "negative_periods": []
+      },
+      "research_tier": "secondary_watch_candidate",
+      "worth_continuing_research": true,
+      "ready_for_rule": false,
+      "not_rule_ready_reasons": [
+        "research_only_candidate",
+        "period_stability_not_strong_enough",
+        "no_exposure_or_return_backtest",
+        "small_trigger_samples_in_multiple_periods"
+      ],
+      "outcome_distribution": {
+        "failure": {
+          "count": 12,
+          "share": 0.292683
+        },
+        "missed_opportunity": {
+          "count": 4,
+          "share": 0.097561
+        },
+        "neutral": {
+          "count": 25,
+          "share": 0.609756
+        }
+      },
+      "trigger_sample_rows": [
+        {
+          "date": "20150105",
+          "outcome": "failure",
+          "risk_gradient_score": 73.1309,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20150202",
+          "outcome": "missed_opportunity",
+          "risk_gradient_score": 74.4677,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20150803",
+          "outcome": "failure",
+          "risk_gradient_score": 66.5591,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20221226",
+          "outcome": "neutral",
+          "risk_gradient_score": 73.5058,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        },
+        {
+          "date": "20230529",
+          "outcome": "neutral",
+          "risk_gradient_score": 66.1815,
+          "opportunity_state": "EARLY_RECOVERY",
+          "market_phase": "EARLY_CYCLE",
+          "risk_state": "CROWDED"
+        }
+      ]
+    }
+  ],
+  "time_safety": {
+    "feature_release_or_source_lte_signal_date": true,
+    "violation_count": 0,
+    "violation_examples": [],
+    "future_labels_used_for_validation_only": true,
+    "risk_gradient_score_is_precomputed_v5_10": true
+  },
+  "data_quality": {
+    "uses_v5_12_positive_conditions_only": true,
+    "candidate_count_limited": true,
+    "does_not_search_condition_space": true,
+    "risk_gradient_score_reused_not_reweighted": true,
+    "future_labels_used_for_validation_only": true,
+    "no_parameter_optimization": true
+  },
+  "constraints": {
+    "audit_only": true,
+    "no_formal_rule_output": true,
+    "does_not_modify_gradient_weight": true,
+    "does_not_modify_threshold": true,
+    "does_not_modify_mapper": true,
+    "does_not_modify_policy": true,
+    "does_not_add_formal_state": true,
+    "does_not_add_exposure_level": true,
+    "no_parameter_optimization": true,
+    "no_percentage_exposure": true,
+    "no_etf_code": true,
+    "no_asset_weight": true,
+    "no_portfolio_weight": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  }
+}

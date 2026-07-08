@@ -594,6 +594,33 @@
           <p class="result-note" id="conditionConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="只从 V5.12 已发现的正向条件中抽取少量候选，复核样本、阶段覆盖、稳定性和失败案例；候选不等于正式规则，不产生仓位或交易动作。">最小风险候选审计</h2>
+            <span class="panel-kicker">V5.13</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>候选数</span>
+              <strong id="candidateCount">--</strong>
+            </div>
+            <div class="result-row">
+              <span>主研究候选</span>
+              <strong id="candidatePrimary">--</strong>
+            </div>
+            <div class="result-row">
+              <span>可规则化</span>
+              <strong id="candidateReadyCount">--</strong>
+            </div>
+            <div class="result-row">
+              <span>规则变更</span>
+              <strong id="candidateReady">--</strong>
+            </div>
+          </div>
+          <div class="alpha-source-list" id="candidateRuleList"></div>
+          <p class="result-note" id="candidateConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -684,7 +711,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-condition-1"></script>
+    <script src="/static/dashboard.js?v=20260708-candidates-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

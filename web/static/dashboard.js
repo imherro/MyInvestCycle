@@ -792,6 +792,22 @@ function conditionConclusionLabel(value) {
   return labels[value] || value || "--";
 }
 
+function candidateTierLabel(value) {
+  const labels = {
+    primary_research_candidate: "主研究候选",
+    secondary_watch_candidate: "观察候选",
+    low_priority_candidate: "低优先级",
+  };
+  return labels[value] || value || "--";
+}
+
+function candidateConclusionLabel(value) {
+  const labels = {
+    minimal_candidates_found_but_none_rule_ready: "已形成最小候选集，但没有可规则化候选",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1441,6 +1457,9 @@ function setResultsPanel(results) {
   const riskRobustnessBuckets = riskRobustness.overall_bucket_metrics || {};
   const riskCondition = results.risk_gradient_condition_analysis || {};
   const riskConditionSummary = riskCondition.summary || {};
+  const riskCandidates = results.risk_gradient_candidate_rules || {};
+  const riskCandidatesSummary = riskCandidates.summary || {};
+  const riskCandidateRules = riskCandidates.candidate_rules || [];
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2562,6 +2581,25 @@ function setResultsPanel(results) {
     riskCondition.metadata
       ? `V5.12 条件验证：发现 ${integerText(riskConditionSummary.positive_condition_count)} 个正向条件，最强为 ${conditionDisplayLabel(topCondition.condition)}；但 ${integerText(riskConditionSummary.insufficient_condition_count)} 个条件样本不足。结论：${conditionConclusionLabel(riskConditionSummary.conclusion)}，只能解释“何时更有效”，不能形成仓位规则。`
       : "V5.12 风险梯度条件有效性审计尚未生成。"
+  );
+
+  setText("candidateCount", integerText(riskCandidatesSummary.candidate_count));
+  setText("candidatePrimary", integerText(riskCandidatesSummary.primary_research_candidate_count));
+  setText("candidateReadyCount", integerText(riskCandidatesSummary.ready_for_rule_count));
+  setText("candidateReady", riskCandidatesSummary.ready_for_mapper_change === true ? "可变更" : "不可变更");
+  setHtml("candidateRuleList", (Array.isArray(riskCandidateRules) ? riskCandidateRules : [])
+    .map((item) => `
+      <div class="alpha-source-row">
+        <span>${escapeHtml(item.rule_id || "--")} · ${conditionDisplayLabel(item.candidate)} · ${candidateTierLabel(item.research_tier)} · 稳定 ${robustnessConsistencyLabel(item.stability?.label)}</span>
+        <strong>${integerText(item.sample_count)} 样本 · 触发 ${integerText(item.trigger_sample_count)} 个 · 抬升 ${signedRatioText(item.high_risk_lift)} · 可规则化 ${item.ready_for_rule === true ? "是" : "否"}</strong>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "candidateConclusion",
+    riskCandidates.metadata
+      ? `V5.13 最小候选审计：从 V5.12 正向条件压缩出 ${integerText(riskCandidatesSummary.candidate_count)} 个候选，其中 ${integerText(riskCandidatesSummary.primary_research_candidate_count)} 个可继续重点研究，但 ${integerText(riskCandidatesSummary.ready_for_rule_count)} 个可规则化。结论：${candidateConclusionLabel(riskCandidatesSummary.conclusion)}。`
+      : "V5.13 最小风险候选审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
