@@ -322,6 +322,14 @@ def _read_style_allocation_snapshot_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_style_validation_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "style_validation.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 STRATEGY_BACKTEST_IDS = {
     "defensive-dividend": "红利低波 + 现金代理防守策略",
     "industry-momentum": "行业 ETF 动量轮动 + 511880 空仓机制",
@@ -1026,6 +1034,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/style/validation",
+                    "返回 V3.5.2 风格偏好验证与归因，比较原始机会分 TopN 与风格偏好筛选池的 20/60 日未来收益、IC、spread 和 hit rate；只读研究验证。",
+                    "style preference validation",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/strategy-backtests/{strategy_id}",
                     "返回新增策略回测结果，strategy_id 支持 defensive-dividend、industry-momentum、four-asset、max-drawdown-batch、all-weather、equal-weight-reversion-basic、equal-weight-reversion-guarded、free-cash-flow-trend-half、free-cash-flow-trend-full、free-cash-flow-drawdown-rebound、free-cash-flow-buy-hold-480092、free-cash-flow-chinext-dynamic、free-cash-flow-chinext-reversion、free-cash-flow-chinext-balanced-reversion、free-cash-flow-ma-deviation、free-cash-flow-dual-ma-crossover。",
                     "strategy backtest artifact",
@@ -1102,6 +1117,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/alpha/robustness-validation", "description": "读取 V3.4.4 Alpha 滚动稳健性和风格归因验证。"},
             {"path": "/api/alpha/residual-alpha-analysis", "description": "读取 V3.4.5 残差 Alpha 与因子中性化归因。"},
             {"path": "/api/style/allocation-snapshot", "description": "读取 V3.5.1 宏观感知风格偏好快照。"},
+            {"path": "/api/style/validation", "description": "读取 V3.5.2 风格偏好验证与归因。"},
             {"path": "/strategy/defensive-dividend", "description": "查看红利低波 + 现金代理防守策略。"},
             {"path": "/strategy/industry-momentum", "description": "查看行业 ETF 动量轮动 + 511880 空仓机制策略。"},
             {"path": "/strategy/four-asset", "description": "查看股 / 债 / 金 / 现金四资产轮动策略。"},
@@ -1786,6 +1802,17 @@ def style_allocation_snapshot() -> dict:
     return payload
 
 
+@app.get("/api/style/validation")
+def style_validation() -> dict:
+    payload = _read_style_validation_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Style validation artifact missing; run scripts/run_style_validation.py first.",
+        )
+    return payload
+
+
 @app.get("/api/strategy-backtests/{strategy_id}")
 def strategy_suite_backtest(strategy_id: str) -> dict:
     payload = _read_strategy_suite_backtest_payload(strategy_id)
@@ -1859,6 +1886,7 @@ def results_summary(
         alpha_robustness_validation = _read_alpha_robustness_validation_payload()
         residual_alpha_analysis = _read_residual_alpha_analysis_payload()
         style_allocation_snapshot = _read_style_allocation_snapshot_payload()
+        style_validation = _read_style_validation_payload()
         strategy_suite_backtests = _read_strategy_suite_summaries()
         if compact:
             etf_rotation_backtest = _compact_backtest_payload(etf_rotation_backtest)
@@ -1906,6 +1934,7 @@ def results_summary(
             "alpha_robustness_validation": alpha_robustness_validation,
             "residual_alpha_analysis": residual_alpha_analysis,
             "style_allocation_snapshot": style_allocation_snapshot,
+            "style_validation": style_validation,
             "strategy_suite_backtests": strategy_suite_backtests,
             "shadow_backtest": shadow_backtest,
             "regime_attribution": regime_attribution,
