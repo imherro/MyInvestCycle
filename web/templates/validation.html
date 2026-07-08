@@ -371,6 +371,33 @@
           <p class="result-note" id="balancedContextConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="固定 V5.4 候选标签，归因 BALANCED_RISK 为什么失败、BALANCED_OPPORTUNITY 为什么被压制；只解释失败/机会错失来源，不修改规则、不新增状态、不生成仓位或交易。">BALANCED 候选归因</h2>
+            <span class="panel-kicker">V5.5</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>规则变更</span>
+              <strong id="balancedFailureReady">--</strong>
+            </div>
+            <div class="result-row">
+              <span>风险样本</span>
+              <strong id="balancedFailureRiskRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>机会样本</span>
+              <strong id="balancedFailureOpportunityRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>复核项</span>
+              <strong id="balancedFailureReviewItems">--</strong>
+            </div>
+          </div>
+          <div class="alpha-source-list" id="balancedFailurePatterns"></div>
+          <p class="result-note" id="balancedFailureConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -461,7 +488,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-balanced-context-1"></script>
+    <script src="/static/dashboard.js?v=20260708-balanced-failure-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

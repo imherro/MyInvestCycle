@@ -1235,6 +1235,9 @@ function setResultsPanel(results) {
   const balancedContextAudit = results.balanced_context_audit || {};
   const balancedContextSummary = balancedContextAudit.summary || {};
   const balancedContextQuality = balancedContextSummary.candidate_quality || {};
+  const balancedFailureAnalysis = results.balanced_candidate_failure_analysis || {};
+  const balancedFailureSummary = balancedFailureAnalysis.summary || {};
+  const balancedFailureAttribution = balancedFailureAnalysis.candidate_attribution || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -1983,6 +1986,33 @@ function setResultsPanel(results) {
     balancedContextAudit.metadata
       ? `V5.4 候选状态仍为研究标签：${balancedContextSummary.key_read || "候选质量审计待生成"} 不能作为正式 mapper 或仓位规则。`
       : "V5.4 BALANCED 候选状态审计尚未生成。"
+  );
+
+  const riskAttribution = balancedFailureAttribution.BALANCED_RISK || {};
+  const opportunityAttribution = balancedFailureAttribution.BALANCED_OPPORTUNITY || {};
+  setText("balancedFailureReady", balancedFailureSummary.ready_for_rule_change === true ? "可变更" : "不可变更");
+  setText("balancedFailureRiskRows", integerText(riskAttribution.sample_count));
+  setText("balancedFailureOpportunityRows", integerText(opportunityAttribution.sample_count));
+  setText("balancedFailureReviewItems", integerText(balancedFailureSummary.review_item_count));
+  setHtml("balancedFailurePatterns", [
+    ["BALANCED_RISK", riskAttribution],
+    ["BALANCED_OPPORTUNITY", opportunityAttribution],
+    ["BALANCED_NEUTRAL", balancedFailureAttribution.BALANCED_NEUTRAL || {}],
+  ]
+    .map(
+      ([candidate, item]) => `
+        <div class="alpha-source-row">
+          <span>${balancedCandidateLabel(candidate)} · ${escapeHtml(item.interpretation || "--")}</span>
+          <strong>失败 ${percentText(item.future_failure_rate)} / 机会 ${percentText(item.future_opportunity_rate)}</strong>
+        </div>
+      `
+    )
+    .join(""));
+  setText(
+    "balancedFailureConclusion",
+    balancedFailureAnalysis.metadata
+      ? `V5.5 固定 V5.4 候选标签做归因：${balancedFailureSummary.key_read || "候选归因待生成"} 当前仍不能改 mapper 或进入仓位规则。`
+      : "V5.5 BALANCED 候选归因尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
