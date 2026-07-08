@@ -1697,6 +1697,10 @@ function setResultsPanel(results) {
   const implementationBoundarySummary = implementationBoundary.summary || {};
   const implementationBoundaryGate = implementationBoundary.implementation_entry_gate || {};
   const implementationBoundaryComponents = Array.isArray(implementationBoundary.component_boundaries) ? implementationBoundary.component_boundaries : [];
+  const readinessSpec = results.implementation_readiness_evidence_specification || {};
+  const readinessSpecSummary = readinessSpec.summary || {};
+  const readinessSpecComponents = Array.isArray(readinessSpec.component_readiness_specifications) ? readinessSpec.component_readiness_specifications : [];
+  const readinessSpecGates = Array.isArray(readinessSpec.global_readiness_gates) ? readinessSpec.global_readiness_gates : [];
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4129,6 +4133,8 @@ function setResultsPanel(results) {
     observation_only: "仅观察",
     research_governance_only: "仅研究治理",
     isolated_not_ready: "隔离/未就绪",
+    not_ready_evidence_required: "未就绪/需证据",
+    not_evaluated: "未评价",
   }[value] || value || "--");
   setText("phaseClosureStatus", phaseStatusLabel(phaseClosureSummary.research_phase));
   setText("phaseClosureRisk", phaseStatusLabel(phaseClosureSummary.risk_research_status));
@@ -4175,6 +4181,25 @@ function setResultsPanel(results) {
     implementationBoundary.metadata
       ? `V12.1 只定义研究到实现的隔离边界：${integerText(implementationBoundarySummary.implementation_candidate_count)} 个只读观察/治理候选，${integerText(implementationBoundarySummary.isolated_or_blocked_count)} 个组件继续隔离或禁用；全局实现门禁为${phaseStatusLabel(implementationBoundaryGate.current_gate_result)}，不输出策略、资产、ETF、权重、配置或交易。`
       : "V12.1 研究到实现隔离边界尚未生成。"
+  );
+
+  setText("readinessSpecStatus", phaseStatusLabel(readinessSpecSummary.readiness_specification_status));
+  setText("readinessSpecReadiness", phaseStatusLabel(readinessSpecSummary.implementation_readiness_status));
+  setText("readinessSpecComponents", `${integerText(readinessSpecSummary.component_spec_count)} 个`);
+  setText("readinessSpecGates", `${integerText(readinessSpecSummary.global_gate_count)} 个`);
+  setText("readinessSpecGateResult", phaseStatusLabel(readinessSpecSummary.implementation_gate_result));
+  setHtml("readinessSpecRows", readinessSpecComponents.map((row) => `
+    <div class="duration-row">
+      <span>${escapeHtml(row.component_id || "--")}</span>
+      <strong>${escapeHtml(phaseStatusLabel(row.readiness_status))}</strong>
+      <em>${escapeHtml(row.minimum_observation_rule || "--")}</em>
+    </div>
+  `).join(""));
+  setText(
+    "readinessSpecConclusion",
+    readinessSpec.metadata
+      ? `V12.2 只定义未来实现就绪证据标准：${integerText(readinessSpecSummary.component_spec_count)} 个组件标准、${integerText(readinessSpecSummary.global_gate_count)} 个全局门槛，所有证据当前均未评价，实现门禁仍为${phaseStatusLabel(readinessSpecSummary.implementation_gate_result)}。`
+      : "V12.2 实现就绪证据标准尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
