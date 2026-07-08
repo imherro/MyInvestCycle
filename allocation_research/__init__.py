@@ -34,6 +34,11 @@ from allocation_research.allocation_experiment_phase1_validation import (
     validate_allocation_experiment_phase1_validation,
     write_allocation_experiment_phase1_validation,
 )
+from allocation_research.research_candidate_promotion_gate import (
+    build_research_candidate_promotion_gate,
+    validate_research_candidate_promotion_gate,
+    write_research_candidate_promotion_gate,
+)
 
 __all__ = [
     "build_allocation_experiment_phase1_schema",
@@ -48,16 +53,19 @@ __all__ = [
     "build_allocation_research_schema",
     "build_allocation_validation_plan",
     "build_allocation_validation_plan_schema",
+    "build_research_candidate_promotion_gate",
     "validate_allocation_experiment_phase1_validation",
     "validate_allocation_experiment_results",
     "validate_allocation_experiment_templates",
     "validate_allocation_hypothesis_framework",
     "validate_allocation_research_boundary",
     "validate_allocation_validation_plan",
+    "validate_research_candidate_promotion_gate",
     "write_allocation_experiment_phase1_validation",
     "write_allocation_experiment_results",
     "write_allocation_experiment_templates",
     "write_allocation_hypothesis_framework",
     "write_allocation_research_architecture",
     "write_allocation_validation_plan",
+    "write_research_candidate_promotion_gate",
 ]

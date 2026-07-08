@@ -1685,6 +1685,9 @@ function setResultsPanel(results) {
   const allocationPhase1Summary = allocationPhase1.summary || {};
   const allocationPhase1Rows = Array.isArray(allocationPhase1.validation_results) ? allocationPhase1.validation_results : [];
   const allocationPhase1Hashes = allocationPhase1.freeze_hashes || {};
+  const researchGate = results.research_candidate_promotion_gate || {};
+  const researchGateSummary = researchGate.summary || {};
+  const researchGateRows = Array.isArray(researchGate.gate_results) ? researchGate.gate_results : [];
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3706,6 +3709,42 @@ function setResultsPanel(results) {
     allocationPhase1.metadata
       ? `V9.6 使用冻结输入做研究验证：supported ${integerText(allocationPhase1Summary.supported_count)}、inconclusive ${integerText(allocationPhase1Summary.inconclusive_count)}、unsupported ${integerText(allocationPhase1Summary.unsupported_count)}；输入哈希 ${integerText(Object.keys(allocationPhase1Hashes).length)} 个。promotion_allowed=false，不能用于资产、ETF、权重、优化或交易。`
       : "V9.6 配置研究实验 Phase 1 验证尚未生成。"
+  );
+
+  const researchGateReadyFlagsOff =
+    researchGateSummary.promotion_allowed === false &&
+    researchGateSummary.strategy_promotion === false &&
+    researchGateSummary.allocation_promotion === false &&
+    researchGateSummary.investable_output === false &&
+    researchGateSummary.investable_output_generated === false &&
+    researchGateSummary.ready_for_asset_selection === false &&
+    researchGateSummary.ready_for_etf_mapping === false &&
+    researchGateSummary.ready_for_weight_generation === false &&
+    researchGateSummary.ready_for_trade === false;
+  const researchGateStatusLabel = (status) => ({
+    continue_research: "继续研究",
+    freeze: "冻结",
+    reject_for_now: "暂拒",
+  }[status] || status || "--");
+  setText("researchGateStatus", researchGateSummary.conclusion ? "门禁完成" : "--");
+  setText("researchGateContinue", integerText(researchGateSummary.continue_research_count));
+  setText("researchGateFreeze", integerText(researchGateSummary.freeze_count));
+  setText("researchGateReject", integerText(researchGateSummary.reject_for_now_count));
+  setText("researchGateBoundary", researchGateReadyFlagsOff ? "不策略化/不配置/不选资产/不映射ETF/不交易" : "需复核");
+  setHtml("researchGateRows", researchGateRows
+    .map((row) => `
+      <div class="duration-row">
+        <span>${escapeHtml(row.hypothesis_id || "--")} · ${escapeHtml(row.validation_status || "--")}</span>
+        <strong>${escapeHtml(researchGateStatusLabel(row.research_status))}</strong>
+        <em>${escapeHtml(Array.isArray(row.promotion_reason) ? row.promotion_reason.join(" / ") : row.next_research_step || "")}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "researchGateConclusion",
+    researchGate.metadata
+      ? `V9.7 固定 V9.6/V9.3/V9.4 输入做研究阶段门禁：继续研究 ${integerText(researchGateSummary.continue_research_count)}、冻结 ${integerText(researchGateSummary.freeze_count)}、暂拒 ${integerText(researchGateSummary.reject_for_now_count)}。promotion_allowed=false，strategy_promotion=false，investable_output=false；不产生策略、配置、资产、ETF、权重或交易。`
+      : "V9.7 研究阶段门禁审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
