@@ -40,10 +40,10 @@ function setRegimeContextNote(current, cycle) {
   if (typeof current?.breadth_score === "number") drivers.push(`宽度 ${scorePercent(current.breadth_score)}`);
   const driverText = drivers.length ? `，当前主要证据是${drivers.join("、")}` : "";
   const asOfText = current?.as_of ? `数据基准日 ${toIsoDate(current.as_of)}。` : "";
-  setText(
-    "regimeContextNote",
-    `${asOfText}短期风控状态为“${currentLabel}”，只代表趋势、宽度、流动性、波动稳定性的短期温度${driverText}；长期判断仍按“${cycleLabel}”单独观察。`
-  );
+  const note = `${asOfText}短期风控状态为“${currentLabel}”，只代表趋势、宽度、流动性、波动稳定性的短期温度${driverText}；长期判断仍按“${cycleLabel}”单独观察。`;
+  setText("regimeContextNote", note);
+  const help = document.getElementById("macroSummaryHelp");
+  if (help) help.dataset.help = note;
 }
 
 function setScoreList(scores) {

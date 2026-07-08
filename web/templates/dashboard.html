@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MyInvestCycle 宏观周期</title>
-    <link rel="stylesheet" href="/static/style.css?v=20260708-risk-home-1" />
+    <link rel="stylesheet" href="/static/style.css?v=20260708-macro-summary-1" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   </head>
   <body data-page="dashboard">
@@ -49,36 +49,32 @@
         </a>
       </nav>
 
-      <section class="status-grid" aria-live="polite">
-        <article class="regime-panel" id="regimePanel">
-          <div class="panel-label">短期风控状态</div>
-          <div class="regime-name" id="regimeName">--</div>
-          <div class="as-of" id="asOf">--</div>
-        </article>
-        <article class="metric-panel">
-          <div class="panel-label">短期置信度</div>
-          <div class="metric-value" id="confidenceValue">--</div>
-        </article>
-        <article class="metric-panel">
-          <div class="panel-label">短期综合分</div>
-          <div class="metric-value" id="regimeScoreValue">--</div>
-        </article>
-        <article class="metric-panel">
-          <div class="panel-label">数据基准日</div>
-          <div class="metric-value metric-date" id="dataAsOfValue">--</div>
-        </article>
+      <section class="macro-summary-panel" id="regimePanel" aria-live="polite">
+        <div class="macro-summary-title">
+          <span>Macro Cycle</span>
+          <h2 class="help-title" id="macroSummaryHelp" tabindex="0" data-help="短期风控状态和长期主周期分开观察，避免把短期温度误读成主周期结论。">长期主周期判断</h2>
+        </div>
+        <div class="macro-summary-status">
+          <span>短期风控状态</span>
+          <strong id="regimeName">--</strong>
+        </div>
+        <div class="macro-summary-metrics">
+          <div>
+            <span>短期置信度</span>
+            <strong id="confidenceValue">--</strong>
+          </div>
+          <div>
+            <span>短期综合分</span>
+            <strong id="regimeScoreValue">--</strong>
+          </div>
+          <div>
+            <span>数据基准日</span>
+            <strong id="dataAsOfValue">--</strong>
+          </div>
+        </div>
       </section>
-      <p class="context-note" id="regimeContextNote">--</p>
 
       <section class="channel-section" id="cycle-channel">
-        <div class="dashboard-section-heading">
-          <div>
-            <span>Macro Cycle</span>
-            <h2>长期主周期判断</h2>
-          </div>
-          <p>首页把短期风控温度、长期主周期和四维评分分开显示，避免把不同模型口径混成一个牛熊结论。</p>
-        </div>
-
         <section class="cycle-score-row">
           <section class="cycle-panel" aria-live="polite">
             <div class="cycle-cell cycle-state-cell">
@@ -286,8 +282,8 @@
     </main>
     <div data-myinvest-footer></div>
 
-    <script src="/static/charts.js?v=20260708-risk-home-1"></script>
-    <script src="/static/dashboard.js?v=20260708-risk-home-1"></script>
+    <script src="/static/charts.js?v=20260708-macro-summary-1"></script>
+    <script src="/static/dashboard.js?v=20260708-macro-summary-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
