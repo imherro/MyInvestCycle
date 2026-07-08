@@ -1,0 +1,1201 @@
+{
+  "metadata": {
+    "engine": "V3.5.3 Structural Bull Style Rotation Validation",
+    "generated_at": "2026-07-08T12:04:59+00:00",
+    "window": {
+      "start": "20150105",
+      "end": "20260708"
+    },
+    "source_engine": "V3.5.2 Style Preference Validation & Attribution Engine",
+    "score_date_count": 78,
+    "step_sessions": 20,
+    "horizons": [
+      20,
+      60
+    ],
+    "top_n": 3,
+    "validation_scope": "STRUCTURAL_BULL_ONLY"
+  },
+  "summary": {
+    "edge_status": "positive_spread_not_robust",
+    "tradable_20d": {
+      "date_count": 32,
+      "observation_count": 32,
+      "baseline": {
+        "observation_count": 32,
+        "mean_return": -0.018132,
+        "volatility": 0.066477,
+        "max_drawdown": -0.518373,
+        "total_compounded_return": -0.482352,
+        "positive_rate": 0.46875
+      },
+      "style_aware": {
+        "observation_count": 32,
+        "mean_return": 0.005234,
+        "volatility": 0.083594,
+        "max_drawdown": -0.308529,
+        "total_compounded_return": 0.06117,
+        "positive_rate": 0.5
+      },
+      "spread": 0.023366,
+      "hit_rate": 0.53125,
+      "style_ic": 0.075,
+      "positive_ic_rate": 0.59375
+    },
+    "tradable_60d": {
+      "date_count": 31,
+      "observation_count": 31,
+      "baseline": {
+        "observation_count": 31,
+        "mean_return": -0.017333,
+        "volatility": 0.101297,
+        "max_drawdown": -0.716726,
+        "total_compounded_return": -0.506242,
+        "positive_rate": 0.322581
+      },
+      "style_aware": {
+        "observation_count": 31,
+        "mean_return": 0.012328,
+        "volatility": 0.156912,
+        "max_drawdown": -0.759931,
+        "total_compounded_return": 0.045185,
+        "positive_rate": 0.451613
+      },
+      "spread": 0.029661,
+      "hit_rate": 0.387097,
+      "style_ic": -0.083871,
+      "positive_ic_rate": 0.354839
+    },
+    "interpretation": "This validation isolates STRUCTURAL_BULL dates from V3.5.2. Positive spread is only a structural-bull-specific hypothesis until hit rate, IC and drawdown are also robust."
+  },
+  "results": {
+    "research_proxy": {
+      "20d": {
+        "summary": {
+          "date_count": 32,
+          "observation_count": 32,
+          "baseline": {
+            "observation_count": 32,
+            "mean_return": -0.011369,
+            "volatility": 0.067534,
+            "max_drawdown": -0.467021,
+            "total_compounded_return": -0.35619,
+            "positive_rate": 0.53125
+          },
+          "style_aware": {
+            "observation_count": 32,
+            "mean_return": 0.014476,
+            "volatility": 0.074038,
+            "max_drawdown": -0.199747,
+            "total_compounded_return": 0.458884,
+            "positive_rate": 0.53125
+          },
+          "spread": 0.025845,
+          "hit_rate": 0.5625,
+          "style_ic": 0.08125,
+          "positive_ic_rate": 0.5625
+        },
+        "style_drift": {
+          "date_count": 32,
+          "dominant_style_distribution": {
+            "growth": 32
+          },
+          "transition_count": 0,
+          "structural_bull_style_transition": [],
+          "interpretation": "Style drift is measured only inside STRUCTURAL_BULL validation dates. No transition means the frozen preference formula stayed on one dominant style in the sampled structural bull windows."
+        },
+        "sample_observations": [
+          {
+            "date": "20250529",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "512660.SH",
+              "512170.SH",
+              "512800.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.041707,
+            "style_aware_return": 0.05429,
+            "relative_to_baseline": 0.012583,
+            "style_ic": 0.8,
+            "style_scores": {
+              "growth": 62.902,
+              "small_cap": 55.0709,
+              "value": 54.6289,
+              "dividend": 45.3736
+            }
+          },
+          {
+            "date": "20250627",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "512000.SH",
+              "512800.SH",
+              "512660.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.033889,
+            "style_aware_return": 0.079929,
+            "relative_to_baseline": 0.046039,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 71.1875,
+              "small_cap": 58.1315,
+              "value": 53.891,
+              "dividend": 47.6471
+            }
+          },
+          {
+            "date": "20250725",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "512170.SH",
+              "516160.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.09542,
+            "style_aware_return": 0.175107,
+            "relative_to_baseline": 0.079687,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 76.9102,
+              "small_cap": 55.0816,
+              "value": 48.6011,
+              "dividend": 38.9695
+            }
+          },
+          {
+            "date": "20250822",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "512100.SH",
+              "510500.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.069449,
+            "style_aware_return": 0.122436,
+            "relative_to_baseline": 0.052987,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 76.2947,
+              "small_cap": 56.3103,
+              "value": 48.3697,
+              "dividend": 39.3474
+            }
+          },
+          {
+            "date": "20250919",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "510500.SH",
+              "512100.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.028626,
+            "style_aware_return": 0.06568,
+            "relative_to_baseline": 0.037054,
+            "style_ic": 0.8,
+            "style_scores": {
+              "growth": 71.133,
+              "small_cap": 49.7298,
+              "value": 51.9935,
+              "dividend": 38.7779
+            }
+          },
+          {
+            "date": "20251027",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": -0.124103,
+            "style_aware_return": -0.124103,
+            "relative_to_baseline": 0.0,
+            "style_ic": -1.0,
+            "style_scores": {
+              "growth": 69.7485,
+              "small_cap": 53.984,
+              "value": 52.4359,
+              "dividend": 41.1614
+            }
+          },
+          {
+            "date": "20251124",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "516160.SH",
+              "515790.SH",
+              "159915.SZ"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.046171,
+            "style_aware_return": 0.087313,
+            "relative_to_baseline": 0.041142,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 68.9082,
+              "small_cap": 54.5053,
+              "value": 54.2391,
+              "dividend": 46.0596
+            }
+          },
+          {
+            "date": "20260121",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "510500.SH",
+              "512100.SH",
+              "512660.SH"
+            ],
+            "style_aware_codes": [
+              "588000.SH",
+              "512480.SH",
+              "159915.SZ"
+            ],
+            "baseline_return": 0.033468,
+            "style_aware_return": 0.010722,
+            "relative_to_baseline": -0.022746,
+            "style_ic": -0.4,
+            "style_scores": {
+              "growth": 67.3569,
+              "small_cap": 58.9259,
+              "value": 50.1213,
+              "dividend": 36.3945
+            }
+          },
+          {
+            "date": "20260226",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "510500.SH",
+              "512660.SH",
+              "512100.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": -0.125452,
+            "style_aware_return": -0.087723,
+            "relative_to_baseline": 0.037729,
+            "style_ic": -0.8,
+            "style_scores": {
+              "growth": 67.7899,
+              "small_cap": 54.4449,
+              "value": 53.5727,
+              "dividend": 44.9531
+            }
+          },
+          {
+            "date": "20260527",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "516160.SH",
+              "515790.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": -0.014269,
+            "style_aware_return": 0.157167,
+            "relative_to_baseline": 0.171437,
+            "style_ic": 0.8,
+            "style_scores": {
+              "growth": 70.9551,
+              "small_cap": 50.6108,
+              "value": 54.381,
+              "dividend": 45.3981
+            }
+          }
+        ]
+      },
+      "60d": {
+        "summary": {
+          "date_count": 31,
+          "observation_count": 31,
+          "baseline": {
+            "observation_count": 31,
+            "mean_return": 0.002365,
+            "volatility": 0.089146,
+            "max_drawdown": -0.567494,
+            "total_compounded_return": -0.042504,
+            "positive_rate": 0.516129
+          },
+          "style_aware": {
+            "observation_count": 31,
+            "mean_return": 0.041385,
+            "volatility": 0.147791,
+            "max_drawdown": -0.493081,
+            "total_compounded_return": 1.670763,
+            "positive_rate": 0.516129
+          },
+          "spread": 0.03902,
+          "hit_rate": 0.451613,
+          "style_ic": 0.045161,
+          "positive_ic_rate": 0.516129
+        },
+        "style_drift": {
+          "date_count": 31,
+          "dominant_style_distribution": {
+            "growth": 31
+          },
+          "transition_count": 0,
+          "structural_bull_style_transition": [],
+          "interpretation": "Style drift is measured only inside STRUCTURAL_BULL validation dates. No transition means the frozen preference formula stayed on one dominant style in the sampled structural bull windows."
+        },
+        "sample_observations": [
+          {
+            "date": "20250328",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "512100.SH",
+              "512170.SH",
+              "515000.SH"
+            ],
+            "style_aware_codes": [
+              "588000.SH",
+              "512480.SH",
+              "159915.SZ"
+            ],
+            "baseline_return": 0.011062,
+            "style_aware_return": -0.004937,
+            "relative_to_baseline": -0.015999,
+            "style_ic": -0.8,
+            "style_scores": {
+              "growth": 65.112,
+              "small_cap": 51.4183,
+              "value": 52.4788,
+              "dividend": 45.9346
+            }
+          },
+          {
+            "date": "20250529",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "512660.SH",
+              "512170.SH",
+              "512800.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.154841,
+            "style_aware_return": 0.337596,
+            "relative_to_baseline": 0.182756,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 62.902,
+              "small_cap": 55.0709,
+              "value": 54.6289,
+              "dividend": 45.3736
+            }
+          },
+          {
+            "date": "20250627",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "512000.SH",
+              "512800.SH",
+              "512660.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.003952,
+            "style_aware_return": 0.424033,
+            "relative_to_baseline": 0.420081,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 71.1875,
+              "small_cap": 58.1315,
+              "value": 53.891,
+              "dividend": 47.6471
+            }
+          },
+          {
+            "date": "20250725",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "512170.SH",
+              "516160.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.240067,
+            "style_aware_return": 0.405196,
+            "relative_to_baseline": 0.165129,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 76.9102,
+              "small_cap": 55.0816,
+              "value": 48.6011,
+              "dividend": 38.9695
+            }
+          },
+          {
+            "date": "20250822",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "512100.SH",
+              "510500.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.02373,
+            "style_aware_return": 0.04764,
+            "relative_to_baseline": 0.02391,
+            "style_ic": 0.4,
+            "style_scores": {
+              "growth": 76.2947,
+              "small_cap": 56.3103,
+              "value": 48.3697,
+              "dividend": 39.3474
+            }
+          },
+          {
+            "date": "20250919",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "510500.SH",
+              "512100.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.016659,
+            "style_aware_return": 0.014672,
+            "relative_to_baseline": -0.001987,
+            "style_ic": 0.6,
+            "style_scores": {
+              "growth": 71.133,
+              "small_cap": 49.7298,
+              "value": 51.9935,
+              "dividend": 38.7779
+            }
+          },
+          {
+            "date": "20251027",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.057816,
+            "style_aware_return": 0.057816,
+            "relative_to_baseline": 0.0,
+            "style_ic": 0.8,
+            "style_scores": {
+              "growth": 69.7485,
+              "small_cap": 53.984,
+              "value": 52.4359,
+              "dividend": 41.1614
+            }
+          },
+          {
+            "date": "20251124",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "516160.SH",
+              "515790.SH",
+              "159915.SZ"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.144837,
+            "style_aware_return": 0.221813,
+            "relative_to_baseline": 0.076976,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 68.9082,
+              "small_cap": 54.5053,
+              "value": 54.2391,
+              "dividend": 46.0596
+            }
+          },
+          {
+            "date": "20260121",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "510500.SH",
+              "512100.SH",
+              "512660.SH"
+            ],
+            "style_aware_codes": [
+              "588000.SH",
+              "512480.SH",
+              "159915.SZ"
+            ],
+            "baseline_return": -0.016861,
+            "style_aware_return": 0.071317,
+            "relative_to_baseline": 0.088178,
+            "style_ic": 0.4,
+            "style_scores": {
+              "growth": 67.3569,
+              "small_cap": 58.9259,
+              "value": 50.1213,
+              "dividend": 36.3945
+            }
+          },
+          {
+            "date": "20260226",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "510500.SH",
+              "512660.SH",
+              "512100.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": -0.040916,
+            "style_aware_return": 0.285412,
+            "relative_to_baseline": 0.326328,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 67.7899,
+              "small_cap": 54.4449,
+              "value": 53.5727,
+              "dividend": 44.9531
+            }
+          }
+        ]
+      }
+    },
+    "tradable_etf": {
+      "20d": {
+        "summary": {
+          "date_count": 32,
+          "observation_count": 32,
+          "baseline": {
+            "observation_count": 32,
+            "mean_return": -0.018132,
+            "volatility": 0.066477,
+            "max_drawdown": -0.518373,
+            "total_compounded_return": -0.482352,
+            "positive_rate": 0.46875
+          },
+          "style_aware": {
+            "observation_count": 32,
+            "mean_return": 0.005234,
+            "volatility": 0.083594,
+            "max_drawdown": -0.308529,
+            "total_compounded_return": 0.06117,
+            "positive_rate": 0.5
+          },
+          "spread": 0.023366,
+          "hit_rate": 0.53125,
+          "style_ic": 0.075,
+          "positive_ic_rate": 0.59375
+        },
+        "style_drift": {
+          "date_count": 32,
+          "dominant_style_distribution": {
+            "growth": 32
+          },
+          "transition_count": 0,
+          "structural_bull_style_transition": [],
+          "interpretation": "Style drift is measured only inside STRUCTURAL_BULL validation dates. No transition means the frozen preference formula stayed on one dominant style in the sampled structural bull windows."
+        },
+        "sample_observations": [
+          {
+            "date": "20250529",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "512660.SH",
+              "512170.SH",
+              "512800.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.036167,
+            "style_aware_return": 0.026344,
+            "relative_to_baseline": -0.009823,
+            "style_ic": 0.6,
+            "style_scores": {
+              "growth": 62.902,
+              "small_cap": 55.0709,
+              "value": 54.6289,
+              "dividend": 45.3736
+            }
+          },
+          {
+            "date": "20250627",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "512000.SH",
+              "512800.SH",
+              "512660.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": -0.116972,
+            "style_aware_return": 0.072014,
+            "relative_to_baseline": 0.188986,
+            "style_ic": 0.8,
+            "style_scores": {
+              "growth": 71.1875,
+              "small_cap": 58.1315,
+              "value": 53.891,
+              "dividend": 47.6471
+            }
+          },
+          {
+            "date": "20250725",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "512170.SH",
+              "516160.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.084273,
+            "style_aware_return": 0.184339,
+            "relative_to_baseline": 0.100066,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 76.9102,
+              "small_cap": 55.0816,
+              "value": 48.6011,
+              "dividend": 38.9695
+            }
+          },
+          {
+            "date": "20250822",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "512100.SH",
+              "510500.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.069449,
+            "style_aware_return": 0.102216,
+            "relative_to_baseline": 0.032767,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 76.2947,
+              "small_cap": 56.3103,
+              "value": 48.3697,
+              "dividend": 39.3474
+            }
+          },
+          {
+            "date": "20250919",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "510500.SH",
+              "512100.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.028626,
+            "style_aware_return": 0.082491,
+            "relative_to_baseline": 0.053865,
+            "style_ic": 0.8,
+            "style_scores": {
+              "growth": 71.133,
+              "small_cap": 49.7298,
+              "value": 51.9935,
+              "dividend": 38.7779
+            }
+          },
+          {
+            "date": "20251027",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": -0.123043,
+            "style_aware_return": -0.123043,
+            "relative_to_baseline": 0.0,
+            "style_ic": -1.0,
+            "style_scores": {
+              "growth": 69.7485,
+              "small_cap": 53.984,
+              "value": 52.4359,
+              "dividend": 41.1614
+            }
+          },
+          {
+            "date": "20251124",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "516160.SH",
+              "515790.SH",
+              "159915.SZ"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.044153,
+            "style_aware_return": 0.067391,
+            "relative_to_baseline": 0.023238,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 68.9082,
+              "small_cap": 54.5053,
+              "value": 54.2391,
+              "dividend": 46.0596
+            }
+          },
+          {
+            "date": "20260121",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "510500.SH",
+              "512100.SH",
+              "512660.SH"
+            ],
+            "style_aware_codes": [
+              "588000.SH",
+              "512480.SH",
+              "159915.SZ"
+            ],
+            "baseline_return": 0.033458,
+            "style_aware_return": -0.014111,
+            "relative_to_baseline": -0.047569,
+            "style_ic": -0.8,
+            "style_scores": {
+              "growth": 67.3569,
+              "small_cap": 58.9259,
+              "value": 50.1213,
+              "dividend": 36.3945
+            }
+          },
+          {
+            "date": "20260226",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "510500.SH",
+              "512660.SH",
+              "512100.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": -0.125897,
+            "style_aware_return": -0.099675,
+            "relative_to_baseline": 0.026221,
+            "style_ic": -0.8,
+            "style_scores": {
+              "growth": 67.7899,
+              "small_cap": 54.4449,
+              "value": 53.5727,
+              "dividend": 44.9531
+            }
+          },
+          {
+            "date": "20260527",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "516160.SH",
+              "515790.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": -0.02539,
+            "style_aware_return": 0.14934,
+            "relative_to_baseline": 0.17473,
+            "style_ic": 0.8,
+            "style_scores": {
+              "growth": 70.9551,
+              "small_cap": 50.6108,
+              "value": 54.381,
+              "dividend": 45.3981
+            }
+          }
+        ]
+      },
+      "60d": {
+        "summary": {
+          "date_count": 31,
+          "observation_count": 31,
+          "baseline": {
+            "observation_count": 31,
+            "mean_return": -0.017333,
+            "volatility": 0.101297,
+            "max_drawdown": -0.716726,
+            "total_compounded_return": -0.506242,
+            "positive_rate": 0.322581
+          },
+          "style_aware": {
+            "observation_count": 31,
+            "mean_return": 0.012328,
+            "volatility": 0.156912,
+            "max_drawdown": -0.759931,
+            "total_compounded_return": 0.045185,
+            "positive_rate": 0.451613
+          },
+          "spread": 0.029661,
+          "hit_rate": 0.387097,
+          "style_ic": -0.083871,
+          "positive_ic_rate": 0.354839
+        },
+        "style_drift": {
+          "date_count": 31,
+          "dominant_style_distribution": {
+            "growth": 31
+          },
+          "transition_count": 0,
+          "structural_bull_style_transition": [],
+          "interpretation": "Style drift is measured only inside STRUCTURAL_BULL validation dates. No transition means the frozen preference formula stayed on one dominant style in the sampled structural bull windows."
+        },
+        "sample_observations": [
+          {
+            "date": "20250328",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "512100.SH",
+              "512170.SH",
+              "515000.SH"
+            ],
+            "style_aware_codes": [
+              "588000.SH",
+              "512480.SH",
+              "159915.SZ"
+            ],
+            "baseline_return": -0.005152,
+            "style_aware_return": -0.01519,
+            "relative_to_baseline": -0.010038,
+            "style_ic": -0.8,
+            "style_scores": {
+              "growth": 65.112,
+              "small_cap": 51.4183,
+              "value": 52.4788,
+              "dividend": 45.9346
+            }
+          },
+          {
+            "date": "20250529",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "512660.SH",
+              "512170.SH",
+              "512800.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": -0.025677,
+            "style_aware_return": 0.302404,
+            "relative_to_baseline": 0.328081,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 62.902,
+              "small_cap": 55.0709,
+              "value": 54.6289,
+              "dividend": 45.3736
+            }
+          },
+          {
+            "date": "20250627",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "512000.SH",
+              "512800.SH",
+              "512660.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": -0.304512,
+            "style_aware_return": 0.398676,
+            "relative_to_baseline": 0.703189,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 71.1875,
+              "small_cap": 58.1315,
+              "value": 53.891,
+              "dividend": 47.6471
+            }
+          },
+          {
+            "date": "20250725",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "512170.SH",
+              "516160.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.248753,
+            "style_aware_return": 0.411883,
+            "relative_to_baseline": 0.16313,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 76.9102,
+              "small_cap": 55.0816,
+              "value": 48.6011,
+              "dividend": 38.9695
+            }
+          },
+          {
+            "date": "20250822",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "512100.SH",
+              "510500.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.02373,
+            "style_aware_return": 0.04572,
+            "relative_to_baseline": 0.02199,
+            "style_ic": 0.4,
+            "style_scores": {
+              "growth": 76.2947,
+              "small_cap": 56.3103,
+              "value": 48.3697,
+              "dividend": 39.3474
+            }
+          },
+          {
+            "date": "20250919",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "510500.SH",
+              "512100.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.016659,
+            "style_aware_return": 0.012632,
+            "relative_to_baseline": -0.004027,
+            "style_ic": 0.0,
+            "style_scores": {
+              "growth": 71.133,
+              "small_cap": 49.7298,
+              "value": 51.9935,
+              "dividend": 38.7779
+            }
+          },
+          {
+            "date": "20251027",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.05844,
+            "style_aware_return": 0.05844,
+            "relative_to_baseline": 0.0,
+            "style_ic": 0.8,
+            "style_scores": {
+              "growth": 69.7485,
+              "small_cap": 53.984,
+              "value": 52.4359,
+              "dividend": 41.1614
+            }
+          },
+          {
+            "date": "20251124",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "516160.SH",
+              "515790.SH",
+              "159915.SZ"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": 0.162063,
+            "style_aware_return": 0.190583,
+            "relative_to_baseline": 0.02852,
+            "style_ic": 0.8,
+            "style_scores": {
+              "growth": 68.9082,
+              "small_cap": 54.5053,
+              "value": 54.2391,
+              "dividend": 46.0596
+            }
+          },
+          {
+            "date": "20260121",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "510500.SH",
+              "512100.SH",
+              "512660.SH"
+            ],
+            "style_aware_codes": [
+              "588000.SH",
+              "512480.SH",
+              "159915.SZ"
+            ],
+            "baseline_return": -0.020897,
+            "style_aware_return": 0.009221,
+            "relative_to_baseline": 0.030118,
+            "style_ic": -0.2,
+            "style_scores": {
+              "growth": 67.3569,
+              "small_cap": 58.9259,
+              "value": 50.1213,
+              "dividend": 36.3945
+            }
+          },
+          {
+            "date": "20260226",
+            "dominant_style": "growth",
+            "baseline_codes": [
+              "510500.SH",
+              "512660.SH",
+              "512100.SH"
+            ],
+            "style_aware_codes": [
+              "159915.SZ",
+              "588000.SH",
+              "512480.SH"
+            ],
+            "baseline_return": -0.045778,
+            "style_aware_return": 0.256944,
+            "relative_to_baseline": 0.302721,
+            "style_ic": 1.0,
+            "style_scores": {
+              "growth": 67.7899,
+              "small_cap": 54.4449,
+              "value": 53.5727,
+              "dividend": 44.9531
+            }
+          }
+        ]
+      }
+    }
+  },
+  "constraints": {
+    "research_validation_only": true,
+    "structural_bull_only": true,
+    "style_preference_formula_unchanged_from_v3_5_2": true,
+    "decision_inputs_only_use_same_day_or_prior_data": true,
+    "future_returns_used_only_for_validation_labels": true,
+    "no_future_function_in_signal": true,
+    "no_style_weight": true,
+    "no_etf_allocation": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_parameter_optimization": true,
+    "failure_result_is_acceptable": true
+  }
+}
