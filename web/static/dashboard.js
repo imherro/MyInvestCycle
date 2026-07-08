@@ -390,6 +390,63 @@ function opportunityRiskEvidenceLabel(value) {
   return labels[value] || value || "--";
 }
 
+function opportunityRiskPolicyModeLabel(value) {
+  const labels = {
+    rebuild_risk: "修复期重建观察",
+    participate: "参与研究",
+    participate_selectively: "选择性参与",
+    participate_with_control: "参与但控制拥挤",
+    late_cycle_control: "后段收益保护",
+    protect_capital: "保护资本",
+    defensive: "防守修复",
+    watch_only: "仅观察",
+  };
+  return labels[value] || value || "--";
+}
+
+function opportunityRiskPolicyActionLabel(value) {
+  const labels = {
+    observe_environment: "观察环境",
+    rebuild_risk_attention: "修复期关注",
+    require_breadth_confirmation: "要求宽度确认",
+    maintain_recovery_attention: "保持修复关注",
+    require_crowding_control: "要求拥挤控制",
+    allow_participation_study: "允许参与研究",
+    monitor_breadth: "监控市场宽度",
+    allow_selective_participation_study: "允许选择性参与研究",
+    monitor_rotation_health: "监控轮动健康度",
+    maintain_opportunity_attention: "保持机会关注",
+    allow_structural_rotation_study: "允许结构轮动研究",
+    require_theme_persistence: "要求主线持续",
+    protect_existing_gains: "保护已有收益",
+    raise_review_threshold: "提高复核门槛",
+    prioritize_risk_repair: "优先风险修复",
+    wait_for_recovery_confirmation: "等待修复确认",
+    aggressive_expansion: "激进扩张",
+    automatic_allocation: "自动配置",
+    full_beta_assumption: "默认满 Beta",
+    theme_chasing: "追逐主线",
+    ignore_crowding: "忽略拥挤",
+    single_theme_concentration: "单主线集中",
+    unrestricted_expansion: "无限制扩张",
+    broad_beta_assumption: "宽基 Beta 假设",
+    new_high_beta_budget: "新增高 Beta 预算",
+    new_unconfirmed_beta: "新增未确认 Beta",
+    offensive_expansion: "进攻扩张",
+  };
+  return labels[value] || value || "--";
+}
+
+function opportunityRiskPolicyInterpretationLabel(value) {
+  const labels = {
+    defensive_or_protection_dominant: "防守/保护占优",
+    participation_with_controls_dominant: "参与/控制占优",
+    mixed_policy_modes: "政策模式混合",
+    no_replay_rows: "无样本",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -978,6 +1035,9 @@ function setResultsPanel(results) {
   const opportunityRiskSnapshot = results.opportunity_risk_snapshot || {};
   const opportunityRiskCurrent = opportunityRiskSnapshot.current || {};
   const opportunityRiskHistory = opportunityRiskSnapshot.historical_summary || {};
+  const opportunityRiskPolicy = results.opportunity_risk_policy || {};
+  const opportunityRiskPolicyCurrent = opportunityRiskPolicy.current || {};
+  const opportunityRiskPolicySummary = opportunityRiskPolicy.summary || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -1076,6 +1136,57 @@ function setResultsPanel(results) {
     opportunityRiskSnapshot.metadata
       ? `V4.3 当前为${opportunityStateLabel(opportunityRiskCurrent.opportunity_state)} + ${opportunityRiskStateLabel(opportunityRiskCurrent.risk_state)}：${opportunityRiskCurrent.interpretation || "该层只拆分机会和风险状态"} 历史重放 ${integerText(opportunityRiskHistory.replay_count)} 次，不输出仓位、ETF 或交易信号。`
       : "V4.3 机会-风险二维状态尚未生成。"
+  );
+
+  setText("opportunityRiskPolicyMode", opportunityRiskPolicyModeLabel(opportunityRiskPolicyCurrent.policy_mode));
+  setText(
+    "opportunityRiskPolicyAllowed",
+    (opportunityRiskPolicyCurrent.actions_allowed || []).length
+      ? opportunityRiskPolicyCurrent.actions_allowed
+          .slice(0, 2)
+          .map(opportunityRiskPolicyActionLabel)
+          .join(" / ")
+      : "--"
+  );
+  setText(
+    "opportunityRiskPolicyBlocked",
+    (opportunityRiskPolicyCurrent.actions_blocked || []).length
+      ? opportunityRiskPolicyCurrent.actions_blocked
+          .slice(0, 2)
+          .map(opportunityRiskPolicyActionLabel)
+          .join(" / ")
+      : "--"
+  );
+  setText("opportunityRiskPolicyHistory", integerText(opportunityRiskPolicySummary.replay_count));
+  const policyModeDistribution = opportunityRiskPolicySummary.policy_mode_distribution || {};
+  setHtml("opportunityRiskPolicyDistribution", Object.entries(policyModeDistribution)
+    .sort(([, a], [, b]) => (b.share || 0) - (a.share || 0))
+    .slice(0, 5)
+    .map(
+      ([mode, item]) => `
+        <div class="alpha-source-row">
+          <span>${opportunityRiskPolicyModeLabel(mode)}</span>
+          <strong>${percentText(item.share)}</strong>
+        </div>
+      `
+    )
+    .join(""));
+  setHtml("opportunityRiskPolicyPeriods", (opportunityRiskPolicy.period_validation || [])
+    .map(
+      (period) => `
+        <div class="duration-row">
+          <span>${escapeHtml(period.label || period.period || "--")}</span>
+          <strong>${opportunityRiskPolicyModeLabel(period.dominant_policy_mode)}</strong>
+          <em>${opportunityRiskPolicyInterpretationLabel(period.interpretation)} · ${integerText(period.signal_count)} 次</em>
+        </div>
+      `
+    )
+    .join(""));
+  setText(
+    "opportunityRiskPolicyConclusion",
+    opportunityRiskPolicy.metadata
+      ? `V4.4 当前映射为${opportunityRiskPolicyModeLabel(opportunityRiskPolicyCurrent.policy_mode)}：${opportunityRiskPolicyCurrent.interpretation || "该层只给出定性政策模式"}。允许/禁止动作均为研究约束，不是仓位、ETF、权重或交易信号。`
+      : "V4.4 机会-风险政策映射尚未生成。"
   );
 
   const enabledStrategies = route.enabled_strategies || [];

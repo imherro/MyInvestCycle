@@ -177,6 +177,34 @@
           <p class="result-note" id="opportunityRiskConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="把 V4.3 的机会状态和风险状态映射为定性政策模式，例如参与、选择性参与、拥挤控制或保护资本；只输出研究约束，不输出仓位、ETF、权重或交易。">机会-风险政策模式</h2>
+            <span class="panel-kicker">V4.4</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>政策模式</span>
+              <strong id="opportunityRiskPolicyMode">--</strong>
+            </div>
+            <div class="result-row">
+              <span>允许动作</span>
+              <strong id="opportunityRiskPolicyAllowed">--</strong>
+            </div>
+            <div class="result-row">
+              <span>禁止动作</span>
+              <strong id="opportunityRiskPolicyBlocked">--</strong>
+            </div>
+            <div class="result-row">
+              <span>历史重放</span>
+              <strong id="opportunityRiskPolicyHistory">--</strong>
+            </div>
+          </div>
+          <div class="alpha-source-list" id="opportunityRiskPolicyDistribution"></div>
+          <div class="duration-list" id="opportunityRiskPolicyPeriods"></div>
+          <p class="result-note" id="opportunityRiskPolicyConclusion">--</p>
+        </article>
+
         <article class="chart-panel result-panel strategy-route-panel">
           <div class="panel-heading">
             <h2 class="help-title" tabindex="0" data-help="显示当前允许启用哪些策略、禁用哪些策略，以及资金在策略之间如何分配。">策略路由</h2>
@@ -285,7 +313,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-opportunity-risk-1"></script>
+    <script src="/static/dashboard.js?v=20260708-opportunity-policy-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

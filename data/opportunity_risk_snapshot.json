@@ -1,7 +1,7 @@
 {
   "metadata": {
     "engine": "V4.3 Market Opportunity vs Risk State Separation Engine",
-    "generated_at": "2026-07-08T13:52:33+00:00",
+    "generated_at": "2026-07-08T14:04:33+00:00",
     "as_of": "20260707",
     "window": {
       "start": "20150101",
@@ -39,7 +39,8 @@
       "industry_breadth": 0.0968,
       "top_industry_ratio": 0.2581,
       "crowding_score": 56.1413,
-      "price_extension": 75.0,
+      "price_extension_proxy": 75.0,
+      "price_extension_source": "warning_proxy",
       "pressure": 0.0
     },
     "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation."
@@ -192,7 +193,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.0,
         "crowding_score": 34.0,
-        "price_extension": 0.0,
+        "price_extension_proxy": 0.0,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -231,7 +233,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.0,
         "crowding_score": 34.0,
-        "price_extension": 0.0,
+        "price_extension_proxy": 0.0,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -270,7 +273,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.0,
         "crowding_score": 34.0,
-        "price_extension": 0.0,
+        "price_extension_proxy": 0.0,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -311,7 +315,8 @@
         "industry_breadth": 0.9677,
         "top_industry_ratio": 0.2581,
         "crowding_score": 2.7763,
-        "price_extension": 0.0,
+        "price_extension_proxy": 0.0,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -351,7 +356,8 @@
         "industry_breadth": 0.9355,
         "top_industry_ratio": 0.2258,
         "crowding_score": 36.5712,
-        "price_extension": 98.4444,
+        "price_extension_proxy": 98.4444,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
@@ -393,7 +399,8 @@
         "industry_breadth": 1.0,
         "top_industry_ratio": 0.2903,
         "crowding_score": 37.2055,
-        "price_extension": 100.0,
+        "price_extension_proxy": 100.0,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
@@ -434,7 +441,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.2903,
         "crowding_score": 47.2073,
-        "price_extension": 33.0849,
+        "price_extension_proxy": 33.0849,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -473,7 +481,8 @@
         "industry_breadth": 0.0968,
         "top_industry_ratio": 0.2258,
         "crowding_score": 51.9911,
-        "price_extension": 55.5386,
+        "price_extension_proxy": 55.5386,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -511,7 +520,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.1935,
         "crowding_score": 39.8226,
-        "price_extension": 16.1739,
+        "price_extension_proxy": 16.1739,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -550,7 +560,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.2581,
         "crowding_score": 36.2435,
-        "price_extension": 20.2747,
+        "price_extension_proxy": 20.2747,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -588,7 +599,8 @@
         "industry_breadth": 0.0323,
         "top_industry_ratio": 0.1935,
         "crowding_score": 45.2473,
-        "price_extension": 61.1001,
+        "price_extension_proxy": 61.1001,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -628,7 +640,8 @@
         "industry_breadth": 0.9032,
         "top_industry_ratio": 0.2581,
         "crowding_score": 27.6628,
-        "price_extension": 73.6587,
+        "price_extension_proxy": 73.6587,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -668,7 +681,8 @@
         "industry_breadth": 0.871,
         "top_industry_ratio": 0.2903,
         "crowding_score": 26.1876,
-        "price_extension": 71.2101,
+        "price_extension_proxy": 71.2101,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -706,7 +720,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.2258,
         "crowding_score": 38.1805,
-        "price_extension": 9.6667,
+        "price_extension_proxy": 9.6667,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -745,7 +760,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.3226,
         "crowding_score": 37.0134,
-        "price_extension": 14.5571,
+        "price_extension_proxy": 14.5571,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -783,7 +799,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.1613,
         "crowding_score": 40.8487,
-        "price_extension": 41.3041,
+        "price_extension_proxy": 41.3041,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -822,7 +839,8 @@
         "industry_breadth": 0.871,
         "top_industry_ratio": 0.3548,
         "crowding_score": 10.3932,
-        "price_extension": 28.6611,
+        "price_extension_proxy": 28.6611,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -861,7 +879,8 @@
         "industry_breadth": 0.0323,
         "top_industry_ratio": 0.2581,
         "crowding_score": 43.4327,
-        "price_extension": 21.1475,
+        "price_extension_proxy": 21.1475,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -902,7 +921,8 @@
         "industry_breadth": 0.4839,
         "top_industry_ratio": 0.3226,
         "crowding_score": 21.5659,
-        "price_extension": 55.8918,
+        "price_extension_proxy": 55.8918,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -941,7 +961,8 @@
         "industry_breadth": 0.8065,
         "top_industry_ratio": 0.1935,
         "crowding_score": 19.8433,
-        "price_extension": 50.7336,
+        "price_extension_proxy": 50.7336,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
@@ -979,7 +1000,8 @@
         "industry_breadth": 0.6452,
         "top_industry_ratio": 0.1935,
         "crowding_score": 20.7582,
-        "price_extension": 53.3147,
+        "price_extension_proxy": 53.3147,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -1018,7 +1040,8 @@
         "industry_breadth": 0.3548,
         "top_industry_ratio": 0.3226,
         "crowding_score": 23.9746,
-        "price_extension": 43.63,
+        "price_extension_proxy": 43.63,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -1057,7 +1080,8 @@
         "industry_breadth": 0.871,
         "top_industry_ratio": 0.2258,
         "crowding_score": 24.5713,
-        "price_extension": 58.1074,
+        "price_extension_proxy": 58.1074,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -1095,7 +1119,8 @@
         "industry_breadth": 0.9032,
         "top_industry_ratio": 0.2258,
         "crowding_score": 25.3451,
-        "price_extension": 60.2821,
+        "price_extension_proxy": 60.2821,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -1137,7 +1162,8 @@
         "industry_breadth": 0.0968,
         "top_industry_ratio": 0.2581,
         "crowding_score": 47.6453,
-        "price_extension": 44.4376,
+        "price_extension_proxy": 44.4376,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -1178,7 +1204,8 @@
         "industry_breadth": 0.0968,
         "top_industry_ratio": 0.2903,
         "crowding_score": 46.2027,
-        "price_extension": 39.0747,
+        "price_extension_proxy": 39.0747,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -1217,7 +1244,8 @@
         "industry_breadth": 0.3226,
         "top_industry_ratio": 0.1935,
         "crowding_score": 27.5613,
-        "price_extension": 66.855,
+        "price_extension_proxy": 66.855,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
@@ -1256,7 +1284,8 @@
         "industry_breadth": 0.6129,
         "top_industry_ratio": 0.2581,
         "crowding_score": 22.8809,
-        "price_extension": 58.255,
+        "price_extension_proxy": 58.255,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -1298,7 +1327,8 @@
         "industry_breadth": 0.0323,
         "top_industry_ratio": 0.2581,
         "crowding_score": 50.1455,
-        "price_extension": 42.2886,
+        "price_extension_proxy": 42.2886,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -1340,7 +1370,8 @@
         "industry_breadth": 0.0645,
         "top_industry_ratio": 0.2903,
         "crowding_score": 48.8105,
-        "price_extension": 36.9065,
+        "price_extension_proxy": 36.9065,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -1380,7 +1411,8 @@
         "industry_breadth": 0.129,
         "top_industry_ratio": 0.1935,
         "crowding_score": 42.3777,
-        "price_extension": 57.7322,
+        "price_extension_proxy": 57.7322,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -1421,7 +1453,8 @@
         "industry_breadth": 0.3548,
         "top_industry_ratio": 0.3548,
         "crowding_score": 33.974,
-        "price_extension": 79.0628,
+        "price_extension_proxy": 79.0628,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -1461,7 +1494,8 @@
         "industry_breadth": 0.7097,
         "top_industry_ratio": 0.2258,
         "crowding_score": 25.065,
-        "price_extension": 65.3193,
+        "price_extension_proxy": 65.3193,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
@@ -1502,7 +1536,8 @@
         "industry_breadth": 0.8065,
         "top_industry_ratio": 0.2581,
         "crowding_score": 28.1613,
-        "price_extension": 68.9743,
+        "price_extension_proxy": 68.9743,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -1541,7 +1576,8 @@
         "industry_breadth": 0.3871,
         "top_industry_ratio": 0.2581,
         "crowding_score": 32.4797,
-        "price_extension": 65.2627,
+        "price_extension_proxy": 65.2627,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -1582,7 +1618,8 @@
         "industry_breadth": 0.4516,
         "top_industry_ratio": 0.2903,
         "crowding_score": 27.7157,
-        "price_extension": 68.0909,
+        "price_extension_proxy": 68.0909,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -1621,7 +1658,8 @@
         "industry_breadth": 0.0323,
         "top_industry_ratio": 0.2258,
         "crowding_score": 52.4835,
-        "price_extension": 47.6476,
+        "price_extension_proxy": 47.6476,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -1662,7 +1700,8 @@
         "industry_breadth": 0.4516,
         "top_industry_ratio": 0.2581,
         "crowding_score": 28.4946,
-        "price_extension": 70.631,
+        "price_extension_proxy": 70.631,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -1702,7 +1741,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.1935,
         "crowding_score": 46.989,
-        "price_extension": 33.8333,
+        "price_extension_proxy": 33.8333,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -1740,7 +1780,8 @@
         "industry_breadth": 0.3871,
         "top_industry_ratio": 0.2258,
         "crowding_score": 26.0934,
-        "price_extension": 69.0842,
+        "price_extension_proxy": 69.0842,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -1780,7 +1821,8 @@
         "industry_breadth": 0.0645,
         "top_industry_ratio": 0.2258,
         "crowding_score": 50.8768,
-        "price_extension": 41.5206,
+        "price_extension_proxy": 41.5206,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -1819,7 +1861,8 @@
         "industry_breadth": 0.5806,
         "top_industry_ratio": 0.2258,
         "crowding_score": 25.3646,
-        "price_extension": 59.108,
+        "price_extension_proxy": 59.108,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
@@ -1858,7 +1901,8 @@
         "industry_breadth": 0.0645,
         "top_industry_ratio": 0.2258,
         "crowding_score": 53.2771,
-        "price_extension": 48.0183,
+        "price_extension_proxy": 48.0183,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -1898,7 +1942,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.2581,
         "crowding_score": 50.0533,
-        "price_extension": 38.0649,
+        "price_extension_proxy": 38.0649,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -1936,7 +1981,8 @@
         "industry_breadth": 0.0323,
         "top_industry_ratio": 0.2258,
         "crowding_score": 42.0198,
-        "price_extension": 23.5073,
+        "price_extension_proxy": 23.5073,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -1976,7 +2022,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.2581,
         "crowding_score": 38.8512,
-        "price_extension": 9.6557,
+        "price_extension_proxy": 9.6557,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -2016,7 +2063,8 @@
         "industry_breadth": 0.0323,
         "top_industry_ratio": 0.2581,
         "crowding_score": 38.3757,
-        "price_extension": 5.2778,
+        "price_extension_proxy": 5.2778,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -2055,7 +2103,8 @@
         "industry_breadth": 0.0645,
         "top_industry_ratio": 0.1935,
         "crowding_score": 36.7405,
-        "price_extension": 40.5366,
+        "price_extension_proxy": 40.5366,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -2094,7 +2143,8 @@
         "industry_breadth": 0.0645,
         "top_industry_ratio": 0.2581,
         "crowding_score": 36.7187,
-        "price_extension": 15.9086,
+        "price_extension_proxy": 15.9086,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -2133,7 +2183,8 @@
         "industry_breadth": 0.1935,
         "top_industry_ratio": 0.2581,
         "crowding_score": 32.7915,
-        "price_extension": 23.3716,
+        "price_extension_proxy": 23.3716,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -2172,7 +2223,8 @@
         "industry_breadth": 0.6452,
         "top_industry_ratio": 0.2581,
         "crowding_score": 21.9136,
-        "price_extension": 55.4798,
+        "price_extension_proxy": 55.4798,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -2214,7 +2266,8 @@
         "industry_breadth": 1.0,
         "top_industry_ratio": 0.2581,
         "crowding_score": 37.3553,
-        "price_extension": 97.8333,
+        "price_extension_proxy": 97.8333,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
@@ -2255,7 +2308,8 @@
         "industry_breadth": 0.9032,
         "top_industry_ratio": 0.2581,
         "crowding_score": 33.3342,
-        "price_extension": 87.5114,
+        "price_extension_proxy": 87.5114,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -2296,7 +2350,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.1935,
         "crowding_score": 57.0966,
-        "price_extension": 54.0234,
+        "price_extension_proxy": 54.0234,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -2338,7 +2393,8 @@
         "industry_breadth": 0.1613,
         "top_industry_ratio": 0.2581,
         "crowding_score": 41.7897,
-        "price_extension": 49.006,
+        "price_extension_proxy": 49.006,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -2380,7 +2436,8 @@
         "industry_breadth": 0.0323,
         "top_industry_ratio": 0.2903,
         "crowding_score": 49.4371,
-        "price_extension": 53.1983,
+        "price_extension_proxy": 53.1983,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -2419,7 +2476,8 @@
         "industry_breadth": 0.0645,
         "top_industry_ratio": 0.2581,
         "crowding_score": 46.4068,
-        "price_extension": 34.5171,
+        "price_extension_proxy": 34.5171,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -2460,7 +2518,8 @@
         "industry_breadth": 0.5806,
         "top_industry_ratio": 0.2258,
         "crowding_score": 32.2553,
-        "price_extension": 86.7567,
+        "price_extension_proxy": 86.7567,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
@@ -2498,7 +2557,8 @@
         "industry_breadth": 0.2581,
         "top_industry_ratio": 0.2581,
         "crowding_score": 35.8849,
-        "price_extension": 52.0665,
+        "price_extension_proxy": 52.0665,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -2539,7 +2599,8 @@
         "industry_breadth": 0.4194,
         "top_industry_ratio": 0.2903,
         "crowding_score": 28.9275,
-        "price_extension": 61.5273,
+        "price_extension_proxy": 61.5273,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -2577,7 +2638,8 @@
         "industry_breadth": 0.0968,
         "top_industry_ratio": 0.1613,
         "crowding_score": 48.0211,
-        "price_extension": 44.4503,
+        "price_extension_proxy": 44.4503,
+        "price_extension_source": "direct_value",
         "pressure": 0.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -2621,7 +2683,8 @@
         "industry_breadth": 0.9355,
         "top_industry_ratio": 0.2581,
         "crowding_score": 31.1725,
-        "price_extension": 77.4506,
+        "price_extension_proxy": 77.4506,
+        "price_extension_source": "direct_value",
         "pressure": 34.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -2659,7 +2722,8 @@
         "industry_breadth": 0.1935,
         "top_industry_ratio": 0.3226,
         "crowding_score": 47.9355,
-        "price_extension": 63.9894,
+        "price_extension_proxy": 63.9894,
+        "price_extension_source": "direct_value",
         "pressure": 38.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -2694,7 +2758,8 @@
         "industry_breadth": 0.7097,
         "top_industry_ratio": 0.2258,
         "crowding_score": 26.646,
-        "price_extension": 73.4675,
+        "price_extension_proxy": 73.4675,
+        "price_extension_source": "direct_value",
         "pressure": 4.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -2729,7 +2794,8 @@
         "industry_breadth": 0.0968,
         "top_industry_ratio": 0.1935,
         "crowding_score": 52.7594,
-        "price_extension": 56.2011,
+        "price_extension_proxy": 56.2011,
+        "price_extension_source": "direct_value",
         "pressure": 82.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -2764,7 +2830,8 @@
         "industry_breadth": 0.4516,
         "top_industry_ratio": 0.2258,
         "crowding_score": 27.4923,
-        "price_extension": 69.6704,
+        "price_extension_proxy": 69.6704,
+        "price_extension_source": "direct_value",
         "pressure": 40.0
       },
       "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
@@ -2800,7 +2867,8 @@
         "industry_breadth": 0.2903,
         "top_industry_ratio": 0.2903,
         "crowding_score": 35.0038,
-        "price_extension": 77.936,
+        "price_extension_proxy": 77.936,
+        "price_extension_source": "direct_value",
         "pressure": 35.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -2838,7 +2906,8 @@
         "industry_breadth": 0.9677,
         "top_industry_ratio": 0.2903,
         "crowding_score": 36.8152,
-        "price_extension": 98.5066,
+        "price_extension_proxy": 98.5066,
+        "price_extension_source": "direct_value",
         "pressure": 41.0
       },
       "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
@@ -2874,7 +2943,8 @@
         "industry_breadth": 0.7742,
         "top_industry_ratio": 0.2258,
         "crowding_score": 36.8036,
-        "price_extension": 95.6437,
+        "price_extension_proxy": 95.6437,
+        "price_extension_source": "direct_value",
         "pressure": 54.0
       },
       "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
@@ -2910,7 +2980,8 @@
         "industry_breadth": 0.6129,
         "top_industry_ratio": 0.2581,
         "crowding_score": 33.5246,
-        "price_extension": 87.7506,
+        "price_extension_proxy": 87.7506,
+        "price_extension_source": "direct_value",
         "pressure": 40.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -2945,7 +3016,8 @@
         "industry_breadth": 0.0323,
         "top_industry_ratio": 0.2258,
         "crowding_score": 54.4468,
-        "price_extension": 47.4722,
+        "price_extension_proxy": 47.4722,
+        "price_extension_source": "direct_value",
         "pressure": 12.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -2981,7 +3053,8 @@
         "industry_breadth": 0.3226,
         "top_industry_ratio": 0.2903,
         "crowding_score": 34.5192,
-        "price_extension": 79.2236,
+        "price_extension_proxy": 79.2236,
+        "price_extension_source": "direct_value",
         "pressure": 16.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -3018,7 +3091,8 @@
         "industry_breadth": 0.4194,
         "top_industry_ratio": 0.1935,
         "crowding_score": 26.9634,
-        "price_extension": 73.6221,
+        "price_extension_proxy": 73.6221,
+        "price_extension_source": "direct_value",
         "pressure": 37.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -3053,7 +3127,8 @@
         "industry_breadth": 0.2258,
         "top_industry_ratio": 0.2903,
         "crowding_score": 51.5778,
-        "price_extension": 81.2849,
+        "price_extension_proxy": 81.2849,
+        "price_extension_source": "direct_value",
         "pressure": 33.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3088,7 +3163,8 @@
         "industry_breadth": 0.5484,
         "top_industry_ratio": 0.2258,
         "crowding_score": 27.61,
-        "price_extension": 68.8482,
+        "price_extension_proxy": 68.8482,
+        "price_extension_source": "direct_value",
         "pressure": 58.0
       },
       "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
@@ -3125,7 +3201,8 @@
         "industry_breadth": 0.3871,
         "top_industry_ratio": 0.1613,
         "crowding_score": 28.4792,
-        "price_extension": 73.49,
+        "price_extension_proxy": 73.49,
+        "price_extension_source": "direct_value",
         "pressure": 45.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -3156,7 +3233,8 @@
         "industry_breadth": 0.3226,
         "top_industry_ratio": 0.2258,
         "crowding_score": 31.0593,
-        "price_extension": 60.056,
+        "price_extension_proxy": 60.056,
+        "price_extension_source": "direct_value",
         "pressure": 3.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3191,7 +3269,8 @@
         "industry_breadth": 0.3226,
         "top_industry_ratio": 0.2581,
         "crowding_score": 34.418,
-        "price_extension": 71.8692,
+        "price_extension_proxy": 71.8692,
+        "price_extension_source": "direct_value",
         "pressure": 15.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3226,7 +3305,8 @@
         "industry_breadth": 0.5484,
         "top_industry_ratio": 0.2581,
         "crowding_score": 24.4014,
-        "price_extension": 62.7194,
+        "price_extension_proxy": 62.7194,
+        "price_extension_source": "direct_value",
         "pressure": 49.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3260,7 +3340,8 @@
         "industry_breadth": 0.3871,
         "top_industry_ratio": 0.2258,
         "crowding_score": 32.5669,
-        "price_extension": 72.1088,
+        "price_extension_proxy": 72.1088,
+        "price_extension_source": "direct_value",
         "pressure": 49.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3296,7 +3377,8 @@
         "industry_breadth": 0.3871,
         "top_industry_ratio": 0.3226,
         "crowding_score": 38.2622,
-        "price_extension": 83.9982,
+        "price_extension_proxy": 83.9982,
+        "price_extension_source": "direct_value",
         "pressure": 65.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -3333,7 +3415,8 @@
         "industry_breadth": 0.4194,
         "top_industry_ratio": 0.2581,
         "crowding_score": 32.9088,
-        "price_extension": 90.133,
+        "price_extension_proxy": 90.133,
+        "price_extension_source": "direct_value",
         "pressure": 16.0
       },
       "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
@@ -3369,7 +3452,8 @@
         "industry_breadth": 0.1935,
         "top_industry_ratio": 0.129,
         "crowding_score": 43.11,
-        "price_extension": 72.982,
+        "price_extension_proxy": 72.982,
+        "price_extension_source": "direct_value",
         "pressure": 55.0
       },
       "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
@@ -3402,7 +3486,8 @@
         "industry_breadth": 0.2258,
         "top_industry_ratio": 0.2258,
         "crowding_score": 41.0182,
-        "price_extension": 61.7437,
+        "price_extension_proxy": 61.7437,
+        "price_extension_source": "direct_value",
         "pressure": 18.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3434,7 +3519,8 @@
         "industry_breadth": 0.3548,
         "top_industry_ratio": 0.2258,
         "crowding_score": 23.4828,
-        "price_extension": 60.1707,
+        "price_extension_proxy": 60.1707,
+        "price_extension_source": "direct_value",
         "pressure": 15.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3468,7 +3554,8 @@
         "industry_breadth": 0.5806,
         "top_industry_ratio": 0.2581,
         "crowding_score": 22.8365,
-        "price_extension": 57.9207,
+        "price_extension_proxy": 57.9207,
+        "price_extension_source": "direct_value",
         "pressure": 24.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3500,7 +3587,8 @@
         "industry_breadth": 0.0645,
         "top_industry_ratio": 0.2258,
         "crowding_score": 43.011,
-        "price_extension": 27.7957,
+        "price_extension_proxy": 27.7957,
+        "price_extension_source": "direct_value",
         "pressure": 3.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3532,7 +3620,8 @@
         "industry_breadth": 0.3871,
         "top_industry_ratio": 0.2258,
         "crowding_score": 22.8408,
-        "price_extension": 60.0039,
+        "price_extension_proxy": 60.0039,
+        "price_extension_source": "direct_value",
         "pressure": 40.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3567,7 +3656,8 @@
         "industry_breadth": 0.0968,
         "top_industry_ratio": 0.2581,
         "crowding_score": 49.0531,
-        "price_extension": 44.8076,
+        "price_extension_proxy": 44.8076,
+        "price_extension_source": "direct_value",
         "pressure": 21.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3601,7 +3691,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.3226,
         "crowding_score": 45.2792,
-        "price_extension": 26.6381,
+        "price_extension_proxy": 26.6381,
+        "price_extension_source": "direct_value",
         "pressure": 24.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -3635,7 +3726,8 @@
         "industry_breadth": 0.0323,
         "top_industry_ratio": 0.1935,
         "crowding_score": 47.1335,
-        "price_extension": 67.1363,
+        "price_extension_proxy": 67.1363,
+        "price_extension_source": "direct_value",
         "pressure": 43.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3670,7 +3762,8 @@
         "industry_breadth": 0.5806,
         "top_industry_ratio": 0.3226,
         "crowding_score": 24.332,
-        "price_extension": 62.8194,
+        "price_extension_proxy": 62.8194,
+        "price_extension_source": "direct_value",
         "pressure": 65.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3704,7 +3797,8 @@
         "industry_breadth": 0.3548,
         "top_industry_ratio": 0.2903,
         "crowding_score": 32.3054,
-        "price_extension": 66.3189,
+        "price_extension_proxy": 66.3189,
+        "price_extension_source": "direct_value",
         "pressure": 26.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3737,7 +3831,8 @@
         "industry_breadth": 0.2258,
         "top_industry_ratio": 0.1935,
         "crowding_score": 36.1385,
-        "price_extension": 44.4147,
+        "price_extension_proxy": 44.4147,
+        "price_extension_source": "direct_value",
         "pressure": 7.0
       },
       "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
@@ -3769,7 +3864,8 @@
         "industry_breadth": 0.0645,
         "top_industry_ratio": 0.2258,
         "crowding_score": 46.4042,
-        "price_extension": 34.9092,
+        "price_extension_proxy": 34.9092,
+        "price_extension_source": "direct_value",
         "pressure": 20.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3804,7 +3900,8 @@
         "industry_breadth": 0.0645,
         "top_industry_ratio": 0.2581,
         "crowding_score": 47.7107,
-        "price_extension": 38.3528,
+        "price_extension_proxy": 38.3528,
+        "price_extension_source": "direct_value",
         "pressure": 30.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3836,7 +3933,8 @@
         "industry_breadth": 0.1613,
         "top_industry_ratio": 0.129,
         "crowding_score": 26.3136,
-        "price_extension": 33.3223,
+        "price_extension_proxy": 33.3223,
+        "price_extension_source": "direct_value",
         "pressure": 25.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3869,7 +3967,8 @@
         "industry_breadth": 0.3871,
         "top_industry_ratio": 0.2903,
         "crowding_score": 26.6617,
-        "price_extension": 58.0423,
+        "price_extension_proxy": 58.0423,
+        "price_extension_source": "direct_value",
         "pressure": 25.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3903,7 +4002,8 @@
         "industry_breadth": 0.9355,
         "top_industry_ratio": 0.1613,
         "crowding_score": 25.708,
-        "price_extension": 67.8125,
+        "price_extension_proxy": 67.8125,
+        "price_extension_source": "direct_value",
         "pressure": 26.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3936,7 +4036,8 @@
         "industry_breadth": 0.6452,
         "top_industry_ratio": 0.1935,
         "crowding_score": 22.4988,
-        "price_extension": 56.1273,
+        "price_extension_proxy": 56.1273,
+        "price_extension_source": "direct_value",
         "pressure": 50.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -3974,7 +4075,8 @@
         "industry_breadth": 0.1613,
         "top_industry_ratio": 0.1935,
         "crowding_score": 60.6726,
-        "price_extension": 82.7453,
+        "price_extension_proxy": 82.7453,
+        "price_extension_source": "direct_value",
         "pressure": 39.0
       },
       "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
@@ -4010,7 +4112,8 @@
         "industry_breadth": 0.1613,
         "top_industry_ratio": 0.2581,
         "crowding_score": 52.1967,
-        "price_extension": 67.3183,
+        "price_extension_proxy": 67.3183,
+        "price_extension_source": "direct_value",
         "pressure": 42.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -4043,7 +4146,8 @@
         "industry_breadth": 0.0323,
         "top_industry_ratio": 0.1935,
         "crowding_score": 50.5841,
-        "price_extension": 45.1009,
+        "price_extension_proxy": 45.1009,
+        "price_extension_source": "direct_value",
         "pressure": 4.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -4077,7 +4181,8 @@
         "industry_breadth": 0.129,
         "top_industry_ratio": 0.2581,
         "crowding_score": 48.4611,
-        "price_extension": 60.9528,
+        "price_extension_proxy": 60.9528,
+        "price_extension_source": "direct_value",
         "pressure": 3.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -4109,7 +4214,8 @@
         "industry_breadth": 0.1613,
         "top_industry_ratio": 0.1613,
         "crowding_score": 28.2049,
-        "price_extension": 37.343,
+        "price_extension_proxy": 37.343,
+        "price_extension_source": "direct_value",
         "pressure": 24.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -4141,7 +4247,8 @@
         "industry_breadth": 0.1935,
         "top_industry_ratio": 0.2581,
         "crowding_score": 34.3275,
-        "price_extension": 28.6462,
+        "price_extension_proxy": 28.6462,
+        "price_extension_source": "direct_value",
         "pressure": 16.0
       },
       "interpretation": "Opportunity/risk state is inconclusive and should not drive allocation.",
@@ -4173,7 +4280,8 @@
         "industry_breadth": 0.3226,
         "top_industry_ratio": 0.2258,
         "crowding_score": 19.8541,
-        "price_extension": 44.9022,
+        "price_extension_proxy": 44.9022,
+        "price_extension_source": "direct_value",
         "pressure": 34.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -4208,7 +4316,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.2903,
         "crowding_score": 41.395,
-        "price_extension": 17.0,
+        "price_extension_proxy": 17.0,
+        "price_extension_source": "direct_value",
         "pressure": 65.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -4239,7 +4348,8 @@
         "industry_breadth": 0.3226,
         "top_industry_ratio": 0.2258,
         "crowding_score": 24.7841,
-        "price_extension": 56.2228,
+        "price_extension_proxy": 56.2228,
+        "price_extension_source": "direct_value",
         "pressure": 11.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -4272,7 +4382,8 @@
         "industry_breadth": 0.0645,
         "top_industry_ratio": 0.2581,
         "crowding_score": 44.8775,
-        "price_extension": 30.1161,
+        "price_extension_proxy": 30.1161,
+        "price_extension_source": "direct_value",
         "pressure": 32.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -4304,7 +4415,8 @@
         "industry_breadth": 0.0968,
         "top_industry_ratio": 0.2258,
         "crowding_score": 40.5584,
-        "price_extension": 21.7197,
+        "price_extension_proxy": 21.7197,
+        "price_extension_source": "direct_value",
         "pressure": 4.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -4339,7 +4451,8 @@
         "industry_breadth": 0.1613,
         "top_industry_ratio": 0.2581,
         "crowding_score": 45.8148,
-        "price_extension": 64.4066,
+        "price_extension_proxy": 64.4066,
+        "price_extension_source": "direct_value",
         "pressure": 56.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -4372,7 +4485,8 @@
         "industry_breadth": 0.4194,
         "top_industry_ratio": 0.0968,
         "crowding_score": 24.5491,
-        "price_extension": 64.6508,
+        "price_extension_proxy": 64.6508,
+        "price_extension_source": "direct_value",
         "pressure": 44.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -4404,7 +4518,8 @@
         "industry_breadth": 0.2581,
         "top_industry_ratio": 0.2258,
         "crowding_score": 39.0035,
-        "price_extension": 56.6979,
+        "price_extension_proxy": 56.6979,
+        "price_extension_source": "direct_value",
         "pressure": 45.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -4436,7 +4551,8 @@
         "industry_breadth": 0.6129,
         "top_industry_ratio": 0.1613,
         "crowding_score": 21.196,
-        "price_extension": 57.7362,
+        "price_extension_proxy": 57.7362,
+        "price_extension_source": "direct_value",
         "pressure": 64.0
       },
       "interpretation": "Opportunity/risk state is inconclusive and should not drive allocation.",
@@ -4469,7 +4585,8 @@
         "industry_breadth": 0.0323,
         "top_industry_ratio": 0.3226,
         "crowding_score": 48.1158,
-        "price_extension": 36.8613,
+        "price_extension_proxy": 36.8613,
+        "price_extension_source": "direct_value",
         "pressure": 25.0
       },
       "interpretation": "Opportunity/risk state is inconclusive and should not drive allocation.",
@@ -4502,7 +4619,8 @@
         "industry_breadth": 0.0968,
         "top_industry_ratio": 0.2258,
         "crowding_score": 47.1797,
-        "price_extension": 36.2221,
+        "price_extension_proxy": 36.2221,
+        "price_extension_source": "direct_value",
         "pressure": 32.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -4533,7 +4651,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.2258,
         "crowding_score": 43.9616,
-        "price_extension": 24.6667,
+        "price_extension_proxy": 24.6667,
+        "price_extension_source": "direct_value",
         "pressure": 19.0
       },
       "interpretation": "Opportunity/risk state is inconclusive and should not drive allocation.",
@@ -4565,7 +4684,8 @@
         "industry_breadth": 0.0,
         "top_industry_ratio": 0.2581,
         "crowding_score": 41.2966,
-        "price_extension": 14.8333,
+        "price_extension_proxy": 14.8333,
+        "price_extension_source": "direct_value",
         "pressure": 14.0
       },
       "interpretation": "Opportunity/risk state is inconclusive and should not drive allocation.",
@@ -4599,7 +4719,8 @@
         "industry_breadth": 0.9355,
         "top_industry_ratio": 0.3226,
         "crowding_score": 37.0731,
-        "price_extension": 99.6111,
+        "price_extension_proxy": 99.6111,
+        "price_extension_source": "direct_value",
         "pressure": 32.0
       },
       "interpretation": "Opportunity/risk state is inconclusive and should not drive allocation.",
@@ -4634,7 +4755,8 @@
         "industry_breadth": 0.8065,
         "top_industry_ratio": 0.2258,
         "crowding_score": 33.7884,
-        "price_extension": 90.5553,
+        "price_extension_proxy": 90.5553,
+        "price_extension_source": "direct_value",
         "pressure": 11.0
       },
       "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
@@ -4669,7 +4791,8 @@
         "industry_breadth": 0.6452,
         "top_industry_ratio": 0.2258,
         "crowding_score": 39.0847,
-        "price_extension": 97.8333,
+        "price_extension_proxy": 97.8333,
+        "price_extension_source": "direct_value",
         "pressure": 80.0
       },
       "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
@@ -4702,7 +4825,8 @@
         "industry_breadth": 0.0645,
         "top_industry_ratio": 0.1613,
         "crowding_score": 49.9599,
-        "price_extension": 45.5173,
+        "price_extension_proxy": 45.5173,
+        "price_extension_source": "direct_value",
         "pressure": 12.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -4737,7 +4861,8 @@
         "industry_breadth": 0.4194,
         "top_industry_ratio": 0.1935,
         "crowding_score": 30.7614,
-        "price_extension": 82.708,
+        "price_extension_proxy": 82.708,
+        "price_extension_source": "direct_value",
         "pressure": 100.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -4771,7 +4896,8 @@
         "industry_breadth": 0.4194,
         "top_industry_ratio": 0.1935,
         "crowding_score": 26.8851,
-        "price_extension": 63.3631,
+        "price_extension_proxy": 63.3631,
+        "price_extension_source": "direct_value",
         "pressure": 43.0
       },
       "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
@@ -4803,7 +4929,8 @@
         "industry_breadth": 0.0968,
         "top_industry_ratio": 0.1935,
         "crowding_score": 44.4288,
-        "price_extension": 35.4811,
+        "price_extension_proxy": 35.4811,
+        "price_extension_source": "direct_value",
         "pressure": 24.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -4837,7 +4964,8 @@
         "industry_breadth": 0.6452,
         "top_industry_ratio": 0.2258,
         "crowding_score": 27.2997,
-        "price_extension": 67.7562,
+        "price_extension_proxy": 67.7562,
+        "price_extension_source": "direct_value",
         "pressure": 49.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -4870,7 +4998,8 @@
         "industry_breadth": 0.0645,
         "top_industry_ratio": 0.2903,
         "crowding_score": 52.0165,
-        "price_extension": 46.6088,
+        "price_extension_proxy": 46.6088,
+        "price_extension_source": "direct_value",
         "pressure": 57.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -4906,7 +5035,8 @@
         "industry_breadth": 0.871,
         "top_industry_ratio": 0.2581,
         "crowding_score": 28.2396,
-        "price_extension": 72.9116,
+        "price_extension_proxy": 72.9116,
+        "price_extension_source": "direct_value",
         "pressure": 28.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -4944,7 +5074,8 @@
         "industry_breadth": 0.8387,
         "top_industry_ratio": 0.2581,
         "crowding_score": 29.0172,
-        "price_extension": 73.8799,
+        "price_extension_proxy": 73.8799,
+        "price_extension_source": "direct_value",
         "pressure": 67.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -4982,7 +5113,8 @@
         "industry_breadth": 0.9032,
         "top_industry_ratio": 0.2581,
         "crowding_score": 36.4587,
-        "price_extension": 96.3793,
+        "price_extension_proxy": 96.3793,
+        "price_extension_source": "direct_value",
         "pressure": 22.0
       },
       "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
@@ -5017,7 +5149,8 @@
         "industry_breadth": 0.2903,
         "top_industry_ratio": 0.2258,
         "crowding_score": 42.5428,
-        "price_extension": 71.0963,
+        "price_extension_proxy": 71.0963,
+        "price_extension_source": "direct_value",
         "pressure": 68.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -5054,7 +5187,8 @@
         "industry_breadth": 0.8065,
         "top_industry_ratio": 0.2581,
         "crowding_score": 30.9608,
-        "price_extension": 78.1893,
+        "price_extension_proxy": 78.1893,
+        "price_extension_source": "direct_value",
         "pressure": 50.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -5089,7 +5223,8 @@
         "industry_breadth": 0.1613,
         "top_industry_ratio": 0.2258,
         "crowding_score": 50.3849,
-        "price_extension": 62.9515,
+        "price_extension_proxy": 62.9515,
+        "price_extension_source": "direct_value",
         "pressure": 2.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -5125,7 +5260,8 @@
         "industry_breadth": 0.8387,
         "top_industry_ratio": 0.2581,
         "crowding_score": 37.3628,
-        "price_extension": 98.3237,
+        "price_extension_proxy": 98.3237,
+        "price_extension_source": "direct_value",
         "pressure": 55.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -5161,7 +5297,8 @@
         "industry_breadth": 0.5484,
         "top_industry_ratio": 0.2258,
         "crowding_score": 27.3875,
-        "price_extension": 74.4347,
+        "price_extension_proxy": 74.4347,
+        "price_extension_source": "direct_value",
         "pressure": 39.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -5197,7 +5334,8 @@
         "industry_breadth": 0.3548,
         "top_industry_ratio": 0.1613,
         "crowding_score": 31.2727,
-        "price_extension": 63.7647,
+        "price_extension_proxy": 63.7647,
+        "price_extension_source": "direct_value",
         "pressure": 21.0
       },
       "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
@@ -5231,7 +5369,8 @@
         "industry_breadth": 0.1935,
         "top_industry_ratio": 0.1935,
         "crowding_score": 45.811,
-        "price_extension": 63.5504,
+        "price_extension_proxy": 63.5504,
+        "price_extension_source": "direct_value",
         "pressure": 19.0
       },
       "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
@@ -5268,7 +5407,8 @@
         "industry_breadth": 0.3226,
         "top_industry_ratio": 0.2903,
         "crowding_score": 37.1114,
-        "price_extension": 89.7086,
+        "price_extension_proxy": 89.7086,
+        "price_extension_source": "direct_value",
         "pressure": 20.0
       },
       "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
@@ -5307,7 +5447,8 @@
         "industry_breadth": 0.1613,
         "top_industry_ratio": 0.2903,
         "crowding_score": 59.8627,
-        "price_extension": 87.625,
+        "price_extension_proxy": 87.625,
+        "price_extension_source": "direct_value",
         "pressure": 22.0
       },
       "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",

@@ -1,0 +1,5040 @@
+{
+  "metadata": {
+    "engine": "V4.4 Opportunity-Risk Policy Mapping Validation",
+    "generated_at": "2026-07-08T14:04:39+00:00",
+    "as_of": "20260707",
+    "source_engine": "V4.3 Market Opportunity vs Risk State Separation Engine",
+    "purpose": "Map opportunity/risk states into qualitative policy modes and validate historical state distributions.",
+    "policy_mapping_only": true
+  },
+  "current": {
+    "opportunity_state": "LATE_BULL",
+    "risk_state": "CROWDED",
+    "policy_mode": "late_cycle_control",
+    "actions_allowed": [
+      "maintain_opportunity_attention",
+      "protect_existing_gains",
+      "require_crowding_control"
+    ],
+    "actions_blocked": [
+      "aggressive_expansion",
+      "new_unconfirmed_beta"
+    ],
+    "evidence": [
+      "macro_recovery",
+      "structural_rotation",
+      "bull_divergence",
+      "trend_strong",
+      "theme_persistence_high",
+      "industry_breadth_narrow",
+      "single_theme_concentration",
+      "crowding_elevated",
+      "price_extension_high",
+      "theme_risk_medium"
+    ],
+    "interpretation": "Late-cycle opportunity remains visible, but policy should protect gains and block aggressive expansion.",
+    "constraints": {
+      "policy_mapping_only": true,
+      "no_allocation": true,
+      "no_weight": true,
+      "no_trade": true
+    },
+    "combined_state": "LATE_BULL__CROWDED",
+    "source_interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation."
+  },
+  "summary": {
+    "replay_count": 140,
+    "policy_mode_distribution": {
+      "late_cycle_control": {
+        "count": 7,
+        "share": 0.05
+      },
+      "participate_selectively": {
+        "count": 9,
+        "share": 0.064286
+      },
+      "participate_with_control": {
+        "count": 97,
+        "share": 0.692857
+      },
+      "protect_capital": {
+        "count": 6,
+        "share": 0.042857
+      },
+      "rebuild_risk": {
+        "count": 15,
+        "share": 0.107143
+      },
+      "watch_only": {
+        "count": 6,
+        "share": 0.042857
+      }
+    },
+    "opportunity_state_distribution": {
+      "BULL_EXPANSION": {
+        "count": 9,
+        "share": 0.064286
+      },
+      "EARLY_RECOVERY": {
+        "count": 71,
+        "share": 0.507143
+      },
+      "LATE_BULL": {
+        "count": 13,
+        "share": 0.092857
+      },
+      "STRUCTURAL_ROTATION": {
+        "count": 41,
+        "share": 0.292857
+      },
+      "UNKNOWN": {
+        "count": 6,
+        "share": 0.042857
+      }
+    },
+    "risk_state_distribution": {
+      "CROWDED": {
+        "count": 107,
+        "share": 0.764286
+      },
+      "HIGH_RISK": {
+        "count": 8,
+        "share": 0.057143
+      },
+      "LOW_RISK": {
+        "count": 7,
+        "share": 0.05
+      },
+      "NORMAL": {
+        "count": 18,
+        "share": 0.128571
+      }
+    },
+    "transition_matrix": {
+      "late_cycle_control": {
+        "late_cycle_control": 1,
+        "participate_with_control": 3,
+        "rebuild_risk": 1,
+        "protect_capital": 1
+      },
+      "participate_selectively": {
+        "rebuild_risk": 1,
+        "participate_with_control": 8
+      },
+      "participate_with_control": {
+        "participate_with_control": 71,
+        "protect_capital": 4,
+        "participate_selectively": 9,
+        "rebuild_risk": 8,
+        "late_cycle_control": 3,
+        "watch_only": 2
+      },
+      "protect_capital": {
+        "protect_capital": 1,
+        "participate_with_control": 4,
+        "late_cycle_control": 1
+      },
+      "rebuild_risk": {
+        "participate_with_control": 9,
+        "rebuild_risk": 4,
+        "late_cycle_control": 1,
+        "watch_only": 1
+      },
+      "watch_only": {
+        "rebuild_risk": 1,
+        "watch_only": 3,
+        "participate_with_control": 1,
+        "late_cycle_control": 1
+      }
+    },
+    "key_read": "Replay mapped 140 states into policy modes. Dominant mode is participate_with_control (97/140); control/protection modes account for 110/140."
+  },
+  "period_validation": [
+    {
+      "period": "2015_bull_bear",
+      "label": "2015 bull/bear",
+      "window": {
+        "start": "20150101",
+        "end": "20151231"
+      },
+      "signal_count": 13,
+      "policy_mode_distribution": {
+        "participate_with_control": {
+          "count": 11,
+          "share": 0.846154
+        },
+        "protect_capital": {
+          "count": 2,
+          "share": 0.153846
+        }
+      },
+      "opportunity_state_distribution": {
+        "BULL_EXPANSION": {
+          "count": 1,
+          "share": 0.076923
+        },
+        "EARLY_RECOVERY": {
+          "count": 10,
+          "share": 0.769231
+        },
+        "LATE_BULL": {
+          "count": 2,
+          "share": 0.153846
+        }
+      },
+      "risk_state_distribution": {
+        "CROWDED": {
+          "count": 11,
+          "share": 0.846154
+        },
+        "HIGH_RISK": {
+          "count": 2,
+          "share": 0.153846
+        }
+      },
+      "dominant_policy_mode": "participate_with_control",
+      "interpretation": "participation_with_controls_dominant"
+    },
+    {
+      "period": "2018_bear",
+      "label": "2018 bear",
+      "window": {
+        "start": "20180101",
+        "end": "20181231"
+      },
+      "signal_count": 12,
+      "policy_mode_distribution": {
+        "participate_selectively": {
+          "count": 1,
+          "share": 0.083333
+        },
+        "participate_with_control": {
+          "count": 10,
+          "share": 0.833333
+        },
+        "rebuild_risk": {
+          "count": 1,
+          "share": 0.083333
+        }
+      },
+      "opportunity_state_distribution": {
+        "EARLY_RECOVERY": {
+          "count": 3,
+          "share": 0.25
+        },
+        "STRUCTURAL_ROTATION": {
+          "count": 9,
+          "share": 0.75
+        }
+      },
+      "risk_state_distribution": {
+        "CROWDED": {
+          "count": 10,
+          "share": 0.833333
+        },
+        "LOW_RISK": {
+          "count": 1,
+          "share": 0.083333
+        },
+        "NORMAL": {
+          "count": 1,
+          "share": 0.083333
+        }
+      },
+      "dominant_policy_mode": "participate_with_control",
+      "interpretation": "participation_with_controls_dominant"
+    },
+    {
+      "period": "2020_covid_recovery",
+      "label": "2020 covid/recovery",
+      "window": {
+        "start": "20200101",
+        "end": "20201231"
+      },
+      "signal_count": 12,
+      "policy_mode_distribution": {
+        "late_cycle_control": {
+          "count": 2,
+          "share": 0.166667
+        },
+        "participate_selectively": {
+          "count": 1,
+          "share": 0.083333
+        },
+        "participate_with_control": {
+          "count": 9,
+          "share": 0.75
+        }
+      },
+      "opportunity_state_distribution": {
+        "BULL_EXPANSION": {
+          "count": 2,
+          "share": 0.166667
+        },
+        "EARLY_RECOVERY": {
+          "count": 2,
+          "share": 0.166667
+        },
+        "LATE_BULL": {
+          "count": 2,
+          "share": 0.166667
+        },
+        "STRUCTURAL_ROTATION": {
+          "count": 6,
+          "share": 0.5
+        }
+      },
+      "risk_state_distribution": {
+        "CROWDED": {
+          "count": 11,
+          "share": 0.916667
+        },
+        "NORMAL": {
+          "count": 1,
+          "share": 0.083333
+        }
+      },
+      "dominant_policy_mode": "participate_with_control",
+      "interpretation": "participation_with_controls_dominant"
+    },
+    {
+      "period": "2021_core_asset",
+      "label": "2021 core asset divergence",
+      "window": {
+        "start": "20210101",
+        "end": "20211231"
+      },
+      "signal_count": 13,
+      "policy_mode_distribution": {
+        "late_cycle_control": {
+          "count": 1,
+          "share": 0.076923
+        },
+        "participate_selectively": {
+          "count": 1,
+          "share": 0.076923
+        },
+        "participate_with_control": {
+          "count": 7,
+          "share": 0.538462
+        },
+        "protect_capital": {
+          "count": 1,
+          "share": 0.076923
+        },
+        "rebuild_risk": {
+          "count": 3,
+          "share": 0.230769
+        }
+      },
+      "opportunity_state_distribution": {
+        "EARLY_RECOVERY": {
+          "count": 8,
+          "share": 0.615385
+        },
+        "LATE_BULL": {
+          "count": 2,
+          "share": 0.153846
+        },
+        "STRUCTURAL_ROTATION": {
+          "count": 3,
+          "share": 0.230769
+        }
+      },
+      "risk_state_distribution": {
+        "CROWDED": {
+          "count": 8,
+          "share": 0.615385
+        },
+        "HIGH_RISK": {
+          "count": 1,
+          "share": 0.076923
+        },
+        "NORMAL": {
+          "count": 4,
+          "share": 0.307692
+        }
+      },
+      "dominant_policy_mode": "participate_with_control",
+      "interpretation": "participation_with_controls_dominant"
+    },
+    {
+      "period": "2022_bear",
+      "label": "2022 bear",
+      "window": {
+        "start": "20220101",
+        "end": "20221231"
+      },
+      "signal_count": 12,
+      "policy_mode_distribution": {
+        "participate_selectively": {
+          "count": 1,
+          "share": 0.083333
+        },
+        "participate_with_control": {
+          "count": 10,
+          "share": 0.833333
+        },
+        "rebuild_risk": {
+          "count": 1,
+          "share": 0.083333
+        }
+      },
+      "opportunity_state_distribution": {
+        "EARLY_RECOVERY": {
+          "count": 10,
+          "share": 0.833333
+        },
+        "STRUCTURAL_ROTATION": {
+          "count": 2,
+          "share": 0.166667
+        }
+      },
+      "risk_state_distribution": {
+        "CROWDED": {
+          "count": 10,
+          "share": 0.833333
+        },
+        "NORMAL": {
+          "count": 2,
+          "share": 0.166667
+        }
+      },
+      "dominant_policy_mode": "participate_with_control",
+      "interpretation": "participation_with_controls_dominant"
+    },
+    {
+      "period": "2024_2026_structural",
+      "label": "2024-2026 structural bull",
+      "window": {
+        "start": "20240101",
+        "end": "20261231"
+      },
+      "signal_count": 30,
+      "policy_mode_distribution": {
+        "late_cycle_control": {
+          "count": 3,
+          "share": 0.1
+        },
+        "participate_selectively": {
+          "count": 2,
+          "share": 0.066667
+        },
+        "participate_with_control": {
+          "count": 16,
+          "share": 0.533333
+        },
+        "protect_capital": {
+          "count": 1,
+          "share": 0.033333
+        },
+        "rebuild_risk": {
+          "count": 3,
+          "share": 0.1
+        },
+        "watch_only": {
+          "count": 5,
+          "share": 0.166667
+        }
+      },
+      "opportunity_state_distribution": {
+        "BULL_EXPANSION": {
+          "count": 4,
+          "share": 0.133333
+        },
+        "EARLY_RECOVERY": {
+          "count": 10,
+          "share": 0.333333
+        },
+        "LATE_BULL": {
+          "count": 4,
+          "share": 0.133333
+        },
+        "STRUCTURAL_ROTATION": {
+          "count": 7,
+          "share": 0.233333
+        },
+        "UNKNOWN": {
+          "count": 5,
+          "share": 0.166667
+        }
+      },
+      "risk_state_distribution": {
+        "CROWDED": {
+          "count": 22,
+          "share": 0.733333
+        },
+        "HIGH_RISK": {
+          "count": 2,
+          "share": 0.066667
+        },
+        "LOW_RISK": {
+          "count": 1,
+          "share": 0.033333
+        },
+        "NORMAL": {
+          "count": 5,
+          "share": 0.166667
+        }
+      },
+      "dominant_policy_mode": "participate_with_control",
+      "interpretation": "participation_with_controls_dominant"
+    }
+  ],
+  "historical_replay": [
+    {
+      "date": "20150105",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20150105",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150202",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20150202",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150309",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20150309",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150407",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20150407",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150508",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "LATE_BULL__HIGH_RISK",
+      "policy_mode": "protect_capital",
+      "actions_allowed": [
+        "protect_existing_gains",
+        "raise_review_threshold"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "new_high_beta_budget",
+        "theme_chasing"
+      ],
+      "interpretation": "Late-cycle/high-risk state prioritizes capital protection over new risk expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20150506",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150605",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "LATE_BULL__HIGH_RISK",
+      "policy_mode": "protect_capital",
+      "actions_allowed": [
+        "protect_existing_gains",
+        "raise_review_threshold"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "new_high_beta_budget",
+        "theme_chasing"
+      ],
+      "interpretation": "Late-cycle/high-risk state prioritizes capital protection over new risk expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20150603",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150706",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20150702",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150803",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20150730",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150831",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20150827",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150930",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20150928",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20151104",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20151102",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20151202",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20151130",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20151230",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20151228",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160128",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20160126",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160303",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20160301",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160331",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20160329",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160429",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20160427",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160530",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20160526",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160629",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20160627",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160727",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "LOW_RISK",
+      "combined_state": "STRUCTURAL_ROTATION__LOW_RISK",
+      "policy_mode": "participate_selectively",
+      "actions_allowed": [
+        "allow_structural_rotation_study",
+        "require_theme_persistence"
+      ],
+      "actions_blocked": [
+        "broad_beta_assumption"
+      ],
+      "interpretation": "Opportunity exists but should remain selective and evidence-gated.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "theme_persistence_high"
+      ],
+      "data_quality": {
+        "context_date": "20160725",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160824",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "LOW_RISK",
+      "combined_state": "EARLY_RECOVERY__LOW_RISK",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding"
+      ],
+      "data_quality": {
+        "context_date": "20160822",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160923",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20160921",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20161028",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "LOW_RISK",
+      "combined_state": "EARLY_RECOVERY__LOW_RISK",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "breadth_expanding"
+      ],
+      "data_quality": {
+        "context_date": "20161026",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20161125",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding"
+      ],
+      "data_quality": {
+        "context_date": "20161123",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20161223",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20161221",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170123",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20170119",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170227",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "NORMAL",
+      "combined_state": "STRUCTURAL_ROTATION__NORMAL",
+      "policy_mode": "participate_selectively",
+      "actions_allowed": [
+        "allow_structural_rotation_study",
+        "require_theme_persistence"
+      ],
+      "actions_blocked": [
+        "broad_beta_assumption"
+      ],
+      "interpretation": "Opportunity exists but should remain selective and evidence-gated.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "theme_persistence_high"
+      ],
+      "data_quality": {
+        "context_date": "20170223",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170327",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20170323",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170426",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20170424",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170525",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20170523",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170626",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "theme_persistence_high",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20170622",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170724",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20170720",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170821",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "NORMAL",
+      "combined_state": "BULL_EXPANSION__NORMAL",
+      "policy_mode": "participate_selectively",
+      "actions_allowed": [
+        "allow_selective_participation_study",
+        "monitor_rotation_health"
+      ],
+      "actions_blocked": [
+        "unrestricted_expansion"
+      ],
+      "interpretation": "Opportunity exists but should remain selective and evidence-gated.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "theme_persistence_high"
+      ],
+      "data_quality": {
+        "context_date": "20170817",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170918",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20170914",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20171023",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20171019",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20171120",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20171116",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20171218",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20171214",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180116",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20180112",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180213",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20180209",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180320",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding"
+      ],
+      "data_quality": {
+        "context_date": "20180316",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180419",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20180417",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180521",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "LOW_RISK",
+      "combined_state": "STRUCTURAL_ROTATION__LOW_RISK",
+      "policy_mode": "participate_selectively",
+      "actions_allowed": [
+        "allow_structural_rotation_study",
+        "require_theme_persistence"
+      ],
+      "actions_blocked": [
+        "broad_beta_assumption"
+      ],
+      "interpretation": "Opportunity exists but should remain selective and evidence-gated.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "theme_persistence_high"
+      ],
+      "data_quality": {
+        "context_date": "20180517",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180619",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20180614",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180717",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20180713",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180814",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20180810",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180911",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20180907",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20181017",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20181015",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20181114",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20181112",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20181212",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20181210",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190111",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20190109",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190215",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20190213",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190315",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "LATE_BULL__HIGH_RISK",
+      "policy_mode": "protect_capital",
+      "actions_allowed": [
+        "protect_existing_gains",
+        "raise_review_threshold"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "new_high_beta_budget",
+        "theme_chasing"
+      ],
+      "interpretation": "Late-cycle/high-risk state prioritizes capital protection over new risk expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20190313",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190415",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "EARLY_RECOVERY__HIGH_RISK",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20190411",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190516",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "industry_breadth_narrow",
+        "crowding_elevated",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20190514",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190614",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20190612",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190712",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "bull_divergence",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20190710",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190809",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20190807",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190906",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "LATE_BULL__HIGH_RISK",
+      "policy_mode": "protect_capital",
+      "actions_allowed": [
+        "protect_existing_gains",
+        "raise_review_threshold"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "new_high_beta_budget",
+        "theme_chasing"
+      ],
+      "interpretation": "Late-cycle/high-risk state prioritizes capital protection over new risk expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20190904",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20191014",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20191010",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20191111",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20191107",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20191209",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20191205",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20200107",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20200103",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200212",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20200210",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200311",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20200309",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200409",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20200407",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200512",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "NORMAL",
+      "combined_state": "STRUCTURAL_ROTATION__NORMAL",
+      "policy_mode": "participate_selectively",
+      "actions_allowed": [
+        "allow_structural_rotation_study",
+        "require_theme_persistence"
+      ],
+      "actions_blocked": [
+        "broad_beta_assumption"
+      ],
+      "interpretation": "Opportunity exists but should remain selective and evidence-gated.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high"
+      ],
+      "data_quality": {
+        "context_date": "20200508",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200609",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20200605",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200709",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "policy_mode": "late_cycle_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "protect_existing_gains",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "new_unconfirmed_beta"
+      ],
+      "interpretation": "Late-cycle opportunity remains visible, but policy should protect gains and block aggressive expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20200707",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200806",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "policy_mode": "late_cycle_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "protect_existing_gains",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "new_unconfirmed_beta"
+      ],
+      "interpretation": "Late-cycle opportunity remains visible, but policy should protect gains and block aggressive expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20200804",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200903",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20200901",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20201009",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20200929",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20201106",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "bull_divergence",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20201104",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20201204",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20201202",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210104",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "trend_strong",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20201230",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210201",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "NORMAL",
+      "combined_state": "STRUCTURAL_ROTATION__NORMAL",
+      "policy_mode": "participate_selectively",
+      "actions_allowed": [
+        "allow_structural_rotation_study",
+        "require_theme_persistence"
+      ],
+      "actions_blocked": [
+        "broad_beta_assumption"
+      ],
+      "interpretation": "Opportunity exists but should remain selective and evidence-gated.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high"
+      ],
+      "data_quality": {
+        "context_date": "20210128",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210308",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20210304",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210406",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery"
+      ],
+      "data_quality": {
+        "context_date": "20210401",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210507",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "liquidity_supportive",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20210430",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210604",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20210602",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210705",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20210701",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210802",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20210729",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210830",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "LATE_BULL__HIGH_RISK",
+      "policy_mode": "protect_capital",
+      "actions_allowed": [
+        "protect_existing_gains",
+        "raise_review_threshold"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "new_high_beta_budget",
+        "theme_chasing"
+      ],
+      "interpretation": "Late-cycle/high-risk state prioritizes capital protection over new risk expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20210826",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210929",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "policy_mode": "late_cycle_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "protect_existing_gains",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "new_unconfirmed_beta"
+      ],
+      "interpretation": "Late-cycle opportunity remains visible, but policy should protect gains and block aggressive expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20210927",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20211103",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "liquidity_supportive"
+      ],
+      "data_quality": {
+        "context_date": "20211101",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20211201",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding"
+      ],
+      "data_quality": {
+        "context_date": "20211129",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20211229",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20211227",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220127",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20220125",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220303",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding"
+      ],
+      "data_quality": {
+        "context_date": "20220301",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220331",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20220329",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220505",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20220428",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220602",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20220531",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220701",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20220629",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220729",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20220727",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220826",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "NORMAL",
+      "combined_state": "STRUCTURAL_ROTATION__NORMAL",
+      "policy_mode": "participate_selectively",
+      "actions_allowed": [
+        "allow_structural_rotation_study",
+        "require_theme_persistence"
+      ],
+      "actions_blocked": [
+        "broad_beta_assumption"
+      ],
+      "interpretation": "Opportunity exists but should remain selective and evidence-gated.",
+      "source_evidence": [
+        "macro_recovery",
+        "liquidity_supportive",
+        "theme_persistence_high"
+      ],
+      "data_quality": {
+        "context_date": "20220824",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220926",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20220922",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20221031",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "liquidity_supportive",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20221027",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20221128",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20221124",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20221226",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20221222",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230131",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive"
+      ],
+      "data_quality": {
+        "context_date": "20230120",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230228",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "LOW_RISK",
+      "combined_state": "EARLY_RECOVERY__LOW_RISK",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding"
+      ],
+      "data_quality": {
+        "context_date": "20230224",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230328",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "policy_mode": "late_cycle_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "protect_existing_gains",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "new_unconfirmed_beta"
+      ],
+      "interpretation": "Late-cycle opportunity remains visible, but policy should protect gains and block aggressive expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "liquidity_supportive",
+        "industry_breadth_narrow",
+        "crowding_elevated",
+        "price_extension_high",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20230324",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230426",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20230424",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230529",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20230525",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230628",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20230626",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230726",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20230724",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230823",
+      "opportunity_state": "UNKNOWN",
+      "risk_state": "CROWDED",
+      "combined_state": "UNKNOWN__CROWDED",
+      "policy_mode": "watch_only",
+      "actions_allowed": [
+        "observe_environment"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "automatic_allocation"
+      ],
+      "interpretation": "State is inconclusive; observe only and do not map to allocation.",
+      "source_evidence": [
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20230821",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230920",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "LOW_RISK",
+      "combined_state": "EARLY_RECOVERY__LOW_RISK",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding"
+      ],
+      "data_quality": {
+        "context_date": "20230918",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20231026",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20231024",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20231123",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery"
+      ],
+      "data_quality": {
+        "context_date": "20231121",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20231221",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20231219",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240119",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20240117",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240226",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20240222",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240325",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding"
+      ],
+      "data_quality": {
+        "context_date": "20240321",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240424",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery",
+        "trend_strong"
+      ],
+      "data_quality": {
+        "context_date": "20240422",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240527",
+      "opportunity_state": "UNKNOWN",
+      "risk_state": "LOW_RISK",
+      "combined_state": "UNKNOWN__LOW_RISK",
+      "policy_mode": "watch_only",
+      "actions_allowed": [
+        "observe_environment"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "automatic_allocation"
+      ],
+      "interpretation": "State is inconclusive; observe only and do not map to allocation.",
+      "source_evidence": [
+        "trend_strong",
+        "breadth_expanding"
+      ],
+      "data_quality": {
+        "context_date": "20240523",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240625",
+      "opportunity_state": "UNKNOWN",
+      "risk_state": "CROWDED",
+      "combined_state": "UNKNOWN__CROWDED",
+      "policy_mode": "watch_only",
+      "actions_allowed": [
+        "observe_environment"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "automatic_allocation"
+      ],
+      "interpretation": "State is inconclusive; observe only and do not map to allocation.",
+      "source_evidence": [
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20240621",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240723",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20240719",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240820",
+      "opportunity_state": "UNKNOWN",
+      "risk_state": "CROWDED",
+      "combined_state": "UNKNOWN__CROWDED",
+      "policy_mode": "watch_only",
+      "actions_allowed": [
+        "observe_environment"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "automatic_allocation"
+      ],
+      "interpretation": "State is inconclusive; observe only and do not map to allocation.",
+      "source_evidence": [
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20240816",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240919",
+      "opportunity_state": "UNKNOWN",
+      "risk_state": "CROWDED",
+      "combined_state": "UNKNOWN__CROWDED",
+      "policy_mode": "watch_only",
+      "actions_allowed": [
+        "observe_environment"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "automatic_allocation"
+      ],
+      "interpretation": "State is inconclusive; observe only and do not map to allocation.",
+      "source_evidence": [
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20240913",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20241024",
+      "opportunity_state": "UNKNOWN",
+      "risk_state": "CROWDED",
+      "combined_state": "UNKNOWN__CROWDED",
+      "policy_mode": "watch_only",
+      "actions_allowed": [
+        "observe_environment"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "automatic_allocation"
+      ],
+      "interpretation": "State is inconclusive; observe only and do not map to allocation.",
+      "source_evidence": [
+        "trend_strong",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20241022",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20241121",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "policy_mode": "late_cycle_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "protect_existing_gains",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "new_unconfirmed_beta"
+      ],
+      "interpretation": "Late-cycle opportunity remains visible, but policy should protect gains and block aggressive expansion.",
+      "source_evidence": [
+        "structural_rotation",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20241119",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20241219",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "LATE_BULL__HIGH_RISK",
+      "policy_mode": "protect_capital",
+      "actions_allowed": [
+        "protect_existing_gains",
+        "raise_review_threshold"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "new_high_beta_budget",
+        "theme_chasing"
+      ],
+      "interpretation": "Late-cycle/high-risk state prioritizes capital protection over new risk expansion.",
+      "source_evidence": [
+        "structural_rotation",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20241217",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250117",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20250115",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250224",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20250220",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250324",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "NORMAL",
+      "combined_state": "STRUCTURAL_ROTATION__NORMAL",
+      "policy_mode": "participate_selectively",
+      "actions_allowed": [
+        "allow_structural_rotation_study",
+        "require_theme_persistence"
+      ],
+      "actions_blocked": [
+        "broad_beta_assumption"
+      ],
+      "interpretation": "Opportunity exists but should remain selective and evidence-gated.",
+      "source_evidence": [
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high"
+      ],
+      "data_quality": {
+        "context_date": "20250320",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250422",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20250418",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250523",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "policy_mode": "rebuild_risk",
+      "actions_allowed": [
+        "rebuild_risk_attention",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "full_beta_assumption"
+      ],
+      "interpretation": "Recovery exists but needs confirmation before higher beta research.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding"
+      ],
+      "data_quality": {
+        "context_date": "20250521",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250623",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "data_quality": {
+        "context_date": "20250619",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250721",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "trend_strong",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20250717",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250818",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20250814",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250915",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "policy_mode": "late_cycle_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "protect_existing_gains",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "new_unconfirmed_beta"
+      ],
+      "interpretation": "Late-cycle opportunity remains visible, but policy should protect gains and block aggressive expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20250911",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20251021",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "trend_strong",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20251017",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20251118",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20251114",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20251216",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "liquidity_supportive",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20251212",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20260115",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "EARLY_RECOVERY__HIGH_RISK",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20260113",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20260212",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control",
+        "require_breadth_confirmation"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "data_quality": {
+        "context_date": "20260210",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20260320",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "NORMAL",
+      "combined_state": "STRUCTURAL_ROTATION__NORMAL",
+      "policy_mode": "participate_selectively",
+      "actions_allowed": [
+        "allow_structural_rotation_study",
+        "require_theme_persistence"
+      ],
+      "actions_blocked": [
+        "broad_beta_assumption"
+      ],
+      "interpretation": "Opportunity exists but should remain selective and evidence-gated.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high"
+      ],
+      "data_quality": {
+        "context_date": "20260318",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20260420",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "single_theme_concentration"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "industry_breadth_narrow"
+      ],
+      "data_quality": {
+        "context_date": "20260416",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20260521",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "policy_mode": "participate_with_control",
+      "actions_allowed": [
+        "maintain_recovery_attention",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "theme_chasing"
+      ],
+      "interpretation": "Opportunity exists, but crowding or narrow breadth requires control before expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20260519",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20260618",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "policy_mode": "late_cycle_control",
+      "actions_allowed": [
+        "maintain_opportunity_attention",
+        "protect_existing_gains",
+        "require_crowding_control"
+      ],
+      "actions_blocked": [
+        "aggressive_expansion",
+        "new_unconfirmed_beta"
+      ],
+      "interpretation": "Late-cycle opportunity remains visible, but policy should protect gains and block aggressive expansion.",
+      "source_evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "crowding_elevated",
+        "price_extension_high",
+        "theme_risk_medium"
+      ],
+      "data_quality": {
+        "context_date": "20260616",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    }
+  ],
+  "source_snapshot": {
+    "current": {
+      "as_of": "20260707",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "bull_divergence",
+        "trend_strong",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "crowding_elevated",
+        "price_extension_high",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "medium",
+        "trend": 78.7653,
+        "breadth": 14.59,
+        "liquidity": 45.37,
+        "theme_persistence": 82.7922,
+        "industry_breadth": 0.0968,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 56.1413,
+        "price_extension_proxy": 75.0,
+        "price_extension_source": "warning_proxy",
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation."
+    },
+    "historical_summary": {
+      "replay_count": 140,
+      "opportunity_state_distribution": {
+        "BULL_EXPANSION": {
+          "count": 9,
+          "share": 0.064286
+        },
+        "EARLY_RECOVERY": {
+          "count": 71,
+          "share": 0.507143
+        },
+        "LATE_BULL": {
+          "count": 13,
+          "share": 0.092857
+        },
+        "STRUCTURAL_ROTATION": {
+          "count": 41,
+          "share": 0.292857
+        },
+        "UNKNOWN": {
+          "count": 6,
+          "share": 0.042857
+        }
+      },
+      "risk_state_distribution": {
+        "CROWDED": {
+          "count": 107,
+          "share": 0.764286
+        },
+        "HIGH_RISK": {
+          "count": 8,
+          "share": 0.057143
+        },
+        "LOW_RISK": {
+          "count": 7,
+          "share": 0.05
+        },
+        "NORMAL": {
+          "count": 18,
+          "share": 0.128571
+        }
+      },
+      "combined_state_distribution": {
+        "BULL_EXPANSION__CROWDED": {
+          "count": 8,
+          "share": 0.057143
+        },
+        "BULL_EXPANSION__NORMAL": {
+          "count": 1,
+          "share": 0.007143
+        },
+        "EARLY_RECOVERY__CROWDED": {
+          "count": 54,
+          "share": 0.385714
+        },
+        "EARLY_RECOVERY__HIGH_RISK": {
+          "count": 2,
+          "share": 0.014286
+        },
+        "EARLY_RECOVERY__LOW_RISK": {
+          "count": 4,
+          "share": 0.028571
+        },
+        "EARLY_RECOVERY__NORMAL": {
+          "count": 11,
+          "share": 0.078571
+        },
+        "LATE_BULL__CROWDED": {
+          "count": 7,
+          "share": 0.05
+        },
+        "LATE_BULL__HIGH_RISK": {
+          "count": 6,
+          "share": 0.042857
+        },
+        "STRUCTURAL_ROTATION__CROWDED": {
+          "count": 33,
+          "share": 0.235714
+        },
+        "STRUCTURAL_ROTATION__LOW_RISK": {
+          "count": 2,
+          "share": 0.014286
+        },
+        "STRUCTURAL_ROTATION__NORMAL": {
+          "count": 6,
+          "share": 0.042857
+        },
+        "UNKNOWN__CROWDED": {
+          "count": 5,
+          "share": 0.035714
+        },
+        "UNKNOWN__LOW_RISK": {
+          "count": 1,
+          "share": 0.007143
+        }
+      },
+      "opportunity_risk_matrix": {
+        "BULL_EXPANSION": {
+          "CROWDED": 8,
+          "NORMAL": 1
+        },
+        "EARLY_RECOVERY": {
+          "CROWDED": 54,
+          "LOW_RISK": 4,
+          "NORMAL": 11,
+          "HIGH_RISK": 2
+        },
+        "LATE_BULL": {
+          "HIGH_RISK": 6,
+          "CROWDED": 7
+        },
+        "STRUCTURAL_ROTATION": {
+          "CROWDED": 33,
+          "LOW_RISK": 2,
+          "NORMAL": 6
+        },
+        "UNKNOWN": {
+          "CROWDED": 5,
+          "LOW_RISK": 1
+        }
+      },
+      "complete_structural_context_count": 79,
+      "complete_structural_context_share": 0.564286,
+      "key_read": "Replay generated 140 opportunity/risk states. Dominant combined state is EARLY_RECOVERY__CROWDED (54/140), while crowded/high-risk observations account for 115/140."
+    }
+  },
+  "data_quality": {
+    "uses_v4_3_opportunity_risk_snapshot": true,
+    "no_future_returns": true,
+    "historical_replay_uses_v4_3_dates": true,
+    "policy_rules_are_static_mapping": true
+  },
+  "constraints": {
+    "policy_mapping_only": true,
+    "no_etf_code": true,
+    "no_asset_weight": true,
+    "no_portfolio_weight": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_parameter_optimization": true,
+    "does_not_modify_v4_1_policy": true,
+    "v4_3_classifier_business_rules_unchanged": true,
+    "v4_3_price_extension_field_renamed_to_proxy": true
+  }
+}

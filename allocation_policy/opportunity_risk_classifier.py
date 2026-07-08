@@ -98,13 +98,16 @@ def classify_opportunity_risk(inputs: Mapping[str, object]) -> OpportunityRiskRe
     industry_breadth = _num(industry.get("industry_breadth"))
     top_industry_ratio = _num(industry.get("top_industry_ratio"))
     crowding_score = _score_0_100(theme.get("crowding_score"))
-    price_extension = _score_0_100(theme.get("price_extension"))
+    raw_price_extension = theme.get("price_extension")
+    price_extension = _score_0_100(raw_price_extension)
+    price_extension_source = "direct_value" if raw_price_extension is not None else "missing"
     if price_extension == 0 and (
         "price_extension_high" in warnings
         or "top_theme_price_extension_high" in warnings
         or "high_60d_momentum_extension" in warnings
     ):
         price_extension = 75.0
+        price_extension_source = "warning_proxy"
     pressure = _score_0_100(theme.get("pressure"))
 
     evidence: list[str] = []
@@ -192,7 +195,8 @@ def classify_opportunity_risk(inputs: Mapping[str, object]) -> OpportunityRiskRe
             "industry_breadth": _round(industry_breadth, 6),
             "top_industry_ratio": _round(top_industry_ratio, 6),
             "crowding_score": _round(crowding_score),
-            "price_extension": _round(price_extension),
+            "price_extension_proxy": _round(price_extension),
+            "price_extension_source": price_extension_source,
             "pressure": _round(pressure),
         },
         interpretation=_interpret(opportunity_state, risk_state),
