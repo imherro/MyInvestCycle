@@ -450,6 +450,14 @@ def _read_exposure_numeric_context_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_macro_enhanced_context_analysis_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "macro_enhanced_context_analysis.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -682,6 +690,20 @@ def _compact_exposure_numeric_context_payload(payload: dict[str, object] | None)
     }
     if isinstance(rows, list):
         compact["sample_rows"] = rows[-5:]
+    return compact
+
+
+def _compact_macro_enhanced_context_analysis_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    rows = payload.get("rows")
+    compact = {
+        key: payload[key]
+        for key in ("metadata", "summary", "candidate_re_attribution", "sample_rows", "data_quality", "constraints")
+        if key in payload
+    }
+    if isinstance(rows, list):
+        compact["latest_rows"] = rows[-5:]
     return compact
 
 
@@ -1444,6 +1466,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/allocation/macro-enhanced-context-analysis",
+                    "返回 V5.8 Macro-Enhanced Exposure Context Re-Attribution，固定 V5.4 BALANCED 候选标签，结合 V5.6 数值上下文和 V5.7 宏观历史上下文重新归因；只做解释审计，不新增正式状态、不改 mapper、不输出仓位或交易。",
+                    "macro-enhanced balanced attribution",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -1571,6 +1600,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/allocation/balanced-context-audit", "description": "读取 V5.4 BALANCED 候选子状态质量审计。"},
             {"path": "/api/allocation/balanced-candidate-failure-analysis", "description": "读取 V5.5 BALANCED 候选失败与机会错失归因。"},
             {"path": "/api/allocation/exposure-numeric-context", "description": "读取 V5.6 暴露重放数值上下文和时间安全覆盖率。"},
+            {"path": "/api/allocation/macro-enhanced-context-analysis", "description": "读取 V5.8 宏观增强 BALANCED 候选重新归因。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -2436,6 +2466,17 @@ def exposure_numeric_context() -> dict:
     return payload
 
 
+@app.get("/api/allocation/macro-enhanced-context-analysis")
+def macro_enhanced_context_analysis() -> dict:
+    payload = _read_macro_enhanced_context_analysis_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Macro-enhanced context analysis artifact missing; run scripts/run_macro_enhanced_context_analysis.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -2580,6 +2621,7 @@ def results_summary(
         balanced_context_audit = _read_balanced_context_audit_payload()
         balanced_candidate_failure_analysis = _read_balanced_candidate_failure_analysis_payload()
         exposure_numeric_context = _read_exposure_numeric_context_payload()
+        macro_enhanced_context_analysis = _read_macro_enhanced_context_analysis_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -2602,6 +2644,7 @@ def results_summary(
             balanced_context_audit = _compact_balanced_context_audit_payload(balanced_context_audit)
             balanced_candidate_failure_analysis = _compact_balanced_candidate_failure_analysis_payload(balanced_candidate_failure_analysis)
             exposure_numeric_context = _compact_exposure_numeric_context_payload(exposure_numeric_context)
+            macro_enhanced_context_analysis = _compact_macro_enhanced_context_analysis_payload(macro_enhanced_context_analysis)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -2661,6 +2704,7 @@ def results_summary(
             "balanced_context_audit": balanced_context_audit,
             "balanced_candidate_failure_analysis": balanced_candidate_failure_analysis,
             "exposure_numeric_context": exposure_numeric_context,
+            "macro_enhanced_context_analysis": macro_enhanced_context_analysis,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,
@@ -2715,6 +2759,7 @@ def results_summary(
                 "V5.3 已只分析 BALANCED 桶，拆解失败、机会错失和中性样本的上下文来源，结论是先拆 BALANCED 再考虑 mapper 调整；该层不改规则、不加等级、不输出交易。",
                 "V5.4 已对 BALANCED_RISK、BALANCED_OPPORTUNITY、BALANCED_NEUTRAL 研究候选标签做质量审计，结论是候选仍未准备好进入正式 mapper；该层不改规则、不新增正式等级。",
                 "V5.5 已固定 V5.4 候选标签做失败与机会错失归因，发现风险候选可能包含修复期误判，机会候选可能是结构轮动被控制层压制；仍需数值上下文增强后才能改规则。",
+                "V5.8 已把 V5.6 数值上下文和 V5.7 宏观历史上下文接入 BALANCED 候选重新归因，宏观与市场数值能提高诊断清晰度，但仍不改 mapper、不新增正式状态、不输出仓位或交易。",
                 "S1.1 已新增仓位风控回测，用历史 R2 动态仓位回放 510500 基准收益，输出权益曲线、Alpha 和回撤。",
                 "S1.2 已按牛熊状态拆解风控仓位策略收益来源，识别牛市参与不足是主要拖累，熊市防守是主要正贡献。",
                 "R2.2 已把组合配置转译为策略可执行约束，页面展示可启用策略、禁用原因和策略预算。",

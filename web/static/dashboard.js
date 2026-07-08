@@ -618,6 +618,64 @@ function balancedCandidateQualityLabel(value) {
   return labels[value] || value || "--";
 }
 
+function macroEnhancedValueLabel(value) {
+  const labels = {
+    visible_but_not_rule_ready: "可见但不可进规则",
+    limited: "解释有限",
+  };
+  return labels[value] || value || "--";
+}
+
+function macroEnhancedDriverLabel(value) {
+  const labels = {
+    macro_score_low: "宏观分低",
+    macro_credit_weak: "信用/M1-M2弱",
+    macro_weaker_than_balanced_avg: "宏观弱于均值",
+    macro_recovery: "宏观修复",
+    liquidity_weak: "流动性弱",
+    liquidity_below_balanced_avg: "流动性弱于均值",
+    liquidity_above_balanced_avg: "流动性强于均值",
+    breadth_low: "宽度低",
+    breadth_below_balanced_avg: "宽度弱于均值",
+    trend_weak: "趋势弱",
+    crowding_high: "拥挤高",
+    price_extended: "价格延伸",
+    structural_rotation: "结构轮动",
+    risk_hypothesis_supported: "风险假设有证据",
+    opportunity_hypothesis_supported: "机会假设有证据",
+  };
+  return labels[value] || value || "--";
+}
+
+function macroEnhancedDriverText(drivers) {
+  const order = [
+    "macro_credit_weak",
+    "macro_score_low",
+    "macro_weaker_than_balanced_avg",
+    "macro_recovery",
+    "structural_rotation",
+    "liquidity_weak",
+    "liquidity_below_balanced_avg",
+    "liquidity_above_balanced_avg",
+    "breadth_low",
+    "breadth_below_balanced_avg",
+    "trend_weak",
+    "crowding_high",
+    "price_extended",
+  ];
+  const active = order.filter((key) => drivers?.[key]).map(macroEnhancedDriverLabel);
+  return active.slice(0, 5).join("、") || "暂无明确驱动";
+}
+
+function macroEnhancedEvidenceText(item) {
+  const evidence = item?.driver_evidence || {};
+  const macro = evidence.macro_score || {};
+  const breadth = evidence.breadth_score || {};
+  const liquidity = evidence.liquidity_score || {};
+  const extension = evidence.price_extension_proxy || {};
+  return `宏观 ${fixedText(macro.candidate_avg, 1)} / 宽度 ${fixedText(breadth.candidate_avg, 1)} / 流动性 ${fixedText(liquidity.candidate_avg, 1)} / 价格延伸 ${fixedText(extension.candidate_avg, 1)}`;
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1119,7 +1177,7 @@ function conclusionItemsForPage(results) {
   const items = results.conclusions || [];
   if (document.body?.dataset.page !== "validation") return items;
   return items.filter((item) =>
-    /^(S1\.|H1\.|H2\.|V4\.2|V4\.3)/.test(item) || /结构化|默认结构化|波动单因子|风险观察/.test(item)
+    /^(S1\.|H1\.|H2\.|V4\.2|V4\.3|V5\.)/.test(item) || /结构化|默认结构化|波动单因子|风险观察/.test(item)
   );
 }
 
@@ -1246,6 +1304,10 @@ function setResultsPanel(results) {
   const macroContextSummary = macroContextHistory.summary || {};
   const macroContextCoverage = macroContextSummary.field_coverage || {};
   const macroContextTimeSafety = macroContextSummary.time_safety || {};
+  const macroEnhanced = results.macro_enhanced_context_analysis || {};
+  const macroEnhancedSummary = macroEnhanced.summary || {};
+  const macroEnhancedTimeSafety = macroEnhancedSummary.time_safety || {};
+  const macroEnhancedAttribution = macroEnhanced.candidate_re_attribution || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2175,6 +2237,45 @@ function setResultsPanel(results) {
     macroContextHistory.metadata
       ? `V5.7 已按 release/effective 日期生成历史宏观上下文：${macroContextSummary.key_read || "宏观历史上下文已生成"} 宏观分覆盖 ${percentText(macroScoreCoverage.coverage_rate)}，时间安全违规 ${integerText(macroContextTimeSafety.violation_count)} 个；PE/PB/ERP 本地历史缺失保持 null。该层不改规则、不生成仓位或交易。`
       : "V5.7 宏观历史上下文尚未生成。"
+  );
+
+  setText("macroEnhancedRows", integerText(macroEnhancedSummary.balanced_usable_rows));
+  setText("macroEnhancedValue", macroEnhancedValueLabel(macroEnhancedSummary.macro_added_explanatory_value));
+  setText(
+    "macroEnhancedTimeSafe",
+    macroEnhancedTimeSafety.feature_release_or_source_lte_signal_date === true
+      ? `通过 · ${integerText(macroEnhancedTimeSafety.violation_count)} 违规`
+      : "需检查"
+  );
+  setText("macroEnhancedReady", macroEnhancedSummary.ready_for_rule_change === true ? "可变更" : "不可变更");
+  setHtml("macroEnhancedCandidates", ["BALANCED_RISK", "BALANCED_OPPORTUNITY", "BALANCED_NEUTRAL"]
+    .map((candidate) => {
+      const item = macroEnhancedAttribution[candidate] || {};
+      return `
+        <div class="alpha-source-row">
+          <span>${balancedCandidateLabel(candidate)} · 置信 ${balancedCandidateQualityLabel(item.confidence)}</span>
+          <strong>${integerText(item.sample_count)} 次 · 失败 ${percentText(item.future_failure_rate)} / 机会 ${percentText(item.future_opportunity_rate)}</strong>
+        </div>
+      `;
+    })
+    .join(""));
+  setHtml("macroEnhancedDrivers", ["BALANCED_RISK", "BALANCED_OPPORTUNITY", "BALANCED_NEUTRAL"]
+    .map((candidate) => {
+      const item = macroEnhancedAttribution[candidate] || {};
+      return `
+        <div class="duration-row">
+          <span>${balancedCandidateLabel(candidate)}</span>
+          <strong>${macroEnhancedDriverText(item.drivers || {})}</strong>
+          <em>${macroEnhancedEvidenceText(item)}</em>
+        </div>
+      `;
+    })
+    .join(""));
+  setText(
+    "macroEnhancedConclusion",
+    macroEnhanced.metadata
+      ? `V5.8 固定 V5.4 候选标签做宏观增强归因：${macroEnhancedSummary.key_read || "宏观增强归因已生成"} 时间安全违规 ${integerText(macroEnhancedTimeSafety.violation_count)} 个，复核项 ${integerText(macroEnhancedSummary.review_item_count)} 个；该层只做诊断，不改 mapper、不新增正式状态、不输出仓位或交易。`
+      : "V5.8 宏观增强 BALANCED 归因尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
