@@ -1645,6 +1645,37 @@
           <p class="result-note" id="submissionProtocolConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="定义未来证据包自动校验引擎：检查必填字段、组件合法性、hash、时间戳、数据谱系、人工审核、禁用输出和市场代码模式；当前不接收真实证据包。">证据包校验引擎</h2>
+            <span class="panel-kicker">V13.2</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>引擎状态</span>
+              <strong id="packageValidatorStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>当前证据包</span>
+              <strong id="packageValidatorPackage">--</strong>
+            </div>
+            <div class="result-row">
+              <span>组件模板</span>
+              <strong id="packageValidatorTemplates">--</strong>
+            </div>
+            <div class="result-row">
+              <span>实现就绪</span>
+              <strong id="packageValidatorReady">--</strong>
+            </div>
+            <div class="result-row">
+              <span>支持检查</span>
+              <strong id="packageValidatorChecks">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="packageValidatorRows"></div>
+          <p class="result-note" id="packageValidatorConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -1735,7 +1766,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-evidence-submission-protocol-1"></script>
+    <script src="/static/dashboard.js?v=20260708-evidence-package-validator-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

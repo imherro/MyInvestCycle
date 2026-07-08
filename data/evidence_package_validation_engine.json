@@ -1,0 +1,217 @@
+{
+  "metadata": {
+    "engine": "V13.2 Evidence Package Validation Engine",
+    "generated_at": "2026-07-08T22:17:57+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "research_component_evidence_submission_protocol": "data/research_component_evidence_submission_protocol.json"
+    },
+    "input_hashes": {
+      "research_component_evidence_submission_protocol": "17106edbd89e99bdf81b33c3b7330fcffcdab33bca5b99cbee76609468935cb4"
+    },
+    "purpose": "Define the validation engine for future evidence packages without accepting real evidence or creating investable outputs in the current run."
+  },
+  "summary": {
+    "validation_engine_status": "defined",
+    "current_package_status": "invalid_not_submitted",
+    "current_package_present": false,
+    "implementation_gate_result": "blocked",
+    "component_template_count": 8,
+    "implementation_ready": false,
+    "investable_output": false,
+    "strategy_output_generated": false,
+    "allocation_output_generated": false,
+    "trade_ready": false,
+    "conclusion": "evidence_package_validation_engine_defined_no_strategy_no_allocation",
+    "key_read": "V13.2 defines automatic validation checks for future evidence packages; no real package is submitted now and implementation remains blocked."
+  },
+  "validation_engine": {
+    "current_run_accepts_real_package": false,
+    "future_package_validation_supported": true,
+    "can_promote_component_without_manual_review": false,
+    "supported_checks": [
+      "required_field_completeness",
+      "component_id_membership",
+      "input_hash_presence",
+      "timestamp_presence",
+      "data_lineage_presence",
+      "validation_window_presence",
+      "manual_review_presence",
+      "forbidden_output_key_scan",
+      "market_code_pattern_scan"
+    ],
+    "market_code_detection": "generic_market_code_pattern_only_no_code_list_output"
+  },
+  "current_validation_result": {
+    "package_status": "invalid_not_submitted",
+    "package_present": false,
+    "component_id": null,
+    "component_id_status": "not_checked",
+    "missing_items": [
+      "package_metadata",
+      "component_id",
+      "evidence_items",
+      "dataset_lineage",
+      "validation_results",
+      "cost_turnover_capacity_review",
+      "shadow_observation_log",
+      "human_review_record",
+      "boundary_violation_scan",
+      "input_hashes"
+    ],
+    "boundary_violations": [],
+    "market_code_pattern_found": false,
+    "implementation_ready": false,
+    "validation_decision": "blocked_no_package_submitted"
+  },
+  "component_validation_templates": [
+    {
+      "component_id": "risk_diagnostic_layer",
+      "package_status": "invalid_not_submitted",
+      "package_present": false,
+      "schema_checked": false,
+      "boundary_checked": false,
+      "implementation_ready": false,
+      "validation_decision": "blocked_no_package_submitted"
+    },
+    {
+      "component_id": "protection_research_value",
+      "package_status": "invalid_not_submitted",
+      "package_present": false,
+      "schema_checked": false,
+      "boundary_checked": false,
+      "implementation_ready": false,
+      "validation_decision": "blocked_no_package_submitted"
+    },
+    {
+      "component_id": "contradiction_governance_layer",
+      "package_status": "invalid_not_submitted",
+      "package_present": false,
+      "schema_checked": false,
+      "boundary_checked": false,
+      "implementation_ready": false,
+      "validation_decision": "blocked_no_package_submitted"
+    },
+    {
+      "component_id": "opportunity_prediction_layer",
+      "package_status": "invalid_not_submitted",
+      "package_present": false,
+      "schema_checked": false,
+      "boundary_checked": false,
+      "implementation_ready": false,
+      "validation_decision": "blocked_no_package_submitted"
+    },
+    {
+      "component_id": "allocation_alpha_layer",
+      "package_status": "invalid_not_submitted",
+      "package_present": false,
+      "schema_checked": false,
+      "boundary_checked": false,
+      "implementation_ready": false,
+      "validation_decision": "blocked_no_package_submitted"
+    },
+    {
+      "component_id": "asset_selection_layer",
+      "package_status": "invalid_not_submitted",
+      "package_present": false,
+      "schema_checked": false,
+      "boundary_checked": false,
+      "implementation_ready": false,
+      "validation_decision": "blocked_no_package_submitted"
+    },
+    {
+      "component_id": "portfolio_construction_layer",
+      "package_status": "invalid_not_submitted",
+      "package_present": false,
+      "schema_checked": false,
+      "boundary_checked": false,
+      "implementation_ready": false,
+      "validation_decision": "blocked_no_package_submitted"
+    },
+    {
+      "component_id": "execution_layer",
+      "package_status": "invalid_not_submitted",
+      "package_present": false,
+      "schema_checked": false,
+      "boundary_checked": false,
+      "implementation_ready": false,
+      "validation_decision": "blocked_no_package_submitted"
+    }
+  ],
+  "source_protocol_evidence": {
+    "v13_1_protocol_status": "defined",
+    "v13_1_submission_status": "not_submitted",
+    "v13_1_package_created": false,
+    "v13_1_component_contract_count": 8
+  },
+  "time_safety": {
+    "uses_v13_1_protocol_only": true,
+    "input_hash_recorded": true,
+    "does_not_read_market_price_data": true,
+    "does_not_compute_forward_returns": true,
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "does_not_accept_real_package_in_current_run": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "validation_engine_only": true,
+    "current_run_no_real_package": true,
+    "does_not_evaluate_strategy_return": true,
+    "does_not_generate_strategy": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_engine_status": "defined",
+    "checked_current_package_status": "invalid_not_submitted",
+    "checked_component_templates": 8,
+    "checked_constraints": [
+      "validation_engine_only",
+      "current_run_no_real_package",
+      "does_not_evaluate_strategy_return",
+      "does_not_generate_strategy",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}

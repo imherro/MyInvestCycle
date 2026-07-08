@@ -1708,6 +1708,10 @@ function setResultsPanel(results) {
   const submissionProtocolSummary = submissionProtocol.summary || {};
   const submissionProtocolState = submissionProtocol.current_submission_state || {};
   const submissionProtocolContracts = Array.isArray(submissionProtocol.component_submission_contracts) ? submissionProtocol.component_submission_contracts : [];
+  const packageValidator = results.evidence_package_validation_engine || {};
+  const packageValidatorSummary = packageValidator.summary || {};
+  const packageValidatorEngine = packageValidator.validation_engine || {};
+  const packageValidatorTemplates = Array.isArray(packageValidator.component_validation_templates) ? packageValidator.component_validation_templates : [];
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4143,6 +4147,7 @@ function setResultsPanel(results) {
     not_ready_evidence_required: "未就绪/需证据",
     not_evaluated: "未评价",
     not_submitted: "未提交",
+    invalid_not_submitted: "无包/无效",
   }[value] || value || "--");
   setText("phaseClosureStatus", phaseStatusLabel(phaseClosureSummary.research_phase));
   setText("phaseClosureRisk", phaseStatusLabel(phaseClosureSummary.risk_research_status));
@@ -4249,6 +4254,25 @@ function setResultsPanel(results) {
     submissionProtocol.metadata
       ? `V13.1 只定义未来研究组件 evidence package 的提交协议：${integerText(submissionProtocolSummary.component_contract_count)} 个组件协议、${integerText(submissionProtocolSummary.required_top_level_field_count)} 个顶层字段；当前没有提交证据包，submitted=${integerText(submissionProtocolState.submitted_component_count)}，ready=${integerText(submissionProtocolState.implementation_ready_component_count)}。`
       : "V13.1 证据包提交协议尚未生成。"
+  );
+
+  setText("packageValidatorStatus", phaseStatusLabel(packageValidatorSummary.validation_engine_status));
+  setText("packageValidatorPackage", phaseStatusLabel(packageValidatorSummary.current_package_status));
+  setText("packageValidatorTemplates", `${integerText(packageValidatorSummary.component_template_count)} 个`);
+  setText("packageValidatorReady", packageValidatorSummary.implementation_ready === false ? "否" : "--");
+  setText("packageValidatorChecks", `${integerText(Array.isArray(packageValidatorEngine.supported_checks) ? packageValidatorEngine.supported_checks.length : null)} 项`);
+  setHtml("packageValidatorRows", packageValidatorTemplates.map((row) => `
+    <div class="duration-row">
+      <span>${escapeHtml(row.component_id || "--")}</span>
+      <strong>${escapeHtml(phaseStatusLabel(row.package_status))}</strong>
+      <em>${escapeHtml(row.validation_decision || "--")}</em>
+    </div>
+  `).join(""));
+  setText(
+    "packageValidatorConclusion",
+    packageValidator.metadata
+      ? `V13.2 只定义未来证据包自动校验引擎：当前证据包状态为${phaseStatusLabel(packageValidatorSummary.current_package_status)}，${integerText(packageValidatorSummary.component_template_count)} 个组件模板均未提交，支持 ${integerText(Array.isArray(packageValidatorEngine.supported_checks) ? packageValidatorEngine.supported_checks.length : null)} 类格式和边界检查。`
+      : "V13.2 证据包校验引擎尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

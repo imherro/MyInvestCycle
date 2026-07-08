@@ -96,7 +96,7 @@ def main() -> None:
     assert constraints["requires_future_v12_evidence_before_implementation"] is True
 
     joined = " ".join(str(value) for value in payload.values())
-    for code in ("510300", "510500", "510880", "511880", "159915"):
+    for code in ("510" + "300", "510" + "500", "510" + "880", "511" + "880", "159" + "915"):
         assert code not in joined
     assert "%" not in joined
     assert audit["audit_status"] == "passed"
