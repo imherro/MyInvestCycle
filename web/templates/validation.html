@@ -621,6 +621,33 @@
           <p class="result-note" id="candidateConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="固定 V5.1 暴露模拟，不改变 exposure level，只把 V5 风险梯度和 V5.13 主候选作为诊断提示叠加，审计它们是否能改善风险解释。">暴露策略诊断验证</h2>
+            <span class="panel-kicker">V6.1</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>样本</span>
+              <strong id="policyValidationRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>风险捕获</span>
+              <strong id="policyValidationCapture">--</strong>
+            </div>
+            <div class="result-row">
+              <span>误警率</span>
+              <strong id="policyValidationFalseWarning">--</strong>
+            </div>
+            <div class="result-row">
+              <span>策略变更</span>
+              <strong id="policyValidationReady">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="policyValidationModels"></div>
+          <p class="result-note" id="policyValidationConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -711,7 +738,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-candidates-1"></script>
+    <script src="/static/dashboard.js?v=20260708-policy-validation-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

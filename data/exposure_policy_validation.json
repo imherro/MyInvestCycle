@@ -1,0 +1,338 @@
+{
+  "metadata": {
+    "engine": "V6.1 Adaptive Exposure Policy Simulation Validation",
+    "generated_at": "2026-07-08T17:08:17+00:00",
+    "as_of": "20260707",
+    "source_exposure_engine": "V5.1 Adaptive Exposure Policy Simulation Foundation",
+    "source_gradient_engine": "V5.10 Exposure Context Risk Gradient Analysis",
+    "source_candidate_engine": "V5.13 Risk Gradient Minimal Rule Candidate Audit",
+    "purpose": "Validate whether V5 risk diagnostics improve fixed V5.1 exposure policy explanation without changing policy."
+  },
+  "summary": {
+    "joined_sample_count": 115,
+    "primary_candidate_count": 2,
+    "model_count": 3,
+    "model_b_c_flag_sets_identical": true,
+    "model_b_only_flag_count": 0,
+    "model_c_only_flag_count": 0,
+    "policy_validation_status": "diagnostic_not_ready_for_policy_change",
+    "ready_for_mapper_change": false,
+    "ready_for_exposure_change": false,
+    "review_items": [
+      {
+        "type": "low_high_risk_capture_rate",
+        "severity": "high",
+        "evidence": {
+          "model": "model_b_v5_1_plus_risk_gradient_flag",
+          "capture_rate": 0.192308
+        }
+      },
+      {
+        "type": "high_false_warning_rate",
+        "severity": "high",
+        "evidence": {
+          "model": "model_b_v5_1_plus_risk_gradient_flag",
+          "false_warning_rate": 0.642857
+        }
+      },
+      {
+        "type": "candidate_context_adds_no_incremental_filter",
+        "severity": "medium",
+        "evidence": {
+          "model_b_flags": 14,
+          "model_c_flags": 14
+        }
+      },
+      {
+        "type": "policy_validation_diagnostic_only_do_not_modify_mapper",
+        "severity": "high",
+        "evidence": {
+          "reason": "V6.1 validates diagnostic overlay only; exposure levels and policy mapper remain unchanged."
+        }
+      }
+    ],
+    "review_item_count": 4,
+    "key_read": "Risk diagnostic flags catch only a small share of future high-risk events and have high false-warning rate; candidate context adds no incremental filter in the current sample."
+  },
+  "model_comparison": {
+    "model_a_baseline_v5_1": {
+      "model_id": "model_a_baseline_v5_1",
+      "description": "Fixed V5.1 exposure simulation without extra risk diagnostic overlay.",
+      "sample_count": 115,
+      "diagnostic_flag_count": 0,
+      "diagnostic_flag_rate": 0.0,
+      "future_high_risk_event_count": 26,
+      "high_risk_event_capture_count": 0,
+      "high_risk_event_capture_rate": 0.0,
+      "missed_high_risk_event_count": 26,
+      "missed_high_risk_event_rate": 1.0,
+      "false_warning_count": 0,
+      "false_warning_rate": null,
+      "strong_opportunity_event_count": 17,
+      "flagged_opportunity_count": 0,
+      "flagged_opportunity_rate": null,
+      "contradiction_row_count": 16,
+      "contradiction_capture_count": 0,
+      "contradiction_capture_rate": 0.0,
+      "status": "baseline_no_extra_diagnostic",
+      "sample_flagged_rows": []
+    },
+    "model_b_v5_1_plus_risk_gradient_flag": {
+      "model_id": "model_b_v5_1_plus_risk_gradient_flag",
+      "description": "Fixed V5.1 exposure simulation plus V5.10 high-risk gradient diagnostic flag.",
+      "sample_count": 115,
+      "diagnostic_flag_count": 14,
+      "diagnostic_flag_rate": 0.121739,
+      "future_high_risk_event_count": 26,
+      "high_risk_event_capture_count": 5,
+      "high_risk_event_capture_rate": 0.192308,
+      "missed_high_risk_event_count": 21,
+      "missed_high_risk_event_rate": 0.807692,
+      "false_warning_count": 9,
+      "false_warning_rate": 0.642857,
+      "strong_opportunity_event_count": 17,
+      "flagged_opportunity_count": 2,
+      "flagged_opportunity_rate": 0.142857,
+      "contradiction_row_count": 16,
+      "contradiction_capture_count": 2,
+      "contradiction_capture_rate": 0.125,
+      "status": "diagnostic_weak",
+      "sample_flagged_rows": [
+        {
+          "date": "20150105",
+          "exposure_level": "BALANCED",
+          "future_environment": "high_volatility",
+          "high_risk_event": true,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 73.1309,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20150202",
+          "exposure_level": "BALANCED",
+          "future_environment": "strong_uptrend",
+          "high_risk_event": false,
+          "strong_opportunity_event": true,
+          "risk_gradient_score": 74.4677,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20150407",
+          "exposure_level": "BALANCED",
+          "future_environment": "drawdown_stress",
+          "high_risk_event": true,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 69.42,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20150803",
+          "exposure_level": "BALANCED",
+          "future_environment": "drawdown_stress",
+          "high_risk_event": true,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 66.5591,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20200311",
+          "exposure_level": "BALANCED",
+          "future_environment": "drawdown_stress",
+          "high_risk_event": true,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 68.7081,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20220127",
+          "exposure_level": "BALANCED",
+          "future_environment": "drawdown_stress",
+          "high_risk_event": true,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 66.3783,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20220926",
+          "exposure_level": "BALANCED",
+          "future_environment": "positive_range",
+          "high_risk_event": false,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 68.4672,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20221226",
+          "exposure_level": "BALANCED",
+          "future_environment": "positive_range",
+          "high_risk_event": false,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 73.5058,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20230529",
+          "exposure_level": "BALANCED",
+          "future_environment": "weak_or_flat",
+          "high_risk_event": false,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 66.1815,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20230628",
+          "exposure_level": "BALANCED",
+          "future_environment": "weak_or_flat",
+          "high_risk_event": false,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 68.5991,
+          "risk_gradient_bucket": "high_risk"
+        }
+      ]
+    },
+    "model_c_v5_1_plus_primary_candidate_context": {
+      "model_id": "model_c_v5_1_plus_primary_candidate_context",
+      "description": "Fixed V5.1 exposure simulation plus V5.13 primary candidate context diagnostic flag.",
+      "sample_count": 115,
+      "diagnostic_flag_count": 14,
+      "diagnostic_flag_rate": 0.121739,
+      "future_high_risk_event_count": 26,
+      "high_risk_event_capture_count": 5,
+      "high_risk_event_capture_rate": 0.192308,
+      "missed_high_risk_event_count": 21,
+      "missed_high_risk_event_rate": 0.807692,
+      "false_warning_count": 9,
+      "false_warning_rate": 0.642857,
+      "strong_opportunity_event_count": 17,
+      "flagged_opportunity_count": 2,
+      "flagged_opportunity_rate": 0.142857,
+      "contradiction_row_count": 16,
+      "contradiction_capture_count": 2,
+      "contradiction_capture_rate": 0.125,
+      "status": "diagnostic_weak",
+      "sample_flagged_rows": [
+        {
+          "date": "20150105",
+          "exposure_level": "BALANCED",
+          "future_environment": "high_volatility",
+          "high_risk_event": true,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 73.1309,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20150202",
+          "exposure_level": "BALANCED",
+          "future_environment": "strong_uptrend",
+          "high_risk_event": false,
+          "strong_opportunity_event": true,
+          "risk_gradient_score": 74.4677,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20150407",
+          "exposure_level": "BALANCED",
+          "future_environment": "drawdown_stress",
+          "high_risk_event": true,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 69.42,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20150803",
+          "exposure_level": "BALANCED",
+          "future_environment": "drawdown_stress",
+          "high_risk_event": true,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 66.5591,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20200311",
+          "exposure_level": "BALANCED",
+          "future_environment": "drawdown_stress",
+          "high_risk_event": true,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 68.7081,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20220127",
+          "exposure_level": "BALANCED",
+          "future_environment": "drawdown_stress",
+          "high_risk_event": true,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 66.3783,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20220926",
+          "exposure_level": "BALANCED",
+          "future_environment": "positive_range",
+          "high_risk_event": false,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 68.4672,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20221226",
+          "exposure_level": "BALANCED",
+          "future_environment": "positive_range",
+          "high_risk_event": false,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 73.5058,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20230529",
+          "exposure_level": "BALANCED",
+          "future_environment": "weak_or_flat",
+          "high_risk_event": false,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 66.1815,
+          "risk_gradient_bucket": "high_risk"
+        },
+        {
+          "date": "20230628",
+          "exposure_level": "BALANCED",
+          "future_environment": "weak_or_flat",
+          "high_risk_event": false,
+          "strong_opportunity_event": false,
+          "risk_gradient_score": 68.5991,
+          "risk_gradient_bucket": "high_risk"
+        }
+      ]
+    }
+  },
+  "time_safety": {
+    "feature_release_or_source_lte_signal_date": true,
+    "violation_count": 0,
+    "violation_examples": [],
+    "future_labels_used_for_validation_only": true,
+    "exposure_level_unchanged": true
+  },
+  "data_quality": {
+    "uses_fixed_v5_1_exposure_simulation": true,
+    "uses_v5_13_primary_candidates_only": true,
+    "exposure_level_unchanged": true,
+    "mapper_unchanged": true,
+    "future_labels_used_for_validation_only": true,
+    "no_parameter_optimization": true,
+    "model_b_dates_sample_equals_model_c_dates_sample": true
+  },
+  "constraints": {
+    "validation_only": true,
+    "does_not_modify_mapper": true,
+    "does_not_modify_exposure_level": true,
+    "does_not_generate_position": true,
+    "no_percentage_exposure": true,
+    "no_etf_code": true,
+    "no_asset_weight": true,
+    "no_portfolio_weight": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_return_optimization": true,
+    "no_best_rule_selection": true
+  }
+}

@@ -808,6 +808,25 @@ function candidateConclusionLabel(value) {
   return labels[value] || value || "--";
 }
 
+function policyValidationStatusLabel(value) {
+  const labels = {
+    diagnostic_not_ready_for_policy_change: "诊断未准备好改变策略",
+    diagnostic_weak: "诊断较弱",
+    diagnostic_promising: "诊断有潜力",
+    baseline_no_extra_diagnostic: "基线无额外诊断",
+  };
+  return labels[value] || value || "--";
+}
+
+function policyModelLabel(value) {
+  const labels = {
+    model_a_baseline_v5_1: "A 基线 V5.1",
+    model_b_v5_1_plus_risk_gradient_flag: "B + 风险梯度提示",
+    model_c_v5_1_plus_primary_candidate_context: "C + 主候选提示",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1460,6 +1479,9 @@ function setResultsPanel(results) {
   const riskCandidates = results.risk_gradient_candidate_rules || {};
   const riskCandidatesSummary = riskCandidates.summary || {};
   const riskCandidateRules = riskCandidates.candidate_rules || [];
+  const policyValidation = results.exposure_policy_validation || {};
+  const policyValidationSummary = policyValidation.summary || {};
+  const policyValidationModels = policyValidation.model_comparison || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2600,6 +2622,40 @@ function setResultsPanel(results) {
     riskCandidates.metadata
       ? `V5.13 最小候选审计：从 V5.12 正向条件压缩出 ${integerText(riskCandidatesSummary.candidate_count)} 个候选，其中 ${integerText(riskCandidatesSummary.primary_research_candidate_count)} 个可继续重点研究，但 ${integerText(riskCandidatesSummary.ready_for_rule_count)} 个可规则化。结论：${candidateConclusionLabel(riskCandidatesSummary.conclusion)}。`
       : "V5.13 最小风险候选审计尚未生成。"
+  );
+
+  const modelB = policyValidationModels.model_b_v5_1_plus_risk_gradient_flag || {};
+  const modelC = policyValidationModels.model_c_v5_1_plus_primary_candidate_context || {};
+  setText("policyValidationRows", integerText(policyValidationSummary.joined_sample_count));
+  setText("policyValidationCapture", percentText(modelB.high_risk_event_capture_rate));
+  setText("policyValidationFalseWarning", percentText(modelB.false_warning_rate));
+  setText(
+    "policyValidationReady",
+    policyValidationSummary.ready_for_mapper_change === true || policyValidationSummary.ready_for_exposure_change === true
+      ? "可变更"
+      : "不可变更"
+  );
+  setHtml("policyValidationModels", [
+    "model_a_baseline_v5_1",
+    "model_b_v5_1_plus_risk_gradient_flag",
+    "model_c_v5_1_plus_primary_candidate_context",
+  ]
+    .map((modelId) => {
+      const item = policyValidationModels[modelId] || {};
+      return `
+        <div class="duration-row">
+          <span>${policyModelLabel(modelId)} · ${policyValidationStatusLabel(item.status)}</span>
+          <strong>提示 ${integerText(item.diagnostic_flag_count)} 次 · 捕获 ${percentText(item.high_risk_event_capture_rate)}</strong>
+          <em>误警 ${percentText(item.false_warning_rate)} · 冲突覆盖 ${percentText(item.contradiction_capture_rate)}</em>
+        </div>
+      `;
+    })
+    .join(""));
+  setText(
+    "policyValidationConclusion",
+    policyValidation.metadata
+      ? `V6.1 固定 V5.1 暴露模拟做诊断叠加：B/C 风险提示集合${policyValidationSummary.model_b_c_flag_sets_identical ? "相同" : "不同"}，捕获率 ${percentText(modelB.high_risk_event_capture_rate)}，误警率 ${percentText(modelB.false_warning_rate)}。结论：${policyValidationStatusLabel(policyValidationSummary.policy_validation_status)}，不改 mapper、不改 exposure。`
+      : "V6.1 暴露策略诊断验证尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
