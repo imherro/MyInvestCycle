@@ -1640,6 +1640,11 @@ function setResultsPanel(results) {
   const opportunityFeatureAttribution = results.opportunity_feature_attribution || {};
   const opportunityFeatureAttributionSummary = opportunityFeatureAttribution.summary || {};
   const opportunityFeatureAttributionSamples = opportunityFeatureAttribution.sample_attribution || opportunityFeatureAttribution.feature_attribution || [];
+  const opportunityArchitecture = results.opportunity_v7_architecture || {};
+  const opportunityArchitectureSummary = opportunityArchitecture.summary || {};
+  const opportunityArchitectureLayers = opportunityArchitecture.retained_layers || [];
+  const opportunityArchitectureRejected = opportunityArchitecture.rejected_outputs || [];
+  const opportunityArchitectureEvidence = opportunityArchitecture.evidence || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3194,6 +3199,52 @@ function setResultsPanel(results) {
     opportunityFeatureAttribution.metadata
       ? `V7.4 固定 V7.3 结果做归因：${integerText(retentionCounts.research_candidate || 0)} 条暂列保留研究，${integerText(retentionCounts.watch || 0)} 条继续观察，但总体结论仍是 ${escapeHtml(opportunityFeatureAttributionSummary.conclusion || "不可进入机会评分")}。这些 retention 标签不是评分、权重、排名或交易信号。`
       : "V7.4 机会特征归因与稳定性审计尚未生成。"
+  );
+
+  const architectureReadyFlagsOff =
+    opportunityArchitectureSummary.ready_for_scoring === false &&
+    opportunityArchitectureSummary.ready_for_ranking === false &&
+    opportunityArchitectureSummary.ready_for_allocation === false &&
+    opportunityArchitectureSummary.ready_for_trade === false;
+  setText(
+    "opportunityArchitectureStatus",
+    opportunityArchitectureSummary.freeze_status === "frozen" ? "已冻结" : "--"
+  );
+  setText(
+    "opportunityArchitectureLayers",
+    opportunityArchitectureSummary.retained_layer_count
+      ? `${integerText(opportunityArchitectureSummary.retained_layer_count)} 层`
+      : "--"
+  );
+  setText(
+    "opportunityArchitectureRejected",
+    opportunityArchitectureSummary.rejected_output_count
+      ? `${integerText(opportunityArchitectureSummary.rejected_output_count)} 项`
+      : "--"
+  );
+  setText("opportunityArchitectureBoundary", architectureReadyFlagsOff ? "不可评分/排名/配置/交易" : "需复核");
+  setHtml("opportunityArchitectureLayerList", opportunityArchitectureLayers
+    .map((layer) => `
+      <div class="duration-row">
+        <span>${escapeHtml(layer.version || "--")} · ${escapeHtml(layer.name || "--")}</span>
+        <strong>${escapeHtml(layer.status || "--")}</strong>
+        <em>${escapeHtml(layer.role || "")}</em>
+      </div>
+    `)
+    .join(""));
+  setHtml("opportunityArchitectureRejectedList", opportunityArchitectureRejected
+    .map((item) => `
+      <div>
+        <strong>${escapeHtml(item.name || "--")} · ${escapeHtml(item.status || "--")}</strong>
+        <span>${escapeHtml(item.reason || "")}</span>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "opportunityArchitectureConclusion",
+    opportunityArchitecture.metadata
+      ? `V7.5 冻结 V7 机会研究层：保留资产基础、特征、IC 验证和归因框架，但结论仍是 ${escapeHtml(opportunityArchitectureSummary.conclusion || "不可进入机会评分")}。当前证据：资产 ${integerText(opportunityArchitectureEvidence.asset_count)} 个，V7.3 验证 ${integerText(opportunityArchitectureEvidence.feature_validation_result_count)} 条，V7.4 归因 ${integerText(opportunityArchitectureEvidence.feature_attribution_count)} 条；不输出机会分、排名、Top N、配置或交易。`
+      : "V7.5 机会研究层冻结摘要尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

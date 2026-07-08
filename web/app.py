@@ -578,6 +578,136 @@ def _read_opportunity_feature_attribution_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_opportunity_v7_architecture_payload() -> dict[str, object] | None:
+    doc_path = ROOT_DIR / "docs" / "opportunity_research_v7_architecture.md"
+    if not doc_path.exists():
+        return None
+
+    foundation = _read_opportunity_research_foundation_payload() or {}
+    context_features = _read_opportunity_context_features_payload() or {}
+    feature_validation = _read_opportunity_feature_validation_payload() or {}
+    feature_attribution = _read_opportunity_feature_attribution_payload() or {}
+    attribution_summary = feature_attribution.get("summary") if isinstance(feature_attribution, dict) else {}
+    validation_summary = feature_validation.get("summary") if isinstance(feature_validation, dict) else {}
+    foundation_summary = foundation.get("summary") if isinstance(foundation, dict) else {}
+    context_summary = context_features.get("summary") if isinstance(context_features, dict) else {}
+
+    source_layers = [
+        {
+            "version": "V7.1",
+            "name": "Asset Research Foundation",
+            "artifact": "data/opportunity_research_foundation.json",
+            "status": "retained",
+            "role": "资产池、研究代理、覆盖率和时间安全边界。",
+        },
+        {
+            "version": "V7.2",
+            "name": "Context Features",
+            "artifact": "data/opportunity_context_features.json",
+            "status": "retained",
+            "role": "固定动量、相对强弱、趋势、风险、结构特征字段。",
+        },
+        {
+            "version": "V7.3",
+            "name": "Feature Validation",
+            "artifact": "data/opportunity_feature_validation.json",
+            "status": "retained",
+            "role": "5/20/60 日 IC 有效性审计，proxy 与 ETF 分离。",
+        },
+        {
+            "version": "V7.4",
+            "name": "Feature Attribution",
+            "artifact": "data/opportunity_feature_attribution.json",
+            "status": "retained",
+            "role": "保留/观察/暂弃标签和环境一致性归因。",
+        },
+    ]
+    rejected_outputs = [
+        {
+            "name": "Opportunity Score",
+            "status": "rejected",
+            "reason": "特征稳定性不足，V7.4 结论为 feature_attribution_not_ready_for_opportunity_score。",
+        },
+        {"name": "Ranking", "status": "rejected", "reason": "尚无验证通过的 alpha 或机会层。"},
+        {"name": "Top N", "status": "rejected", "reason": "会形成隐含资产选择，但缺少排名有效性证据。"},
+        {"name": "Allocation", "status": "rejected", "reason": "尚无机会引擎，不应生成配置建议。"},
+        {"name": "ETF weight", "status": "rejected", "reason": "特征归因不等于可交易 ETF 权重。"},
+        {"name": "Trading", "status": "rejected", "reason": "本层为研究只读，不连接券商或下单。"},
+        {"name": "New feature search", "status": "rejected", "reason": "冻结阶段继续挖特征会放大过拟合风险。"},
+    ]
+    return {
+        "metadata": {
+            "engine": "V7.5 Opportunity Research Layer Freeze & Audit Summary",
+            "status": "frozen",
+            "doc_path": "docs/opportunity_research_v7_architecture.md",
+            "audit_script": "scripts/audit_v7_architecture_consistency.py",
+            "source_layers": ["V7.1", "V7.2", "V7.3", "V7.4"],
+        },
+        "summary": {
+            "freeze_status": "frozen",
+            "retained_layer_count": len(source_layers),
+            "rejected_output_count": len(rejected_outputs),
+            "verified_count": 6,
+            "not_verified_count": 7,
+            "ready_for_scoring": False,
+            "ready_for_ranking": False,
+            "ready_for_allocation": False,
+            "ready_for_trade": False,
+            "conclusion": (
+                attribution_summary.get("conclusion")
+                if isinstance(attribution_summary, dict)
+                else "feature_attribution_not_ready_for_opportunity_score"
+            ),
+            "key_read": "V7 is frozen as a research-only architecture; it keeps the audit foundation but rejects score, ranking, allocation, ETF weights, and trading.",
+        },
+        "retained_layers": source_layers,
+        "rejected_outputs": rejected_outputs,
+        "verified": [
+            "asset research foundation",
+            "proxy and tradable history separation",
+            "fixed feature audit framework",
+            "time-safe feature construction",
+            "IC-based feature effectiveness audit",
+            "feature retention and regime consistency attribution",
+        ],
+        "not_verified": [
+            "opportunity prediction",
+            "asset ranking",
+            "Top N asset selection",
+            "allocation alpha",
+            "ETF weight generation",
+            "tradable strategy improvement",
+            "trading signal generation",
+        ],
+        "evidence": {
+            "asset_count": foundation_summary.get("asset_count") if isinstance(foundation_summary, dict) else None,
+            "feature_groups": context_summary.get("feature_groups") if isinstance(context_summary, dict) else [],
+            "feature_validation_result_count": (
+                validation_summary.get("result_count") if isinstance(validation_summary, dict) else None
+            ),
+            "feature_attribution_count": (
+                attribution_summary.get("attribution_count") if isinstance(attribution_summary, dict) else None
+            ),
+            "retention_counts": attribution_summary.get("retention_counts") if isinstance(attribution_summary, dict) else {},
+        },
+        "constraints": {
+            "research_only": True,
+            "does_not_create_opportunity_score": True,
+            "does_not_create_feature_weight": True,
+            "does_not_rank_assets": True,
+            "does_not_select_top_assets": True,
+            "does_not_generate_position": True,
+            "no_percentage_exposure": True,
+            "no_etf_weight": True,
+            "no_portfolio_weight": True,
+            "no_trade_signal": True,
+            "no_order_generation": True,
+            "no_broker_connection": True,
+            "no_parameter_optimization_for_investable_output": True,
+        },
+    }
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -1105,6 +1235,25 @@ def _compact_opportunity_feature_attribution_payload(payload: dict[str, object] 
     if isinstance(rows, list):
         compact["sample_attribution"] = rows[:8]
     return compact
+
+
+def _compact_opportunity_v7_architecture_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "retained_layers",
+            "rejected_outputs",
+            "verified",
+            "not_verified",
+            "evidence",
+            "constraints",
+        )
+        if key in payload
+    }
 
 
 def _event_summary(rows: list[dict], event_key: str = "label") -> dict[str, object]:
@@ -1978,6 +2127,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/opportunity/v7-architecture",
+                    "返回 V7.5 Opportunity Research Layer Freeze，汇总 V7.1-V7.4 保留层、显式拒绝的评分/排名/配置/交易输出，以及冻结边界审计脚本。",
+                    "opportunity V7 architecture freeze",
+                    freshness="generated doc and existing artifacts",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -2121,6 +2277,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/opportunity/context-features", "description": "读取 V7.2 机会研究特征层：动量、相对强弱、趋势、风险和结构字段。"},
             {"path": "/api/opportunity/feature-validation", "description": "读取 V7.3 机会特征有效性审计：IC、proxy/ETF 分离和环境分层。"},
             {"path": "/api/opportunity/feature-attribution", "description": "读取 V7.4 机会特征归因与稳定性审计：保留/观察/暂弃标签和环境一致性。"},
+            {"path": "/api/opportunity/v7-architecture", "description": "读取 V7.5 机会研究层冻结摘要：保留层、拒绝项和不可评分/排名/配置/交易边界。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -3162,6 +3319,17 @@ def opportunity_feature_attribution() -> dict:
     return payload
 
 
+@app.get("/api/opportunity/v7-architecture")
+def opportunity_v7_architecture() -> dict:
+    payload = _read_opportunity_v7_architecture_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Opportunity V7 architecture document missing; add docs/opportunity_research_v7_architecture.md first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -3322,6 +3490,7 @@ def results_summary(
         opportunity_context_features = _read_opportunity_context_features_payload()
         opportunity_feature_validation = _read_opportunity_feature_validation_payload()
         opportunity_feature_attribution = _read_opportunity_feature_attribution_payload()
+        opportunity_v7_architecture = _read_opportunity_v7_architecture_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -3360,6 +3529,7 @@ def results_summary(
             opportunity_context_features = _compact_opportunity_context_features_payload(opportunity_context_features)
             opportunity_feature_validation = _compact_opportunity_feature_validation_payload(opportunity_feature_validation)
             opportunity_feature_attribution = _compact_opportunity_feature_attribution_payload(opportunity_feature_attribution)
+            opportunity_v7_architecture = _compact_opportunity_v7_architecture_payload(opportunity_v7_architecture)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -3435,6 +3605,7 @@ def results_summary(
             "opportunity_context_features": opportunity_context_features,
             "opportunity_feature_validation": opportunity_feature_validation,
             "opportunity_feature_attribution": opportunity_feature_attribution,
+            "opportunity_v7_architecture": opportunity_v7_architecture,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,
