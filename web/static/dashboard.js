@@ -719,6 +719,36 @@ function opportunityGradientBucketLabel(value) {
   return labels[value] || value || "--";
 }
 
+function robustnessConsistencyLabel(value) {
+  const labels = {
+    high: "高",
+    medium: "中",
+    weak: "弱",
+    insufficient_evidence: "证据不足",
+  };
+  return labels[value] || value || "--";
+}
+
+function robustnessPeriodStatusLabel(value) {
+  const labels = {
+    positive: "正向",
+    negative: "负向",
+    flat: "持平",
+    insufficient_total_sample: "样本不足",
+    insufficient_high_risk_sample: "高风险样本不足",
+  };
+  return labels[value] || value || "--";
+}
+
+function robustnessConclusionLabel(value) {
+  const labels = {
+    risk_gradient_edge_not_confirmed: "风险边际未确认",
+    research_value_confirmed_but_still_not_mapper_ready: "研究价值确认，但仍不可进入规则",
+    overall_edge_visible_but_not_robust: "总体边际可见，但稳健性未确认",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1361,6 +1391,11 @@ function setResultsPanel(results) {
   const gradientSeparation = gradientSummary.separation_review || {};
   const riskGradientBuckets = gradientAnalysis.risk_bucket_analysis || {};
   const opportunityGradientBuckets = gradientAnalysis.opportunity_bucket_analysis || {};
+  const riskRobustness = results.risk_gradient_robustness || {};
+  const riskRobustnessSummary = riskRobustness.summary || {};
+  const riskRobustnessStats = riskRobustness.robustness || {};
+  const riskRobustnessPeriods = riskRobustness.period_analysis || [];
+  const riskRobustnessBuckets = riskRobustness.overall_bucket_metrics || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2412,6 +2447,40 @@ function setResultsPanel(results) {
     gradientAnalysis.metadata
       ? `V5.10 连续梯度审计：风险梯度 ${contextStateQualityLabel(gradientSeparation.risk_gradient_separation)}，高风险桶失败率较总体抬升 ${signedRatioText(gradientSeparation.high_risk_bucket_failure_lift)}；机会梯度 ${contextStateQualityLabel(gradientSeparation.opportunity_gradient_separation)}，高机会桶机会率抬升 ${signedRatioText(gradientSeparation.high_opportunity_bucket_opportunity_lift)}。该层只做研究，不改 mapper、不输出仓位或交易。`
       : "V5.10 BALANCED 风险/机会梯度审计尚未生成。"
+  );
+
+  setText("robustnessOverallLift", signedRatioText(riskRobustnessSummary.overall_high_risk_lift));
+  setText("robustnessConsistency", robustnessConsistencyLabel(riskRobustnessSummary.period_consistency));
+  setText(
+    "robustnessEvaluated",
+    `${integerText(riskRobustnessStats.evaluated_period_count)} 个 · 正 ${integerText(riskRobustnessStats.positive_period_count)} / 负 ${integerText(riskRobustnessStats.negative_period_count)} / 不足 ${integerText(riskRobustnessStats.insufficient_period_count)}`
+  );
+  setText("robustnessReady", riskRobustnessSummary.ready_for_mapper_change === true ? "可变更" : "不可变更");
+  setHtml("robustnessPeriods", (Array.isArray(riskRobustnessPeriods) ? riskRobustnessPeriods : [])
+    .map((period) => `
+      <div class="duration-row">
+        <span>${escapeHtml(period.period || "--")} · ${robustnessPeriodStatusLabel(period.status)}</span>
+        <strong>${integerText(period.sample_count)} 样本 · 高风险 ${integerText(period.high_risk_sample_count)} 个</strong>
+        <em>抬升 ${signedRatioText(period.high_risk_lift)} · 总体风险 ${percentText(period.overall_failure_rate)}</em>
+      </div>
+    `)
+    .join(""));
+  setHtml("robustnessBuckets", ["high_risk", "medium_risk", "low_risk"]
+    .map((bucket) => {
+      const item = riskRobustnessBuckets[bucket] || {};
+      return `
+        <div class="alpha-source-row">
+          <span>${riskGradientBucketLabel(bucket)}</span>
+          <strong>${integerText(item.sample_count)} 次 · 失败率 ${percentText(item.failure_rate)}</strong>
+        </div>
+      `;
+    })
+    .join(""));
+  setText(
+    "robustnessConclusion",
+    riskRobustness.metadata
+      ? `V5.11 固定 V5.10 风险梯度复核：总体高风险桶风险抬升 ${signedRatioText(riskRobustnessSummary.overall_high_risk_lift)}，但阶段一致性为 ${robustnessConsistencyLabel(riskRobustnessSummary.period_consistency)}。结论：${robustnessConclusionLabel(riskRobustnessSummary.conclusion)}，仍只做研究，不进入 mapper 或仓位规则。`
+      : "V5.11 风险梯度稳健性审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

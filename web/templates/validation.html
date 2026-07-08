@@ -538,6 +538,34 @@
           <p class="result-note" id="gradientConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="固定 V5.10 风险梯度权重和 high/medium/low 阈值，按 2015-2017、2018、2020、2021、2022、2024-2026 分段复核高风险桶是否持续有效；只做稳健性审计，不改规则。">风险梯度稳健性审计</h2>
+            <span class="panel-kicker">V5.11</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>总体风险抬升</span>
+              <strong id="robustnessOverallLift">--</strong>
+            </div>
+            <div class="result-row">
+              <span>阶段一致性</span>
+              <strong id="robustnessConsistency">--</strong>
+            </div>
+            <div class="result-row">
+              <span>可评价阶段</span>
+              <strong id="robustnessEvaluated">--</strong>
+            </div>
+            <div class="result-row">
+              <span>规则变更</span>
+              <strong id="robustnessReady">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="robustnessPeriods"></div>
+          <div class="alpha-source-list" id="robustnessBuckets"></div>
+          <p class="result-note" id="robustnessConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -628,7 +656,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-gradient-1"></script>
+    <script src="/static/dashboard.js?v=20260708-robustness-2"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

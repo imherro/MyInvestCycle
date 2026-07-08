@@ -1,0 +1,805 @@
+{
+  "metadata": {
+    "engine": "V5.11 Risk Gradient Robustness & Stability Audit",
+    "generated_at": "2026-07-08T16:42:35+00:00",
+    "as_of": "20260707",
+    "source_engine": "V5.10 Exposure Context Risk Gradient Analysis",
+    "purpose": "Audit fixed V5.10 risk gradient stability across market periods without changing thresholds or exposure rules."
+  },
+  "summary": {
+    "source_rows": 115,
+    "overall_failure_rate": 0.226087,
+    "high_risk_failure_rate": 0.357143,
+    "overall_high_risk_lift": 0.131056,
+    "period_consistency": "insufficient_evidence",
+    "ready_for_mapper_change": false,
+    "conclusion": "overall_edge_visible_but_not_robust",
+    "review_items": [
+      {
+        "type": "risk_gradient_not_robust_enough",
+        "severity": "high",
+        "evidence": {
+          "period_consistency": "insufficient_evidence",
+          "positive_period_count": 1,
+          "negative_period_count": 1,
+          "insufficient_period_count": 4
+        }
+      },
+      {
+        "type": "overall_risk_edge_visible",
+        "severity": "low",
+        "evidence": {
+          "overall_lift": 0.131056
+        }
+      },
+      {
+        "type": "robustness_audit_research_only_do_not_modify_mapper",
+        "severity": "high",
+        "evidence": {
+          "reason": "V5.11 audits fixed V5.10 risk gradient only; no threshold, mapper, exposure, ETF, or trade change."
+        }
+      }
+    ],
+    "review_item_count": 3,
+    "key_read": "The V5.10 high-risk bucket has visible overall lift, but period-level robustness is not confirmed; it should remain a research diagnostic, not a mapper or exposure rule."
+  },
+  "robustness": {
+    "period_consistency": "insufficient_evidence",
+    "evaluated_period_count": 2,
+    "positive_period_count": 1,
+    "negative_period_count": 1,
+    "flat_period_count": 0,
+    "insufficient_period_count": 4,
+    "positive_periods": [
+      "2015-2017"
+    ],
+    "negative_periods": [
+      "2022"
+    ],
+    "insufficient_periods": [
+      "2018",
+      "2020",
+      "2021",
+      "2024-2026"
+    ]
+  },
+  "period_analysis": [
+    {
+      "period": "2015-2017",
+      "start_date": "20150101",
+      "end_date": "20171231",
+      "sample_count": 35,
+      "overall_failure_rate": 0.228571,
+      "overall_opportunity_rate": 0.085714,
+      "high_risk_sample_count": 4,
+      "high_risk_failure_rate": 0.75,
+      "high_risk_lift": 0.521429,
+      "status": "positive",
+      "bucket_metrics": {
+        "high_risk": {
+          "sample_count": 4,
+          "share_of_period": 0.114286,
+          "failure_rate": 0.75,
+          "opportunity_rate": 0.25,
+          "outcome_distribution": {
+            "failure": {
+              "count": 3,
+              "share": 0.75
+            },
+            "missed_opportunity": {
+              "count": 1,
+              "share": 0.25
+            }
+          },
+          "risk_score": {
+            "available_count": 4,
+            "avg": 70.8944,
+            "min": 66.5591,
+            "max": 74.4677
+          }
+        },
+        "medium_risk": {
+          "sample_count": 11,
+          "share_of_period": 0.314286,
+          "failure_rate": 0.454545,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {
+            "failure": {
+              "count": 5,
+              "share": 0.454545
+            },
+            "neutral": {
+              "count": 6,
+              "share": 0.545455
+            }
+          },
+          "risk_score": {
+            "available_count": 11,
+            "avg": 50.3446,
+            "min": 45.855,
+            "max": 55.2986
+          }
+        },
+        "low_risk": {
+          "sample_count": 20,
+          "share_of_period": 0.571429,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.1,
+          "outcome_distribution": {
+            "missed_opportunity": {
+              "count": 2,
+              "share": 0.1
+            },
+            "neutral": {
+              "count": 18,
+              "share": 0.9
+            }
+          },
+          "risk_score": {
+            "available_count": 20,
+            "avg": 35.6085,
+            "min": 26.1324,
+            "max": 44.4854
+          }
+        },
+        "unknown": {
+          "sample_count": 0,
+          "share_of_period": 0.0,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {},
+          "risk_score": {
+            "available_count": 0,
+            "avg": null,
+            "min": null,
+            "max": null
+          }
+        }
+      },
+      "high_risk_sample_rows": [
+        {
+          "date": "20150105",
+          "outcome": "failure",
+          "risk_gradient_score": 73.1309,
+          "context_state": "BALANCED_RISK"
+        },
+        {
+          "date": "20150202",
+          "outcome": "missed_opportunity",
+          "risk_gradient_score": 74.4677,
+          "context_state": "BALANCED_RISK"
+        },
+        {
+          "date": "20150407",
+          "outcome": "failure",
+          "risk_gradient_score": 69.42,
+          "context_state": "BALANCED_RISK"
+        },
+        {
+          "date": "20150803",
+          "outcome": "failure",
+          "risk_gradient_score": 66.5591,
+          "context_state": "BALANCED_RISK"
+        }
+      ]
+    },
+    {
+      "period": "2018",
+      "start_date": "20180101",
+      "end_date": "20181231",
+      "sample_count": 12,
+      "overall_failure_rate": 0.5,
+      "overall_opportunity_rate": 0.25,
+      "high_risk_sample_count": 0,
+      "high_risk_failure_rate": null,
+      "high_risk_lift": null,
+      "status": "insufficient_high_risk_sample",
+      "bucket_metrics": {
+        "high_risk": {
+          "sample_count": 0,
+          "share_of_period": 0.0,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {},
+          "risk_score": {
+            "available_count": 0,
+            "avg": null,
+            "min": null,
+            "max": null
+          }
+        },
+        "medium_risk": {
+          "sample_count": 4,
+          "share_of_period": 0.333333,
+          "failure_rate": 0.25,
+          "opportunity_rate": 0.25,
+          "outcome_distribution": {
+            "failure": {
+              "count": 1,
+              "share": 0.25
+            },
+            "missed_opportunity": {
+              "count": 1,
+              "share": 0.25
+            },
+            "neutral": {
+              "count": 2,
+              "share": 0.5
+            }
+          },
+          "risk_score": {
+            "available_count": 4,
+            "avg": 48.2084,
+            "min": 45.6226,
+            "max": 50.2848
+          }
+        },
+        "low_risk": {
+          "sample_count": 8,
+          "share_of_period": 0.666667,
+          "failure_rate": 0.625,
+          "opportunity_rate": 0.25,
+          "outcome_distribution": {
+            "failure": {
+              "count": 5,
+              "share": 0.625
+            },
+            "missed_opportunity": {
+              "count": 2,
+              "share": 0.25
+            },
+            "neutral": {
+              "count": 1,
+              "share": 0.125
+            }
+          },
+          "risk_score": {
+            "available_count": 8,
+            "avg": 38.6853,
+            "min": 34.8411,
+            "max": 43.0095
+          }
+        },
+        "unknown": {
+          "sample_count": 0,
+          "share_of_period": 0.0,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {},
+          "risk_score": {
+            "available_count": 0,
+            "avg": null,
+            "min": null,
+            "max": null
+          }
+        }
+      },
+      "high_risk_sample_rows": []
+    },
+    {
+      "period": "2020",
+      "start_date": "20200101",
+      "end_date": "20201231",
+      "sample_count": 10,
+      "overall_failure_rate": 0.2,
+      "overall_opportunity_rate": 0.4,
+      "high_risk_sample_count": 1,
+      "high_risk_failure_rate": 1.0,
+      "high_risk_lift": 0.8,
+      "status": "insufficient_high_risk_sample",
+      "bucket_metrics": {
+        "high_risk": {
+          "sample_count": 1,
+          "share_of_period": 0.1,
+          "failure_rate": 1.0,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {
+            "failure": {
+              "count": 1,
+              "share": 1.0
+            }
+          },
+          "risk_score": {
+            "available_count": 1,
+            "avg": 68.7081,
+            "min": 68.7081,
+            "max": 68.7081
+          }
+        },
+        "medium_risk": {
+          "sample_count": 8,
+          "share_of_period": 0.8,
+          "failure_rate": 0.125,
+          "opportunity_rate": 0.375,
+          "outcome_distribution": {
+            "failure": {
+              "count": 1,
+              "share": 0.125
+            },
+            "missed_opportunity": {
+              "count": 3,
+              "share": 0.375
+            },
+            "neutral": {
+              "count": 4,
+              "share": 0.5
+            }
+          },
+          "risk_score": {
+            "available_count": 8,
+            "avg": 54.8526,
+            "min": 47.4316,
+            "max": 62.7203
+          }
+        },
+        "low_risk": {
+          "sample_count": 1,
+          "share_of_period": 0.1,
+          "failure_rate": 0.0,
+          "opportunity_rate": 1.0,
+          "outcome_distribution": {
+            "missed_opportunity": {
+              "count": 1,
+              "share": 1.0
+            }
+          },
+          "risk_score": {
+            "available_count": 1,
+            "avg": 41.8331,
+            "min": 41.8331,
+            "max": 41.8331
+          }
+        },
+        "unknown": {
+          "sample_count": 0,
+          "share_of_period": 0.0,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {},
+          "risk_score": {
+            "available_count": 0,
+            "avg": null,
+            "min": null,
+            "max": null
+          }
+        }
+      },
+      "high_risk_sample_rows": [
+        {
+          "date": "20200311",
+          "outcome": "failure",
+          "risk_gradient_score": 68.7081,
+          "context_state": "BALANCED_STRUCTURAL_OPPORTUNITY"
+        }
+      ]
+    },
+    {
+      "period": "2021",
+      "start_date": "20210101",
+      "end_date": "20211231",
+      "sample_count": 11,
+      "overall_failure_rate": 0.272727,
+      "overall_opportunity_rate": 0.0,
+      "high_risk_sample_count": 0,
+      "high_risk_failure_rate": null,
+      "high_risk_lift": null,
+      "status": "insufficient_high_risk_sample",
+      "bucket_metrics": {
+        "high_risk": {
+          "sample_count": 0,
+          "share_of_period": 0.0,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {},
+          "risk_score": {
+            "available_count": 0,
+            "avg": null,
+            "min": null,
+            "max": null
+          }
+        },
+        "medium_risk": {
+          "sample_count": 10,
+          "share_of_period": 0.909091,
+          "failure_rate": 0.2,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {
+            "failure": {
+              "count": 2,
+              "share": 0.2
+            },
+            "neutral": {
+              "count": 8,
+              "share": 0.8
+            }
+          },
+          "risk_score": {
+            "available_count": 10,
+            "avg": 53.0488,
+            "min": 49.2712,
+            "max": 57.3866
+          }
+        },
+        "low_risk": {
+          "sample_count": 1,
+          "share_of_period": 0.090909,
+          "failure_rate": 1.0,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {
+            "failure": {
+              "count": 1,
+              "share": 1.0
+            }
+          },
+          "risk_score": {
+            "available_count": 1,
+            "avg": 41.7997,
+            "min": 41.7997,
+            "max": 41.7997
+          }
+        },
+        "unknown": {
+          "sample_count": 0,
+          "share_of_period": 0.0,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {},
+          "risk_score": {
+            "available_count": 0,
+            "avg": null,
+            "min": null,
+            "max": null
+          }
+        }
+      },
+      "high_risk_sample_rows": []
+    },
+    {
+      "period": "2022",
+      "start_date": "20220101",
+      "end_date": "20221231",
+      "sample_count": 12,
+      "overall_failure_rate": 0.416667,
+      "overall_opportunity_rate": 0.083333,
+      "high_risk_sample_count": 3,
+      "high_risk_failure_rate": 0.333333,
+      "high_risk_lift": -0.083334,
+      "status": "negative",
+      "bucket_metrics": {
+        "high_risk": {
+          "sample_count": 3,
+          "share_of_period": 0.25,
+          "failure_rate": 0.333333,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {
+            "failure": {
+              "count": 1,
+              "share": 0.333333
+            },
+            "neutral": {
+              "count": 2,
+              "share": 0.666667
+            }
+          },
+          "risk_score": {
+            "available_count": 3,
+            "avg": 69.4504,
+            "min": 66.3783,
+            "max": 73.5058
+          }
+        },
+        "medium_risk": {
+          "sample_count": 9,
+          "share_of_period": 0.75,
+          "failure_rate": 0.444444,
+          "opportunity_rate": 0.111111,
+          "outcome_distribution": {
+            "failure": {
+              "count": 4,
+              "share": 0.444444
+            },
+            "missed_opportunity": {
+              "count": 1,
+              "share": 0.111111
+            },
+            "neutral": {
+              "count": 4,
+              "share": 0.444444
+            }
+          },
+          "risk_score": {
+            "available_count": 9,
+            "avg": 57.6958,
+            "min": 55.0337,
+            "max": 63.7296
+          }
+        },
+        "low_risk": {
+          "sample_count": 0,
+          "share_of_period": 0.0,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {},
+          "risk_score": {
+            "available_count": 0,
+            "avg": null,
+            "min": null,
+            "max": null
+          }
+        },
+        "unknown": {
+          "sample_count": 0,
+          "share_of_period": 0.0,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {},
+          "risk_score": {
+            "available_count": 0,
+            "avg": null,
+            "min": null,
+            "max": null
+          }
+        }
+      },
+      "high_risk_sample_rows": [
+        {
+          "date": "20220127",
+          "outcome": "failure",
+          "risk_gradient_score": 66.3783,
+          "context_state": "BALANCED_RISK"
+        },
+        {
+          "date": "20220926",
+          "outcome": "neutral",
+          "risk_gradient_score": 68.4672,
+          "context_state": "BALANCED_RISK"
+        },
+        {
+          "date": "20221226",
+          "outcome": "neutral",
+          "risk_gradient_score": 73.5058,
+          "context_state": "BALANCED_RISK"
+        }
+      ]
+    },
+    {
+      "period": "2024-2026",
+      "start_date": "20240101",
+      "end_date": "20261231",
+      "sample_count": 16,
+      "overall_failure_rate": 0.0625,
+      "overall_opportunity_rate": 0.3125,
+      "high_risk_sample_count": 2,
+      "high_risk_failure_rate": 0.0,
+      "high_risk_lift": -0.0625,
+      "status": "insufficient_high_risk_sample",
+      "bucket_metrics": {
+        "high_risk": {
+          "sample_count": 2,
+          "share_of_period": 0.125,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.5,
+          "outcome_distribution": {
+            "missed_opportunity": {
+              "count": 1,
+              "share": 0.5
+            },
+            "neutral": {
+              "count": 1,
+              "share": 0.5
+            }
+          },
+          "risk_score": {
+            "available_count": 2,
+            "avg": 67.9096,
+            "min": 67.6419,
+            "max": 68.1773
+          }
+        },
+        "medium_risk": {
+          "sample_count": 14,
+          "share_of_period": 0.875,
+          "failure_rate": 0.071429,
+          "opportunity_rate": 0.285714,
+          "outcome_distribution": {
+            "failure": {
+              "count": 1,
+              "share": 0.071429
+            },
+            "missed_opportunity": {
+              "count": 4,
+              "share": 0.285714
+            },
+            "neutral": {
+              "count": 9,
+              "share": 0.642857
+            }
+          },
+          "risk_score": {
+            "available_count": 14,
+            "avg": 56.0879,
+            "min": 50.1007,
+            "max": 64.3775
+          }
+        },
+        "low_risk": {
+          "sample_count": 0,
+          "share_of_period": 0.0,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {},
+          "risk_score": {
+            "available_count": 0,
+            "avg": null,
+            "min": null,
+            "max": null
+          }
+        },
+        "unknown": {
+          "sample_count": 0,
+          "share_of_period": 0.0,
+          "failure_rate": 0.0,
+          "opportunity_rate": 0.0,
+          "outcome_distribution": {},
+          "risk_score": {
+            "available_count": 0,
+            "avg": null,
+            "min": null,
+            "max": null
+          }
+        }
+      },
+      "high_risk_sample_rows": [
+        {
+          "date": "20240119",
+          "outcome": "neutral",
+          "risk_gradient_score": 67.6419,
+          "context_state": "BALANCED_RISK"
+        },
+        {
+          "date": "20250422",
+          "outcome": "missed_opportunity",
+          "risk_gradient_score": 68.1773,
+          "context_state": "BALANCED_RISK"
+        }
+      ]
+    }
+  ],
+  "threshold_consistency": {
+    "fixed_thresholds": {
+      "high_risk_min": 65.0,
+      "medium_risk_min": 45.0,
+      "low_risk_max_exclusive": 45.0
+    },
+    "checked_rows": 115,
+    "mismatch_count": 0,
+    "mismatch_examples": [],
+    "thresholds_were_not_optimized": true
+  },
+  "overall_bucket_metrics": {
+    "high_risk": {
+      "sample_count": 14,
+      "share_of_period": 0.121739,
+      "failure_rate": 0.357143,
+      "opportunity_rate": 0.142857,
+      "outcome_distribution": {
+        "failure": {
+          "count": 5,
+          "share": 0.357143
+        },
+        "missed_opportunity": {
+          "count": 2,
+          "share": 0.142857
+        },
+        "neutral": {
+          "count": 7,
+          "share": 0.5
+        }
+      },
+      "risk_score": {
+        "available_count": 14,
+        "avg": 69.0195,
+        "min": 65.7773,
+        "max": 74.4677
+      }
+    },
+    "medium_risk": {
+      "sample_count": 71,
+      "share_of_period": 0.617391,
+      "failure_rate": 0.211268,
+      "opportunity_rate": 0.140845,
+      "outcome_distribution": {
+        "failure": {
+          "count": 15,
+          "share": 0.211268
+        },
+        "missed_opportunity": {
+          "count": 10,
+          "share": 0.140845
+        },
+        "neutral": {
+          "count": 46,
+          "share": 0.647887
+        }
+      },
+      "risk_score": {
+        "available_count": 71,
+        "avg": 54.2171,
+        "min": 45.6226,
+        "max": 64.8935
+      }
+    },
+    "low_risk": {
+      "sample_count": 30,
+      "share_of_period": 0.26087,
+      "failure_rate": 0.2,
+      "opportunity_rate": 0.166667,
+      "outcome_distribution": {
+        "failure": {
+          "count": 6,
+          "share": 0.2
+        },
+        "missed_opportunity": {
+          "count": 5,
+          "share": 0.166667
+        },
+        "neutral": {
+          "count": 19,
+          "share": 0.633333
+        }
+      },
+      "risk_score": {
+        "available_count": 30,
+        "avg": 36.8428,
+        "min": 26.1324,
+        "max": 44.4854
+      }
+    },
+    "unknown": {
+      "sample_count": 0,
+      "share_of_period": 0.0,
+      "failure_rate": 0.0,
+      "opportunity_rate": 0.0,
+      "outcome_distribution": {},
+      "risk_score": {
+        "available_count": 0,
+        "avg": null,
+        "min": null,
+        "max": null
+      }
+    }
+  },
+  "time_safety": {
+    "feature_release_or_source_lte_signal_date": true,
+    "checked_values": 2291,
+    "violation_count": 0,
+    "violation_examples": [],
+    "future_labels_used_for_validation_only": true,
+    "risk_gradient_score_is_precomputed_v5_10": true
+  },
+  "data_quality": {
+    "uses_v5_10_risk_gradient_rows": true,
+    "risk_gradient_score_reused_not_reweighted": true,
+    "fixed_thresholds_reused": true,
+    "future_labels_used_for_validation_only": true,
+    "no_parameter_optimization": true,
+    "periods_are_predefined": true
+  },
+  "constraints": {
+    "audit_only": true,
+    "does_not_modify_gradient_weight": true,
+    "does_not_modify_threshold": true,
+    "does_not_modify_mapper": true,
+    "does_not_modify_policy": true,
+    "does_not_add_formal_state": true,
+    "does_not_add_exposure_level": true,
+    "no_parameter_optimization": true,
+    "no_percentage_exposure": true,
+    "no_etf_code": true,
+    "no_asset_weight": true,
+    "no_portfolio_weight": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  }
+}
