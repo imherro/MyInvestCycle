@@ -1739,6 +1739,11 @@ function setResultsPanel(results) {
   const riskShadowReviewFramework = riskShadowReview.review_framework || {};
   const riskShadowReviewResult = riskShadowReview.review_result || {};
   const riskShadowReviewPromotion = riskShadowReview.promotion_gate || {};
+  const riskShadowCapture = results.risk_diagnostic_shadow_manual_event_capture || {};
+  const riskShadowCaptureSummary = riskShadowCapture.summary || {};
+  const riskShadowCaptureControls = riskShadowCapture.manual_capture_controls || {};
+  const riskShadowCaptureResult = riskShadowCapture.current_capture_result || {};
+  const riskShadowCapturePromotion = riskShadowCapture.promotion_gate || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4195,6 +4200,11 @@ function setResultsPanel(results) {
     active: "已启用",
     active_empty: "启用/空日志",
     no_events_available: "无事件可复核",
+    ready_for_manual_input: "可人工录入",
+    manual_event_file_only: "仅人工文件",
+    no_event_submitted: "本次未提交",
+    manual_event_appended_no_trade: "已人工追加/不交易",
+    events_pending_manual_review: "待人工复核",
     initialized_empty: "空日志",
     defined_not_instantiated: "已定义/未实例化",
     risk_diagnostic_shadow_framework_defined_observation_only_no_trade: "只观察/不交易",
@@ -4467,6 +4477,34 @@ function setResultsPanel(results) {
     riskShadowReview.metadata
       ? `V14.4 已定义 shadow event 人工复核框架：review_status=${phaseStatusLabel(riskShadowReviewSummary.review_status)}，event_count=${integerText(riskShadowReviewSummary.event_count)}，reviewed=${integerText(riskShadowReviewSummary.reviewed_event_count)}，trade=false；implementation_ready=false。`
       : "V14.4 风险诊断影子事件复核尚未生成。"
+  );
+
+  const riskShadowCaptureFields = Array.isArray(riskShadowCaptureControls.manual_event_required_fields) ? riskShadowCaptureControls.manual_event_required_fields : [];
+  const riskShadowCaptureDedupeFields = Array.isArray(riskShadowCaptureControls.dedupe_key_fields) ? riskShadowCaptureControls.dedupe_key_fields : [];
+  const riskShadowCaptureBlockers = Array.isArray(riskShadowCapturePromotion.blocking_reasons) ? riskShadowCapturePromotion.blocking_reasons : [];
+  setText("riskShadowCaptureStatus", phaseStatusLabel(riskShadowCaptureSummary.manual_capture_status));
+  setText("riskShadowCaptureSourceEvents", integerText(riskShadowCaptureSummary.source_event_count));
+  setText("riskShadowCaptureSubmitted", integerText(riskShadowCaptureSummary.submitted_event_count));
+  setText("riskShadowCaptureDedupe", riskShadowCaptureControls.duplicate_detection_enabled === true ? "开启" : "--");
+  setText("riskShadowCaptureTrade", riskShadowCaptureSummary.trade_enabled === false ? "否" : "--");
+  setHtml("riskShadowCaptureRows", [
+    ["录入方式", phaseStatusLabel(riskShadowCaptureControls.append_mode), "必须提供人工事件文件；默认不生成事件。"],
+    ["必填字段", `${integerText(riskShadowCaptureFields.length)} 项`, riskShadowCaptureFields.join("；") || "--"],
+    ["去重字段", `${integerText(riskShadowCaptureDedupeFields.length)} 项`, riskShadowCaptureDedupeFields.join("；") || "--"],
+    ["本次结果", phaseStatusLabel(riskShadowCaptureResult.append_result), riskShadowCaptureResult.result_note || "--"],
+    ["阻断项", `${integerText(riskShadowCaptureBlockers.length)} 项`, riskShadowCaptureBlockers.join("；") || "--"],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  setText(
+    "riskShadowCaptureConclusion",
+    riskShadowCapture.metadata
+      ? `V14.5 已建立人工 no-trade shadow event 录入能力：source_events=${integerText(riskShadowCaptureSummary.source_event_count)}，submitted=${integerText(riskShadowCaptureSummary.submitted_event_count)}，auto_trigger=false，trade=false；implementation_ready=false。`
+      : "V14.5 风险诊断人工事件录入状态尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

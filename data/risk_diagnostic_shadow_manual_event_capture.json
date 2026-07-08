@@ -1,0 +1,210 @@
+{
+  "metadata": {
+    "engine": "V14.5 Risk Diagnostic Shadow Event Manual Capture",
+    "generated_at": "2026-07-08T23:22:42+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v14_3_observation_log": "data/risk_diagnostic_shadow_observation_log.json"
+    },
+    "input_hashes": {
+      "v14_3_observation_log": "4879f7b395eda4164ffba049d5970287d1df314ffd7c2010cab1d89f2b32d2ef"
+    },
+    "purpose": "Expose a manual append-only no-trade shadow event capture capability without automatically generating warnings or trades."
+  },
+  "summary": {
+    "component_id": "risk_diagnostic_layer",
+    "manual_capture_status": "ready_for_manual_input",
+    "source_event_count": 0,
+    "submitted_event_count": 0,
+    "auto_trigger_enabled": false,
+    "auto_warning_enabled": false,
+    "trade_enabled": false,
+    "position_adjustment_enabled": false,
+    "implementation_gate_result": "blocked",
+    "implementation_ready": false,
+    "investable_output": false,
+    "strategy_output_generated": false,
+    "allocation_output_generated": false,
+    "trade_ready": false,
+    "conclusion": "risk_diagnostic_shadow_manual_capture_ready_no_event_no_trade",
+    "key_read": "V14.5 enables future manual no-trade event capture; this status artifact submits no event."
+  },
+  "source_observation_log": {
+    "source_observation_status": "active",
+    "source_log_status": "active_empty",
+    "source_event_count": 0,
+    "source_auto_trigger_enabled": false,
+    "source_trade_enabled": false,
+    "source_hash": "4879f7b395eda4164ffba049d5970287d1df314ffd7c2010cab1d89f2b32d2ef"
+  },
+  "manual_capture_controls": {
+    "append_mode": "manual_event_file_only",
+    "manual_event_required_fields": [
+      "event_id",
+      "event_time",
+      "market_data_as_of",
+      "component_id",
+      "warning_event_type",
+      "context_snapshot",
+      "source_lineage",
+      "no_trade_observation",
+      "later_outcome_review",
+      "manual_review_state"
+    ],
+    "source_lineage_required_fields": [
+      "source_artifact_hash",
+      "event_schema_version",
+      "created_by"
+    ],
+    "context_snapshot_required_fields": [
+      "market_phase",
+      "risk_state",
+      "opportunity_state",
+      "risk_gradient_bucket",
+      "risk_gradient_score",
+      "protection_bucket",
+      "protection_score",
+      "two_axis_context"
+    ],
+    "later_outcome_review_required_fields": [
+      "review_time",
+      "review_window_id",
+      "later_risk_outcome",
+      "false_warning_review",
+      "missed_risk_review",
+      "stability_review_note"
+    ],
+    "dedupe_key_fields": [
+      "event_time",
+      "market_data_as_of",
+      "warning_event_type",
+      "source_artifact_hash"
+    ],
+    "allowed_manual_review_states": [
+      "manual_review_approved_observation_only",
+      "manual_review_in_progress",
+      "manual_review_rejected",
+      "submitted_pending_later_outcome_review",
+      "submitted_pending_manual_review"
+    ],
+    "duplicate_detection_enabled": true,
+    "append_only_log": true,
+    "manual_review_required": true,
+    "auto_event_generation_enabled": false,
+    "auto_warning_detection_enabled": false,
+    "market_data_reader_enabled": false
+  },
+  "current_capture_result": {
+    "event_file_supplied": false,
+    "submitted_event_count": 0,
+    "event_id": null,
+    "append_result": "no_event_submitted",
+    "result_note": "No manual event file was supplied in this run; observation log is unchanged."
+  },
+  "no_trade_guardrails": {
+    "trade_enabled": false,
+    "order_generation_enabled": false,
+    "broker_connection_enabled": false,
+    "position_adjustment_enabled": false,
+    "auto_risk_control_enabled": false
+  },
+  "promotion_gate": {
+    "promotion_allowed": false,
+    "implementation_ready": false,
+    "blocking_reasons": [
+      "manual_event_capture_capability_only",
+      "no_event_submitted_in_status_artifact",
+      "later_outcome_review_required_after_future_events",
+      "manual_review_not_approved"
+    ]
+  },
+  "time_safety": {
+    "uses_v14_3_observation_log_only": true,
+    "input_hashes_recorded": true,
+    "does_not_read_market_price_data": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "does_not_auto_generate_warning": true,
+    "does_not_auto_judge_risk": true,
+    "does_not_auto_adjust_risk": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "manual_capture_capability_only": true,
+    "no_event_submitted_in_status_artifact": true,
+    "manual_append_only": true,
+    "append_only_log": true,
+    "duplicate_detection_enabled": true,
+    "does_not_auto_generate_warning": true,
+    "does_not_auto_judge_risk": true,
+    "does_not_enable_auto_risk_control": true,
+    "does_not_adjust_position": true,
+    "does_not_adjust_exposure": true,
+    "does_not_generate_strategy": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_component_id": "risk_diagnostic_layer",
+    "checked_manual_capture_status": "ready_for_manual_input",
+    "checked_source_event_count": 0,
+    "checked_submitted_event_count": 0,
+    "checked_trade_enabled": false,
+    "checked_implementation_ready": false,
+    "checked_constraints": [
+      "manual_capture_capability_only",
+      "manual_append_only",
+      "append_only_log",
+      "duplicate_detection_enabled",
+      "does_not_auto_generate_warning",
+      "does_not_auto_judge_risk",
+      "does_not_enable_auto_risk_control",
+      "does_not_adjust_position",
+      "does_not_adjust_exposure",
+      "does_not_generate_strategy",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}

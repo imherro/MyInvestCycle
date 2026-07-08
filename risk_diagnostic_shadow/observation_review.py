@@ -23,6 +23,8 @@ REVIEW_CHECKS = [
     "false_warning_review",
     "missed_risk_review",
 ]
+ALLOWED_REVIEW_STATUSES = {"no_events_available", "events_pending_manual_review"}
+ALLOWED_SOURCE_LOG_STATUSES = {"active_empty", "active_with_manual_events"}
 
 
 def _read_json(path: str | Path) -> dict[str, object]:
@@ -78,12 +80,13 @@ def validate_risk_diagnostic_shadow_observation_review(payload: Mapping[str, obj
         raise AssertionError("component_id must be risk_diagnostic_layer")
     if summary.get("review_framework_status") != "defined":
         raise AssertionError("review framework must be defined")
-    if summary.get("review_status") != "no_events_available":
-        raise AssertionError("review status must be no_events_available")
+    if summary.get("review_status") not in ALLOWED_REVIEW_STATUSES:
+        raise AssertionError("review status must be no_events_available or events_pending_manual_review")
     if summary.get("reviewed_event_count") != 0:
         raise AssertionError("reviewed event count must be zero")
-    if summary.get("event_count") != 0:
-        raise AssertionError("event count must be zero")
+    event_count = int(summary.get("event_count") or 0)
+    if event_count < 0:
+        raise AssertionError("event count cannot be negative")
     if summary.get("auto_review_enabled") is not False:
         raise AssertionError("auto review must be disabled")
     if summary.get("auto_warning_enabled") is not False:
@@ -100,15 +103,19 @@ def validate_risk_diagnostic_shadow_observation_review(payload: Mapping[str, obj
         raise AssertionError("allocation output must be false")
     if summary.get("trade_ready") is not False:
         raise AssertionError("trade_ready must be false")
-    if summary.get("conclusion") != "risk_diagnostic_shadow_review_no_events_no_trade":
+    allowed_conclusions = {
+        "risk_diagnostic_shadow_review_no_events_no_trade",
+        "risk_diagnostic_shadow_events_pending_manual_review_no_trade",
+    }
+    if summary.get("conclusion") not in allowed_conclusions:
         raise AssertionError("unexpected conclusion")
 
     if source.get("source_observation_status") != "active":
         raise AssertionError("source observation log must be active")
-    if source.get("source_log_status") != "active_empty":
-        raise AssertionError("source log must be active empty")
-    if source.get("source_event_count") != 0:
-        raise AssertionError("source event count must be zero")
+    if source.get("source_log_status") not in ALLOWED_SOURCE_LOG_STATUSES:
+        raise AssertionError("source log must be active empty or active with manual events")
+    if int(source.get("source_event_count") or 0) != event_count:
+        raise AssertionError("source event count mismatch")
 
     if set(_sequence(review_framework.get("review_checks"))) != set(REVIEW_CHECKS):
         raise AssertionError("review checks mismatch")
@@ -117,8 +124,8 @@ def validate_risk_diagnostic_shadow_observation_review(payload: Mapping[str, obj
     if review_framework.get("auto_decision_allowed") is not False:
         raise AssertionError("auto decision must be disabled")
 
-    if review_result.get("review_status") != "no_events_available":
-        raise AssertionError("review result must be no_events_available")
+    if review_result.get("review_status") != summary.get("review_status"):
+        raise AssertionError("review result status mismatch")
     if review_result.get("reviewed_event_count") != 0:
         raise AssertionError("review result count must be zero")
     if _sequence(review_result.get("event_reviews")):
@@ -143,7 +150,6 @@ def validate_risk_diagnostic_shadow_observation_review(payload: Mapping[str, obj
 
     required_constraints = [
         "review_framework_only",
-        "no_events_available",
         "does_not_auto_generate_warning",
         "does_not_auto_judge_risk",
         "does_not_enable_auto_risk_control",
@@ -159,6 +165,12 @@ def validate_risk_diagnostic_shadow_observation_review(payload: Mapping[str, obj
         "no_order_generation",
         "no_broker_connection",
     ]
+    if event_count == 0:
+        if constraints.get("no_events_available") is not True:
+            raise AssertionError("constraints.no_events_available must be true when event count is zero")
+    else:
+        if constraints.get("events_pending_manual_review") is not True:
+            raise AssertionError("constraints.events_pending_manual_review must be true when events exist")
     for key in required_constraints:
         if constraints.get(key) is not True:
             raise AssertionError(f"constraints.{key} must be true")
@@ -201,6 +213,27 @@ def build_risk_diagnostic_shadow_observation_review(
     as_of = _mapping(observation_log.get("metadata")).get("as_of")
     input_paths = {"v14_3_observation_log": observation_log_path}
     review_status = "no_events_available" if event_count == 0 else "events_pending_manual_review"
+    result_note = (
+        "No shadow events are available to review yet."
+        if event_count == 0
+        else "Manual shadow events exist, but no automatic event review is generated."
+    )
+    key_read = (
+        "V14.4 defines how future no-trade shadow events will be reviewed; current log has no events, so no event review exists."
+        if event_count == 0
+        else "V14.4 detects manually logged no-trade shadow events but leaves them pending manual review."
+    )
+    blocking_reasons = [
+        "no_shadow_events_available",
+        "no_later_outcome_review_yet",
+        "manual_review_not_approved",
+        "review_framework_only",
+    ] if event_count == 0 else [
+        "shadow_events_pending_manual_review",
+        "no_later_outcome_review_yet",
+        "manual_review_not_approved",
+        "review_framework_only",
+    ]
     payload: dict[str, object] = {
         "metadata": {
             "engine": "V14.4 Risk Diagnostic Shadow Observation Event Review Framework",
@@ -226,8 +259,10 @@ def build_risk_diagnostic_shadow_observation_review(
             "strategy_output_generated": False,
             "allocation_output_generated": False,
             "trade_ready": False,
-            "conclusion": "risk_diagnostic_shadow_review_no_events_no_trade",
-            "key_read": "V14.4 defines how future no-trade shadow events will be reviewed; current log has no events, so no event review exists.",
+            "conclusion": "risk_diagnostic_shadow_review_no_events_no_trade"
+            if event_count == 0
+            else "risk_diagnostic_shadow_events_pending_manual_review_no_trade",
+            "key_read": key_read,
         },
         "source_observation_log": {
             "source_observation_status": log_summary.get("observation_status"),
@@ -251,7 +286,7 @@ def build_risk_diagnostic_shadow_observation_review(
             "review_status": review_status,
             "reviewed_event_count": 0,
             "event_reviews": [],
-            "result_note": "No shadow events are available to review yet.",
+            "result_note": result_note,
         },
         "no_trade_guardrails": {
             "trade_enabled": False,
@@ -263,12 +298,7 @@ def build_risk_diagnostic_shadow_observation_review(
         "promotion_gate": {
             "promotion_allowed": False,
             "implementation_ready": False,
-            "blocking_reasons": [
-                "no_shadow_events_available",
-                "no_later_outcome_review_yet",
-                "manual_review_not_approved",
-                "review_framework_only",
-            ],
+            "blocking_reasons": blocking_reasons,
         },
         "time_safety": {
             "uses_v14_3_observation_log_only": True,
@@ -285,6 +315,7 @@ def build_risk_diagnostic_shadow_observation_review(
         "constraints": {
             "review_framework_only": True,
             "no_events_available": event_count == 0,
+            "events_pending_manual_review": event_count > 0,
             "does_not_auto_generate_warning": True,
             "does_not_auto_judge_risk": True,
             "does_not_enable_auto_risk_control": True,
