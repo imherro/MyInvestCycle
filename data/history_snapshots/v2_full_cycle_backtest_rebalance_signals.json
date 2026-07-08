@@ -1,0 +1,250 @@
+{
+  "engine": "V2.6.3 Compressed Rebalance Signal History",
+  "generated_at": "2026-07-08T09:27:29+00:00",
+  "v2_structural_refined": [
+    {
+      "date": "20150105",
+      "apply_from_next_session": true,
+      "as_of": "20150105",
+      "risk_budget": "high",
+      "target_exposure": 0.8,
+      "target_weights": {
+        "510300.SH": 0.4,
+        "510500.SH": 0.4,
+        "511880.SH": 0.2
+      },
+      "turnover_to_target": 0.5,
+      "structural_state": "BROAD_BULL",
+      "allocation_structural_state": "BROAD_BULL",
+      "macro_state": "RECOVERY",
+      "market_structure_state": "BULL_BROADENING",
+      "theme_risk_level": "low",
+      "style_preference": [
+        "broad_beta",
+        "growth",
+        "mid_cap",
+        "theme_persistence"
+      ],
+      "explanation": [
+        "宏观层为 RECOVERY，市场结构为 BULL_BROADENING，结构状态为 BROAD_BULL，配置细分为 BROAD_BULL。",
+        "行业机会分 77.7，主线持续性 85.8。",
+        "主题风险为 low，质量分 74.9，拥挤分 38.4。",
+        "因此只生成配置意图：风险预算 high，权益暴露区间 70-90%。",
+        "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+      ]
+    },
+    {
+      "date": "20150202",
+      "apply_from_next_session": true,
+      "as_of": "20150202",
+      "risk_budget": "medium",
+      "target_exposure": 0.6,
+      "target_weights": {
+        "510300.SH": 0.3,
+        "510500.SH": 0.3,
+        "511880.SH": 0.4
+      },
+      "turnover_to_target": 0.2,
+      "structural_state": "RANGE",
+      "allocation_structural_state": "RANGE",
+      "macro_state": "RECOVERY",
+      "market_structure_state": "BULL_DIVERGENCE",
+      "theme_risk_level": "low",
+      "style_preference": [
+        "balanced",
+        "quality_value",
+        "cash_buffer"
+      ],
+      "explanation": [
+        "宏观层为 RECOVERY，市场结构为 BULL_DIVERGENCE，结构状态为 RANGE，配置细分为 RANGE。",
+        "行业机会分 61.1，主线持续性 64.2。",
+        "主题风险为 low，质量分 63.9，拥挤分 32.1。",
+        "因此只生成配置意图：风险预算 medium，权益暴露区间 50-70%。",
+        "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+      ]
+    },
+    {
+      "date": "20150309",
+      "apply_from_next_session": true,
+      "as_of": "20150309",
+      "risk_budget": "high",
+      "target_exposure": 0.8,
+      "target_weights": {
+        "510300.SH": 0.4,
+        "510500.SH": 0.4,
+        "511880.SH": 0.2
+      },
+      "turnover_to_target": 0.2,
+      "structural_state": "BROAD_BULL",
+      "allocation_structural_state": "BROAD_BULL",
+      "macro_state": "RECOVERY",
+      "market_structure_state": "BULL_BROADENING",
+      "theme_risk_level": "low",
+      "style_preference": [
+        "broad_beta",
+        "growth",
+        "mid_cap"
+      ],
+      "explanation": [
+        "宏观层为 RECOVERY，市场结构为 BULL_BROADENING，结构状态为 BROAD_BULL，配置细分为 BROAD_BULL。",
+        "行业机会分 69.8，主线持续性 56.8。",
+        "主题风险为 low，质量分 65.7，拥挤分 33.0。",
+        "因此只生成配置意图：风险预算 high，权益暴露区间 70-90%。",
+        "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+      ]
+    },
+    {
+      "date": "20150407",
+      "apply_from_next_session": true,
+      "as_of": "20150407",
+      "risk_budget": "high",
+      "target_exposure": 0.8,
+      "target_weights": {
+        "510300.SH": 0.4,
+        "510500.SH": 0.4,
+        "511880.SH": 0.2
+      },
+      "turnover_to_target": 0.0,
+      "structural_state": "BROAD_BULL",
+      "allocation_structural_state": "BROAD_BULL",
+      "macro_state": "RECOVERY",
+      "market_structure_state": "BULL_BROADENING",
+      "theme_risk_level": "low",
+      "style_preference": [
+        "broad_beta",
+        "growth",
+        "mid_cap"
+      ],
+      "explanation": [
+        "宏观层为 RECOVERY，市场结构为 BULL_BROADENING，结构状态为 BROAD_BULL，配置细分为 BROAD_BULL。",
+        "行业机会分 76.3，主线持续性 68.2。",
+        "主题风险为 low，质量分 69.7，拥挤分 39.0。",
+        "因此只生成配置意图：风险预算 high，权益暴露区间 70-90%。",
+        "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+      ]
+    }
+  ],
+  "v2_baseline": [
+    {
+      "date": "20150105",
+      "apply_from_next_session": true,
+      "as_of": "20150105",
+      "risk_budget": "high",
+      "target_exposure": 0.8,
+      "target_weights": {
+        "510300.SH": 0.4,
+        "510500.SH": 0.4,
+        "511880.SH": 0.2
+      },
+      "turnover_to_target": 0.5,
+      "structural_state": "BROAD_BULL",
+      "allocation_structural_state": "LEGACY_V2_BASELINE",
+      "macro_state": "RECOVERY",
+      "market_structure_state": "BULL_BROADENING",
+      "theme_risk_level": "low",
+      "style_preference": [
+        "broad_beta",
+        "growth",
+        "mid_cap",
+        "theme_persistence"
+      ],
+      "explanation": [
+        "宏观层为 RECOVERY，市场结构为 BULL_BROADENING，结构状态为 BROAD_BULL，配置细分为 BROAD_BULL。",
+        "行业机会分 77.7，主线持续性 85.8。",
+        "主题风险为 low，质量分 74.9，拥挤分 38.4。",
+        "因此只生成配置意图：风险预算 high，权益暴露区间 70-90%。",
+        "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+      ]
+    },
+    {
+      "date": "20150202",
+      "apply_from_next_session": true,
+      "as_of": "20150202",
+      "risk_budget": "medium",
+      "target_exposure": 0.6,
+      "target_weights": {
+        "510300.SH": 0.3,
+        "510500.SH": 0.3,
+        "511880.SH": 0.4
+      },
+      "turnover_to_target": 0.2,
+      "structural_state": "RANGE",
+      "allocation_structural_state": "LEGACY_V2_BASELINE",
+      "macro_state": "RECOVERY",
+      "market_structure_state": "BULL_DIVERGENCE",
+      "theme_risk_level": "low",
+      "style_preference": [
+        "balanced",
+        "quality_value",
+        "cash_buffer"
+      ],
+      "explanation": [
+        "宏观层为 RECOVERY，市场结构为 BULL_DIVERGENCE，结构状态为 RANGE，配置细分为 RANGE。",
+        "行业机会分 61.1，主线持续性 64.2。",
+        "主题风险为 low，质量分 63.9，拥挤分 32.1。",
+        "因此只生成配置意图：风险预算 medium，权益暴露区间 50-70%。",
+        "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+      ]
+    },
+    {
+      "date": "20150309",
+      "apply_from_next_session": true,
+      "as_of": "20150309",
+      "risk_budget": "high",
+      "target_exposure": 0.8,
+      "target_weights": {
+        "510300.SH": 0.4,
+        "510500.SH": 0.4,
+        "511880.SH": 0.2
+      },
+      "turnover_to_target": 0.2,
+      "structural_state": "BROAD_BULL",
+      "allocation_structural_state": "LEGACY_V2_BASELINE",
+      "macro_state": "RECOVERY",
+      "market_structure_state": "BULL_BROADENING",
+      "theme_risk_level": "low",
+      "style_preference": [
+        "broad_beta",
+        "growth",
+        "mid_cap"
+      ],
+      "explanation": [
+        "宏观层为 RECOVERY，市场结构为 BULL_BROADENING，结构状态为 BROAD_BULL，配置细分为 BROAD_BULL。",
+        "行业机会分 69.8，主线持续性 56.8。",
+        "主题风险为 low，质量分 65.7，拥挤分 33.0。",
+        "因此只生成配置意图：风险预算 high，权益暴露区间 70-90%。",
+        "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+      ]
+    },
+    {
+      "date": "20150407",
+      "apply_from_next_session": true,
+      "as_of": "20150407",
+      "risk_budget": "high",
+      "target_exposure": 0.8,
+      "target_weights": {
+        "510300.SH": 0.4,
+        "510500.SH": 0.4,
+        "511880.SH": 0.2
+      },
+      "turnover_to_target": 0.0,
+      "structural_state": "BROAD_BULL",
+      "allocation_structural_state": "LEGACY_V2_BASELINE",
+      "macro_state": "RECOVERY",
+      "market_structure_state": "BULL_BROADENING",
+      "theme_risk_level": "low",
+      "style_preference": [
+        "broad_beta",
+        "growth",
+        "mid_cap"
+      ],
+      "explanation": [
+        "宏观层为 RECOVERY，市场结构为 BULL_BROADENING，结构状态为 BROAD_BULL，配置细分为 BROAD_BULL。",
+        "行业机会分 76.3，主线持续性 68.2。",
+        "主题风险为 low，质量分 69.7，拥挤分 39.0。",
+        "因此只生成配置意图：风险预算 high，权益暴露区间 70-90%。",
+        "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+      ]
+    }
+  ]
+}

@@ -274,6 +274,14 @@ def _read_v2_full_cycle_validation_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_v2_full_cycle_backtest_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "v2_full_cycle_backtest.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_history_expansion_payload() -> dict[str, object] | None:
     path = DATA_DIR / "history_expansion_audit.json"
     if not path.exists():
@@ -891,6 +899,14 @@ def _api_catalog_payload() -> dict[str, object]:
                     freshness="generated artifact",
                     safety="read-only artifact",
                 ),
+                _api_endpoint(
+                    "GET",
+                    "/api/v2/full-cycle-backtest",
+                    "返回 V2.6.3 2015 起完整窗口 walk-forward 回测，包含基准对比、阶段归因、结构牛贡献和宏观软缺口披露。",
+                    "v2 full-cycle walk-forward backtest",
+                    freshness="generated artifact",
+                    safety="read-only artifact",
+                ),
             ],
         },
         {
@@ -1039,6 +1055,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/strategy/free-cash-flow-ma-deviation", "description": "查看自由现金流R均线偏离策略与参数扫描。"},
             {"path": "/strategy/free-cash-flow-dual-ma-crossover", "description": "查看自由现金流R双均线金叉死叉策略与参数扫描。"},
             {"path": "/api/shadow/current", "description": "读取仓位风控回测与 510500 基准评估。"},
+            {"path": "/api/v2/full-cycle-backtest", "description": "读取 V2.6.3 2015 起完整窗口 walk-forward 回测、基准对比和阶段归因。"},
         ],
         "safety": {
             "read_only": True,
@@ -1612,6 +1629,17 @@ def v2_history_expansion() -> dict:
         raise HTTPException(
             status_code=503,
             detail="V2 history expansion artifact missing; run scripts/run_history_expansion.py first.",
+        )
+    return payload
+
+
+@app.get("/api/v2/full-cycle-backtest")
+def v2_full_cycle_backtest() -> dict:
+    payload = _read_v2_full_cycle_backtest_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V2 full-cycle backtest artifact missing; run scripts/run_v2_full_cycle_backtest.py first.",
         )
     return payload
 

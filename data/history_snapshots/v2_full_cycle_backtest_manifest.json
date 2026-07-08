@@ -1,0 +1,37 @@
+{
+  "engine": "V2.6.3 Full Cycle Walk-forward Revalidation Manifest",
+  "generated_at": "2026-07-08T09:27:29+00:00",
+  "storage_policy": "compressed_rebalance_snapshots",
+  "full_cycle_backtest_artifact": "data/v2_full_cycle_backtest.json",
+  "signal_snapshot_artifact": "data/history_snapshots/v2_full_cycle_backtest_rebalance_signals.json",
+  "window": {
+    "start": "20150106",
+    "end": "20150430",
+    "sessions": 75
+  },
+  "rebalance_signal_count": 4,
+  "strict_full_cycle_claim": false,
+  "soft_macro_gaps": {
+    "missing_indicators": [
+      "CN10Y",
+      "new_loans"
+    ],
+    "confidence_penalty": 0.1,
+    "policy": "soft_gap_report_only; not used to tune rules or overwrite historical signals",
+    "strict_full_cycle_claim": false
+  },
+  "constraints": {
+    "no_strategy_rule_change": true,
+    "no_threshold_tuning": true,
+    "no_allocation_change": true,
+    "no_new_factor": true,
+    "no_manual_state_fix": true,
+    "walk_forward": true,
+    "no_lookahead_bias": true,
+    "no_daily_snapshot_json": true,
+    "compressed_rebalance_snapshots_only": true,
+    "no_trade_execution": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  }
+}

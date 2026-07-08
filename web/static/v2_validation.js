@@ -246,6 +246,112 @@ function renderHistoryExpansion(payload) {
   );
 }
 
+function coverageLabel(item) {
+  const coverage = item?.coverage || {};
+  if (!coverage.sessions) return "--";
+  const start = toIsoDate(coverage.start);
+  const end = toIsoDate(coverage.end);
+  const ratio = fmtPercent(coverage.coverage_ratio);
+  return `${start} - ${end}<br><span>${coverage.sessions} 日 · ${ratio}</span>`;
+}
+
+function renderFullCycleBacktest(payload) {
+  const meta = payload.metadata || {};
+  const quality = payload.data_quality || {};
+  const gap = quality.macro_gap_policy || {};
+  const windowInfo = meta.validation_window || {};
+  const summaryTarget = document.getElementById("fullCycleBacktestSummary");
+  if (summaryTarget) {
+    const rows = [
+      ["验证窗口", `${toIsoDate(windowInfo.start)} - ${toIsoDate(windowInfo.end)} · ${windowInfo.sessions ?? "--"} 日`],
+      ["覆盖状态", meta.coverage_status || "--"],
+      ["严格完整周期声明", meta.strict_full_cycle_claim ? "是" : "否"],
+      ["软缺口", (gap.missing_indicators || []).join(" / ") || "--"],
+      ["置信度扣减", typeof gap.confidence_penalty === "number" ? `${(gap.confidence_penalty * 100).toFixed(0)}pct` : "--"],
+    ];
+    summaryTarget.innerHTML = rows
+      .map(([label, value]) => `<div class="v2-list-row"><span>${label}</span><strong>${value}</strong></div>`)
+      .join("");
+  }
+
+  const comparison = payload.comparison || {};
+  const order = [
+    "v2_current",
+    "v2_structural_refined",
+    "v2_baseline",
+    "benchmark_510300",
+    "benchmark_510500",
+    "buy_hold_equal_510300_510500",
+    "old_s1",
+    "m2_macro_style",
+  ];
+  const table = document.getElementById("fullCycleBacktestRows");
+  if (table) {
+    table.innerHTML = order
+      .filter((key) => comparison[key])
+      .map((key) => {
+        const item = comparison[key] || {};
+        const note = item.note ? `<br><span>${item.note}</span>` : "";
+        return `<tr>
+          <td><strong>${item.label || key}</strong>${note}</td>
+          <td>${coverageLabel(item)}</td>
+          <td>${fmtPercent(item.total_return)}</td>
+          <td>${fmtPercent(item.annualized_return)}</td>
+          <td>${fmtPercent(item.max_drawdown)}</td>
+          <td>${fmtNumber(item.sharpe)}</td>
+          <td>${fmtNumber(item.calmar)}</td>
+          <td>${fmtPercent(item.average_exposure)}</td>
+          <td>${fmtNumber(item.cumulative_turnover, 2)}</td>
+        </tr>`;
+      })
+      .join("");
+  }
+
+  const phases = payload.period_attribution || {};
+  const phaseOrder = ["2015_bull_bear", "2018_bear", "2020_covid", "2021_core_asset", "2022_bear", "2024_2026_structural"];
+  const phaseTable = document.getElementById("fullCyclePhaseRows");
+  if (phaseTable) {
+    phaseTable.innerHTML = phaseOrder
+      .filter((key) => phases[key])
+      .map((key) => {
+        const phase = phases[key] || {};
+        const strategies = phase.strategies || {};
+        return `<tr>
+          <td>${phase.label || key}</td>
+          <td>${phase.sessions ?? "--"}</td>
+          <td>${fmtPercent(strategies.v2_current?.total_return)}</td>
+          <td>${fmtPercent(strategies.v2_baseline?.total_return)}</td>
+          <td>${fmtPercent(strategies.benchmark_510300?.total_return)}</td>
+          <td>${fmtPercent(strategies.benchmark_510500?.total_return)}</td>
+          <td>${fmtPercent(strategies.buy_hold_equal_510300_510500?.total_return)}</td>
+        </tr>`;
+      })
+      .join("");
+  }
+
+  const structural = payload.structural_bull_contribution?.STRUCTURAL_BULL_ROTATION || {};
+  const structuralTarget = document.getElementById("structuralBullContribution");
+  if (structuralTarget) {
+    const rows = [
+      ["结构性牛市样本", `${structural.sessions ?? "--"} 日`],
+      ["平均暴露", fmtPercent(structural.average_exposure)],
+      ["V2 区间复合收益", fmtPercent(structural.compound_return_within_sessions)],
+      ["510500 区间收益", fmtPercent(structural.benchmark_510500_return)],
+      ["Missed beta", fmtPercent(structural.missed_beta)],
+    ];
+    structuralTarget.innerHTML = rows
+      .map(([label, value]) => `<div class="v2-list-row"><span>${label}</span><strong>${value}</strong></div>`)
+      .join("");
+  }
+
+  const hard = quality.hard_blockers || [];
+  const soft = quality.soft_blockers || [];
+  setText(
+    "fullCycleBacktestNote",
+    `V2.6.3 使用 2015+ 真实历史数据重建 T+1 信号；硬缺口 ${hard.length} 项，软缺口 ${soft.length} 项。CN10Y/new_loans 只做置信度披露，不调规则、不补标签。`
+  );
+}
+
 function renderBacktest(payload) {
   const summary = payload.summary || {};
   setText("validationHeadline", `V2 年化 ${fmtPercent(summary.v2_annualized_return)} · Alpha vs 510500 ${fmtPercent(summary.alpha_vs_510500)}`);
@@ -290,6 +396,12 @@ async function loadV2Validation() {
       renderHistoryExpansion(historyExpansion);
     } catch (error) {
       setText("historyExpansionNote", `历史数据扩展产物暂不可用：${error.message}`);
+    }
+    try {
+      const fullCycleBacktest = await getJson("/api/v2/full-cycle-backtest");
+      renderFullCycleBacktest(fullCycleBacktest);
+    } catch (error) {
+      setText("fullCycleBacktestNote", `完整周期回测产物暂不可用：${error.message}`);
     }
   } catch (error) {
     setText("validationNote", `加载失败：${error.message}`);

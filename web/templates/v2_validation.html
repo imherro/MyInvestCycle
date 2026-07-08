@@ -188,6 +188,57 @@
 
       <article class="chart-panel">
         <div class="panel-heading">
+          <h2>完整周期 Walk-forward 回测</h2>
+          <span class="panel-kicker">V2.6.3</span>
+        </div>
+        <div class="v2-list" id="fullCycleBacktestSummary"></div>
+        <div class="table-wrap">
+          <table class="v2-table">
+            <thead>
+              <tr>
+                <th>对象</th>
+                <th>覆盖</th>
+                <th>总收益</th>
+                <th>年化</th>
+                <th>最大回撤</th>
+                <th>夏普</th>
+                <th>Calmar</th>
+                <th>平均暴露</th>
+                <th>累计换手</th>
+              </tr>
+            </thead>
+            <tbody id="fullCycleBacktestRows"></tbody>
+          </table>
+        </div>
+        <p class="result-note" id="fullCycleBacktestNote">--</p>
+      </article>
+
+      <article class="chart-panel">
+        <div class="panel-heading">
+          <h2>完整周期阶段归因</h2>
+          <span class="panel-kicker">V2.6.3</span>
+        </div>
+        <div class="table-wrap">
+          <table class="v2-table">
+            <thead>
+              <tr>
+                <th>阶段</th>
+                <th>样本</th>
+                <th>V2</th>
+                <th>V2 baseline</th>
+                <th>510300</th>
+                <th>510500</th>
+                <th>50/50</th>
+              </tr>
+            </thead>
+            <tbody id="fullCyclePhaseRows"></tbody>
+          </table>
+        </div>
+        <div class="v2-list" id="structuralBullContribution"></div>
+      </article>
+
+      <article class="chart-panel">
+        <div class="panel-heading">
           <h2>状态归因</h2>
           <span class="panel-kicker">Allocation Structural State</span>
         </div>
