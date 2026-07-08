@@ -41,6 +41,7 @@ from engine.market_engine import analyze_index_regime
 from engine.regime_explainer import explain_regime
 from macro.data_quality import audit_macro_records
 from macro.indicator_registry import registry_as_dict
+from macro.macro_cycle_engine import build_macro_cycle_snapshot
 from macro.macro_loader import DEFAULT_MACRO_INDICATORS, load_macro_indicators
 
 
@@ -674,6 +675,17 @@ def _api_catalog_payload() -> dict[str, object]:
                     ],
                     freshness="local macro cache",
                 ),
+                _api_endpoint(
+                    "GET",
+                    "/api/macro/current",
+                    "返回 V2.2 Macro Cycle Engine 的当前宏观分数、状态、置信度、解释和数据质量；不输出仓位或交易建议。",
+                    "macro cycle snapshot",
+                    params=[
+                        {"name": "date", "required": "false", "format": "YYYYMMDD"},
+                        {"name": "start_date", "required": "false", "format": "YYYYMMDD"},
+                    ],
+                    freshness="local macro cache",
+                ),
             ],
         },
         {
@@ -1183,6 +1195,14 @@ def macro_data_status(
             "no_backtest": True,
         },
     }
+
+
+@app.get("/api/macro/current")
+def macro_current(
+    date_text: str | None = Query(None, alias="date", description="Decision date, YYYYMMDD. Defaults to today."),
+    start_date: str = Query("20200101", description="Macro cache observation start date, YYYYMMDD."),
+) -> dict:
+    return build_macro_cycle_snapshot(date_text or _today_text(), start_date=start_date)
 
 
 @app.get("/api/style/rotation-signal")

@@ -1,13 +1,13 @@
 {
   "metadata": {
-    "indicator": "USD_CNY",
+    "indicator": "USD_CNH_offshore",
     "records": 780,
-    "updated_at": "2026-07-08T05:51:49+00:00",
+    "updated_at": "2026-07-08T05:58:30+00:00",
     "schema": "MacroIndicatorRecord.v1"
   },
   "records": [
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.14573,
       "observation_date": "20240101",
       "release_date": "20240101",
@@ -17,7 +17,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1629,
       "observation_date": "20240102",
       "release_date": "20240102",
@@ -27,7 +27,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17235,
       "observation_date": "20240103",
       "release_date": "20240103",
@@ -37,7 +37,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16258,
       "observation_date": "20240104",
       "release_date": "20240104",
@@ -47,7 +47,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.15806,
       "observation_date": "20240106",
       "release_date": "20240106",
@@ -57,7 +57,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16073,
       "observation_date": "20240107",
       "release_date": "20240107",
@@ -67,7 +67,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18365,
       "observation_date": "20240108",
       "release_date": "20240108",
@@ -77,7 +77,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18099,
       "observation_date": "20240109",
       "release_date": "20240109",
@@ -87,7 +87,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17338,
       "observation_date": "20240110",
       "release_date": "20240110",
@@ -97,7 +97,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18612,
       "observation_date": "20240111",
       "release_date": "20240111",
@@ -107,7 +107,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18394,
       "observation_date": "20240113",
       "release_date": "20240113",
@@ -117,7 +117,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18144,
       "observation_date": "20240114",
       "release_date": "20240114",
@@ -127,7 +127,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21779,
       "observation_date": "20240115",
       "release_date": "20240115",
@@ -137,7 +137,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21945,
       "observation_date": "20240116",
       "release_date": "20240116",
@@ -147,7 +147,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21518,
       "observation_date": "20240117",
       "release_date": "20240117",
@@ -157,7 +157,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20144,
       "observation_date": "20240118",
       "release_date": "20240118",
@@ -167,7 +167,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2066,
       "observation_date": "20240120",
       "release_date": "20240120",
@@ -177,7 +177,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19214,
       "observation_date": "20240121",
       "release_date": "20240121",
@@ -187,7 +187,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16594,
       "observation_date": "20240122",
       "release_date": "20240122",
@@ -197,7 +197,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.15988,
       "observation_date": "20240123",
       "release_date": "20240123",
@@ -207,7 +207,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17842,
       "observation_date": "20240124",
       "release_date": "20240124",
@@ -217,7 +217,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18505,
       "observation_date": "20240125",
       "release_date": "20240125",
@@ -227,7 +227,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18125,
       "observation_date": "20240127",
       "release_date": "20240127",
@@ -237,7 +237,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18616,
       "observation_date": "20240128",
       "release_date": "20240128",
@@ -247,7 +247,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18468,
       "observation_date": "20240129",
       "release_date": "20240129",
@@ -257,7 +257,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18482,
       "observation_date": "20240130",
       "release_date": "20240130",
@@ -267,7 +267,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18725,
       "observation_date": "20240131",
       "release_date": "20240131",
@@ -277,7 +277,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21421,
       "observation_date": "20240201",
       "release_date": "20240201",
@@ -287,7 +287,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21365,
       "observation_date": "20240203",
       "release_date": "20240203",
@@ -297,7 +297,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21923,
       "observation_date": "20240204",
       "release_date": "20240204",
@@ -307,7 +307,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2005,
       "observation_date": "20240205",
       "release_date": "20240205",
@@ -317,7 +317,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21144,
       "observation_date": "20240206",
       "release_date": "20240206",
@@ -327,7 +327,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21388,
       "observation_date": "20240207",
       "release_date": "20240207",
@@ -337,7 +337,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21523,
       "observation_date": "20240208",
       "release_date": "20240208",
@@ -347,7 +347,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.216,
       "observation_date": "20240210",
       "release_date": "20240210",
@@ -357,7 +357,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21276,
       "observation_date": "20240211",
       "release_date": "20240211",
@@ -367,7 +367,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2302,
       "observation_date": "20240212",
       "release_date": "20240212",
@@ -377,7 +377,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22158,
       "observation_date": "20240213",
       "release_date": "20240213",
@@ -387,7 +387,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21564,
       "observation_date": "20240214",
       "release_date": "20240214",
@@ -397,7 +397,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20808,
       "observation_date": "20240215",
       "release_date": "20240215",
@@ -407,7 +407,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20965,
       "observation_date": "20240217",
       "release_date": "20240217",
@@ -417,7 +417,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20889,
       "observation_date": "20240218",
       "release_date": "20240218",
@@ -427,7 +427,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19958,
       "observation_date": "20240219",
       "release_date": "20240219",
@@ -437,7 +437,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19824,
       "observation_date": "20240220",
       "release_date": "20240220",
@@ -447,7 +447,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19996,
       "observation_date": "20240221",
       "release_date": "20240221",
@@ -457,7 +457,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20352,
       "observation_date": "20240222",
       "release_date": "20240222",
@@ -467,7 +467,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20264,
       "observation_date": "20240224",
       "release_date": "20240224",
@@ -477,7 +477,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21,
       "observation_date": "20240225",
       "release_date": "20240225",
@@ -487,7 +487,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21291,
       "observation_date": "20240226",
       "release_date": "20240226",
@@ -497,7 +497,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21294,
       "observation_date": "20240227",
       "release_date": "20240227",
@@ -507,7 +507,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20535,
       "observation_date": "20240228",
       "release_date": "20240228",
@@ -517,7 +517,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2085,
       "observation_date": "20240229",
       "release_date": "20240229",
@@ -527,7 +527,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20729,
       "observation_date": "20240302",
       "release_date": "20240302",
@@ -537,7 +537,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20918,
       "observation_date": "20240303",
       "release_date": "20240303",
@@ -547,7 +547,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2102,
       "observation_date": "20240304",
       "release_date": "20240304",
@@ -557,7 +557,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20833,
       "observation_date": "20240305",
       "release_date": "20240305",
@@ -567,7 +567,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1997,
       "observation_date": "20240306",
       "release_date": "20240306",
@@ -577,7 +577,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19941,
       "observation_date": "20240307",
       "release_date": "20240307",
@@ -587,7 +587,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1989,
       "observation_date": "20240308",
       "release_date": "20240308",
@@ -597,7 +597,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19911,
       "observation_date": "20240309",
       "release_date": "20240309",
@@ -607,7 +607,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17959,
       "observation_date": "20240310",
       "release_date": "20240310",
@@ -617,7 +617,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18634,
       "observation_date": "20240311",
       "release_date": "20240311",
@@ -627,7 +627,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19296,
       "observation_date": "20240312",
       "release_date": "20240312",
@@ -637,7 +637,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2012,
       "observation_date": "20240313",
       "release_date": "20240313",
@@ -647,7 +647,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2016,
       "observation_date": "20240314",
       "release_date": "20240314",
@@ -657,7 +657,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19882,
       "observation_date": "20240316",
       "release_date": "20240316",
@@ -667,7 +667,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20546,
       "observation_date": "20240317",
       "release_date": "20240317",
@@ -677,7 +677,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21131,
       "observation_date": "20240318",
       "release_date": "20240318",
@@ -687,7 +687,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21049,
       "observation_date": "20240319",
       "release_date": "20240319",
@@ -697,7 +697,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22091,
       "observation_date": "20240320",
       "release_date": "20240320",
@@ -707,7 +707,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27679,
       "observation_date": "20240321",
       "release_date": "20240321",
@@ -717,7 +717,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2715,
       "observation_date": "20240323",
       "release_date": "20240323",
@@ -727,7 +727,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25226,
       "observation_date": "20240324",
       "release_date": "20240324",
@@ -737,7 +737,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24767,
       "observation_date": "20240325",
       "release_date": "20240325",
@@ -747,7 +747,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25362,
       "observation_date": "20240326",
       "release_date": "20240326",
@@ -757,7 +757,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26148,
       "observation_date": "20240327",
       "release_date": "20240327",
@@ -767,7 +767,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25531,
       "observation_date": "20240328",
       "release_date": "20240328",
@@ -777,7 +777,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25192,
       "observation_date": "20240330",
       "release_date": "20240330",
@@ -787,7 +787,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2583,
       "observation_date": "20240331",
       "release_date": "20240331",
@@ -797,7 +797,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25381,
       "observation_date": "20240401",
       "release_date": "20240401",
@@ -807,7 +807,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24818,
       "observation_date": "20240402",
       "release_date": "20240402",
@@ -817,7 +817,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24868,
       "observation_date": "20240403",
       "release_date": "20240403",
@@ -827,7 +827,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24687,
       "observation_date": "20240404",
       "release_date": "20240404",
@@ -837,7 +837,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24728,
       "observation_date": "20240406",
       "release_date": "20240406",
@@ -847,7 +847,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24096,
       "observation_date": "20240407",
       "release_date": "20240407",
@@ -857,7 +857,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23801,
       "observation_date": "20240408",
       "release_date": "20240408",
@@ -867,7 +867,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2618,
       "observation_date": "20240409",
       "release_date": "20240409",
@@ -877,7 +877,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2546,
       "observation_date": "20240410",
       "release_date": "20240410",
@@ -887,7 +887,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26466,
       "observation_date": "20240411",
       "release_date": "20240411",
@@ -897,7 +897,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2647,
       "observation_date": "20240413",
       "release_date": "20240413",
@@ -907,7 +907,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2585,
       "observation_date": "20240414",
       "release_date": "20240414",
@@ -917,7 +917,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26318,
       "observation_date": "20240415",
       "release_date": "20240415",
@@ -927,7 +927,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24355,
       "observation_date": "20240416",
       "release_date": "20240416",
@@ -937,7 +937,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24878,
       "observation_date": "20240417",
       "release_date": "20240417",
@@ -947,7 +947,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24699,
       "observation_date": "20240418",
       "release_date": "20240418",
@@ -957,7 +957,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24914,
       "observation_date": "20240420",
       "release_date": "20240420",
@@ -967,7 +967,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25079,
       "observation_date": "20240421",
       "release_date": "20240421",
@@ -977,7 +977,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2601,
       "observation_date": "20240422",
       "release_date": "20240422",
@@ -987,7 +987,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27245,
       "observation_date": "20240423",
       "release_date": "20240423",
@@ -997,7 +997,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25445,
       "observation_date": "20240424",
       "release_date": "20240424",
@@ -1007,7 +1007,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26352,
       "observation_date": "20240425",
       "release_date": "20240425",
@@ -1017,7 +1017,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26439,
       "observation_date": "20240427",
       "release_date": "20240427",
@@ -1027,7 +1027,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24332,
       "observation_date": "20240428",
       "release_date": "20240428",
@@ -1037,7 +1037,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25352,
       "observation_date": "20240429",
       "release_date": "20240429",
@@ -1047,7 +1047,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23334,
       "observation_date": "20240430",
       "release_date": "20240430",
@@ -1057,7 +1057,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20525,
       "observation_date": "20240501",
       "release_date": "20240501",
@@ -1067,7 +1067,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18723,
       "observation_date": "20240502",
       "release_date": "20240502",
@@ -1077,7 +1077,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18805,
       "observation_date": "20240504",
       "release_date": "20240504",
@@ -1087,7 +1087,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21428,
       "observation_date": "20240505",
       "release_date": "20240505",
@@ -1097,7 +1097,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22451,
       "observation_date": "20240506",
       "release_date": "20240506",
@@ -1107,7 +1107,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22897,
       "observation_date": "20240507",
       "release_date": "20240507",
@@ -1117,7 +1117,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22167,
       "observation_date": "20240508",
       "release_date": "20240508",
@@ -1127,7 +1127,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22887,
       "observation_date": "20240509",
       "release_date": "20240509",
@@ -1137,7 +1137,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23279,
       "observation_date": "20240511",
       "release_date": "20240511",
@@ -1147,7 +1147,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23889,
       "observation_date": "20240512",
       "release_date": "20240512",
@@ -1157,7 +1157,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.239,
       "observation_date": "20240513",
       "release_date": "20240513",
@@ -1167,7 +1167,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21714,
       "observation_date": "20240514",
       "release_date": "20240514",
@@ -1177,7 +1177,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22218,
       "observation_date": "20240515",
       "release_date": "20240515",
@@ -1187,7 +1187,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2308,
       "observation_date": "20240516",
       "release_date": "20240516",
@@ -1197,7 +1197,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23083,
       "observation_date": "20240518",
       "release_date": "20240518",
@@ -1207,7 +1207,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24648,
       "observation_date": "20240519",
       "release_date": "20240519",
@@ -1217,7 +1217,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2467,
       "observation_date": "20240520",
       "release_date": "20240520",
@@ -1227,7 +1227,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25417,
       "observation_date": "20240521",
       "release_date": "20240521",
@@ -1237,7 +1237,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25717,
       "observation_date": "20240522",
       "release_date": "20240522",
@@ -1247,7 +1247,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25792,
       "observation_date": "20240523",
       "release_date": "20240523",
@@ -1257,7 +1257,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26111,
       "observation_date": "20240525",
       "release_date": "20240525",
@@ -1267,7 +1267,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25686,
       "observation_date": "20240526",
       "release_date": "20240526",
@@ -1277,7 +1277,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26341,
       "observation_date": "20240527",
       "release_date": "20240527",
@@ -1287,7 +1287,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27294,
       "observation_date": "20240528",
       "release_date": "20240528",
@@ -1297,7 +1297,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25213,
       "observation_date": "20240529",
       "release_date": "20240529",
@@ -1307,7 +1307,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25975,
       "observation_date": "20240530",
       "release_date": "20240530",
@@ -1317,7 +1317,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25945,
       "observation_date": "20240601",
       "release_date": "20240601",
@@ -1327,7 +1327,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25111,
       "observation_date": "20240602",
       "release_date": "20240602",
@@ -1337,7 +1337,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.247,
       "observation_date": "20240603",
       "release_date": "20240603",
@@ -1347,7 +1347,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25927,
       "observation_date": "20240604",
       "release_date": "20240604",
@@ -1357,7 +1357,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25876,
       "observation_date": "20240605",
       "release_date": "20240605",
@@ -1367,7 +1367,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26021,
       "observation_date": "20240606",
       "release_date": "20240606",
@@ -1377,7 +1377,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26339,
       "observation_date": "20240608",
       "release_date": "20240608",
@@ -1387,7 +1387,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26491,
       "observation_date": "20240609",
       "release_date": "20240609",
@@ -1397,7 +1397,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27067,
       "observation_date": "20240610",
       "release_date": "20240610",
@@ -1407,7 +1407,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26199,
       "observation_date": "20240611",
       "release_date": "20240611",
@@ -1417,7 +1417,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27008,
       "observation_date": "20240612",
       "release_date": "20240612",
@@ -1427,7 +1427,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.268,
       "observation_date": "20240613",
       "release_date": "20240613",
@@ -1437,7 +1437,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2696,
       "observation_date": "20240615",
       "release_date": "20240615",
@@ -1447,7 +1447,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26873,
       "observation_date": "20240616",
       "release_date": "20240616",
@@ -1457,7 +1457,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27045,
       "observation_date": "20240617",
       "release_date": "20240617",
@@ -1467,7 +1467,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28064,
       "observation_date": "20240618",
       "release_date": "20240618",
@@ -1477,7 +1477,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29021,
       "observation_date": "20240619",
       "release_date": "20240619",
@@ -1487,7 +1487,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28519,
       "observation_date": "20240620",
       "release_date": "20240620",
@@ -1497,7 +1497,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28895,
       "observation_date": "20240622",
       "release_date": "20240622",
@@ -1507,7 +1507,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28265,
       "observation_date": "20240623",
       "release_date": "20240623",
@@ -1517,7 +1517,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28888,
       "observation_date": "20240624",
       "release_date": "20240624",
@@ -1527,7 +1527,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29985,
       "observation_date": "20240625",
       "release_date": "20240625",
@@ -1537,7 +1537,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30287,
       "observation_date": "20240626",
       "release_date": "20240626",
@@ -1547,7 +1547,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29594,
       "observation_date": "20240627",
       "release_date": "20240627",
@@ -1557,7 +1557,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28951,
       "observation_date": "20240629",
       "release_date": "20240629",
@@ -1567,7 +1567,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30355,
       "observation_date": "20240630",
       "release_date": "20240630",
@@ -1577,7 +1577,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.3068,
       "observation_date": "20240701",
       "release_date": "20240701",
@@ -1587,7 +1587,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30042,
       "observation_date": "20240702",
       "release_date": "20240702",
@@ -1597,7 +1597,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29097,
       "observation_date": "20240703",
       "release_date": "20240703",
@@ -1607,7 +1607,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28552,
       "observation_date": "20240704",
       "release_date": "20240704",
@@ -1617,7 +1617,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.287,
       "observation_date": "20240706",
       "release_date": "20240706",
@@ -1627,7 +1627,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28527,
       "observation_date": "20240707",
       "release_date": "20240707",
@@ -1637,7 +1637,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28781,
       "observation_date": "20240708",
       "release_date": "20240708",
@@ -1647,7 +1647,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2917,
       "observation_date": "20240709",
       "release_date": "20240709",
@@ -1657,7 +1657,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26712,
       "observation_date": "20240710",
       "release_date": "20240710",
@@ -1667,7 +1667,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26817,
       "observation_date": "20240711",
       "release_date": "20240711",
@@ -1677,7 +1677,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2758,
       "observation_date": "20240713",
       "release_date": "20240713",
@@ -1687,7 +1687,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2735,
       "observation_date": "20240714",
       "release_date": "20240714",
@@ -1697,7 +1697,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28827,
       "observation_date": "20240715",
       "release_date": "20240715",
@@ -1707,7 +1707,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27138,
       "observation_date": "20240716",
       "release_date": "20240716",
@@ -1717,7 +1717,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27708,
       "observation_date": "20240717",
       "release_date": "20240717",
@@ -1727,7 +1727,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28079,
       "observation_date": "20240718",
       "release_date": "20240718",
@@ -1737,7 +1737,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28265,
       "observation_date": "20240720",
       "release_date": "20240720",
@@ -1747,7 +1747,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29512,
       "observation_date": "20240721",
       "release_date": "20240721",
@@ -1757,7 +1757,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28841,
       "observation_date": "20240722",
       "release_date": "20240722",
@@ -1767,7 +1767,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26292,
       "observation_date": "20240723",
       "release_date": "20240723",
@@ -1777,7 +1777,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2395,
       "observation_date": "20240724",
       "release_date": "20240724",
@@ -1787,7 +1787,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2604,
       "observation_date": "20240725",
       "release_date": "20240725",
@@ -1797,7 +1797,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2613,
       "observation_date": "20240727",
       "release_date": "20240727",
@@ -1807,7 +1807,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27001,
       "observation_date": "20240728",
       "release_date": "20240728",
@@ -1817,7 +1817,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24221,
       "observation_date": "20240729",
       "release_date": "20240729",
@@ -1827,7 +1827,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22421,
       "observation_date": "20240730",
       "release_date": "20240730",
@@ -1837,7 +1837,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25024,
       "observation_date": "20240731",
       "release_date": "20240731",
@@ -1847,7 +1847,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16137,
       "observation_date": "20240801",
       "release_date": "20240801",
@@ -1857,7 +1857,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.15444,
       "observation_date": "20240803",
       "release_date": "20240803",
@@ -1867,7 +1867,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13603,
       "observation_date": "20240804",
       "release_date": "20240804",
@@ -1877,7 +1877,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.15873,
       "observation_date": "20240805",
       "release_date": "20240805",
@@ -1887,7 +1887,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17286,
       "observation_date": "20240806",
       "release_date": "20240806",
@@ -1897,7 +1897,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18202,
       "observation_date": "20240807",
       "release_date": "20240807",
@@ -1907,7 +1907,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17087,
       "observation_date": "20240808",
       "release_date": "20240808",
@@ -1917,7 +1917,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1776,
       "observation_date": "20240811",
       "release_date": "20240811",
@@ -1927,7 +1927,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.14485,
       "observation_date": "20240812",
       "release_date": "20240812",
@@ -1937,7 +1937,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.14595,
       "observation_date": "20240813",
       "release_date": "20240813",
@@ -1947,7 +1947,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17707,
       "observation_date": "20240814",
       "release_date": "20240814",
@@ -1957,7 +1957,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16085,
       "observation_date": "20240815",
       "release_date": "20240815",
@@ -1967,7 +1967,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.15873,
       "observation_date": "20240817",
       "release_date": "20240817",
@@ -1977,7 +1977,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12999,
       "observation_date": "20240818",
       "release_date": "20240818",
@@ -1987,7 +1987,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11505,
       "observation_date": "20240819",
       "release_date": "20240819",
@@ -1997,7 +1997,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13037,
       "observation_date": "20240820",
       "release_date": "20240820",
@@ -2007,7 +2007,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.14461,
       "observation_date": "20240821",
       "release_date": "20240821",
@@ -2017,7 +2017,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11387,
       "observation_date": "20240822",
       "release_date": "20240822",
@@ -2027,7 +2027,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11195,
       "observation_date": "20240824",
       "release_date": "20240824",
@@ -2037,7 +2037,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12034,
       "observation_date": "20240825",
       "release_date": "20240825",
@@ -2047,7 +2047,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11883,
       "observation_date": "20240826",
       "release_date": "20240826",
@@ -2057,7 +2057,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13137,
       "observation_date": "20240827",
       "release_date": "20240827",
@@ -2067,7 +2067,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.09209,
       "observation_date": "20240828",
       "release_date": "20240828",
@@ -2077,7 +2077,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.08727,
       "observation_date": "20240829",
       "release_date": "20240829",
@@ -2087,7 +2087,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.08209,
       "observation_date": "20240831",
       "release_date": "20240831",
@@ -2097,7 +2097,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11175,
       "observation_date": "20240901",
       "release_date": "20240901",
@@ -2107,7 +2107,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11839,
       "observation_date": "20240902",
       "release_date": "20240902",
@@ -2117,7 +2117,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10977,
       "observation_date": "20240903",
       "release_date": "20240903",
@@ -2127,7 +2127,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.08771,
       "observation_date": "20240904",
       "release_date": "20240904",
@@ -2137,7 +2137,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.08987,
       "observation_date": "20240905",
       "release_date": "20240905",
@@ -2147,7 +2147,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.08548,
       "observation_date": "20240907",
       "release_date": "20240907",
@@ -2157,7 +2157,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11773,
       "observation_date": "20240908",
       "release_date": "20240908",
@@ -2167,7 +2167,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13498,
       "observation_date": "20240909",
       "release_date": "20240909",
@@ -2177,7 +2177,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12584,
       "observation_date": "20240910",
       "release_date": "20240910",
@@ -2187,7 +2187,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11645,
       "observation_date": "20240911",
       "release_date": "20240911",
@@ -2197,7 +2197,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.09757,
       "observation_date": "20240912",
       "release_date": "20240912",
@@ -2207,7 +2207,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10084,
       "observation_date": "20240914",
       "release_date": "20240914",
@@ -2217,7 +2217,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.09319,
       "observation_date": "20240915",
       "release_date": "20240915",
@@ -2227,7 +2227,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10864,
       "observation_date": "20240916",
       "release_date": "20240916",
@@ -2237,7 +2237,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.09182,
       "observation_date": "20240917",
       "release_date": "20240917",
@@ -2247,7 +2247,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.06689,
       "observation_date": "20240918",
       "release_date": "20240918",
@@ -2257,7 +2257,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.04038,
       "observation_date": "20240919",
       "release_date": "20240919",
@@ -2267,7 +2267,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.04251,
       "observation_date": "20240921",
       "release_date": "20240921",
@@ -2277,7 +2277,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.05712,
       "observation_date": "20240922",
       "release_date": "20240922",
@@ -2287,7 +2287,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.00834,
       "observation_date": "20240923",
       "release_date": "20240923",
@@ -2297,7 +2297,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.02947,
       "observation_date": "20240924",
       "release_date": "20240924",
@@ -2307,7 +2307,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.97046,
       "observation_date": "20240925",
       "release_date": "20240925",
@@ -2317,7 +2317,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.9794,
       "observation_date": "20240926",
       "release_date": "20240926",
@@ -2327,7 +2327,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.97785,
       "observation_date": "20240928",
       "release_date": "20240928",
@@ -2337,7 +2337,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.00217,
       "observation_date": "20240929",
       "release_date": "20240929",
@@ -2347,7 +2347,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.02539,
       "observation_date": "20240930",
       "release_date": "20240930",
@@ -2357,7 +2357,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.03357,
       "observation_date": "20241001",
       "release_date": "20241001",
@@ -2367,7 +2367,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.04758,
       "observation_date": "20241002",
       "release_date": "20241002",
@@ -2377,7 +2377,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.09527,
       "observation_date": "20241003",
       "release_date": "20241003",
@@ -2387,7 +2387,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.06907,
       "observation_date": "20241006",
       "release_date": "20241006",
@@ -2397,7 +2397,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.0733,
       "observation_date": "20241007",
       "release_date": "20241007",
@@ -2407,7 +2407,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.08948,
       "observation_date": "20241008",
       "release_date": "20241008",
@@ -2417,7 +2417,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.07725,
       "observation_date": "20241009",
       "release_date": "20241009",
@@ -2427,7 +2427,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.06777,
       "observation_date": "20241010",
       "release_date": "20241010",
@@ -2437,7 +2437,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.07614,
       "observation_date": "20241012",
       "release_date": "20241012",
@@ -2447,7 +2447,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.09378,
       "observation_date": "20241013",
       "release_date": "20241013",
@@ -2457,7 +2457,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13211,
       "observation_date": "20241014",
       "release_date": "20241014",
@@ -2467,7 +2467,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13457,
       "observation_date": "20241015",
       "release_date": "20241015",
@@ -2477,7 +2477,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1321,
       "observation_date": "20241016",
       "release_date": "20241016",
@@ -2487,7 +2487,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11296,
       "observation_date": "20241017",
       "release_date": "20241017",
@@ -2497,7 +2497,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13188,
       "observation_date": "20241020",
       "release_date": "20241020",
@@ -2507,7 +2507,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13437,
       "observation_date": "20241021",
       "release_date": "20241021",
@@ -2517,7 +2517,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13423,
       "observation_date": "20241022",
       "release_date": "20241022",
@@ -2527,7 +2527,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12296,
       "observation_date": "20241023",
       "release_date": "20241023",
@@ -2537,7 +2537,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13264,
       "observation_date": "20241024",
       "release_date": "20241024",
@@ -2547,7 +2547,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13264,
       "observation_date": "20241025",
       "release_date": "20241025",
@@ -2557,7 +2557,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12924,
       "observation_date": "20241026",
       "release_date": "20241026",
@@ -2567,7 +2567,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.144,
       "observation_date": "20241027",
       "release_date": "20241027",
@@ -2577,7 +2577,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.14223,
       "observation_date": "20241028",
       "release_date": "20241028",
@@ -2587,7 +2587,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12432,
       "observation_date": "20241029",
       "release_date": "20241029",
@@ -2597,7 +2597,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12075,
       "observation_date": "20241030",
       "release_date": "20241030",
@@ -2607,7 +2607,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13805,
       "observation_date": "20241031",
       "release_date": "20241031",
@@ -2617,7 +2617,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10829,
       "observation_date": "20241102",
       "release_date": "20241102",
@@ -2627,7 +2627,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10932,
       "observation_date": "20241103",
       "release_date": "20241103",
@@ -2637,7 +2637,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10086,
       "observation_date": "20241104",
       "release_date": "20241104",
@@ -2647,7 +2647,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20151,
       "observation_date": "20241105",
       "release_date": "20241105",
@@ -2657,7 +2657,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.14616,
       "observation_date": "20241106",
       "release_date": "20241106",
@@ -2667,7 +2667,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19377,
       "observation_date": "20241107",
       "release_date": "20241107",
@@ -2677,7 +2677,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19658,
       "observation_date": "20241109",
       "release_date": "20241109",
@@ -2687,7 +2687,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22489,
       "observation_date": "20241110",
       "release_date": "20241110",
@@ -2697,7 +2697,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24068,
       "observation_date": "20241111",
       "release_date": "20241111",
@@ -2707,7 +2707,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23951,
       "observation_date": "20241112",
       "release_date": "20241112",
@@ -2717,7 +2717,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24867,
       "observation_date": "20241113",
       "release_date": "20241113",
@@ -2727,7 +2727,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23277,
       "observation_date": "20241114",
       "release_date": "20241114",
@@ -2737,7 +2737,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23277,
       "observation_date": "20241116",
       "release_date": "20241116",
@@ -2747,7 +2747,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22487,
       "observation_date": "20241117",
       "release_date": "20241117",
@@ -2757,7 +2757,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23107,
       "observation_date": "20241118",
       "release_date": "20241118",
@@ -2767,7 +2767,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24657,
       "observation_date": "20241119",
       "release_date": "20241119",
@@ -2777,7 +2777,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25352,
       "observation_date": "20241120",
       "release_date": "20241120",
@@ -2787,7 +2787,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25664,
       "observation_date": "20241121",
       "release_date": "20241121",
@@ -2797,7 +2797,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24035,
       "observation_date": "20241123",
       "release_date": "20241123",
@@ -2807,7 +2807,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24472,
       "observation_date": "20241124",
       "release_date": "20241124",
@@ -2817,7 +2817,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25661,
       "observation_date": "20241125",
       "release_date": "20241125",
@@ -2827,7 +2827,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24116,
       "observation_date": "20241126",
       "release_date": "20241126",
@@ -2837,7 +2837,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24713,
       "observation_date": "20241127",
       "release_date": "20241127",
@@ -2847,7 +2847,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24477,
       "observation_date": "20241128",
       "release_date": "20241128",
@@ -2857,7 +2857,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25395,
       "observation_date": "20241130",
       "release_date": "20241130",
@@ -2867,7 +2867,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28228,
       "observation_date": "20241201",
       "release_date": "20241201",
@@ -2877,7 +2877,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29905,
       "observation_date": "20241202",
       "release_date": "20241202",
@@ -2887,7 +2887,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27511,
       "observation_date": "20241203",
       "release_date": "20241203",
@@ -2897,7 +2897,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26287,
       "observation_date": "20241204",
       "release_date": "20241204",
@@ -2907,7 +2907,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28067,
       "observation_date": "20241205",
       "release_date": "20241205",
@@ -2917,7 +2917,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27942,
       "observation_date": "20241207",
       "release_date": "20241207",
@@ -2927,7 +2927,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26637,
       "observation_date": "20241208",
       "release_date": "20241208",
@@ -2937,7 +2937,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25547,
       "observation_date": "20241209",
       "release_date": "20241209",
@@ -2947,7 +2947,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27728,
       "observation_date": "20241210",
       "release_date": "20241210",
@@ -2957,7 +2957,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27377,
       "observation_date": "20241211",
       "release_date": "20241211",
@@ -2967,7 +2967,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27828,
       "observation_date": "20241212",
       "release_date": "20241212",
@@ -2977,7 +2977,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27927,
       "observation_date": "20241214",
       "release_date": "20241214",
@@ -2987,7 +2987,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29107,
       "observation_date": "20241215",
       "release_date": "20241215",
@@ -2997,7 +2997,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28692,
       "observation_date": "20241216",
       "release_date": "20241216",
@@ -3007,7 +3007,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.324,
       "observation_date": "20241217",
       "release_date": "20241217",
@@ -3017,7 +3017,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30648,
       "observation_date": "20241218",
       "release_date": "20241218",
@@ -3027,7 +3027,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28997,
       "observation_date": "20241219",
       "release_date": "20241219",
@@ -3037,7 +3037,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28965,
       "observation_date": "20241221",
       "release_date": "20241221",
@@ -3047,7 +3047,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30431,
       "observation_date": "20241222",
       "release_date": "20241222",
@@ -3057,7 +3057,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30584,
       "observation_date": "20241223",
       "release_date": "20241223",
@@ -3067,7 +3067,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30584,
       "observation_date": "20241224",
       "release_date": "20241224",
@@ -3077,7 +3077,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30017,
       "observation_date": "20241225",
       "release_date": "20241225",
@@ -3087,7 +3087,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29744,
       "observation_date": "20241226",
       "release_date": "20241226",
@@ -3097,7 +3097,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29624,
       "observation_date": "20241228",
       "release_date": "20241228",
@@ -3107,7 +3107,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.31033,
       "observation_date": "20241229",
       "release_date": "20241229",
@@ -3117,7 +3117,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.33661,
       "observation_date": "20241230",
       "release_date": "20241230",
@@ -3127,7 +3127,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.33661,
       "observation_date": "20241231",
       "release_date": "20241231",
@@ -3137,7 +3137,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.33918,
       "observation_date": "20250101",
       "release_date": "20250101",
@@ -3147,7 +3147,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.35627,
       "observation_date": "20250102",
       "release_date": "20250102",
@@ -3157,7 +3157,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.35434,
       "observation_date": "20250104",
       "release_date": "20250104",
@@ -3167,7 +3167,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.34525,
       "observation_date": "20250105",
       "release_date": "20250105",
@@ -3177,7 +3177,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.33788,
       "observation_date": "20250106",
       "release_date": "20250106",
@@ -3187,7 +3187,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.3513,
       "observation_date": "20250107",
       "release_date": "20250107",
@@ -3197,7 +3197,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.3539,
       "observation_date": "20250108",
       "release_date": "20250108",
@@ -3207,7 +3207,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.36191,
       "observation_date": "20250109",
       "release_date": "20250109",
@@ -3217,7 +3217,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.35781,
       "observation_date": "20250111",
       "release_date": "20250111",
@@ -3227,7 +3227,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.34657,
       "observation_date": "20250112",
       "release_date": "20250112",
@@ -3237,7 +3237,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.34221,
       "observation_date": "20250113",
       "release_date": "20250113",
@@ -3247,7 +3247,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.34705,
       "observation_date": "20250114",
       "release_date": "20250114",
@@ -3257,7 +3257,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.34552,
       "observation_date": "20250115",
       "release_date": "20250115",
@@ -3267,7 +3267,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.3396,
       "observation_date": "20250116",
       "release_date": "20250116",
@@ -3277,7 +3277,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.33223,
       "observation_date": "20250118",
       "release_date": "20250118",
@@ -3287,7 +3287,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26015,
       "observation_date": "20250119",
       "release_date": "20250119",
@@ -3297,7 +3297,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26564,
       "observation_date": "20250120",
       "release_date": "20250120",
@@ -3307,7 +3307,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27948,
       "observation_date": "20250121",
       "release_date": "20250121",
@@ -3317,7 +3317,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28564,
       "observation_date": "20250122",
       "release_date": "20250122",
@@ -3327,7 +3327,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23945,
       "observation_date": "20250123",
       "release_date": "20250123",
@@ -3337,7 +3337,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24508,
       "observation_date": "20250125",
       "release_date": "20250125",
@@ -3347,7 +3347,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24957,
       "observation_date": "20250126",
       "release_date": "20250126",
@@ -3357,7 +3357,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2706,
       "observation_date": "20250127",
       "release_date": "20250127",
@@ -3367,7 +3367,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26069,
       "observation_date": "20250128",
       "release_date": "20250128",
@@ -3377,7 +3377,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2921,
       "observation_date": "20250129",
       "release_date": "20250129",
@@ -3387,7 +3387,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.31824,
       "observation_date": "20250130",
       "release_date": "20250130",
@@ -3397,7 +3397,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.35664,
       "observation_date": "20250201",
       "release_date": "20250201",
@@ -3407,7 +3407,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30972,
       "observation_date": "20250202",
       "release_date": "20250202",
@@ -3417,7 +3417,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28563,
       "observation_date": "20250203",
       "release_date": "20250203",
@@ -3427,7 +3427,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28116,
       "observation_date": "20250204",
       "release_date": "20250204",
@@ -3437,7 +3437,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28817,
       "observation_date": "20250205",
       "release_date": "20250205",
@@ -3447,7 +3447,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29997,
       "observation_date": "20250206",
       "release_date": "20250206",
@@ -3457,7 +3457,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30935,
       "observation_date": "20250208",
       "release_date": "20250208",
@@ -3467,7 +3467,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30835,
       "observation_date": "20250209",
       "release_date": "20250209",
@@ -3477,7 +3477,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.308,
       "observation_date": "20250210",
       "release_date": "20250210",
@@ -3487,7 +3487,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30791,
       "observation_date": "20250211",
       "release_date": "20250211",
@@ -3497,7 +3497,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26904,
       "observation_date": "20250212",
       "release_date": "20250212",
@@ -3507,7 +3507,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25487,
       "observation_date": "20250213",
       "release_date": "20250213",
@@ -3517,7 +3517,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25289,
       "observation_date": "20250215",
       "release_date": "20250215",
@@ -3527,7 +3527,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26311,
       "observation_date": "20250216",
       "release_date": "20250216",
@@ -3537,7 +3537,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27197,
       "observation_date": "20250217",
       "release_date": "20250217",
@@ -3547,7 +3547,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28061,
       "observation_date": "20250218",
       "release_date": "20250218",
@@ -3557,7 +3557,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23434,
       "observation_date": "20250219",
       "release_date": "20250219",
@@ -3567,7 +3567,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24997,
       "observation_date": "20250220",
       "release_date": "20250220",
@@ -3577,7 +3577,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24606,
       "observation_date": "20250222",
       "release_date": "20250222",
@@ -3587,7 +3587,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25144,
       "observation_date": "20250223",
       "release_date": "20250223",
@@ -3597,7 +3597,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25206,
       "observation_date": "20250224",
       "release_date": "20250224",
@@ -3607,7 +3607,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26387,
       "observation_date": "20250225",
       "release_date": "20250225",
@@ -3617,7 +3617,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29934,
       "observation_date": "20250226",
       "release_date": "20250226",
@@ -3627,7 +3627,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29292,
       "observation_date": "20250227",
       "release_date": "20250227",
@@ -3637,7 +3637,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2883,
       "observation_date": "20250301",
       "release_date": "20250301",
@@ -3647,7 +3647,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30184,
       "observation_date": "20250302",
       "release_date": "20250302",
@@ -3657,7 +3657,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25056,
       "observation_date": "20250303",
       "release_date": "20250303",
@@ -3667,7 +3667,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23479,
       "observation_date": "20250304",
       "release_date": "20250304",
@@ -3677,7 +3677,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24103,
       "observation_date": "20250305",
       "release_date": "20250305",
@@ -3687,7 +3687,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24227,
       "observation_date": "20250306",
       "release_date": "20250306",
@@ -3697,7 +3697,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24083,
       "observation_date": "20250308",
       "release_date": "20250308",
@@ -3707,7 +3707,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2614,
       "observation_date": "20250309",
       "release_date": "20250309",
@@ -3717,7 +3717,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22565,
       "observation_date": "20250310",
       "release_date": "20250310",
@@ -3727,7 +3727,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23943,
       "observation_date": "20250311",
       "release_date": "20250311",
@@ -3737,7 +3737,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24647,
       "observation_date": "20250312",
       "release_date": "20250312",
@@ -3747,7 +3747,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23577,
       "observation_date": "20250313",
       "release_date": "20250313",
@@ -3757,7 +3757,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23478,
       "observation_date": "20250315",
       "release_date": "20250315",
@@ -3767,7 +3767,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22572,
       "observation_date": "20250316",
       "release_date": "20250316",
@@ -3777,7 +3777,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22631,
       "observation_date": "20250317",
       "release_date": "20250317",
@@ -3787,7 +3787,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22951,
       "observation_date": "20250318",
       "release_date": "20250318",
@@ -3797,7 +3797,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25102,
       "observation_date": "20250319",
       "release_date": "20250319",
@@ -3807,7 +3807,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.25648,
       "observation_date": "20250320",
       "release_date": "20250320",
@@ -3817,7 +3817,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2536,
       "observation_date": "20250322",
       "release_date": "20250322",
@@ -3827,7 +3827,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26256,
       "observation_date": "20250323",
       "release_date": "20250323",
@@ -3837,7 +3837,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26497,
       "observation_date": "20250324",
       "release_date": "20250324",
@@ -3847,7 +3847,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27827,
       "observation_date": "20250325",
       "release_date": "20250325",
@@ -3857,7 +3857,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26695,
       "observation_date": "20250326",
       "release_date": "20250326",
@@ -3867,7 +3867,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26527,
       "observation_date": "20250327",
       "release_date": "20250327",
@@ -3877,7 +3877,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2657,
       "observation_date": "20250329",
       "release_date": "20250329",
@@ -3887,7 +3887,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26506,
       "observation_date": "20250330",
       "release_date": "20250330",
@@ -3897,7 +3897,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.2797,
       "observation_date": "20250331",
       "release_date": "20250331",
@@ -3907,7 +3907,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29457,
       "observation_date": "20250401",
       "release_date": "20250401",
@@ -3917,7 +3917,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27721,
       "observation_date": "20250402",
       "release_date": "20250402",
@@ -3927,7 +3927,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29087,
       "observation_date": "20250403",
       "release_date": "20250403",
@@ -3937,7 +3937,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30062,
       "observation_date": "20250405",
       "release_date": "20250405",
@@ -3947,7 +3947,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.34309,
       "observation_date": "20250406",
       "release_date": "20250406",
@@ -3957,7 +3957,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.42432,
       "observation_date": "20250407",
       "release_date": "20250407",
@@ -3967,7 +3967,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.34225,
       "observation_date": "20250408",
       "release_date": "20250408",
@@ -3977,7 +3977,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30687,
       "observation_date": "20250409",
       "release_date": "20250409",
@@ -3987,7 +3987,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28059,
       "observation_date": "20250410",
       "release_date": "20250410",
@@ -3997,7 +3997,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27652,
       "observation_date": "20250412",
       "release_date": "20250412",
@@ -4007,7 +4007,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30777,
       "observation_date": "20250413",
       "release_date": "20250413",
@@ -4017,7 +4017,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.32487,
       "observation_date": "20250414",
       "release_date": "20250414",
@@ -4027,7 +4027,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29487,
       "observation_date": "20250415",
       "release_date": "20250415",
@@ -4037,7 +4037,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29737,
       "observation_date": "20250416",
       "release_date": "20250416",
@@ -4047,7 +4047,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.30248,
       "observation_date": "20250417",
       "release_date": "20250417",
@@ -4057,7 +4057,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.29227,
       "observation_date": "20250420",
       "release_date": "20250420",
@@ -4067,7 +4067,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.31027,
       "observation_date": "20250421",
       "release_date": "20250421",
@@ -4077,7 +4077,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28535,
       "observation_date": "20250422",
       "release_date": "20250422",
@@ -4087,7 +4087,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28662,
       "observation_date": "20250423",
       "release_date": "20250423",
@@ -4097,7 +4097,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28705,
       "observation_date": "20250424",
       "release_date": "20250424",
@@ -4107,7 +4107,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28559,
       "observation_date": "20250426",
       "release_date": "20250426",
@@ -4117,7 +4117,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.28237,
       "observation_date": "20250427",
       "release_date": "20250427",
@@ -4127,7 +4127,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26487,
       "observation_date": "20250428",
       "release_date": "20250428",
@@ -4137,7 +4137,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.26757,
       "observation_date": "20250429",
       "release_date": "20250429",
@@ -4147,7 +4147,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.27487,
       "observation_date": "20250430",
       "release_date": "20250430",
@@ -4157,7 +4157,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20859,
       "observation_date": "20250501",
       "release_date": "20250501",
@@ -4167,7 +4167,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19966,
       "observation_date": "20250504",
       "release_date": "20250504",
@@ -4177,7 +4177,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20647,
       "observation_date": "20250505",
       "release_date": "20250505",
@@ -4187,7 +4187,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22416,
       "observation_date": "20250506",
       "release_date": "20250506",
@@ -4197,7 +4197,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.24057,
       "observation_date": "20250507",
       "release_date": "20250507",
@@ -4207,7 +4207,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.23861,
       "observation_date": "20250508",
       "release_date": "20250508",
@@ -4217,7 +4217,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.22152,
       "observation_date": "20250510",
       "release_date": "20250510",
@@ -4227,7 +4227,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19707,
       "observation_date": "20250511",
       "release_date": "20250511",
@@ -4237,7 +4237,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19487,
       "observation_date": "20250512",
       "release_date": "20250512",
@@ -4247,7 +4247,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20924,
       "observation_date": "20250513",
       "release_date": "20250513",
@@ -4257,7 +4257,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20389,
       "observation_date": "20250514",
       "release_date": "20250514",
@@ -4267,7 +4267,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20862,
       "observation_date": "20250515",
       "release_date": "20250515",
@@ -4277,7 +4277,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20562,
       "observation_date": "20250517",
       "release_date": "20250517",
@@ -4287,7 +4287,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21254,
       "observation_date": "20250518",
       "release_date": "20250518",
@@ -4297,7 +4297,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.21384,
       "observation_date": "20250519",
       "release_date": "20250519",
@@ -4307,7 +4307,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20332,
       "observation_date": "20250520",
       "release_date": "20250520",
@@ -4317,7 +4317,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20227,
       "observation_date": "20250521",
       "release_date": "20250521",
@@ -4327,7 +4327,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17028,
       "observation_date": "20250522",
       "release_date": "20250522",
@@ -4337,7 +4337,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1699,
       "observation_date": "20250524",
       "release_date": "20250524",
@@ -4347,7 +4347,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17261,
       "observation_date": "20250525",
       "release_date": "20250525",
@@ -4357,7 +4357,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18577,
       "observation_date": "20250526",
       "release_date": "20250526",
@@ -4367,7 +4367,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19002,
       "observation_date": "20250527",
       "release_date": "20250527",
@@ -4377,7 +4377,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18347,
       "observation_date": "20250528",
       "release_date": "20250528",
@@ -4387,7 +4387,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20373,
       "observation_date": "20250529",
       "release_date": "20250529",
@@ -4397,7 +4397,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20169,
       "observation_date": "20250531",
       "release_date": "20250531",
@@ -4407,7 +4407,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20702,
       "observation_date": "20250601",
       "release_date": "20250601",
@@ -4417,7 +4417,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18837,
       "observation_date": "20250602",
       "release_date": "20250602",
@@ -4427,7 +4427,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16812,
       "observation_date": "20250603",
       "release_date": "20250603",
@@ -4437,7 +4437,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17341,
       "observation_date": "20250604",
       "release_date": "20250604",
@@ -4447,7 +4447,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18344,
       "observation_date": "20250605",
       "release_date": "20250605",
@@ -4457,7 +4457,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18998,
       "observation_date": "20250607",
       "release_date": "20250607",
@@ -4467,7 +4467,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17927,
       "observation_date": "20250608",
       "release_date": "20250608",
@@ -4477,7 +4477,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18487,
       "observation_date": "20250609",
       "release_date": "20250609",
@@ -4487,7 +4487,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19431,
       "observation_date": "20250610",
       "release_date": "20250610",
@@ -4497,7 +4497,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17258,
       "observation_date": "20250611",
       "release_date": "20250611",
@@ -4507,7 +4507,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18818,
       "observation_date": "20250612",
       "release_date": "20250612",
@@ -4517,7 +4517,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18221,
       "observation_date": "20250614",
       "release_date": "20250614",
@@ -4527,7 +4527,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17777,
       "observation_date": "20250615",
       "release_date": "20250615",
@@ -4537,7 +4537,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18867,
       "observation_date": "20250616",
       "release_date": "20250616",
@@ -4547,7 +4547,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19338,
       "observation_date": "20250617",
       "release_date": "20250617",
@@ -4557,7 +4557,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1853,
       "observation_date": "20250618",
       "release_date": "20250618",
@@ -4567,7 +4567,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17507,
       "observation_date": "20250619",
       "release_date": "20250619",
@@ -4577,7 +4577,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18468,
       "observation_date": "20250621",
       "release_date": "20250621",
@@ -4587,7 +4587,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17488,
       "observation_date": "20250622",
       "release_date": "20250622",
@@ -4597,7 +4597,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16087,
       "observation_date": "20250623",
       "release_date": "20250623",
@@ -4607,7 +4607,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16846,
       "observation_date": "20250624",
       "release_date": "20250624",
@@ -4617,7 +4617,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.15897,
       "observation_date": "20250625",
       "release_date": "20250625",
@@ -4627,7 +4627,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16935,
       "observation_date": "20250626",
       "release_date": "20250626",
@@ -4637,7 +4637,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16685,
       "observation_date": "20250628",
       "release_date": "20250628",
@@ -4647,7 +4647,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.15662,
       "observation_date": "20250629",
       "release_date": "20250629",
@@ -4657,7 +4657,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.15974,
       "observation_date": "20250630",
       "release_date": "20250630",
@@ -4667,7 +4667,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16073,
       "observation_date": "20250701",
       "release_date": "20250701",
@@ -4677,7 +4677,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16888,
       "observation_date": "20250702",
       "release_date": "20250702",
@@ -4687,7 +4687,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16324,
       "observation_date": "20250703",
       "release_date": "20250703",
@@ -4697,7 +4697,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16072,
       "observation_date": "20250705",
       "release_date": "20250705",
@@ -4707,7 +4707,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1791,
       "observation_date": "20250706",
       "release_date": "20250706",
@@ -4717,7 +4717,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17658,
       "observation_date": "20250707",
       "release_date": "20250707",
@@ -4727,7 +4727,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18276,
       "observation_date": "20250708",
       "release_date": "20250708",
@@ -4737,7 +4737,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17732,
       "observation_date": "20250709",
       "release_date": "20250709",
@@ -4747,7 +4747,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17267,
       "observation_date": "20250710",
       "release_date": "20250710",
@@ -4757,7 +4757,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16821,
       "observation_date": "20250712",
       "release_date": "20250712",
@@ -4767,7 +4767,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17132,
       "observation_date": "20250713",
       "release_date": "20250713",
@@ -4777,7 +4777,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18237,
       "observation_date": "20250714",
       "release_date": "20250714",
@@ -4787,7 +4787,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17731,
       "observation_date": "20250715",
       "release_date": "20250715",
@@ -4797,7 +4797,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17986,
       "observation_date": "20250716",
       "release_date": "20250716",
@@ -4807,7 +4807,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18011,
       "observation_date": "20250717",
       "release_date": "20250717",
@@ -4817,7 +4817,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1748,
       "observation_date": "20250719",
       "release_date": "20250719",
@@ -4827,7 +4827,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16614,
       "observation_date": "20250720",
       "release_date": "20250720",
@@ -4837,7 +4837,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16614,
       "observation_date": "20250721",
       "release_date": "20250721",
@@ -4847,7 +4847,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.15058,
       "observation_date": "20250722",
       "release_date": "20250722",
@@ -4857,7 +4857,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.15093,
       "observation_date": "20250723",
       "release_date": "20250723",
@@ -4867,7 +4867,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16645,
       "observation_date": "20250724",
       "release_date": "20250724",
@@ -4877,7 +4877,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16048,
       "observation_date": "20250726",
       "release_date": "20250726",
@@ -4887,7 +4887,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17908,
       "observation_date": "20250727",
       "release_date": "20250727",
@@ -4897,7 +4897,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17981,
       "observation_date": "20250728",
       "release_date": "20250728",
@@ -4907,7 +4907,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20693,
       "observation_date": "20250729",
       "release_date": "20250729",
@@ -4917,7 +4917,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.20479,
       "observation_date": "20250730",
       "release_date": "20250730",
@@ -4927,7 +4927,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19196,
       "observation_date": "20250731",
       "release_date": "20250731",
@@ -4937,7 +4937,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18735,
       "observation_date": "20250802",
       "release_date": "20250802",
@@ -4947,7 +4947,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18221,
       "observation_date": "20250803",
       "release_date": "20250803",
@@ -4957,7 +4957,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18541,
       "observation_date": "20250804",
       "release_date": "20250804",
@@ -4967,7 +4967,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18107,
       "observation_date": "20250805",
       "release_date": "20250805",
@@ -4977,7 +4977,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17872,
       "observation_date": "20250806",
       "release_date": "20250806",
@@ -4987,7 +4987,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18793,
       "observation_date": "20250807",
       "release_date": "20250807",
@@ -4997,7 +4997,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18436,
       "observation_date": "20250809",
       "release_date": "20250809",
@@ -5007,7 +5007,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.19466,
       "observation_date": "20250810",
       "release_date": "20250810",
@@ -5017,7 +5017,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1828,
       "observation_date": "20250811",
       "release_date": "20250811",
@@ -5027,7 +5027,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.17765,
       "observation_date": "20250812",
       "release_date": "20250812",
@@ -5037,7 +5037,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18105,
       "observation_date": "20250813",
       "release_date": "20250813",
@@ -5047,7 +5047,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18492,
       "observation_date": "20250814",
       "release_date": "20250814",
@@ -5057,7 +5057,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1802,
       "observation_date": "20250816",
       "release_date": "20250816",
@@ -5067,7 +5067,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18683,
       "observation_date": "20250817",
       "release_date": "20250817",
@@ -5077,7 +5077,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18592,
       "observation_date": "20250818",
       "release_date": "20250818",
@@ -5087,7 +5087,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18043,
       "observation_date": "20250819",
       "release_date": "20250819",
@@ -5097,7 +5097,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.18167,
       "observation_date": "20250820",
       "release_date": "20250820",
@@ -5107,7 +5107,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16742,
       "observation_date": "20250821",
       "release_date": "20250821",
@@ -5117,7 +5117,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.16826,
       "observation_date": "20250823",
       "release_date": "20250823",
@@ -5127,7 +5127,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.15759,
       "observation_date": "20250824",
       "release_date": "20250824",
@@ -5137,7 +5137,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.15248,
       "observation_date": "20250825",
       "release_date": "20250825",
@@ -5147,7 +5147,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.15157,
       "observation_date": "20250826",
       "release_date": "20250826",
@@ -5157,7 +5157,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11799,
       "observation_date": "20250827",
       "release_date": "20250827",
@@ -5167,7 +5167,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11721,
       "observation_date": "20250828",
       "release_date": "20250828",
@@ -5177,7 +5177,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11698,
       "observation_date": "20250830",
       "release_date": "20250830",
@@ -5187,7 +5187,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13316,
       "observation_date": "20250831",
       "release_date": "20250831",
@@ -5197,7 +5197,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1374,
       "observation_date": "20250901",
       "release_date": "20250901",
@@ -5207,7 +5207,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13838,
       "observation_date": "20250902",
       "release_date": "20250902",
@@ -5217,7 +5217,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13671,
       "observation_date": "20250903",
       "release_date": "20250903",
@@ -5227,7 +5227,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12216,
       "observation_date": "20250904",
       "release_date": "20250904",
@@ -5237,7 +5237,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12479,
       "observation_date": "20250906",
       "release_date": "20250906",
@@ -5247,7 +5247,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11975,
       "observation_date": "20250907",
       "release_date": "20250907",
@@ -5257,7 +5257,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12177,
       "observation_date": "20250908",
       "release_date": "20250908",
@@ -5267,7 +5267,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11734,
       "observation_date": "20250909",
       "release_date": "20250909",
@@ -5277,7 +5277,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11214,
       "observation_date": "20250910",
       "release_date": "20250910",
@@ -5287,7 +5287,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12376,
       "observation_date": "20250911",
       "release_date": "20250911",
@@ -5297,7 +5297,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11727,
       "observation_date": "20250914",
       "release_date": "20250914",
@@ -5307,7 +5307,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10305,
       "observation_date": "20250915",
       "release_date": "20250915",
@@ -5317,7 +5317,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.09967,
       "observation_date": "20250916",
       "release_date": "20250916",
@@ -5327,7 +5327,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10698,
       "observation_date": "20250917",
       "release_date": "20250917",
@@ -5337,7 +5337,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11901,
       "observation_date": "20250918",
       "release_date": "20250918",
@@ -5347,7 +5347,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11901,
       "observation_date": "20250920",
       "release_date": "20250920",
@@ -5357,7 +5357,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11508,
       "observation_date": "20250921",
       "release_date": "20250921",
@@ -5367,7 +5367,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11234,
       "observation_date": "20250922",
       "release_date": "20250922",
@@ -5377,7 +5377,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13684,
       "observation_date": "20250923",
       "release_date": "20250923",
@@ -5387,7 +5387,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.14489,
       "observation_date": "20250924",
       "release_date": "20250924",
@@ -5397,7 +5397,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.14045,
       "observation_date": "20250925",
       "release_date": "20250925",
@@ -5407,7 +5407,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13801,
       "observation_date": "20250927",
       "release_date": "20250927",
@@ -5417,7 +5417,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12855,
       "observation_date": "20250928",
       "release_date": "20250928",
@@ -5427,7 +5427,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12811,
       "observation_date": "20250929",
       "release_date": "20250929",
@@ -5437,7 +5437,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12635,
       "observation_date": "20250930",
       "release_date": "20250930",
@@ -5447,7 +5447,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12811,
       "observation_date": "20251001",
       "release_date": "20251001",
@@ -5457,7 +5457,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13531,
       "observation_date": "20251002",
       "release_date": "20251002",
@@ -5467,7 +5467,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13557,
       "observation_date": "20251004",
       "release_date": "20251004",
@@ -5477,7 +5477,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.14026,
       "observation_date": "20251005",
       "release_date": "20251005",
@@ -5487,7 +5487,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.14084,
       "observation_date": "20251006",
       "release_date": "20251006",
@@ -5497,7 +5497,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.14557,
       "observation_date": "20251007",
       "release_date": "20251007",
@@ -5507,7 +5507,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13509,
       "observation_date": "20251008",
       "release_date": "20251008",
@@ -5517,7 +5517,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.14461,
       "observation_date": "20251009",
       "release_date": "20251009",
@@ -5527,7 +5527,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13282,
       "observation_date": "20251011",
       "release_date": "20251011",
@@ -5537,7 +5537,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13767,
       "observation_date": "20251012",
       "release_date": "20251012",
@@ -5547,7 +5547,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1393,
       "observation_date": "20251013",
       "release_date": "20251013",
@@ -5557,7 +5557,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12673,
       "observation_date": "20251014",
       "release_date": "20251014",
@@ -5567,7 +5567,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12341,
       "observation_date": "20251015",
       "release_date": "20251015",
@@ -5577,7 +5577,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12412,
       "observation_date": "20251016",
       "release_date": "20251016",
@@ -5587,7 +5587,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12314,
       "observation_date": "20251018",
       "release_date": "20251018",
@@ -5597,7 +5597,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12326,
       "observation_date": "20251019",
       "release_date": "20251019",
@@ -5607,7 +5607,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12643,
       "observation_date": "20251020",
       "release_date": "20251020",
@@ -5617,7 +5617,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12472,
       "observation_date": "20251021",
       "release_date": "20251021",
@@ -5627,7 +5627,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12325,
       "observation_date": "20251022",
       "release_date": "20251022",
@@ -5637,7 +5637,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12386,
       "observation_date": "20251023",
       "release_date": "20251023",
@@ -5647,7 +5647,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11434,
       "observation_date": "20251025",
       "release_date": "20251025",
@@ -5657,7 +5657,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10749,
       "observation_date": "20251026",
       "release_date": "20251026",
@@ -5667,7 +5667,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.09479,
       "observation_date": "20251027",
       "release_date": "20251027",
@@ -5677,7 +5677,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.09588,
       "observation_date": "20251028",
       "release_date": "20251028",
@@ -5687,7 +5687,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10991,
       "observation_date": "20251029",
       "release_date": "20251029",
@@ -5697,7 +5697,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12146,
       "observation_date": "20251030",
       "release_date": "20251030",
@@ -5707,7 +5707,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11889,
       "observation_date": "20251101",
       "release_date": "20251101",
@@ -5717,7 +5717,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12469,
       "observation_date": "20251102",
       "release_date": "20251102",
@@ -5727,7 +5727,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.13216,
       "observation_date": "20251103",
       "release_date": "20251103",
@@ -5737,7 +5737,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12958,
       "observation_date": "20251104",
       "release_date": "20251104",
@@ -5747,7 +5747,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11871,
       "observation_date": "20251105",
       "release_date": "20251105",
@@ -5757,7 +5757,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12432,
       "observation_date": "20251106",
       "release_date": "20251106",
@@ -5767,7 +5767,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12405,
       "observation_date": "20251108",
       "release_date": "20251108",
@@ -5777,7 +5777,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12104,
       "observation_date": "20251109",
       "release_date": "20251109",
@@ -5787,7 +5787,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.12087,
       "observation_date": "20251110",
       "release_date": "20251110",
@@ -5797,7 +5797,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.1097,
       "observation_date": "20251111",
       "release_date": "20251111",
@@ -5807,7 +5807,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.09023,
       "observation_date": "20251112",
       "release_date": "20251112",
@@ -5817,7 +5817,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.09888,
       "observation_date": "20251113",
       "release_date": "20251113",
@@ -5827,7 +5827,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10692,
       "observation_date": "20251116",
       "release_date": "20251116",
@@ -5837,7 +5837,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10826,
       "observation_date": "20251117",
       "release_date": "20251117",
@@ -5847,7 +5847,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11624,
       "observation_date": "20251118",
       "release_date": "20251118",
@@ -5857,7 +5857,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.11647,
       "observation_date": "20251119",
       "release_date": "20251119",
@@ -5867,7 +5867,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10472,
       "observation_date": "20251120",
       "release_date": "20251120",
@@ -5877,7 +5877,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.10402,
       "observation_date": "20251123",
       "release_date": "20251123",
@@ -5887,7 +5887,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.08009,
       "observation_date": "20251124",
       "release_date": "20251124",
@@ -5897,7 +5897,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.06641,
       "observation_date": "20251125",
       "release_date": "20251125",
@@ -5907,7 +5907,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.07331,
       "observation_date": "20251126",
       "release_date": "20251126",
@@ -5917,7 +5917,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.06911,
       "observation_date": "20251127",
       "release_date": "20251127",
@@ -5927,7 +5927,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.06777,
       "observation_date": "20251129",
       "release_date": "20251129",
@@ -5937,7 +5937,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.07056,
       "observation_date": "20251130",
       "release_date": "20251130",
@@ -5947,7 +5947,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.06643,
       "observation_date": "20251201",
       "release_date": "20251201",
@@ -5957,7 +5957,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.05555,
       "observation_date": "20251202",
       "release_date": "20251202",
@@ -5967,7 +5967,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.07132,
       "observation_date": "20251203",
       "release_date": "20251203",
@@ -5977,7 +5977,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.06836,
       "observation_date": "20251204",
       "release_date": "20251204",
@@ -5987,7 +5987,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.06797,
       "observation_date": "20251206",
       "release_date": "20251206",
@@ -5997,7 +5997,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.07076,
       "observation_date": "20251207",
       "release_date": "20251207",
@@ -6007,7 +6007,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.05914,
       "observation_date": "20251208",
       "release_date": "20251208",
@@ -6017,7 +6017,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.05758,
       "observation_date": "20251209",
       "release_date": "20251209",
@@ -6027,7 +6027,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.05073,
       "observation_date": "20251210",
       "release_date": "20251210",
@@ -6037,7 +6037,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.05287,
       "observation_date": "20251211",
       "release_date": "20251211",
@@ -6047,7 +6047,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.05095,
       "observation_date": "20251213",
       "release_date": "20251213",
@@ -6057,7 +6057,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.0427,
       "observation_date": "20251214",
       "release_date": "20251214",
@@ -6067,7 +6067,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.03517,
       "observation_date": "20251215",
       "release_date": "20251215",
@@ -6077,7 +6077,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.03915,
       "observation_date": "20251216",
       "release_date": "20251216",
@@ -6087,7 +6087,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.03121,
       "observation_date": "20251217",
       "release_date": "20251217",
@@ -6097,7 +6097,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.03279,
       "observation_date": "20251218",
       "release_date": "20251218",
@@ -6107,7 +6107,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.03072,
       "observation_date": "20251220",
       "release_date": "20251220",
@@ -6117,7 +6117,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.03053,
       "observation_date": "20251221",
       "release_date": "20251221",
@@ -6127,7 +6127,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.016,
       "observation_date": "20251222",
       "release_date": "20251222",
@@ -6137,7 +6137,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.00802,
       "observation_date": "20251223",
       "release_date": "20251223",
@@ -6147,7 +6147,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.00802,
       "observation_date": "20251224",
       "release_date": "20251224",
@@ -6157,7 +6157,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.00159,
       "observation_date": "20251225",
       "release_date": "20251225",
@@ -6167,7 +6167,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 7.00074,
       "observation_date": "20251227",
       "release_date": "20251227",
@@ -6177,7 +6177,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.99403,
       "observation_date": "20251228",
       "release_date": "20251228",
@@ -6187,7 +6187,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.99088,
       "observation_date": "20251229",
       "release_date": "20251229",
@@ -6197,7 +6197,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.97669,
       "observation_date": "20251230",
       "release_date": "20251230",
@@ -6207,7 +6207,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.96806,
       "observation_date": "20260101",
       "release_date": "20260101",
@@ -6217,7 +6217,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.96592,
       "observation_date": "20260103",
       "release_date": "20260103",
@@ -6227,7 +6227,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.97899,
       "observation_date": "20260104",
       "release_date": "20260104",
@@ -6237,7 +6237,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.97913,
       "observation_date": "20260105",
       "release_date": "20260105",
@@ -6247,7 +6247,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.99311,
       "observation_date": "20260106",
       "release_date": "20260106",
@@ -6257,7 +6257,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.98179,
       "observation_date": "20260107",
       "release_date": "20260107",
@@ -6267,7 +6267,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.97455,
       "observation_date": "20260108",
       "release_date": "20260108",
@@ -6277,7 +6277,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.97216,
       "observation_date": "20260110",
       "release_date": "20260110",
@@ -6287,7 +6287,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.9643,
       "observation_date": "20260111",
       "release_date": "20260111",
@@ -6297,7 +6297,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.96921,
       "observation_date": "20260112",
       "release_date": "20260112",
@@ -6307,7 +6307,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.96885,
       "observation_date": "20260113",
       "release_date": "20260113",
@@ -6317,7 +6317,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.9621,
       "observation_date": "20260114",
       "release_date": "20260114",
@@ -6327,7 +6327,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.96644,
       "observation_date": "20260115",
       "release_date": "20260115",
@@ -6337,7 +6337,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.96279,
       "observation_date": "20260117",
       "release_date": "20260117",
@@ -6347,7 +6347,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.95616,
       "observation_date": "20260118",
       "release_date": "20260118",
@@ -6357,7 +6357,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.95377,
       "observation_date": "20260119",
       "release_date": "20260119",
@@ -6367,7 +6367,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.95854,
       "observation_date": "20260120",
       "release_date": "20260120",
@@ -6377,7 +6377,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.96313,
       "observation_date": "20260121",
       "release_date": "20260121",
@@ -6387,7 +6387,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.94742,
       "observation_date": "20260122",
       "release_date": "20260122",
@@ -6397,7 +6397,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.94307,
       "observation_date": "20260124",
       "release_date": "20260124",
@@ -6407,7 +6407,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.94801,
       "observation_date": "20260125",
       "release_date": "20260125",
@@ -6417,7 +6417,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.93082,
       "observation_date": "20260126",
       "release_date": "20260126",
@@ -6427,7 +6427,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.94313,
       "observation_date": "20260127",
       "release_date": "20260127",
@@ -6437,7 +6437,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.94293,
       "observation_date": "20260128",
       "release_date": "20260128",
@@ -6447,7 +6447,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.95714,
       "observation_date": "20260129",
       "release_date": "20260129",
@@ -6457,7 +6457,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.95447,
       "observation_date": "20260131",
       "release_date": "20260131",
@@ -6467,7 +6467,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.94104,
       "observation_date": "20260201",
       "release_date": "20260201",
@@ -6477,7 +6477,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.93347,
       "observation_date": "20260202",
       "release_date": "20260202",
@@ -6487,7 +6487,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.94041,
       "observation_date": "20260203",
       "release_date": "20260203",
@@ -6497,7 +6497,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.93869,
       "observation_date": "20260204",
       "release_date": "20260204",
@@ -6507,7 +6507,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.929,
       "observation_date": "20260205",
       "release_date": "20260205",
@@ -6517,7 +6517,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.92777,
       "observation_date": "20260207",
       "release_date": "20260207",
@@ -6527,7 +6527,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.91463,
       "observation_date": "20260208",
       "release_date": "20260208",
@@ -6537,7 +6537,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.91037,
       "observation_date": "20260209",
       "release_date": "20260209",
@@ -6547,7 +6547,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.90691,
       "observation_date": "20260210",
       "release_date": "20260210",
@@ -6557,7 +6557,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.89592,
       "observation_date": "20260211",
       "release_date": "20260211",
@@ -6567,7 +6567,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.89775,
       "observation_date": "20260212",
       "release_date": "20260212",
@@ -6577,7 +6577,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.89818,
       "observation_date": "20260214",
       "release_date": "20260214",
@@ -6587,7 +6587,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.88041,
       "observation_date": "20260215",
       "release_date": "20260215",
@@ -6597,7 +6597,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.88087,
       "observation_date": "20260216",
       "release_date": "20260216",
@@ -6607,7 +6607,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.89102,
       "observation_date": "20260217",
       "release_date": "20260217",
@@ -6617,7 +6617,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.89793,
       "observation_date": "20260218",
       "release_date": "20260218",
@@ -6627,7 +6627,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.89673,
       "observation_date": "20260219",
       "release_date": "20260219",
@@ -6637,7 +6637,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.89434,
       "observation_date": "20260221",
       "release_date": "20260221",
@@ -6647,7 +6647,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.88564,
       "observation_date": "20260222",
       "release_date": "20260222",
@@ -6657,7 +6657,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.87827,
       "observation_date": "20260223",
       "release_date": "20260223",
@@ -6667,7 +6667,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.85202,
       "observation_date": "20260224",
       "release_date": "20260224",
@@ -6677,7 +6677,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.84211,
       "observation_date": "20260225",
       "release_date": "20260225",
@@ -6687,7 +6687,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.85986,
       "observation_date": "20260226",
       "release_date": "20260226",
@@ -6697,7 +6697,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.88245,
       "observation_date": "20260228",
       "release_date": "20260228",
@@ -6707,7 +6707,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.89947,
       "observation_date": "20260301",
       "release_date": "20260301",
@@ -6717,7 +6717,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.91585,
       "observation_date": "20260302",
       "release_date": "20260302",
@@ -6727,7 +6727,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.89031,
       "observation_date": "20260303",
       "release_date": "20260303",
@@ -6737,7 +6737,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.91301,
       "observation_date": "20260304",
       "release_date": "20260304",
@@ -6747,7 +6747,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.90218,
       "observation_date": "20260305",
       "release_date": "20260305",
@@ -6757,7 +6757,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.90134,
       "observation_date": "20260307",
       "release_date": "20260307",
@@ -6767,7 +6767,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.88168,
       "observation_date": "20260308",
       "release_date": "20260308",
@@ -6777,7 +6777,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.87554,
       "observation_date": "20260309",
       "release_date": "20260309",
@@ -6787,7 +6787,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.87563,
       "observation_date": "20260310",
       "release_date": "20260310",
@@ -6797,7 +6797,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.87982,
       "observation_date": "20260311",
       "release_date": "20260311",
@@ -6807,7 +6807,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.90677,
       "observation_date": "20260312",
       "release_date": "20260312",
@@ -6817,7 +6817,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.89862,
       "observation_date": "20260314",
       "release_date": "20260314",
@@ -6827,7 +6827,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.88708,
       "observation_date": "20260315",
       "release_date": "20260315",
@@ -6837,7 +6837,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.88066,
       "observation_date": "20260316",
       "release_date": "20260316",
@@ -6847,7 +6847,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.8956,
       "observation_date": "20260317",
       "release_date": "20260317",
@@ -6857,7 +6857,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.87488,
       "observation_date": "20260318",
       "release_date": "20260318",
@@ -6867,7 +6867,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.90512,
       "observation_date": "20260319",
       "release_date": "20260319",
@@ -6877,7 +6877,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.9008,
       "observation_date": "20260321",
       "release_date": "20260321",
@@ -6887,7 +6887,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.88073,
       "observation_date": "20260322",
       "release_date": "20260322",
@@ -6897,7 +6897,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.88778,
       "observation_date": "20260323",
       "release_date": "20260323",
@@ -6907,7 +6907,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.89949,
       "observation_date": "20260324",
       "release_date": "20260324",
@@ -6917,7 +6917,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.91829,
       "observation_date": "20260325",
       "release_date": "20260325",
@@ -6927,7 +6927,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.91837,
       "observation_date": "20260326",
       "release_date": "20260326",
@@ -6937,7 +6937,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.91553,
       "observation_date": "20260328",
       "release_date": "20260328",
@@ -6947,7 +6947,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.91449,
       "observation_date": "20260329",
       "release_date": "20260329",
@@ -6957,7 +6957,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.88374,
       "observation_date": "20260330",
       "release_date": "20260330",
@@ -6967,7 +6967,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.87455,
       "observation_date": "20260331",
       "release_date": "20260331",
@@ -6977,7 +6977,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.88841,
       "observation_date": "20260401",
       "release_date": "20260401",
@@ -6987,7 +6987,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.88384,
       "observation_date": "20260402",
       "release_date": "20260402",
@@ -6997,7 +6997,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.87352,
       "observation_date": "20260405",
       "release_date": "20260405",
@@ -7007,7 +7007,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.85475,
       "observation_date": "20260406",
       "release_date": "20260406",
@@ -7017,7 +7017,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.832,
       "observation_date": "20260407",
       "release_date": "20260407",
@@ -7027,7 +7027,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.82726,
       "observation_date": "20260408",
       "release_date": "20260408",
@@ -7037,7 +7037,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.82189,
       "observation_date": "20260409",
       "release_date": "20260409",
@@ -7047,7 +7047,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.83392,
       "observation_date": "20260411",
       "release_date": "20260411",
@@ -7057,7 +7057,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.81813,
       "observation_date": "20260412",
       "release_date": "20260412",
@@ -7067,7 +7067,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.80714,
       "observation_date": "20260413",
       "release_date": "20260413",
@@ -7077,7 +7077,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.81688,
       "observation_date": "20260414",
       "release_date": "20260414",
@@ -7087,7 +7087,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.82155,
       "observation_date": "20260415",
       "release_date": "20260415",
@@ -7097,7 +7097,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.81556,
       "observation_date": "20260416",
       "release_date": "20260416",
@@ -7107,7 +7107,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.8243,
       "observation_date": "20260418",
       "release_date": "20260418",
@@ -7117,7 +7117,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.8114,
       "observation_date": "20260419",
       "release_date": "20260419",
@@ -7127,7 +7127,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.82723,
       "observation_date": "20260420",
       "release_date": "20260420",
@@ -7137,7 +7137,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.83081,
       "observation_date": "20260421",
       "release_date": "20260421",
@@ -7147,7 +7147,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.83212,
       "observation_date": "20260422",
       "release_date": "20260422",
@@ -7157,7 +7157,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.83234,
       "observation_date": "20260423",
       "release_date": "20260423",
@@ -7167,7 +7167,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.83631,
       "observation_date": "20260425",
       "release_date": "20260425",
@@ -7177,7 +7177,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.8251,
       "observation_date": "20260426",
       "release_date": "20260426",
@@ -7187,7 +7187,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.83663,
       "observation_date": "20260427",
       "release_date": "20260427",
@@ -7197,7 +7197,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.84683,
       "observation_date": "20260428",
       "release_date": "20260428",
@@ -7207,7 +7207,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.82959,
       "observation_date": "20260429",
       "release_date": "20260429",
@@ -7217,7 +7217,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.82996,
       "observation_date": "20260430",
       "release_date": "20260430",
@@ -7227,7 +7227,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.8265,
       "observation_date": "20260502",
       "release_date": "20260502",
@@ -7237,7 +7237,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.82993,
       "observation_date": "20260503",
       "release_date": "20260503",
@@ -7247,7 +7247,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.82392,
       "observation_date": "20260504",
       "release_date": "20260504",
@@ -7257,7 +7257,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.81319,
       "observation_date": "20260505",
       "release_date": "20260505",
@@ -7267,7 +7267,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.8081,
       "observation_date": "20260506",
       "release_date": "20260506",
@@ -7277,7 +7277,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.79567,
       "observation_date": "20260507",
       "release_date": "20260507",
@@ -7287,7 +7287,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.79858,
       "observation_date": "20260509",
       "release_date": "20260509",
@@ -7297,7 +7297,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.79124,
       "observation_date": "20260510",
       "release_date": "20260510",
@@ -7307,7 +7307,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.78924,
       "observation_date": "20260511",
       "release_date": "20260511",
@@ -7317,7 +7317,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.78672,
       "observation_date": "20260512",
       "release_date": "20260512",
@@ -7327,7 +7327,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.78525,
       "observation_date": "20260513",
       "release_date": "20260513",
@@ -7337,7 +7337,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.81349,
       "observation_date": "20260514",
       "release_date": "20260514",
@@ -7347,7 +7347,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.80883,
       "observation_date": "20260516",
       "release_date": "20260516",
@@ -7357,7 +7357,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.79897,
       "observation_date": "20260517",
       "release_date": "20260517",
@@ -7367,7 +7367,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.8158,
       "observation_date": "20260518",
       "release_date": "20260518",
@@ -7377,7 +7377,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.80154,
       "observation_date": "20260519",
       "release_date": "20260519",
@@ -7387,7 +7387,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.79961,
       "observation_date": "20260520",
       "release_date": "20260520",
@@ -7397,7 +7397,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.79699,
       "observation_date": "20260521",
       "release_date": "20260521",
@@ -7407,7 +7407,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.78779,
       "observation_date": "20260523",
       "release_date": "20260523",
@@ -7417,7 +7417,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.7827,
       "observation_date": "20260524",
       "release_date": "20260524",
@@ -7427,7 +7427,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.78483,
       "observation_date": "20260525",
       "release_date": "20260525",
@@ -7437,7 +7437,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.77859,
       "observation_date": "20260526",
       "release_date": "20260526",
@@ -7447,7 +7447,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.76903,
       "observation_date": "20260527",
       "release_date": "20260527",
@@ -7457,7 +7457,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.76331,
       "observation_date": "20260528",
       "release_date": "20260528",
@@ -7467,7 +7467,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.75911,
       "observation_date": "20260530",
       "release_date": "20260530",
@@ -7477,7 +7477,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.76451,
       "observation_date": "20260531",
       "release_date": "20260531",
@@ -7487,7 +7487,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.76137,
       "observation_date": "20260601",
       "release_date": "20260601",
@@ -7497,7 +7497,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.7799,
       "observation_date": "20260602",
       "release_date": "20260602",
@@ -7507,7 +7507,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.77629,
       "observation_date": "20260603",
       "release_date": "20260603",
@@ -7517,7 +7517,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.78974,
       "observation_date": "20260604",
       "release_date": "20260604",
@@ -7527,7 +7527,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.78605,
       "observation_date": "20260606",
       "release_date": "20260606",
@@ -7537,7 +7537,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.78342,
       "observation_date": "20260607",
       "release_date": "20260607",
@@ -7547,7 +7547,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.77779,
       "observation_date": "20260608",
       "release_date": "20260608",
@@ -7557,7 +7557,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.7817,
       "observation_date": "20260609",
       "release_date": "20260609",
@@ -7567,7 +7567,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.7628,
       "observation_date": "20260610",
       "release_date": "20260610",
@@ -7577,7 +7577,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.76173,
       "observation_date": "20260611",
       "release_date": "20260611",
@@ -7587,7 +7587,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.76059,
       "observation_date": "20260613",
       "release_date": "20260613",
@@ -7597,7 +7597,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.75879,
       "observation_date": "20260614",
       "release_date": "20260614",
@@ -7607,7 +7607,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.75604,
       "observation_date": "20260615",
       "release_date": "20260615",
@@ -7617,7 +7617,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.77543,
       "observation_date": "20260616",
       "release_date": "20260616",
@@ -7627,7 +7627,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.77778,
       "observation_date": "20260617",
       "release_date": "20260617",
@@ -7637,7 +7637,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.77853,
       "observation_date": "20260618",
       "release_date": "20260618",
@@ -7647,7 +7647,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.77982,
       "observation_date": "20260620",
       "release_date": "20260620",
@@ -7657,7 +7657,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.7777,
       "observation_date": "20260621",
       "release_date": "20260621",
@@ -7667,7 +7667,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.79442,
       "observation_date": "20260622",
       "release_date": "20260622",
@@ -7677,7 +7677,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.8127,
       "observation_date": "20260623",
       "release_date": "20260623",
@@ -7687,7 +7687,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.80091,
       "observation_date": "20260624",
       "release_date": "20260624",
@@ -7697,7 +7697,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.80295,
       "observation_date": "20260625",
       "release_date": "20260625",
@@ -7707,7 +7707,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.79672,
       "observation_date": "20260627",
       "release_date": "20260627",
@@ -7717,7 +7717,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.80022,
       "observation_date": "20260628",
       "release_date": "20260628",
@@ -7727,7 +7727,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.79119,
       "observation_date": "20260629",
       "release_date": "20260629",
@@ -7737,7 +7737,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.79361,
       "observation_date": "20260630",
       "release_date": "20260630",
@@ -7747,7 +7747,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.78844,
       "observation_date": "20260701",
       "release_date": "20260701",
@@ -7757,7 +7757,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.78374,
       "observation_date": "20260702",
       "release_date": "20260702",
@@ -7767,7 +7767,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.78096,
       "observation_date": "20260704",
       "release_date": "20260704",
@@ -7777,7 +7777,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.79393,
       "observation_date": "20260705",
       "release_date": "20260705",
@@ -7787,7 +7787,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.80161,
       "observation_date": "20260706",
       "release_date": "20260706",
@@ -7797,7 +7797,7 @@
       "quality_status": "estimated"
     },
     {
-      "indicator": "USD_CNY",
+      "indicator": "USD_CNH_offshore",
       "value": 6.80395,
       "observation_date": "20260707",
       "release_date": "20260707",

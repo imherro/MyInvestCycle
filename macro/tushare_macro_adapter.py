@@ -298,7 +298,7 @@ FETCHERS: dict[str, Callable[[str, IndicatorDefinition, str | int, str | int], l
     "SHIBOR": _fetch_shibor,
     "CN10Y": _fetch_cn10y,
     "US10Y": _fetch_us10y,
-    "USD_CNY": _fetch_usd_cny_proxy,
+    "USD_CNH_offshore": _fetch_usd_cny_proxy,
 }
 
 

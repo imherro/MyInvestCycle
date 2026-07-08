@@ -156,15 +156,15 @@ INDICATOR_DEFINITIONS: dict[str, IndicatorDefinition] = {
         source_detail="us_tycr.y10",
         value_field="y10",
     ),
-    "USD_CNY": IndicatorDefinition(
-        name="USD_CNY",
+    "USD_CNH_offshore": IndicatorDefinition(
+        name="USD_CNH_offshore",
         category="external",
         frequency="daily",
         source="tushare",
         release_lag_days=0,
         importance="medium",
         fallback_policy="USDCNH.FXCM_offshore_proxy",
-        description="USD/CNY pressure proxy. Current adapter uses offshore USDCNH because onshore USDCNY returned no rows.",
+        description="Offshore USD/CNH exchange rate used as external RMB pressure proxy.",
         source_detail="fx_daily.USDCNH.FXCM.bid_close",
         value_field="bid_close",
     ),

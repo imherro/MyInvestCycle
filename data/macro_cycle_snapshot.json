@@ -1,0 +1,287 @@
+{
+  "engine": "V2.2.1 Macro Cycle Engine Core",
+  "as_of": "20260708",
+  "generated_at": "2026-07-08T05:59:29+00:00",
+  "macro_state": "RECOVERY",
+  "macro_score": 73.3665,
+  "confidence": 0.7639,
+  "components": {
+    "valuation": {
+      "score": null,
+      "available_weight": 0.0,
+      "used_indicators": [],
+      "missing_indicators": [
+        "PE_percentile",
+        "PB_percentile",
+        "ERP"
+      ]
+    },
+    "credit": {
+      "score": 84.6846,
+      "available_weight": 2.4000000000000004,
+      "used_indicators": [
+        "M1_growth",
+        "M2_growth",
+        "social_financing_growth"
+      ],
+      "missing_indicators": []
+    },
+    "economy": {
+      "score": 60.6349,
+      "available_weight": 2.4000000000000004,
+      "used_indicators": [
+        "PMI",
+        "CPI",
+        "PPI"
+      ],
+      "missing_indicators": []
+    },
+    "external": {
+      "score": 69.121,
+      "available_weight": 1.8,
+      "used_indicators": [
+        "US10Y",
+        "USD_CNH_offshore"
+      ],
+      "missing_indicators": []
+    }
+  },
+  "indicator_scores": {
+    "M1_growth": {
+      "indicator": "M1_growth",
+      "score": 89.0,
+      "value": 5.5,
+      "quality_weight": 0.8,
+      "observation_date": "20260531",
+      "release_date": "20260615",
+      "effective_date": "20260615",
+      "quality_status": "estimated",
+      "source": "tushare:cn_m.m1_yoy",
+      "explanation": "Higher M1 growth indicates improving transaction liquidity."
+    },
+    "M2_growth": {
+      "indicator": "M2_growth",
+      "score": 94.2857,
+      "value": 8.6,
+      "quality_weight": 0.8,
+      "observation_date": "20260531",
+      "release_date": "20260615",
+      "effective_date": "20260615",
+      "quality_status": "estimated",
+      "source": "tushare:cn_m.m2_yoy",
+      "explanation": "Moderate M2 growth supports liquidity without overheating."
+    },
+    "social_financing_growth": {
+      "indicator": "social_financing_growth",
+      "score": 70.768,
+      "value": 7.661442,
+      "quality_weight": 0.8,
+      "observation_date": "20260531",
+      "release_date": "20260615",
+      "effective_date": "20260615",
+      "quality_status": "estimated",
+      "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year",
+      "explanation": "Social financing stock growth measures broad credit expansion."
+    },
+    "new_loans": {
+      "indicator": "new_loans",
+      "score": null,
+      "value": null,
+      "quality_weight": 0.0,
+      "observation_date": null,
+      "release_date": null,
+      "effective_date": null,
+      "quality_status": "missing",
+      "source": null,
+      "explanation": "No available time-safe record."
+    },
+    "PMI": {
+      "indicator": "PMI",
+      "score": 50.0,
+      "value": 50.0,
+      "quality_weight": 0.8,
+      "observation_date": "20260531",
+      "release_date": "20260601",
+      "effective_date": "20260601",
+      "quality_status": "estimated",
+      "source": "tushare:cn_pmi.PMI010000",
+      "explanation": "PMI above 50 indicates economic expansion."
+    },
+    "CPI": {
+      "indicator": "CPI",
+      "score": 73.3333,
+      "value": 1.2,
+      "quality_weight": 0.8,
+      "observation_date": "20260531",
+      "release_date": "20260610",
+      "effective_date": "20260610",
+      "quality_status": "estimated",
+      "source": "tushare:cn_cpi.nt_yoy",
+      "explanation": "Moderate CPI is preferred; deflation or high inflation is penalized."
+    },
+    "PPI": {
+      "indicator": "PPI",
+      "score": 58.5714,
+      "value": 3.9,
+      "quality_weight": 0.8,
+      "observation_date": "20260531",
+      "release_date": "20260610",
+      "effective_date": "20260610",
+      "quality_status": "estimated",
+      "source": "tushare:cn_ppi.ppi_yoy",
+      "explanation": "PPI near mild positive growth indicates healthier industrial pricing."
+    },
+    "SHIBOR": {
+      "indicator": "SHIBOR",
+      "score": null,
+      "value": 1.4312,
+      "quality_weight": 0.0,
+      "observation_date": "20260708",
+      "release_date": "20260708",
+      "effective_date": "20260708",
+      "quality_status": "valid",
+      "source": "tushare:shibor.3m",
+      "explanation": "No scoring rule or usable value."
+    },
+    "CN10Y": {
+      "indicator": "CN10Y",
+      "score": null,
+      "value": null,
+      "quality_weight": 0.0,
+      "observation_date": null,
+      "release_date": null,
+      "effective_date": null,
+      "quality_status": "missing",
+      "source": null,
+      "explanation": "No available time-safe record."
+    },
+    "US10Y": {
+      "indicator": "US10Y",
+      "score": 55.36,
+      "value": 4.48,
+      "quality_weight": 1.0,
+      "observation_date": "20260706",
+      "release_date": "20260706",
+      "effective_date": "20260706",
+      "quality_status": "valid",
+      "source": "tushare:us_tycr.y10",
+      "explanation": "Higher US 10Y yield increases external discount-rate pressure."
+    },
+    "USD_CNH_offshore": {
+      "indicator": "USD_CNH_offshore",
+      "score": 86.3222,
+      "value": 6.80395,
+      "quality_weight": 0.8,
+      "observation_date": "20260707",
+      "release_date": "20260707",
+      "effective_date": "20260707",
+      "quality_status": "estimated",
+      "source": "tushare:fx_daily.USDCNH.FXCM.bid_close:offshore_proxy",
+      "explanation": "Higher offshore USD/CNH indicates RMB depreciation pressure."
+    }
+  },
+  "data_quality": {
+    "total_indicators": 11,
+    "used_indicators": 8,
+    "used_indicator_names": [
+      "CPI",
+      "M1_growth",
+      "M2_growth",
+      "PMI",
+      "PPI",
+      "US10Y",
+      "USD_CNH_offshore",
+      "social_financing_growth"
+    ],
+    "missing_indicators": [
+      "ERP",
+      "PB_percentile",
+      "PE_percentile"
+    ],
+    "registered_available_but_unscored": [
+      "SHIBOR"
+    ],
+    "registered_missing_but_unscored": [
+      "CN10Y",
+      "new_loans"
+    ],
+    "coverage_ratio": 0.727273,
+    "estimated_ratio": 0.875,
+    "valid_ratio": 0.125,
+    "quality_ratio": 0.825,
+    "latest_records": {
+      "M1_growth": {
+        "observation_date": "20260531",
+        "release_date": "20260615",
+        "effective_date": "20260615",
+        "quality_status": "estimated",
+        "source": "tushare:cn_m.m1_yoy"
+      },
+      "M2_growth": {
+        "observation_date": "20260531",
+        "release_date": "20260615",
+        "effective_date": "20260615",
+        "quality_status": "estimated",
+        "source": "tushare:cn_m.m2_yoy"
+      },
+      "social_financing_growth": {
+        "observation_date": "20260531",
+        "release_date": "20260615",
+        "effective_date": "20260615",
+        "quality_status": "estimated",
+        "source": "tushare:sf_month.stk_endval; YoY computed from same month previous year"
+      },
+      "PMI": {
+        "observation_date": "20260531",
+        "release_date": "20260601",
+        "effective_date": "20260601",
+        "quality_status": "estimated",
+        "source": "tushare:cn_pmi.PMI010000"
+      },
+      "CPI": {
+        "observation_date": "20260531",
+        "release_date": "20260610",
+        "effective_date": "20260610",
+        "quality_status": "estimated",
+        "source": "tushare:cn_cpi.nt_yoy"
+      },
+      "PPI": {
+        "observation_date": "20260531",
+        "release_date": "20260610",
+        "effective_date": "20260610",
+        "quality_status": "estimated",
+        "source": "tushare:cn_ppi.ppi_yoy"
+      },
+      "US10Y": {
+        "observation_date": "20260706",
+        "release_date": "20260706",
+        "effective_date": "20260706",
+        "quality_status": "valid",
+        "source": "tushare:us_tycr.y10"
+      },
+      "USD_CNH_offshore": {
+        "observation_date": "20260707",
+        "release_date": "20260707",
+        "effective_date": "20260707",
+        "quality_status": "estimated",
+        "source": "tushare:fx_daily.USDCNH.FXCM.bid_close:offshore_proxy"
+      }
+    }
+  },
+  "explanation": [
+    "macro_state=RECOVERY, macro_score=73.4.",
+    "valuation: missing, weight redistributed.",
+    "credit: supportive (84.7).",
+    "economy: neutral (60.6).",
+    "external: neutral (69.1).",
+    "Missing indicators reduce confidence: ERP, PB_percentile, PE_percentile.",
+    "Estimated release dates/proxy records ratio: 87.5%."
+  ],
+  "constraints": {
+    "no_position_sizing": true,
+    "no_etf_allocation": true,
+    "no_trade_signal": true,
+    "no_backtest": true,
+    "uses_macro_data_foundation_only": true
+  }
+}
