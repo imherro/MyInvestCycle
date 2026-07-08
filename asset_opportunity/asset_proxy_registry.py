@@ -8,7 +8,7 @@ from typing import Mapping
 
 from asset_opportunity.asset_proxy_schema import AssetProxyRecord, ResearchProxy
 from asset_opportunity.asset_registry import DEFAULT_REGISTRY_PATH, read_asset_registry
-from config import DATA_DIR
+from config import BASE_DIR, DATA_DIR
 
 
 DEFAULT_PROXY_REGISTRY_PATH = DATA_DIR / "asset_proxy_registry.json"
@@ -26,6 +26,14 @@ PROXY_MAP: dict[str, ResearchProxy] = {
     "515000.SH": ResearchProxy("801750.SI", "计算机", "index", "Tushare index_daily SW2021 L1"),
     "588000.SH": ResearchProxy("801080.SI", "电子", "index", "Tushare index_daily SW2021 L1"),
 }
+
+
+def _project_path(path: str | Path) -> str:
+    resolved = Path(path).resolve()
+    try:
+        return resolved.relative_to(BASE_DIR).as_posix()
+    except ValueError:
+        return resolved.as_posix()
 
 
 def _record_for_asset(asset) -> AssetProxyRecord:
@@ -65,7 +73,7 @@ def build_asset_proxy_registry(
         "metadata": {
             "engine": "V3.1.2 Asset Research Proxy Layer",
             "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-            "asset_registry": str(asset_registry_path),
+            "asset_registry": _project_path(asset_registry_path),
             "ETF_assets": len([asset for asset in assets if asset.enabled]),
             "with_proxy": len(with_proxy),
             "proxy_count": len(set(proxy_codes)),

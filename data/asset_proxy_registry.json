@@ -1,8 +1,8 @@
 {
   "metadata": {
     "engine": "V3.1.2 Asset Research Proxy Layer",
-    "generated_at": "2026-07-08T09:46:54+00:00",
-    "asset_registry": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\asset_registry.json",
+    "generated_at": "2026-07-08T09:54:04+00:00",
+    "asset_registry": "data/asset_registry.json",
     "ETF_assets": 17,
     "with_proxy": 10,
     "proxy_count": 8,

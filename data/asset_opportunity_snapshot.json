@@ -1,0 +1,1143 @@
+{
+  "metadata": {
+    "engine": "V3.2.1 Asset Opportunity Score Engine",
+    "requested_as_of": "20260708",
+    "as_of": "20260625",
+    "generated_at": "2026-07-08T09:54:46+00:00",
+    "asset_count": 17,
+    "benchmark": "510300.SH",
+    "formula": {
+      "strength": {
+        "momentum": 0.35,
+        "relative_strength": 0.25,
+        "trend_quality": 0.2,
+        "risk_adjusted": 0.1,
+        "persistence": 0.1
+      },
+      "score": "strength - extension_penalty - crowding_penalty",
+      "fixed_parameters": true,
+      "no_parameter_optimization": true
+    },
+    "purpose": "Asset opportunity scoring and ranking only; no allocation, no position sizing, no backtest."
+  },
+  "summary": {
+    "top_assets": [
+      {
+        "rank": 1,
+        "code": "510500.SH",
+        "name": "中证500ETF",
+        "score": 65.0221
+      },
+      {
+        "rank": 2,
+        "code": "510050.SH",
+        "name": "上证50ETF",
+        "score": 64.2068
+      },
+      {
+        "rank": 3,
+        "code": "159915.SZ",
+        "name": "创业板ETF",
+        "score": 64.1139
+      },
+      {
+        "rank": 4,
+        "code": "512100.SH",
+        "name": "中证1000ETF",
+        "score": 60.045
+      },
+      {
+        "rank": 5,
+        "code": "510300.SH",
+        "name": "沪深300ETF",
+        "score": 54.8171
+      }
+    ],
+    "source_methods": {
+      "direct_etf_history_only": 7,
+      "research_only": 10
+    },
+    "proxy_usage_ratio": 0.5882,
+    "theme_risk_as_of": "20260625",
+    "theme_risk_level": "medium"
+  },
+  "assets": [
+    {
+      "code": "510500.SH",
+      "name": "中证500ETF",
+      "category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": {
+        "code": "510500.SH",
+        "name": "中证500ETF",
+        "type": "etf",
+        "method": "direct_etf_history_only",
+        "research_only": false
+      },
+      "score": 65.0221,
+      "strength": 83.0221,
+      "components": {
+        "momentum": 81.25,
+        "relative_strength": 81.25,
+        "trend_quality": 100.0,
+        "risk_adjusted": 81.25,
+        "persistence": 61.4706
+      },
+      "penalty": {
+        "extension": 18.0,
+        "crowding": 0.0
+      },
+      "metrics": {
+        "code": "510500.SH",
+        "as_of": "20260625",
+        "rows": 2785,
+        "return_20d": 0.054678,
+        "return_60d": 0.17987,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": 0.055093,
+        "volatility_60d": 0.016066,
+        "risk_adjusted_raw": 11.195845,
+        "price_percentile_252": 1.0,
+        "deviation_ma120": 0.093313,
+        "trend": {
+          "score": 100.0,
+          "close": 9.085,
+          "ma60": 8.410467,
+          "ma120": 8.309608,
+          "ma250": 7.551208,
+          "above_ma60": true,
+          "above_ma120": true,
+          "above_ma250": true
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": false
+      },
+      "explanation": [
+        "机会分 65.0221，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 5.47%，60日收益 17.99%，相对沪深300 5.51%。",
+        "组件分：动量 81.25，相对强度 81.25，趋势 100.0，风险调整 81.25，持续性 61.4706。",
+        "惩罚项：涨幅/位置过热 18.0，主题拥挤 0.0；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 1
+    },
+    {
+      "code": "510050.SH",
+      "name": "上证50ETF",
+      "category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": {
+        "code": "510050.SH",
+        "name": "上证50ETF",
+        "type": "etf",
+        "method": "direct_etf_history_only",
+        "research_only": false
+      },
+      "score": 64.2068,
+      "strength": 64.2068,
+      "components": {
+        "momentum": 59.6875,
+        "relative_strength": 62.5,
+        "trend_quality": 90.0,
+        "risk_adjusted": 62.5,
+        "persistence": 34.4118
+      },
+      "penalty": {
+        "extension": 0.0,
+        "crowding": 0.0
+      },
+      "metrics": {
+        "code": "510050.SH",
+        "as_of": "20260625",
+        "rows": 1857,
+        "return_20d": 0.016955,
+        "return_60d": 0.05592,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": -0.068857,
+        "volatility_60d": 0.010205,
+        "risk_adjusted_raw": 5.479524,
+        "price_percentile_252": 0.488095,
+        "deviation_ma120": 0.001864,
+        "trend": {
+          "score": 90.0,
+          "close": 3.059,
+          "ma60": 3.0013,
+          "ma120": 3.053308,
+          "ma250": 3.03994,
+          "above_ma60": true,
+          "above_ma120": true,
+          "above_ma250": true
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": false
+      },
+      "explanation": [
+        "机会分 64.2068，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 1.70%，60日收益 5.59%，相对沪深300 -6.89%。",
+        "组件分：动量 59.6875，相对强度 62.5，趋势 90.0，风险调整 62.5，持续性 34.4118。",
+        "惩罚项：涨幅/位置过热 0.0，主题拥挤 0.0；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 2
+    },
+    {
+      "code": "159915.SZ",
+      "name": "创业板ETF",
+      "category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": {
+        "code": "159915.SZ",
+        "name": "创业板ETF",
+        "type": "etf",
+        "method": "direct_etf_history_only",
+        "research_only": false
+      },
+      "score": 64.1139,
+      "strength": 89.9069,
+      "components": {
+        "momentum": 87.5,
+        "relative_strength": 87.5,
+        "trend_quality": 100.0,
+        "risk_adjusted": 87.5,
+        "persistence": 86.5686
+      },
+      "penalty": {
+        "extension": 25.793,
+        "crowding": 0.0
+      },
+      "metrics": {
+        "code": "159915.SZ",
+        "as_of": "20260625",
+        "rows": 1856,
+        "return_20d": 0.08358,
+        "return_60d": 0.34692,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": 0.222143,
+        "volatility_60d": 0.0218,
+        "risk_adjusted_raw": 15.91362,
+        "price_percentile_252": 1.0,
+        "deviation_ma120": 0.240489,
+        "trend": {
+          "score": 100.0,
+          "close": 4.395,
+          "ma60": 3.8027,
+          "ma120": 3.542958,
+          "ma250": 3.129272,
+          "above_ma60": true,
+          "above_ma120": true,
+          "above_ma250": true
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": false
+      },
+      "explanation": [
+        "机会分 64.1139，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 8.36%，60日收益 34.69%，相对沪深300 22.21%。",
+        "组件分：动量 87.5，相对强度 87.5，趋势 100.0，风险调整 87.5，持续性 86.5686。",
+        "惩罚项：涨幅/位置过热 25.793，主题拥挤 0.0；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 3
+    },
+    {
+      "code": "512100.SH",
+      "name": "中证1000ETF",
+      "category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": {
+        "code": "512100.SH",
+        "name": "中证1000ETF",
+        "type": "etf",
+        "method": "direct_etf_history_only",
+        "research_only": false
+      },
+      "score": 60.045,
+      "strength": 78.045,
+      "components": {
+        "momentum": 72.1875,
+        "relative_strength": 75.0,
+        "trend_quality": 100.0,
+        "risk_adjusted": 75.0,
+        "persistence": 65.2941
+      },
+      "penalty": {
+        "extension": 18.0,
+        "crowding": 0.0
+      },
+      "metrics": {
+        "code": "512100.SH",
+        "as_of": "20260625",
+        "rows": 1856,
+        "return_20d": 0.038406,
+        "return_60d": 0.167484,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": 0.042707,
+        "volatility_60d": 0.015408,
+        "risk_adjusted_raw": 10.870243,
+        "price_percentile_252": 0.992063,
+        "deviation_ma120": 0.078248,
+        "trend": {
+          "score": 100.0,
+          "close": 3.569,
+          "ma60": 3.367783,
+          "ma120": 3.31,
+          "ma250": 3.07944,
+          "above_ma60": true,
+          "above_ma120": true,
+          "above_ma250": true
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": false
+      },
+      "explanation": [
+        "机会分 60.045，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 3.84%，60日收益 16.75%，相对沪深300 4.27%。",
+        "组件分：动量 72.1875，相对强度 75.0，趋势 100.0，风险调整 75.0，持续性 65.2941。",
+        "惩罚项：涨幅/位置过热 18.0，主题拥挤 0.0；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 4
+    },
+    {
+      "code": "510300.SH",
+      "name": "沪深300ETF",
+      "category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": {
+        "code": "510300.SH",
+        "name": "沪深300ETF",
+        "type": "etf",
+        "method": "direct_etf_history_only",
+        "research_only": false
+      },
+      "score": 54.8171,
+      "strength": 72.8171,
+      "components": {
+        "momentum": 65.9375,
+        "relative_strength": 68.75,
+        "trend_quality": 100.0,
+        "risk_adjusted": 68.75,
+        "persistence": 56.7647
+      },
+      "penalty": {
+        "extension": 18.0,
+        "crowding": 0.0
+      },
+      "metrics": {
+        "code": "510300.SH",
+        "as_of": "20260625",
+        "rows": 2787,
+        "return_20d": 0.02352,
+        "return_60d": 0.124777,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": 0.0,
+        "volatility_60d": 0.011645,
+        "risk_adjusted_raw": 10.714968,
+        "price_percentile_252": 0.996032,
+        "deviation_ma120": 0.059712,
+        "trend": {
+          "score": 100.0,
+          "close": 5.048,
+          "ma60": 4.809483,
+          "ma120": 4.763558,
+          "ma250": 4.605884,
+          "above_ma60": true,
+          "above_ma120": true,
+          "above_ma250": true
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": false
+      },
+      "explanation": [
+        "机会分 54.8171，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 2.35%，60日收益 12.48%，相对沪深300 0.00%。",
+        "组件分：动量 65.9375，相对强度 68.75，趋势 100.0，风险调整 68.75，持续性 56.7647。",
+        "惩罚项：涨幅/位置过热 18.0，主题拥挤 0.0；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 5
+    },
+    {
+      "code": "588000.SH",
+      "name": "科创50ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": {
+        "code": "801080.SI",
+        "name": "电子",
+        "type": "index",
+        "method": "research_only",
+        "research_only": true
+      },
+      "score": 51.5849,
+      "strength": 96.4399,
+      "components": {
+        "momentum": 96.875,
+        "relative_strength": 96.875,
+        "trend_quality": 100.0,
+        "risk_adjusted": 96.875,
+        "persistence": 86.2745
+      },
+      "penalty": {
+        "extension": 30.0,
+        "crowding": 14.855
+      },
+      "metrics": {
+        "code": "588000.SH",
+        "as_of": "20260625",
+        "rows": 2787,
+        "return_20d": 0.193961,
+        "return_60d": 0.792527,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": 0.66775,
+        "volatility_60d": 0.027358,
+        "risk_adjusted_raw": 28.969288,
+        "price_percentile_252": 1.0,
+        "deviation_ma120": 0.496125,
+        "trend": {
+          "score": 100.0,
+          "close": 11739.62,
+          "ma60": 8694.873833,
+          "ma120": 7846.6844,
+          "ma250": 6756.105524,
+          "above_ma60": true,
+          "above_ma120": true,
+          "above_ma250": true
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": true
+      },
+      "explanation": [
+        "机会分 51.5849，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 19.40%，60日收益 79.25%，相对沪深300 66.77%。",
+        "组件分：动量 96.875，相对强度 96.875，趋势 100.0，风险调整 96.875，持续性 86.2745。",
+        "惩罚项：涨幅/位置过热 30.0，主题拥挤 14.855；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 6
+    },
+    {
+      "code": "512480.SH",
+      "name": "半导体ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": {
+        "code": "801080.SI",
+        "name": "电子",
+        "type": "index",
+        "method": "research_only",
+        "research_only": true
+      },
+      "score": 51.5849,
+      "strength": 96.4399,
+      "components": {
+        "momentum": 96.875,
+        "relative_strength": 96.875,
+        "trend_quality": 100.0,
+        "risk_adjusted": 96.875,
+        "persistence": 86.2745
+      },
+      "penalty": {
+        "extension": 30.0,
+        "crowding": 14.855
+      },
+      "metrics": {
+        "code": "512480.SH",
+        "as_of": "20260625",
+        "rows": 2787,
+        "return_20d": 0.193961,
+        "return_60d": 0.792527,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": 0.66775,
+        "volatility_60d": 0.027358,
+        "risk_adjusted_raw": 28.969288,
+        "price_percentile_252": 1.0,
+        "deviation_ma120": 0.496125,
+        "trend": {
+          "score": 100.0,
+          "close": 11739.62,
+          "ma60": 8694.873833,
+          "ma120": 7846.6844,
+          "ma250": 6756.105524,
+          "above_ma60": true,
+          "above_ma120": true,
+          "above_ma250": true
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": true
+      },
+      "explanation": [
+        "机会分 51.5849，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 19.40%，60日收益 79.25%，相对沪深300 66.77%。",
+        "组件分：动量 96.875，相对强度 96.875，趋势 100.0，风险调整 96.875，持续性 86.2745。",
+        "惩罚项：涨幅/位置过热 30.0，主题拥挤 14.855；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 7
+    },
+    {
+      "code": "512000.SH",
+      "name": "证券ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": {
+        "code": "801790.SI",
+        "name": "非银金融",
+        "type": "index",
+        "method": "research_only",
+        "research_only": true
+      },
+      "score": 45.1558,
+      "strength": 49.7301,
+      "components": {
+        "momentum": 64.6875,
+        "relative_strength": 56.25,
+        "trend_quality": 30.0,
+        "risk_adjusted": 56.25,
+        "persistence": 14.0196
+      },
+      "penalty": {
+        "extension": 0.0,
+        "crowding": 4.5743
+      },
+      "metrics": {
+        "code": "512000.SH",
+        "as_of": "20260625",
+        "rows": 2787,
+        "return_20d": 0.042966,
+        "return_60d": 0.020225,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": -0.104552,
+        "volatility_60d": 0.016422,
+        "risk_adjusted_raw": 1.231551,
+        "price_percentile_252": 0.18254,
+        "deviation_ma120": -0.047119,
+        "trend": {
+          "score": 30.0,
+          "close": 1793.755,
+          "ma60": 1765.286767,
+          "ma120": 1882.455008,
+          "ma250": 1931.094496,
+          "above_ma60": true,
+          "above_ma120": false,
+          "above_ma250": false
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": true
+      },
+      "explanation": [
+        "机会分 45.1558，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 4.30%，60日收益 2.02%，相对沪深300 -10.46%。",
+        "组件分：动量 64.6875，相对强度 56.25，趋势 30.0，风险调整 56.25，持续性 14.0196。",
+        "惩罚项：涨幅/位置过热 0.0，主题拥挤 4.5743；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 8
+    },
+    {
+      "code": "516160.SH",
+      "name": "新能源ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": {
+        "code": "801730.SI",
+        "name": "电力设备",
+        "type": "index",
+        "method": "research_only",
+        "research_only": true
+      },
+      "score": 36.9937,
+      "strength": 43.4887,
+      "components": {
+        "momentum": 32.8125,
+        "relative_strength": 46.875,
+        "trend_quality": 40.0,
+        "risk_adjusted": 46.875,
+        "persistence": 75.9804
+      },
+      "penalty": {
+        "extension": 0.0,
+        "crowding": 6.495
+      },
+      "metrics": {
+        "code": "516160.SH",
+        "as_of": "20260625",
+        "rows": 2787,
+        "return_20d": -0.063194,
+        "return_60d": -0.014306,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": -0.139084,
+        "volatility_60d": 0.019076,
+        "risk_adjusted_raw": -0.749956,
+        "price_percentile_252": 0.722222,
+        "deviation_ma120": -0.011888,
+        "trend": {
+          "score": 40.0,
+          "close": 10949.34,
+          "ma60": 11335.459667,
+          "ma120": 11081.066333,
+          "ma250": 9905.49674,
+          "above_ma60": false,
+          "above_ma120": false,
+          "above_ma250": true
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": true
+      },
+      "explanation": [
+        "机会分 36.9937，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 -6.32%，60日收益 -1.43%，相对沪深300 -13.91%。",
+        "组件分：动量 32.8125，相对强度 46.875，趋势 40.0，风险调整 46.875，持续性 75.9804。",
+        "惩罚项：涨幅/位置过热 0.0，主题拥挤 6.495；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 9
+    },
+    {
+      "code": "515790.SH",
+      "name": "光伏ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": {
+        "code": "801730.SI",
+        "name": "电力设备",
+        "type": "index",
+        "method": "research_only",
+        "research_only": true
+      },
+      "score": 36.9937,
+      "strength": 43.4887,
+      "components": {
+        "momentum": 32.8125,
+        "relative_strength": 46.875,
+        "trend_quality": 40.0,
+        "risk_adjusted": 46.875,
+        "persistence": 75.9804
+      },
+      "penalty": {
+        "extension": 0.0,
+        "crowding": 6.495
+      },
+      "metrics": {
+        "code": "515790.SH",
+        "as_of": "20260625",
+        "rows": 2787,
+        "return_20d": -0.063194,
+        "return_60d": -0.014306,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": -0.139084,
+        "volatility_60d": 0.019076,
+        "risk_adjusted_raw": -0.749956,
+        "price_percentile_252": 0.722222,
+        "deviation_ma120": -0.011888,
+        "trend": {
+          "score": 40.0,
+          "close": 10949.34,
+          "ma60": 11335.459667,
+          "ma120": 11081.066333,
+          "ma250": 9905.49674,
+          "above_ma60": false,
+          "above_ma120": false,
+          "above_ma250": true
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": true
+      },
+      "explanation": [
+        "机会分 36.9937，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 -6.32%，60日收益 -1.43%，相对沪深300 -13.91%。",
+        "组件分：动量 32.8125，相对强度 46.875，趋势 40.0，风险调整 46.875，持续性 75.9804。",
+        "惩罚项：涨幅/位置过热 0.0，主题拥挤 6.495；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 10
+    },
+    {
+      "code": "512660.SH",
+      "name": "军工ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": {
+        "code": "801740.SI",
+        "name": "国防军工",
+        "type": "index",
+        "method": "research_only",
+        "research_only": true
+      },
+      "score": 25.0635,
+      "strength": 27.9185,
+      "components": {
+        "momentum": 31.875,
+        "relative_strength": 37.5,
+        "trend_quality": 5.0,
+        "risk_adjusted": 37.5,
+        "persistence": 26.3725
+      },
+      "penalty": {
+        "extension": 0.0,
+        "crowding": 2.855
+      },
+      "metrics": {
+        "code": "512660.SH",
+        "as_of": "20260625",
+        "rows": 2787,
+        "return_20d": -0.055966,
+        "return_60d": -0.015305,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": -0.140082,
+        "volatility_60d": 0.017678,
+        "risk_adjusted_raw": -0.865788,
+        "price_percentile_252": 0.511905,
+        "deviation_ma120": -0.097464,
+        "trend": {
+          "score": 5.0,
+          "close": 1810.468,
+          "ma60": 1933.318917,
+          "ma120": 2005.979025,
+          "ma250": 1852.652292,
+          "above_ma60": false,
+          "above_ma120": false,
+          "above_ma250": false
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": true
+      },
+      "explanation": [
+        "机会分 25.0635，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 -5.60%，60日收益 -1.53%，相对沪深300 -14.01%。",
+        "组件分：动量 31.875，相对强度 37.5，趋势 5.0，风险调整 37.5，持续性 26.3725。",
+        "惩罚项：涨幅/位置过热 0.0，主题拥挤 2.855；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 11
+    },
+    {
+      "code": "512800.SH",
+      "name": "银行ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": {
+        "code": "801780.SI",
+        "name": "银行",
+        "type": "index",
+        "method": "research_only",
+        "research_only": true
+      },
+      "score": 22.9869,
+      "strength": 25.8419,
+      "components": {
+        "momentum": 36.25,
+        "relative_strength": 25.0,
+        "trend_quality": 0.0,
+        "risk_adjusted": 18.75,
+        "persistence": 50.2941
+      },
+      "penalty": {
+        "extension": 0.0,
+        "crowding": 2.855
+      },
+      "metrics": {
+        "code": "512800.SH",
+        "as_of": "20260625",
+        "rows": 2787,
+        "return_20d": -0.023745,
+        "return_60d": -0.057409,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": -0.182186,
+        "volatility_60d": 0.008929,
+        "risk_adjusted_raw": -6.429332,
+        "price_percentile_252": 0.003968,
+        "deviation_ma120": -0.051736,
+        "trend": {
+          "score": 0.0,
+          "close": 3777.728,
+          "ma60": 3968.7775,
+          "ma120": 3983.837125,
+          "ma250": 4145.73894,
+          "above_ma60": false,
+          "above_ma120": false,
+          "above_ma250": false
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": true
+      },
+      "explanation": [
+        "机会分 22.9869，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 -2.37%，60日收益 -5.74%，相对沪深300 -18.22%。",
+        "组件分：动量 36.25，相对强度 25.0，趋势 0.0，风险调整 18.75，持续性 50.2941。",
+        "惩罚项：涨幅/位置过热 0.0，主题拥挤 2.855；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 12
+    },
+    {
+      "code": "510880.SH",
+      "name": "红利ETF",
+      "category": "style",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": {
+        "code": "510880.SH",
+        "name": "红利ETF",
+        "type": "etf",
+        "method": "direct_etf_history_only",
+        "research_only": false
+      },
+      "score": 21.5797,
+      "strength": 21.5797,
+      "components": {
+        "momentum": 23.75,
+        "relative_strength": 12.5,
+        "trend_quality": 15.0,
+        "risk_adjusted": 12.5,
+        "persistence": 58.9216
+      },
+      "penalty": {
+        "extension": 0.0,
+        "crowding": 0.0
+      },
+      "metrics": {
+        "code": "510880.SH",
+        "as_of": "20260625",
+        "rows": 1857,
+        "return_20d": -0.051735,
+        "return_60d": -0.080171,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": -0.204949,
+        "volatility_60d": 0.009208,
+        "risk_adjusted_raw": -8.706896,
+        "price_percentile_252": 0.003968,
+        "deviation_ma120": -0.066943,
+        "trend": {
+          "score": 15.0,
+          "close": 3.006,
+          "ma60": 3.236,
+          "ma120": 3.221667,
+          "ma250": 3.219,
+          "above_ma60": false,
+          "above_ma120": false,
+          "above_ma250": false
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": false
+      },
+      "explanation": [
+        "机会分 21.5797，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 -5.17%，60日收益 -8.02%，相对沪深300 -20.49%。",
+        "组件分：动量 23.75，相对强度 12.5，趋势 15.0，风险调整 12.5，持续性 58.9216。",
+        "惩罚项：涨幅/位置过热 0.0，主题拥挤 0.0；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 13
+    },
+    {
+      "code": "515000.SH",
+      "name": "科技ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": {
+        "code": "801750.SI",
+        "name": "计算机",
+        "type": "index",
+        "method": "research_only",
+        "research_only": true
+      },
+      "score": 17.8276,
+      "strength": 20.6826,
+      "components": {
+        "momentum": 20.0,
+        "relative_strength": 31.25,
+        "trend_quality": 5.0,
+        "risk_adjusted": 31.25,
+        "persistence": 17.451
+      },
+      "penalty": {
+        "extension": 0.0,
+        "crowding": 2.855
+      },
+      "metrics": {
+        "code": "515000.SH",
+        "as_of": "20260625",
+        "rows": 2787,
+        "return_20d": -0.064044,
+        "return_60d": -0.046768,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": -0.171545,
+        "volatility_60d": 0.019627,
+        "risk_adjusted_raw": -2.382813,
+        "price_percentile_252": 0.06746,
+        "deviation_ma120": -0.113473,
+        "trend": {
+          "score": 5.0,
+          "close": 4623.898,
+          "ma60": 4972.133617,
+          "ma120": 5215.745283,
+          "ma250": 5208.214504,
+          "above_ma60": false,
+          "above_ma120": false,
+          "above_ma250": false
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": true
+      },
+      "explanation": [
+        "机会分 17.8276，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 -6.40%，60日收益 -4.68%，相对沪深300 -17.15%。",
+        "组件分：动量 20.0，相对强度 31.25，趋势 5.0，风险调整 31.25，持续性 17.451。",
+        "惩罚项：涨幅/位置过热 0.0，主题拥挤 2.855；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 14
+    },
+    {
+      "code": "512170.SH",
+      "name": "医疗ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": {
+        "code": "801150.SI",
+        "name": "医药生物",
+        "type": "index",
+        "method": "research_only",
+        "research_only": true
+      },
+      "score": 17.5286,
+      "strength": 20.3836,
+      "components": {
+        "momentum": 30.0,
+        "relative_strength": 18.75,
+        "trend_quality": 0.0,
+        "risk_adjusted": 25.0,
+        "persistence": 26.9608
+      },
+      "penalty": {
+        "extension": 0.0,
+        "crowding": 2.855
+      },
+      "metrics": {
+        "code": "512170.SH",
+        "as_of": "20260625",
+        "rows": 2787,
+        "return_20d": -0.049845,
+        "return_60d": -0.066796,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": -0.191573,
+        "volatility_60d": 0.012192,
+        "risk_adjusted_raw": -5.478548,
+        "price_percentile_252": 0.055556,
+        "deviation_ma120": -0.105683,
+        "trend": {
+          "score": 0.0,
+          "close": 7175.067,
+          "ma60": 7759.443617,
+          "ma120": 8022.9614,
+          "ma250": 8307.112152,
+          "above_ma60": false,
+          "above_ma120": false,
+          "above_ma250": false
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": true
+      },
+      "explanation": [
+        "机会分 17.5286，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 -4.98%，60日收益 -6.68%，相对沪深300 -19.16%。",
+        "组件分：动量 30.0，相对强度 18.75，趋势 0.0，风险调整 25.0，持续性 26.9608。",
+        "惩罚项：涨幅/位置过热 0.0，主题拥挤 2.855；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 15
+    },
+    {
+      "code": "512890.SH",
+      "name": "红利低波ETF",
+      "category": "style",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": {
+        "code": "512890.SH",
+        "name": "红利低波ETF",
+        "type": "etf",
+        "method": "direct_etf_history_only",
+        "research_only": false
+      },
+      "score": 13.6556,
+      "strength": 13.6556,
+      "components": {
+        "momentum": 17.5,
+        "relative_strength": 6.25,
+        "trend_quality": 0.0,
+        "risk_adjusted": 6.25,
+        "persistence": 53.4314
+      },
+      "penalty": {
+        "extension": 0.0,
+        "crowding": 0.0
+      },
+      "metrics": {
+        "code": "512890.SH",
+        "as_of": "20260625",
+        "rows": 1799,
+        "return_20d": -0.055652,
+        "return_60d": -0.083544,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": -0.208321,
+        "volatility_60d": 0.007241,
+        "risk_adjusted_raw": -11.538089,
+        "price_percentile_252": 0.003968,
+        "deviation_ma120": -0.073418,
+        "trend": {
+          "score": 0.0,
+          "close": 1.086,
+          "ma60": 1.170133,
+          "ma120": 1.17205,
+          "ma250": 1.183728,
+          "above_ma60": false,
+          "above_ma120": false,
+          "above_ma250": false
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": false
+      },
+      "explanation": [
+        "机会分 13.6556，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 -5.57%，60日收益 -8.35%，相对沪深300 -20.83%。",
+        "组件分：动量 17.5，相对强度 6.25，趋势 0.0，风险调整 6.25，持续性 53.4314。",
+        "惩罚项：涨幅/位置过热 0.0，主题拥挤 0.0；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 16
+    },
+    {
+      "code": "512690.SH",
+      "name": "酒ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": {
+        "code": "801120.SI",
+        "name": "食品饮料",
+        "type": "index",
+        "method": "research_only",
+        "research_only": true
+      },
+      "score": 0.0,
+      "strength": 2.3529,
+      "components": {
+        "momentum": 0.0,
+        "relative_strength": 0.0,
+        "trend_quality": 0.0,
+        "risk_adjusted": 0.0,
+        "persistence": 23.5294
+      },
+      "penalty": {
+        "extension": 0.0,
+        "crowding": 2.855
+      },
+      "metrics": {
+        "code": "512690.SH",
+        "as_of": "20260625",
+        "rows": 2787,
+        "return_20d": -0.08928,
+        "return_60d": -0.136957,
+        "benchmark_return_60d": 0.124777,
+        "relative_60d": -0.261735,
+        "volatility_60d": 0.010235,
+        "risk_adjusted_raw": -13.381338,
+        "price_percentile_252": 0.007937,
+        "deviation_ma120": -0.145909,
+        "trend": {
+          "score": 0.0,
+          "close": 13316.98,
+          "ma60": 14937.56,
+          "ma120": 15592.000417,
+          "ma250": 16347.07176,
+          "above_ma60": false,
+          "above_ma120": false,
+          "above_ma250": false
+        }
+      },
+      "constraints": {
+        "no_allocation": true,
+        "no_trade": true,
+        "no_backtest": true,
+        "research_proxy_does_not_create_tradable_history": true
+      },
+      "explanation": [
+        "机会分 0.0，由动量、相对强度、趋势质量、风险调整和持续性组合得到。",
+        "20日收益 -8.93%，60日收益 -13.70%，相对沪深300 -26.17%。",
+        "组件分：动量 0.0，相对强度 0.0，趋势 0.0，风险调整 0.0，持续性 23.5294。",
+        "惩罚项：涨幅/位置过热 0.0，主题拥挤 2.855；本层只排序，不输出仓位或交易。"
+      ],
+      "rank": 17
+    }
+  ],
+  "data_quality": {
+    "start_date": "20150105",
+    "requested_as_of": "20260708",
+    "as_of": "20260625",
+    "no_future_data": true,
+    "uses_research_proxy_for_research_only": true,
+    "theme_risk_loaded": true,
+    "theme_risk_status": {
+      "source": "rebuilt_read_only",
+      "as_of": "20260625",
+      "no_future_data": true
+    }
+  },
+  "constraints": {
+    "etf_and_proxy_separated": true,
+    "no_allocation": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_backtest": true,
+    "does_not_modify_v2": true
+  }
+}

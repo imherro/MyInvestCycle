@@ -1,8 +1,8 @@
 {
   "metadata": {
     "engine": "V3.1.2 Asset Research Proxy Coverage Audit",
-    "generated_at": "2026-07-08T09:46:54+00:00",
-    "registry": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\asset_proxy_registry.json",
+    "generated_at": "2026-07-08T09:54:04+00:00",
+    "registry": "data/asset_proxy_registry.json",
     "target_window": {
       "start": "20150105",
       "end": "20260708"
@@ -38,7 +38,7 @@
       "proxy_name": "非银金融",
       "proxy_type": "index",
       "proxy_source": "Tushare index_daily SW2021 L1",
-      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\index_daily_801790_SI.csv",
+      "cache_path": "data/cache/index_daily_801790_SI.csv",
       "start": "20150105",
       "end": "20260708",
       "rows": 2796
@@ -53,7 +53,7 @@
       "proxy_name": "银行",
       "proxy_type": "index",
       "proxy_source": "Tushare index_daily SW2021 L1",
-      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\index_daily_801780_SI.csv",
+      "cache_path": "data/cache/index_daily_801780_SI.csv",
       "start": "20150105",
       "end": "20260708",
       "rows": 2796
@@ -68,7 +68,7 @@
       "proxy_name": "食品饮料",
       "proxy_type": "index",
       "proxy_source": "Tushare index_daily SW2021 L1",
-      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\index_daily_801120_SI.csv",
+      "cache_path": "data/cache/index_daily_801120_SI.csv",
       "start": "20150105",
       "end": "20260708",
       "rows": 2796
@@ -83,7 +83,7 @@
       "proxy_name": "电子",
       "proxy_type": "index",
       "proxy_source": "Tushare index_daily SW2021 L1",
-      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\index_daily_801080_SI.csv",
+      "cache_path": "data/cache/index_daily_801080_SI.csv",
       "start": "20150105",
       "end": "20260708",
       "rows": 2796
@@ -98,7 +98,7 @@
       "proxy_name": "医药生物",
       "proxy_type": "index",
       "proxy_source": "Tushare index_daily SW2021 L1",
-      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\index_daily_801150_SI.csv",
+      "cache_path": "data/cache/index_daily_801150_SI.csv",
       "start": "20150105",
       "end": "20260708",
       "rows": 2796
@@ -113,7 +113,7 @@
       "proxy_name": "国防军工",
       "proxy_type": "index",
       "proxy_source": "Tushare index_daily SW2021 L1",
-      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\index_daily_801740_SI.csv",
+      "cache_path": "data/cache/index_daily_801740_SI.csv",
       "start": "20150105",
       "end": "20260708",
       "rows": 2796
@@ -128,7 +128,7 @@
       "proxy_name": "电力设备",
       "proxy_type": "index",
       "proxy_source": "Tushare index_daily SW2021 L1",
-      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\index_daily_801730_SI.csv",
+      "cache_path": "data/cache/index_daily_801730_SI.csv",
       "start": "20150105",
       "end": "20260708",
       "rows": 2796
@@ -143,7 +143,7 @@
       "proxy_name": "电力设备",
       "proxy_type": "index",
       "proxy_source": "Tushare index_daily SW2021 L1",
-      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\index_daily_801730_SI.csv",
+      "cache_path": "data/cache/index_daily_801730_SI.csv",
       "start": "20150105",
       "end": "20260708",
       "rows": 2796
@@ -158,7 +158,7 @@
       "proxy_name": "计算机",
       "proxy_type": "index",
       "proxy_source": "Tushare index_daily SW2021 L1",
-      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\index_daily_801750_SI.csv",
+      "cache_path": "data/cache/index_daily_801750_SI.csv",
       "start": "20150105",
       "end": "20260708",
       "rows": 2796
@@ -173,7 +173,7 @@
       "proxy_name": "电子",
       "proxy_type": "index",
       "proxy_source": "Tushare index_daily SW2021 L1",
-      "cache_path": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\cache\\index_daily_801080_SI.csv",
+      "cache_path": "data/cache/index_daily_801080_SI.csv",
       "start": "20150105",
       "end": "20260708",
       "rows": 2796

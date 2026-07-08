@@ -18,6 +18,14 @@ from core.data_loader import normalize_trade_date
 DEFAULT_OUTPUT_PATH = ROOT_DIR / "data" / "asset_proxy_coverage_audit.json"
 
 
+def _project_path(path: str | Path) -> str:
+    resolved = Path(path).resolve()
+    try:
+        return resolved.relative_to(ROOT_DIR).as_posix()
+    except ValueError:
+        return resolved.as_posix()
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Audit V3.1.2 research proxy coverage.")
     parser.add_argument("--registry", default=str(DEFAULT_PROXY_REGISTRY_PATH))
@@ -61,7 +69,7 @@ def build_asset_proxy_coverage_audit(
         "metadata": {
             "engine": "V3.1.2 Asset Research Proxy Coverage Audit",
             "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-            "registry": str(registry_path),
+            "registry": _project_path(registry_path),
             "target_window": {"start": start, "end": end},
             "purpose": "Research proxy coverage audit only; no scoring, no ranking, no allocation, no backtest.",
         },

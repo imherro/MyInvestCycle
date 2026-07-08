@@ -7,6 +7,7 @@ import pandas as pd
 
 from asset_opportunity.asset_loader import OUTPUT_COLUMNS, load_asset_history
 from asset_opportunity.asset_proxy_schema import AssetProxyRecord
+from config import BASE_DIR
 from core.data_loader import cache_path_for, get_index_daily, normalize_trade_date
 
 
@@ -31,6 +32,14 @@ def _read_index_cache(code: str, start_date: str, end_date: str) -> pd.DataFrame
     frame = pd.read_csv(path, dtype={"trade_date": str})
     normalized = _normalize_index_history(frame)
     return normalized[(normalized["trade_date"] >= start_date) & (normalized["trade_date"] <= end_date)].reset_index(drop=True)
+
+
+def _project_path(path: str | Path) -> str:
+    resolved = Path(path).resolve()
+    try:
+        return resolved.relative_to(BASE_DIR).as_posix()
+    except ValueError:
+        return resolved.as_posix()
 
 
 def load_research_proxy_history(
@@ -95,7 +104,7 @@ def research_proxy_coverage(
         "proxy_name": record.research_proxy.name,
         "proxy_type": record.research_proxy.type,
         "proxy_source": record.research_proxy.source,
-        "cache_path": str(path),
+        "cache_path": _project_path(path),
         "start": str(frame["trade_date"].iloc[0]) if not frame.empty else None,
         "end": str(frame["trade_date"].iloc[-1]) if not frame.empty else None,
         "rows": int(len(frame)),
