@@ -730,6 +730,34 @@
           <p class="result-note" id="protectionValidationConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="固定 V6.3 participation/protection 分桶生成二维环境象限：参与、保护参与、等待、回避；比较各象限未来风险、机会、回撤和矛盾率，并与 V5.1 暴露等级、V6.2 decision mode 对比。">风险-机会双轴验证</h2>
+            <span class="panel-kicker">V6.5</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>样本</span>
+              <strong id="twoAxisRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>风险区分</span>
+              <strong id="twoAxisRiskSpread">--</strong>
+            </div>
+            <div class="result-row">
+              <span>机会区分</span>
+              <strong id="twoAxisOpportunitySpread">--</strong>
+            </div>
+            <div class="result-row">
+              <span>策略变更</span>
+              <strong id="twoAxisReady">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="twoAxisQuadrants"></div>
+          <div class="alpha-source-list" id="twoAxisComparison"></div>
+          <p class="result-note" id="twoAxisConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -820,7 +848,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-protection-validation-1"></script>
+    <script src="/static/dashboard.js?v=20260708-two-axis-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

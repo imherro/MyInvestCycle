@@ -837,6 +837,17 @@ function protectionValidationModelLabel(value) {
   return labels[value] || value || "--";
 }
 
+function twoAxisLabel(value) {
+  const labels = {
+    PARTICIPATE: "参与",
+    PROTECT_BUT_PARTICIPATE: "保护参与",
+    WAIT: "等待",
+    AVOID: "回避",
+    UNKNOWN: "未知",
+  };
+  return labels[value] || value || "--";
+}
+
 function decisionModeLabel(value) {
   const labels = {
     FULL_PARTICIPATION: "全参与",
@@ -1516,6 +1527,10 @@ function setResultsPanel(results) {
   const protectionValidationSummary = protectionValidation.summary || {};
   const protectionValidationModels = protectionValidation.model_comparison || {};
   const protectionValidationPhases = protectionValidation.phase_analysis || [];
+  const twoAxisValidation = results.two_axis_context_validation || {};
+  const twoAxisSummary = twoAxisValidation.summary || {};
+  const twoAxisMetrics = twoAxisValidation.dimension_metrics?.two_axis || {};
+  const twoAxisComparison = twoAxisValidation.dimension_comparison || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2796,6 +2811,52 @@ function setResultsPanel(results) {
     protectionValidation.metadata
       ? `V6.4 保护分验证：保护分高桶风险抬升 ${signedRatioText(protectionValidationSummary.model_b_protection_high_risk_lift)}，阶段一致性 ${robustnessConsistencyLabel(protectionValidationSummary.protection_phase_consistency)}；原始风险梯度抬升 ${signedRatioText(protectionValidationSummary.model_a_high_risk_lift)}，双高组合抬升 ${signedRatioText(protectionValidationSummary.model_c_both_high_risk_lift)}。保护分可作为风险解释线索，但仍不可变更 mapper/exposure。`
       : "V6.4 保护分稳健性验证尚未生成。"
+  );
+
+  setText("twoAxisRows", integerText(twoAxisSummary.joined_sample_count));
+  setText("twoAxisRiskSpread", signedRatioText(twoAxisSummary.two_axis_risk_spread));
+  setText("twoAxisOpportunitySpread", signedRatioText(twoAxisSummary.two_axis_opportunity_spread));
+  setText(
+    "twoAxisReady",
+    twoAxisSummary.ready_for_mapper_change === true || twoAxisSummary.ready_for_exposure_change === true
+      ? "可变更"
+      : "不可变更"
+  );
+  setHtml("twoAxisQuadrants", [
+    "PARTICIPATE",
+    "PROTECT_BUT_PARTICIPATE",
+    "WAIT",
+    "AVOID",
+  ]
+    .map((label) => {
+      const item = twoAxisMetrics[label] || {};
+      return `
+        <div class="duration-row">
+          <span>${twoAxisLabel(label)} · ${integerText(item.sample_count)} 样本</span>
+          <strong>风险 ${percentText(item.future_high_risk_rate)} · 机会 ${percentText(item.future_opportunity_rate)}</strong>
+          <em>回撤 ${percentText(item.drawdown_event_rate)} · 矛盾 ${percentText(item.contradiction_rate)}</em>
+        </div>
+      `;
+    })
+    .join(""));
+  setHtml("twoAxisComparison", [
+    ["相对 V5.1 暴露等级风险区分", twoAxisComparison.two_axis_minus_exposure_risk_spread],
+    ["相对 V6.2 decision mode 风险区分", twoAxisComparison.two_axis_minus_decision_risk_spread],
+    ["相对 V5.1 暴露等级机会区分", twoAxisComparison.two_axis_minus_exposure_opportunity_spread],
+    ["相对 V6.2 decision mode 机会区分", twoAxisComparison.two_axis_minus_decision_opportunity_spread],
+  ]
+    .map(([label, value]) => `
+      <div class="alpha-source-row">
+        <span>${label}</span>
+        <strong>${signedRatioText(value)}</strong>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "twoAxisConclusion",
+    twoAxisValidation.metadata
+      ? `V6.5 双轴验证：风险区分 ${signedRatioText(twoAxisSummary.two_axis_risk_spread)}，机会区分 ${signedRatioText(twoAxisSummary.two_axis_opportunity_spread)}；参与象限机会抬升仅 ${signedRatioText(twoAxisSummary.participate_opportunity_lift)}，保护参与象限风险抬升 ${signedRatioText(twoAxisSummary.protect_but_participate_risk_lift)}。结论：风险轴可见，机会轴仍弱，不改 mapper、不改 exposure。`
+      : "V6.5 风险-机会双轴验证尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
