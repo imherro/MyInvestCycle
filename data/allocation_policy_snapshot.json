@@ -1,0 +1,403 @@
+{
+  "metadata": {
+    "engine": "V4.1 Allocation Policy Foundation",
+    "generated_at": "2026-07-08T13:24:13+00:00",
+    "as_of": "20260707",
+    "purpose": "Translate macro, structure, theme risk and style preference into qualitative beta risk-budget constraints only.",
+    "not_a_portfolio_weight_model": true
+  },
+  "source_snapshots": {
+    "macro_cycle": {
+      "engine": "V2.2.1 Macro Cycle Engine Core",
+      "as_of": "20260708"
+    },
+    "structural_bull": {
+      "engine": "V2.3.3 Structural Bull Rotation Detector",
+      "as_of": "20260707"
+    },
+    "theme_risk": {
+      "engine": "V2.3.4 Theme Valuation & Crowding Risk Layer",
+      "as_of": "20260707"
+    },
+    "style_allocation": {
+      "engine": "V3.5.1 Style Allocation Engine Foundation",
+      "as_of": "20260707"
+    },
+    "style_incremental": {
+      "engine": "V3.5.7 Style Incremental Information Test",
+      "score_end": "20260625",
+      "edge_status": "weak_short_horizon_trace"
+    }
+  },
+  "inputs": {
+    "macro": {
+      "state": "RECOVERY",
+      "score": 73.3665,
+      "confidence": 0.7639
+    },
+    "structural": {
+      "state": "STRUCTURAL_BULL_ROTATION",
+      "score": 65.1385,
+      "confidence": 0.7802
+    },
+    "market_structure": {
+      "state": "BULL_DIVERGENCE",
+      "score": 53.5177,
+      "index_trend": 78.7653,
+      "breadth": 14.59,
+      "liquidity": 45.37
+    },
+    "industry_opportunity": {
+      "state": "INDUSTRY_OPPORTUNITY",
+      "score": 65.4773,
+      "industry_strength": 55.1048,
+      "theme_persistence": 82.7922,
+      "rotation_health": 54.3613,
+      "industry_breadth": 0.0968,
+      "top_industry_ratio": 0.2581,
+      "top_themes": [
+        {
+          "code": "801080.SI",
+          "name": "电子",
+          "source_type": "industry_index",
+          "strength": 83.1613,
+          "persistence": 98.1931,
+          "composite_score": 89.4747,
+          "return_20d": 0.189673,
+          "return_60d": 0.561513,
+          "relative_60d": 0.504641
+        },
+        {
+          "code": "801710.SI",
+          "name": "建筑材料",
+          "source_type": "industry_index",
+          "strength": 79.4839,
+          "persistence": 92.6125,
+          "composite_score": 84.9979,
+          "return_20d": 0.117915,
+          "return_60d": 0.164263,
+          "relative_60d": 0.107391
+        },
+        {
+          "code": "801890.SI",
+          "name": "机械设备",
+          "source_type": "industry_index",
+          "strength": 72.3871,
+          "persistence": 89.2948,
+          "composite_score": 79.4883,
+          "return_20d": 0.01228,
+          "return_60d": 0.116947,
+          "relative_60d": 0.060075
+        },
+        {
+          "code": "801770.SI",
+          "name": "通信",
+          "source_type": "industry_index",
+          "strength": 61.3548,
+          "persistence": 86.7098,
+          "composite_score": 72.0039,
+          "return_20d": -0.046067,
+          "return_60d": 0.264943,
+          "relative_60d": 0.208071
+        },
+        {
+          "code": "801790.SI",
+          "name": "非银金融",
+          "source_type": "industry_index",
+          "strength": 83.6129,
+          "persistence": 39.8011,
+          "composite_score": 65.2119,
+          "return_20d": 0.061966,
+          "return_60d": -0.023074,
+          "relative_60d": -0.079947
+        },
+        {
+          "code": "801030.SI",
+          "name": "基础化工",
+          "source_type": "industry_index",
+          "strength": 67.4194,
+          "persistence": 47.1508,
+          "composite_score": 58.9066,
+          "return_20d": 0.032224,
+          "return_60d": -0.054098,
+          "relative_60d": -0.11097
+        },
+        {
+          "code": "801230.SI",
+          "name": "综合",
+          "source_type": "industry_index",
+          "strength": 74.5161,
+          "persistence": 29.7543,
+          "composite_score": 55.7161,
+          "return_20d": 0.021955,
+          "return_60d": -0.050463,
+          "relative_60d": -0.107335
+        },
+        {
+          "code": "801780.SI",
+          "name": "银行",
+          "source_type": "industry_index",
+          "strength": 70.0,
+          "persistence": 34.6149,
+          "composite_score": 55.1383,
+          "return_20d": -0.042585,
+          "return_60d": -0.05008,
+          "relative_60d": -0.106952
+        }
+      ]
+    },
+    "theme_risk": {
+      "level": "medium",
+      "quality_score": 63.3204,
+      "crowding_score": 56.1413,
+      "warnings": [
+        "high_60d_momentum_extension",
+        "near_252d_high_position",
+        "top_theme_price_extension_high",
+        "industry_breadth_narrow"
+      ],
+      "top_theme": {
+        "code": "801080.SI",
+        "name": "电子",
+        "composite_score": 89.4747
+      }
+    },
+    "style_incremental": {
+      "style_incremental_edge_status": "weak_short_horizon_trace",
+      "tradable_20d_combined_minus_baseline_return": 0.004816,
+      "tradable_60d_combined_minus_baseline_return": -0.003202,
+      "tradable_20d_combined_ic_minus_baseline": 0.038971,
+      "tradable_60d_combined_ic_minus_baseline": 0.017333,
+      "tradable_20d_combined_hit_rate": 0.285714,
+      "tradable_60d_combined_hit_rate": 0.266667
+    },
+    "style_preference_summary": {
+      "dominant_style": "growth",
+      "top_styles": [
+        {
+          "style": "growth",
+          "preference_score": 86.9399,
+          "relative_signal_share": 0.331549,
+          "direction": "strong_preference"
+        },
+        {
+          "style": "small_cap",
+          "preference_score": 62.2577,
+          "relative_signal_share": 0.237423,
+          "direction": "positive_preference"
+        },
+        {
+          "style": "value",
+          "preference_score": 61.9724,
+          "relative_signal_share": 0.236335,
+          "direction": "positive_preference"
+        },
+        {
+          "style": "dividend",
+          "preference_score": 51.0529,
+          "relative_signal_share": 0.194693,
+          "direction": "neutral_watch"
+        }
+      ],
+      "confidence": 0.5706
+    }
+  },
+  "policy": {
+    "policy_state": "constraint_only_style_descriptor",
+    "policy_summary": "Style Preference is retained as a regime/style descriptor, not an alpha signal. Offensive beta is allowed only within medium budget and requires breadth/crowding checks.",
+    "allocation_environment": {
+      "macro_state": "RECOVERY",
+      "structural_state": "STRUCTURAL_BULL_ROTATION",
+      "market_structure_state": "BULL_DIVERGENCE",
+      "theme_risk_level": "medium",
+      "dominant_style": "growth",
+      "style_incremental_edge_status": "weak_short_horizon_trace",
+      "growth_allowed": true,
+      "small_cap_allowed": true,
+      "value_core_allowed": true,
+      "dividend_defensive_required": true,
+      "offensive_beta_allowed": true,
+      "crowding_control_required": true,
+      "single_theme_concentration_watch": true,
+      "style_alpha_independent": false
+    },
+    "risk_constraints": {
+      "max_single_style_budget": "medium_high",
+      "max_offensive_beta_budget": "medium",
+      "min_core_beta_budget": "blocked",
+      "min_defensive_beta_budget": "medium",
+      "growth_budget_ceiling": "medium_high",
+      "small_cap_budget_ceiling": "medium",
+      "value_budget_ceiling": "medium",
+      "dividend_budget_floor": "medium",
+      "style_score_may_not_expand_budget_by_itself": true,
+      "requires_breadth_confirmation_for_offensive_expansion": true,
+      "requires_crowding_control": true
+    },
+    "style_permissions": {
+      "growth": {
+        "style_id": "growth",
+        "label": "成长/科技 Beta",
+        "role": "offensive",
+        "allowed": true,
+        "budget_ceiling": "medium_high",
+        "budget_floor": "medium_high",
+        "controls": [
+          "breadth_confirmation_required",
+          "crowding_control_required",
+          "single_theme_concentration_watch",
+          "style_is_descriptor_not_alpha",
+          "dominant_style_requires_confirmation"
+        ],
+        "reasons": [
+          "default_budget=medium",
+          "macro RECOVERY supports offensive beta budget.",
+          "structural bull rotation allows growth beta observation.",
+          "liquidity below expansion level caps growth budget.",
+          "medium theme risk prevents unrestricted growth budget.",
+          "top industry concentration caps single-theme growth budget.",
+          "dominant style score is high, but V3.5.7 prevents using it as standalone alpha."
+        ]
+      },
+      "small_cap": {
+        "style_id": "small_cap",
+        "label": "中小盘 Beta",
+        "role": "offensive",
+        "allowed": true,
+        "budget_ceiling": "medium",
+        "budget_floor": "medium",
+        "controls": [
+          "breadth_confirmation_required",
+          "style_is_descriptor_not_alpha"
+        ],
+        "reasons": [
+          "default_budget=medium",
+          "macro RECOVERY keeps small-cap beta observable.",
+          "structural bull rotation allows rotation beta observation.",
+          "narrow breadth prevents high small-cap budget.",
+          "liquidity below expansion level caps small-cap budget."
+        ]
+      },
+      "value": {
+        "style_id": "value",
+        "label": "价值/大盘 Beta",
+        "role": "core",
+        "allowed": true,
+        "budget_ceiling": "medium",
+        "budget_floor": "blocked",
+        "controls": [
+          "style_is_descriptor_not_alpha"
+        ],
+        "reasons": [
+          "default_budget=medium"
+        ]
+      },
+      "dividend": {
+        "style_id": "dividend",
+        "label": "红利/低波 Beta",
+        "role": "defensive",
+        "allowed": true,
+        "budget_ceiling": "medium",
+        "budget_floor": "medium",
+        "controls": [
+          "style_is_descriptor_not_alpha"
+        ],
+        "reasons": [
+          "default_budget=medium",
+          "narrow breadth requires defensive counterweight.",
+          "medium theme risk keeps defensive beta available."
+        ]
+      }
+    },
+    "style_budget_universe": [
+      {
+        "style_id": "growth",
+        "label": "成长/科技 Beta",
+        "role": "offensive",
+        "default_budget": "medium",
+        "description": "代表成长、科技和高弹性主线暴露，只能在宏观与结构同时支持时提升预算。"
+      },
+      {
+        "style_id": "small_cap",
+        "label": "中小盘 Beta",
+        "role": "offensive",
+        "default_budget": "medium",
+        "description": "代表中小市值扩散暴露，必须受市场宽度和流动性约束。"
+      },
+      {
+        "style_id": "value",
+        "label": "价值/大盘 Beta",
+        "role": "core",
+        "default_budget": "medium",
+        "description": "代表核心宽基与大盘价值暴露，通常作为进攻和防守之间的过渡预算。"
+      },
+      {
+        "style_id": "dividend",
+        "label": "红利/低波 Beta",
+        "role": "defensive",
+        "default_budget": "medium",
+        "description": "代表防守、波动缓冲和现金替代前的低波风险预算。"
+      }
+    ],
+    "rule_trace": [
+      "macro_recovery",
+      "structural_bull_rotation",
+      "narrow_breadth",
+      "liquidity_not_expanding",
+      "medium_theme_risk",
+      "single_theme_concentration",
+      "style_incremental_edge_weak"
+    ],
+    "evidence": {
+      "macro_score": 73.3665,
+      "structural_score": 65.1385,
+      "index_trend": 78.7653,
+      "breadth": 14.59,
+      "liquidity": 45.37,
+      "theme_persistence": 82.7922,
+      "industry_breadth": 0.0968,
+      "top_industry_ratio": 0.2581,
+      "crowding_score": 56.1413,
+      "quality_score": 63.3204,
+      "theme_warnings": [
+        "high_60d_momentum_extension",
+        "industry_breadth_narrow",
+        "near_252d_high_position",
+        "top_theme_price_extension_high"
+      ],
+      "style_scores": {
+        "dividend": 51.0529,
+        "growth": 86.9399,
+        "small_cap": 62.2577,
+        "value": 61.9724
+      }
+    }
+  },
+  "data_quality": {
+    "resolved_as_of": "20260707",
+    "uses_generated_snapshots_only": true,
+    "no_future_data": true,
+    "style_incremental_is_validation_input_only": true
+  },
+  "constraints": {
+    "policy_foundation_only": true,
+    "qualitative_risk_budget_only": true,
+    "no_etf_code": true,
+    "no_asset_weight": true,
+    "no_portfolio_weight": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_backtest": true,
+    "style_preference_formula_unchanged": true,
+    "opportunity_score_formula_unchanged": true,
+    "router_unchanged": true,
+    "alpha_model_unchanged": true
+  },
+  "notes": [
+    "This layer is a rule foundation for future beta allocation research, not an executable allocation.",
+    "V3.5.7 weak incremental edge is used as a guardrail: style scores cannot expand budgets by themselves.",
+    "Budget levels are qualitative labels, not percentages, ETF weights, or trade instructions."
+  ]
+}

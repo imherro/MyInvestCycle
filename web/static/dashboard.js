@@ -292,6 +292,28 @@ function styleIncrementalStatusLabel(value) {
   return labels[value] || value || "--";
 }
 
+function budgetLevelLabel(value) {
+  const labels = {
+    blocked: "不要求",
+    low: "低",
+    medium: "中",
+    medium_high: "中高",
+    high: "高",
+  };
+  return labels[value] || value || "--";
+}
+
+function allocationPolicyStateLabel(value) {
+  const labels = {
+    constraint_only_style_descriptor: "约束型风格描述",
+    structural_bull_with_crowding_control: "结构牛拥挤控制",
+    broad_bull_beta_policy: "宽基牛 Beta",
+    defensive_beta_policy: "防守 Beta",
+    macro_defensive_policy: "宏观防守",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -870,6 +892,10 @@ function setResultsPanel(results) {
   const styleIncremental = results.style_incremental_analysis || {};
   const styleIncrementalSummary = styleIncremental.summary || {};
   const styleIncrementalEdge = styleIncrementalSummary.edge_read || {};
+  const allocationPolicy = results.allocation_policy_snapshot || {};
+  const allocationPolicyPolicy = allocationPolicy.policy || {};
+  const allocationEnvironment = allocationPolicyPolicy.allocation_environment || {};
+  const allocationRiskConstraints = allocationPolicyPolicy.risk_constraints || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -925,6 +951,27 @@ function setResultsPanel(results) {
   setText(
     "portfolioConclusion",
     `R2.1 使用当前 ${regimeLabel(portfolio.regime)} 状态和风险评分 ${fixedText(portfolio.risk_score, 3)}，将风险资产仓位控制在 ${percentText(portfolio.total_exposure)}，其余保持现金。`
+  );
+
+  setText("allocationPolicyState", allocationPolicyStateLabel(allocationPolicyPolicy.policy_state));
+  setText("allocationPolicyGrowth", budgetLevelLabel(allocationRiskConstraints.growth_budget_ceiling));
+  setText("allocationPolicySmallCap", budgetLevelLabel(allocationRiskConstraints.small_cap_budget_ceiling));
+  setText("allocationPolicyDefensive", budgetLevelLabel(allocationRiskConstraints.dividend_budget_floor));
+  setText("allocationPolicySingleStyle", budgetLevelLabel(allocationRiskConstraints.max_single_style_budget));
+  setText("allocationPolicyOffensive", budgetLevelLabel(allocationRiskConstraints.max_offensive_beta_budget));
+  const allocationControls = [];
+  if (allocationRiskConstraints.requires_breadth_confirmation_for_offensive_expansion) allocationControls.push("进攻扩张需宽度确认");
+  if (allocationRiskConstraints.requires_crowding_control) allocationControls.push("需要拥挤控制");
+  if (allocationRiskConstraints.style_score_may_not_expand_budget_by_itself) allocationControls.push("风格分不能单独放大预算");
+  if (allocationEnvironment.single_theme_concentration_watch) allocationControls.push("单一主线集中度观察");
+  setHtml("allocationPolicyControls", allocationControls.length
+    ? allocationControls.map((item) => `<span>${escapeHtml(item)}</span>`).join("")
+    : "<em>暂无额外约束</em>");
+  setText(
+    "allocationPolicyConclusion",
+    allocationPolicy.metadata
+      ? `V4.1 当前为${allocationPolicyStateLabel(allocationPolicyPolicy.policy_state)}：${allocationPolicyPolicy.policy_summary || "只输出定性风险预算约束"} 该层不输出 ETF 权重、仓位或交易信号。`
+      : "V4.1 Beta 风险预算约束尚未生成。"
   );
 
   const enabledStrategies = route.enabled_strategies || [];

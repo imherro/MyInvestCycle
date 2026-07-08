@@ -115,6 +115,41 @@
           <p class="result-note" id="portfolioConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="把宏观、结构、主题风险、风格偏好和 V3.5.7 增量结论转成定性 Beta 风险预算约束；不是 ETF 权重、仓位或交易信号。">Beta 风险预算约束</h2>
+            <span class="panel-kicker">V4.1</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>策略状态</span>
+              <strong id="allocationPolicyState">--</strong>
+            </div>
+            <div class="result-row">
+              <span>成长上限</span>
+              <strong id="allocationPolicyGrowth">--</strong>
+            </div>
+            <div class="result-row">
+              <span>中小盘上限</span>
+              <strong id="allocationPolicySmallCap">--</strong>
+            </div>
+            <div class="result-row">
+              <span>防守下限</span>
+              <strong id="allocationPolicyDefensive">--</strong>
+            </div>
+            <div class="result-row">
+              <span>单风格上限</span>
+              <strong id="allocationPolicySingleStyle">--</strong>
+            </div>
+            <div class="result-row">
+              <span>进攻 Beta 上限</span>
+              <strong id="allocationPolicyOffensive">--</strong>
+            </div>
+          </div>
+          <div class="route-pill-list" id="allocationPolicyControls"></div>
+          <p class="result-note" id="allocationPolicyConclusion">--</p>
+        </article>
+
         <article class="chart-panel result-panel strategy-route-panel">
           <div class="panel-heading">
             <h2 class="help-title" tabindex="0" data-help="显示当前允许启用哪些策略、禁用哪些策略，以及资金在策略之间如何分配。">策略路由</h2>
@@ -223,7 +258,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-style-incremental-1"></script>
+    <script src="/static/dashboard.js?v=20260708-allocation-policy-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

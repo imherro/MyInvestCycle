@@ -338,6 +338,14 @@ def _read_style_incremental_analysis_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_allocation_policy_snapshot_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "allocation_policy_snapshot.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -1096,6 +1104,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/allocation/policy",
+                    "返回 V4.1 Allocation Policy Foundation，把宏观、结构、主题风险、风格偏好和 V3.5.7 增量结论转成定性 Beta 风险预算约束；不是 ETF 权重、仓位或交易信号。",
+                    "regime-aware beta allocation policy foundation",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -1209,6 +1224,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/style/allocation-snapshot", "description": "读取 V3.5.1 宏观感知风格偏好快照。"},
             {"path": "/api/style/validation", "description": "读取 V3.5.2 风格偏好验证与归因。"},
             {"path": "/api/style/incremental-analysis", "description": "读取 V3.5.7 风格偏好增量信息检验。"},
+            {"path": "/api/allocation/policy", "description": "读取 V4.1 Beta 风险预算约束层。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -1920,6 +1936,17 @@ def style_incremental_analysis() -> dict:
     return payload
 
 
+@app.get("/api/allocation/policy")
+def allocation_policy_snapshot() -> dict:
+    payload = _read_allocation_policy_snapshot_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Allocation policy snapshot artifact missing; run scripts/run_allocation_policy_snapshot.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -2050,6 +2077,7 @@ def results_summary(
         style_allocation_snapshot = _read_style_allocation_snapshot_payload()
         style_validation = _read_style_validation_payload()
         style_incremental_analysis = _read_style_incremental_analysis_payload()
+        allocation_policy_snapshot = _read_allocation_policy_snapshot_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -2104,6 +2132,7 @@ def results_summary(
             "style_allocation_snapshot": style_allocation_snapshot,
             "style_validation": style_validation,
             "style_incremental_analysis": style_incremental_analysis,
+            "allocation_policy_snapshot": allocation_policy_snapshot,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,
