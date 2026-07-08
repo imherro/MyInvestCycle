@@ -1,0 +1,197 @@
+{
+  "metadata": {
+    "engine": "V8.1 Research Decision Integration Architecture",
+    "generated_at": "2026-07-08T19:03:35+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "two_axis_context": "data/two_axis_context_validation.json",
+      "protection_validation": "data/protection_score_validation.json",
+      "risk_gradient": "data/exposure_gradient_analysis.json",
+      "context_information_attribution": "data/context_information_attribution.json",
+      "opportunity_feature_attribution": "data/opportunity_feature_attribution.json"
+    },
+    "purpose": "Integrate frozen V6 risk context and frozen V7 opportunity research as research-only decision context; no assets, ranking, allocation, or trade output."
+  },
+  "summary": {
+    "decision_context": "risk_controlled_opportunity_watch",
+    "research_posture": "observe_without_selection",
+    "risk_context_status": "risk_axis_visible_opportunity_axis_weak",
+    "opportunity_context_status": "feature_attribution_not_ready_for_opportunity_score",
+    "retained_context_layer_count": 3,
+    "opportunity_research_candidate_count": 1,
+    "opportunity_watch_count": 17,
+    "ready_for_scoring": false,
+    "ready_for_ranking": false,
+    "ready_for_allocation": false,
+    "ready_for_trade": false,
+    "key_read": "V8.1 links V6 risk context and V7 opportunity research for explanation only; it is not a decision rule, ranker, allocation model, or trading signal."
+  },
+  "research_context": {
+    "context": "risk_controlled_opportunity_watch",
+    "research_posture": "observe_without_selection",
+    "risk_basis": {
+      "risk_context_status": "risk_axis_visible_opportunity_axis_weak",
+      "risk_leader": "layer_3_two_axis_context",
+      "retained_context_layers": [
+        "layer_1_risk_gradient",
+        "layer_2_protection_score",
+        "layer_3_two_axis_context"
+      ],
+      "risk_gradient_separation": "visible"
+    },
+    "opportunity_basis": {
+      "opportunity_context_status": "feature_attribution_not_ready_for_opportunity_score",
+      "retention_counts": {
+        "insufficient": 6,
+        "reject_for_now": 18,
+        "research_candidate": 1,
+        "watch": 17
+      },
+      "regime_consistency_counts": {
+        "consistent_context_signal": 7,
+        "mixed_or_conflicting_context_signal": 23,
+        "no_regime_signal": 6,
+        "single_context_signal": 6
+      },
+      "opportunity_gradient_separation": "weak"
+    },
+    "interpretation": "V6 risk context can frame research attention, while V7 opportunity evidence is not ready for scoring, ranking, allocation, or trading."
+  },
+  "risk_context_evidence": {
+    "two_axis_conclusion": "risk_axis_visible_opportunity_axis_weak",
+    "two_axis_risk_spread": 0.337209,
+    "two_axis_opportunity_spread": 0.162791,
+    "risk_leader": "layer_3_two_axis_context",
+    "opportunity_leader": "layer_3_two_axis_context",
+    "protection_overall_future_high_risk_rate": 0.226087
+  },
+  "opportunity_context_evidence": {
+    "conclusion": "feature_attribution_not_ready_for_opportunity_score",
+    "retention_counts": {
+      "insufficient": 6,
+      "reject_for_now": 18,
+      "research_candidate": 1,
+      "watch": 17
+    },
+    "regime_consistency_counts": {
+      "consistent_context_signal": 7,
+      "mixed_or_conflicting_context_signal": 23,
+      "no_regime_signal": 6,
+      "single_context_signal": 6
+    },
+    "feature_group_attention": [
+      {
+        "feature_group": "momentum",
+        "retention_counts": {
+          "reject_for_now": 5,
+          "watch": 4
+        },
+        "interpretation": "feature_group_attention_only_not_asset_selection"
+      },
+      {
+        "feature_group": "relative_strength",
+        "retention_counts": {
+          "reject_for_now": 4,
+          "watch": 2
+        },
+        "interpretation": "feature_group_attention_only_not_asset_selection"
+      },
+      {
+        "feature_group": "risk",
+        "retention_counts": {
+          "reject_for_now": 5,
+          "watch": 4
+        },
+        "interpretation": "feature_group_attention_only_not_asset_selection"
+      },
+      {
+        "feature_group": "structure",
+        "retention_counts": {
+          "insufficient": 6,
+          "reject_for_now": 2,
+          "watch": 1
+        },
+        "interpretation": "feature_group_attention_only_not_asset_selection"
+      },
+      {
+        "feature_group": "trend",
+        "retention_counts": {
+          "reject_for_now": 2,
+          "research_candidate": 1,
+          "watch": 6
+        },
+        "interpretation": "feature_group_attention_only_not_asset_selection"
+      }
+    ]
+  },
+  "time_safety": {
+    "uses_existing_v6_outputs_only": true,
+    "uses_existing_v7_outputs_only": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "does_not_use_future_returns_for_decision": true
+  },
+  "data_quality": {
+    "uses_frozen_v6_artifacts_only": true,
+    "uses_frozen_v7_artifacts_only": true,
+    "no_new_feature_search": true,
+    "no_scoring": true,
+    "no_ranking": true,
+    "no_top_n": true,
+    "no_allocation": true,
+    "no_backtest": true,
+    "no_parameter_optimization": true
+  },
+  "constraints": {
+    "research_only": true,
+    "does_not_create_opportunity_score": true,
+    "does_not_rank_assets": true,
+    "does_not_select_top_assets": true,
+    "does_not_generate_position": true,
+    "no_percentage_exposure": true,
+    "no_etf_code": true,
+    "no_asset_weight": true,
+    "no_portfolio_weight": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_parameter_optimization": true
+  },
+  "audit": {
+    "audit_status": "passed",
+    "checked_ready_flags": [
+      "ready_for_scoring",
+      "ready_for_ranking",
+      "ready_for_allocation",
+      "ready_for_trade"
+    ],
+    "checked_constraints": [
+      "research_only",
+      "does_not_create_opportunity_score",
+      "does_not_rank_assets",
+      "does_not_select_top_assets",
+      "does_not_generate_position",
+      "no_percentage_exposure",
+      "no_etf_code",
+      "no_asset_weight",
+      "no_portfolio_weight",
+      "no_trade_signal",
+      "no_order_generation",
+      "no_broker_connection",
+      "no_parameter_optimization"
+    ],
+    "forbidden_output_keys": [
+      "asset",
+      "asset_code",
+      "asset_name",
+      "etf",
+      "etf_code",
+      "portfolio_weight",
+      "position",
+      "rank",
+      "top_n",
+      "trade",
+      "weight"
+    ]
+  }
+}

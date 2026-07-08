@@ -1645,6 +1645,11 @@ function setResultsPanel(results) {
   const opportunityArchitectureLayers = opportunityArchitecture.retained_layers || [];
   const opportunityArchitectureRejected = opportunityArchitecture.rejected_outputs || [];
   const opportunityArchitectureEvidence = opportunityArchitecture.evidence || {};
+  const researchDecision = results.research_decision_context || {};
+  const researchDecisionSummary = researchDecision.summary || {};
+  const researchDecisionContext = researchDecision.research_context || {};
+  const researchDecisionRiskEvidence = researchDecision.risk_context_evidence || {};
+  const researchDecisionOpportunityEvidence = researchDecision.opportunity_context_evidence || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3245,6 +3250,67 @@ function setResultsPanel(results) {
     opportunityArchitecture.metadata
       ? `V7.5 冻结 V7 机会研究层：保留资产基础、特征、IC 验证和归因框架，但结论仍是 ${escapeHtml(opportunityArchitectureSummary.conclusion || "不可进入机会评分")}。当前证据：资产 ${integerText(opportunityArchitectureEvidence.asset_count)} 个，V7.3 验证 ${integerText(opportunityArchitectureEvidence.feature_validation_result_count)} 条，V7.4 归因 ${integerText(opportunityArchitectureEvidence.feature_attribution_count)} 条；不输出机会分、排名、Top N、配置或交易。`
       : "V7.5 机会研究层冻结摘要尚未生成。"
+  );
+
+  const researchDecisionReadyFlagsOff =
+    researchDecisionSummary.ready_for_scoring === false &&
+    researchDecisionSummary.ready_for_ranking === false &&
+    researchDecisionSummary.ready_for_allocation === false &&
+    researchDecisionSummary.ready_for_trade === false;
+  const researchDecisionLabels = {
+    risk_controlled_opportunity_watch: "风险约束下观察机会",
+    research_context_needs_review: "研究语境需复核",
+  };
+  const researchPostureLabels = {
+    observe_without_selection: "只观察不选择",
+    review_inputs_before_use: "先复核输入",
+  };
+  const featureAttentionRows = researchDecisionOpportunityEvidence.feature_group_attention || [];
+  setText(
+    "researchDecisionContext",
+    researchDecisionLabels[researchDecisionSummary.decision_context] || researchDecisionSummary.decision_context || "--"
+  );
+  setText(
+    "researchDecisionPosture",
+    researchPostureLabels[researchDecisionSummary.research_posture] || researchDecisionSummary.research_posture || "--"
+  );
+  setText(
+    "researchDecisionOpportunity",
+    researchDecisionSummary.opportunity_research_candidate_count != null
+      ? `候选 ${integerText(researchDecisionSummary.opportunity_research_candidate_count)} / 观察 ${integerText(researchDecisionSummary.opportunity_watch_count)}`
+      : "--"
+  );
+  setText("researchDecisionBoundary", researchDecisionReadyFlagsOff ? "不可评分/排名/配置/交易" : "需复核");
+  setHtml("researchDecisionEvidence", [
+    ["风险上下文", researchDecisionRiskEvidence.two_axis_conclusion, `风险区分 ${signedFixedText(researchDecisionRiskEvidence.two_axis_risk_spread, 3)} · 机会区分 ${signedFixedText(researchDecisionRiskEvidence.two_axis_opportunity_spread, 3)}`],
+    ["风险领先层", researchDecisionRiskEvidence.risk_leader, `保护层未来高风险率 ${percentText(researchDecisionRiskEvidence.protection_overall_future_high_risk_rate)}`],
+    ["机会上下文", researchDecisionOpportunityEvidence.conclusion, `特征组 ${integerText(featureAttentionRows.length)} 个，仅作为研究关注`],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value || "--")}</strong>
+      <em>${escapeHtml(note || "")}</em>
+    </div>
+  `).join(""));
+  setHtml("researchDecisionFeatureGroups", featureAttentionRows
+    .map((row) => {
+      const counts = row.retention_counts || {};
+      const parts = ["research_candidate", "watch", "reject_for_now", "insufficient"]
+        .filter((key) => counts[key])
+        .map((key) => `${opportunityRetentionLabel(key)} ${integerText(counts[key])}`);
+      return `
+        <div>
+          <strong>${opportunityFeatureGroupLabel(row.feature_group || "--")}</strong>
+          <span>${parts.join(" / ") || "--"} · ${escapeHtml(row.interpretation || "feature group only")}</span>
+        </div>
+      `;
+    })
+    .join(""));
+  setText(
+    "researchDecisionConclusion",
+    researchDecision.metadata
+      ? `V8.1 只把冻结的 V6 风险上下文和 V7 机会归因连成研究解释：${researchDecisionLabels[researchDecisionContext.context] || researchDecisionContext.context || "--"}。风险轴可用于框架化观察，机会层仍不具备评分、排名、Top N、配置或交易条件。`
+      : "V8.1 研究决策整合架构尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
