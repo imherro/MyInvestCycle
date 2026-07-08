@@ -1,0 +1,651 @@
+{
+  "metadata": {
+    "engine": "V3.3.2 Regime-Specific Alpha Model Foundation",
+    "requested_as_of": "20260708",
+    "as_of": "20260625",
+    "generated_at": "2026-07-08T10:22:45+00:00",
+    "asset_count": 17,
+    "model": "rotation_alpha",
+    "alpha_regime": "STRUCTURAL_BULL",
+    "formula_stage": "model-specific research score; no allocation"
+  },
+  "router_decision": {
+    "engine": "V3.3.1 Alpha Regime Router Foundation",
+    "date": "20260708",
+    "state_signal_date": "20260618",
+    "alpha_regime": "STRUCTURAL_BULL",
+    "recommended_model": "rotation_alpha",
+    "structural_state": "STRUCTURAL_BULL_ROTATION",
+    "macro_state": "RECOVERY",
+    "market_structure_state": "RANGE_ACCUMULATION",
+    "theme_risk_level": "medium",
+    "reason": [
+      "structural_state=STRUCTURAL_BULL_ROTATION",
+      "market_structure_state=RANGE_ACCUMULATION",
+      "use rotation model placeholder; do not reuse broad trend score blindly"
+    ],
+    "constraints": {
+      "state_signal_uses_last_known_signal": true,
+      "no_new_factor": true,
+      "does_not_change_opportunity_score": true,
+      "no_allocation": true,
+      "no_position_sizing": true,
+      "no_trade_signal": true,
+      "no_order_generation": true,
+      "no_broker_connection": true,
+      "no_backtest": true
+    }
+  },
+  "summary": {
+    "top_assets": [
+      {
+        "rank": 1,
+        "code": "588000.SH",
+        "name": "科创50ETF",
+        "model_score": 79.9449
+      },
+      {
+        "rank": 2,
+        "code": "512480.SH",
+        "name": "半导体ETF",
+        "model_score": 79.9449
+      },
+      {
+        "rank": 3,
+        "code": "159915.SZ",
+        "name": "创业板ETF",
+        "model_score": 79.3241
+      },
+      {
+        "rank": 4,
+        "code": "510500.SH",
+        "name": "中证500ETF",
+        "model_score": 73.8162
+      },
+      {
+        "rank": 5,
+        "code": "512100.SH",
+        "name": "中证1000ETF",
+        "model_score": 71.5257
+      }
+    ],
+    "source_methods": {
+      "research_only": 10,
+      "direct_etf_history_only": 7
+    }
+  },
+  "assets": [
+    {
+      "code": "588000.SH",
+      "name": "科创50ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": "801080.SI",
+      "model": "rotation_alpha",
+      "model_score": 79.9449,
+      "components": {
+        "relative_strength": 96.875,
+        "persistence": 86.2745,
+        "rotation_stability": 100.0,
+        "extension_safety": 0.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 96.875,
+        "relative_strength": 96.875,
+        "trend_quality": 100.0,
+        "risk_adjusted": 96.875,
+        "persistence": 86.2745,
+        "extension_penalty": 30.0,
+        "price_percentile_252": 1.0,
+        "deviation_ma120": 0.496125,
+        "low_volatility": 3.125,
+        "drawdown_control": 65.6396
+      },
+      "rank": 1
+    },
+    {
+      "code": "512480.SH",
+      "name": "半导体ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": "801080.SI",
+      "model": "rotation_alpha",
+      "model_score": 79.9449,
+      "components": {
+        "relative_strength": 96.875,
+        "persistence": 86.2745,
+        "rotation_stability": 100.0,
+        "extension_safety": 0.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 96.875,
+        "relative_strength": 96.875,
+        "trend_quality": 100.0,
+        "risk_adjusted": 96.875,
+        "persistence": 86.2745,
+        "extension_penalty": 30.0,
+        "price_percentile_252": 1.0,
+        "deviation_ma120": 0.496125,
+        "low_volatility": 3.125,
+        "drawdown_control": 65.6396
+      },
+      "rank": 2
+    },
+    {
+      "code": "159915.SZ",
+      "name": "创业板ETF",
+      "category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": "159915.SZ",
+      "model": "rotation_alpha",
+      "model_score": 79.3241,
+      "components": {
+        "relative_strength": 87.5,
+        "persistence": 86.5686,
+        "rotation_stability": 100.0,
+        "extension_safety": 14.0233
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 87.5,
+        "relative_strength": 87.5,
+        "trend_quality": 100.0,
+        "risk_adjusted": 87.5,
+        "persistence": 86.5686,
+        "extension_penalty": 25.793,
+        "price_percentile_252": 1.0,
+        "deviation_ma120": 0.240489,
+        "low_volatility": 12.5,
+        "drawdown_control": 73.3333
+      },
+      "rank": 3
+    },
+    {
+      "code": "510500.SH",
+      "name": "中证500ETF",
+      "category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": "510500.SH",
+      "model": "rotation_alpha",
+      "model_score": 73.8162,
+      "components": {
+        "relative_strength": 81.25,
+        "persistence": 61.4706,
+        "rotation_stability": 100.0,
+        "extension_safety": 40.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 81.25,
+        "relative_strength": 81.25,
+        "trend_quality": 100.0,
+        "risk_adjusted": 81.25,
+        "persistence": 61.4706,
+        "extension_penalty": 18.0,
+        "price_percentile_252": 1.0,
+        "deviation_ma120": 0.093313,
+        "low_volatility": 50.0,
+        "drawdown_control": 68.8426
+      },
+      "rank": 4
+    },
+    {
+      "code": "512100.SH",
+      "name": "中证1000ETF",
+      "category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": "512100.SH",
+      "model": "rotation_alpha",
+      "model_score": 71.5257,
+      "components": {
+        "relative_strength": 75.0,
+        "persistence": 65.2941,
+        "rotation_stability": 93.75,
+        "extension_safety": 40.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 72.1875,
+        "relative_strength": 75.0,
+        "trend_quality": 100.0,
+        "risk_adjusted": 75.0,
+        "persistence": 65.2941,
+        "extension_penalty": 18.0,
+        "price_percentile_252": 0.992063,
+        "deviation_ma120": 0.078248,
+        "low_volatility": 56.25,
+        "drawdown_control": 69.9472
+      },
+      "rank": 5
+    },
+    {
+      "code": "516160.SH",
+      "name": "新能源ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": "801730.SI",
+      "model": "rotation_alpha",
+      "model_score": 69.0441,
+      "components": {
+        "relative_strength": 46.875,
+        "persistence": 75.9804,
+        "rotation_stability": 68.75,
+        "extension_safety": 100.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 32.8125,
+        "relative_strength": 46.875,
+        "trend_quality": 40.0,
+        "risk_adjusted": 46.875,
+        "persistence": 75.9804,
+        "extension_penalty": 0.0,
+        "price_percentile_252": 0.722222,
+        "deviation_ma120": -0.011888,
+        "low_volatility": 28.125,
+        "drawdown_control": 66.7234
+      },
+      "rank": 6
+    },
+    {
+      "code": "515790.SH",
+      "name": "光伏ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": "801730.SI",
+      "model": "rotation_alpha",
+      "model_score": 69.0441,
+      "components": {
+        "relative_strength": 46.875,
+        "persistence": 75.9804,
+        "rotation_stability": 68.75,
+        "extension_safety": 100.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 32.8125,
+        "relative_strength": 46.875,
+        "trend_quality": 40.0,
+        "risk_adjusted": 46.875,
+        "persistence": 75.9804,
+        "extension_penalty": 0.0,
+        "price_percentile_252": 0.722222,
+        "deviation_ma120": -0.011888,
+        "low_volatility": 28.125,
+        "drawdown_control": 66.7234
+      },
+      "rank": 7
+    },
+    {
+      "code": "510050.SH",
+      "name": "上证50ETF",
+      "category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": "510050.SH",
+      "model": "rotation_alpha",
+      "model_score": 67.511,
+      "components": {
+        "relative_strength": 62.5,
+        "persistence": 34.4118,
+        "rotation_stability": 93.75,
+        "extension_safety": 100.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 59.6875,
+        "relative_strength": 62.5,
+        "trend_quality": 90.0,
+        "risk_adjusted": 62.5,
+        "persistence": 34.4118,
+        "extension_penalty": 0.0,
+        "price_percentile_252": 0.488095,
+        "deviation_ma120": 0.001864,
+        "low_volatility": 81.25,
+        "drawdown_control": 74.7896
+      },
+      "rank": 8
+    },
+    {
+      "code": "510300.SH",
+      "name": "沪深300ETF",
+      "category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": "510300.SH",
+      "model": "rotation_alpha",
+      "model_score": 67.0919,
+      "components": {
+        "relative_strength": 68.75,
+        "persistence": 56.7647,
+        "rotation_stability": 93.75,
+        "extension_safety": 40.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 65.9375,
+        "relative_strength": 68.75,
+        "trend_quality": 100.0,
+        "risk_adjusted": 68.75,
+        "persistence": 56.7647,
+        "extension_penalty": 18.0,
+        "price_percentile_252": 0.996032,
+        "deviation_ma120": 0.059712,
+        "low_volatility": 68.75,
+        "drawdown_control": 77.9088
+      },
+      "rank": 9
+    },
+    {
+      "code": "512000.SH",
+      "name": "证券ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": "801790.SI",
+      "model": "rotation_alpha",
+      "model_score": 56.3934,
+      "components": {
+        "relative_strength": 56.25,
+        "persistence": 14.0196,
+        "rotation_stability": 81.25,
+        "extension_safety": 100.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 64.6875,
+        "relative_strength": 56.25,
+        "trend_quality": 30.0,
+        "risk_adjusted": 56.25,
+        "persistence": 14.0196,
+        "extension_penalty": 0.0,
+        "price_percentile_252": 0.18254,
+        "deviation_ma120": -0.047119,
+        "low_volatility": 43.75,
+        "drawdown_control": 45.6052
+      },
+      "rank": 10
+    },
+    {
+      "code": "512800.SH",
+      "name": "银行ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": "801780.SI",
+      "model": "rotation_alpha",
+      "model_score": 56.3382,
+      "components": {
+        "relative_strength": 25.0,
+        "persistence": 50.2941,
+        "rotation_stability": 75.0,
+        "extension_safety": 100.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 36.25,
+        "relative_strength": 25.0,
+        "trend_quality": 0.0,
+        "risk_adjusted": 18.75,
+        "persistence": 50.2941,
+        "extension_penalty": 0.0,
+        "price_percentile_252": 0.003968,
+        "deviation_ma120": -0.051736,
+        "low_volatility": 93.75,
+        "drawdown_control": 57.5293
+      },
+      "rank": 11
+    },
+    {
+      "code": "512660.SH",
+      "name": "军工ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": "801740.SI",
+      "model": "rotation_alpha",
+      "model_score": 56.0367,
+      "components": {
+        "relative_strength": 37.5,
+        "persistence": 26.3725,
+        "rotation_stability": 87.5,
+        "extension_safety": 100.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 31.875,
+        "relative_strength": 37.5,
+        "trend_quality": 5.0,
+        "risk_adjusted": 37.5,
+        "persistence": 26.3725,
+        "extension_penalty": 0.0,
+        "price_percentile_252": 0.511905,
+        "deviation_ma120": -0.097464,
+        "low_volatility": 37.5,
+        "drawdown_control": 42.8821
+      },
+      "rank": 12
+    },
+    {
+      "code": "510880.SH",
+      "name": "红利ETF",
+      "category": "style",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": "510880.SH",
+      "model": "rotation_alpha",
+      "model_score": 55.1765,
+      "components": {
+        "relative_strength": 12.5,
+        "persistence": 58.9216,
+        "rotation_stability": 75.0,
+        "extension_safety": 100.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 23.75,
+        "relative_strength": 12.5,
+        "trend_quality": 15.0,
+        "risk_adjusted": 12.5,
+        "persistence": 58.9216,
+        "extension_penalty": 0.0,
+        "price_percentile_252": 0.003968,
+        "deviation_ma120": -0.066943,
+        "low_volatility": 87.5,
+        "drawdown_control": 75.3525
+      },
+      "rank": 13
+    },
+    {
+      "code": "512890.SH",
+      "name": "红利低波ETF",
+      "category": "style",
+      "mapping_method": "direct_etf_history_only",
+      "research_source": "512890.SH",
+      "model": "rotation_alpha",
+      "model_score": 51.6544,
+      "components": {
+        "relative_strength": 6.25,
+        "persistence": 53.4314,
+        "rotation_stability": 75.0,
+        "extension_safety": 100.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 17.5,
+        "relative_strength": 6.25,
+        "trend_quality": 0.0,
+        "risk_adjusted": 6.25,
+        "persistence": 53.4314,
+        "extension_penalty": 0.0,
+        "price_percentile_252": 0.003968,
+        "deviation_ma120": -0.073418,
+        "low_volatility": 100.0,
+        "drawdown_control": 71.9317
+      },
+      "rank": 14
+    },
+    {
+      "code": "515000.SH",
+      "name": "科技ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": "801750.SI",
+      "model": "rotation_alpha",
+      "model_score": 48.3603,
+      "components": {
+        "relative_strength": 31.25,
+        "persistence": 17.451,
+        "rotation_stability": 75.0,
+        "extension_safety": 100.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 20.0,
+        "relative_strength": 31.25,
+        "trend_quality": 5.0,
+        "risk_adjusted": 31.25,
+        "persistence": 17.451,
+        "extension_penalty": 0.0,
+        "price_percentile_252": 0.06746,
+        "deviation_ma120": -0.113473,
+        "low_volatility": 18.75,
+        "drawdown_control": 36.4864
+      },
+      "rank": 15
+    },
+    {
+      "code": "512170.SH",
+      "name": "医疗ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": "801150.SI",
+      "model": "rotation_alpha",
+      "model_score": 47.4632,
+      "components": {
+        "relative_strength": 18.75,
+        "persistence": 26.9608,
+        "rotation_stability": 75.0,
+        "extension_safety": 100.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 30.0,
+        "relative_strength": 18.75,
+        "trend_quality": 0.0,
+        "risk_adjusted": 25.0,
+        "persistence": 26.9608,
+        "extension_penalty": 0.0,
+        "price_percentile_252": 0.055556,
+        "deviation_ma120": -0.105683,
+        "low_volatility": 62.5,
+        "drawdown_control": 43.9548
+      },
+      "rank": 16
+    },
+    {
+      "code": "512690.SH",
+      "name": "酒ETF",
+      "category": "industry",
+      "mapping_method": "research_only",
+      "research_source": "801120.SI",
+      "model": "rotation_alpha",
+      "model_score": 47.0588,
+      "components": {
+        "relative_strength": 0.0,
+        "persistence": 23.5294,
+        "rotation_stability": 100.0,
+        "extension_safety": 100.0
+      },
+      "explanation": [
+        "Rotation model is intended for structural bull regimes.",
+        "It reduces pure chase behavior by including persistence, stability and extension safety.",
+        "It is a research score only, not a portfolio weight."
+      ],
+      "feature_snapshot": {
+        "momentum": 0.0,
+        "relative_strength": 0.0,
+        "trend_quality": 0.0,
+        "risk_adjusted": 0.0,
+        "persistence": 23.5294,
+        "extension_penalty": 0.0,
+        "price_percentile_252": 0.007937,
+        "deviation_ma120": -0.145909,
+        "low_volatility": 75.0,
+        "drawdown_control": 41.4342
+      },
+      "rank": 17
+    }
+  ],
+  "constraints": {
+    "router_driven_model": true,
+    "does_not_change_v3_2_score": true,
+    "no_allocation": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_backtest": true,
+    "no_parameter_optimization": true
+  }
+}
