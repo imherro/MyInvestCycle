@@ -447,6 +447,16 @@ function opportunityRiskPolicyInterpretationLabel(value) {
   return labels[value] || value || "--";
 }
 
+function policyUsefulnessLabel(value) {
+  const labels = {
+    policy_mode_too_concentrated_review: "政策模式过度集中",
+    policy_mode_adds_environment_separation: "政策层增加区分力",
+    opportunity_risk_axes_add_separation_but_policy_mapping_compresses: "二维状态有效但政策压缩",
+    no_clear_incremental_environment_value: "未证明增量区分力",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1038,6 +1048,10 @@ function setResultsPanel(results) {
   const opportunityRiskPolicy = results.opportunity_risk_policy || {};
   const opportunityRiskPolicyCurrent = opportunityRiskPolicy.current || {};
   const opportunityRiskPolicySummary = opportunityRiskPolicy.summary || {};
+  const policyEffectiveness = results.policy_effectiveness || {};
+  const policyEffectivenessSummary = policyEffectiveness.summary || {};
+  const policyUsefulness = policyEffectivenessSummary.policy_usefulness || {};
+  const policyContradictionAudit = policyEffectivenessSummary.contradiction_audit || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -1543,6 +1557,44 @@ function setResultsPanel(results) {
     allocationPolicyValidation.metadata
       ? `V4.2 重放固定 V4.1 规则 ${integerText(allocationPolicyValidationSummary.replay_count)} 次，硬矛盾 ${integerText(allocationPolicyValidationSummary.contradiction_count)} 个，软复核项 ${integerText(allocationPolicyValidationSummary.review_item_count)} 个。${reviewText}。该验证不调规则、不输出仓位、不生成交易。`
       : "V4.2 风险预算历史验证尚未生成。"
+  );
+
+  setText("policyEffectivenessRows", integerText(policyEffectivenessSummary.usable_rows));
+  setText("policyEffectivenessContradictionRate", percentText(policyContradictionAudit.contradiction_rate));
+  setText("policyEffectivenessRiskRate", percentText(policyEffectivenessSummary.high_risk_event_rate));
+  setText("policyEffectivenessTopModeShare", percentText(policyUsefulness.top_policy_mode_share));
+  const modelComparison = policyEffectiveness.model_comparison || {};
+  setHtml("policyEffectivenessModels", [
+    ["旧结构状态", modelComparison.structural_state_model],
+    ["机会/风险二维", modelComparison.opportunity_risk_model],
+    ["政策模式", modelComparison.policy_mode_model],
+  ]
+    .map(([label, model]) => {
+      const separation = (model || {}).separation || {};
+      return `
+        <div class="alpha-source-row">
+          <span>${label}</span>
+          <strong>${percentText(separation.high_risk_rate_spread)}</strong>
+        </div>
+      `;
+    })
+    .join(""));
+  setHtml("policyEffectivenessPeriods", (policyEffectiveness.period_validation || [])
+    .map(
+      (period) => `
+        <div class="duration-row">
+          <span>${escapeHtml(period.label || period.period || "--")}</span>
+          <strong>${percentText(period.contradiction_rate)}</strong>
+          <em>高风险 ${percentText(period.high_risk_event_rate)} · ${integerText(period.usable_rows)} 次</em>
+        </div>
+      `
+    )
+    .join(""));
+  setText(
+    "policyEffectivenessConclusion",
+    policyEffectiveness.metadata
+      ? `V4.5 固定 V4.4 规则做事后审计：${policyUsefulnessLabel(policyUsefulness.status)}，主模式 ${opportunityRiskPolicyModeLabel(policyUsefulness.top_policy_mode)} 占 ${percentText(policyUsefulness.top_policy_mode_share)}，矛盾率 ${percentText(policyContradictionAudit.contradiction_rate)}。该层只验证解释力，不调阈值、不输出仓位或交易。`
+      : "V4.5 政策解释力审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

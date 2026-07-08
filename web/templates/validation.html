@@ -204,6 +204,34 @@
           <p class="result-note" id="policyValidationConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="固定 V4.4 政策模式不变，用未来 60/120 交易日环境标签做事后审计，比较旧 structural_state、机会风险二维状态和 policy_mode 的解释力；不调阈值、不输出仓位或交易。">政策解释力审计</h2>
+            <span class="panel-kicker">V4.5</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>可评估样本</span>
+              <strong id="policyEffectivenessRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>矛盾率</span>
+              <strong id="policyEffectivenessContradictionRate">--</strong>
+            </div>
+            <div class="result-row">
+              <span>高风险事件率</span>
+              <strong id="policyEffectivenessRiskRate">--</strong>
+            </div>
+            <div class="result-row">
+              <span>主模式占比</span>
+              <strong id="policyEffectivenessTopModeShare">--</strong>
+            </div>
+          </div>
+          <div class="alpha-source-list" id="policyEffectivenessModels"></div>
+          <div class="duration-list" id="policyEffectivenessPeriods"></div>
+          <p class="result-note" id="policyEffectivenessConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -294,7 +322,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-opportunity-policy-1"></script>
+    <script src="/static/dashboard.js?v=20260708-policy-effectiveness-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
