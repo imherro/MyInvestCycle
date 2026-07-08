@@ -1661,6 +1661,10 @@ function setResultsPanel(results) {
   const v8ArchitectureLayers = v8Architecture.retained_layers || [];
   const v8ArchitectureRejected = v8Architecture.rejected_outputs || [];
   const v8ArchitectureEvidence = v8Architecture.evidence || {};
+  const allocationResearch = results.allocation_research_architecture || {};
+  const allocationResearchSummary = allocationResearch.summary || {};
+  const allocationResearchSchema = allocationResearch.schema || {};
+  const allocationResearchEvidence = allocationResearch.source_layer_evidence || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3430,6 +3434,54 @@ function setResultsPanel(results) {
     v8Architecture.metadata
       ? `V8.4 冻结 V8 研究解释架构：V8.1=${escapeHtml(v8ArchitectureEvidence.v8_1_decision_context || "--")}，V8.2 场景 ${integerText(v8ArchitectureEvidence.v8_2_scenario_count)} 个，一致性 ${Object.entries(v8ArchitectureEvidence.v8_2_consistency_counts || {}).map(([key, value]) => `${key} ${integerText(value)}`).join(" / ") || "--"}，V8.3 归因 ${integerText(v8ArchitectureEvidence.v8_3_attribution_count)} 条。该层不生成评分、排名、资产选择、配置、ETF 权重或交易。`
       : "V8.4 研究决策架构冻结摘要尚未生成。"
+  );
+
+  const allocationResearchReadyFlagsOff =
+    allocationResearchSummary.allocation_research_ready === false &&
+    allocationResearchSummary.ready_for_asset_selection === false &&
+    allocationResearchSummary.ready_for_etf_mapping === false &&
+    allocationResearchSummary.ready_for_weight_generation === false &&
+    allocationResearchSummary.ready_for_backtest === false &&
+    allocationResearchSummary.ready_for_trade === false;
+  const allocationAllowedInputs = Array.isArray(allocationResearchSchema.allowed_inputs)
+    ? allocationResearchSchema.allowed_inputs
+    : [];
+  const allocationFutureEvidence = Array.isArray(allocationResearchSchema.required_future_evidence)
+    ? allocationResearchSchema.required_future_evidence
+    : [];
+  const allocationForbiddenOutputs = Array.isArray(allocationResearchSchema.forbidden_outputs)
+    ? allocationResearchSchema.forbidden_outputs
+    : [];
+  const allocationV8Evidence = allocationResearchEvidence.v8_research_interpretation || {};
+  setText("allocationResearchReady", allocationResearchSummary.allocation_research_ready === false ? "未就绪" : "--");
+  setText("allocationResearchContext", allocationResearchSummary.environment_context || "--");
+  setText("allocationResearchForbidden", allocationForbiddenOutputs.length ? `${integerText(allocationForbiddenOutputs.length)} 项` : "--");
+  setText("allocationResearchBoundary", allocationResearchReadyFlagsOff ? "不选资产/不映射ETF/不生成权重/不交易" : "需复核");
+  setHtml("allocationResearchInputs", allocationAllowedInputs
+    .map((item) => `
+      <div class="duration-row">
+        <span>${escapeHtml(item.field || "--")}</span>
+        <strong>${escapeHtml(item.source || "--")}</strong>
+        <em>${escapeHtml(item.description || "")}</em>
+      </div>
+    `)
+    .join(""));
+  setHtml("allocationResearchEvidence", [
+    ["V6 风险上下文", allocationResearchEvidence.v6_risk_context?.conclusion, `风险区分 ${signedFixedText(allocationResearchEvidence.v6_risk_context?.two_axis_risk_spread, 3)} · 机会区分 ${signedFixedText(allocationResearchEvidence.v6_risk_context?.two_axis_opportunity_spread, 3)}`],
+    ["V7 机会研究", allocationResearchEvidence.v7_opportunity_research?.conclusion, Object.entries(allocationResearchEvidence.v7_opportunity_research?.retention_counts || {}).map(([key, value]) => `${key} ${integerText(value)}`).join(" / ")],
+    ["V8 研究解释", allocationV8Evidence.decision_context, `一致性 ${Object.entries(allocationV8Evidence.scenario_consistency_counts || {}).map(([key, value]) => `${key} ${integerText(value)}`).join(" / ") || "--"}`],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value || "--")}</strong>
+      <em>${escapeHtml(note || "")}</em>
+    </div>
+  `).join(""));
+  setText(
+    "allocationResearchConclusion",
+    allocationResearch.metadata
+      ? `V9.1 只定义未来配置研究的架构边界：允许使用冻结 V6/V7/V8 作为输入，但必须先补齐 ${allocationFutureEvidence.map((item) => escapeHtml(item)).join(" / ") || "未来证据"}，当前结论为 ${escapeHtml(allocationResearchSummary.conclusion || "--")}。禁止输出：${allocationForbiddenOutputs.map((item) => escapeHtml(item)).join(" / ") || "--"}。`
+      : "V9.1 配置研究架构基础尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
