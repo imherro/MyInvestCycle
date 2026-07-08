@@ -890,6 +890,14 @@ def _read_external_validation_protocol_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_h2_external_validation_execution_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "h2_external_validation_execution.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -1681,6 +1689,25 @@ def _compact_external_validation_protocol_payload(payload: dict[str, object] | N
             "summary",
             "protocol",
             "excluded_directions",
+            "source_layer_evidence",
+            "time_safety",
+            "constraints",
+            "forbidden_outputs",
+            "audit",
+        )
+        if key in payload
+    }
+
+
+def _compact_h2_external_validation_execution_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "validation_runs",
             "source_layer_evidence",
             "time_safety",
             "constraints",
@@ -2823,6 +2850,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/external-validation/execution-runs",
+                    "返回 V11.2 H2 External Validation Execution Framework，按 V11.1 预注册窗口读取冻结风险证据并输出 passed/failed/inconclusive；不策略化、不配置、不优化、不交易。",
+                    "H2 external validation execution",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -2984,6 +3018,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/allocation-research/result-review", "description": "读取 V10.2 配置研究结果审查：只审查 H2/H4 执行结果，不策略化、不配置、不交易。"},
             {"path": "/api/allocation-research/final-boundary", "description": "读取 V10.3 配置研究最终边界：H2 只允许外部验证，H4 仅研究治理，H1/H3 冻结；不策略化、不配置、不交易。"},
             {"path": "/api/external-validation/protocol", "description": "读取 V11.1 H2 外部验证协议：只定义预注册验证流程、失败标准和停止条件，不运行验证、不配置、不交易。"},
+            {"path": "/api/external-validation/execution-runs", "description": "读取 V11.2 H2 外部验证执行结果：只输出窗口级 passed/failed/inconclusive，不策略化、不配置、不交易。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -4146,6 +4181,17 @@ def external_validation_protocol() -> dict:
     return payload
 
 
+@app.get("/api/external-validation/execution-runs")
+def h2_external_validation_execution() -> dict:
+    payload = _read_h2_external_validation_execution_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="H2 external validation execution artifact missing; run scripts/run_h2_external_validation_execution.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -4394,6 +4440,7 @@ def results_summary(
         allocation_research_result_review = _read_allocation_research_result_review_payload()
         allocation_research_final_boundary = _read_allocation_research_final_boundary_payload()
         external_validation_protocol = _read_external_validation_protocol_payload()
+        h2_external_validation_execution = _read_h2_external_validation_execution_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -4450,6 +4497,7 @@ def results_summary(
             allocation_research_result_review = _compact_allocation_research_result_review_payload(allocation_research_result_review)
             allocation_research_final_boundary = _compact_allocation_research_final_boundary_payload(allocation_research_final_boundary)
             external_validation_protocol = _compact_external_validation_protocol_payload(external_validation_protocol)
+            h2_external_validation_execution = _compact_h2_external_validation_execution_payload(h2_external_validation_execution)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -4543,6 +4591,7 @@ def results_summary(
             "allocation_research_result_review": allocation_research_result_review,
             "allocation_research_final_boundary": allocation_research_final_boundary,
             "external_validation_protocol": external_validation_protocol,
+            "h2_external_validation_execution": h2_external_validation_execution,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,

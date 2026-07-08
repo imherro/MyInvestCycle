@@ -1682,6 +1682,9 @@ function setResultsPanel(results) {
   const externalProtocolSummary = externalProtocol.summary || {};
   const externalProtocolBody = externalProtocol.protocol || {};
   const externalProtocolExcluded = externalProtocol.excluded_directions || {};
+  const h2External = results.h2_external_validation_execution || {};
+  const h2ExternalSummary = h2External.summary || {};
+  const h2ExternalRuns = Array.isArray(h2External.validation_runs) ? h2External.validation_runs : [];
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4020,6 +4023,43 @@ function setResultsPanel(results) {
     externalProtocol.metadata
       ? `V11.1 只为 H2 定义外部验证协议：验证窗口必须预先声明，结果只能支持/失败研究方向；H4 继续作为治理门禁，H1/H3 保持冻结。该层不运行验证，不生成资产、ETF、权重、配置、优化或交易。`
       : "V11.1 外部验证协议尚未生成。"
+  );
+
+  const h2ExternalReadyFlagsOff =
+    h2ExternalSummary.promotion_allowed === false &&
+    h2ExternalSummary.strategy_promotion === false &&
+    h2ExternalSummary.allocation_ready === false &&
+    h2ExternalSummary.investable_output === false &&
+    h2ExternalSummary.investable_output_generated === false &&
+    h2ExternalSummary.ready_for_asset_selection === false &&
+    h2ExternalSummary.ready_for_etf_mapping === false &&
+    h2ExternalSummary.ready_for_weight_generation === false &&
+    h2ExternalSummary.ready_for_optimization === false &&
+    h2ExternalSummary.ready_for_trade === false;
+  const h2ExternalStatusLabel = (status) => ({
+    passed: "通过",
+    failed: "失败",
+    inconclusive: "不确定",
+  }[status] || status || "--");
+  setText("h2ExternalStatus", h2ExternalStatusLabel(h2ExternalSummary.overall_status));
+  setText("h2ExternalPassed", integerText(h2ExternalSummary.passed_count));
+  setText("h2ExternalInconclusive", integerText(h2ExternalSummary.inconclusive_count));
+  setText("h2ExternalFailed", integerText(h2ExternalSummary.failed_count));
+  setText("h2ExternalBoundary", h2ExternalReadyFlagsOff ? "只验证研究/不配置/不交易" : "需复核");
+  setHtml("h2ExternalRows", h2ExternalRuns
+    .map((row) => `
+      <div class="duration-row">
+        <span>${escapeHtml(row.window_id || "--")}</span>
+        <strong>${escapeHtml(h2ExternalStatusLabel(row.status))}</strong>
+        <em>${escapeHtml(row.result_reason || "--")}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "h2ExternalConclusion",
+    h2External.metadata
+      ? `V11.2 按预注册窗口执行 H2 外部验证：通过 ${integerText(h2ExternalSummary.passed_count)}、不确定 ${integerText(h2ExternalSummary.inconclusive_count)}、失败 ${integerText(h2ExternalSummary.failed_count)}，整体为${h2ExternalStatusLabel(h2ExternalSummary.overall_status)}。结论仍是 research-only，不生成资产、ETF、权重、配置、优化或交易。`
+      : "V11.2 H2 外部验证执行尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

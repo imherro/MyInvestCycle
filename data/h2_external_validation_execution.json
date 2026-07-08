@@ -1,0 +1,228 @@
+{
+  "metadata": {
+    "engine": "V11.2 H2 External Validation Execution Framework",
+    "generated_at": "2026-07-08T21:22:49+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v11_1_protocol": "data/external_validation_protocol.json",
+      "v10_3_final_boundary": "data/allocation_research_final_boundary.json",
+      "risk_gradient_robustness": "data/risk_gradient_robustness.json",
+      "risk_gradient_condition_analysis": "data/risk_gradient_condition_analysis.json",
+      "protection_score_validation": "data/protection_score_validation.json",
+      "two_axis_context_validation": "data/two_axis_context_validation.json",
+      "context_information_attribution": "data/context_information_attribution.json"
+    },
+    "input_hashes": {
+      "v11_1_protocol": "0764ff3bfd543ab7623524135bee8856e18a1bbc2f20a1e0e81dd0c76bc3625c",
+      "v10_3_final_boundary": "6121cf0be52241fd835b34748c662725736e6f7fd964d98a76b55327cd0b3b6d",
+      "risk_gradient_robustness": "61a1a1e994950aedb7254f49be7267465b9518827e453d30d0e9a8446ccbc47c",
+      "risk_gradient_condition_analysis": "1df3b4673a5279e229384fca136a09f880e181316039174f25373ad869c6e288",
+      "protection_score_validation": "facfc8ceb545ecf7a37fd41765a59aa2a4b28113c7febf226654275138ca9509",
+      "two_axis_context_validation": "12cf495b73bd83f85e0c2df7e7ce44cd6aafe1c119a376efb1106d49186feffb",
+      "context_information_attribution": "19856a7b9865fd6b580efe9aedd9e93978fb5981189a9370be3749187721eebd"
+    },
+    "purpose": "Execute the pre-registered H2 external validation protocol using frozen risk evidence only, without producing investable outputs."
+  },
+  "summary": {
+    "execution_status": "completed",
+    "target_hypothesis": "H2",
+    "window_count": 4,
+    "passed_count": 1,
+    "failed_count": 0,
+    "inconclusive_count": 3,
+    "overall_status": "inconclusive",
+    "promotion_allowed": false,
+    "strategy_promotion": false,
+    "allocation_ready": false,
+    "investable_output": false,
+    "investable_output_generated": false,
+    "ready_for_asset_selection": false,
+    "ready_for_etf_mapping": false,
+    "ready_for_weight_generation": false,
+    "ready_for_optimization": false,
+    "ready_for_trade": false,
+    "conclusion": "h2_external_validation_inconclusive_no_strategy_no_allocation",
+    "key_read": "H2 shows adverse-risk evidence but external stability is not broad enough for promotion."
+  },
+  "validation_runs": [
+    {
+      "window_id": "holdout_recent_window",
+      "protocol_role": "recent unseen stability check",
+      "status": "inconclusive",
+      "evidence_sources": [
+        "risk_gradient_robustness"
+      ],
+      "metrics": {
+        "period": "2024-2026",
+        "sample_count": 16,
+        "high_risk_sample_count": 2,
+        "high_risk_lift": -0.0625,
+        "source_status": "insufficient_high_risk_sample"
+      },
+      "result_reason": "recent holdout has too few high-risk samples and the lift is not reliable enough for support",
+      "allowed_next_step": "collect_more_external_observations_only"
+    },
+    {
+      "window_id": "regime_transition_window",
+      "protocol_role": "stress check around market-state changes",
+      "status": "inconclusive",
+      "evidence_sources": [
+        "risk_gradient_robustness",
+        "risk_gradient_condition_analysis"
+      ],
+      "metrics": {
+        "period_consistency": "insufficient_evidence",
+        "positive_period_count": 1,
+        "negative_period_count": 1,
+        "insufficient_period_count": 4,
+        "positive_condition_count": 5,
+        "negative_condition_count": 0,
+        "insufficient_condition_count": 40
+      },
+      "result_reason": "transition evidence is visible in some conditions but period-level robustness is not confirmed",
+      "allowed_next_step": "keep_external_validation_open_only"
+    },
+    {
+      "window_id": "structural_bull_window",
+      "protocol_role": "check that risk protection does not suppress structural opportunity without evidence",
+      "status": "inconclusive",
+      "evidence_sources": [
+        "two_axis_context_validation",
+        "protection_score_validation"
+      ],
+      "metrics": {
+        "participate_opportunity_lift": 0.014965,
+        "two_axis_opportunity_spread": 0.162791,
+        "model_c_false_warning_rate": 0.615385,
+        "context_opportunity_leader": "layer_3_two_axis_context",
+        "context_opportunity_leader_spread": 0.162791
+      },
+      "result_reason": "structural opportunity suppression risk remains unresolved because opportunity evidence is weak and false warnings are high",
+      "allowed_next_step": "require_false_protection_review_only"
+    },
+    {
+      "window_id": "adverse_risk_window",
+      "protocol_role": "check whether protection evidence appears when drawdown risk is actually elevated",
+      "status": "passed",
+      "evidence_sources": [
+        "protection_score_validation",
+        "two_axis_context_validation"
+      ],
+      "metrics": {
+        "model_c_high_risk_lift": 0.158528,
+        "model_c_high_group_sample_count": 13,
+        "model_c_high_risk_event_capture_rate": 0.192308,
+        "protect_but_participate_risk_lift": 0.273913,
+        "two_axis_risk_spread": 0.337209
+      },
+      "result_reason": "risk-protection evidence is visible in adverse-risk diagnostics, though it is not sufficient for strategy promotion",
+      "allowed_next_step": "retain_as_external_research_evidence_only"
+    }
+  ],
+  "source_layer_evidence": {
+    "v11_1_summary": {
+      "protocol_phase_status": "defined",
+      "target_hypothesis": "H2",
+      "target_direction_count": 1,
+      "excluded_direction_count": 3,
+      "protocol_ready_for_manual_external_validation": true,
+      "promotion_allowed": false,
+      "strategy_promotion": false,
+      "allocation_ready": false,
+      "investable_output": false,
+      "investable_output_generated": false,
+      "ready_for_asset_selection": false,
+      "ready_for_etf_mapping": false,
+      "ready_for_weight_generation": false,
+      "ready_for_optimization": false,
+      "ready_for_trade": false,
+      "conclusion": "h2_external_validation_protocol_defined_no_strategy_no_allocation",
+      "key_read": "H2 can move to manual external validation protocol only; H4 remains governance-only; H1/H3 stay frozen."
+    },
+    "v10_3_h2": {
+      "hypothesis_id": "H2",
+      "status": "continue_external_validation",
+      "source_review_status": "continue_research",
+      "source_freeze_status": "inconclusive",
+      "decision_reason": "risk evidence is visible but stability is incomplete, so only external validation may continue",
+      "allowed_next_step": "external_validation_protocol_only",
+      "promotion_allowed": false,
+      "strategy_promotion": false,
+      "allocation_ready": false,
+      "investable_output": false
+    },
+    "frozen_risk_artifact_count": 5
+  },
+  "time_safety": {
+    "uses_v11_1_protocol": true,
+    "uses_v10_3_final_boundary": true,
+    "uses_frozen_risk_evidence_only": true,
+    "input_hashes_recorded": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "does_not_run_market_backtest": true,
+    "does_not_optimize_parameters": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "research_only": true,
+    "external_validation_execution_only": true,
+    "uses_v11_1_protocol": true,
+    "uses_v10_3_final_boundary": true,
+    "uses_frozen_risk_evidence_only": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_target": "H2",
+    "checked_window_count": 4,
+    "checked_constraints": [
+      "research_only",
+      "external_validation_execution_only",
+      "uses_v11_1_protocol",
+      "uses_v10_3_final_boundary",
+      "uses_frozen_risk_evidence_only",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}

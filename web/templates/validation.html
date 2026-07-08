@@ -1428,6 +1428,37 @@
           <p class="result-note" id="externalProtocolConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="执行 V11.2 H2 外部验证框架：按 V11.1 预注册窗口读取冻结风险证据，只输出 passed / failed / inconclusive 研究状态；不生成资产、ETF、权重、配置、优化或交易。">H2 外部验证执行</h2>
+            <span class="panel-kicker">V11.2</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>整体状态</span>
+              <strong id="h2ExternalStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>通过窗口</span>
+              <strong id="h2ExternalPassed">--</strong>
+            </div>
+            <div class="result-row">
+              <span>不确定窗口</span>
+              <strong id="h2ExternalInconclusive">--</strong>
+            </div>
+            <div class="result-row">
+              <span>失败窗口</span>
+              <strong id="h2ExternalFailed">--</strong>
+            </div>
+            <div class="result-row">
+              <span>输出边界</span>
+              <strong id="h2ExternalBoundary">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="h2ExternalRows"></div>
+          <p class="result-note" id="h2ExternalConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -1518,7 +1549,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-external-validation-protocol-1"></script>
+    <script src="/static/dashboard.js?v=20260708-h2-external-validation-execution-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>
