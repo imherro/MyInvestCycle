@@ -510,6 +510,34 @@
           <p class="result-note" id="contextStateConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="在 BALANCED 内构建连续风险梯度和机会梯度，用固定权重分桶验证未来失败率和机会率；这是研究评分，不是仓位、ETF 或交易信号。">BALANCED 风险/机会梯度审计</h2>
+            <span class="panel-kicker">V5.10</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>BALANCED样本</span>
+              <strong id="gradientRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>风险区分</span>
+              <strong id="gradientRiskSeparation">--</strong>
+            </div>
+            <div class="result-row">
+              <span>机会区分</span>
+              <strong id="gradientOpportunitySeparation">--</strong>
+            </div>
+            <div class="result-row">
+              <span>规则变更</span>
+              <strong id="gradientReady">--</strong>
+            </div>
+          </div>
+          <div class="alpha-source-list" id="gradientRiskBuckets"></div>
+          <div class="duration-list" id="gradientOpportunityBuckets"></div>
+          <p class="result-note" id="gradientConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -600,7 +628,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-context-state-1"></script>
+    <script src="/static/dashboard.js?v=20260708-gradient-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

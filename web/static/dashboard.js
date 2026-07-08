@@ -699,6 +699,26 @@ function contextStateQualityLabel(value) {
   return labels[value] || value || "--";
 }
 
+function riskGradientBucketLabel(value) {
+  const labels = {
+    high_risk: "高风险梯度",
+    medium_risk: "中风险梯度",
+    low_risk: "低风险梯度",
+    unknown: "未知",
+  };
+  return labels[value] || value || "--";
+}
+
+function opportunityGradientBucketLabel(value) {
+  const labels = {
+    high_opportunity: "高机会梯度",
+    medium_opportunity: "中机会梯度",
+    low_opportunity: "低机会梯度",
+    unknown: "未知",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1336,6 +1356,11 @@ function setResultsPanel(results) {
   const contextStateTimeSafety = contextStateSummary.time_safety || {};
   const contextStateQuality = contextStateAudit.context_state_quality || {};
   const contextStateSeparationReview = contextStateSummary.separation_review || {};
+  const gradientAnalysis = results.exposure_gradient_analysis || {};
+  const gradientSummary = gradientAnalysis.summary || {};
+  const gradientSeparation = gradientSummary.separation_review || {};
+  const riskGradientBuckets = gradientAnalysis.risk_bucket_analysis || {};
+  const opportunityGradientBuckets = gradientAnalysis.opportunity_bucket_analysis || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2353,6 +2378,40 @@ function setResultsPanel(results) {
     contextStateAudit.metadata
       ? `V5.9 只设计研究候选状态：${contextStateSummary.key_read || "状态模型审计已生成"} 风险分离 ${contextStateQualityLabel(contextStateSeparationReview.risk_state_separation)}，机会分离 ${contextStateQualityLabel(contextStateSeparationReview.opportunity_state_separation)}，复核项 ${integerText(contextStateSummary.review_item_count)} 个；不新增正式状态、不改 mapper、不输出仓位或交易。`
       : "V5.9 BALANCED 状态模型设计审计尚未生成。"
+  );
+
+  setText("gradientRows", integerText(gradientSummary.balanced_usable_rows));
+  setText("gradientRiskSeparation", contextStateQualityLabel(gradientSeparation.risk_gradient_separation));
+  setText("gradientOpportunitySeparation", contextStateQualityLabel(gradientSeparation.opportunity_gradient_separation));
+  setText("gradientReady", gradientSummary.ready_for_mapper_change === true ? "可变更" : "不可变更");
+  setHtml("gradientRiskBuckets", ["high_risk", "medium_risk", "low_risk"]
+    .map((bucket) => {
+      const item = riskGradientBuckets[bucket] || {};
+      return `
+        <div class="alpha-source-row">
+          <span>${riskGradientBucketLabel(bucket)} · 置信 ${contextStateQualityLabel(item.confidence)}</span>
+          <strong>${integerText(item.sample_count)} 次 · 风险 ${percentText(item.future_failure_rate)} / 机会 ${percentText(item.future_opportunity_rate)}</strong>
+        </div>
+      `;
+    })
+    .join(""));
+  setHtml("gradientOpportunityBuckets", ["high_opportunity", "medium_opportunity", "low_opportunity"]
+    .map((bucket) => {
+      const item = opportunityGradientBuckets[bucket] || {};
+      return `
+        <div class="duration-row">
+          <span>${opportunityGradientBucketLabel(bucket)}</span>
+          <strong>${integerText(item.sample_count)} 次 · 机会 ${percentText(item.future_opportunity_rate)}</strong>
+          <em>风险 ${percentText(item.future_failure_rate)}</em>
+        </div>
+      `;
+    })
+    .join(""));
+  setText(
+    "gradientConclusion",
+    gradientAnalysis.metadata
+      ? `V5.10 连续梯度审计：风险梯度 ${contextStateQualityLabel(gradientSeparation.risk_gradient_separation)}，高风险桶失败率较总体抬升 ${signedRatioText(gradientSeparation.high_risk_bucket_failure_lift)}；机会梯度 ${contextStateQualityLabel(gradientSeparation.opportunity_gradient_separation)}，高机会桶机会率抬升 ${signedRatioText(gradientSeparation.high_opportunity_bucket_opportunity_lift)}。该层只做研究，不改 mapper、不输出仓位或交易。`
+      : "V5.10 BALANCED 风险/机会梯度审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
