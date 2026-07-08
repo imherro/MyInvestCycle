@@ -142,6 +142,40 @@
           <p class="result-note" id="regimeAttributionConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="比较 Opportunity Score、Style Preference 和固定 50/50 Combined 三套排序，检查 Style 是否在原机会分之外提供独立增量信息；只做研究验证，不生成仓位或交易。">Style 增量信息检验</h2>
+            <span class="panel-kicker">V3.5.7</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>结论状态</span>
+              <strong id="styleIncrementalStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>20日增量收益</span>
+              <strong id="styleIncremental20Return">--</strong>
+            </div>
+            <div class="result-row">
+              <span>60日增量收益</span>
+              <strong id="styleIncremental60Return">--</strong>
+            </div>
+            <div class="result-row">
+              <span>20日增量 IC</span>
+              <strong id="styleIncremental20Ic">--</strong>
+            </div>
+            <div class="result-row">
+              <span>60日增量 IC</span>
+              <strong id="styleIncremental60Ic">--</strong>
+            </div>
+            <div class="result-row">
+              <span>20/60日命中率</span>
+              <strong id="styleIncrementalHitRate">--</strong>
+            </div>
+          </div>
+          <p class="result-note" id="styleIncrementalConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -232,7 +266,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260629-channels-1"></script>
+    <script src="/static/dashboard.js?v=20260708-style-incremental-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

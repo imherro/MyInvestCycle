@@ -330,6 +330,14 @@ def _read_style_validation_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_style_incremental_analysis_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "style_incremental_analysis.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -1081,6 +1089,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/style/incremental-analysis",
+                    "返回 V3.5.7 风格偏好增量信息检验，比较 Opportunity、Style 和固定 50/50 Combined 三套排序的 IC、TopN 收益差和分状态结果；只读研究验证。",
+                    "style incremental information test",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -1193,6 +1208,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/alpha/residual-alpha-analysis", "description": "读取 V3.4.5 残差 Alpha 与因子中性化归因。"},
             {"path": "/api/style/allocation-snapshot", "description": "读取 V3.5.1 宏观感知风格偏好快照。"},
             {"path": "/api/style/validation", "description": "读取 V3.5.2 风格偏好验证与归因。"},
+            {"path": "/api/style/incremental-analysis", "description": "读取 V3.5.7 风格偏好增量信息检验。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -1893,6 +1909,17 @@ def style_validation() -> dict:
     return payload
 
 
+@app.get("/api/style/incremental-analysis")
+def style_incremental_analysis() -> dict:
+    payload = _read_style_incremental_analysis_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Style incremental analysis artifact missing; run scripts/run_style_incremental_analysis.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -2022,6 +2049,7 @@ def results_summary(
         residual_alpha_analysis = _read_residual_alpha_analysis_payload()
         style_allocation_snapshot = _read_style_allocation_snapshot_payload()
         style_validation = _read_style_validation_payload()
+        style_incremental_analysis = _read_style_incremental_analysis_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -2075,6 +2103,7 @@ def results_summary(
             "residual_alpha_analysis": residual_alpha_analysis,
             "style_allocation_snapshot": style_allocation_snapshot,
             "style_validation": style_validation,
+            "style_incremental_analysis": style_incremental_analysis,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,

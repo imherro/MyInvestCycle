@@ -181,6 +181,12 @@ function fixedText(value, digits = 3) {
   return value.toFixed(digits);
 }
 
+function signedFixedText(value, digits = 3) {
+  if (typeof value !== "number") return "--";
+  const sign = value > 0 ? "+" : "";
+  return `${sign}${value.toFixed(digits)}`;
+}
+
 function drawdownReductionText(value) {
   if (typeof value !== "number") return "--";
   const percent = Math.abs(value * 100).toFixed(1);
@@ -273,6 +279,15 @@ function metaSignalLabel(value) {
     hazard_mismatch: "结构风险加速",
     portfolio_gap: "组合-策略错位",
     regime_age: "周期年龄异常",
+  };
+  return labels[value] || value || "--";
+}
+
+function styleIncrementalStatusLabel(value) {
+  const labels = {
+    incremental_positive: "有稳定增量",
+    weak_short_horizon_trace: "仅弱短期迹象",
+    no_clear_incremental_edge: "无明确增量",
   };
   return labels[value] || value || "--";
 }
@@ -852,6 +867,9 @@ function setResultsPanel(results) {
   const attributionSummary = regimeAttribution.summary || {};
   const regimePerformance = regimeAttribution.regime_performance || {};
   const alphaDecomposition = regimeAttribution.alpha_decomposition || {};
+  const styleIncremental = results.style_incremental_analysis || {};
+  const styleIncrementalSummary = styleIncremental.summary || {};
+  const styleIncrementalEdge = styleIncrementalSummary.edge_read || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -1200,6 +1218,28 @@ function setResultsPanel(results) {
     attributionSummary.sessions
       ? `S1.2 显示主要拖累来自${regimeLabel(attributionSummary.largest_drag_regime)}，主要正贡献来自${regimeLabel(attributionSummary.largest_positive_regime)}；系统更像风险保护层，而不是原始收益 Alpha 生成器。`
       : "S1.2 regime 归因结果尚未生成。"
+  );
+
+  setText("styleIncrementalStatus", styleIncrementalStatusLabel(styleIncrementalEdge.style_incremental_edge_status));
+  setText("styleIncremental20Return", signedRatioText(styleIncrementalEdge.tradable_20d_combined_minus_baseline_return));
+  setText("styleIncremental60Return", signedRatioText(styleIncrementalEdge.tradable_60d_combined_minus_baseline_return));
+  setText("styleIncremental20Ic", signedFixedText(styleIncrementalEdge.tradable_20d_combined_ic_minus_baseline, 3));
+  setText("styleIncremental60Ic", signedFixedText(styleIncrementalEdge.tradable_60d_combined_ic_minus_baseline, 3));
+  setText(
+    "styleIncrementalHitRate",
+    `${percentText(styleIncrementalEdge.tradable_20d_combined_hit_rate)} / ${percentText(styleIncrementalEdge.tradable_60d_combined_hit_rate)}`
+  );
+  const styleIncrementalVerdict =
+    styleIncrementalEdge.style_incremental_edge_status === "incremental_positive"
+      ? "V3.5.7 显示固定 Combined 同时改善收益、IC 和命中率，Style 可能具备独立增量，但仍未生成仓位。"
+      : styleIncrementalEdge.style_incremental_edge_status === "weak_short_horizon_trace"
+        ? "V3.5.7 只显示弱短期迹象：20日均值和 IC 有改善，但命中率偏低、60日收益转弱，不能支持配置化。"
+        : "V3.5.7 未证明 Style Preference 在 Opportunity Score 之外有稳定独立增量，当前只能保留为研究解释层。";
+  setText(
+    "styleIncrementalConclusion",
+    styleIncremental.metadata
+      ? `${styleIncrementalVerdict} Combined 固定为 50% Opportunity + 50% Style，没有调参、没有交易信号。`
+      : "V3.5.7 Style 增量信息检验尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
