@@ -1,0 +1,302 @@
+{
+  "metadata": {
+    "engine": "V3.2.2 Opportunity Score Validation & Factor Attribution",
+    "generated_at": "2026-07-08T10:05:32+00:00",
+    "window": {
+      "start": "20150105",
+      "end": "20260708"
+    },
+    "score_date_count": 78,
+    "step_sessions": 20,
+    "min_score_sessions": 260,
+    "horizons": [
+      5,
+      20,
+      60
+    ],
+    "score_formula": {
+      "strength": {
+        "momentum": 0.35,
+        "relative_strength": 0.25,
+        "trend_quality": 0.2,
+        "risk_adjusted": 0.1,
+        "persistence": 0.1
+      },
+      "score": "strength - extension_penalty - crowding_penalty",
+      "formula_changed_from_v3_2_1": false
+    }
+  },
+  "summary": {
+    "asset_count": 17,
+    "source_methods": {
+      "direct_etf_history_only": 7,
+      "research_only": 10
+    },
+    "score_start": "20200218",
+    "score_end": "20260625"
+  },
+  "research_proxy_validation": {
+    "5d": {
+      "observation_count": 1321,
+      "date_count": 78,
+      "rank_ic": 0.035126,
+      "top_bucket_return": 0.005121,
+      "bottom_bucket_return": 0.006358,
+      "spread": -0.001238,
+      "factor_ic": {
+        "momentum": 0.049772,
+        "relative_strength": 0.013683,
+        "trend_quality": 0.075869,
+        "risk_adjusted": 0.038661,
+        "persistence": -0.016805
+      }
+    },
+    "20d": {
+      "observation_count": 1309,
+      "date_count": 77,
+      "rank_ic": -0.039089,
+      "top_bucket_return": -0.005722,
+      "bottom_bucket_return": 0.005551,
+      "spread": -0.011273,
+      "factor_ic": {
+        "momentum": -0.017441,
+        "relative_strength": -0.046364,
+        "trend_quality": -0.009838,
+        "risk_adjusted": -0.03293,
+        "persistence": -0.011959
+      }
+    },
+    "60d": {
+      "observation_count": 1275,
+      "date_count": 75,
+      "rank_ic": -0.01507,
+      "top_bucket_return": 0.013371,
+      "bottom_bucket_return": 0.015528,
+      "spread": -0.002157,
+      "factor_ic": {
+        "momentum": -0.036818,
+        "relative_strength": -0.015823,
+        "trend_quality": -0.011521,
+        "risk_adjusted": 0.010745,
+        "persistence": 0.029289
+      }
+    }
+  },
+  "tradable_etf_validation": {
+    "5d": {
+      "observation_count": 1278,
+      "date_count": 78,
+      "rank_ic": 0.055552,
+      "top_bucket_return": 0.004426,
+      "bottom_bucket_return": 0.009713,
+      "spread": -0.005287,
+      "factor_ic": {
+        "momentum": 0.075399,
+        "relative_strength": 0.039843,
+        "trend_quality": 0.086183,
+        "risk_adjusted": 0.053418,
+        "persistence": -0.014334
+      }
+    },
+    "20d": {
+      "observation_count": 1276,
+      "date_count": 77,
+      "rank_ic": -0.024239,
+      "top_bucket_return": -0.010326,
+      "bottom_bucket_return": 0.012032,
+      "spread": -0.022358,
+      "factor_ic": {
+        "momentum": -0.012523,
+        "relative_strength": -0.032473,
+        "trend_quality": 0.015583,
+        "risk_adjusted": -0.023588,
+        "persistence": 0.014455
+      }
+    },
+    "60d": {
+      "observation_count": 1242,
+      "date_count": 75,
+      "rank_ic": 0.013293,
+      "top_bucket_return": -0.00568,
+      "bottom_bucket_return": 0.016671,
+      "spread": -0.022351,
+      "factor_ic": {
+        "momentum": -0.009265,
+        "relative_strength": 0.008624,
+        "trend_quality": 0.031959,
+        "risk_adjusted": 0.024794,
+        "persistence": 0.043603
+      }
+    }
+  },
+  "sample_score_dates": [
+    {
+      "date": "20260226",
+      "top_assets": [
+        {
+          "rank": 1,
+          "code": "510500.SH",
+          "score": 64.9797
+        },
+        {
+          "rank": 2,
+          "code": "512660.SH",
+          "score": 63.2587
+        },
+        {
+          "rank": 3,
+          "code": "512100.SH",
+          "score": 60.6176
+        },
+        {
+          "rank": 4,
+          "code": "159915.SZ",
+          "score": 56.1994
+        },
+        {
+          "rank": 5,
+          "code": "510300.SH",
+          "score": 53.3707
+        }
+      ]
+    },
+    {
+      "date": "20260326",
+      "top_assets": [
+        {
+          "rank": 1,
+          "code": "510880.SH",
+          "score": 81.1844
+        },
+        {
+          "rank": 2,
+          "code": "516160.SH",
+          "score": 72.2545
+        },
+        {
+          "rank": 3,
+          "code": "515790.SH",
+          "score": 72.2545
+        },
+        {
+          "rank": 4,
+          "code": "159915.SZ",
+          "score": 71.947
+        },
+        {
+          "rank": 5,
+          "code": "510500.SH",
+          "score": 68.4813
+        }
+      ]
+    },
+    {
+      "date": "20260424",
+      "top_assets": [
+        {
+          "rank": 1,
+          "code": "159915.SZ",
+          "score": 76.9822
+        },
+        {
+          "rank": 2,
+          "code": "510880.SH",
+          "score": 65.8579
+        },
+        {
+          "rank": 3,
+          "code": "512890.SH",
+          "score": 59.6847
+        },
+        {
+          "rank": 4,
+          "code": "510500.SH",
+          "score": 58.4574
+        },
+        {
+          "rank": 5,
+          "code": "516160.SH",
+          "score": 56.062
+        }
+      ]
+    },
+    {
+      "date": "20260527",
+      "top_assets": [
+        {
+          "rank": 1,
+          "code": "159915.SZ",
+          "score": 68.8603
+        },
+        {
+          "rank": 2,
+          "code": "516160.SH",
+          "score": 61.424
+        },
+        {
+          "rank": 3,
+          "code": "515790.SH",
+          "score": 61.424
+        },
+        {
+          "rank": 4,
+          "code": "510500.SH",
+          "score": 59.9632
+        },
+        {
+          "rank": 5,
+          "code": "512100.SH",
+          "score": 58.5531
+        }
+      ]
+    },
+    {
+      "date": "20260625",
+      "top_assets": [
+        {
+          "rank": 1,
+          "code": "510500.SH",
+          "score": 65.0221
+        },
+        {
+          "rank": 2,
+          "code": "510050.SH",
+          "score": 64.2068
+        },
+        {
+          "rank": 3,
+          "code": "159915.SZ",
+          "score": 64.1139
+        },
+        {
+          "rank": 4,
+          "code": "512100.SH",
+          "score": 60.045
+        },
+        {
+          "rank": 5,
+          "code": "510300.SH",
+          "score": 54.8171
+        }
+      ]
+    }
+  ],
+  "constraints": {
+    "walk_forward": true,
+    "no_future_data": true,
+    "proxy_return_and_etf_return_separated": true,
+    "no_allocation": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_backtest_portfolio": true,
+    "no_parameter_optimization": true,
+    "does_not_modify_v2": true
+  },
+  "notes": [
+    "research_proxy_validation uses the same research source used by the score, so it tests the factor hypothesis.",
+    "tradable_etf_validation uses real ETF future returns only, so it tests whether the research score transfers to tradable instruments.",
+    "This module validates ranks and factors; it does not create ETF weights or a portfolio backtest."
+  ]
+}

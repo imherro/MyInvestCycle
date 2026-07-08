@@ -129,7 +129,7 @@ def _theme_pressure_by_code(theme_risk_payload: Mapping[str, object]) -> dict[st
     return values
 
 
-def _crowding_penalty(mapping, theme_risk_payload: Mapping[str, object]) -> float:
+def crowding_penalty(mapping, theme_risk_payload: Mapping[str, object]) -> float:
     if mapping.research_proxy is None:
         return 0.0
     pressure = _theme_pressure_by_code(theme_risk_payload).get(mapping.research_proxy.code, 0.0)
@@ -208,7 +208,7 @@ def build_asset_opportunity_snapshot(
         strength = sum(components[key] * weight for key, weight in WEIGHTS.items())
         penalty = {
             "extension": extension_penalty(metrics),
-            "crowding": _crowding_penalty(mapping, theme_risk),
+            "crowding": crowding_penalty(mapping, theme_risk),
         }
         score = max(0.0, min(100.0, strength - penalty["extension"] - penalty["crowding"]))
         row = {
