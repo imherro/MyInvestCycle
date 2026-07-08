@@ -386,6 +386,14 @@ def _read_market_phase_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_macro_context_history_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "macro_context_history.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_phase_effectiveness_payload() -> dict[str, object] | None:
     path = DATA_DIR / "phase_effectiveness.json"
     if not path.exists():
@@ -587,6 +595,20 @@ def _compact_market_phase_payload(payload: dict[str, object] | None) -> dict[str
         for key in ("metadata", "current", "historical_summary", "period_validation", "data_quality", "constraints")
         if key in payload
     }
+
+
+def _compact_macro_context_history_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    rows = payload.get("rows")
+    compact = {
+        key: payload[key]
+        for key in ("metadata", "summary", "data_quality", "constraints")
+        if key in payload
+    }
+    if isinstance(rows, list):
+        compact["sample_rows"] = rows[-5:]
+    return compact
 
 
 def _compact_phase_effectiveness_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
@@ -1058,6 +1080,13 @@ def _api_catalog_payload() -> dict[str, object]:
                     ],
                     freshness="local macro cache",
                 ),
+                _api_endpoint(
+                    "GET",
+                    "/api/macro/context-history",
+                    "返回 V5.7 历史宏观上下文，按 exposure replay 日期给出 release/effective-date 安全的宏观分数、组件、指标值和 source trace；缺失保持 null。",
+                    "historical macro context",
+                    freshness="generated artifact",
+                ),
             ],
         },
         {
@@ -1515,6 +1544,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/validation", "description": "查看验证归因频道。"},
             {"path": "/api/regime/current", "description": "读取当前牛熊状态与四维评分。"},
             {"path": "/api/regime/cycle/track", "description": "读取后市展望的位置和概率。"},
+            {"path": "/api/macro/context-history", "description": "读取 V5.7 release-date 安全的历史宏观上下文。"},
             {"path": "/api/meta-edge/current", "description": "读取系统内部矛盾信号。"},
             {"path": "/api/style/current", "description": "读取风格评分与 ETF 候选池。"},
             {"path": "/api/style/rotation-signal", "description": "读取 ETF 轮动信号与目标权重建议。"},
@@ -1943,6 +1973,17 @@ def macro_current(
     start_date: str = Query("20200101", description="Macro cache observation start date, YYYYMMDD."),
 ) -> dict:
     return build_macro_cycle_snapshot(date_text or _today_text(), start_date=start_date)
+
+
+@app.get("/api/macro/context-history")
+def macro_context_history() -> dict:
+    payload = _read_macro_context_history_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Macro context history artifact missing; run scripts/build_macro_context_history.py first.",
+        )
+    return payload
 
 
 @app.get("/api/structure/current")
@@ -2531,6 +2572,7 @@ def results_summary(
         opportunity_risk_policy = _read_opportunity_risk_policy_payload()
         policy_effectiveness = _read_policy_effectiveness_payload()
         market_phase = _read_market_phase_payload()
+        macro_context_history = _read_macro_context_history_payload()
         phase_effectiveness = _read_phase_effectiveness_payload()
         exposure_simulation = _read_exposure_simulation_payload()
         exposure_effectiveness = _read_exposure_effectiveness_payload()
@@ -2552,6 +2594,7 @@ def results_summary(
             opportunity_risk_policy = _compact_opportunity_risk_policy_payload(opportunity_risk_policy)
             policy_effectiveness = _compact_policy_effectiveness_payload(policy_effectiveness)
             market_phase = _compact_market_phase_payload(market_phase)
+            macro_context_history = _compact_macro_context_history_payload(macro_context_history)
             phase_effectiveness = _compact_phase_effectiveness_payload(phase_effectiveness)
             exposure_simulation = _compact_exposure_simulation_payload(exposure_simulation)
             exposure_effectiveness = _compact_exposure_effectiveness_payload(exposure_effectiveness)
@@ -2610,6 +2653,7 @@ def results_summary(
             "opportunity_risk_policy": opportunity_risk_policy,
             "policy_effectiveness": policy_effectiveness,
             "market_phase": market_phase,
+            "macro_context_history": macro_context_history,
             "phase_effectiveness": phase_effectiveness,
             "exposure_simulation": exposure_simulation,
             "exposure_effectiveness": exposure_effectiveness,

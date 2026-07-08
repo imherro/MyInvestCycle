@@ -199,7 +199,8 @@ def test_real_payload_numeric_context() -> None:
     assert payload["summary"]["time_safety"]["feature_date_lte_signal_date"] is True
     assert payload["summary"]["field_coverage"]["trend_score"]["available_count"] > 0
     assert payload["summary"]["field_coverage"]["crowding_score"]["available_count"] > 0
-    assert payload["summary"]["missing_macro_history"] is True
+    assert payload["summary"]["field_coverage"]["macro_score"]["available_count"] > 0
+    assert payload["summary"]["missing_macro_history"] is False
     assert payload["summary"]["fully_populated_non_macro_rows"] > 0
     assert payload["constraints"]["no_trade_signal"] is True
 

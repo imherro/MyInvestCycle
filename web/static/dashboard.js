@@ -1242,6 +1242,10 @@ function setResultsPanel(results) {
   const exposureNumericSummary = exposureNumeric.summary || {};
   const exposureNumericCoverage = exposureNumericSummary.field_coverage || {};
   const exposureNumericTimeSafety = exposureNumericSummary.time_safety || {};
+  const macroContextHistory = results.macro_context_history || {};
+  const macroContextSummary = macroContextHistory.summary || {};
+  const macroContextCoverage = macroContextSummary.field_coverage || {};
+  const macroContextTimeSafety = macroContextSummary.time_safety || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2078,11 +2082,99 @@ function setResultsPanel(results) {
       `;
     })
     .join(""));
+  const exposureMacroRead = exposureNumericSummary.missing_macro_history
+    ? "宏观历史数值暂无序列，保持 null，不用 0 替代"
+    : `宏观分已从 V5.7 历史宏观上下文接入，覆盖 ${percentText(macroCoverage.coverage_rate)}`;
   setText(
     "exposureNumericConclusion",
     exposureNumeric.metadata
-      ? `V5.6 已把暴露重放接上数值上下文：${exposureNumericSummary.key_read || "数值上下文已生成"} 时间安全违规 ${integerText(exposureNumericTimeSafety.violation_count)} 个；宏观历史数值暂无序列，保持 null，不用 0 替代。该层只做解释审计，不改 mapper、不输出仓位或交易。`
+      ? `V5.6 已把暴露重放接上数值上下文：${exposureNumericSummary.key_read || "数值上下文已生成"} 时间安全违规 ${integerText(exposureNumericTimeSafety.violation_count)} 个；${exposureMacroRead}。该层只做解释审计，不改 mapper、不输出仓位或交易。`
       : "V5.6 暴露数值上下文尚未生成。"
+  );
+
+  const macroScoreCoverage = macroContextSummary.macro_score_coverage || {};
+  const macroValuationCoverage = macroContextSummary.valuation_coverage || {};
+  const valuationScoreCoverage = macroValuationCoverage.valuation_score || {};
+  const macroContextFieldLabels = {
+    macro_score: "宏观分",
+    macro_confidence: "宏观置信",
+    valuation_score: "估值",
+    credit_score: "信用",
+    economy_score: "景气",
+    external_score: "外部压力",
+    M1_growth: "M1",
+    M2_growth: "M2",
+    M1_M2_spread: "M1-M2",
+    social_financing_growth: "社融",
+    SHIBOR: "SHIBOR",
+    CN10Y: "CN10Y",
+    US10Y: "US10Y",
+    USD_CNH_offshore: "USD/CNH",
+    PMI: "PMI",
+    CPI: "CPI",
+    PPI: "PPI",
+    PE_percentile: "PE百分位",
+    PB_percentile: "PB百分位",
+    ERP: "ERP",
+  };
+  setText("macroContextRows", integerText(macroContextSummary.row_count));
+  setText("macroContextScoreCoverage", percentText(macroScoreCoverage.coverage_rate));
+  setText(
+    "macroContextTimeSafe",
+    macroContextTimeSafety.release_and_effective_lte_signal_date === true
+      ? `通过 · ${integerText(macroContextTimeSafety.violation_count)} 违规`
+      : "需检查"
+  );
+  setText(
+    "macroContextValuationCoverage",
+    `${integerText(valuationScoreCoverage.available_count)} / ${integerText(macroContextSummary.row_count)}`
+  );
+  const macroCoverageFields = [
+    "macro_score",
+    "credit_score",
+    "economy_score",
+    "external_score",
+    "M1_growth",
+    "M2_growth",
+    "social_financing_growth",
+    "PMI",
+    "CPI",
+    "PPI",
+    "US10Y",
+    "USD_CNH_offshore",
+    "PE_percentile",
+    "PB_percentile",
+    "ERP",
+  ];
+  setHtml("macroContextCoverage", macroCoverageFields
+    .map((field) => {
+      const item = macroContextCoverage[field] || {};
+      return `
+        <div class="alpha-source-row">
+          <span>${macroContextFieldLabels[field] || field}</span>
+          <strong>${integerText(item.available_count)} / ${integerText(macroContextSummary.row_count)} · ${percentText(item.coverage_rate)}</strong>
+        </div>
+      `;
+    })
+    .join(""));
+  const macroSamples = macroContextHistory.sample_rows || (macroContextHistory.rows || []).slice(-5);
+  setHtml("macroContextSamples", macroSamples
+    .map((row) => {
+      const ctx = row.macro_context || {};
+      return `
+        <div class="duration-row">
+          <span>${toIsoDate(row.date)} · ${escapeHtml(ctx.macro_state || "--")}</span>
+          <strong>宏观 ${fixedText(ctx.macro_score, 1)} / 信用 ${fixedText(ctx.credit_score, 1)} / 景气 ${fixedText(ctx.economy_score, 1)}</strong>
+          <em>M2 ${fixedText(ctx.M2_growth, 2)} · PMI ${fixedText(ctx.PMI, 1)} · 估值 ${fixedText(ctx.valuation_score, 1)}</em>
+        </div>
+      `;
+    })
+    .join(""));
+  setText(
+    "macroContextConclusion",
+    macroContextHistory.metadata
+      ? `V5.7 已按 release/effective 日期生成历史宏观上下文：${macroContextSummary.key_read || "宏观历史上下文已生成"} 宏观分覆盖 ${percentText(macroScoreCoverage.coverage_rate)}，时间安全违规 ${integerText(macroContextTimeSafety.violation_count)} 个；PE/PB/ERP 本地历史缺失保持 null。该层不改规则、不生成仓位或交易。`
+      : "V5.7 宏观历史上下文尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

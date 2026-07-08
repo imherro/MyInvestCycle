@@ -426,6 +426,34 @@
           <p class="result-note" id="exposureNumericConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="按 Exposure Replay 的历史信号日期，读取当时已经 release/effective 的宏观指标，生成宏观分、置信度、信用、经济、外部压力和原始指标上下文；缺失保留 null，不用未来宏观数据。">宏观历史上下文</h2>
+            <span class="panel-kicker">V5.7</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>样本</span>
+              <strong id="macroContextRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>宏观分覆盖</span>
+              <strong id="macroContextScoreCoverage">--</strong>
+            </div>
+            <div class="result-row">
+              <span>时间安全</span>
+              <strong id="macroContextTimeSafe">--</strong>
+            </div>
+            <div class="result-row">
+              <span>估值字段</span>
+              <strong id="macroContextValuationCoverage">--</strong>
+            </div>
+          </div>
+          <div class="alpha-source-list" id="macroContextCoverage"></div>
+          <div class="duration-list" id="macroContextSamples"></div>
+          <p class="result-note" id="macroContextConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>

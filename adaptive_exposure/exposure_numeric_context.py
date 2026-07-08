@@ -231,6 +231,36 @@ def _risk_score_value(
     return value, _trace(value=value, source="shadow_equity_curve.json/decisions", source_date=source_date)
 
 
+def _macro_context_value(
+    row: Mapping[str, object] | None,
+    signal_date: str,
+    field: str,
+) -> tuple[float | None, dict[str, object]]:
+    source = "macro_context_history.json/rows"
+    if not row:
+        return None, _trace(value=None, source=source, source_date=None, reason="macro_context_history_missing")
+    row_date = _date_text(row.get("date"))
+    macro_context = row.get("macro_context") if isinstance(row.get("macro_context"), Mapping) else {}
+    source_trace = row.get("source_trace") if isinstance(row.get("source_trace"), Mapping) else {}
+    trace = source_trace.get(field) if isinstance(source_trace.get(field), Mapping) else {}
+    release_date = _date_text(trace.get("release_date"))
+    effective_date = _date_text(trace.get("effective_date"))
+    source_date = effective_date or release_date or row_date
+    if not source_date or source_date > signal_date or (row_date and row_date > signal_date):
+        return None, _trace(value=None, source=source, source_date=source_date, reason="no_time_safe_macro_context")
+    value = _to_float(macro_context.get(field), scale=1.0)
+    payload = _trace(
+        value=value,
+        source=str(trace.get("source") or source),
+        source_date=source_date,
+        reason=None if value is not None else str(trace.get("reason") or "value_missing"),
+    )
+    payload["observation_date"] = trace.get("observation_date")
+    payload["release_date"] = release_date
+    payload["effective_date"] = effective_date
+    return value, payload
+
+
 def _future_label(row: Mapping[str, object]) -> dict[str, object]:
     flags = row.get("future_flags") if isinstance(row.get("future_flags"), Mapping) else {}
     failure = bool(flags.get("high_risk_event") or flags.get("future_drawdown_gt_15"))
@@ -249,6 +279,7 @@ def _enrich_row(
     style_rows: Sequence[Mapping[str, object]],
     structural_rows: Sequence[Mapping[str, object]],
     risk_rows: Sequence[Mapping[str, object]],
+    macro_rows: Sequence[Mapping[str, object]],
 ) -> dict[str, object]:
     signal_date = _date_text(exposure_row.get("date"))
     if not signal_date:
@@ -258,25 +289,14 @@ def _enrich_row(
     style = _pick_latest(style_rows, signal_date)
     structural = _pick_latest(structural_rows, signal_date)
     risk = _pick_latest(risk_rows, signal_date)
+    macro = _pick_latest(macro_rows, signal_date)
 
-    field_values: dict[str, float | None] = {
-        "macro_score": None,
-        "macro_confidence": None,
-    }
-    source_trace: dict[str, dict[str, object]] = {
-        "macro_score": _trace(
-            value=None,
-            source="macro_cycle_snapshot.json",
-            source_date=None,
-            reason="historical_macro_score_not_available",
-        ),
-        "macro_confidence": _trace(
-            value=None,
-            source="macro_cycle_snapshot.json",
-            source_date=None,
-            reason="historical_macro_confidence_not_available",
-        ),
-    }
+    field_values: dict[str, float | None] = {}
+    source_trace: dict[str, dict[str, object]] = {}
+    for macro_field in ("macro_score", "macro_confidence"):
+        value, trace = _macro_context_value(macro, signal_date, macro_field)
+        field_values[macro_field] = value
+        source_trace[macro_field] = trace
 
     metric_specs = {
         "trend_score": ("trend", "trend"),
@@ -424,6 +444,7 @@ def build_exposure_numeric_context(data_dir: str | Path = DATA_DIR) -> dict[str,
     structural_rows = _indexed_rows(_rows_from_payload(_read_json(root / "structural_hazard_dataset.json"), ""))
     shadow = _read_json(root / "shadow_equity_curve.json")
     risk_rows = _indexed_rows(_rows_from_payload(shadow.get("decisions") if isinstance(shadow, Mapping) else [], ""))
+    macro_rows = _indexed_rows(_rows_from_payload(_read_json(root / "macro_context_history.json"), "rows"))
 
     rows = [
         _enrich_row(
@@ -432,6 +453,7 @@ def build_exposure_numeric_context(data_dir: str | Path = DATA_DIR) -> dict[str,
             style_rows=style_rows,
             structural_rows=structural_rows,
             risk_rows=risk_rows,
+            macro_rows=macro_rows,
         )
         for row in exposure_rows
     ]
@@ -448,6 +470,11 @@ def build_exposure_numeric_context(data_dir: str | Path = DATA_DIR) -> dict[str,
         for row in rows
         if isinstance(row.get("exposure_context"), Mapping)
         and all((row.get("exposure_context") or {}).get(field) is not None for field in NON_MACRO_NUMERIC_FIELDS)
+    )
+    missing_macro_history = not any(
+        (row.get("exposure_context") or {}).get("macro_score") is not None
+        for row in rows
+        if isinstance(row.get("exposure_context"), Mapping)
     )
     summary = {
         "row_count": len(rows),
@@ -471,11 +498,15 @@ def build_exposure_numeric_context(data_dir: str | Path = DATA_DIR) -> dict[str,
         "fully_populated_rate": _share(fully_populated, len(rows)),
         "fully_populated_non_macro_rows": fully_populated_non_macro,
         "fully_populated_non_macro_rate": _share(fully_populated_non_macro, len(rows)),
-        "missing_macro_history": True,
+        "missing_macro_history": missing_macro_history,
         "time_safety": time_safety,
         "key_read": (
             "Numeric context is now attached to the exposure replay without changing rules; "
-            "macro history remains unavailable and is represented as null."
+            + (
+                "macro history remains unavailable and is represented as null."
+                if missing_macro_history
+                else "macro score and confidence are populated from release-date-safe macro context history."
+            )
         ),
     }
     return {
@@ -499,7 +530,7 @@ def build_exposure_numeric_context(data_dir: str | Path = DATA_DIR) -> dict[str,
                 "style_context": "historical_style_context.json",
                 "market_structure": "structural_hazard_dataset.json",
                 "risk_score": "shadow_equity_curve.json/decisions",
-                "macro": "macro_cycle_snapshot.json current-only; no historical numeric series",
+                "macro": "macro_context_history.json if available; otherwise null",
             },
         },
         "constraints": {
