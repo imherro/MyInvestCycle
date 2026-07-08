@@ -46,6 +46,7 @@ from macro.macro_loader import DEFAULT_MACRO_INDICATORS, load_macro_indicators
 from market_structure.structure_engine import build_structure_snapshot
 from industry_structure.opportunity_engine import build_industry_opportunity_snapshot
 from structural_bull.structural_bull_engine import build_structural_bull_snapshot
+from theme_risk.opportunity_quality_engine import build_theme_risk_snapshot
 
 
 app = FastAPI(title="MyInvestCycle Regime API", version="0.8")
@@ -746,6 +747,24 @@ def _api_catalog_payload() -> dict[str, object]:
             ],
         },
         {
+            "name": "V2 主题风险过滤",
+            "description": "判断强主线是否存在价格延伸、位置偏高、宽度不足和集中度风险；不改变结构牛状态，不输出交易动作。",
+            "endpoints": [
+                _api_endpoint(
+                    "GET",
+                    "/api/theme-risk/current",
+                    "返回 V2.3 Theme Valuation & Crowding Risk Layer 的机会质量、拥挤分、过热警示和数据质量。",
+                    "theme risk snapshot",
+                    params=[
+                        {"name": "date", "required": "false", "format": "YYYYMMDD"},
+                        {"name": "start_date", "required": "false", "format": "YYYYMMDD"},
+                        {"name": "cache_only", "required": "false", "format": "boolean"},
+                    ],
+                    freshness="industry opportunity cache",
+                ),
+            ],
+        },
+        {
             "name": "后市展望与历史回顾",
             "description": "历史周期切分、后市展望和概率展望。",
             "endpoints": [
@@ -1297,6 +1316,19 @@ def structural_bull_current(
 ) -> dict:
     return build_structural_bull_snapshot(
         date_text or _today_text(),
+        cache_only=cache_only,
+    )
+
+
+@app.get("/api/theme-risk/current")
+def theme_risk_current(
+    date_text: str | None = Query(None, alias="date", description="Decision date, YYYYMMDD. Defaults to today."),
+    start_date: str = Query("20240101", description="Theme history start date, YYYYMMDD."),
+    cache_only: bool = Query(True, description="Use local cache only for Web/API reads."),
+) -> dict:
+    return build_theme_risk_snapshot(
+        date_text or _today_text(),
+        start_date=start_date,
         cache_only=cache_only,
     )
 

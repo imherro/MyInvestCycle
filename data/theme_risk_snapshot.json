@@ -1,0 +1,205 @@
+{
+  "engine": "V2.3.4 Theme Valuation & Crowding Risk Layer",
+  "requested_as_of": "20260708",
+  "as_of": "20260707",
+  "generated_at": "2026-07-08T06:28:57+00:00",
+  "theme_risk_level": "medium",
+  "quality_score": 63.3204,
+  "crowding_score": 56.1413,
+  "top_theme": {
+    "code": "801080.SI",
+    "name": "电子",
+    "composite_score": 89.4747
+  },
+  "warnings": [
+    "high_60d_momentum_extension",
+    "near_252d_high_position",
+    "top_theme_price_extension_high",
+    "industry_breadth_narrow"
+  ],
+  "valuation_pressure": [
+    {
+      "code": "801080.SI",
+      "name": "电子",
+      "close": 10790.54,
+      "return_20d": 0.189673,
+      "return_60d": 0.561513,
+      "deviation_ma60": 0.154981,
+      "deviation_ma120": 0.321266,
+      "deviation_ma250": 0.545883,
+      "price_percentile_252": 0.9524,
+      "momentum_extension_score": 100.0,
+      "relative_position_score": 95.2381,
+      "valuation_pressure_score": 98.0,
+      "warnings": [
+        "high_60d_momentum_extension",
+        "near_252d_high_position"
+      ]
+    },
+    {
+      "code": "801710.SI",
+      "name": "建筑材料",
+      "close": 6987.469,
+      "return_20d": 0.117915,
+      "return_60d": 0.164263,
+      "deviation_ma60": 0.034136,
+      "deviation_ma120": 0.095367,
+      "deviation_ma250": 0.222387,
+      "price_percentile_252": 0.9444,
+      "momentum_extension_score": 48.9573,
+      "relative_position_score": 94.4444,
+      "valuation_pressure_score": 68.0619,
+      "warnings": [
+        "near_252d_high_position"
+      ]
+    },
+    {
+      "code": "801770.SI",
+      "name": "通信",
+      "close": 8237.048,
+      "return_20d": -0.046067,
+      "return_60d": 0.264943,
+      "deviation_ma60": -0.003572,
+      "deviation_ma120": 0.17265,
+      "deviation_ma250": 0.442274,
+      "price_percentile_252": 0.8651,
+      "momentum_extension_score": 39.3495,
+      "relative_position_score": 86.5079,
+      "valuation_pressure_score": 59.1561,
+      "warnings": []
+    },
+    {
+      "code": "801890.SI",
+      "name": "机械设备",
+      "close": 2521.789,
+      "return_20d": 0.01228,
+      "return_60d": 0.116947,
+      "deviation_ma60": 0.012425,
+      "deviation_ma120": 0.055147,
+      "deviation_ma250": 0.168034,
+      "price_percentile_252": 0.873,
+      "momentum_extension_score": 7.861,
+      "relative_position_score": 87.3016,
+      "valuation_pressure_score": 41.2261,
+      "warnings": []
+    },
+    {
+      "code": "801030.SI",
+      "name": "基础化工",
+      "close": 4576.335,
+      "return_20d": 0.032224,
+      "return_60d": -0.054098,
+      "deviation_ma60": -0.047384,
+      "deviation_ma120": -0.052708,
+      "deviation_ma250": 0.039445,
+      "price_percentile_252": 0.5595,
+      "momentum_extension_score": 6.1119,
+      "relative_position_score": 55.9524,
+      "valuation_pressure_score": 27.0449,
+      "warnings": []
+    },
+    {
+      "code": "801230.SI",
+      "name": "综合",
+      "close": 4346.259,
+      "return_20d": 0.021955,
+      "return_60d": -0.050463,
+      "deviation_ma60": -0.067902,
+      "deviation_ma120": -0.065893,
+      "deviation_ma250": 0.056002,
+      "price_percentile_252": 0.5794,
+      "momentum_extension_score": 0.9774,
+      "relative_position_score": 57.9365,
+      "valuation_pressure_score": 24.9002,
+      "warnings": []
+    },
+    {
+      "code": "801790.SI",
+      "name": "非银金融",
+      "close": 1762.501,
+      "return_20d": 0.061966,
+      "return_60d": -0.023074,
+      "deviation_ma60": -0.002672,
+      "deviation_ma120": -0.053568,
+      "deviation_ma250": -0.086754,
+      "price_percentile_252": 0.1429,
+      "momentum_extension_score": 20.9829,
+      "relative_position_score": 14.2857,
+      "valuation_pressure_score": 18.1701,
+      "warnings": []
+    },
+    {
+      "code": "801780.SI",
+      "name": "银行",
+      "close": 3808.547,
+      "return_20d": -0.042585,
+      "return_60d": -0.05008,
+      "deviation_ma60": -0.031419,
+      "deviation_ma120": -0.037112,
+      "deviation_ma250": -0.07653,
+      "price_percentile_252": 0.0357,
+      "momentum_extension_score": 0.0,
+      "relative_position_score": 3.5714,
+      "valuation_pressure_score": 1.5,
+      "warnings": []
+    }
+  ],
+  "crowding": {
+    "crowding_score": 56.1413,
+    "average_top_theme_pressure": 75.0727,
+    "top1_theme_contribution": 0.1595,
+    "top3_theme_contribution": 0.4527,
+    "concentration_score": 7.4171,
+    "breadth_quality": {
+      "industry_breadth": 0.0968,
+      "positive_industry_ratio": 0.3226,
+      "top_industry_ratio": 0.2581,
+      "narrow_breadth_score": 84.4,
+      "weak_positive_score": 69.35
+    },
+    "warnings": [
+      "top_theme_price_extension_high",
+      "industry_breadth_narrow"
+    ]
+  },
+  "input_summary": {
+    "industry_opportunity_score": 65.4773,
+    "industry_strength": 55.1048,
+    "theme_persistence": 82.7922,
+    "industry_source_type": "industry_index",
+    "top_theme_count": 8
+  },
+  "data_quality": {
+    "theme_frames": {
+      "requested_codes": [
+        "801080.SI",
+        "801710.SI",
+        "801890.SI",
+        "801770.SI",
+        "801790.SI",
+        "801030.SI",
+        "801230.SI",
+        "801780.SI"
+      ],
+      "available_count": 8,
+      "errors": {}
+    },
+    "industry_as_of": "20260707",
+    "no_future_data": true,
+    "valuation_is_price_position_proxy": true
+  },
+  "explanation": [
+    "本层只判断主线机会是否过热或拥挤，不改变 Structural Bull 状态。",
+    "valuation_pressure 使用价格位置、均线偏离和短中期涨幅做代理，不是 PE/PB 等基本面估值。",
+    "当前风险等级 medium，quality_score=63.3，crowding_score=56.1。",
+    "V2.3.4 不输出仓位、ETF 配置、买卖建议或回测结论。"
+  ],
+  "constraints": {
+    "does_not_change_structural_bull_state": true,
+    "no_etf_allocation": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_backtest": true,
+    "quality_filter_only": true
+  }
+}
