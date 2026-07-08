@@ -482,6 +482,34 @@
           <p class="result-note" id="macroEnhancedConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="把 BALANCED 设计成 Recovery、Structural Opportunity、Risk、Neutral 四类研究候选状态，并检查样本、未来风险/机会率、稳定性和分离度；这不是正式 mapper，不输出仓位或交易。">BALANCED 状态模型设计审计</h2>
+            <span class="panel-kicker">V5.9</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>BALANCED样本</span>
+              <strong id="contextStateRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>质量状态</span>
+              <strong id="contextStateQuality">--</strong>
+            </div>
+            <div class="result-row">
+              <span>时间安全</span>
+              <strong id="contextStateTimeSafe">--</strong>
+            </div>
+            <div class="result-row">
+              <span>规则变更</span>
+              <strong id="contextStateReady">--</strong>
+            </div>
+          </div>
+          <div class="alpha-source-list" id="contextStateList"></div>
+          <div class="duration-list" id="contextStateSeparation"></div>
+          <p class="result-note" id="contextStateConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -572,7 +600,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-macro-enhanced-1"></script>
+    <script src="/static/dashboard.js?v=20260708-context-state-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

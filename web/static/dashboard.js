@@ -676,6 +676,29 @@ function macroEnhancedEvidenceText(item) {
   return `宏观 ${fixedText(macro.candidate_avg, 1)} / 宽度 ${fixedText(breadth.candidate_avg, 1)} / 流动性 ${fixedText(liquidity.candidate_avg, 1)} / 价格延伸 ${fixedText(extension.candidate_avg, 1)}`;
 }
 
+function contextStateLabel(value) {
+  const labels = {
+    BALANCED_RECOVERY: "修复型均衡",
+    BALANCED_STRUCTURAL_OPPORTUNITY: "结构机会型均衡",
+    BALANCED_RISK: "风险型均衡",
+    BALANCED_NEUTRAL: "中性均衡",
+  };
+  return labels[value] || value || "--";
+}
+
+function contextStateQualityLabel(value) {
+  const labels = {
+    research_only_not_rule_ready: "研究候选，未达规则化",
+    low: "低",
+    low_medium: "中低",
+    medium: "中",
+    high: "高",
+    weak: "弱",
+    visible: "可见",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -1308,6 +1331,11 @@ function setResultsPanel(results) {
   const macroEnhancedSummary = macroEnhanced.summary || {};
   const macroEnhancedTimeSafety = macroEnhancedSummary.time_safety || {};
   const macroEnhancedAttribution = macroEnhanced.candidate_re_attribution || {};
+  const contextStateAudit = results.exposure_context_state_audit || {};
+  const contextStateSummary = contextStateAudit.summary || {};
+  const contextStateTimeSafety = contextStateSummary.time_safety || {};
+  const contextStateQuality = contextStateAudit.context_state_quality || {};
+  const contextStateSeparationReview = contextStateSummary.separation_review || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2276,6 +2304,55 @@ function setResultsPanel(results) {
     macroEnhanced.metadata
       ? `V5.8 固定 V5.4 候选标签做宏观增强归因：${macroEnhancedSummary.key_read || "宏观增强归因已生成"} 时间安全违规 ${integerText(macroEnhancedTimeSafety.violation_count)} 个，复核项 ${integerText(macroEnhancedSummary.review_item_count)} 个；该层只做诊断，不改 mapper、不新增正式状态、不输出仓位或交易。`
       : "V5.8 宏观增强 BALANCED 归因尚未生成。"
+  );
+
+  setText("contextStateRows", integerText(contextStateSummary.balanced_usable_rows));
+  setText("contextStateQuality", contextStateQualityLabel(contextStateSummary.candidate_quality_status));
+  setText(
+    "contextStateTimeSafe",
+    contextStateTimeSafety.feature_release_or_source_lte_signal_date === true
+      ? `通过 · ${integerText(contextStateTimeSafety.violation_count)} 违规`
+      : "需检查"
+  );
+  setText("contextStateReady", contextStateSummary.ready_for_mapper_change === true ? "可变更" : "不可变更");
+  setHtml("contextStateList", ["BALANCED_RECOVERY", "BALANCED_STRUCTURAL_OPPORTUNITY", "BALANCED_RISK", "BALANCED_NEUTRAL"]
+    .map((stateName) => {
+      const item = contextStateQuality[stateName] || {};
+      return `
+        <div class="alpha-source-row">
+          <span>${contextStateLabel(stateName)} · 置信 ${contextStateQualityLabel(item.confidence)} · 稳定 ${contextStateQualityLabel(item.stability?.label)}</span>
+          <strong>${integerText(item.sample_count)} 次 · 风险 ${percentText(item.future_risk_rate)} / 机会 ${percentText(item.future_opportunity_rate)}</strong>
+        </div>
+      `;
+    })
+    .join(""));
+  setHtml("contextStateSeparation", [
+    {
+      label: "风险型均衡",
+      status: contextStateSeparationReview.risk_state_separation,
+      metric: contextStateSeparationReview.risk_state_future_risk_lift,
+      base: contextStateSeparationReview.overall_future_risk_rate,
+    },
+    {
+      label: "结构机会型均衡",
+      status: contextStateSeparationReview.opportunity_state_separation,
+      metric: contextStateSeparationReview.structural_opportunity_future_opportunity_lift,
+      base: contextStateSeparationReview.overall_future_opportunity_rate,
+    },
+  ]
+    .map((item) => `
+      <div class="duration-row">
+        <span>${item.label}</span>
+        <strong>${contextStateQualityLabel(item.status)}</strong>
+        <em>相对总体抬升 ${signedRatioText(item.metric)} · 总体 ${percentText(item.base)}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "contextStateConclusion",
+    contextStateAudit.metadata
+      ? `V5.9 只设计研究候选状态：${contextStateSummary.key_read || "状态模型审计已生成"} 风险分离 ${contextStateQualityLabel(contextStateSeparationReview.risk_state_separation)}，机会分离 ${contextStateQualityLabel(contextStateSeparationReview.opportunity_state_separation)}，复核项 ${integerText(contextStateSummary.review_item_count)} 个；不新增正式状态、不改 mapper、不输出仓位或交易。`
+      : "V5.9 BALANCED 状态模型设计审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
