@@ -1238,6 +1238,10 @@ function setResultsPanel(results) {
   const balancedFailureAnalysis = results.balanced_candidate_failure_analysis || {};
   const balancedFailureSummary = balancedFailureAnalysis.summary || {};
   const balancedFailureAttribution = balancedFailureAnalysis.candidate_attribution || {};
+  const exposureNumeric = results.exposure_numeric_context || {};
+  const exposureNumericSummary = exposureNumeric.summary || {};
+  const exposureNumericCoverage = exposureNumericSummary.field_coverage || {};
+  const exposureNumericTimeSafety = exposureNumericSummary.time_safety || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2013,6 +2017,72 @@ function setResultsPanel(results) {
     balancedFailureAnalysis.metadata
       ? `V5.5 固定 V5.4 候选标签做归因：${balancedFailureSummary.key_read || "候选归因待生成"} 当前仍不能改 mapper 或进入仓位规则。`
       : "V5.5 BALANCED 候选归因尚未生成。"
+  );
+
+  const structureCoverageFields = ["trend_score", "breadth_score", "liquidity_score", "volatility_score"];
+  const structureCoverageValues = structureCoverageFields
+    .map((field) => exposureNumericCoverage[field]?.coverage_rate)
+    .filter((value) => typeof value === "number");
+  const structureCoverageAverage = structureCoverageValues.length
+    ? structureCoverageValues.reduce((sum, value) => sum + value, 0) / structureCoverageValues.length
+    : null;
+  const macroCoverage = exposureNumericCoverage.macro_score || {};
+  const numericFieldLabels = {
+    macro_score: "宏观分",
+    macro_confidence: "宏观置信",
+    trend_score: "趋势",
+    breadth_score: "宽度",
+    liquidity_score: "流动性",
+    volatility_score: "波动稳定",
+    industry_breadth: "行业扩散",
+    theme_persistence: "主题持续",
+    crowding_score: "拥挤",
+    price_extension_proxy: "价格延伸",
+    pressure_score: "压力",
+    risk_score: "风险分",
+  };
+  setText("exposureNumericRows", integerText(exposureNumericSummary.row_count));
+  setText(
+    "exposureNumericTimeSafe",
+    exposureNumericTimeSafety.feature_date_lte_signal_date === true
+      ? `通过 · ${integerText(exposureNumericTimeSafety.violation_count)} 违规`
+      : "需检查"
+  );
+  setText("exposureNumericStructureCoverage", percentText(structureCoverageAverage));
+  setText(
+    "exposureNumericMacroCoverage",
+    macroCoverage.available_count === 0 ? "无历史序列" : percentText(macroCoverage.coverage_rate)
+  );
+  setHtml("exposureNumericCoverage", Object.entries(exposureNumericCoverage)
+    .filter(([field]) => field !== "macro_confidence")
+    .map(
+      ([field, item]) => `
+        <div class="alpha-source-row">
+          <span>${numericFieldLabels[field] || field}</span>
+          <strong>${integerText(item.available_count)} / ${integerText(exposureNumericSummary.row_count)} · ${percentText(item.coverage_rate)}</strong>
+        </div>
+      `
+    )
+    .join(""));
+  const exposureNumericSamples = exposureNumeric.sample_rows || (exposureNumeric.rows || []).slice(-5);
+  setHtml("exposureNumericSamples", exposureNumericSamples
+    .map((row) => {
+      const ctx = row.exposure_context || {};
+      const missing = row.data_quality?.missing_numeric_fields || [];
+      return `
+        <div class="duration-row">
+          <span>${toIsoDate(row.date)} · ${qualitativeExposureLabel(ctx.exposure_level)}</span>
+          <strong>趋势 ${fixedText(ctx.trend_score, 1)} / 宽度 ${fixedText(ctx.breadth_score, 1)} / 拥挤 ${fixedText(ctx.crowding_score, 1)}</strong>
+          <em>缺失 ${missing.slice(0, 4).map((field) => numericFieldLabels[field] || field).join("、") || "无"}</em>
+        </div>
+      `;
+    })
+    .join(""));
+  setText(
+    "exposureNumericConclusion",
+    exposureNumeric.metadata
+      ? `V5.6 已把暴露重放接上数值上下文：${exposureNumericSummary.key_read || "数值上下文已生成"} 时间安全违规 ${integerText(exposureNumericTimeSafety.violation_count)} 个；宏观历史数值暂无序列，保持 null，不用 0 替代。该层只做解释审计，不改 mapper、不输出仓位或交易。`
+      : "V5.6 暴露数值上下文尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
