@@ -2,11 +2,12 @@
   "engine": "V2.4.1 Adaptive Allocation Intent Engine",
   "requested_as_of": "20260708",
   "as_of": "20260707",
-  "generated_at": "2026-07-08T06:33:08+00:00",
+  "generated_at": "2026-07-08T07:21:39+00:00",
   "structural_state": "STRUCTURAL_BULL_ROTATION",
+  "allocation_structural_state": "STRUCTURAL_BULL_BALANCED",
   "allocation_intent": {
-    "equity_exposure_range": "50-70%",
-    "risk_budget": "medium",
+    "equity_exposure_range": "60-80%",
+    "risk_budget": "medium_high",
     "style_preference": [
       "industry_rotation",
       "growth",
@@ -18,9 +19,39 @@
   },
   "risk_adjustments": {
     "structural_state": "STRUCTURAL_BULL_ROTATION",
+    "allocation_structural_state": "STRUCTURAL_BULL_BALANCED",
     "macro_state": "RECOVERY",
     "market_structure_state": "BULL_DIVERGENCE",
-    "theme_risk_level": "medium"
+    "theme_risk_level": "medium",
+    "theme_risk_delta": 0,
+    "structural_bull_policy": {
+      "applies": true,
+      "source_structural_state": "STRUCTURAL_BULL_ROTATION",
+      "allocation_structural_state": "STRUCTURAL_BULL_BALANCED",
+      "risk_budget": "medium_high",
+      "reasons": [
+        "Structural bull exists, but evidence is neither clearly healthy nor overheated."
+      ],
+      "inputs": {
+        "theme_risk_level": "medium",
+        "crowding_score": 56.1413,
+        "quality_score": 63.3204,
+        "industry_strength": 55.1048,
+        "theme_persistence": 82.7922,
+        "rotation_health": 54.3613,
+        "industry_breadth": 0.0968,
+        "top_industry_ratio": 0.2581,
+        "market_structure_state": "BULL_DIVERGENCE"
+      },
+      "constraints": {
+        "does_not_change_source_structural_state": true,
+        "allocation_policy_only": true,
+        "no_etf_selection": true,
+        "no_single_stock": true,
+        "no_trade_execution": true,
+        "no_new_alpha_factor": true
+      }
+    }
   },
   "evidence": {
     "macro": {
@@ -171,10 +202,10 @@
     "no_specific_execution_position": true
   },
   "explanation": [
-    "宏观层为 RECOVERY，市场结构为 BULL_DIVERGENCE，结构状态为 STRUCTURAL_BULL_ROTATION。",
+    "宏观层为 RECOVERY，市场结构为 BULL_DIVERGENCE，结构状态为 STRUCTURAL_BULL_ROTATION，配置细分为 STRUCTURAL_BULL_BALANCED。",
     "行业机会分 65.5，主线持续性 82.8。",
     "主题风险为 medium，质量分 63.3，拥挤分 56.1。",
-    "因此只生成配置意图：风险预算 medium，权益暴露区间 50-70%。",
+    "因此只生成配置意图：风险预算 medium_high，权益暴露区间 60-80%。",
     "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
   ]
 }

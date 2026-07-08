@@ -77,8 +77,10 @@ function renderOverview(payload) {
   renderList("themeWarnings", themeRisk.warnings || [], (item) => `<div class="v2-warning">${item}</div>`);
 
   const adjustment = trace.adjustment_path || [];
+  const themeStep = adjustment.find((item) => item.step === "theme_risk_adjustment") || {};
+  setText("allocationStructuralState", allocation.allocation_structural_state || allocation.risk_adjustments?.allocation_structural_state);
   setText("baseBudget", adjustment[0]?.value);
-  setText("budgetDelta", adjustment[1]?.delta == null ? "--" : String(adjustment[1].delta));
+  setText("budgetDelta", themeStep.delta == null ? "--" : String(themeStep.delta));
   setText("finalBudget", trace.final_intent?.risk_budget || intent.risk_budget);
   setText("auditPassed", traceSnapshot.audit?.passed ? "通过" : "待检查");
   renderList("stylePreference", intent.style_preference || [], (item) => `<div class="v2-tag">${item}</div>`);

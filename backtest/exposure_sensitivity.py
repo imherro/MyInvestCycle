@@ -76,12 +76,14 @@ def _snapshot_builder_from_baseline(path: str | Path):
         return {
             "as_of": signal.get("as_of") or date_text,
             "structural_state": signal.get("structural_state"),
+            "allocation_structural_state": signal.get("allocation_structural_state"),
             "allocation_intent": {
                 "risk_budget": signal.get("risk_budget"),
                 "style_preference": signal.get("style_preference") or [],
             },
             "risk_adjustments": {
                 "theme_risk_level": signal.get("theme_risk_level"),
+                "allocation_structural_state": signal.get("allocation_structural_state"),
             },
             "evidence": {
                 "macro": {"state": signal.get("macro_state")},

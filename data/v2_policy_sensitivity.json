@@ -1,6 +1,6 @@
 {
   "engine": "V2.5.2 Allocation Policy Calibration & Walk-forward Validation Extension",
-  "generated_at": "2026-07-08T07:12:38+00:00",
+  "generated_at": "2026-07-08T07:28:25+00:00",
   "sensitivity": {
     "engine": "V2.5.2 Allocation Policy Calibration & Exposure Sensitivity",
     "requested_window": {
@@ -35,35 +35,35 @@
           "sessions": 598,
           "rebalance_count": 30,
           "rebalance_every_sessions": 20,
-          "v2_total_return": 0.351915,
-          "v2_annualized_return": 0.135488,
-          "v2_max_drawdown": -0.091678,
-          "v2_sharpe": 1.049182,
-          "v2_calmar": 1.477871,
+          "v2_total_return": 0.338782,
+          "v2_annualized_return": 0.130827,
+          "v2_max_drawdown": -0.092363,
+          "v2_sharpe": 0.998824,
+          "v2_calmar": 1.416443,
           "benchmark_510300_return": 0.522931,
           "benchmark_510500_return": 0.676991,
           "old_s1_return": 0.15735,
           "m2_macro_style_return": 0.281298,
-          "alpha_vs_510300": -0.171016,
-          "alpha_vs_510500": -0.325077,
-          "alpha_vs_old_s1": 0.194565,
-          "alpha_vs_m2_macro_style": 0.070617,
+          "alpha_vs_510300": -0.184149,
+          "alpha_vs_510500": -0.338209,
+          "alpha_vs_old_s1": 0.181432,
+          "alpha_vs_m2_macro_style": 0.057484,
           "benchmark_510300_max_drawdown": -0.162507,
           "benchmark_510500_max_drawdown": -0.185807,
           "old_s1_max_drawdown": -0.06149,
           "m2_macro_style_max_drawdown": -0.132294,
-          "average_exposure": 0.598328,
-          "average_turnover": 0.005936,
-          "cumulative_turnover": 3.55
+          "average_exposure": 0.611371,
+          "average_turnover": 0.006438,
+          "cumulative_turnover": 3.85
         },
         "performance_metrics": {
           "sessions": 598,
-          "total_return": 0.351915,
-          "annualized_return": 0.135488,
-          "annualized_volatility": 0.129051,
-          "sharpe": 1.049182,
-          "max_drawdown": -0.091678,
-          "calmar": 1.477871
+          "total_return": 0.338782,
+          "annualized_return": 0.130827,
+          "annualized_volatility": 0.131797,
+          "sharpe": 0.998824,
+          "max_drawdown": -0.092363,
+          "calmar": 1.416443
         },
         "policy_contribution": {
           "structural_state_contribution": [
@@ -100,12 +100,12 @@
             {
               "state": "STRUCTURAL_BULL_ROTATION",
               "sessions": 178,
-              "average_exposure": 0.689888,
-              "strategy_return": -0.077241,
+              "average_exposure": 0.733708,
+              "strategy_return": -0.086205,
               "benchmark_return": -0.12322,
-              "alpha": 0.045979,
-              "missed_beta": -0.045979,
-              "hit_rate": 0.505618
+              "alpha": 0.037015,
+              "missed_beta": -0.037015,
+              "hit_rate": 0.5
             },
             {
               "state": "WEAK_MARKET",
@@ -121,12 +121,12 @@
           "structural_bull_rotation": {
             "state": "STRUCTURAL_BULL_ROTATION",
             "sessions": 178,
-            "average_exposure": 0.689888,
-            "strategy_return": -0.077241,
+            "average_exposure": 0.733708,
+            "strategy_return": -0.086205,
             "benchmark_return": -0.12322,
-            "alpha": 0.045979,
-            "missed_beta": -0.045979,
-            "hit_rate": 0.505618
+            "alpha": 0.037015,
+            "missed_beta": -0.037015,
+            "hit_rate": 0.5
           },
           "interpretation": [
             "missed_beta = 510500 benchmark return - V2 strategy return within the same state bucket.",
@@ -164,35 +164,35 @@
           "sessions": 598,
           "rebalance_count": 30,
           "rebalance_every_sessions": 20,
-          "v2_total_return": 0.403506,
-          "v2_annualized_return": 0.153551,
-          "v2_max_drawdown": -0.109761,
-          "v2_sharpe": 1.011406,
-          "v2_calmar": 1.398957,
+          "v2_total_return": 0.391758,
+          "v2_annualized_return": 0.149472,
+          "v2_max_drawdown": -0.110449,
+          "v2_sharpe": 0.970551,
+          "v2_calmar": 1.353312,
           "benchmark_510300_return": 0.522931,
           "benchmark_510500_return": 0.676991,
           "old_s1_return": 0.15735,
           "m2_macro_style_return": 0.281298,
-          "alpha_vs_510300": -0.119425,
-          "alpha_vs_510500": -0.273485,
-          "alpha_vs_old_s1": 0.246156,
-          "alpha_vs_m2_macro_style": 0.122208,
+          "alpha_vs_510300": -0.131173,
+          "alpha_vs_510500": -0.285234,
+          "alpha_vs_old_s1": 0.234408,
+          "alpha_vs_m2_macro_style": 0.11046,
           "benchmark_510300_max_drawdown": -0.162507,
           "benchmark_510500_max_drawdown": -0.185807,
           "old_s1_max_drawdown": -0.06149,
           "m2_macro_style_max_drawdown": -0.132294,
-          "average_exposure": 0.706689,
-          "average_turnover": 0.007274,
-          "cumulative_turnover": 4.35
+          "average_exposure": 0.721237,
+          "average_turnover": 0.007692,
+          "cumulative_turnover": 4.6
         },
         "performance_metrics": {
           "sessions": 598,
-          "total_return": 0.403506,
-          "annualized_return": 0.153551,
-          "annualized_volatility": 0.152781,
-          "sharpe": 1.011406,
-          "max_drawdown": -0.109761,
-          "calmar": 1.398957
+          "total_return": 0.391758,
+          "annualized_return": 0.149472,
+          "annualized_volatility": 0.156089,
+          "sharpe": 0.970551,
+          "max_drawdown": -0.110449,
+          "calmar": 1.353312
         },
         "policy_contribution": {
           "structural_state_contribution": [
@@ -229,12 +229,12 @@
             {
               "state": "STRUCTURAL_BULL_ROTATION",
               "sessions": 178,
-              "average_exposure": 0.834831,
-              "strategy_return": -0.097016,
+              "average_exposure": 0.883708,
+              "strategy_return": -0.104575,
               "benchmark_return": -0.12322,
-              "alpha": 0.026204,
-              "missed_beta": -0.026204,
-              "hit_rate": 0.5
+              "alpha": 0.018645,
+              "missed_beta": -0.018645,
+              "hit_rate": 0.483146
             },
             {
               "state": "WEAK_MARKET",
@@ -250,12 +250,12 @@
           "structural_bull_rotation": {
             "state": "STRUCTURAL_BULL_ROTATION",
             "sessions": 178,
-            "average_exposure": 0.834831,
-            "strategy_return": -0.097016,
+            "average_exposure": 0.883708,
+            "strategy_return": -0.104575,
             "benchmark_return": -0.12322,
-            "alpha": 0.026204,
-            "missed_beta": -0.026204,
-            "hit_rate": 0.5
+            "alpha": 0.018645,
+            "missed_beta": -0.018645,
+            "hit_rate": 0.483146
           },
           "interpretation": [
             "missed_beta = 510500 benchmark return - V2 strategy return within the same state bucket.",
@@ -293,35 +293,35 @@
           "sessions": 598,
           "rebalance_count": 30,
           "rebalance_every_sessions": 20,
-          "v2_total_return": 0.299907,
-          "v2_annualized_return": 0.116872,
-          "v2_max_drawdown": -0.080438,
-          "v2_sharpe": 1.02217,
-          "v2_calmar": 1.452939,
+          "v2_total_return": 0.281119,
+          "v2_annualized_return": 0.11004,
+          "v2_max_drawdown": -0.080971,
+          "v2_sharpe": 0.937792,
+          "v2_calmar": 1.359007,
           "benchmark_510300_return": 0.522931,
           "benchmark_510500_return": 0.676991,
           "old_s1_return": 0.15735,
           "m2_macro_style_return": 0.281298,
-          "alpha_vs_510300": -0.223023,
-          "alpha_vs_510500": -0.377084,
-          "alpha_vs_old_s1": 0.142558,
-          "alpha_vs_m2_macro_style": 0.018609,
+          "alpha_vs_510300": -0.241812,
+          "alpha_vs_510500": -0.395873,
+          "alpha_vs_old_s1": 0.123769,
+          "alpha_vs_m2_macro_style": -0.000179,
           "benchmark_510300_max_drawdown": -0.162507,
           "benchmark_510500_max_drawdown": -0.185807,
           "old_s1_max_drawdown": -0.06149,
           "m2_macro_style_max_drawdown": -0.132294,
-          "average_exposure": 0.531773,
-          "average_turnover": 0.007358,
-          "cumulative_turnover": 4.4
+          "average_exposure": 0.551338,
+          "average_turnover": 0.00811,
+          "cumulative_turnover": 4.85
         },
         "performance_metrics": {
           "sessions": 598,
-          "total_return": 0.299907,
-          "annualized_return": 0.116872,
-          "annualized_volatility": 0.114562,
-          "sharpe": 1.02217,
-          "max_drawdown": -0.080438,
-          "calmar": 1.452939
+          "total_return": 0.281119,
+          "annualized_return": 0.11004,
+          "annualized_volatility": 0.118862,
+          "sharpe": 0.937792,
+          "max_drawdown": -0.080971,
+          "calmar": 1.359007
         },
         "policy_contribution": {
           "structural_state_contribution": [
@@ -358,12 +358,12 @@
             {
               "state": "STRUCTURAL_BULL_ROTATION",
               "sessions": 178,
-              "average_exposure": 0.634831,
-              "strategy_return": -0.072637,
+              "average_exposure": 0.700562,
+              "strategy_return": -0.086041,
               "benchmark_return": -0.12322,
-              "alpha": 0.050583,
-              "missed_beta": -0.050583,
-              "hit_rate": 0.511236
+              "alpha": 0.037179,
+              "missed_beta": -0.037179,
+              "hit_rate": 0.5
             },
             {
               "state": "WEAK_MARKET",
@@ -379,12 +379,12 @@
           "structural_bull_rotation": {
             "state": "STRUCTURAL_BULL_ROTATION",
             "sessions": 178,
-            "average_exposure": 0.634831,
-            "strategy_return": -0.072637,
+            "average_exposure": 0.700562,
+            "strategy_return": -0.086041,
             "benchmark_return": -0.12322,
-            "alpha": 0.050583,
-            "missed_beta": -0.050583,
-            "hit_rate": 0.511236
+            "alpha": 0.037179,
+            "missed_beta": -0.037179,
+            "hit_rate": 0.5
           },
           "interpretation": [
             "missed_beta = 510500 benchmark return - V2 strategy return within the same state bucket.",
@@ -409,25 +409,25 @@
         "variant_id": "higher_participation",
         "label": "B higher participation",
         "metric": "v2_annualized_return",
-        "value": 0.153551
+        "value": 0.149472
       },
       "max_drawdown": {
         "variant_id": "conservative",
         "label": "C conservative",
         "metric": "v2_max_drawdown",
-        "value": -0.080438
+        "value": -0.080971
       },
       "calmar": {
         "variant_id": "baseline",
         "label": "A baseline",
         "metric": "v2_calmar",
-        "value": 1.477871
+        "value": 1.416443
       },
       "sharpe": {
         "variant_id": "baseline",
         "label": "A baseline",
         "metric": "v2_sharpe",
-        "value": 1.049182
+        "value": 0.998824
       }
     },
     "constraints": {

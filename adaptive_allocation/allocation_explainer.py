@@ -11,7 +11,7 @@ def explain_allocation_intent(snapshot: Mapping[str, object]) -> list[str]:
     industry = evidence.get("industry_opportunity") if isinstance(evidence.get("industry_opportunity"), Mapping) else {}
     theme_risk = evidence.get("theme_risk") if isinstance(evidence.get("theme_risk"), Mapping) else {}
     return [
-        f"宏观层为 {macro.get('state')}，市场结构为 {structure.get('state')}，结构状态为 {snapshot.get('structural_state')}。",
+        f"宏观层为 {macro.get('state')}，市场结构为 {structure.get('state')}，结构状态为 {snapshot.get('structural_state')}，配置细分为 {snapshot.get('allocation_structural_state') or snapshot.get('structural_state')}。",
         f"行业机会分 {float(industry.get('score') or 0.0):.1f}，主线持续性 {float(industry.get('theme_persistence') or 0.0):.1f}。",
         f"主题风险为 {theme_risk.get('risk_level')}，质量分 {float(theme_risk.get('quality_score') or 0.0):.1f}，拥挤分 {float(theme_risk.get('crowding_score') or 0.0):.1f}。",
         f"因此只生成配置意图：风险预算 {intent.get('risk_budget')}，权益暴露区间 {intent.get('equity_exposure_range')}。",

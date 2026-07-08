@@ -141,6 +141,12 @@ def _signal_record(
         "target_weights": weights,
         "turnover_to_target": _target_turnover(previous_weights, weights),
         "structural_state": snapshot.get("structural_state"),
+        "allocation_structural_state": snapshot.get("allocation_structural_state")
+        or (
+            ((snapshot.get("risk_adjustments") or {}).get("allocation_structural_state"))
+            if isinstance(snapshot.get("risk_adjustments"), Mapping)
+            else None
+        ),
         "macro_state": _state_from_evidence(snapshot, "macro"),
         "market_structure_state": _state_from_evidence(snapshot, "market_structure"),
         "theme_risk_level": (snapshot.get("risk_adjustments") or {}).get("theme_risk_level")
@@ -187,6 +193,7 @@ def _curve_records(frame: pd.DataFrame) -> list[dict[str, object]]:
         "macro_state",
         "market_structure_state",
         "structural_state",
+        "allocation_structural_state",
         "theme_risk_level",
         "v2_equity",
         "benchmark_510300_equity",
@@ -200,7 +207,15 @@ def _curve_records(frame: pd.DataFrame) -> list[dict[str, object]]:
         for key in columns:
             if key not in row:
                 continue
-            if key in {"date", "risk_budget", "macro_state", "market_structure_state", "structural_state", "theme_risk_level"}:
+            if key in {
+                "date",
+                "risk_budget",
+                "macro_state",
+                "market_structure_state",
+                "structural_state",
+                "allocation_structural_state",
+                "theme_risk_level",
+            }:
                 item[key] = str(row[key])
             else:
                 item[key] = round(float(row[key]), 6)
@@ -292,6 +307,7 @@ def run_v2_allocation_backtest(
                     "macro_state": current_signal.get("macro_state"),
                     "market_structure_state": current_signal.get("market_structure_state"),
                     "structural_state": current_signal.get("structural_state"),
+                    "allocation_structural_state": current_signal.get("allocation_structural_state"),
                     "theme_risk_level": current_signal.get("theme_risk_level"),
                     "v2_return": v2_return,
                     "benchmark_510300_return": float(day_returns.get("510300.SH", 0.0)),
@@ -399,7 +415,13 @@ def run_v2_allocation_backtest(
         "benchmark_comparison": comparison,
         "state_attribution": build_state_attribution(
             frame,
-            state_columns=("macro_state", "market_structure_state", "structural_state", "theme_risk_level"),
+            state_columns=(
+                "macro_state",
+                "market_structure_state",
+                "structural_state",
+                "allocation_structural_state",
+                "theme_risk_level",
+            ),
         ),
         "equity_curve": _curve_records(frame),
         "daily_returns": _return_records(frame),

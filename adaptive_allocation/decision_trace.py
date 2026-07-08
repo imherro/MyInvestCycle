@@ -56,6 +56,9 @@ def _impact_from_theme_risk(level: str) -> str:
 def _base_budget_from_structural(state: str) -> str:
     return {
         "BROAD_BULL": "high",
+        "STRUCTURAL_BULL_HEALTHY": "high",
+        "STRUCTURAL_BULL_OVERHEATED": "medium",
+        "STRUCTURAL_BULL_BALANCED": "medium_high",
         "STRUCTURAL_BULL_ROTATION": "medium_high",
         "BEAR_REBOUND": "low",
         "BEAR_STRUCTURE": "defensive",
@@ -89,7 +92,14 @@ def build_decision_trace(allocation_payload: Mapping[str, object]) -> dict[str, 
     industry = _section(evidence, "industry_opportunity")
     theme_risk = _section(evidence, "theme_risk")
     intent = _section(allocation_payload, "allocation_intent")
+    risk_adjustments = _section(allocation_payload, "risk_adjustments")
+    structural_policy = _section(risk_adjustments, "structural_bull_policy")
     structural_state = str(allocation_payload.get("structural_state", "RANGE"))
+    allocation_structural_state = str(
+        allocation_payload.get("allocation_structural_state")
+        or risk_adjustments.get("allocation_structural_state")
+        or structural_state
+    )
     macro_state = str(macro.get("state", "RANGE"))
     macro_score = float(macro.get("score") or 0.0)
     structure_state = str(structure.get("state", "RANGE"))
@@ -97,8 +107,35 @@ def build_decision_trace(allocation_payload: Mapping[str, object]) -> dict[str, 
     theme_persistence = float(industry.get("theme_persistence") or 0.0)
     industry_strength = float(industry.get("industry_strength") or 0.0)
     theme_risk_level = str(theme_risk.get("risk_level", "medium"))
-    base_budget = _base_budget_from_structural(structural_state)
-    delta = _theme_delta(theme_risk_level)
+    refined_applies = bool(structural_policy.get("applies"))
+    base_budget = _base_budget_from_structural(allocation_structural_state if refined_applies else structural_state)
+    delta = int(risk_adjustments.get("theme_risk_delta", _theme_delta(theme_risk_level)) or 0)
+    adjustment_path = [
+        {
+            "step": "base_from_structural_state",
+            "value": _base_budget_from_structural(structural_state),
+            "reason": f"{structural_state} sets the original base risk budget.",
+        }
+    ]
+    if refined_applies:
+        adjustment_path.append(
+            {
+                "step": "structural_bull_refinement",
+                "value": base_budget,
+                "allocation_structural_state": allocation_structural_state,
+                "reason": "、".join(str(item) for item in structural_policy.get("reasons") or []),
+            }
+        )
+    adjustment_path.append(
+        {
+            "step": "theme_risk_adjustment",
+            "delta": delta,
+            "result": intent.get("risk_budget"),
+            "reason": "Structural bull refinement already includes theme risk."
+            if refined_applies
+            else f"theme_risk_level={theme_risk_level} adjusts the base budget.",
+        }
+    )
     return {
         "macro": {
             "state": macro_state,
@@ -125,19 +162,8 @@ def build_decision_trace(allocation_payload: Mapping[str, object]) -> dict[str, 
             "impact": _impact_from_theme_risk(theme_risk_level),
             "reason": "主题风险决定是否降低风险预算。",
         },
-        "adjustment_path": [
-            {
-                "step": "base_from_structural_state",
-                "value": base_budget,
-                "reason": f"{structural_state} sets the base risk budget.",
-            },
-            {
-                "step": "theme_risk_adjustment",
-                "delta": delta,
-                "result": intent.get("risk_budget"),
-                "reason": f"theme_risk_level={theme_risk_level} adjusts the base budget.",
-            },
-        ],
+        "structural_bull_policy": structural_policy if refined_applies else None,
+        "adjustment_path": adjustment_path,
         "conflicts": _conflicts(macro_state, structure_state, breadth, theme_risk_level),
         "final_intent": {
             "risk_budget": intent.get("risk_budget"),

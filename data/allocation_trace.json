@@ -2,7 +2,7 @@
   "engine": "V2.4.2 Allocation Decision Trace & Explainability Layer",
   "requested_as_of": "20260708",
   "as_of": "20260707",
-  "generated_at": "2026-07-08T06:37:30+00:00",
+  "generated_at": "2026-07-08T07:21:39+00:00",
   "decision_trace": {
     "macro": {
       "state": "RECOVERY",
@@ -29,25 +29,59 @@
       "impact": "reduce_risk",
       "reason": "主题风险决定是否降低风险预算。"
     },
+    "structural_bull_policy": {
+      "applies": true,
+      "source_structural_state": "STRUCTURAL_BULL_ROTATION",
+      "allocation_structural_state": "STRUCTURAL_BULL_BALANCED",
+      "risk_budget": "medium_high",
+      "reasons": [
+        "Structural bull exists, but evidence is neither clearly healthy nor overheated."
+      ],
+      "inputs": {
+        "theme_risk_level": "medium",
+        "crowding_score": 56.1413,
+        "quality_score": 63.3204,
+        "industry_strength": 55.1048,
+        "theme_persistence": 82.7922,
+        "rotation_health": 54.3613,
+        "industry_breadth": 0.0968,
+        "top_industry_ratio": 0.2581,
+        "market_structure_state": "BULL_DIVERGENCE"
+      },
+      "constraints": {
+        "does_not_change_source_structural_state": true,
+        "allocation_policy_only": true,
+        "no_etf_selection": true,
+        "no_single_stock": true,
+        "no_trade_execution": true,
+        "no_new_alpha_factor": true
+      }
+    },
     "adjustment_path": [
       {
         "step": "base_from_structural_state",
         "value": "medium_high",
-        "reason": "STRUCTURAL_BULL_ROTATION sets the base risk budget."
+        "reason": "STRUCTURAL_BULL_ROTATION sets the original base risk budget."
+      },
+      {
+        "step": "structural_bull_refinement",
+        "value": "medium_high",
+        "allocation_structural_state": "STRUCTURAL_BULL_BALANCED",
+        "reason": "Structural bull exists, but evidence is neither clearly healthy nor overheated."
       },
       {
         "step": "theme_risk_adjustment",
-        "delta": -1,
-        "result": "medium",
-        "reason": "theme_risk_level=medium adjusts the base budget."
+        "delta": 0,
+        "result": "medium_high",
+        "reason": "Structural bull refinement already includes theme risk."
       }
     ],
     "conflicts": [
       "index_trend_strong_but_breadth_weak"
     ],
     "final_intent": {
-      "risk_budget": "medium",
-      "equity_exposure_range": "50-70%",
+      "risk_budget": "medium_high",
+      "equity_exposure_range": "60-80%",
       "style_preference": [
         "industry_rotation",
         "growth",
@@ -58,8 +92,8 @@
     }
   },
   "allocation_intent": {
-    "equity_exposure_range": "50-70%",
-    "risk_budget": "medium",
+    "equity_exposure_range": "60-80%",
+    "risk_budget": "medium_high",
     "style_preference": [
       "industry_rotation",
       "growth",

@@ -72,6 +72,7 @@ def build_allocation_intent_snapshot(
         "as_of": _resolved_as_of(structural, theme_risk, requested_as_of),
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "structural_state": structural.get("structural_state"),
+        "allocation_structural_state": exposure["risk_adjustments"].get("allocation_structural_state"),
         "allocation_intent": intent,
         "risk_adjustments": exposure["risk_adjustments"],
         "evidence": evidence,

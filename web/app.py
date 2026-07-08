@@ -258,6 +258,14 @@ def _read_v2_policy_sensitivity_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_structural_bull_policy_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "structural_bull_policy_analysis.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 STRATEGY_BACKTEST_IDS = {
     "defensive-dividend": "红利低波 + 现金代理防守策略",
     "industry-momentum": "行业 ETF 动量轮动 + 511880 空仓机制",
@@ -840,6 +848,14 @@ def _api_catalog_payload() -> dict[str, object]:
                     "/api/v2/policy-sensitivity",
                     "返回 V2.5.2 风险预算映射敏感性结果和长历史覆盖审计。",
                     "v2 allocation policy sensitivity",
+                    freshness="generated artifact",
+                    safety="read-only artifact",
+                ),
+                _api_endpoint(
+                    "GET",
+                    "/api/v2/structural-policy",
+                    "返回 V2.5.3 结构牛配置细分政策分析，说明健康/均衡/过热结构牛如何影响风险预算。",
+                    "v2 structural bull policy analysis",
                     freshness="generated artifact",
                     safety="read-only artifact",
                 ),
@@ -1531,6 +1547,17 @@ def v2_policy_sensitivity() -> dict:
         raise HTTPException(
             status_code=503,
             detail="V2 policy sensitivity artifact missing; run scripts/run_v2_policy_sensitivity.py first.",
+        )
+    return payload
+
+
+@app.get("/api/v2/structural-policy")
+def v2_structural_policy() -> dict:
+    payload = _read_structural_bull_policy_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Structural bull policy analysis artifact missing; run scripts/run_structural_policy_analysis.py first.",
         )
     return payload
 

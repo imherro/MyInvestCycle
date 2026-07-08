@@ -1,0 +1,230 @@
+{
+  "engine": "V2.5.3 Structural Bull Exposure Policy Refinement",
+  "generated_at": "2026-07-08T07:28:39+00:00",
+  "requested_as_of": "20260708",
+  "current": {
+    "as_of": "20260707",
+    "source_structural_state": "STRUCTURAL_BULL_ROTATION",
+    "allocation_structural_state": "STRUCTURAL_BULL_BALANCED",
+    "risk_budget": "medium_high",
+    "equity_exposure_range": "60-80%",
+    "policy": {
+      "applies": true,
+      "source_structural_state": "STRUCTURAL_BULL_ROTATION",
+      "allocation_structural_state": "STRUCTURAL_BULL_BALANCED",
+      "risk_budget": "medium_high",
+      "reasons": [
+        "Structural bull exists, but evidence is neither clearly healthy nor overheated."
+      ],
+      "inputs": {
+        "theme_risk_level": "medium",
+        "crowding_score": 56.1413,
+        "quality_score": 63.3204,
+        "industry_strength": 55.1048,
+        "theme_persistence": 82.7922,
+        "rotation_health": 54.3613,
+        "industry_breadth": 0.0968,
+        "top_industry_ratio": 0.2581,
+        "market_structure_state": "BULL_DIVERGENCE"
+      },
+      "constraints": {
+        "does_not_change_source_structural_state": true,
+        "allocation_policy_only": true,
+        "no_etf_selection": true,
+        "no_single_stock": true,
+        "no_trade_execution": true,
+        "no_new_alpha_factor": true
+      }
+    },
+    "explanation": [
+      "宏观层为 RECOVERY，市场结构为 BULL_DIVERGENCE，结构状态为 STRUCTURAL_BULL_ROTATION，配置细分为 STRUCTURAL_BULL_BALANCED。",
+      "行业机会分 65.5，主线持续性 82.8。",
+      "主题风险为 medium，质量分 63.3，拥挤分 56.1。",
+      "因此只生成配置意图：风险预算 medium_high，权益暴露区间 60-80%。",
+      "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+    ]
+  },
+  "historical_distribution": {
+    "available": true,
+    "signal_count": 30,
+    "allocation_structural_state_counts": {
+      "BEAR_REBOUND": 1,
+      "BROAD_BULL": 5,
+      "RANGE": 13,
+      "STRUCTURAL_BULL_BALANCED": 6,
+      "STRUCTURAL_BULL_HEALTHY": 3,
+      "WEAK_MARKET": 2
+    },
+    "risk_budget_counts": {
+      "defensive": 3,
+      "high": 7,
+      "low": 2,
+      "medium": 11,
+      "medium_high": 7
+    },
+    "sample": [
+      {
+        "date": "20260126",
+        "apply_from_next_session": true,
+        "as_of": "20260126",
+        "risk_budget": "medium_high",
+        "target_exposure": 0.7,
+        "target_weights": {
+          "510300.SH": 0.35,
+          "510500.SH": 0.35,
+          "511880.SH": 0.3
+        },
+        "turnover_to_target": 0.1,
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "allocation_structural_state": "STRUCTURAL_BULL_BALANCED",
+        "macro_state": "RECOVERY",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "style_preference": [
+          "industry_rotation",
+          "growth",
+          "relative_strength"
+        ],
+        "explanation": [
+          "宏观层为 RECOVERY，市场结构为 BULL_DIVERGENCE，结构状态为 STRUCTURAL_BULL_ROTATION，配置细分为 STRUCTURAL_BULL_BALANCED。",
+          "行业机会分 73.2，主线持续性 70.1。",
+          "主题风险为 low，质量分 70.1，拥挤分 34.6。",
+          "因此只生成配置意图：风险预算 medium_high，权益暴露区间 60-80%。",
+          "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+        ]
+      },
+      {
+        "date": "20260303",
+        "apply_from_next_session": true,
+        "as_of": "20260303",
+        "risk_budget": "high",
+        "target_exposure": 0.8,
+        "target_weights": {
+          "510300.SH": 0.4,
+          "510500.SH": 0.4,
+          "511880.SH": 0.2
+        },
+        "turnover_to_target": 0.1,
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "allocation_structural_state": "STRUCTURAL_BULL_HEALTHY",
+        "macro_state": "RECOVERY",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "style_preference": [
+          "industry_rotation",
+          "growth",
+          "relative_strength"
+        ],
+        "explanation": [
+          "宏观层为 RECOVERY，市场结构为 BULL_DIVERGENCE，结构状态为 STRUCTURAL_BULL_ROTATION，配置细分为 STRUCTURAL_BULL_HEALTHY。",
+          "行业机会分 68.9，主线持续性 75.1。",
+          "主题风险为 low，质量分 68.4，拥挤分 38.0。",
+          "因此只生成配置意图：风险预算 high，权益暴露区间 70-90%。",
+          "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+        ]
+      },
+      {
+        "date": "20260331",
+        "apply_from_next_session": true,
+        "as_of": "20260331",
+        "risk_budget": "low",
+        "target_exposure": 0.4,
+        "target_weights": {
+          "510300.SH": 0.2,
+          "510500.SH": 0.2,
+          "511880.SH": 0.6
+        },
+        "turnover_to_target": 0.4,
+        "structural_state": "RANGE",
+        "allocation_structural_state": "RANGE",
+        "macro_state": "RECOVERY",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "medium",
+        "style_preference": [
+          "balanced",
+          "quality_value",
+          "cash_buffer",
+          "quality_filter"
+        ],
+        "explanation": [
+          "宏观层为 RECOVERY，市场结构为 BULL_DIVERGENCE，结构状态为 RANGE，配置细分为 RANGE。",
+          "行业机会分 51.0，主线持续性 63.7。",
+          "主题风险为 medium，质量分 53.5，拥挤分 51.4。",
+          "因此只生成配置意图：风险预算 low，权益暴露区间 30-50%。",
+          "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+        ]
+      },
+      {
+        "date": "20260429",
+        "apply_from_next_session": true,
+        "as_of": "20260429",
+        "risk_budget": "high",
+        "target_exposure": 0.8,
+        "target_weights": {
+          "510300.SH": 0.4,
+          "510500.SH": 0.4,
+          "511880.SH": 0.2
+        },
+        "turnover_to_target": 0.4,
+        "structural_state": "BROAD_BULL",
+        "allocation_structural_state": "BROAD_BULL",
+        "macro_state": "RECOVERY",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "style_preference": [
+          "broad_beta",
+          "growth",
+          "mid_cap"
+        ],
+        "explanation": [
+          "宏观层为 RECOVERY，市场结构为 BULL_BROADENING，结构状态为 BROAD_BULL，配置细分为 BROAD_BULL。",
+          "行业机会分 64.7，主线持续性 57.2。",
+          "主题风险为 low，质量分 63.4，拥挤分 33.2。",
+          "因此只生成配置意图：风险预算 high，权益暴露区间 70-90%。",
+          "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+        ]
+      },
+      {
+        "date": "20260601",
+        "apply_from_next_session": true,
+        "as_of": "20260601",
+        "risk_budget": "medium_high",
+        "target_exposure": 0.7,
+        "target_weights": {
+          "510300.SH": 0.35,
+          "510500.SH": 0.35,
+          "511880.SH": 0.3
+        },
+        "turnover_to_target": 0.1,
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "allocation_structural_state": "STRUCTURAL_BULL_BALANCED",
+        "macro_state": "RECOVERY",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "medium",
+        "style_preference": [
+          "industry_rotation",
+          "growth",
+          "relative_strength",
+          "quality_filter"
+        ],
+        "explanation": [
+          "宏观层为 RECOVERY，市场结构为 BULL_BROADENING，结构状态为 STRUCTURAL_BULL_ROTATION，配置细分为 STRUCTURAL_BULL_BALANCED。",
+          "行业机会分 65.2，主线持续性 74.4。",
+          "主题风险为 medium，质量分 62.3，拥挤分 52.0。",
+          "因此只生成配置意图：风险预算 medium_high，权益暴露区间 60-80%。",
+          "V2.4.1 不输出 ETF 代码、不输出具体执行仓位、不输出买卖或下单指令。"
+        ]
+      }
+    ]
+  },
+  "constraints": {
+    "does_not_change_source_structural_state": true,
+    "allocation_policy_only": true,
+    "no_etf_selection": true,
+    "no_single_stock": true,
+    "no_trade_execution": true,
+    "no_order": true,
+    "no_new_alpha_factor": true,
+    "no_macro_score_change": true
+  }
+}

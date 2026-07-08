@@ -101,7 +101,7 @@ function renderBenchmarkTable(comparison) {
 function renderStateTable(attribution) {
   const target = document.getElementById("stateRows");
   if (!target) return;
-  const rows = Object.entries(attribution?.structural_state || {});
+  const rows = Object.entries(attribution?.allocation_structural_state || attribution?.structural_state || {});
   target.innerHTML = rows
     .map(([state, item]) => `<tr>
       <td>${state}</td>
