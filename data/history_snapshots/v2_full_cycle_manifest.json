@@ -1,0 +1,27 @@
+{
+  "engine": "V2.6.1 Historical Snapshot Reconstruction Manifest",
+  "generated_at": "2026-07-08T07:49:25+00:00",
+  "storage_policy": "compressed_rebalance_snapshots",
+  "reason": "Daily JSON snapshots would duplicate large module payloads; V2.6.1 stores rebalance-date signal snapshots and full daily return series in v2_full_cycle_validation.json.",
+  "full_cycle_artifact": "data/v2_full_cycle_validation.json",
+  "signal_snapshot_artifact": "data/history_snapshots/v2_full_cycle_rebalance_signals.json",
+  "requested_window": {
+    "start": "20150101",
+    "end": "20260708"
+  },
+  "validation_window": {
+    "start": "20240103",
+    "end": "20260626"
+  },
+  "rebalance_signal_count": 30,
+  "constraints": {
+    "no_strategy_rule_change": true,
+    "no_threshold_tuning": true,
+    "no_new_factor": true,
+    "no_etf_selection": true,
+    "no_manual_label_fix": true,
+    "walk_forward": true,
+    "no_lookahead_bias": true,
+    "evaluation_only": true
+  }
+}

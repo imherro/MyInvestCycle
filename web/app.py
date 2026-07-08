@@ -266,6 +266,14 @@ def _read_structural_bull_policy_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_v2_full_cycle_validation_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "v2_full_cycle_validation.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 STRATEGY_BACKTEST_IDS = {
     "defensive-dividend": "红利低波 + 现金代理防守策略",
     "industry-momentum": "行业 ETF 动量轮动 + 511880 空仓机制",
@@ -856,6 +864,14 @@ def _api_catalog_payload() -> dict[str, object]:
                     "/api/v2/structural-policy",
                     "返回 V2.5.3 结构牛配置细分政策分析，说明健康/均衡/过热结构牛如何影响风险预算。",
                     "v2 structural bull policy analysis",
+                    freshness="generated artifact",
+                    safety="read-only artifact",
+                ),
+                _api_endpoint(
+                    "GET",
+                    "/api/v2/full-cycle-validation",
+                    "返回 V2.6.1 完整周期目标覆盖审计、当前真实可验证窗口、缺口和 V2 baseline/refined/基准对比。",
+                    "v2 full-cycle validation audit",
                     freshness="generated artifact",
                     safety="read-only artifact",
                 ),
@@ -1558,6 +1574,17 @@ def v2_structural_policy() -> dict:
         raise HTTPException(
             status_code=503,
             detail="Structural bull policy analysis artifact missing; run scripts/run_structural_policy_analysis.py first.",
+        )
+    return payload
+
+
+@app.get("/api/v2/full-cycle-validation")
+def v2_full_cycle_validation() -> dict:
+    payload = _read_v2_full_cycle_validation_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V2 full-cycle validation artifact missing; run scripts/run_v2_full_cycle_validation.py first.",
         )
     return payload
 

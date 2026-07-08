@@ -162,6 +162,64 @@ function renderCoverageAudit(payload) {
   );
 }
 
+function renderFullCycleValidation(payload) {
+  const meta = payload.metadata || {};
+  const coverage = payload.coverage_audit || {};
+  const desired = meta.desired_window || coverage.desired_window || {};
+  const validation = meta.validation_window || {};
+  const operational = coverage.operational_validation_window || {};
+  const summaryTarget = document.getElementById("fullCycleSummary");
+  if (summaryTarget) {
+    const rows = [
+      ["目标完整周期", `${toIsoDate(desired.start)} - ${toIsoDate(desired.end)}`],
+      ["当前真实可验证窗口", `${toIsoDate(validation.start || operational.start)} - ${toIsoDate(validation.end || operational.end)}`],
+      ["是否可声明完整周期", meta.full_cycle_claim ? "是" : "否"],
+      ["覆盖阻塞项", `${coverage.blocker_count ?? (coverage.blockers || []).length} 项`],
+    ];
+    summaryTarget.innerHTML = rows
+      .map(([label, value]) => `<div class="v2-list-row"><span>${label}</span><strong>${value}</strong></div>`)
+      .join("");
+  }
+
+  const order = [
+    "v2_refined_structural_policy",
+    "v2_baseline",
+    "benchmark_510300",
+    "benchmark_510500",
+    "buy_hold_equal_510300_510500",
+    "old_s1",
+    "m2_macro_style",
+  ];
+  const comparison = payload.comparison || {};
+  const table = document.getElementById("fullCycleRows");
+  if (table) {
+    table.innerHTML = order
+      .filter((key) => comparison[key])
+      .map((key) => {
+        const item = comparison[key] || {};
+        return `<tr>
+          <td>${item.label || key}</td>
+          <td>${fmtPercent(item.total_return)}</td>
+          <td>${fmtPercent(item.annualized_return)}</td>
+          <td>${fmtPercent(item.max_drawdown)}</td>
+          <td>${fmtNumber(item.sharpe)}</td>
+          <td>${fmtNumber(item.calmar)}</td>
+          <td>${fmtPercent(item.average_exposure)}</td>
+        </tr>`;
+      })
+      .join("");
+  }
+
+  const blockers = coverage.blockers || [];
+  const firstBlockers = blockers.slice(0, 3).join("；");
+  setText(
+    "fullCycleNote",
+    meta.full_cycle_claim
+      ? "本地数据已覆盖目标完整周期，结果可作为完整周期验证。"
+      : `本地数据尚不能支撑 2015 起完整周期结论，当前只展示真实可验证窗口；主要缺口：${firstBlockers || "见 API 覆盖审计"}。`
+  );
+}
+
 function renderBacktest(payload) {
   const summary = payload.summary || {};
   setText("validationHeadline", `V2 年化 ${fmtPercent(summary.v2_annualized_return)} · Alpha vs 510500 ${fmtPercent(summary.alpha_vs_510500)}`);
@@ -194,6 +252,12 @@ async function loadV2Validation() {
     } catch (error) {
       setText("policyBestNote", `敏感性产物暂不可用：${error.message}`);
       setText("coverageNote", "覆盖审计暂不可用。");
+    }
+    try {
+      const fullCycle = await getJson("/api/v2/full-cycle-validation");
+      renderFullCycleValidation(fullCycle);
+    } catch (error) {
+      setText("fullCycleNote", `完整周期验证产物暂不可用：${error.message}`);
     }
   } catch (error) {
     setText("validationNote", `加载失败：${error.message}`);
