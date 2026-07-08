@@ -841,6 +841,34 @@
           <p class="result-note" id="opportunityFeaturesConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="固定 V7.2 特征，审计 5/20/60 日 IC，并把 research proxy 与真实 ETF 可交易迁移分开；这是有效性审计，不生成评分、排名或仓位。">机会特征有效性审计</h2>
+            <span class="panel-kicker">V7.3</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>特征 / Horizon</span>
+              <strong id="opportunityValidationScope">--</strong>
+            </div>
+            <div class="result-row">
+              <span>上下文日期</span>
+              <strong id="opportunityValidationDates">--</strong>
+            </div>
+            <div class="result-row">
+              <span>Proxy 结果</span>
+              <strong id="opportunityValidationProxy">--</strong>
+            </div>
+            <div class="result-row">
+              <span>ETF 结果</span>
+              <strong id="opportunityValidationEtf">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="opportunityValidationStatus"></div>
+          <div class="alpha-source-list" id="opportunityValidationSamples"></div>
+          <p class="result-note" id="opportunityValidationConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -931,7 +959,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-opportunity-features-1"></script>
+    <script src="/static/dashboard.js?v=20260708-opportunity-validation-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

@@ -1,0 +1,3565 @@
+{
+  "metadata": {
+    "engine": "V7.3 Opportunity Feature Effectiveness Audit",
+    "generated_at": "2026-07-08T18:31:26+00:00",
+    "requested_as_of": "20991231",
+    "start_date": "20150105",
+    "feature_source_engine": "V7.2 Structural Opportunity Context Feature Audit",
+    "registry": "data/asset_proxy_registry.json",
+    "purpose": "Validate fixed opportunity context features by IC only; no score, ranking, allocation, or trade signal."
+  },
+  "summary": {
+    "feature_count": 14,
+    "horizons": [
+      5,
+      20,
+      60
+    ],
+    "context_observation_count": 115,
+    "observation_counts_by_horizon": {
+      "5": 115,
+      "20": 115,
+      "60": 115
+    },
+    "result_count": 42,
+    "research_proxy_status_counts": {
+      "flat": 28,
+      "insufficient": 6,
+      "weak": 8
+    },
+    "tradable_etf_status_counts": {
+      "flat": 21,
+      "insufficient": 6,
+      "visible": 1,
+      "weak": 14
+    },
+    "ready_for_scoring": false,
+    "ready_for_ranking": false,
+    "ready_for_allocation": false,
+    "ready_for_trade": false,
+    "key_read": "V7.3 audits whether fixed V7.2 features have information value; it does not create scores, ranks, Top N, allocations, or trades."
+  },
+  "feature_results": [
+    {
+      "feature_group": "momentum",
+      "feature_field": "return_20d",
+      "feature_key": "momentum.return_20d",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 114,
+        "mean_ic": 0.019858,
+        "median_ic": 0.034805,
+        "positive_share": 0.535088,
+        "negative_share": 0.464912,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 16,
+            "mean_ic": 0.120197,
+            "median_ic": 0.154453,
+            "positive_share": 0.625,
+            "negative_share": 0.375
+          },
+          "PARTICIPATE": {
+            "sample_count": 43,
+            "mean_ic": 0.04695,
+            "median_ic": 0.051597,
+            "positive_share": 0.604651,
+            "negative_share": 0.395349
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.284834,
+            "median_ic": -0.352113,
+            "positive_share": 0.333333,
+            "negative_share": 0.666667
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.01584,
+            "median_ic": -0.066339,
+            "positive_share": 0.461538,
+            "negative_share": 0.538462
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 69,
+        "mean_ic": 0.099554,
+        "median_ic": 0.12967,
+        "positive_share": 0.608696,
+        "negative_share": 0.391304,
+        "status": "visible",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.189975,
+            "median_ic": 0.219632,
+            "positive_share": 0.769231,
+            "negative_share": 0.230769
+          },
+          "PARTICIPATE": {
+            "sample_count": 12,
+            "mean_ic": 0.16794,
+            "median_ic": 0.089311,
+            "positive_share": 0.583333,
+            "negative_share": 0.416667
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": 0.35,
+            "median_ic": 0.35,
+            "positive_share": 1.0,
+            "negative_share": 0.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": 0.047309,
+            "median_ic": 0.08589,
+            "positive_share": 0.55814,
+            "negative_share": 0.44186
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "momentum",
+      "feature_field": "return_60d",
+      "feature_key": "momentum.return_60d",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": -0.010758,
+        "median_ic": 0.014084,
+        "positive_share": 0.517857,
+        "negative_share": 0.482143,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": 0.134081,
+            "median_ic": 0.071253,
+            "positive_share": 0.666667,
+            "negative_share": 0.333333
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": -0.049841,
+            "median_ic": -0.070423,
+            "positive_share": 0.428571,
+            "negative_share": 0.571429
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.331429,
+            "median_ic": -0.408451,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.002471,
+            "median_ic": 0.070024,
+            "positive_share": 0.576923,
+            "negative_share": 0.423077
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.00844,
+        "median_ic": 0.050549,
+        "positive_share": 0.567164,
+        "negative_share": 0.432836,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.144932,
+            "median_ic": 0.051534,
+            "positive_share": 0.692308,
+            "negative_share": 0.307692
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.030497,
+            "median_ic": 0.046154,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.25,
+            "median_ic": -0.25,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.031944,
+            "median_ic": 0.077301,
+            "positive_share": 0.534884,
+            "negative_share": 0.465116
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "momentum",
+      "feature_field": "return_120d",
+      "feature_key": "momentum.return_120d",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 111,
+        "mean_ic": 0.012746,
+        "median_ic": -0.021127,
+        "positive_share": 0.486486,
+        "negative_share": 0.513514,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": 0.20288,
+            "median_ic": 0.218673,
+            "positive_share": 0.666667,
+            "negative_share": 0.333333
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": 0.126507,
+            "median_ic": 0.136269,
+            "positive_share": 0.571429,
+            "negative_share": 0.428571
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 2,
+            "mean_ic": -0.193662,
+            "median_ic": -0.193662,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.126045,
+            "median_ic": -0.169533,
+            "positive_share": 0.384615,
+            "negative_share": 0.615385
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 66,
+        "mean_ic": 0.011533,
+        "median_ic": 0.019019,
+        "positive_share": 0.5,
+        "negative_share": 0.5,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.21989,
+            "median_ic": 0.223313,
+            "positive_share": 0.692308,
+            "negative_share": 0.307692
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.280355,
+            "median_ic": 0.371428,
+            "positive_share": 0.8,
+            "negative_share": 0.2
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.113975,
+            "median_ic": -0.168098,
+            "positive_share": 0.372093,
+            "negative_share": 0.627907
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "relative_strength",
+      "feature_field": "relative_return_60d_vs_hs300",
+      "feature_key": "relative_strength.relative_return_60d_vs_hs300",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": -0.010758,
+        "median_ic": 0.014084,
+        "positive_share": 0.517857,
+        "negative_share": 0.482143,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": 0.134081,
+            "median_ic": 0.071253,
+            "positive_share": 0.666667,
+            "negative_share": 0.333333
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": -0.049841,
+            "median_ic": -0.070423,
+            "positive_share": 0.428571,
+            "negative_share": 0.571429
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.331429,
+            "median_ic": -0.408451,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.002471,
+            "median_ic": 0.070024,
+            "positive_share": 0.576923,
+            "negative_share": 0.423077
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.00844,
+        "median_ic": 0.050549,
+        "positive_share": 0.567164,
+        "negative_share": 0.432836,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.144932,
+            "median_ic": 0.051534,
+            "positive_share": 0.692308,
+            "negative_share": 0.307692
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.030497,
+            "median_ic": 0.046154,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.25,
+            "median_ic": -0.25,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.031944,
+            "median_ic": 0.077301,
+            "positive_share": 0.534884,
+            "negative_share": 0.465116
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "relative_strength",
+      "feature_field": "relative_return_60d_vs_csi500",
+      "feature_key": "relative_strength.relative_return_60d_vs_csi500",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": -0.010758,
+        "median_ic": 0.014084,
+        "positive_share": 0.517857,
+        "negative_share": 0.482143,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": 0.134081,
+            "median_ic": 0.071253,
+            "positive_share": 0.666667,
+            "negative_share": 0.333333
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": -0.049841,
+            "median_ic": -0.070423,
+            "positive_share": 0.428571,
+            "negative_share": 0.571429
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.331429,
+            "median_ic": -0.408451,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.002471,
+            "median_ic": 0.070024,
+            "positive_share": 0.576923,
+            "negative_share": 0.423077
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.00844,
+        "median_ic": 0.050549,
+        "positive_share": 0.567164,
+        "negative_share": 0.432836,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.144932,
+            "median_ic": 0.051534,
+            "positive_share": 0.692308,
+            "negative_share": 0.307692
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.030497,
+            "median_ic": 0.046154,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.25,
+            "median_ic": -0.25,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.031944,
+            "median_ic": 0.077301,
+            "positive_share": 0.534884,
+            "negative_share": 0.465116
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "trend",
+      "feature_field": "distance_to_ma60",
+      "feature_key": "trend.distance_to_ma60",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": 0.015507,
+        "median_ic": 0.028662,
+        "positive_share": 0.508929,
+        "negative_share": 0.491071,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": 0.083681,
+            "median_ic": 0.083538,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": 0.022531,
+            "median_ic": 0.093686,
+            "positive_share": 0.547619,
+            "negative_share": 0.452381
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.23729,
+            "median_ic": -0.5,
+            "positive_share": 0.333333,
+            "negative_share": 0.666667
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": 0.004752,
+            "median_ic": -0.042012,
+            "positive_share": 0.461538,
+            "negative_share": 0.538462
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.065298,
+        "median_ic": 0.087117,
+        "positive_share": 0.58209,
+        "negative_share": 0.41791,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.107158,
+            "median_ic": 0.096992,
+            "positive_share": 0.615385,
+            "negative_share": 0.384615
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.158679,
+            "median_ic": 0.191308,
+            "positive_share": 0.8,
+            "negative_share": 0.2
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": 0.566667,
+            "median_ic": 0.566667,
+            "positive_share": 1.0,
+            "negative_share": 0.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": 0.019266,
+            "median_ic": 0.010989,
+            "positive_share": 0.511628,
+            "negative_share": 0.488372
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "trend",
+      "feature_field": "distance_to_ma120",
+      "feature_key": "trend.distance_to_ma120",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 111,
+        "mean_ic": 0.030908,
+        "median_ic": 0.021127,
+        "positive_share": 0.522523,
+        "negative_share": 0.477477,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": 0.178866,
+            "median_ic": 0.201474,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": 0.08914,
+            "median_ic": 0.038733,
+            "positive_share": 0.571429,
+            "negative_share": 0.428571
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 2,
+            "mean_ic": -0.200705,
+            "median_ic": -0.200705,
+            "positive_share": 0.5,
+            "negative_share": 0.5
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.049897,
+            "median_ic": -0.094594,
+            "positive_share": 0.461538,
+            "negative_share": 0.538462
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 66,
+        "mean_ic": 0.054604,
+        "median_ic": 0.117791,
+        "positive_share": 0.575758,
+        "negative_share": 0.424242,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.225396,
+            "median_ic": 0.288344,
+            "positive_share": 0.692308,
+            "negative_share": 0.307692
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.197911,
+            "median_ic": 0.243956,
+            "positive_share": 0.7,
+            "negative_share": 0.3
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.030359,
+            "median_ic": 0.041718,
+            "positive_share": 0.511628,
+            "negative_share": 0.488372
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "trend",
+      "feature_field": "distance_to_ma250",
+      "feature_key": "trend.distance_to_ma250",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 104,
+        "mean_ic": 0.051691,
+        "median_ic": 0.065924,
+        "positive_share": 0.557692,
+        "negative_share": 0.442308,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.131733,
+            "median_ic": 0.041769,
+            "positive_share": 0.615385,
+            "negative_share": 0.384615
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": 0.145385,
+            "median_ic": 0.102113,
+            "positive_share": 0.642857,
+            "negative_share": 0.357143
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 2,
+            "mean_ic": -0.348591,
+            "median_ic": -0.348591,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 47,
+            "mean_ic": -0.037142,
+            "median_ic": -0.029484,
+            "positive_share": 0.489362,
+            "negative_share": 0.510638
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 66,
+        "mean_ic": 0.043195,
+        "median_ic": 0.080982,
+        "positive_share": 0.560606,
+        "negative_share": 0.424242,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.157552,
+            "median_ic": 0.226374,
+            "positive_share": 0.615385,
+            "negative_share": 0.384615
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.270243,
+            "median_ic": 0.122162,
+            "positive_share": 0.7,
+            "negative_share": 0.2
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.044179,
+            "median_ic": 0.007362,
+            "positive_share": 0.511628,
+            "negative_share": 0.488372
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "risk",
+      "feature_field": "volatility_60d_annualized",
+      "feature_key": "risk.volatility_60d_annualized",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": 0.012589,
+        "median_ic": 0.025141,
+        "positive_share": 0.517857,
+        "negative_share": 0.482143,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": -0.059876,
+            "median_ic": -0.130221,
+            "positive_share": 0.466667,
+            "negative_share": 0.533333
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": -0.039531,
+            "median_ic": -0.105634,
+            "positive_share": 0.428571,
+            "negative_share": 0.571429
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": 0.241036,
+            "median_ic": 0.176056,
+            "positive_share": 0.666667,
+            "negative_share": 0.333333
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": 0.062409,
+            "median_ic": 0.117936,
+            "positive_share": 0.596154,
+            "negative_share": 0.403846
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.034529,
+        "median_ic": 0.013497,
+        "positive_share": 0.522388,
+        "negative_share": 0.477612,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": -0.195978,
+            "median_ic": -0.191209,
+            "positive_share": 0.307692,
+            "negative_share": 0.692308
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.13756,
+            "median_ic": 0.322777,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": 0.816667,
+            "median_ic": 0.816667,
+            "positive_share": 1.0,
+            "negative_share": 0.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": 0.062067,
+            "median_ic": 0.083436,
+            "positive_share": 0.55814,
+            "negative_share": 0.44186
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "risk",
+      "feature_field": "max_drawdown_120d",
+      "feature_key": "risk.max_drawdown_120d",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 114,
+        "mean_ic": -0.018897,
+        "median_ic": 0.006143,
+        "positive_share": 0.508772,
+        "negative_share": 0.491228,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 16,
+            "mean_ic": -0.015419,
+            "median_ic": 0.036855,
+            "positive_share": 0.625,
+            "negative_share": 0.375
+          },
+          "PARTICIPATE": {
+            "sample_count": 43,
+            "mean_ic": 0.087486,
+            "median_ic": 0.078624,
+            "positive_share": 0.581395,
+            "negative_share": 0.418605
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.315557,
+            "median_ic": -0.338028,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.090822,
+            "median_ic": -0.070838,
+            "positive_share": 0.442308,
+            "negative_share": 0.557692
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 70,
+        "mean_ic": -0.050745,
+        "median_ic": 0.045678,
+        "positive_share": 0.514286,
+        "negative_share": 0.485714,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.131525,
+            "median_ic": 0.182822,
+            "positive_share": 0.769231,
+            "negative_share": 0.230769
+          },
+          "PARTICIPATE": {
+            "sample_count": 13,
+            "mean_ic": -0.020852,
+            "median_ic": -0.1,
+            "positive_share": 0.461538,
+            "negative_share": 0.538462
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.69697,
+            "median_ic": -0.69697,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.099858,
+            "median_ic": -0.058981,
+            "positive_share": 0.465116,
+            "negative_share": 0.534884
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "risk",
+      "feature_field": "price_extension_252d_percentile",
+      "feature_key": "risk.price_extension_252d_percentile",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 114,
+        "mean_ic": 0.060518,
+        "median_ic": 0.11439,
+        "positive_share": 0.605263,
+        "negative_share": 0.394737,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 16,
+            "mean_ic": 0.158254,
+            "median_ic": 0.182953,
+            "positive_share": 0.625,
+            "negative_share": 0.375
+          },
+          "PARTICIPATE": {
+            "sample_count": 43,
+            "mean_ic": 0.159219,
+            "median_ic": 0.215168,
+            "positive_share": 0.767442,
+            "negative_share": 0.232558
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.335652,
+            "median_ic": -0.306774,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.028316,
+            "median_ic": -0.01105,
+            "positive_share": 0.5,
+            "negative_share": 0.5
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 70,
+        "mean_ic": 0.061741,
+        "median_ic": 0.032004,
+        "positive_share": 0.557143,
+        "negative_share": 0.442857,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.165664,
+            "median_ic": 0.332992,
+            "positive_share": 0.615385,
+            "negative_share": 0.384615
+          },
+          "PARTICIPATE": {
+            "sample_count": 13,
+            "mean_ic": 0.192943,
+            "median_ic": 0.090909,
+            "positive_share": 0.769231,
+            "negative_share": 0.230769
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.072949,
+            "median_ic": -0.072949,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.006211,
+            "median_ic": -0.063882,
+            "positive_share": 0.488372,
+            "negative_share": 0.511628
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "structure",
+      "feature_field": "industry_breadth",
+      "feature_key": "structure.industry_breadth",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 0,
+        "mean_ic": null,
+        "median_ic": null,
+        "positive_share": null,
+        "negative_share": null,
+        "status": "insufficient",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 0,
+        "mean_ic": null,
+        "median_ic": null,
+        "positive_share": null,
+        "negative_share": null,
+        "status": "insufficient",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "structure",
+      "feature_field": "theme_persistence",
+      "feature_key": "structure.theme_persistence",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 98,
+        "mean_ic": -0.024768,
+        "median_ic": -0.055217,
+        "positive_share": 0.428571,
+        "negative_share": 0.55102,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": -0.047369,
+            "median_ic": -0.102187,
+            "positive_share": 0.307692,
+            "negative_share": 0.692308
+          },
+          "PARTICIPATE": {
+            "sample_count": 38,
+            "mean_ic": -0.014873,
+            "median_ic": -0.005394,
+            "positive_share": 0.447368,
+            "negative_share": 0.5
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.108185,
+            "median_ic": -0.059339,
+            "positive_share": 0.333333,
+            "negative_share": 0.666667
+          },
+          "WAIT": {
+            "sample_count": 44,
+            "mean_ic": -0.020949,
+            "median_ic": -0.055217,
+            "positive_share": 0.454545,
+            "negative_share": 0.545455
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 57,
+        "mean_ic": -0.033505,
+        "median_ic": -0.057117,
+        "positive_share": 0.438596,
+        "negative_share": 0.54386,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 11,
+            "mean_ic": 0.032812,
+            "median_ic": 0.035007,
+            "positive_share": 0.545455,
+            "negative_share": 0.454545
+          },
+          "PARTICIPATE": {
+            "sample_count": 11,
+            "mean_ic": -0.029405,
+            "median_ic": -0.057117,
+            "positive_share": 0.454545,
+            "negative_share": 0.545455
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 35,
+            "mean_ic": -0.055635,
+            "median_ic": -0.153093,
+            "positive_share": 0.4,
+            "negative_share": 0.571429
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "structure",
+      "feature_field": "crowding_score",
+      "feature_key": "structure.crowding_score",
+      "horizon_sessions": 5,
+      "research_proxy": {
+        "sample_count": 0,
+        "mean_ic": null,
+        "median_ic": null,
+        "positive_share": null,
+        "negative_share": null,
+        "status": "insufficient",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 0,
+        "mean_ic": null,
+        "median_ic": null,
+        "positive_share": null,
+        "negative_share": null,
+        "status": "insufficient",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "momentum",
+      "feature_field": "return_20d",
+      "feature_key": "momentum.return_20d",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 114,
+        "mean_ic": 0.03448,
+        "median_ic": 0.023013,
+        "positive_share": 0.526316,
+        "negative_share": 0.473684,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 16,
+            "mean_ic": 0.053282,
+            "median_ic": 0.068796,
+            "positive_share": 0.625,
+            "negative_share": 0.375
+          },
+          "PARTICIPATE": {
+            "sample_count": 43,
+            "mean_ic": 0.062871,
+            "median_ic": 0.049296,
+            "positive_share": 0.55814,
+            "negative_share": 0.44186
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.294632,
+            "median_ic": -0.316901,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": 0.024205,
+            "median_ic": -0.007371,
+            "positive_share": 0.5,
+            "negative_share": 0.5
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 69,
+        "mean_ic": 0.050492,
+        "median_ic": 0.095706,
+        "positive_share": 0.594203,
+        "negative_share": 0.405797,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.005085,
+            "median_ic": 0.078528,
+            "positive_share": 0.615385,
+            "negative_share": 0.384615
+          },
+          "PARTICIPATE": {
+            "sample_count": 12,
+            "mean_ic": 0.058242,
+            "median_ic": 0.301007,
+            "positive_share": 0.583333,
+            "negative_share": 0.416667
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": 0.333333,
+            "median_ic": 0.333333,
+            "positive_share": 1.0,
+            "negative_share": 0.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": 0.055479,
+            "median_ic": 0.037363,
+            "positive_share": 0.581395,
+            "negative_share": 0.418605
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "momentum",
+      "feature_field": "return_60d",
+      "feature_key": "momentum.return_60d",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": -0.042331,
+        "median_ic": 0.014413,
+        "positive_share": 0.517857,
+        "negative_share": 0.473214,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": -0.000919,
+            "median_ic": -0.014742,
+            "positive_share": 0.466667,
+            "negative_share": 0.533333
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": -0.03312,
+            "median_ic": 0.014413,
+            "positive_share": 0.547619,
+            "negative_share": 0.452381
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.431724,
+            "median_ic": -0.330383,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.039251,
+            "median_ic": 0.054054,
+            "positive_share": 0.538462,
+            "negative_share": 0.442308
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.006087,
+        "median_ic": 0.028571,
+        "positive_share": 0.537313,
+        "negative_share": 0.462687,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": -0.043104,
+            "median_ic": -0.081319,
+            "positive_share": 0.384615,
+            "negative_share": 0.615385
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.092653,
+            "median_ic": 0.058242,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.233333,
+            "median_ic": -0.233333,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": 0.006394,
+            "median_ic": 0.112884,
+            "positive_share": 0.581395,
+            "negative_share": 0.418605
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "momentum",
+      "feature_field": "return_120d",
+      "feature_key": "momentum.return_120d",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 111,
+        "mean_ic": -0.007355,
+        "median_ic": 0.014742,
+        "positive_share": 0.504505,
+        "negative_share": 0.495495,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": -0.053082,
+            "median_ic": -0.15493,
+            "positive_share": 0.266667,
+            "negative_share": 0.733333
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": 0.071702,
+            "median_ic": 0.077465,
+            "positive_share": 0.52381,
+            "negative_share": 0.47619
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 2,
+            "mean_ic": -0.338028,
+            "median_ic": -0.338028,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.045301,
+            "median_ic": 0.07371,
+            "positive_share": 0.576923,
+            "negative_share": 0.423077
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 66,
+        "mean_ic": 0.022896,
+        "median_ic": 0.049814,
+        "positive_share": 0.560606,
+        "negative_share": 0.439394,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": -0.027646,
+            "median_ic": -0.076074,
+            "positive_share": 0.384615,
+            "negative_share": 0.615385
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.238474,
+            "median_ic": 0.369393,
+            "positive_share": 0.7,
+            "negative_share": 0.3
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.011958,
+            "median_ic": 0.04908,
+            "positive_share": 0.581395,
+            "negative_share": 0.418605
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "relative_strength",
+      "feature_field": "relative_return_60d_vs_hs300",
+      "feature_key": "relative_strength.relative_return_60d_vs_hs300",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": -0.042331,
+        "median_ic": 0.014413,
+        "positive_share": 0.517857,
+        "negative_share": 0.473214,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": -0.000919,
+            "median_ic": -0.014742,
+            "positive_share": 0.466667,
+            "negative_share": 0.533333
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": -0.03312,
+            "median_ic": 0.014413,
+            "positive_share": 0.547619,
+            "negative_share": 0.452381
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.431724,
+            "median_ic": -0.330383,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.039251,
+            "median_ic": 0.054054,
+            "positive_share": 0.538462,
+            "negative_share": 0.442308
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.006087,
+        "median_ic": 0.028571,
+        "positive_share": 0.537313,
+        "negative_share": 0.462687,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": -0.043104,
+            "median_ic": -0.081319,
+            "positive_share": 0.384615,
+            "negative_share": 0.615385
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.092653,
+            "median_ic": 0.058242,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.233333,
+            "median_ic": -0.233333,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": 0.006394,
+            "median_ic": 0.112884,
+            "positive_share": 0.581395,
+            "negative_share": 0.418605
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "relative_strength",
+      "feature_field": "relative_return_60d_vs_csi500",
+      "feature_key": "relative_strength.relative_return_60d_vs_csi500",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": -0.042331,
+        "median_ic": 0.014413,
+        "positive_share": 0.517857,
+        "negative_share": 0.473214,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": -0.000919,
+            "median_ic": -0.014742,
+            "positive_share": 0.466667,
+            "negative_share": 0.533333
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": -0.03312,
+            "median_ic": 0.014413,
+            "positive_share": 0.547619,
+            "negative_share": 0.452381
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.431724,
+            "median_ic": -0.330383,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.039251,
+            "median_ic": 0.054054,
+            "positive_share": 0.538462,
+            "negative_share": 0.442308
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.006087,
+        "median_ic": 0.028571,
+        "positive_share": 0.537313,
+        "negative_share": 0.462687,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": -0.043104,
+            "median_ic": -0.081319,
+            "positive_share": 0.384615,
+            "negative_share": 0.615385
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.092653,
+            "median_ic": 0.058242,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.233333,
+            "median_ic": -0.233333,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": 0.006394,
+            "median_ic": 0.112884,
+            "positive_share": 0.581395,
+            "negative_share": 0.418605
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "trend",
+      "feature_field": "distance_to_ma60",
+      "feature_key": "trend.distance_to_ma60",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": -0.034341,
+        "median_ic": -0.004914,
+        "positive_share": 0.482143,
+        "negative_share": 0.5,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": -0.029889,
+            "median_ic": -0.115479,
+            "positive_share": 0.4,
+            "negative_share": 0.6
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": -0.005077,
+            "median_ic": -0.010563,
+            "positive_share": 0.452381,
+            "negative_share": 0.5
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.279537,
+            "median_ic": -0.359155,
+            "positive_share": 0.333333,
+            "negative_share": 0.666667
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.045117,
+            "median_ic": 0.011957,
+            "positive_share": 0.538462,
+            "negative_share": 0.461538
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.03105,
+        "median_ic": 0.123926,
+        "positive_share": 0.597015,
+        "negative_share": 0.402985,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": -0.046975,
+            "median_ic": 0.01227,
+            "positive_share": 0.538462,
+            "negative_share": 0.461538
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.123376,
+            "median_ic": 0.208092,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": 0.516667,
+            "median_ic": 0.516667,
+            "positive_share": 1.0,
+            "negative_share": 0.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": 0.021874,
+            "median_ic": 0.123926,
+            "positive_share": 0.604651,
+            "negative_share": 0.395349
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "trend",
+      "feature_field": "distance_to_ma120",
+      "feature_key": "trend.distance_to_ma120",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 111,
+        "mean_ic": -0.013808,
+        "median_ic": -0.009828,
+        "positive_share": 0.486486,
+        "negative_share": 0.504505,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": 0.011335,
+            "median_ic": -0.191646,
+            "positive_share": 0.333333,
+            "negative_share": 0.666667
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": 0.048818,
+            "median_ic": 0.03169,
+            "positive_share": 0.5,
+            "negative_share": 0.47619
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 2,
+            "mean_ic": -0.521127,
+            "median_ic": -0.521127,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.05213,
+            "median_ic": 0.023341,
+            "positive_share": 0.538462,
+            "negative_share": 0.461538
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 66,
+        "mean_ic": 0.035542,
+        "median_ic": 0.079121,
+        "positive_share": 0.560606,
+        "negative_share": 0.439394,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": -0.022568,
+            "median_ic": -0.168098,
+            "positive_share": 0.461538,
+            "negative_share": 0.538462
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.136007,
+            "median_ic": 0.027884,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": 0.029747,
+            "median_ic": 0.116565,
+            "positive_share": 0.581395,
+            "negative_share": 0.418605
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "trend",
+      "feature_field": "distance_to_ma250",
+      "feature_key": "trend.distance_to_ma250",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 104,
+        "mean_ic": 0.034527,
+        "median_ic": 0.044469,
+        "positive_share": 0.519231,
+        "negative_share": 0.480769,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": -0.065394,
+            "median_ic": -0.253071,
+            "positive_share": 0.307692,
+            "negative_share": 0.692308
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": 0.094695,
+            "median_ic": 0.056338,
+            "positive_share": 0.547619,
+            "negative_share": 0.452381
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 2,
+            "mean_ic": -0.461267,
+            "median_ic": -0.461267,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 47,
+            "mean_ic": 0.029495,
+            "median_ic": 0.130221,
+            "positive_share": 0.574468,
+            "negative_share": 0.425532
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 66,
+        "mean_ic": 0.06547,
+        "median_ic": 0.136358,
+        "positive_share": 0.545455,
+        "negative_share": 0.454545,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": -0.012435,
+            "median_ic": -0.024176,
+            "positive_share": 0.461538,
+            "negative_share": 0.538462
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.22178,
+            "median_ic": 0.264578,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": 0.052671,
+            "median_ic": 0.15092,
+            "positive_share": 0.55814,
+            "negative_share": 0.44186
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "risk",
+      "feature_field": "volatility_60d_annualized",
+      "feature_key": "risk.volatility_60d_annualized",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": -0.008818,
+        "median_ic": -0.098592,
+        "positive_share": 0.446429,
+        "negative_share": 0.553571,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": -0.025172,
+            "median_ic": -0.12285,
+            "positive_share": 0.4,
+            "negative_share": 0.6
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": -0.053537,
+            "median_ic": -0.129719,
+            "positive_share": 0.380952,
+            "negative_share": 0.619048
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": 0.306986,
+            "median_ic": 0.387324,
+            "positive_share": 0.666667,
+            "negative_share": 0.333333
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": 0.0138,
+            "median_ic": -0.004914,
+            "positive_share": 0.5,
+            "negative_share": 0.5
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.001395,
+        "median_ic": -0.046154,
+        "positive_share": 0.447761,
+        "negative_share": 0.552239,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": -0.097405,
+            "median_ic": -0.23956,
+            "positive_share": 0.384615,
+            "negative_share": 0.615385
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.214237,
+            "median_ic": 0.222977,
+            "positive_share": 0.7,
+            "negative_share": 0.3
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": 0.833333,
+            "median_ic": 0.833333,
+            "positive_share": 1.0,
+            "negative_share": 0.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.037581,
+            "median_ic": -0.04908,
+            "positive_share": 0.395349,
+            "negative_share": 0.604651
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "risk",
+      "feature_field": "max_drawdown_120d",
+      "feature_key": "risk.max_drawdown_120d",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 114,
+        "mean_ic": -0.005199,
+        "median_ic": -0.047911,
+        "positive_share": 0.464912,
+        "negative_share": 0.526316,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 16,
+            "mean_ic": -0.036419,
+            "median_ic": -0.059617,
+            "positive_share": 0.4375,
+            "negative_share": 0.5625
+          },
+          "PARTICIPATE": {
+            "sample_count": 43,
+            "mean_ic": 0.122197,
+            "median_ic": 0.100295,
+            "positive_share": 0.55814,
+            "negative_share": 0.44186
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.371186,
+            "median_ic": -0.388206,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.079825,
+            "median_ic": -0.116707,
+            "positive_share": 0.423077,
+            "negative_share": 0.557692
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 70,
+        "mean_ic": -0.031247,
+        "median_ic": -0.020319,
+        "positive_share": 0.471429,
+        "negative_share": 0.528571,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.034272,
+            "median_ic": 0.195604,
+            "positive_share": 0.538462,
+            "negative_share": 0.461538
+          },
+          "PARTICIPATE": {
+            "sample_count": 13,
+            "mean_ic": -0.083387,
+            "median_ic": -0.156044,
+            "positive_share": 0.384615,
+            "negative_share": 0.615385
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.587879,
+            "median_ic": -0.587879,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.022346,
+            "median_ic": -0.017178,
+            "positive_share": 0.488372,
+            "negative_share": 0.511628
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "risk",
+      "feature_field": "price_extension_252d_percentile",
+      "feature_key": "risk.price_extension_252d_percentile",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 114,
+        "mean_ic": 0.044265,
+        "median_ic": 0.093915,
+        "positive_share": 0.578947,
+        "negative_share": 0.421053,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 16,
+            "mean_ic": 0.142434,
+            "median_ic": 0.02998,
+            "positive_share": 0.5,
+            "negative_share": 0.5
+          },
+          "PARTICIPATE": {
+            "sample_count": 43,
+            "mean_ic": 0.101347,
+            "median_ic": 0.147887,
+            "positive_share": 0.627907,
+            "negative_share": 0.372093
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.271518,
+            "median_ic": -0.244622,
+            "positive_share": 0.333333,
+            "negative_share": 0.666667
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.014925,
+            "median_ic": 0.101966,
+            "positive_share": 0.576923,
+            "negative_share": 0.423077
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 70,
+        "mean_ic": 0.070757,
+        "median_ic": 0.090445,
+        "positive_share": 0.542857,
+        "negative_share": 0.457143,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.092098,
+            "median_ic": 0.054121,
+            "positive_share": 0.615385,
+            "negative_share": 0.384615
+          },
+          "PARTICIPATE": {
+            "sample_count": 13,
+            "mean_ic": 0.121355,
+            "median_ic": 0.143558,
+            "positive_share": 0.538462,
+            "negative_share": 0.461538
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": 0.024316,
+            "median_ic": 0.024316,
+            "positive_share": 1.0,
+            "negative_share": 0.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": 0.050089,
+            "median_ic": 0.12677,
+            "positive_share": 0.511628,
+            "negative_share": 0.488372
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "structure",
+      "feature_field": "industry_breadth",
+      "feature_key": "structure.industry_breadth",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 0,
+        "mean_ic": null,
+        "median_ic": null,
+        "positive_share": null,
+        "negative_share": null,
+        "status": "insufficient",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 0,
+        "mean_ic": null,
+        "median_ic": null,
+        "positive_share": null,
+        "negative_share": null,
+        "status": "insufficient",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "structure",
+      "feature_field": "theme_persistence",
+      "feature_key": "structure.theme_persistence",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 98,
+        "mean_ic": -0.03082,
+        "median_ic": -0.04408,
+        "positive_share": 0.44898,
+        "negative_share": 0.55102,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": -0.159632,
+            "median_ic": -0.152445,
+            "positive_share": 0.307692,
+            "negative_share": 0.692308
+          },
+          "PARTICIPATE": {
+            "sample_count": 38,
+            "mean_ic": -0.026603,
+            "median_ic": -0.022936,
+            "positive_share": 0.473684,
+            "negative_share": 0.526316
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.029805,
+            "median_ic": 0.022168,
+            "positive_share": 0.666667,
+            "negative_share": 0.333333
+          },
+          "WAIT": {
+            "sample_count": 44,
+            "mean_ic": 0.003527,
+            "median_ic": -0.04408,
+            "positive_share": 0.454545,
+            "negative_share": 0.545455
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 57,
+        "mean_ic": -0.049833,
+        "median_ic": -0.046881,
+        "positive_share": 0.438596,
+        "negative_share": 0.54386,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 11,
+            "mean_ic": -0.110301,
+            "median_ic": -0.008752,
+            "positive_share": 0.363636,
+            "negative_share": 0.636364
+          },
+          "PARTICIPATE": {
+            "sample_count": 11,
+            "mean_ic": 0.013566,
+            "median_ic": 0.046881,
+            "positive_share": 0.545455,
+            "negative_share": 0.454545
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 35,
+            "mean_ic": -0.050754,
+            "median_ic": -0.073801,
+            "positive_share": 0.428571,
+            "negative_share": 0.542857
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "structure",
+      "feature_field": "crowding_score",
+      "feature_key": "structure.crowding_score",
+      "horizon_sessions": 20,
+      "research_proxy": {
+        "sample_count": 0,
+        "mean_ic": null,
+        "median_ic": null,
+        "positive_share": null,
+        "negative_share": null,
+        "status": "insufficient",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 0,
+        "mean_ic": null,
+        "median_ic": null,
+        "positive_share": null,
+        "negative_share": null,
+        "status": "insufficient",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "momentum",
+      "feature_field": "return_20d",
+      "feature_key": "momentum.return_20d",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 114,
+        "mean_ic": -0.022985,
+        "median_ic": -0.095071,
+        "positive_share": 0.447368,
+        "negative_share": 0.552632,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 16,
+            "mean_ic": 0.088833,
+            "median_ic": 0.015728,
+            "positive_share": 0.5,
+            "negative_share": 0.5
+          },
+          "PARTICIPATE": {
+            "sample_count": 43,
+            "mean_ic": -0.040878,
+            "median_ic": -0.140049,
+            "positive_share": 0.348837,
+            "negative_share": 0.651163
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.250384,
+            "median_ic": -0.232394,
+            "positive_share": 0.333333,
+            "negative_share": 0.666667
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.029476,
+            "median_ic": 0.081081,
+            "positive_share": 0.519231,
+            "negative_share": 0.480769
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 69,
+        "mean_ic": 0.006645,
+        "median_ic": 0.071166,
+        "positive_share": 0.536232,
+        "negative_share": 0.449275,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.083101,
+            "median_ic": 0.037363,
+            "positive_share": 0.538462,
+            "negative_share": 0.461538
+          },
+          "PARTICIPATE": {
+            "sample_count": 12,
+            "mean_ic": -0.056491,
+            "median_ic": -0.163187,
+            "positive_share": 0.333333,
+            "negative_share": 0.666667
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": 0.15,
+            "median_ic": 0.15,
+            "positive_share": 1.0,
+            "negative_share": 0.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.002184,
+            "median_ic": 0.087117,
+            "positive_share": 0.581395,
+            "negative_share": 0.395349
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "momentum",
+      "feature_field": "return_60d",
+      "feature_key": "momentum.return_60d",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": -0.036066,
+        "median_ic": -0.024648,
+        "positive_share": 0.464286,
+        "negative_share": 0.535714,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": 0.114102,
+            "median_ic": 0.213759,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": -0.057628,
+            "median_ic": -0.105633,
+            "positive_share": 0.428571,
+            "negative_share": 0.571429
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.115079,
+            "median_ic": -0.112676,
+            "positive_share": 0.333333,
+            "negative_share": 0.666667
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.057411,
+            "median_ic": -0.023342,
+            "positive_share": 0.461538,
+            "negative_share": 0.538462
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.034326,
+        "median_ic": 0.096933,
+        "positive_share": 0.61194,
+        "negative_share": 0.38806,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.200423,
+            "median_ic": 0.323927,
+            "positive_share": 0.769231,
+            "negative_share": 0.230769
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.062521,
+            "median_ic": 0.163187,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.416667,
+            "median_ic": -0.416667,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.011958,
+            "median_ic": 0.022086,
+            "positive_share": 0.581395,
+            "negative_share": 0.418605
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "momentum",
+      "feature_field": "return_120d",
+      "feature_key": "momentum.return_120d",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 111,
+        "mean_ic": 0.030971,
+        "median_ic": 0.044226,
+        "positive_share": 0.54955,
+        "negative_share": 0.45045,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": 0.22603,
+            "median_ic": 0.28169,
+            "positive_share": 0.733333,
+            "negative_share": 0.266667
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": 0.051902,
+            "median_ic": 0.0,
+            "positive_share": 0.5,
+            "negative_share": 0.5
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 2,
+            "mean_ic": 0.169014,
+            "median_ic": 0.169014,
+            "positive_share": 1.0,
+            "negative_share": 0.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.047511,
+            "median_ic": 0.013513,
+            "positive_share": 0.519231,
+            "negative_share": 0.480769
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 66,
+        "mean_ic": 0.048349,
+        "median_ic": -0.030061,
+        "positive_share": 0.469697,
+        "negative_share": 0.530303,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.169909,
+            "median_ic": 0.355828,
+            "positive_share": 0.615385,
+            "negative_share": 0.384615
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.211707,
+            "median_ic": 0.204396,
+            "positive_share": 0.7,
+            "negative_share": 0.3
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.026392,
+            "median_ic": -0.046626,
+            "positive_share": 0.372093,
+            "negative_share": 0.627907
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "relative_strength",
+      "feature_field": "relative_return_60d_vs_hs300",
+      "feature_key": "relative_strength.relative_return_60d_vs_hs300",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": -0.036066,
+        "median_ic": -0.024648,
+        "positive_share": 0.464286,
+        "negative_share": 0.535714,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": 0.114102,
+            "median_ic": 0.213759,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": -0.057628,
+            "median_ic": -0.105633,
+            "positive_share": 0.428571,
+            "negative_share": 0.571429
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.115079,
+            "median_ic": -0.112676,
+            "positive_share": 0.333333,
+            "negative_share": 0.666667
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.057411,
+            "median_ic": -0.023342,
+            "positive_share": 0.461538,
+            "negative_share": 0.538462
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.034326,
+        "median_ic": 0.096933,
+        "positive_share": 0.61194,
+        "negative_share": 0.38806,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.200423,
+            "median_ic": 0.323927,
+            "positive_share": 0.769231,
+            "negative_share": 0.230769
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.062521,
+            "median_ic": 0.163187,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.416667,
+            "median_ic": -0.416667,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.011958,
+            "median_ic": 0.022086,
+            "positive_share": 0.581395,
+            "negative_share": 0.418605
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "relative_strength",
+      "feature_field": "relative_return_60d_vs_csi500",
+      "feature_key": "relative_strength.relative_return_60d_vs_csi500",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": -0.036066,
+        "median_ic": -0.024648,
+        "positive_share": 0.464286,
+        "negative_share": 0.535714,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": 0.114102,
+            "median_ic": 0.213759,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": -0.057628,
+            "median_ic": -0.105633,
+            "positive_share": 0.428571,
+            "negative_share": 0.571429
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.115079,
+            "median_ic": -0.112676,
+            "positive_share": 0.333333,
+            "negative_share": 0.666667
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.057411,
+            "median_ic": -0.023342,
+            "positive_share": 0.461538,
+            "negative_share": 0.538462
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.034326,
+        "median_ic": 0.096933,
+        "positive_share": 0.61194,
+        "negative_share": 0.38806,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.200423,
+            "median_ic": 0.323927,
+            "positive_share": 0.769231,
+            "negative_share": 0.230769
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.062521,
+            "median_ic": 0.163187,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.416667,
+            "median_ic": -0.416667,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.011958,
+            "median_ic": 0.022086,
+            "positive_share": 0.581395,
+            "negative_share": 0.418605
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "trend",
+      "feature_field": "distance_to_ma60",
+      "feature_key": "trend.distance_to_ma60",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": -0.059775,
+        "median_ic": -0.046683,
+        "positive_share": 0.446429,
+        "negative_share": 0.553571,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": 0.031099,
+            "median_ic": 0.027027,
+            "positive_share": 0.533333,
+            "negative_share": 0.466667
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": -0.078802,
+            "median_ic": -0.112676,
+            "positive_share": 0.404762,
+            "negative_share": 0.595238
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.192232,
+            "median_ic": -0.105634,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.062978,
+            "median_ic": -0.025799,
+            "positive_share": 0.480769,
+            "negative_share": 0.519231
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.04226,
+        "median_ic": 0.095706,
+        "positive_share": 0.567164,
+        "negative_share": 0.432836,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.156946,
+            "median_ic": 0.24908,
+            "positive_share": 0.769231,
+            "negative_share": 0.230769
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.086993,
+            "median_ic": 0.239561,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": 0.316667,
+            "median_ic": 0.316667,
+            "positive_share": 1.0,
+            "negative_share": 0.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.009197,
+            "median_ic": -0.001227,
+            "positive_share": 0.488372,
+            "negative_share": 0.511628
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "trend",
+      "feature_field": "distance_to_ma120",
+      "feature_key": "trend.distance_to_ma120",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 111,
+        "mean_ic": -0.010746,
+        "median_ic": 0.042254,
+        "positive_share": 0.531532,
+        "negative_share": 0.468468,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": 0.089231,
+            "median_ic": 0.149877,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": 0.005948,
+            "median_ic": 0.03464,
+            "positive_share": 0.52381,
+            "negative_share": 0.47619
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 2,
+            "mean_ic": -0.176057,
+            "median_ic": -0.176057,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.046712,
+            "median_ic": 0.03939,
+            "positive_share": 0.538462,
+            "negative_share": 0.461538
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 66,
+        "mean_ic": 0.043122,
+        "median_ic": 0.067485,
+        "positive_share": 0.545455,
+        "negative_share": 0.454545,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.12993,
+            "median_ic": 0.104295,
+            "positive_share": 0.692308,
+            "negative_share": 0.307692
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.130193,
+            "median_ic": 0.293956,
+            "positive_share": 0.6,
+            "negative_share": 0.4
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.003372,
+            "median_ic": -0.014717,
+            "positive_share": 0.488372,
+            "negative_share": 0.511628
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "trend",
+      "feature_field": "distance_to_ma250",
+      "feature_key": "trend.distance_to_ma250",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 104,
+        "mean_ic": 0.066152,
+        "median_ic": 0.067568,
+        "positive_share": 0.557692,
+        "negative_share": 0.442308,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.128142,
+            "median_ic": 0.226044,
+            "positive_share": 0.615385,
+            "negative_share": 0.384615
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": 0.058794,
+            "median_ic": -0.005814,
+            "positive_share": 0.5,
+            "negative_share": 0.5
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 2,
+            "mean_ic": 0.204226,
+            "median_ic": 0.204226,
+            "positive_share": 1.0,
+            "negative_share": 0.0
+          },
+          "WAIT": {
+            "sample_count": 47,
+            "mean_ic": 0.049706,
+            "median_ic": 0.091549,
+            "positive_share": 0.574468,
+            "negative_share": 0.425532
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 66,
+        "mean_ic": 0.066825,
+        "median_ic": 0.033742,
+        "positive_share": 0.545455,
+        "negative_share": 0.439394,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.16329,
+            "median_ic": 0.28589,
+            "positive_share": 0.692308,
+            "negative_share": 0.307692
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.127049,
+            "median_ic": 0.202198,
+            "positive_share": 0.6,
+            "negative_share": 0.3
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": 0.023655,
+            "median_ic": -0.013497,
+            "positive_share": 0.488372,
+            "negative_share": 0.511628
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "risk",
+      "feature_field": "volatility_60d_annualized",
+      "feature_key": "risk.volatility_60d_annualized",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 112,
+        "mean_ic": -0.02724,
+        "median_ic": -0.076651,
+        "positive_share": 0.446429,
+        "negative_share": 0.553571,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 15,
+            "mean_ic": -0.162035,
+            "median_ic": -0.218673,
+            "positive_share": 0.266667,
+            "negative_share": 0.733333
+          },
+          "PARTICIPATE": {
+            "sample_count": 42,
+            "mean_ic": 0.035142,
+            "median_ic": -0.014084,
+            "positive_share": 0.47619,
+            "negative_share": 0.52381
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": 0.00367,
+            "median_ic": 0.126761,
+            "positive_share": 0.666667,
+            "negative_share": 0.333333
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.040527,
+            "median_ic": -0.067568,
+            "positive_share": 0.461538,
+            "negative_share": 0.538462
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 67,
+        "mean_ic": 0.022967,
+        "median_ic": -0.025767,
+        "positive_share": 0.492537,
+        "negative_share": 0.507463,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": -0.123547,
+            "median_ic": -0.240491,
+            "positive_share": 0.307692,
+            "negative_share": 0.692308
+          },
+          "PARTICIPATE": {
+            "sample_count": 10,
+            "mean_ic": 0.394318,
+            "median_ic": 0.613187,
+            "positive_share": 0.8,
+            "negative_share": 0.2
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": 0.6,
+            "median_ic": 0.6,
+            "positive_share": 1.0,
+            "negative_share": 0.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.032518,
+            "median_ic": -0.115338,
+            "positive_share": 0.465116,
+            "negative_share": 0.534884
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "risk",
+      "feature_field": "max_drawdown_120d",
+      "feature_key": "risk.max_drawdown_120d",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 114,
+        "mean_ic": 0.025698,
+        "median_ic": 0.013842,
+        "positive_share": 0.5,
+        "negative_share": 0.5,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 16,
+            "mean_ic": 0.157874,
+            "median_ic": 0.187961,
+            "positive_share": 0.6875,
+            "negative_share": 0.3125
+          },
+          "PARTICIPATE": {
+            "sample_count": 43,
+            "mean_ic": 0.035913,
+            "median_ic": -0.022113,
+            "positive_share": 0.44186,
+            "negative_share": 0.55814
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": 0.095085,
+            "median_ic": 0.084507,
+            "positive_share": 0.666667,
+            "negative_share": 0.333333
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": -0.027422,
+            "median_ic": -0.065111,
+            "positive_share": 0.480769,
+            "negative_share": 0.519231
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 70,
+        "mean_ic": -0.030536,
+        "median_ic": -0.120246,
+        "positive_share": 0.414286,
+        "negative_share": 0.585714,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.130822,
+            "median_ic": 0.213497,
+            "positive_share": 0.615385,
+            "negative_share": 0.384615
+          },
+          "PARTICIPATE": {
+            "sample_count": 13,
+            "mean_ic": -0.231131,
+            "median_ic": -0.301099,
+            "positive_share": 0.153846,
+            "negative_share": 0.846154
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.551515,
+            "median_ic": -0.551515,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": -0.006558,
+            "median_ic": -0.099387,
+            "positive_share": 0.44186,
+            "negative_share": 0.55814
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "risk",
+      "feature_field": "price_extension_252d_percentile",
+      "feature_key": "risk.price_extension_252d_percentile",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 114,
+        "mean_ic": 0.03901,
+        "median_ic": 0.074042,
+        "positive_share": 0.570175,
+        "negative_share": 0.421053,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 16,
+            "mean_ic": 0.133312,
+            "median_ic": 0.191312,
+            "positive_share": 0.6875,
+            "negative_share": 0.3125
+          },
+          "PARTICIPATE": {
+            "sample_count": 43,
+            "mean_ic": 0.058319,
+            "median_ic": 0.10582,
+            "positive_share": 0.55814,
+            "negative_share": 0.44186
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.165538,
+            "median_ic": -0.233559,
+            "positive_share": 0.333333,
+            "negative_share": 0.666667
+          },
+          "WAIT": {
+            "sample_count": 52,
+            "mean_ic": 0.005828,
+            "median_ic": 0.01972,
+            "positive_share": 0.557692,
+            "negative_share": 0.423077
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 70,
+        "mean_ic": 0.05616,
+        "median_ic": 0.055894,
+        "positive_share": 0.585714,
+        "negative_share": 0.414286,
+        "status": "weak",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.140682,
+            "median_ic": 0.202454,
+            "positive_share": 0.692308,
+            "negative_share": 0.307692
+          },
+          "PARTICIPATE": {
+            "sample_count": 13,
+            "mean_ic": 0.007379,
+            "median_ic": 0.072527,
+            "positive_share": 0.538462,
+            "negative_share": 0.461538
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 1,
+            "mean_ic": -0.042553,
+            "median_ic": -0.042553,
+            "positive_share": 0.0,
+            "negative_share": 1.0
+          },
+          "WAIT": {
+            "sample_count": 43,
+            "mean_ic": 0.047651,
+            "median_ic": 0.018624,
+            "positive_share": 0.581395,
+            "negative_share": 0.418605
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "structure",
+      "feature_field": "industry_breadth",
+      "feature_key": "structure.industry_breadth",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 0,
+        "mean_ic": null,
+        "median_ic": null,
+        "positive_share": null,
+        "negative_share": null,
+        "status": "insufficient",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 0,
+        "mean_ic": null,
+        "median_ic": null,
+        "positive_share": null,
+        "negative_share": null,
+        "status": "insufficient",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "structure",
+      "feature_field": "theme_persistence",
+      "feature_key": "structure.theme_persistence",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 98,
+        "mean_ic": -0.004634,
+        "median_ic": 0.048171,
+        "positive_share": 0.540816,
+        "negative_share": 0.459184,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 13,
+            "mean_ic": 0.070621,
+            "median_ic": 0.186568,
+            "positive_share": 0.692308,
+            "negative_share": 0.307692
+          },
+          "PARTICIPATE": {
+            "sample_count": 38,
+            "mean_ic": 0.020596,
+            "median_ic": 0.041482,
+            "positive_share": 0.552632,
+            "negative_share": 0.447368
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 3,
+            "mean_ic": -0.266208,
+            "median_ic": -0.429617,
+            "positive_share": 0.333333,
+            "negative_share": 0.666667
+          },
+          "WAIT": {
+            "sample_count": 44,
+            "mean_ic": -0.030823,
+            "median_ic": -0.060748,
+            "positive_share": 0.5,
+            "negative_share": 0.5
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 57,
+        "mean_ic": 0.0262,
+        "median_ic": 0.140642,
+        "positive_share": 0.578947,
+        "negative_share": 0.421053,
+        "status": "flat",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 11,
+            "mean_ic": 0.071215,
+            "median_ic": 0.259647,
+            "positive_share": 0.636364,
+            "negative_share": 0.363636
+          },
+          "PARTICIPATE": {
+            "sample_count": 11,
+            "mean_ic": 0.214547,
+            "median_ic": 0.26968,
+            "positive_share": 0.818182,
+            "negative_share": 0.181818
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 35,
+            "mean_ic": -0.047143,
+            "median_ic": -0.013128,
+            "positive_share": 0.485714,
+            "negative_share": 0.514286
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    },
+    {
+      "feature_group": "structure",
+      "feature_field": "crowding_score",
+      "feature_key": "structure.crowding_score",
+      "horizon_sessions": 60,
+      "research_proxy": {
+        "sample_count": 0,
+        "mean_ic": null,
+        "median_ic": null,
+        "positive_share": null,
+        "negative_share": null,
+        "status": "insufficient",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          }
+        }
+      },
+      "tradable_etf": {
+        "sample_count": 0,
+        "mean_ic": null,
+        "median_ic": null,
+        "positive_share": null,
+        "negative_share": null,
+        "status": "insufficient",
+        "regime_breakdown": {
+          "AVOID": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "PROTECT_BUT_PARTICIPATE": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          },
+          "WAIT": {
+            "sample_count": 0,
+            "mean_ic": null,
+            "median_ic": null,
+            "positive_share": null,
+            "negative_share": null
+          }
+        }
+      },
+      "interpretation": "feature_validation_only_not_a_score_or_rank"
+    }
+  ],
+  "time_safety": {
+    "requested_as_of": "20991231",
+    "feature_dates_from_v6_context_rows": true,
+    "feature_values_use_history_lte_signal_date": true,
+    "forward_returns_used_only_as_validation_labels": true,
+    "future_returns_not_used_in_feature_values": true,
+    "research_proxy_and_tradable_etf_validated_separately": true,
+    "future_labels_used_for_scoring": false
+  },
+  "data_quality": {
+    "cache_only": true,
+    "asset_count": 17,
+    "min_assets_per_ic": 6,
+    "feature_definitions_fixed": true,
+    "horizons_fixed_by_design": true,
+    "no_scoring": true,
+    "no_ranking": true,
+    "no_top_n": true,
+    "no_allocation": true,
+    "no_backtest": true,
+    "no_parameter_optimization": true
+  },
+  "constraints": {
+    "effectiveness_audit_only": true,
+    "does_not_create_opportunity_score": true,
+    "does_not_rank_assets": true,
+    "does_not_select_top_assets": true,
+    "does_not_generate_position": true,
+    "no_percentage_exposure": true,
+    "no_etf_weight": true,
+    "no_portfolio_weight": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  }
+}

@@ -909,6 +909,16 @@ function opportunityFeatureGroupLabel(value) {
   return labels[value] || value || "--";
 }
 
+function opportunityValidationStatusLabel(value) {
+  const labels = {
+    visible: "可见",
+    weak: "偏弱",
+    flat: "平坦",
+    insufficient: "不足",
+  };
+  return labels[value] || value || "--";
+}
+
 function decisionModeLabel(value) {
   const labels = {
     FULL_PARTICIPATION: "全参与",
@@ -1603,6 +1613,10 @@ function setResultsPanel(results) {
   const opportunityFeaturesSummary = opportunityFeatures.summary || {};
   const opportunityFeaturesRows = opportunityFeatures.sample_assets || opportunityFeatures.assets || [];
   const opportunityFeaturesTimeSafety = opportunityFeatures.time_safety || {};
+  const opportunityValidation = results.opportunity_feature_validation || {};
+  const opportunityValidationSummary = opportunityValidation.summary || {};
+  const opportunityValidationSamples = opportunityValidation.sample_results || opportunityValidation.feature_results || [];
+  const opportunityValidationTimeSafety = opportunityValidation.time_safety || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3070,6 +3084,46 @@ function setResultsPanel(results) {
     opportunityFeatures.metadata
       ? `V7.2 特征层在 ${toIsoDate(opportunityFeaturesSummary.resolved_as_of)} 统一日期生成 ${integerText(opportunityFeatureGroups.length)} 类字段：动量、相对强弱、趋势、风险、结构。V6 上下文只作为元数据引用，不 join 到资产特征，不参与评分或排名；时间安全：${opportunityFeaturesTimeSafety.future_labels_used === false ? "未使用未来标签" : "需复核"}。`
       : "V7.2 机会研究特征层尚未生成。"
+  );
+
+  const proxyStatusCounts = opportunityValidationSummary.research_proxy_status_counts || {};
+  const etfStatusCounts = opportunityValidationSummary.tradable_etf_status_counts || {};
+  const statusText = (counts) => ["visible", "weak", "flat", "insufficient"]
+    .filter((key) => counts[key])
+    .map((key) => `${opportunityValidationStatusLabel(key)} ${integerText(counts[key])}`)
+    .join(" / ") || "--";
+  setText(
+    "opportunityValidationScope",
+    opportunityValidationSummary.feature_count
+      ? `${integerText(opportunityValidationSummary.feature_count)} 特征 × ${integerText((opportunityValidationSummary.horizons || []).length)} horizon`
+      : "--"
+  );
+  setText("opportunityValidationDates", integerText(opportunityValidationSummary.context_observation_count));
+  setText("opportunityValidationProxy", statusText(proxyStatusCounts));
+  setText("opportunityValidationEtf", statusText(etfStatusCounts));
+  setHtml("opportunityValidationStatus", [
+    ["Proxy", proxyStatusCounts],
+    ["真实 ETF", etfStatusCounts],
+  ].map(([label, counts]) => `
+    <div class="duration-row">
+      <span>${label}</span>
+      <strong>${statusText(counts)}</strong>
+      <em>IC 有效性审计状态，不是资产排名</em>
+    </div>
+  `).join(""));
+  setHtml("opportunityValidationSamples", opportunityValidationSamples
+    .map((item) => `
+      <div>
+        <strong>${escapeHtml(item.feature_key)} · ${integerText(item.horizon_sessions)}日</strong>
+        <span>Proxy IC ${signedFixedText(item.research_proxy?.mean_ic, 3)}（${opportunityValidationStatusLabel(item.research_proxy?.status)}） · ETF IC ${signedFixedText(item.tradable_etf?.mean_ic, 3)}（${opportunityValidationStatusLabel(item.tradable_etf?.status)}）</span>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "opportunityValidationConclusion",
+    opportunityValidation.metadata
+      ? `V7.3 固定 V7.2 字段做 IC 审计：共 ${integerText(opportunityValidationSummary.result_count)} 条 feature × horizon 结果。多数结果仍为平坦或偏弱，说明当前只能用于研究归因，还不能进入机会评分。时间安全：${opportunityValidationTimeSafety.forward_returns_used_only_as_validation_labels ? "未来收益只作验证标签" : "需复核"}。`
+      : "V7.3 机会特征有效性审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
