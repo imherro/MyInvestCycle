@@ -1,0 +1,120 @@
+{
+  "engine": "V2.3.1 Market Structure Engine Core",
+  "requested_as_of": "20260708",
+  "as_of": "20260707",
+  "generated_at": "2026-07-08T06:08:23+00:00",
+  "structure_state": "BULL_DIVERGENCE",
+  "structure_score": 53.5177,
+  "confidence": 0.9148,
+  "metrics": {
+    "index_trend": 78.7653,
+    "index_dispersion": 2.17,
+    "above_ma250_ratio": 1.0,
+    "pullback_health": 68.4834,
+    "breadth": 14.59,
+    "up_down_ratio": 0.1256,
+    "high_52w_ratio": 0.0333,
+    "limit_up_ratio": 0.0087,
+    "liquidity": 45.37,
+    "turnover_ma_ratio": 0.8117,
+    "northbound_5d_avg": 382663.012,
+    "industry_strength": null,
+    "theme_persistence": null,
+    "structure_score": 53.5177,
+    "available_weight": 0.9,
+    "missing_inputs": [
+      "industry_strength",
+      "theme_persistence"
+    ]
+  },
+  "index_metrics": {
+    "000001.SH": {
+      "label": "SSE Composite",
+      "trade_date": "20260707",
+      "close": 3990.2353,
+      "ma60": 4087.3964,
+      "ma120": 4077.5177,
+      "ma250": 3932.1782,
+      "above_ma250": true,
+      "ma_stack_score": 100.0,
+      "ma250_slope": 0.014082,
+      "return_60": -0.001192,
+      "drawdown_60": -0.059477,
+      "volatility_20": 0.177729,
+      "drawdown_health": 66.9571,
+      "volatility_stability": 86.5747,
+      "trend_score": 77.9459
+    },
+    "000300.SH": {
+      "label": "CSI 300",
+      "trade_date": "20260707",
+      "close": 4792.2624,
+      "ma60": 4843.2658,
+      "ma120": 4749.3748,
+      "ma250": 4576.2219,
+      "above_ma250": true,
+      "ma_stack_score": 100.0,
+      "ma250_slope": 0.017995,
+      "return_60": 0.042804,
+      "drawdown_60": -0.052849,
+      "volatility_20": 0.260313,
+      "drawdown_health": 70.6397,
+      "volatility_stability": 67.3691,
+      "trend_score": 78.2342
+    },
+    "000905.SH": {
+      "label": "CSI 500",
+      "trade_date": "20260707",
+      "close": 8508.7885,
+      "ma60": 8467.7883,
+      "ma120": 8311.245,
+      "ma250": 7561.5401,
+      "above_ma250": true,
+      "ma_stack_score": 100.0,
+      "ma250_slope": 0.031284,
+      "return_60": 0.070941,
+      "drawdown_60": -0.057864,
+      "volatility_20": 0.306404,
+      "drawdown_health": 67.8534,
+      "volatility_stability": 56.6502,
+      "trend_score": 80.1159
+    }
+  },
+  "data_quality": {
+    "index_codes": [
+      "000001.SH",
+      "000300.SH",
+      "000905.SH"
+    ],
+    "breadth": {
+      "status": "available",
+      "market_daily_rows": 5517,
+      "history": {
+        "status": "available",
+        "rows": 7355
+      }
+    },
+    "liquidity": {
+      "status": "available",
+      "rows": 29
+    },
+    "industry_theme_data": "not_available_in_v2_3_1",
+    "no_future_data": true
+  },
+  "explanation": [
+    "structure_state=BULL_DIVERGENCE: 指数强但宽度不足.",
+    "index_trend: strong (78.8).",
+    "breadth: weak (14.6).",
+    "liquidity: neutral (45.4).",
+    "pullback_health: neutral (68.5).",
+    "industry/theme strength is not available in V2.3.1; structural bull rotation requires V2.3.2 data.",
+    "Missing inputs reduce confidence: industry_strength, theme_persistence."
+  ],
+  "constraints": {
+    "independent_from_macro_state": true,
+    "no_position_sizing": true,
+    "no_etf_allocation": true,
+    "no_trade_signal": true,
+    "no_backtest": true
+  }
+}

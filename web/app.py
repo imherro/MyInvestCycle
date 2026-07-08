@@ -43,6 +43,7 @@ from macro.data_quality import audit_macro_records
 from macro.indicator_registry import registry_as_dict
 from macro.macro_cycle_engine import build_macro_cycle_snapshot
 from macro.macro_loader import DEFAULT_MACRO_INDICATORS, load_macro_indicators
+from market_structure.structure_engine import build_structure_snapshot
 
 
 app = FastAPI(title="MyInvestCycle Regime API", version="0.8")
@@ -689,6 +690,25 @@ def _api_catalog_payload() -> dict[str, object]:
             ],
         },
         {
+            "name": "V2 市场结构",
+            "description": "独立于宏观周期的市场结构识别，只看指数趋势、宽度、流动性和后续可接入的行业/主题强度；不输出仓位、ETF 配置或交易信号。",
+            "endpoints": [
+                _api_endpoint(
+                    "GET",
+                    "/api/structure/current",
+                    "返回 V2.3 Market Structure Engine 的当前市场结构状态、结构分、置信度、指标和解释。",
+                    "market structure snapshot",
+                    params=[
+                        {"name": "date", "required": "false", "format": "YYYYMMDD"},
+                        {"name": "start_date", "required": "false", "format": "YYYYMMDD"},
+                        {"name": "history_sample_size", "required": "false", "format": "0-100"},
+                        {"name": "cache_only", "required": "false", "format": "boolean"},
+                    ],
+                    freshness="index and local breadth/liquidity cache",
+                ),
+            ],
+        },
+        {
             "name": "后市展望与历史回顾",
             "description": "历史周期切分、后市展望和概率展望。",
             "endpoints": [
@@ -1203,6 +1223,21 @@ def macro_current(
     start_date: str = Query("20200101", description="Macro cache observation start date, YYYYMMDD."),
 ) -> dict:
     return build_macro_cycle_snapshot(date_text or _today_text(), start_date=start_date)
+
+
+@app.get("/api/structure/current")
+def structure_current(
+    date_text: str | None = Query(None, alias="date", description="Decision date, YYYYMMDD. Defaults to today."),
+    start_date: str = Query("20150101", description="Index history start date, YYYYMMDD."),
+    history_sample_size: int = Query(30, ge=0, le=100, description="Breadth history sample size."),
+    cache_only: bool = Query(False, description="Use local cache only for breadth data."),
+) -> dict:
+    return build_structure_snapshot(
+        date_text or _today_text(),
+        start_date=start_date,
+        history_sample_size=history_sample_size,
+        cache_only=cache_only,
+    )
 
 
 @app.get("/api/style/rotation-signal")
