@@ -338,6 +338,14 @@ def _read_structural_style_validation_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_structural_style_failure_analysis_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "structural_style_failure_analysis.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 STRATEGY_BACKTEST_IDS = {
     "defensive-dividend": "红利低波 + 现金代理防守策略",
     "industry-momentum": "行业 ETF 动量轮动 + 511880 空仓机制",
@@ -1056,6 +1064,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/style/structural-bull-failure-analysis",
+                    "返回 V3.5.4 结构牛风格失败归因，拆分风格偏好跑赢/跑输样本并解释信号日可见条件差异；只读研究归因，不生成配置或交易信号。",
+                    "structural bull style failure attribution",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/strategy-backtests/{strategy_id}",
                     "返回新增策略回测结果，strategy_id 支持 defensive-dividend、industry-momentum、four-asset、max-drawdown-batch、all-weather、equal-weight-reversion-basic、equal-weight-reversion-guarded、free-cash-flow-trend-half、free-cash-flow-trend-full、free-cash-flow-drawdown-rebound、free-cash-flow-buy-hold-480092、free-cash-flow-chinext-dynamic、free-cash-flow-chinext-reversion、free-cash-flow-chinext-balanced-reversion、free-cash-flow-ma-deviation、free-cash-flow-dual-ma-crossover。",
                     "strategy backtest artifact",
@@ -1134,6 +1149,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/style/allocation-snapshot", "description": "读取 V3.5.1 宏观感知风格偏好快照。"},
             {"path": "/api/style/validation", "description": "读取 V3.5.2 风格偏好验证与归因。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
+            {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/strategy/defensive-dividend", "description": "查看红利低波 + 现金代理防守策略。"},
             {"path": "/strategy/industry-momentum", "description": "查看行业 ETF 动量轮动 + 511880 空仓机制策略。"},
             {"path": "/strategy/four-asset", "description": "查看股 / 债 / 金 / 现金四资产轮动策略。"},
@@ -1840,6 +1856,17 @@ def structural_style_validation() -> dict:
     return payload
 
 
+@app.get("/api/style/structural-bull-failure-analysis")
+def structural_style_failure_analysis() -> dict:
+    payload = _read_structural_style_failure_analysis_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Structural style failure analysis artifact missing; run scripts/run_structural_style_failure_analysis.py first.",
+        )
+    return payload
+
+
 @app.get("/api/strategy-backtests/{strategy_id}")
 def strategy_suite_backtest(strategy_id: str) -> dict:
     payload = _read_strategy_suite_backtest_payload(strategy_id)
@@ -1915,6 +1942,7 @@ def results_summary(
         style_allocation_snapshot = _read_style_allocation_snapshot_payload()
         style_validation = _read_style_validation_payload()
         structural_style_validation = _read_structural_style_validation_payload()
+        structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         strategy_suite_backtests = _read_strategy_suite_summaries()
         if compact:
             etf_rotation_backtest = _compact_backtest_payload(etf_rotation_backtest)
@@ -1964,6 +1992,7 @@ def results_summary(
             "style_allocation_snapshot": style_allocation_snapshot,
             "style_validation": style_validation,
             "structural_style_validation": structural_style_validation,
+            "structural_style_failure_analysis": structural_style_failure_analysis,
             "strategy_suite_backtests": strategy_suite_backtests,
             "shadow_backtest": shadow_backtest,
             "regime_attribution": regime_attribution,

@@ -1,0 +1,2942 @@
+{
+  "metadata": {
+    "engine": "V3.5.4 Structural Bull Style Failure Attribution",
+    "generated_at": "2026-07-08T12:18:35+00:00",
+    "window": {
+      "start": "20150105",
+      "end": "20260708"
+    },
+    "source_engine": "V3.5.2 Style Preference Validation & Attribution Engine",
+    "score_date_count": 78,
+    "step_sessions": 20,
+    "horizons": [
+      20,
+      60
+    ],
+    "top_n": 3,
+    "validation_scope": "STRUCTURAL_BULL_SUCCESS_FAILURE_ATTRIBUTION"
+  },
+  "summary": {
+    "edge_status_after_failure_attribution": "diagnostic_only",
+    "tradable_20d_case_counts": {
+      "total": 32,
+      "success": 17,
+      "failure": 15,
+      "success_rate": 0.53125
+    },
+    "tradable_60d_case_counts": {
+      "total": 31,
+      "success": 12,
+      "failure": 19,
+      "success_rate": 0.387097
+    },
+    "tradable_20d_success_associations": [
+      {
+        "field": "regime_persistence",
+        "observed_direction": "higher",
+        "absolute_gap": 12.003921,
+        "success_mean": 35.470588,
+        "failure_mean": 23.466667,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      },
+      {
+        "field": "style_score_margin",
+        "observed_direction": "higher",
+        "absolute_gap": 1.732363,
+        "success_mean": 14.384376,
+        "failure_mean": 12.652013,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      },
+      {
+        "field": "pressure",
+        "observed_direction": "higher",
+        "absolute_gap": 0.080314,
+        "success_mean": 0.447647,
+        "failure_mean": 0.367333,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      },
+      {
+        "field": "confidence",
+        "observed_direction": "higher",
+        "absolute_gap": 0.057882,
+        "success_mean": 0.865882,
+        "failure_mean": 0.808,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      }
+    ],
+    "tradable_20d_failure_associations": [
+      {
+        "field": "baseline_style_overlap_count",
+        "observed_direction": "higher",
+        "absolute_gap": 0.270588,
+        "success_mean": 0.529412,
+        "failure_mean": 0.8,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      },
+      {
+        "field": "dominant_score",
+        "observed_direction": "higher",
+        "absolute_gap": 0.219151,
+        "success_mean": 68.968882,
+        "failure_mean": 69.188033,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      },
+      {
+        "field": "liquidity",
+        "observed_direction": "higher",
+        "absolute_gap": 0.091608,
+        "success_mean": 0.407059,
+        "failure_mean": 0.498667,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      },
+      {
+        "field": "baseline_style_overlap_ratio",
+        "observed_direction": "higher",
+        "absolute_gap": 0.090197,
+        "success_mean": 0.17647,
+        "failure_mean": 0.266667,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      }
+    ],
+    "tradable_60d_success_associations": [
+      {
+        "field": "style_score_margin",
+        "observed_direction": "higher",
+        "absolute_gap": 1.282992,
+        "success_mean": 14.26185,
+        "failure_mean": 12.978858,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      },
+      {
+        "field": "dominant_score",
+        "observed_direction": "higher",
+        "absolute_gap": 0.589732,
+        "success_mean": 69.3723,
+        "failure_mean": 68.782568,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      },
+      {
+        "field": "breadth",
+        "observed_direction": "higher",
+        "absolute_gap": 0.070658,
+        "success_mean": 0.4075,
+        "failure_mean": 0.336842,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      },
+      {
+        "field": "regime_score",
+        "observed_direction": "higher",
+        "absolute_gap": 0.036184,
+        "success_mean": 0.5925,
+        "failure_mean": 0.556316,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      }
+    ],
+    "tradable_60d_failure_associations": [
+      {
+        "field": "regime_persistence",
+        "observed_direction": "higher",
+        "absolute_gap": 4.824562,
+        "success_mean": 27.333333,
+        "failure_mean": 32.157895,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      },
+      {
+        "field": "baseline_style_overlap_count",
+        "observed_direction": "higher",
+        "absolute_gap": 0.236842,
+        "success_mean": 0.5,
+        "failure_mean": 0.736842,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      },
+      {
+        "field": "baseline_style_overlap_ratio",
+        "observed_direction": "higher",
+        "absolute_gap": 0.078948,
+        "success_mean": 0.166666,
+        "failure_mean": 0.245614,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      },
+      {
+        "field": "pressure",
+        "observed_direction": "higher",
+        "absolute_gap": 0.054342,
+        "success_mean": 0.3725,
+        "failure_mean": 0.426842,
+        "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+      }
+    ],
+    "interpretation": "V3.5.4 explains the V3.5.3 positive-spread-not-robust result. It is a diagnostic layer and does not authorize V3.6 allocation."
+  },
+  "results": {
+    "research_proxy": {
+      "20d": {
+        "case_counts": {
+          "total": 32,
+          "success": 18,
+          "failure": 14,
+          "success_rate": 0.5625
+        },
+        "success": {
+          "count": 18,
+          "mean_relative_to_baseline": 0.063171,
+          "mean_baseline_return": -0.021832,
+          "mean_style_aware_return": 0.041338,
+          "mean_style_ic": 0.366667,
+          "dominant_style_distribution": {
+            "growth": 18
+          },
+          "feature_means": {
+            "trend": 0.766111,
+            "breadth": 0.358333,
+            "liquidity": 0.441111,
+            "volatility": 0.701667,
+            "pressure": 0.407778,
+            "momentum_decay": -0.011667,
+            "liquidity_acceleration": 0.025556,
+            "volatility_shock": 0.950072,
+            "regime_persistence": 30.444444,
+            "regime_score": 0.568889,
+            "confidence": 0.838333
+          },
+          "derived_means": {
+            "baseline_style_overlap_count": 0.5,
+            "baseline_style_overlap_ratio": 0.166666,
+            "dominant_score": 68.926572,
+            "style_score_margin": 13.976711,
+            "style_score_concentration": 0.314095,
+            "dominant_style_forward_rank": 1.611111
+          }
+        },
+        "failure": {
+          "count": 14,
+          "mean_relative_to_baseline": -0.022144,
+          "mean_baseline_return": 0.002084,
+          "mean_style_aware_return": -0.02006,
+          "mean_style_ic": -0.285714,
+          "dominant_style_distribution": {
+            "growth": 14
+          },
+          "feature_means": {
+            "trend": 0.77,
+            "breadth": 0.357143,
+            "liquidity": 0.461429,
+            "volatility": 0.652143,
+            "pressure": 0.412857,
+            "momentum_decay": 0.006429,
+            "liquidity_acceleration": 0.018571,
+            "volatility_shock": 1.09497,
+            "regime_persistence": 29.071429,
+            "regime_score": 0.567143,
+            "confidence": 0.839286
+          },
+          "derived_means": {
+            "baseline_style_overlap_count": 0.857143,
+            "baseline_style_overlap_ratio": 0.285714,
+            "dominant_score": 69.258086,
+            "style_score_margin": 13.052414,
+            "style_score_concentration": 0.311996,
+            "dominant_style_forward_rank": 3.071429
+          }
+        },
+        "feature_differences": [
+          {
+            "field": "breadth",
+            "success_mean": 0.358333,
+            "failure_mean": 0.357143,
+            "success_minus_failure": 0.00119,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "confidence",
+            "success_mean": 0.838333,
+            "failure_mean": 0.839286,
+            "success_minus_failure": -0.000953,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "liquidity",
+            "success_mean": 0.441111,
+            "failure_mean": 0.461429,
+            "success_minus_failure": -0.020318,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "liquidity_acceleration",
+            "success_mean": 0.025556,
+            "failure_mean": 0.018571,
+            "success_minus_failure": 0.006985,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "momentum_decay",
+            "success_mean": -0.011667,
+            "failure_mean": 0.006429,
+            "success_minus_failure": -0.018096,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "pressure",
+            "success_mean": 0.407778,
+            "failure_mean": 0.412857,
+            "success_minus_failure": -0.005079,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "regime_persistence",
+            "success_mean": 30.444444,
+            "failure_mean": 29.071429,
+            "success_minus_failure": 1.373015,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "regime_score",
+            "success_mean": 0.568889,
+            "failure_mean": 0.567143,
+            "success_minus_failure": 0.001746,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "trend",
+            "success_mean": 0.766111,
+            "failure_mean": 0.77,
+            "success_minus_failure": -0.003889,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "volatility",
+            "success_mean": 0.701667,
+            "failure_mean": 0.652143,
+            "success_minus_failure": 0.049524,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "volatility_shock",
+            "success_mean": 0.950072,
+            "failure_mean": 1.09497,
+            "success_minus_failure": -0.144898,
+            "association": "higher_in_failure"
+          }
+        ],
+        "derived_differences": [
+          {
+            "field": "baseline_style_overlap_count",
+            "success_mean": 0.5,
+            "failure_mean": 0.857143,
+            "success_minus_failure": -0.357143,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "baseline_style_overlap_ratio",
+            "success_mean": 0.166666,
+            "failure_mean": 0.285714,
+            "success_minus_failure": -0.119048,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "dominant_score",
+            "success_mean": 68.926572,
+            "failure_mean": 69.258086,
+            "success_minus_failure": -0.331514,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "dominant_style_forward_rank",
+            "success_mean": 1.611111,
+            "failure_mean": 3.071429,
+            "success_minus_failure": -1.460318,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "style_score_concentration",
+            "success_mean": 0.314095,
+            "failure_mean": 0.311996,
+            "success_minus_failure": 0.002099,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "style_score_margin",
+            "success_mean": 13.976711,
+            "failure_mean": 13.052414,
+            "success_minus_failure": 0.924297,
+            "association": "higher_in_success"
+          }
+        ],
+        "condition_candidates": {
+          "candidate_source": "signal_date_features_and_same_day_selection_diagnostics_only",
+          "success_associations": [
+            {
+              "field": "regime_persistence",
+              "observed_direction": "higher",
+              "absolute_gap": 1.373015,
+              "success_mean": 30.444444,
+              "failure_mean": 29.071429,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "style_score_margin",
+              "observed_direction": "higher",
+              "absolute_gap": 0.924297,
+              "success_mean": 13.976711,
+              "failure_mean": 13.052414,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "volatility",
+              "observed_direction": "higher",
+              "absolute_gap": 0.049524,
+              "success_mean": 0.701667,
+              "failure_mean": 0.652143,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "liquidity_acceleration",
+              "observed_direction": "higher",
+              "absolute_gap": 0.006985,
+              "success_mean": 0.025556,
+              "failure_mean": 0.018571,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            }
+          ],
+          "failure_associations": [
+            {
+              "field": "baseline_style_overlap_count",
+              "observed_direction": "higher",
+              "absolute_gap": 0.357143,
+              "success_mean": 0.5,
+              "failure_mean": 0.857143,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "dominant_score",
+              "observed_direction": "higher",
+              "absolute_gap": 0.331514,
+              "success_mean": 68.926572,
+              "failure_mean": 69.258086,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "volatility_shock",
+              "observed_direction": "higher",
+              "absolute_gap": 0.144898,
+              "success_mean": 0.950072,
+              "failure_mean": 1.09497,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "baseline_style_overlap_ratio",
+              "observed_direction": "higher",
+              "absolute_gap": 0.119048,
+              "success_mean": 0.166666,
+              "failure_mean": 0.285714,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            }
+          ]
+        },
+        "case_examples": {
+          "largest_success_spreads": [
+            {
+              "date": "20211012",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512890.SH",
+                "510880.SH",
+                "512660.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.171049,
+              "style_aware_return": 0.086734,
+              "relative_to_baseline": 0.257784,
+              "style_ic": 0.2,
+              "features": {
+                "trend": 0.71,
+                "breadth": 0.15,
+                "liquidity": 0.1,
+                "volatility": 0.68,
+                "pressure": 0.56,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": 0.1,
+                "volatility_shock": 0.971429,
+                "regime_persistence": 19.0,
+                "regime_score": 0.41,
+                "confidence": 0.94
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 59.1618,
+                "style_score_margin": 3.6116,
+                "style_score_concentration": 0.275604,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20260527",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "516160.SH",
+                "515790.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.014269,
+              "style_aware_return": 0.157167,
+              "relative_to_baseline": 0.171437,
+              "style_ic": 0.8,
+              "features": {
+                "trend": 0.7,
+                "breadth": 0.16,
+                "liquidity": 0.53,
+                "volatility": 0.68,
+                "pressure": 0.54,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": 0.15,
+                "volatility_shock": 0.819277,
+                "regime_persistence": 16.0,
+                "regime_score": 0.5,
+                "confidence": 0.93
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 70.9551,
+                "style_score_margin": 16.5741,
+                "style_score_concentration": 0.320563,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20210610",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "515000.SH",
+                "512690.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.031723,
+              "style_aware_return": 0.088736,
+              "relative_to_baseline": 0.120459,
+              "style_ic": 0.8,
+              "features": {
+                "trend": 0.78,
+                "breadth": 0.43,
+                "liquidity": 0.5,
+                "volatility": 0.73,
+                "pressure": 0.35,
+                "momentum_decay": 0.02,
+                "liquidity_acceleration": 0.0,
+                "volatility_shock": 1.028169,
+                "regime_persistence": 17.0,
+                "regime_score": 0.61,
+                "confidence": 0.78
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 73.0111,
+                "style_score_margin": 20.0108,
+                "style_score_concentration": 0.336472,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20230505",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512890.SH",
+                "512800.SH",
+                "510880.SH"
+              ],
+              "style_aware_codes": [
+                "588000.SH",
+                "512480.SH",
+                "159915.SZ"
+              ],
+              "baseline_return": -0.053758,
+              "style_aware_return": 0.034662,
+              "relative_to_baseline": 0.08842,
+              "style_ic": 0.4,
+              "features": {
+                "trend": 0.74,
+                "breadth": 0.25,
+                "liquidity": 0.44,
+                "volatility": 0.73,
+                "pressure": 0.49,
+                "momentum_decay": 0.02,
+                "liquidity_acceleration": 0.06,
+                "volatility_shock": 0.890244,
+                "regime_persistence": 80.0,
+                "regime_score": 0.53,
+                "confidence": 0.89
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 59.5321,
+                "style_score_margin": 4.9253,
+                "style_score_concentration": 0.273443,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250725",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "512170.SH",
+                "516160.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.09542,
+              "style_aware_return": 0.175107,
+              "relative_to_baseline": 0.079687,
+              "style_ic": 1.0,
+              "features": {
+                "trend": 0.81,
+                "breadth": 0.37,
+                "liquidity": 0.81,
+                "volatility": 0.88,
+                "pressure": 0.44,
+                "momentum_decay": 0.02,
+                "liquidity_acceleration": -0.15,
+                "volatility_shock": 1.073171,
+                "regime_persistence": 22.0,
+                "regime_score": 0.69,
+                "confidence": 0.86
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 76.9102,
+                "style_score_margin": 21.8286,
+                "style_score_concentration": 0.350289,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ],
+          "largest_failure_spreads": [
+            {
+              "date": "20210108",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "510300.SH",
+                "159915.SZ",
+                "510050.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.004528,
+              "style_aware_return": -0.048413,
+              "relative_to_baseline": -0.052941,
+              "style_ic": 0.6,
+              "features": {
+                "trend": 0.79,
+                "breadth": 0.4,
+                "liquidity": 0.74,
+                "volatility": 0.71,
+                "pressure": 0.39,
+                "momentum_decay": 0.04,
+                "liquidity_acceleration": -0.26,
+                "volatility_shock": 1.014286,
+                "regime_persistence": 34.0,
+                "regime_score": 0.65,
+                "confidence": 0.82
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 71.982,
+                "style_score_margin": 16.6798,
+                "style_score_concentration": 0.330224,
+                "dominant_style_forward_rank": 2,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20200812",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "516160.SH",
+                "515790.SH",
+                "512100.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.002438,
+              "style_aware_return": -0.050307,
+              "relative_to_baseline": -0.052745,
+              "style_ic": -0.4,
+              "features": {
+                "trend": 0.8,
+                "breadth": 0.32,
+                "liquidity": 0.31,
+                "volatility": 0.39,
+                "pressure": 0.48,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": -0.15,
+                "volatility_shock": 2.166667,
+                "regime_persistence": 24.0,
+                "regime_score": 0.49,
+                "confidence": 0.88
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 66.2134,
+                "style_score_margin": 14.7787,
+                "style_score_concentration": 0.308684,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20230206",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "515000.SH",
+                "512690.SH",
+                "512000.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.02117,
+              "style_aware_return": -0.017894,
+              "relative_to_baseline": -0.039064,
+              "style_ic": -1.0,
+              "features": {
+                "trend": 0.8,
+                "breadth": 0.29,
+                "liquidity": 0.46,
+                "volatility": 0.8,
+                "pressure": 0.51,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": -0.37,
+                "volatility_shock": 1.09589,
+                "regime_persistence": 20.0,
+                "regime_score": 0.58,
+                "confidence": 0.91
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 68.4008,
+                "style_score_margin": 12.1607,
+                "style_score_concentration": 0.309257,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20240430",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512890.SH",
+                "159915.SZ",
+                "512800.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.016209,
+              "style_aware_return": -0.01638,
+              "relative_to_baseline": -0.032589,
+              "style_ic": -0.4,
+              "features": {
+                "trend": 0.77,
+                "breadth": 0.29,
+                "liquidity": 0.67,
+                "volatility": 0.68,
+                "pressure": 0.48,
+                "momentum_decay": 0.03,
+                "liquidity_acceleration": 0.5,
+                "volatility_shock": 0.957746,
+                "regime_persistence": 1.0,
+                "regime_score": 0.59,
+                "confidence": 0.88
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 75.2833,
+                "style_score_margin": 16.7599,
+                "style_score_concentration": 0.310088,
+                "dominant_style_forward_rank": 3,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20240329",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512800.SH",
+                "510880.SH",
+                "510050.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.030856,
+              "style_aware_return": 0.00669,
+              "relative_to_baseline": -0.024166,
+              "style_ic": -0.8,
+              "features": {
+                "trend": 0.74,
+                "breadth": 0.57,
+                "liquidity": 0.22,
+                "volatility": 0.77,
+                "pressure": 0.17,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": -0.06,
+                "volatility_shock": 1.132353,
+                "regime_persistence": 34.0,
+                "regime_score": 0.59,
+                "confidence": 0.75
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 63.1472,
+                "style_score_margin": 5.0383,
+                "style_score_concentration": 0.285186,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ]
+        },
+        "interpretation": "Success means style-aware return was above the all-asset Opportunity TopN baseline on that validation date. Associations are descriptive attribution only and do not create new thresholds, weights, or trades."
+      },
+      "60d": {
+        "case_counts": {
+          "total": 31,
+          "success": 14,
+          "failure": 17,
+          "success_rate": 0.451613
+        },
+        "success": {
+          "count": 14,
+          "mean_relative_to_baseline": 0.128955,
+          "mean_baseline_return": 0.010619,
+          "mean_style_aware_return": 0.139574,
+          "mean_style_ic": 0.428571,
+          "dominant_style_distribution": {
+            "growth": 14
+          },
+          "feature_means": {
+            "trend": 0.763571,
+            "breadth": 0.398571,
+            "liquidity": 0.455714,
+            "volatility": 0.675,
+            "pressure": 0.365,
+            "momentum_decay": -0.000714,
+            "liquidity_acceleration": 0.045714,
+            "volatility_shock": 0.971524,
+            "regime_persistence": 29.142857,
+            "regime_score": 0.577857,
+            "confidence": 0.818571
+          },
+          "derived_means": {
+            "baseline_style_overlap_count": 0.5,
+            "baseline_style_overlap_ratio": 0.166666,
+            "dominant_score": 68.818393,
+            "style_score_margin": 13.175757,
+            "style_score_concentration": 0.311696,
+            "dominant_style_forward_rank": 1.428571
+          }
+        },
+        "failure": {
+          "count": 17,
+          "mean_relative_to_baseline": -0.035044,
+          "mean_baseline_return": -0.004432,
+          "mean_style_aware_return": -0.039477,
+          "mean_style_ic": -0.270588,
+          "dominant_style_distribution": {
+            "growth": 17
+          },
+          "feature_means": {
+            "trend": 0.775294,
+            "breadth": 0.335882,
+            "liquidity": 0.440588,
+            "volatility": 0.684118,
+            "pressure": 0.439412,
+            "momentum_decay": -0.004118,
+            "liquidity_acceleration": -0.004118,
+            "volatility_shock": 1.059427,
+            "regime_persistence": 31.235294,
+            "regime_score": 0.564118,
+            "confidence": 0.85
+          },
+          "derived_means": {
+            "baseline_style_overlap_count": 0.764706,
+            "baseline_style_overlap_ratio": 0.254902,
+            "dominant_score": 69.169347,
+            "style_score_margin": 13.722347,
+            "style_score_concentration": 0.313962,
+            "dominant_style_forward_rank": 3.235294
+          }
+        },
+        "feature_differences": [
+          {
+            "field": "breadth",
+            "success_mean": 0.398571,
+            "failure_mean": 0.335882,
+            "success_minus_failure": 0.062689,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "confidence",
+            "success_mean": 0.818571,
+            "failure_mean": 0.85,
+            "success_minus_failure": -0.031429,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "liquidity",
+            "success_mean": 0.455714,
+            "failure_mean": 0.440588,
+            "success_minus_failure": 0.015126,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "liquidity_acceleration",
+            "success_mean": 0.045714,
+            "failure_mean": -0.004118,
+            "success_minus_failure": 0.049832,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "momentum_decay",
+            "success_mean": -0.000714,
+            "failure_mean": -0.004118,
+            "success_minus_failure": 0.003404,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "pressure",
+            "success_mean": 0.365,
+            "failure_mean": 0.439412,
+            "success_minus_failure": -0.074412,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "regime_persistence",
+            "success_mean": 29.142857,
+            "failure_mean": 31.235294,
+            "success_minus_failure": -2.092437,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "regime_score",
+            "success_mean": 0.577857,
+            "failure_mean": 0.564118,
+            "success_minus_failure": 0.013739,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "trend",
+            "success_mean": 0.763571,
+            "failure_mean": 0.775294,
+            "success_minus_failure": -0.011723,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "volatility",
+            "success_mean": 0.675,
+            "failure_mean": 0.684118,
+            "success_minus_failure": -0.009118,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "volatility_shock",
+            "success_mean": 0.971524,
+            "failure_mean": 1.059427,
+            "success_minus_failure": -0.087903,
+            "association": "higher_in_failure"
+          }
+        ],
+        "derived_differences": [
+          {
+            "field": "baseline_style_overlap_count",
+            "success_mean": 0.5,
+            "failure_mean": 0.764706,
+            "success_minus_failure": -0.264706,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "baseline_style_overlap_ratio",
+            "success_mean": 0.166666,
+            "failure_mean": 0.254902,
+            "success_minus_failure": -0.088236,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "dominant_score",
+            "success_mean": 68.818393,
+            "failure_mean": 69.169347,
+            "success_minus_failure": -0.350954,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "dominant_style_forward_rank",
+            "success_mean": 1.428571,
+            "failure_mean": 3.235294,
+            "success_minus_failure": -1.806723,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "style_score_concentration",
+            "success_mean": 0.311696,
+            "failure_mean": 0.313962,
+            "success_minus_failure": -0.002266,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "style_score_margin",
+            "success_mean": 13.175757,
+            "failure_mean": 13.722347,
+            "success_minus_failure": -0.54659,
+            "association": "higher_in_failure"
+          }
+        ],
+        "condition_candidates": {
+          "candidate_source": "signal_date_features_and_same_day_selection_diagnostics_only",
+          "success_associations": [
+            {
+              "field": "breadth",
+              "observed_direction": "higher",
+              "absolute_gap": 0.062689,
+              "success_mean": 0.398571,
+              "failure_mean": 0.335882,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "liquidity_acceleration",
+              "observed_direction": "higher",
+              "absolute_gap": 0.049832,
+              "success_mean": 0.045714,
+              "failure_mean": -0.004118,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "liquidity",
+              "observed_direction": "higher",
+              "absolute_gap": 0.015126,
+              "success_mean": 0.455714,
+              "failure_mean": 0.440588,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "regime_score",
+              "observed_direction": "higher",
+              "absolute_gap": 0.013739,
+              "success_mean": 0.577857,
+              "failure_mean": 0.564118,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            }
+          ],
+          "failure_associations": [
+            {
+              "field": "regime_persistence",
+              "observed_direction": "higher",
+              "absolute_gap": 2.092437,
+              "success_mean": 29.142857,
+              "failure_mean": 31.235294,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "style_score_margin",
+              "observed_direction": "higher",
+              "absolute_gap": 0.54659,
+              "success_mean": 13.175757,
+              "failure_mean": 13.722347,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "dominant_score",
+              "observed_direction": "higher",
+              "absolute_gap": 0.350954,
+              "success_mean": 68.818393,
+              "failure_mean": 69.169347,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "baseline_style_overlap_count",
+              "observed_direction": "higher",
+              "absolute_gap": 0.264706,
+              "success_mean": 0.5,
+              "failure_mean": 0.764706,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            }
+          ]
+        },
+        "case_examples": {
+          "largest_success_spreads": [
+            {
+              "date": "20250627",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512000.SH",
+                "512800.SH",
+                "512660.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.003952,
+              "style_aware_return": 0.424033,
+              "relative_to_baseline": 0.420081,
+              "style_ic": 1.0,
+              "features": {
+                "trend": 0.74,
+                "breadth": 0.48,
+                "liquidity": 0.72,
+                "volatility": 0.81,
+                "pressure": 0.26,
+                "momentum_decay": 0.04,
+                "liquidity_acceleration": 0.08,
+                "volatility_shock": 0.964286,
+                "regime_persistence": 2.0,
+                "regime_score": 0.67,
+                "confidence": 0.71
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 71.1875,
+                "style_score_margin": 13.056,
+                "style_score_concentration": 0.308362,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20260226",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "510500.SH",
+                "512660.SH",
+                "512100.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.040916,
+              "style_aware_return": 0.285412,
+              "relative_to_baseline": 0.326328,
+              "style_ic": 1.0,
+              "features": {
+                "trend": 0.76,
+                "breadth": 0.37,
+                "liquidity": 0.38,
+                "volatility": 0.69,
+                "pressure": 0.39,
+                "momentum_decay": 0.04,
+                "liquidity_acceleration": 0.31,
+                "volatility_shock": 0.971831,
+                "regime_persistence": 28.0,
+                "regime_score": 0.56,
+                "confidence": 0.81
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 67.7899,
+                "style_score_margin": 13.345,
+                "style_score_concentration": 0.307074,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20211012",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512890.SH",
+                "510880.SH",
+                "512660.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.143752,
+              "style_aware_return": 0.066629,
+              "relative_to_baseline": 0.210382,
+              "style_ic": 0.2,
+              "features": {
+                "trend": 0.71,
+                "breadth": 0.15,
+                "liquidity": 0.1,
+                "volatility": 0.68,
+                "pressure": 0.56,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": 0.1,
+                "volatility_shock": 0.971429,
+                "regime_persistence": 19.0,
+                "regime_score": 0.41,
+                "confidence": 0.94
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 59.1618,
+                "style_score_margin": 3.6116,
+                "style_score_concentration": 0.275604,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250529",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512660.SH",
+                "512170.SH",
+                "512800.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.154841,
+              "style_aware_return": 0.337596,
+              "relative_to_baseline": 0.182756,
+              "style_ic": 1.0,
+              "features": {
+                "trend": 0.73,
+                "breadth": 0.68,
+                "liquidity": 0.38,
+                "volatility": 0.81,
+                "pressure": 0.05,
+                "momentum_decay": 0.0,
+                "liquidity_acceleration": 0.17,
+                "volatility_shock": 0.964286,
+                "regime_persistence": 6.0,
+                "regime_score": 0.65,
+                "confidence": 0.74
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 62.902,
+                "style_score_margin": 7.8311,
+                "style_score_concentration": 0.288574,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250725",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "512170.SH",
+                "516160.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.240067,
+              "style_aware_return": 0.405196,
+              "relative_to_baseline": 0.165129,
+              "style_ic": 1.0,
+              "features": {
+                "trend": 0.81,
+                "breadth": 0.37,
+                "liquidity": 0.81,
+                "volatility": 0.88,
+                "pressure": 0.44,
+                "momentum_decay": 0.02,
+                "liquidity_acceleration": -0.15,
+                "volatility_shock": 1.073171,
+                "regime_persistence": 22.0,
+                "regime_score": 0.69,
+                "confidence": 0.86
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 76.9102,
+                "style_score_margin": 21.8286,
+                "style_score_concentration": 0.350289,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ],
+          "largest_failure_spreads": [
+            {
+              "date": "20230206",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "515000.SH",
+                "512690.SH",
+                "512000.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.020264,
+              "style_aware_return": -0.079839,
+              "relative_to_baseline": -0.100103,
+              "style_ic": -0.8,
+              "features": {
+                "trend": 0.8,
+                "breadth": 0.29,
+                "liquidity": 0.46,
+                "volatility": 0.8,
+                "pressure": 0.51,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": -0.37,
+                "volatility_shock": 1.09589,
+                "regime_persistence": 20.0,
+                "regime_score": 0.58,
+                "confidence": 0.91
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 68.4008,
+                "style_score_margin": 12.1607,
+                "style_score_concentration": 0.309257,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20200812",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "516160.SH",
+                "515790.SH",
+                "512100.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.105205,
+              "style_aware_return": 0.013979,
+              "relative_to_baseline": -0.091226,
+              "style_ic": 0.0,
+              "features": {
+                "trend": 0.8,
+                "breadth": 0.32,
+                "liquidity": 0.31,
+                "volatility": 0.39,
+                "pressure": 0.48,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": -0.15,
+                "volatility_shock": 2.166667,
+                "regime_persistence": 24.0,
+                "regime_score": 0.49,
+                "confidence": 0.88
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 66.2134,
+                "style_score_margin": 14.7787,
+                "style_score_concentration": 0.308684,
+                "dominant_style_forward_rank": 3,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20201210",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "512800.SH",
+                "510300.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.036965,
+              "style_aware_return": -0.048306,
+              "relative_to_baseline": -0.085271,
+              "style_ic": -0.2,
+              "features": {
+                "trend": 0.74,
+                "breadth": 0.34,
+                "liquidity": 0.31,
+                "volatility": 0.72,
+                "pressure": 0.4,
+                "momentum_decay": -0.02,
+                "liquidity_acceleration": -0.05,
+                "volatility_shock": 1.043478,
+                "regime_persistence": 14.0,
+                "regime_score": 0.53,
+                "confidence": 0.82
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 71.0252,
+                "style_score_margin": 13.8636,
+                "style_score_concentration": 0.327848,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20210709",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "512100.SH",
+                "510500.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.013807,
+              "style_aware_return": -0.092234,
+              "relative_to_baseline": -0.078427,
+              "style_ic": -0.8,
+              "features": {
+                "trend": 0.71,
+                "breadth": 0.49,
+                "liquidity": 0.55,
+                "volatility": 0.74,
+                "pressure": 0.22,
+                "momentum_decay": 0.01,
+                "liquidity_acceleration": -0.03,
+                "volatility_shock": 0.925,
+                "regime_persistence": 37.0,
+                "regime_score": 0.62,
+                "confidence": 0.67
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 70.4561,
+                "style_score_margin": 14.1822,
+                "style_score_concentration": 0.324499,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20240329",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512800.SH",
+                "510880.SH",
+                "510050.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.045234,
+              "style_aware_return": -0.014307,
+              "relative_to_baseline": -0.059541,
+              "style_ic": -0.4,
+              "features": {
+                "trend": 0.74,
+                "breadth": 0.57,
+                "liquidity": 0.22,
+                "volatility": 0.77,
+                "pressure": 0.17,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": -0.06,
+                "volatility_shock": 1.132353,
+                "regime_persistence": 34.0,
+                "regime_score": 0.59,
+                "confidence": 0.75
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 63.1472,
+                "style_score_margin": 5.0383,
+                "style_score_concentration": 0.285186,
+                "dominant_style_forward_rank": 3,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ]
+        },
+        "interpretation": "Success means style-aware return was above the all-asset Opportunity TopN baseline on that validation date. Associations are descriptive attribution only and do not create new thresholds, weights, or trades."
+      }
+    },
+    "tradable_etf": {
+      "20d": {
+        "case_counts": {
+          "total": 32,
+          "success": 17,
+          "failure": 15,
+          "success_rate": 0.53125
+        },
+        "success": {
+          "count": 17,
+          "mean_relative_to_baseline": 0.071842,
+          "mean_baseline_return": -0.028603,
+          "mean_style_aware_return": 0.043239,
+          "mean_style_ic": 0.458824,
+          "dominant_style_distribution": {
+            "growth": 17
+          },
+          "feature_means": {
+            "trend": 0.768824,
+            "breadth": 0.321176,
+            "liquidity": 0.407059,
+            "volatility": 0.679412,
+            "pressure": 0.447647,
+            "momentum_decay": -0.012941,
+            "liquidity_acceleration": 0.041765,
+            "volatility_shock": 0.986173,
+            "regime_persistence": 35.470588,
+            "regime_score": 0.548235,
+            "confidence": 0.865882
+          },
+          "derived_means": {
+            "baseline_style_overlap_count": 0.529412,
+            "baseline_style_overlap_ratio": 0.17647,
+            "dominant_score": 68.968882,
+            "style_score_margin": 14.384376,
+            "style_score_concentration": 0.31472,
+            "dominant_style_forward_rank": 1.470588
+          }
+        },
+        "failure": {
+          "count": 15,
+          "mean_relative_to_baseline": -0.031574,
+          "mean_baseline_return": -0.006265,
+          "mean_style_aware_return": -0.037839,
+          "mean_style_ic": -0.36,
+          "dominant_style_distribution": {
+            "growth": 15
+          },
+          "feature_means": {
+            "trend": 0.766667,
+            "breadth": 0.399333,
+            "liquidity": 0.498667,
+            "volatility": 0.680667,
+            "pressure": 0.367333,
+            "momentum_decay": 0.006667,
+            "liquidity_acceleration": 0.000667,
+            "volatility_shock": 1.044396,
+            "regime_persistence": 23.466667,
+            "regime_score": 0.590667,
+            "confidence": 0.808
+          },
+          "derived_means": {
+            "baseline_style_overlap_count": 0.8,
+            "baseline_style_overlap_ratio": 0.266667,
+            "dominant_score": 69.188033,
+            "style_score_margin": 12.652013,
+            "style_score_concentration": 0.311428,
+            "dominant_style_forward_rank": 3.333333
+          }
+        },
+        "feature_differences": [
+          {
+            "field": "breadth",
+            "success_mean": 0.321176,
+            "failure_mean": 0.399333,
+            "success_minus_failure": -0.078157,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "confidence",
+            "success_mean": 0.865882,
+            "failure_mean": 0.808,
+            "success_minus_failure": 0.057882,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "liquidity",
+            "success_mean": 0.407059,
+            "failure_mean": 0.498667,
+            "success_minus_failure": -0.091608,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "liquidity_acceleration",
+            "success_mean": 0.041765,
+            "failure_mean": 0.000667,
+            "success_minus_failure": 0.041098,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "momentum_decay",
+            "success_mean": -0.012941,
+            "failure_mean": 0.006667,
+            "success_minus_failure": -0.019608,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "pressure",
+            "success_mean": 0.447647,
+            "failure_mean": 0.367333,
+            "success_minus_failure": 0.080314,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "regime_persistence",
+            "success_mean": 35.470588,
+            "failure_mean": 23.466667,
+            "success_minus_failure": 12.003921,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "regime_score",
+            "success_mean": 0.548235,
+            "failure_mean": 0.590667,
+            "success_minus_failure": -0.042432,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "trend",
+            "success_mean": 0.768824,
+            "failure_mean": 0.766667,
+            "success_minus_failure": 0.002157,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "volatility",
+            "success_mean": 0.679412,
+            "failure_mean": 0.680667,
+            "success_minus_failure": -0.001255,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "volatility_shock",
+            "success_mean": 0.986173,
+            "failure_mean": 1.044396,
+            "success_minus_failure": -0.058223,
+            "association": "higher_in_failure"
+          }
+        ],
+        "derived_differences": [
+          {
+            "field": "baseline_style_overlap_count",
+            "success_mean": 0.529412,
+            "failure_mean": 0.8,
+            "success_minus_failure": -0.270588,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "baseline_style_overlap_ratio",
+            "success_mean": 0.17647,
+            "failure_mean": 0.266667,
+            "success_minus_failure": -0.090197,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "dominant_score",
+            "success_mean": 68.968882,
+            "failure_mean": 69.188033,
+            "success_minus_failure": -0.219151,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "dominant_style_forward_rank",
+            "success_mean": 1.470588,
+            "failure_mean": 3.333333,
+            "success_minus_failure": -1.862745,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "style_score_concentration",
+            "success_mean": 0.31472,
+            "failure_mean": 0.311428,
+            "success_minus_failure": 0.003292,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "style_score_margin",
+            "success_mean": 14.384376,
+            "failure_mean": 12.652013,
+            "success_minus_failure": 1.732363,
+            "association": "higher_in_success"
+          }
+        ],
+        "condition_candidates": {
+          "candidate_source": "signal_date_features_and_same_day_selection_diagnostics_only",
+          "success_associations": [
+            {
+              "field": "regime_persistence",
+              "observed_direction": "higher",
+              "absolute_gap": 12.003921,
+              "success_mean": 35.470588,
+              "failure_mean": 23.466667,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "style_score_margin",
+              "observed_direction": "higher",
+              "absolute_gap": 1.732363,
+              "success_mean": 14.384376,
+              "failure_mean": 12.652013,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "pressure",
+              "observed_direction": "higher",
+              "absolute_gap": 0.080314,
+              "success_mean": 0.447647,
+              "failure_mean": 0.367333,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "confidence",
+              "observed_direction": "higher",
+              "absolute_gap": 0.057882,
+              "success_mean": 0.865882,
+              "failure_mean": 0.808,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            }
+          ],
+          "failure_associations": [
+            {
+              "field": "baseline_style_overlap_count",
+              "observed_direction": "higher",
+              "absolute_gap": 0.270588,
+              "success_mean": 0.529412,
+              "failure_mean": 0.8,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "dominant_score",
+              "observed_direction": "higher",
+              "absolute_gap": 0.219151,
+              "success_mean": 68.968882,
+              "failure_mean": 69.188033,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "liquidity",
+              "observed_direction": "higher",
+              "absolute_gap": 0.091608,
+              "success_mean": 0.407059,
+              "failure_mean": 0.498667,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "baseline_style_overlap_ratio",
+              "observed_direction": "higher",
+              "absolute_gap": 0.090197,
+              "success_mean": 0.17647,
+              "failure_mean": 0.266667,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            }
+          ]
+        },
+        "case_examples": {
+          "largest_success_spreads": [
+            {
+              "date": "20211012",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512890.SH",
+                "510880.SH",
+                "512660.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.163591,
+              "style_aware_return": 0.091935,
+              "relative_to_baseline": 0.255526,
+              "style_ic": 0.2,
+              "features": {
+                "trend": 0.71,
+                "breadth": 0.15,
+                "liquidity": 0.1,
+                "volatility": 0.68,
+                "pressure": 0.56,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": 0.1,
+                "volatility_shock": 0.971429,
+                "regime_persistence": 19.0,
+                "regime_score": 0.41,
+                "confidence": 0.94
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 59.1618,
+                "style_score_margin": 3.6116,
+                "style_score_concentration": 0.275604,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250627",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512000.SH",
+                "512800.SH",
+                "512660.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.116972,
+              "style_aware_return": 0.072014,
+              "relative_to_baseline": 0.188986,
+              "style_ic": 0.8,
+              "features": {
+                "trend": 0.74,
+                "breadth": 0.48,
+                "liquidity": 0.72,
+                "volatility": 0.81,
+                "pressure": 0.26,
+                "momentum_decay": 0.04,
+                "liquidity_acceleration": 0.08,
+                "volatility_shock": 0.964286,
+                "regime_persistence": 2.0,
+                "regime_score": 0.67,
+                "confidence": 0.71
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 71.1875,
+                "style_score_margin": 13.056,
+                "style_score_concentration": 0.308362,
+                "dominant_style_forward_rank": 2,
+                "best_future_style": "small_cap",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20260527",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "516160.SH",
+                "515790.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.02539,
+              "style_aware_return": 0.14934,
+              "relative_to_baseline": 0.17473,
+              "style_ic": 0.8,
+              "features": {
+                "trend": 0.7,
+                "breadth": 0.16,
+                "liquidity": 0.53,
+                "volatility": 0.68,
+                "pressure": 0.54,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": 0.15,
+                "volatility_shock": 0.819277,
+                "regime_persistence": 16.0,
+                "regime_score": 0.5,
+                "confidence": 0.93
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 70.9551,
+                "style_score_margin": 16.5741,
+                "style_score_concentration": 0.320563,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20210610",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "515000.SH",
+                "512690.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.013498,
+              "style_aware_return": 0.112449,
+              "relative_to_baseline": 0.125947,
+              "style_ic": 0.8,
+              "features": {
+                "trend": 0.78,
+                "breadth": 0.43,
+                "liquidity": 0.5,
+                "volatility": 0.73,
+                "pressure": 0.35,
+                "momentum_decay": 0.02,
+                "liquidity_acceleration": 0.0,
+                "volatility_shock": 1.028169,
+                "regime_persistence": 17.0,
+                "regime_score": 0.61,
+                "confidence": 0.78
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 73.0111,
+                "style_score_margin": 20.0108,
+                "style_score_concentration": 0.336472,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250725",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "512170.SH",
+                "516160.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.084273,
+              "style_aware_return": 0.184339,
+              "relative_to_baseline": 0.100066,
+              "style_ic": 1.0,
+              "features": {
+                "trend": 0.81,
+                "breadth": 0.37,
+                "liquidity": 0.81,
+                "volatility": 0.88,
+                "pressure": 0.44,
+                "momentum_decay": 0.02,
+                "liquidity_acceleration": -0.15,
+                "volatility_shock": 1.073171,
+                "regime_persistence": 22.0,
+                "regime_score": 0.69,
+                "confidence": 0.86
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 76.9102,
+                "style_score_margin": 21.8286,
+                "style_score_concentration": 0.350289,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ],
+          "largest_failure_spreads": [
+            {
+              "date": "20210312",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "516160.SH",
+                "515790.SH",
+                "510050.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.047848,
+              "style_aware_return": -0.166288,
+              "relative_to_baseline": -0.118441,
+              "style_ic": -0.8,
+              "features": {
+                "trend": 0.69,
+                "breadth": 0.37,
+                "liquidity": 0.26,
+                "volatility": 0.46,
+                "pressure": 0.32,
+                "momentum_decay": -0.02,
+                "liquidity_acceleration": -0.22,
+                "volatility_shock": 0.793103,
+                "regime_persistence": 4.0,
+                "regime_score": 0.48,
+                "confidence": 0.75
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 64.0928,
+                "style_score_margin": 6.6947,
+                "style_score_concentration": 0.289408,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20200812",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "516160.SH",
+                "515790.SH",
+                "512100.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.006289,
+              "style_aware_return": -0.09835,
+              "relative_to_baseline": -0.09206,
+              "style_ic": -0.4,
+              "features": {
+                "trend": 0.8,
+                "breadth": 0.32,
+                "liquidity": 0.31,
+                "volatility": 0.39,
+                "pressure": 0.48,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": -0.15,
+                "volatility_shock": 2.166667,
+                "regime_persistence": 24.0,
+                "regime_score": 0.49,
+                "confidence": 0.88
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 66.2134,
+                "style_score_margin": 14.7787,
+                "style_score_concentration": 0.308684,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20260121",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "510500.SH",
+                "512100.SH",
+                "512660.SH"
+              ],
+              "style_aware_codes": [
+                "588000.SH",
+                "512480.SH",
+                "159915.SZ"
+              ],
+              "baseline_return": 0.033458,
+              "style_aware_return": -0.014111,
+              "relative_to_baseline": -0.047569,
+              "style_ic": -0.8,
+              "features": {
+                "trend": 0.78,
+                "breadth": 0.47,
+                "liquidity": 0.5,
+                "volatility": 0.8,
+                "pressure": 0.31,
+                "momentum_decay": -0.03,
+                "liquidity_acceleration": -0.31,
+                "volatility_shock": 1.038961,
+                "regime_persistence": 8.0,
+                "regime_score": 0.63,
+                "confidence": 0.75
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 67.3569,
+                "style_score_margin": 8.431,
+                "style_score_concentration": 0.316529,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20240430",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512890.SH",
+                "159915.SZ",
+                "512800.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.016199,
+              "style_aware_return": -0.024064,
+              "relative_to_baseline": -0.040263,
+              "style_ic": -0.4,
+              "features": {
+                "trend": 0.77,
+                "breadth": 0.29,
+                "liquidity": 0.67,
+                "volatility": 0.68,
+                "pressure": 0.48,
+                "momentum_decay": 0.03,
+                "liquidity_acceleration": 0.5,
+                "volatility_shock": 0.957746,
+                "regime_persistence": 1.0,
+                "regime_score": 0.59,
+                "confidence": 0.88
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 75.2833,
+                "style_score_margin": 16.7599,
+                "style_score_concentration": 0.310088,
+                "dominant_style_forward_rank": 3,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20230206",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "515000.SH",
+                "512690.SH",
+                "512000.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.013758,
+              "style_aware_return": -0.020993,
+              "relative_to_baseline": -0.034752,
+              "style_ic": -1.0,
+              "features": {
+                "trend": 0.8,
+                "breadth": 0.29,
+                "liquidity": 0.46,
+                "volatility": 0.8,
+                "pressure": 0.51,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": -0.37,
+                "volatility_shock": 1.09589,
+                "regime_persistence": 20.0,
+                "regime_score": 0.58,
+                "confidence": 0.91
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 68.4008,
+                "style_score_margin": 12.1607,
+                "style_score_concentration": 0.309257,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ]
+        },
+        "interpretation": "Success means style-aware return was above the all-asset Opportunity TopN baseline on that validation date. Associations are descriptive attribution only and do not create new thresholds, weights, or trades."
+      },
+      "60d": {
+        "case_counts": {
+          "total": 31,
+          "success": 12,
+          "failure": 19,
+          "success_rate": 0.387097
+        },
+        "success": {
+          "count": 12,
+          "mean_relative_to_baseline": 0.162876,
+          "mean_baseline_return": -0.025299,
+          "mean_style_aware_return": 0.137577,
+          "mean_style_ic": 0.4,
+          "dominant_style_distribution": {
+            "growth": 12
+          },
+          "feature_means": {
+            "trend": 0.78,
+            "breadth": 0.4075,
+            "liquidity": 0.4675,
+            "volatility": 0.698333,
+            "pressure": 0.3725,
+            "momentum_decay": -0.0025,
+            "liquidity_acceleration": 0.019167,
+            "volatility_shock": 1.014892,
+            "regime_persistence": 27.333333,
+            "regime_score": 0.5925,
+            "confidence": 0.825
+          },
+          "derived_means": {
+            "baseline_style_overlap_count": 0.5,
+            "baseline_style_overlap_ratio": 0.166666,
+            "dominant_score": 69.3723,
+            "style_score_margin": 14.26185,
+            "style_score_concentration": 0.316176,
+            "dominant_style_forward_rank": 1.583333
+          }
+        },
+        "failure": {
+          "count": 19,
+          "mean_relative_to_baseline": -0.054475,
+          "mean_baseline_return": -0.012302,
+          "mean_style_aware_return": -0.066776,
+          "mean_style_ic": -0.389474,
+          "dominant_style_distribution": {
+            "growth": 19
+          },
+          "feature_means": {
+            "trend": 0.763684,
+            "breadth": 0.336842,
+            "liquidity": 0.434737,
+            "volatility": 0.668421,
+            "pressure": 0.426842,
+            "momentum_decay": -0.002632,
+            "liquidity_acceleration": 0.017895,
+            "volatility_shock": 1.022784,
+            "regime_persistence": 32.157895,
+            "regime_score": 0.556316,
+            "confidence": 0.842632
+          },
+          "derived_means": {
+            "baseline_style_overlap_count": 0.736842,
+            "baseline_style_overlap_ratio": 0.245614,
+            "dominant_score": 68.782568,
+            "style_score_margin": 12.978858,
+            "style_score_concentration": 0.310894,
+            "dominant_style_forward_rank": 3.421053
+          }
+        },
+        "feature_differences": [
+          {
+            "field": "breadth",
+            "success_mean": 0.4075,
+            "failure_mean": 0.336842,
+            "success_minus_failure": 0.070658,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "confidence",
+            "success_mean": 0.825,
+            "failure_mean": 0.842632,
+            "success_minus_failure": -0.017632,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "liquidity",
+            "success_mean": 0.4675,
+            "failure_mean": 0.434737,
+            "success_minus_failure": 0.032763,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "liquidity_acceleration",
+            "success_mean": 0.019167,
+            "failure_mean": 0.017895,
+            "success_minus_failure": 0.001272,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "momentum_decay",
+            "success_mean": -0.0025,
+            "failure_mean": -0.002632,
+            "success_minus_failure": 0.000132,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "pressure",
+            "success_mean": 0.3725,
+            "failure_mean": 0.426842,
+            "success_minus_failure": -0.054342,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "regime_persistence",
+            "success_mean": 27.333333,
+            "failure_mean": 32.157895,
+            "success_minus_failure": -4.824562,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "regime_score",
+            "success_mean": 0.5925,
+            "failure_mean": 0.556316,
+            "success_minus_failure": 0.036184,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "trend",
+            "success_mean": 0.78,
+            "failure_mean": 0.763684,
+            "success_minus_failure": 0.016316,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "volatility",
+            "success_mean": 0.698333,
+            "failure_mean": 0.668421,
+            "success_minus_failure": 0.029912,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "volatility_shock",
+            "success_mean": 1.014892,
+            "failure_mean": 1.022784,
+            "success_minus_failure": -0.007892,
+            "association": "higher_in_failure"
+          }
+        ],
+        "derived_differences": [
+          {
+            "field": "baseline_style_overlap_count",
+            "success_mean": 0.5,
+            "failure_mean": 0.736842,
+            "success_minus_failure": -0.236842,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "baseline_style_overlap_ratio",
+            "success_mean": 0.166666,
+            "failure_mean": 0.245614,
+            "success_minus_failure": -0.078948,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "dominant_score",
+            "success_mean": 69.3723,
+            "failure_mean": 68.782568,
+            "success_minus_failure": 0.589732,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "dominant_style_forward_rank",
+            "success_mean": 1.583333,
+            "failure_mean": 3.421053,
+            "success_minus_failure": -1.83772,
+            "association": "higher_in_failure"
+          },
+          {
+            "field": "style_score_concentration",
+            "success_mean": 0.316176,
+            "failure_mean": 0.310894,
+            "success_minus_failure": 0.005282,
+            "association": "higher_in_success"
+          },
+          {
+            "field": "style_score_margin",
+            "success_mean": 14.26185,
+            "failure_mean": 12.978858,
+            "success_minus_failure": 1.282992,
+            "association": "higher_in_success"
+          }
+        ],
+        "condition_candidates": {
+          "candidate_source": "signal_date_features_and_same_day_selection_diagnostics_only",
+          "success_associations": [
+            {
+              "field": "style_score_margin",
+              "observed_direction": "higher",
+              "absolute_gap": 1.282992,
+              "success_mean": 14.26185,
+              "failure_mean": 12.978858,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "dominant_score",
+              "observed_direction": "higher",
+              "absolute_gap": 0.589732,
+              "success_mean": 69.3723,
+              "failure_mean": 68.782568,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "breadth",
+              "observed_direction": "higher",
+              "absolute_gap": 0.070658,
+              "success_mean": 0.4075,
+              "failure_mean": 0.336842,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "regime_score",
+              "observed_direction": "higher",
+              "absolute_gap": 0.036184,
+              "success_mean": 0.5925,
+              "failure_mean": 0.556316,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            }
+          ],
+          "failure_associations": [
+            {
+              "field": "regime_persistence",
+              "observed_direction": "higher",
+              "absolute_gap": 4.824562,
+              "success_mean": 27.333333,
+              "failure_mean": 32.157895,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "baseline_style_overlap_count",
+              "observed_direction": "higher",
+              "absolute_gap": 0.236842,
+              "success_mean": 0.5,
+              "failure_mean": 0.736842,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "baseline_style_overlap_ratio",
+              "observed_direction": "higher",
+              "absolute_gap": 0.078948,
+              "success_mean": 0.166666,
+              "failure_mean": 0.245614,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            },
+            {
+              "field": "pressure",
+              "observed_direction": "higher",
+              "absolute_gap": 0.054342,
+              "success_mean": 0.3725,
+              "failure_mean": 0.426842,
+              "note": "Observed association inside STRUCTURAL_BULL validation samples; not a new rule or optimized threshold."
+            }
+          ]
+        },
+        "case_examples": {
+          "largest_success_spreads": [
+            {
+              "date": "20250627",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512000.SH",
+                "512800.SH",
+                "512660.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.304512,
+              "style_aware_return": 0.398676,
+              "relative_to_baseline": 0.703189,
+              "style_ic": 1.0,
+              "features": {
+                "trend": 0.74,
+                "breadth": 0.48,
+                "liquidity": 0.72,
+                "volatility": 0.81,
+                "pressure": 0.26,
+                "momentum_decay": 0.04,
+                "liquidity_acceleration": 0.08,
+                "volatility_shock": 0.964286,
+                "regime_persistence": 2.0,
+                "regime_score": 0.67,
+                "confidence": 0.71
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 71.1875,
+                "style_score_margin": 13.056,
+                "style_score_concentration": 0.308362,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250529",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512660.SH",
+                "512170.SH",
+                "512800.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.025677,
+              "style_aware_return": 0.302404,
+              "relative_to_baseline": 0.328081,
+              "style_ic": 1.0,
+              "features": {
+                "trend": 0.73,
+                "breadth": 0.68,
+                "liquidity": 0.38,
+                "volatility": 0.81,
+                "pressure": 0.05,
+                "momentum_decay": 0.0,
+                "liquidity_acceleration": 0.17,
+                "volatility_shock": 0.964286,
+                "regime_persistence": 6.0,
+                "regime_score": 0.65,
+                "confidence": 0.74
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 62.902,
+                "style_score_margin": 7.8311,
+                "style_score_concentration": 0.288574,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20260226",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "510500.SH",
+                "512660.SH",
+                "512100.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.045778,
+              "style_aware_return": 0.256944,
+              "relative_to_baseline": 0.302721,
+              "style_ic": 1.0,
+              "features": {
+                "trend": 0.76,
+                "breadth": 0.37,
+                "liquidity": 0.38,
+                "volatility": 0.69,
+                "pressure": 0.39,
+                "momentum_decay": 0.04,
+                "liquidity_acceleration": 0.31,
+                "volatility_shock": 0.971831,
+                "regime_persistence": 28.0,
+                "regime_score": 0.56,
+                "confidence": 0.81
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 67.7899,
+                "style_score_margin": 13.345,
+                "style_score_concentration": 0.307074,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20250725",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "512170.SH",
+                "516160.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.248753,
+              "style_aware_return": 0.411883,
+              "relative_to_baseline": 0.16313,
+              "style_ic": 1.0,
+              "features": {
+                "trend": 0.81,
+                "breadth": 0.37,
+                "liquidity": 0.81,
+                "volatility": 0.88,
+                "pressure": 0.44,
+                "momentum_decay": 0.02,
+                "liquidity_acceleration": -0.15,
+                "volatility_shock": 1.073171,
+                "regime_persistence": 22.0,
+                "regime_score": 0.69,
+                "confidence": 0.86
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 76.9102,
+                "style_score_margin": 21.8286,
+                "style_score_concentration": 0.350289,
+                "dominant_style_forward_rank": 1,
+                "best_future_style": "growth",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20211012",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "512890.SH",
+                "510880.SH",
+                "512660.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.142791,
+              "style_aware_return": 0.017718,
+              "relative_to_baseline": 0.160509,
+              "style_ic": -0.4,
+              "features": {
+                "trend": 0.71,
+                "breadth": 0.15,
+                "liquidity": 0.1,
+                "volatility": 0.68,
+                "pressure": 0.56,
+                "momentum_decay": -0.04,
+                "liquidity_acceleration": 0.1,
+                "volatility_shock": 0.971429,
+                "regime_persistence": 19.0,
+                "regime_score": 0.41,
+                "confidence": 0.94
+              },
+              "derived": {
+                "baseline_style_overlap_count": 0,
+                "baseline_style_overlap_ratio": 0.0,
+                "dominant_score": 59.1618,
+                "style_score_margin": 3.6116,
+                "style_score_concentration": 0.275604,
+                "dominant_style_forward_rank": 2,
+                "best_future_style": "small_cap",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ],
+          "largest_failure_spreads": [
+            {
+              "date": "20210108",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "510300.SH",
+                "159915.SZ",
+                "510050.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.107082,
+              "style_aware_return": -0.260998,
+              "relative_to_baseline": -0.153915,
+              "style_ic": -1.0,
+              "features": {
+                "trend": 0.79,
+                "breadth": 0.4,
+                "liquidity": 0.74,
+                "volatility": 0.71,
+                "pressure": 0.39,
+                "momentum_decay": 0.04,
+                "liquidity_acceleration": -0.26,
+                "volatility_shock": 1.014286,
+                "regime_persistence": 34.0,
+                "regime_score": 0.65,
+                "confidence": 0.82
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 71.982,
+                "style_score_margin": 16.6798,
+                "style_score_concentration": 0.330224,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20201210",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "512800.SH",
+                "510300.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.03452,
+              "style_aware_return": -0.083351,
+              "relative_to_baseline": -0.117871,
+              "style_ic": -0.2,
+              "features": {
+                "trend": 0.74,
+                "breadth": 0.34,
+                "liquidity": 0.31,
+                "volatility": 0.72,
+                "pressure": 0.4,
+                "momentum_decay": -0.02,
+                "liquidity_acceleration": -0.05,
+                "volatility_shock": 1.043478,
+                "regime_persistence": 14.0,
+                "regime_score": 0.53,
+                "confidence": 0.82
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 71.0252,
+                "style_score_margin": 13.8636,
+                "style_score_concentration": 0.327848,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20210205",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "516160.SH",
+                "515790.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.089195,
+              "style_aware_return": -0.20611,
+              "relative_to_baseline": -0.116915,
+              "style_ic": -1.0,
+              "features": {
+                "trend": 0.73,
+                "breadth": 0.26,
+                "liquidity": 0.26,
+                "volatility": 0.66,
+                "pressure": 0.47,
+                "momentum_decay": -0.05,
+                "liquidity_acceleration": 0.08,
+                "volatility_shock": 0.956522,
+                "regime_persistence": 54.0,
+                "regime_score": 0.48,
+                "confidence": 0.87
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 69.7946,
+                "style_score_margin": 14.3867,
+                "style_score_concentration": 0.326956,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20210709",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "512100.SH",
+                "510500.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": -0.013807,
+              "style_aware_return": -0.127711,
+              "relative_to_baseline": -0.113904,
+              "style_ic": -0.8,
+              "features": {
+                "trend": 0.71,
+                "breadth": 0.49,
+                "liquidity": 0.55,
+                "volatility": 0.74,
+                "pressure": 0.22,
+                "momentum_decay": 0.01,
+                "liquidity_acceleration": -0.03,
+                "volatility_shock": 0.925,
+                "regime_persistence": 37.0,
+                "regime_score": 0.62,
+                "confidence": 0.67
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 70.4561,
+                "style_score_margin": 14.1822,
+                "style_score_concentration": 0.324499,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "dividend",
+                "future_return_rank_is_validation_only": true
+              }
+            },
+            {
+              "date": "20200715",
+              "dominant_style": "growth",
+              "baseline_codes": [
+                "159915.SZ",
+                "512690.SH",
+                "512100.SH"
+              ],
+              "style_aware_codes": [
+                "159915.SZ",
+                "588000.SH",
+                "512480.SH"
+              ],
+              "baseline_return": 0.01263,
+              "style_aware_return": -0.096425,
+              "relative_to_baseline": -0.109055,
+              "style_ic": -0.4,
+              "features": {
+                "trend": 0.96,
+                "breadth": 0.21,
+                "liquidity": 0.96,
+                "volatility": 0.42,
+                "pressure": 0.75,
+                "momentum_decay": -0.01,
+                "liquidity_acceleration": -0.04,
+                "volatility_shock": 0.545455,
+                "regime_persistence": 4.0,
+                "regime_score": 0.66,
+                "confidence": 1.0
+              },
+              "derived": {
+                "baseline_style_overlap_count": 1,
+                "baseline_style_overlap_ratio": 0.333333,
+                "dominant_score": 78.1627,
+                "style_score_margin": 27.3635,
+                "style_score_concentration": 0.353304,
+                "dominant_style_forward_rank": 4,
+                "best_future_style": "value",
+                "future_return_rank_is_validation_only": true
+              }
+            }
+          ]
+        },
+        "interpretation": "Success means style-aware return was above the all-asset Opportunity TopN baseline on that validation date. Associations are descriptive attribution only and do not create new thresholds, weights, or trades."
+      }
+    }
+  },
+  "field_coverage": {
+    "available_historical_fields": [
+      "trend",
+      "breadth",
+      "liquidity",
+      "volatility",
+      "pressure",
+      "momentum_decay",
+      "liquidity_acceleration",
+      "volatility_shock",
+      "regime_persistence",
+      "regime_score",
+      "confidence"
+    ],
+    "requested_but_unavailable_historical_fields": [
+      "industry_breadth",
+      "top_industry_ratio",
+      "theme_persistence",
+      "crowding_score",
+      "price_extension",
+      "theme_risk_level"
+    ],
+    "coverage_note": "The current historical structural dataset does not carry industry breadth, theme persistence, crowding, price extension, or theme risk fields per validation date. These are marked unavailable instead of inferred from current snapshots."
+  },
+  "constraints": {
+    "research_attribution_only": true,
+    "structural_bull_only": true,
+    "uses_v3_5_2_observations": true,
+    "style_preference_formula_unchanged": true,
+    "decision_inputs_only_use_same_day_or_prior_data": true,
+    "future_returns_used_only_for_case_labels_and_attribution": true,
+    "no_future_function_in_signal": true,
+    "no_style_weight": true,
+    "no_etf_allocation": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_parameter_optimization": true,
+    "failure_result_is_acceptable": true
+  }
+}
