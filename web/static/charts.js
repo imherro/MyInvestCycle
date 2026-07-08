@@ -115,18 +115,21 @@ function renderScoreHistoryChart(elementId, history) {
     return;
   }
   const x = items.map((item) => toIsoDate(item.as_of));
-  const scoreTraces = [
-    ["trend", "趋势", "#2563eb"],
-    ["breadth", "宽度", "#16a34a"],
-    ["liquidity", "流动性", "#f97316"],
-    ["volatility", "波动稳定", "#9333ea"],
-  ].map(([key, name, color]) => ({
+  const scoreSeries = [
+    { key: "regime_score", name: "综合分", color: "#111827", width: 3.4, rank: 1 },
+    { key: "trend", name: "趋势", color: "#2563eb", width: 2.1, rank: 2 },
+    { key: "breadth", name: "宽度", color: "#16a34a", width: 2.1, rank: 3 },
+    { key: "liquidity", name: "流动性", color: "#f97316", width: 2.1, rank: 4 },
+    { key: "volatility", name: "波动稳定", color: "#9333ea", width: 2.1, rank: 5 },
+  ];
+  const scoreTraces = scoreSeries.map(({ key, name, color, width, rank }) => ({
     type: "scatter",
     mode: "lines",
     name,
     x,
     y: items.map((item) => item.scores?.[key] ?? null),
-    line: { color, width: 2.2 },
+    line: { color, width },
+    legendrank: rank,
     hovertemplate: `%{x}<br>${name} %{y:.1%}<extra></extra>`,
   }));
   const indexTrace = {
@@ -137,6 +140,7 @@ function renderScoreHistoryChart(elementId, history) {
     y: items.map((item) => item.index?.close ?? null),
     yaxis: "y2",
     line: { color: "rgba(100, 116, 139, 0.38)", width: 2 },
+    legendrank: 10,
     hovertemplate: "%{x}<br>上证 %{y:.2f}<extra></extra>",
   };
   Plotly.react(

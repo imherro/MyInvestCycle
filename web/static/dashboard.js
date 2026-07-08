@@ -73,7 +73,7 @@ function setScoreHistoryNote(history) {
   const filledText = filledCount ? `，末尾 ${filledCount} 个交易日为现场补算` : "";
   setText(
     "scoreHistoryNote",
-    `${toIsoDate(history.start_date)} 至 ${toIsoDate(history.as_of)} · ${items.length} 个绘图点 · 灰线为上证指数收盘价背景${cacheText}${latestText}${filledText}。`
+    `${toIsoDate(history.start_date)} 至 ${toIsoDate(history.as_of)} · ${items.length} 个绘图点 · 黑线为综合分，四色线为四维分项，灰线为上证指数收盘价背景${cacheText}${latestText}${filledText}。`
   );
 }
 
