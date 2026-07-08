@@ -1,0 +1,2957 @@
+{
+  "metadata": {
+    "engine": "V7.2 Structural Opportunity Context Feature Audit",
+    "generated_at": "2026-07-08T18:20:37+00:00",
+    "requested_as_of": "20991231",
+    "as_of": "20260625",
+    "input_files": {
+      "v7_1_foundation": "data/opportunity_research_foundation.json",
+      "risk_gradient": "data/exposure_gradient_analysis.json",
+      "protection_score": "data/exposure_context_score_audit.json",
+      "two_axis_context": "data/two_axis_context_validation.json",
+      "context_information_attribution": "data/context_information_attribution.json",
+      "historical_style_context": "data/historical_style_context.json"
+    },
+    "registry": "data/asset_proxy_registry.json",
+    "purpose": "Build asset opportunity context features only; no score, ranking, allocation, or trade signal."
+  },
+  "summary": {
+    "asset_count": 17,
+    "resolved_as_of": "20260625",
+    "requested_as_of": "20991231",
+    "start_date": "20150105",
+    "source_counts": {
+      "etf": 7,
+      "research_proxy": 10
+    },
+    "feature_groups": [
+      "momentum",
+      "relative_strength",
+      "trend",
+      "risk",
+      "structure"
+    ],
+    "feature_completeness": {
+      "momentum": {
+        "available_fields": 51,
+        "total_fields": 51,
+        "coverage": 1.0
+      },
+      "relative_strength": {
+        "available_fields": 34,
+        "total_fields": 34,
+        "coverage": 1.0
+      },
+      "trend": {
+        "available_fields": 102,
+        "total_fields": 102,
+        "coverage": 1.0
+      },
+      "risk": {
+        "available_fields": 51,
+        "total_fields": 51,
+        "coverage": 1.0
+      },
+      "structure": {
+        "available_fields": 51,
+        "total_fields": 51,
+        "coverage": 1.0
+      }
+    },
+    "ready_for_scoring": false,
+    "ready_for_ranking": false,
+    "ready_for_allocation": false,
+    "ready_for_trade": false,
+    "key_read": "V7.2 creates time-safe opportunity context features only; it does not score, rank, allocate, or trade."
+  },
+  "environment_context": {
+    "as_of": "20260625",
+    "risk_gradient": {
+      "engine": "V5.10 Exposure Context Risk Gradient Analysis",
+      "as_of": "20260707",
+      "summary_key_read": "Continuous gradients provide another research lens for BALANCED, but they remain research-only until high-risk and high-opportunity buckets show stable lift."
+    },
+    "protection_score": {
+      "engine": "V6.3 Continuous Exposure Context Score Audit",
+      "as_of": "20260707",
+      "conclusion": "continuous_context_scores_not_validated"
+    },
+    "two_axis_context": {
+      "engine": "V6.5 Adaptive Context Two-Axis Validation",
+      "as_of": "20260707",
+      "conclusion": "risk_axis_visible_opportunity_axis_weak"
+    },
+    "retained_layers": [
+      "layer_1_risk_gradient",
+      "layer_2_protection_score",
+      "layer_3_two_axis_context"
+    ],
+    "source_context_attribution_engine": "V6.6 Adaptive Context Information Attribution Audit",
+    "not_used_for_asset_scoring": true,
+    "not_used_for_asset_ranking": true,
+    "not_used_for_allocation": true
+  },
+  "assets": [
+    {
+      "asset_code": "510300.SH",
+      "asset_name": "沪深300ETF",
+      "asset_category": "broad",
+      "source": {
+        "source": "510300.SH",
+        "source_name": "沪深300ETF",
+        "source_kind": "etf",
+        "method": "direct_etf_history_only",
+        "as_of": "20260625",
+        "rows": 2787
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": 0.02352,
+            "source": "510300.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": 0.124777,
+            "source": "510300.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": 0.06723,
+            "source": "510300.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": 0.0,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": -0.055093,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 4.809483,
+            "source": "510300.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 4.763558,
+            "source": "510300.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 4.605884,
+            "source": "510300.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": 0.049593,
+            "source": "510300.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": 0.059712,
+            "source": "510300.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": 0.095989,
+            "source": "510300.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.184861,
+            "source": "510300.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.09941,
+            "source": "510300.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 0.996032,
+            "source": "510300.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "510500.SH",
+      "asset_name": "中证500ETF",
+      "asset_category": "broad",
+      "source": {
+        "source": "510500.SH",
+        "source_name": "中证500ETF",
+        "source_kind": "etf",
+        "method": "direct_etf_history_only",
+        "as_of": "20260625",
+        "rows": 2785
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": 0.054678,
+            "source": "510500.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": 0.17987,
+            "source": "510500.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": 0.233035,
+            "source": "510500.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": 0.055093,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": 0.0,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 8.410467,
+            "source": "510500.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 8.309608,
+            "source": "510500.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 7.551208,
+            "source": "510500.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": 0.080202,
+            "source": "510500.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": 0.093313,
+            "source": "510500.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": 0.203119,
+            "source": "510500.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.255037,
+            "source": "510500.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.140208,
+            "source": "510500.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 1.0,
+            "source": "510500.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "159915.SZ",
+      "asset_name": "创业板ETF",
+      "asset_category": "broad",
+      "source": {
+        "source": "159915.SZ",
+        "source_name": "创业板ETF",
+        "source_kind": "etf",
+        "method": "direct_etf_history_only",
+        "as_of": "20260625",
+        "rows": 1856
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": 0.08358,
+            "source": "159915.SZ",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": 0.34692,
+            "source": "159915.SZ",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": 0.384252,
+            "source": "159915.SZ",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": 0.222143,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": 0.16705,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 3.8027,
+            "source": "159915.SZ",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 3.542958,
+            "source": "159915.SZ",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 3.129272,
+            "source": "159915.SZ",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": 0.155758,
+            "source": "159915.SZ",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": 0.240489,
+            "source": "159915.SZ",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": 0.40448,
+            "source": "159915.SZ",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.346067,
+            "source": "159915.SZ",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.076719,
+            "source": "159915.SZ",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 1.0,
+            "source": "159915.SZ",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "512100.SH",
+      "asset_name": "中证1000ETF",
+      "asset_category": "broad",
+      "source": {
+        "source": "512100.SH",
+        "source_name": "中证1000ETF",
+        "source_kind": "etf",
+        "method": "direct_etf_history_only",
+        "as_of": "20260625",
+        "rows": 1856
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": 0.038406,
+            "source": "512100.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": 0.167484,
+            "source": "512100.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": 0.18927,
+            "source": "512100.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": 0.042707,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": -0.012386,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 3.367783,
+            "source": "512100.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 3.31,
+            "source": "512100.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 3.07944,
+            "source": "512100.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": 0.059748,
+            "source": "512100.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": 0.078248,
+            "source": "512100.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": 0.158977,
+            "source": "512100.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.244588,
+            "source": "512100.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.135238,
+            "source": "512100.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 0.992063,
+            "source": "512100.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "510050.SH",
+      "asset_name": "上证50ETF",
+      "asset_category": "broad",
+      "source": {
+        "source": "510050.SH",
+        "source_name": "上证50ETF",
+        "source_kind": "etf",
+        "method": "direct_etf_history_only",
+        "as_of": "20260625",
+        "rows": 1857
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": 0.016955,
+            "source": "510050.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": 0.05592,
+            "source": "510050.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": -0.010673,
+            "source": "510050.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": -0.068857,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": -0.12395,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 3.0013,
+            "source": "510050.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 3.053308,
+            "source": "510050.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 3.03994,
+            "source": "510050.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": 0.019225,
+            "source": "510050.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": 0.001864,
+            "source": "510050.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": 0.00627,
+            "source": "510050.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.162003,
+            "source": "510050.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.113447,
+            "source": "510050.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 0.488095,
+            "source": "510050.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "510880.SH",
+      "asset_name": "红利ETF",
+      "asset_category": "style",
+      "source": {
+        "source": "510880.SH",
+        "source_name": "红利ETF",
+        "source_kind": "etf",
+        "method": "direct_etf_history_only",
+        "as_of": "20260625",
+        "rows": 1857
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": -0.051735,
+            "source": "510880.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": -0.080171,
+            "source": "510880.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": -0.048433,
+            "source": "510880.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": -0.204949,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": -0.260041,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 3.236,
+            "source": "510880.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 3.221667,
+            "source": "510880.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 3.219,
+            "source": "510880.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": -0.071075,
+            "source": "510880.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": -0.066943,
+            "source": "510880.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": -0.06617,
+            "source": "510880.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.146169,
+            "source": "510880.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.110914,
+            "source": "510880.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 0.003968,
+            "source": "510880.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "512890.SH",
+      "asset_name": "红利低波ETF",
+      "asset_category": "style",
+      "source": {
+        "source": "512890.SH",
+        "source_name": "红利低波ETF",
+        "source_kind": "etf",
+        "method": "direct_etf_history_only",
+        "as_of": "20260625",
+        "rows": 1799
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": -0.055652,
+            "source": "512890.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": -0.083544,
+            "source": "512890.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": -0.074169,
+            "source": "512890.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": -0.208321,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": -0.263414,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 1.170133,
+            "source": "512890.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 1.17205,
+            "source": "512890.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 1.183728,
+            "source": "512890.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": -0.071901,
+            "source": "512890.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": -0.073418,
+            "source": "512890.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": -0.08256,
+            "source": "512890.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.114943,
+            "source": "512890.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.102479,
+            "source": "512890.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 0.003968,
+            "source": "512890.SH",
+            "source_kind": "etf",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "512000.SH",
+      "asset_name": "证券ETF",
+      "asset_category": "industry",
+      "source": {
+        "source": "801790.SI",
+        "source_name": "非银金融",
+        "source_kind": "research_proxy",
+        "method": "research_only",
+        "as_of": "20260625",
+        "rows": 2787
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": 0.042966,
+            "source": "801790.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": 0.020225,
+            "source": "801790.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": -0.12508,
+            "source": "801790.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": -0.104552,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": -0.159645,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 1765.286767,
+            "source": "801790.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 1882.455008,
+            "source": "801790.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 1931.094496,
+            "source": "801790.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": 0.016127,
+            "source": "801790.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": -0.047119,
+            "source": "801790.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": -0.07112,
+            "source": "801790.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.260693,
+            "source": "801790.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.244777,
+            "source": "801790.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 0.18254,
+            "source": "801790.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "512800.SH",
+      "asset_name": "银行ETF",
+      "asset_category": "industry",
+      "source": {
+        "source": "801780.SI",
+        "source_name": "银行",
+        "source_kind": "research_proxy",
+        "method": "research_only",
+        "as_of": "20260625",
+        "rows": 2787
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": -0.023745,
+            "source": "801780.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": -0.057409,
+            "source": "801780.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": -0.092354,
+            "source": "801780.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": -0.182186,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": -0.237279,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 3968.7775,
+            "source": "801780.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 3983.837125,
+            "source": "801780.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 4145.73894,
+            "source": "801780.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": -0.048138,
+            "source": "801780.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": -0.051736,
+            "source": "801780.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": -0.088768,
+            "source": "801780.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.141747,
+            "source": "801780.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.098133,
+            "source": "801780.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 0.003968,
+            "source": "801780.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "512690.SH",
+      "asset_name": "酒ETF",
+      "asset_category": "industry",
+      "source": {
+        "source": "801120.SI",
+        "source_name": "食品饮料",
+        "source_kind": "research_proxy",
+        "method": "research_only",
+        "as_of": "20260625",
+        "rows": 2787
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": -0.08928,
+            "source": "801120.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": -0.136957,
+            "source": "801120.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": -0.200926,
+            "source": "801120.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": -0.261735,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": -0.316828,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 14937.56,
+            "source": "801120.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 15592.000417,
+            "source": "801120.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 16347.07176,
+            "source": "801120.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": -0.10849,
+            "source": "801120.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": -0.145909,
+            "source": "801120.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": -0.18536,
+            "source": "801120.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.162475,
+            "source": "801120.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.232586,
+            "source": "801120.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 0.007937,
+            "source": "801120.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "512480.SH",
+      "asset_name": "半导体ETF",
+      "asset_category": "industry",
+      "source": {
+        "source": "801080.SI",
+        "source_name": "电子",
+        "source_kind": "research_proxy",
+        "method": "research_only",
+        "as_of": "20260625",
+        "rows": 2787
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": 0.193961,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": 0.792527,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": 0.829141,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": 0.66775,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": 0.612657,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 8694.873833,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 7846.6844,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 6756.105524,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": 0.350177,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": 0.496125,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": 0.737631,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.434287,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.146111,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 1.0,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 91.4168,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "512170.SH",
+      "asset_name": "医疗ETF",
+      "asset_category": "industry",
+      "source": {
+        "source": "801150.SI",
+        "source_name": "医药生物",
+        "source_kind": "research_proxy",
+        "method": "research_only",
+        "as_of": "20260625",
+        "rows": 2787
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": -0.049845,
+            "source": "801150.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": -0.066796,
+            "source": "801150.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": -0.13041,
+            "source": "801150.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": -0.191573,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": -0.246666,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 7759.443617,
+            "source": "801150.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 8022.9614,
+            "source": "801150.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 8307.112152,
+            "source": "801150.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": -0.075312,
+            "source": "801150.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": -0.105683,
+            "source": "801150.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": -0.136274,
+            "source": "801150.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.193546,
+            "source": "801150.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.216022,
+            "source": "801150.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 0.055556,
+            "source": "801150.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "512660.SH",
+      "asset_name": "军工ETF",
+      "asset_category": "industry",
+      "source": {
+        "source": "801740.SI",
+        "source_name": "国防军工",
+        "source_kind": "research_proxy",
+        "method": "research_only",
+        "as_of": "20260625",
+        "rows": 2787
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": -0.055966,
+            "source": "801740.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": -0.015305,
+            "source": "801740.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": -0.00715,
+            "source": "801740.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": -0.140082,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": -0.195175,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 1933.318917,
+            "source": "801740.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 2005.979025,
+            "source": "801740.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 1852.652292,
+            "source": "801740.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": -0.063544,
+            "source": "801740.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": -0.097464,
+            "source": "801740.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": -0.02277,
+            "source": "801740.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.280623,
+            "source": "801740.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.257031,
+            "source": "801740.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 0.511905,
+            "source": "801740.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "515790.SH",
+      "asset_name": "光伏ETF",
+      "asset_category": "industry",
+      "source": {
+        "source": "801730.SI",
+        "source_name": "电力设备",
+        "source_kind": "research_proxy",
+        "method": "research_only",
+        "as_of": "20260625",
+        "rows": 2787
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": -0.063194,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": -0.014306,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": 0.107075,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": -0.139084,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": -0.194177,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 11335.459667,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 11081.066333,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 9905.49674,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": -0.034063,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": -0.011888,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": 0.10538,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.302829,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.149745,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 0.722222,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "516160.SH",
+      "asset_name": "新能源ETF",
+      "asset_category": "industry",
+      "source": {
+        "source": "801730.SI",
+        "source_name": "电力设备",
+        "source_kind": "research_proxy",
+        "method": "research_only",
+        "as_of": "20260625",
+        "rows": 2787
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": -0.063194,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": -0.014306,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": 0.107075,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": -0.139084,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": -0.194177,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 11335.459667,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 11081.066333,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 9905.49674,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": -0.034063,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": -0.011888,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": 0.10538,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.302829,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.149745,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 0.722222,
+            "source": "801730.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "515000.SH",
+      "asset_name": "科技ETF",
+      "asset_category": "industry",
+      "source": {
+        "source": "801750.SI",
+        "source_name": "计算机",
+        "source_kind": "research_proxy",
+        "method": "research_only",
+        "as_of": "20260625",
+        "rows": 2787
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": -0.064044,
+            "source": "801750.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": -0.046768,
+            "source": "801750.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": -0.088555,
+            "source": "801750.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": -0.171545,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": -0.226638,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 4972.133617,
+            "source": "801750.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 5215.745283,
+            "source": "801750.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 5208.214504,
+            "source": "801750.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": -0.070037,
+            "source": "801750.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": -0.113473,
+            "source": "801750.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": -0.112191,
+            "source": "801750.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.311569,
+            "source": "801750.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.285811,
+            "source": "801750.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 0.06746,
+            "source": "801750.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 83.104,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    },
+    {
+      "asset_code": "588000.SH",
+      "asset_name": "科创50ETF",
+      "asset_category": "industry",
+      "source": {
+        "source": "801080.SI",
+        "source_name": "电子",
+        "source_kind": "research_proxy",
+        "method": "research_only",
+        "as_of": "20260625",
+        "rows": 2787
+      },
+      "features": {
+        "momentum": {
+          "return_20d": {
+            "value": 0.193961,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_20_minus_1",
+            "window_sessions": 20
+          },
+          "return_60d": {
+            "value": 0.792527,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_60_minus_1",
+            "window_sessions": 60
+          },
+          "return_120d": {
+            "value": 0.829141,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_t/close_t_minus_120_minus_1",
+            "window_sessions": 120
+          }
+        },
+        "relative_strength": {
+          "relative_return_60d_vs_hs300": {
+            "value": 0.66775,
+            "source": "510300.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_hs300_return_60d",
+            "window_sessions": 60
+          },
+          "relative_return_60d_vs_csi500": {
+            "value": 0.612657,
+            "source": "510500.SH",
+            "source_kind": "benchmark_etf",
+            "as_of": "20260625",
+            "method": "asset_return_60d_minus_csi500_return_60d",
+            "window_sessions": 60
+          }
+        },
+        "trend": {
+          "ma60": {
+            "value": 8694.873833,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 60
+          },
+          "ma120": {
+            "value": 7846.6844,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 120
+          },
+          "ma250": {
+            "value": 6756.105524,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "simple_moving_average",
+            "window_sessions": 250
+          },
+          "distance_to_ma60": {
+            "value": 0.350177,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 60
+          },
+          "distance_to_ma120": {
+            "value": 0.496125,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 120
+          },
+          "distance_to_ma250": {
+            "value": 0.737631,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "close_over_ma_minus_1",
+            "window_sessions": 250
+          }
+        },
+        "risk": {
+          "volatility_60d_annualized": {
+            "value": 0.434287,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "std_daily_return_60d_times_sqrt_252",
+            "window_sessions": 60
+          },
+          "max_drawdown_120d": {
+            "value": -0.146111,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "min_close_over_running_high_minus_1",
+            "window_sessions": 120
+          },
+          "price_extension_252d_percentile": {
+            "value": 1.0,
+            "source": "801080.SI",
+            "source_kind": "research_proxy",
+            "as_of": "20260625",
+            "method": "latest_close_percentile_in_252d_window",
+            "window_sessions": 252
+          }
+        },
+        "structure": {
+          "industry_breadth": {
+            "value": 0.1613,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_industry_breadth"
+          },
+          "theme_persistence": {
+            "value": 91.4168,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "asset_proxy_top_theme_persistence_or_market_theme_persistence"
+          },
+          "crowding_score": {
+            "value": 59.8627,
+            "source": "historical_style_context.json",
+            "source_kind": "market_context",
+            "as_of": "20260616",
+            "method": "market_crowding_score"
+          }
+        }
+      },
+      "constraints": {
+        "research_feature_only": true,
+        "no_opportunity_score": true,
+        "no_ranking": true,
+        "no_top_n": true,
+        "no_allocation": true,
+        "no_trade_signal": true
+      }
+    }
+  ],
+  "time_safety": {
+    "requested_as_of": "20991231",
+    "resolved_common_as_of": "20260625",
+    "resolved_lte_requested": true,
+    "uses_only_history_lte_as_of": true,
+    "future_labels_used": false,
+    "research_proxy_not_treated_as_tradable": true,
+    "v6_context_reference_not_used_for_asset_ranking": true,
+    "v6_context_metadata_only": true,
+    "v6_context_values_not_joined_to_asset_features": true
+  },
+  "data_quality": {
+    "cache_only": true,
+    "asset_count": 17,
+    "benchmark_codes": {
+      "hs300": "510300.SH",
+      "csi500": "510500.SH"
+    },
+    "style_context_as_of": "20260616",
+    "no_scoring": true,
+    "no_ranking": true,
+    "no_top_n": true,
+    "no_allocation": true,
+    "no_backtest": true,
+    "no_parameter_optimization": true
+  },
+  "constraints": {
+    "research_feature_only": true,
+    "does_not_create_opportunity_score": true,
+    "does_not_rank_assets": true,
+    "does_not_select_top_assets": true,
+    "does_not_generate_position": true,
+    "no_percentage_exposure": true,
+    "no_etf_weight": true,
+    "no_portfolio_weight": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  }
+}

@@ -9,6 +9,7 @@ from asset_opportunity.asset_registry import DEFAULT_ASSETS, build_asset_registr
 from asset_opportunity.asset_schema import AssetRecord
 from asset_opportunity.opportunity_score_engine import build_asset_opportunity_snapshot
 from asset_opportunity.opportunity_research_foundation import build_opportunity_research_foundation
+from asset_opportunity.opportunity_context_features import build_opportunity_context_features
 from asset_opportunity.opportunity_validation import build_opportunity_validation
 from asset_opportunity.portfolio_risk_control import default_risk_control_scenarios
 from asset_opportunity.regime_conditioned_validation import build_regime_conditioned_validation
@@ -27,6 +28,7 @@ __all__ = [
     "build_asset_registry",
     "build_opportunity_validation",
     "build_opportunity_research_foundation",
+    "build_opportunity_context_features",
     "build_regime_conditioned_validation",
     "asset_style_map",
     "default_risk_control_scenarios",

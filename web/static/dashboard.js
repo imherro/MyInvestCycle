@@ -898,6 +898,17 @@ function opportunityFoundationReadinessLabel(value) {
   return labels[value] || value || "--";
 }
 
+function opportunityFeatureGroupLabel(value) {
+  const labels = {
+    momentum: "动量",
+    relative_strength: "相对强弱",
+    trend: "趋势",
+    risk: "风险",
+    structure: "结构",
+  };
+  return labels[value] || value || "--";
+}
+
 function decisionModeLabel(value) {
   const labels = {
     FULL_PARTICIPATION: "全参与",
@@ -1588,6 +1599,10 @@ function setResultsPanel(results) {
   const opportunityFoundationSummary = opportunityFoundation.summary || {};
   const opportunityFoundationCoverage = opportunityFoundation.coverage || {};
   const opportunityFoundationRows = opportunityFoundation.asset_rows || [];
+  const opportunityFeatures = results.opportunity_context_features || {};
+  const opportunityFeaturesSummary = opportunityFeatures.summary || {};
+  const opportunityFeaturesRows = opportunityFeatures.sample_assets || opportunityFeatures.assets || [];
+  const opportunityFeaturesTimeSafety = opportunityFeatures.time_safety || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2998,6 +3013,63 @@ function setResultsPanel(results) {
     opportunityFoundation.metadata
       ? `V7.1 机会研究基础层：${opportunityFoundationReadinessLabel(opportunityFoundationSummary.readiness)}。研究代理覆盖 ${toIsoDate(opportunityResearchCoverage.coverage_start)} 至 ${toIsoDate(opportunityResearchCoverage.coverage_end)}；真实 ETF 可交易历史公共覆盖 ${toIsoDate(opportunityTradableCoverage.coverage_start)} 至 ${toIsoDate(opportunityTradableCoverage.coverage_end)}，存在 ${integerText(opportunityTradableCoverage.target_blocker_count)} 个覆盖阻塞。该层只建立研究对象和数据口径，不输出机会分、排名、仓位或交易。`
       : "V7.1 机会研究基础层尚未生成。"
+  );
+
+  const opportunityFeatureSourceCounts = opportunityFeaturesSummary.source_counts || {};
+  const opportunityFeatureGroups = opportunityFeaturesSummary.feature_groups || [];
+  const opportunityFeatureCompleteness = opportunityFeaturesSummary.feature_completeness || {};
+  setText("opportunityFeaturesAsOf", toIsoDate(opportunityFeaturesSummary.resolved_as_of));
+  setText(
+    "opportunityFeaturesSources",
+    opportunityFeaturesSummary.asset_count
+      ? `${integerText(opportunityFeaturesSummary.asset_count)} 个 · ETF ${integerText(opportunityFeatureSourceCounts.etf || 0)} / 代理 ${integerText(opportunityFeatureSourceCounts.research_proxy || 0)}`
+      : "--"
+  );
+  setText(
+    "opportunityFeaturesGroups",
+    opportunityFeatureGroups.length ? `${integerText(opportunityFeatureGroups.length)} 组` : "--"
+  );
+  setText(
+    "opportunityFeaturesBoundary",
+    opportunityFeaturesSummary.ready_for_scoring === false &&
+      opportunityFeaturesSummary.ready_for_ranking === false &&
+      opportunityFeaturesSummary.ready_for_allocation === false &&
+      opportunityFeaturesSummary.ready_for_trade === false
+      ? "不可评分/排名/配置/交易"
+      : "需复核"
+  );
+  setHtml("opportunityFeaturesCompleteness", opportunityFeatureGroups
+    .map((group) => {
+      const item = opportunityFeatureCompleteness[group] || {};
+      return `
+        <div class="duration-row">
+          <span>${opportunityFeatureGroupLabel(group)}</span>
+          <strong>${percentText(item.coverage)}</strong>
+          <em>${integerText(item.available_fields)} / ${integerText(item.total_fields)} 个字段可用</em>
+        </div>
+      `;
+    })
+    .join(""));
+  setHtml("opportunityFeaturesSamples", opportunityFeaturesRows
+    .map((row) => {
+      const source = row.source || {};
+      const features = row.features || {};
+      const return60 = features.momentum?.return_60d?.value;
+      const relHs300 = features.relative_strength?.relative_return_60d_vs_hs300?.value;
+      const drawdown = features.risk?.max_drawdown_120d?.value;
+      return `
+        <div>
+          <strong>${escapeHtml(row.asset_code)} ${escapeHtml(row.asset_name)}</strong>
+          <span>${assetCategoryLabel(row.asset_category)} · ${escapeHtml(source.source_kind || "--")} ${escapeHtml(source.source || "--")} · 60日 ${signedRatioText(return60)} · 相对沪深300 ${signedRatioText(relHs300)} · 120日回撤 ${signedRatioText(drawdown)}</span>
+        </div>
+      `;
+    })
+    .join(""));
+  setText(
+    "opportunityFeaturesConclusion",
+    opportunityFeatures.metadata
+      ? `V7.2 特征层在 ${toIsoDate(opportunityFeaturesSummary.resolved_as_of)} 统一日期生成 ${integerText(opportunityFeatureGroups.length)} 类字段：动量、相对强弱、趋势、风险、结构。V6 上下文只作为元数据引用，不 join 到资产特征，不参与评分或排名；时间安全：${opportunityFeaturesTimeSafety.future_labels_used === false ? "未使用未来标签" : "需复核"}。`
+      : "V7.2 机会研究特征层尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
