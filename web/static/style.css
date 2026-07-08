@@ -123,7 +123,7 @@ h2 {
 
 .cycle-score-row {
   display: grid;
-  grid-template-columns: minmax(660px, 1fr) minmax(330px, 0.42fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: start;
   gap: 14px;
   margin-bottom: 14px;
@@ -2018,7 +2018,7 @@ h2 {
 }
 
 .chart-box.score-history-box {
-  height: 330px;
+  height: 390px;
 }
 
 .chart-box.shadow-equity-box {
