@@ -1665,6 +1665,10 @@ function setResultsPanel(results) {
   const allocationResearchSummary = allocationResearch.summary || {};
   const allocationResearchSchema = allocationResearch.schema || {};
   const allocationResearchEvidence = allocationResearch.source_layer_evidence || {};
+  const allocationEvidenceFreeze = results.allocation_research_evidence_freeze || {};
+  const allocationEvidenceSummary = allocationEvidenceFreeze.summary || {};
+  const allocationEvidenceStatus = allocationEvidenceFreeze.hypothesis_status || {};
+  const allocationEvidenceBoundarySummary = allocationEvidenceFreeze.decision_boundary_summary || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -3791,6 +3795,47 @@ function setResultsPanel(results) {
     researchDeep.metadata
       ? `V9.8 只深化 H2/H4：supported ${integerText(researchDeepSummary.supported_count)}、inconclusive ${integerText(researchDeepSummary.inconclusive_count)}、unsupported ${integerText(researchDeepSummary.unsupported_count)}。当前读法：H2 在更严格跨场景稳定性下仍不确定；H4 作为矛盾优先研究门禁得到支持。仍不产生策略、配置、资产、ETF、权重、优化或交易。`
       : "V9.8 研究候选深度验证尚未生成。"
+  );
+
+  const allocationEvidenceReadyFlagsOff =
+    allocationEvidenceSummary.promotion_allowed === false &&
+    allocationEvidenceSummary.strategy_promotion === false &&
+    allocationEvidenceSummary.allocation_ready === false &&
+    allocationEvidenceSummary.investable_output === false &&
+    allocationEvidenceSummary.investable_output_generated === false &&
+    allocationEvidenceSummary.ready_for_asset_selection === false &&
+    allocationEvidenceSummary.ready_for_etf_mapping === false &&
+    allocationEvidenceSummary.ready_for_weight_generation === false &&
+    allocationEvidenceSummary.ready_for_optimization === false &&
+    allocationEvidenceSummary.ready_for_trade === false;
+  const allocationEvidenceStatusLabel = (status) => ({
+    freeze: "暂停",
+    inconclusive: "不确定",
+    supported_research_only: "研究支持",
+  }[status] || status || "--");
+  const allocationEvidenceRows = Object.entries(allocationEvidenceStatus);
+  const allocationEvidenceProhibited = Array.isArray(allocationEvidenceBoundarySummary.prohibited_next_actions)
+    ? allocationEvidenceBoundarySummary.prohibited_next_actions
+    : [];
+  setText("allocationEvidenceState", allocationEvidenceSummary.research_state === "frozen" ? "已冻结" : "--");
+  setText("allocationEvidenceRetained", integerText(allocationEvidenceSummary.retained_research_direction_count));
+  setText("allocationEvidencePaused", integerText(allocationEvidenceSummary.paused_research_direction_count));
+  setText("allocationEvidenceReady", allocationEvidenceSummary.allocation_ready === false ? "否" : "--");
+  setText("allocationEvidenceBoundary", allocationEvidenceReadyFlagsOff ? "不新增层/不策略化/不配置/不交易" : "需复核");
+  setHtml("allocationEvidenceRows", allocationEvidenceRows
+    .map(([id, row]) => `
+      <div class="duration-row">
+        <span>${escapeHtml(id)} · ${escapeHtml(row.hypothesis_name || "--")}</span>
+        <strong>${escapeHtml(allocationEvidenceStatusLabel(row.status))}</strong>
+        <em>${escapeHtml(row.research_direction || "--")} · ${escapeHtml(row.allowed_next_step || "--")}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "allocationEvidenceConclusion",
+    allocationEvidenceFreeze.metadata
+      ? `V9.9 冻结 V9.1-V9.8 证据：保留研究方向 ${integerText(allocationEvidenceSummary.retained_research_direction_count)} 个，暂停 ${integerText(allocationEvidenceSummary.paused_research_direction_count)} 个；H2 为不确定研究方向，H4 为研究支持但不可策略化。禁止继续增加状态、假设或解释层：${allocationEvidenceProhibited.slice(0, 3).map((item) => escapeHtml(item)).join(" / ") || "--"}。`
+      : "V9.9 配置研究证据冻结尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
