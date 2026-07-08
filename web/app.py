@@ -538,6 +538,14 @@ def _read_two_axis_context_validation_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_context_information_attribution_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "context_information_attribution.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -959,6 +967,24 @@ def _compact_two_axis_context_validation_payload(payload: dict[str, object] | No
             "dimension_comparison",
             "dimension_summaries",
             "dimension_metrics",
+            "time_safety",
+            "data_quality",
+            "constraints",
+        )
+        if key in payload
+    }
+
+
+def _compact_context_information_attribution_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "layer_attribution",
+            "sample_distribution",
             "time_safety",
             "data_quality",
             "constraints",
@@ -1803,6 +1829,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/allocation/context-information-attribution",
+                    "返回 V6.6 Adaptive Context Information Attribution Audit，对 V5.1 暴露等级、V5.10 风险梯度、V6.3 保护分、V6.5 双轴上下文做信息增量归因，判断保留/淘汰；不新增模型或策略。",
+                    "adaptive context information attribution",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -1941,6 +1974,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/allocation/exposure-context-score-audit", "description": "读取 V6.3 连续暴露上下文评分审计。"},
             {"path": "/api/allocation/protection-score-validation", "description": "读取 V6.4 保护分稳健性与条件验证。"},
             {"path": "/api/allocation/two-axis-context-validation", "description": "读取 V6.5 风险-机会双轴环境验证。"},
+            {"path": "/api/allocation/context-information-attribution", "description": "读取 V6.6 上下文信息层价值归因。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -2927,6 +2961,17 @@ def two_axis_context_validation() -> dict:
     return payload
 
 
+@app.get("/api/allocation/context-information-attribution")
+def context_information_attribution() -> dict:
+    payload = _read_context_information_attribution_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Context information attribution artifact missing; run scripts/run_context_information_attribution.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -3082,6 +3127,7 @@ def results_summary(
         exposure_context_score_audit = _read_exposure_context_score_audit_payload()
         protection_score_validation = _read_protection_score_validation_payload()
         two_axis_context_validation = _read_two_axis_context_validation_payload()
+        context_information_attribution = _read_context_information_attribution_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -3115,6 +3161,7 @@ def results_summary(
             exposure_context_score_audit = _compact_exposure_context_score_audit_payload(exposure_context_score_audit)
             protection_score_validation = _compact_protection_score_validation_payload(protection_score_validation)
             two_axis_context_validation = _compact_two_axis_context_validation_payload(two_axis_context_validation)
+            context_information_attribution = _compact_context_information_attribution_payload(context_information_attribution)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -3185,6 +3232,7 @@ def results_summary(
             "exposure_context_score_audit": exposure_context_score_audit,
             "protection_score_validation": protection_score_validation,
             "two_axis_context_validation": two_axis_context_validation,
+            "context_information_attribution": context_information_attribution,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,

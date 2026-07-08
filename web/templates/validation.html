@@ -758,6 +758,33 @@
           <p class="result-note" id="twoAxisConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="固定 V5.1 暴露等级、V5.10 风险梯度、V6.3 保护分和 V6.5 双轴上下文，对比每层的风险区分、机会区分、回撤区分、阶段一致性和保留建议；只做系统归因，不新增模型。">上下文信息层归因</h2>
+            <span class="panel-kicker">V6.6</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>样本</span>
+              <strong id="contextAttributionRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>风险领先层</span>
+              <strong id="contextAttributionRiskLeader">--</strong>
+            </div>
+            <div class="result-row">
+              <span>保留层数</span>
+              <strong id="contextAttributionRetained">--</strong>
+            </div>
+            <div class="result-row">
+              <span>策略变更</span>
+              <strong id="contextAttributionReady">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="contextAttributionLayers"></div>
+          <p class="result-note" id="contextAttributionConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -848,7 +875,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-two-axis-1"></script>
+    <script src="/static/dashboard.js?v=20260708-context-attribution-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

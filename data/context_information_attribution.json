@@ -1,0 +1,3556 @@
+{
+  "metadata": {
+    "engine": "V6.6 Adaptive Context Information Attribution Audit",
+    "generated_at": "2026-07-08T17:55:13+00:00",
+    "as_of": "20260707",
+    "source_two_axis_engine": "V6.5 Adaptive Context Two-Axis Validation",
+    "source_context_score_engine": "V6.3 Continuous Exposure Context Score Audit",
+    "purpose": "Attribute which fixed V5-V6 context layers add research value without changing strategy."
+  },
+  "summary": {
+    "joined_sample_count": 115,
+    "layer_count": 4,
+    "risk_leader": "layer_3_two_axis_context",
+    "risk_leader_spread": 0.337209,
+    "opportunity_leader": "layer_3_two_axis_context",
+    "opportunity_leader_spread": 0.162791,
+    "retained_layer_count": 3,
+    "retained_layers": [
+      "layer_1_risk_gradient",
+      "layer_2_protection_score",
+      "layer_3_two_axis_context"
+    ],
+    "ready_for_mapper_change": false,
+    "ready_for_exposure_change": false,
+    "conclusion": "risk_layers_have_research_value_opportunity_layer_not_ready",
+    "review_items": [
+      {
+        "type": "weak_information_layers",
+        "severity": "medium",
+        "evidence": {
+          "layers": [
+            "layer_0_v5_1_exposure_level"
+          ]
+        }
+      },
+      {
+        "type": "information_attribution_research_only_do_not_modify_policy",
+        "severity": "high",
+        "evidence": {
+          "reason": "V6.6 attributes fixed existing layers only; no new model, mapper, exposure, ETF, weight, or trade change."
+        }
+      }
+    ],
+    "review_item_count": 2,
+    "key_read": "V6.6 attributes information value across fixed layers and does not create or modify any policy rule."
+  },
+  "layer_attribution": [
+    {
+      "layer_id": "layer_0_v5_1_exposure_level",
+      "layer_name": "V5.1 Exposure Level",
+      "source": "V5.1 exposure_simulation / V6.5 common sample",
+      "field": "v5_1_exposure_level",
+      "risk_focus_label": "DEFENSIVE",
+      "sample_count": 115,
+      "coverage_rate": 1.0,
+      "top_group": "BALANCED",
+      "top_group_share": 1.0,
+      "risk_spread": {
+        "spread": 0.0,
+        "max_label": "BALANCED",
+        "min_label": "BALANCED",
+        "max_rate": 0.226087,
+        "min_rate": 0.226087
+      },
+      "drawdown_spread": {
+        "spread": 0.0,
+        "max_label": "BALANCED",
+        "min_label": "BALANCED",
+        "max_rate": 0.13913,
+        "min_rate": 0.13913
+      },
+      "contradiction_spread": {
+        "spread": 0.0,
+        "max_label": "BALANCED",
+        "min_label": "BALANCED",
+        "max_rate": 0.13913,
+        "min_rate": 0.13913
+      },
+      "opportunity_spread": {
+        "spread": 0.0,
+        "max_label": "BALANCED",
+        "min_label": "BALANCED",
+        "max_rate": 0.147826,
+        "min_rate": 0.147826
+      },
+      "phase_consistency": {
+        "phase_consistency": "insufficient_evidence",
+        "evaluated_phase_count": 0,
+        "positive_phase_count": 0,
+        "negative_phase_count": 0,
+        "insufficient_phase_count": 4,
+        "periods": [
+          {
+            "market_phase": "EARLY_CYCLE",
+            "sample_count": 46,
+            "focus_label": "DEFENSIVE",
+            "focus_sample_count": 0,
+            "overall_future_high_risk_rate": 0.26087,
+            "focus_future_high_risk_rate": null,
+            "focus_high_risk_lift": null,
+            "status": "insufficient_focus_sample"
+          },
+          {
+            "market_phase": "ROTATION",
+            "sample_count": 26,
+            "focus_label": "DEFENSIVE",
+            "focus_sample_count": 0,
+            "overall_future_high_risk_rate": 0.192308,
+            "focus_future_high_risk_rate": null,
+            "focus_high_risk_lift": null,
+            "status": "insufficient_focus_sample"
+          },
+          {
+            "market_phase": "LATE_CYCLE",
+            "sample_count": 10,
+            "focus_label": "DEFENSIVE",
+            "focus_sample_count": 0,
+            "overall_future_high_risk_rate": 0.1,
+            "focus_future_high_risk_rate": null,
+            "focus_high_risk_lift": null,
+            "status": "insufficient_focus_sample"
+          },
+          {
+            "market_phase": "CONTRACTION",
+            "sample_count": 18,
+            "focus_label": "DEFENSIVE",
+            "focus_sample_count": 0,
+            "overall_future_high_risk_rate": 0.222222,
+            "focus_future_high_risk_rate": null,
+            "focus_high_risk_lift": null,
+            "status": "insufficient_focus_sample"
+          }
+        ]
+      },
+      "value_added_vs_previous": {
+        "risk_spread_delta": 0.0,
+        "opportunity_spread_delta": 0.0
+      },
+      "status": "no_clear_incremental_value",
+      "retention_recommendation": "baseline_only_do_not_use_as_validation_axis",
+      "group_metrics": {
+        "BALANCED": {
+          "sample_count": 115,
+          "sample_share": 1.0,
+          "future_high_risk_count": 26,
+          "future_high_risk_rate": 0.226087,
+          "future_opportunity_count": 17,
+          "future_opportunity_rate": 0.147826,
+          "drawdown_event_count": 16,
+          "drawdown_event_rate": 0.13913,
+          "contradiction_count": 16,
+          "contradiction_rate": 0.13913
+        }
+      }
+    },
+    {
+      "layer_id": "layer_1_risk_gradient",
+      "layer_name": "Risk Gradient",
+      "source": "V5.10 exposure_gradient_analysis / V6.3 common sample",
+      "field": "risk_gradient_bucket",
+      "risk_focus_label": "high_risk",
+      "sample_count": 115,
+      "coverage_rate": 1.0,
+      "top_group": "medium_risk",
+      "top_group_share": 0.617391,
+      "risk_spread": {
+        "spread": 0.157143,
+        "max_label": "high_risk",
+        "min_label": "low_risk",
+        "max_rate": 0.357143,
+        "min_rate": 0.2
+      },
+      "drawdown_spread": {
+        "spread": 0.039906,
+        "max_label": "low_risk",
+        "min_label": "medium_risk",
+        "max_rate": 0.166667,
+        "min_rate": 0.126761
+      },
+      "contradiction_spread": {
+        "spread": 0.039906,
+        "max_label": "low_risk",
+        "min_label": "medium_risk",
+        "max_rate": 0.166667,
+        "min_rate": 0.126761
+      },
+      "opportunity_spread": {
+        "spread": 0.025822,
+        "max_label": "low_risk",
+        "min_label": "medium_risk",
+        "max_rate": 0.166667,
+        "min_rate": 0.140845
+      },
+      "phase_consistency": {
+        "phase_consistency": "medium",
+        "evaluated_phase_count": 2,
+        "positive_phase_count": 1,
+        "negative_phase_count": 0,
+        "insufficient_phase_count": 2,
+        "periods": [
+          {
+            "market_phase": "EARLY_CYCLE",
+            "sample_count": 46,
+            "focus_label": "high_risk",
+            "focus_sample_count": 5,
+            "overall_future_high_risk_rate": 0.26087,
+            "focus_future_high_risk_rate": 0.4,
+            "focus_high_risk_lift": 0.13913,
+            "status": "positive"
+          },
+          {
+            "market_phase": "ROTATION",
+            "sample_count": 26,
+            "focus_label": "high_risk",
+            "focus_sample_count": 0,
+            "overall_future_high_risk_rate": 0.192308,
+            "focus_future_high_risk_rate": null,
+            "focus_high_risk_lift": null,
+            "status": "insufficient_focus_sample"
+          },
+          {
+            "market_phase": "LATE_CYCLE",
+            "sample_count": 10,
+            "focus_label": "high_risk",
+            "focus_sample_count": 0,
+            "overall_future_high_risk_rate": 0.1,
+            "focus_future_high_risk_rate": null,
+            "focus_high_risk_lift": null,
+            "status": "insufficient_focus_sample"
+          },
+          {
+            "market_phase": "CONTRACTION",
+            "sample_count": 18,
+            "focus_label": "high_risk",
+            "focus_sample_count": 8,
+            "overall_future_high_risk_rate": 0.222222,
+            "focus_future_high_risk_rate": 0.25,
+            "focus_high_risk_lift": 0.027778,
+            "status": "flat"
+          }
+        ]
+      },
+      "value_added_vs_previous": {
+        "risk_spread_delta": 0.157143,
+        "opportunity_spread_delta": 0.025822
+      },
+      "status": "risk_value_only",
+      "retention_recommendation": "keep_as_primary_risk_axis",
+      "group_metrics": {
+        "high_risk": {
+          "sample_count": 14,
+          "sample_share": 0.121739,
+          "future_high_risk_count": 5,
+          "future_high_risk_rate": 0.357143,
+          "future_opportunity_count": 2,
+          "future_opportunity_rate": 0.142857,
+          "drawdown_event_count": 2,
+          "drawdown_event_rate": 0.142857,
+          "contradiction_count": 2,
+          "contradiction_rate": 0.142857
+        },
+        "low_risk": {
+          "sample_count": 30,
+          "sample_share": 0.26087,
+          "future_high_risk_count": 6,
+          "future_high_risk_rate": 0.2,
+          "future_opportunity_count": 5,
+          "future_opportunity_rate": 0.166667,
+          "drawdown_event_count": 5,
+          "drawdown_event_rate": 0.166667,
+          "contradiction_count": 5,
+          "contradiction_rate": 0.166667
+        },
+        "medium_risk": {
+          "sample_count": 71,
+          "sample_share": 0.617391,
+          "future_high_risk_count": 15,
+          "future_high_risk_rate": 0.211268,
+          "future_opportunity_count": 10,
+          "future_opportunity_rate": 0.140845,
+          "drawdown_event_count": 9,
+          "drawdown_event_rate": 0.126761,
+          "contradiction_count": 9,
+          "contradiction_rate": 0.126761
+        }
+      }
+    },
+    {
+      "layer_id": "layer_2_protection_score",
+      "layer_name": "Protection Score",
+      "source": "V6.3 protection_score fixed bucket",
+      "field": "protection_bucket",
+      "risk_focus_label": "high",
+      "sample_count": 115,
+      "coverage_rate": 1.0,
+      "top_group": "medium",
+      "top_group_share": 0.686957,
+      "risk_spread": {
+        "spread": 0.097468,
+        "max_label": "high",
+        "min_label": "medium",
+        "max_rate": 0.3,
+        "min_rate": 0.202532
+      },
+      "drawdown_spread": {
+        "spread": 0.060918,
+        "max_label": "low",
+        "min_label": "medium",
+        "max_rate": 0.1875,
+        "min_rate": 0.126582
+      },
+      "contradiction_spread": {
+        "spread": 0.060918,
+        "max_label": "low",
+        "min_label": "medium",
+        "max_rate": 0.1875,
+        "min_rate": 0.126582
+      },
+      "opportunity_spread": {
+        "spread": 0.15,
+        "max_label": "low",
+        "min_label": "high",
+        "max_rate": 0.25,
+        "min_rate": 0.1
+      },
+      "phase_consistency": {
+        "phase_consistency": "high",
+        "evaluated_phase_count": 2,
+        "positive_phase_count": 2,
+        "negative_phase_count": 0,
+        "insufficient_phase_count": 2,
+        "periods": [
+          {
+            "market_phase": "EARLY_CYCLE",
+            "sample_count": 46,
+            "focus_label": "high",
+            "focus_sample_count": 9,
+            "overall_future_high_risk_rate": 0.26087,
+            "focus_future_high_risk_rate": 0.333333,
+            "focus_high_risk_lift": 0.072463,
+            "status": "positive"
+          },
+          {
+            "market_phase": "ROTATION",
+            "sample_count": 26,
+            "focus_label": "high",
+            "focus_sample_count": 1,
+            "overall_future_high_risk_rate": 0.192308,
+            "focus_future_high_risk_rate": 0.0,
+            "focus_high_risk_lift": -0.192308,
+            "status": "insufficient_focus_sample"
+          },
+          {
+            "market_phase": "LATE_CYCLE",
+            "sample_count": 10,
+            "focus_label": "high",
+            "focus_sample_count": 2,
+            "overall_future_high_risk_rate": 0.1,
+            "focus_future_high_risk_rate": 0.0,
+            "focus_high_risk_lift": -0.1,
+            "status": "insufficient_focus_sample"
+          },
+          {
+            "market_phase": "CONTRACTION",
+            "sample_count": 18,
+            "focus_label": "high",
+            "focus_sample_count": 7,
+            "overall_future_high_risk_rate": 0.222222,
+            "focus_future_high_risk_rate": 0.285714,
+            "focus_high_risk_lift": 0.063492,
+            "status": "positive"
+          }
+        ]
+      },
+      "value_added_vs_previous": {
+        "risk_spread_delta": -0.059675,
+        "opportunity_spread_delta": 0.124178
+      },
+      "status": "weak_risk_value",
+      "retention_recommendation": "keep_as_risk_confirmation_layer",
+      "group_metrics": {
+        "high": {
+          "sample_count": 20,
+          "sample_share": 0.173913,
+          "future_high_risk_count": 6,
+          "future_high_risk_rate": 0.3,
+          "future_opportunity_count": 2,
+          "future_opportunity_rate": 0.1,
+          "drawdown_event_count": 3,
+          "drawdown_event_rate": 0.15,
+          "contradiction_count": 3,
+          "contradiction_rate": 0.15
+        },
+        "low": {
+          "sample_count": 16,
+          "sample_share": 0.13913,
+          "future_high_risk_count": 4,
+          "future_high_risk_rate": 0.25,
+          "future_opportunity_count": 4,
+          "future_opportunity_rate": 0.25,
+          "drawdown_event_count": 3,
+          "drawdown_event_rate": 0.1875,
+          "contradiction_count": 3,
+          "contradiction_rate": 0.1875
+        },
+        "medium": {
+          "sample_count": 79,
+          "sample_share": 0.686957,
+          "future_high_risk_count": 16,
+          "future_high_risk_rate": 0.202532,
+          "future_opportunity_count": 11,
+          "future_opportunity_rate": 0.139241,
+          "drawdown_event_count": 10,
+          "drawdown_event_rate": 0.126582,
+          "contradiction_count": 10,
+          "contradiction_rate": 0.126582
+        }
+      }
+    },
+    {
+      "layer_id": "layer_3_two_axis_context",
+      "layer_name": "Two Axis Context",
+      "source": "V6.5 two_axis_context_validation",
+      "field": "two_axis_label",
+      "risk_focus_label": "PROTECT_BUT_PARTICIPATE",
+      "sample_count": 115,
+      "coverage_rate": 1.0,
+      "top_group": "WAIT",
+      "top_group_share": 0.452174,
+      "risk_spread": {
+        "spread": 0.337209,
+        "max_label": "PROTECT_BUT_PARTICIPATE",
+        "min_label": "PARTICIPATE",
+        "max_rate": 0.5,
+        "min_rate": 0.162791
+      },
+      "drawdown_spread": {
+        "spread": 0.133721,
+        "max_label": "PROTECT_BUT_PARTICIPATE",
+        "min_label": "PARTICIPATE",
+        "max_rate": 0.25,
+        "min_rate": 0.116279
+      },
+      "contradiction_spread": {
+        "spread": 0.133721,
+        "max_label": "PROTECT_BUT_PARTICIPATE",
+        "min_label": "PARTICIPATE",
+        "max_rate": 0.25,
+        "min_rate": 0.116279
+      },
+      "opportunity_spread": {
+        "spread": 0.162791,
+        "max_label": "PARTICIPATE",
+        "min_label": "PROTECT_BUT_PARTICIPATE",
+        "max_rate": 0.162791,
+        "min_rate": 0.0
+      },
+      "phase_consistency": {
+        "phase_consistency": "insufficient_evidence",
+        "evaluated_phase_count": 0,
+        "positive_phase_count": 0,
+        "negative_phase_count": 0,
+        "insufficient_phase_count": 4,
+        "periods": [
+          {
+            "market_phase": "EARLY_CYCLE",
+            "sample_count": 46,
+            "focus_label": "PROTECT_BUT_PARTICIPATE",
+            "focus_sample_count": 2,
+            "overall_future_high_risk_rate": 0.26087,
+            "focus_future_high_risk_rate": 0.5,
+            "focus_high_risk_lift": 0.23913,
+            "status": "insufficient_focus_sample"
+          },
+          {
+            "market_phase": "ROTATION",
+            "sample_count": 26,
+            "focus_label": "PROTECT_BUT_PARTICIPATE",
+            "focus_sample_count": 1,
+            "overall_future_high_risk_rate": 0.192308,
+            "focus_future_high_risk_rate": 0.0,
+            "focus_high_risk_lift": -0.192308,
+            "status": "insufficient_focus_sample"
+          },
+          {
+            "market_phase": "LATE_CYCLE",
+            "sample_count": 10,
+            "focus_label": "PROTECT_BUT_PARTICIPATE",
+            "focus_sample_count": 0,
+            "overall_future_high_risk_rate": 0.1,
+            "focus_future_high_risk_rate": null,
+            "focus_high_risk_lift": null,
+            "status": "insufficient_focus_sample"
+          },
+          {
+            "market_phase": "CONTRACTION",
+            "sample_count": 18,
+            "focus_label": "PROTECT_BUT_PARTICIPATE",
+            "focus_sample_count": 0,
+            "overall_future_high_risk_rate": 0.222222,
+            "focus_future_high_risk_rate": null,
+            "focus_high_risk_lift": null,
+            "status": "insufficient_focus_sample"
+          }
+        ]
+      },
+      "value_added_vs_previous": {
+        "risk_spread_delta": 0.239741,
+        "opportunity_spread_delta": 0.012791
+      },
+      "status": "research_value",
+      "retention_recommendation": "keep_as_research_context_map_not_policy",
+      "group_metrics": {
+        "AVOID": {
+          "sample_count": 16,
+          "sample_share": 0.13913,
+          "future_high_risk_count": 4,
+          "future_high_risk_rate": 0.25,
+          "future_opportunity_count": 2,
+          "future_opportunity_rate": 0.125,
+          "drawdown_event_count": 2,
+          "drawdown_event_rate": 0.125,
+          "contradiction_count": 2,
+          "contradiction_rate": 0.125
+        },
+        "PARTICIPATE": {
+          "sample_count": 43,
+          "sample_share": 0.373913,
+          "future_high_risk_count": 7,
+          "future_high_risk_rate": 0.162791,
+          "future_opportunity_count": 7,
+          "future_opportunity_rate": 0.162791,
+          "drawdown_event_count": 5,
+          "drawdown_event_rate": 0.116279,
+          "contradiction_count": 5,
+          "contradiction_rate": 0.116279
+        },
+        "PROTECT_BUT_PARTICIPATE": {
+          "sample_count": 4,
+          "sample_share": 0.034783,
+          "future_high_risk_count": 2,
+          "future_high_risk_rate": 0.5,
+          "future_opportunity_count": 0,
+          "future_opportunity_rate": 0.0,
+          "drawdown_event_count": 1,
+          "drawdown_event_rate": 0.25,
+          "contradiction_count": 1,
+          "contradiction_rate": 0.25
+        },
+        "WAIT": {
+          "sample_count": 52,
+          "sample_share": 0.452174,
+          "future_high_risk_count": 13,
+          "future_high_risk_rate": 0.25,
+          "future_opportunity_count": 8,
+          "future_opportunity_rate": 0.153846,
+          "drawdown_event_count": 8,
+          "drawdown_event_rate": 0.153846,
+          "contradiction_count": 8,
+          "contradiction_rate": 0.153846
+        }
+      }
+    }
+  ],
+  "sample_distribution": {
+    "market_phase": {
+      "CONTRACTION": {
+        "count": 18,
+        "share": 0.156522
+      },
+      "EARLY_CYCLE": {
+        "count": 46,
+        "share": 0.4
+      },
+      "EXPANSION": {
+        "count": 4,
+        "share": 0.034783
+      },
+      "LATE_CYCLE": {
+        "count": 10,
+        "share": 0.086957
+      },
+      "ROTATION": {
+        "count": 26,
+        "share": 0.226087
+      },
+      "UNKNOWN": {
+        "count": 11,
+        "share": 0.095652
+      }
+    },
+    "future_environment": {
+      "drawdown_stress": {
+        "count": 24,
+        "share": 0.208696
+      },
+      "high_volatility": {
+        "count": 2,
+        "share": 0.017391
+      },
+      "positive_range": {
+        "count": 25,
+        "share": 0.217391
+      },
+      "range_mixed": {
+        "count": 33,
+        "share": 0.286957
+      },
+      "strong_uptrend": {
+        "count": 15,
+        "share": 0.130435
+      },
+      "weak_or_flat": {
+        "count": 16,
+        "share": 0.13913
+      }
+    }
+  },
+  "rows": [
+    {
+      "date": "20150105",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "PROTECT_BUT_PARTICIPATE",
+      "future_environment": "high_volatility",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 3,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20150202",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 3,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20150309",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 3,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20150407",
+      "market_phase": "EXPANSION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "PROTECT_BUT_PARTICIPATE",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 3,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20150706",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20150803",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20150831",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20150930",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20151104",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20151202",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20151230",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20160128",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20160303",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "WAIT",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20160331",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20160429",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20160530",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20160629",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20160727",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20160824",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20160923",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20161028",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20161125",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20161223",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20170123",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20170227",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20170327",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20170426",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20170525",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20170626",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20170724",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "PROTECT_BUT_PARTICIPATE",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20170821",
+      "market_phase": "EXPANSION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20170918",
+      "market_phase": "EXPANSION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20171023",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20171120",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20171218",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20180116",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20180213",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20180320",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20180419",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20180521",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20180619",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20180717",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20180814",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20180911",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20181017",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20181114",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20181212",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20190111",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20190215",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "PROTECT_BUT_PARTICIPATE",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20190516",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20190614",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20190712",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20190809",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20191014",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20191111",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20191209",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 4,
+        "opportunity_component_count": 4,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20200107",
+      "market_phase": "LATE_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20200212",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20200311",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20200409",
+      "market_phase": "UNKNOWN",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20200512",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20200609",
+      "market_phase": "LATE_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20200903",
+      "market_phase": "LATE_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20201009",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20201106",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20201204",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20210104",
+      "market_phase": "LATE_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20210201",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20210308",
+      "market_phase": "LATE_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20210406",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20210507",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20210604",
+      "market_phase": "UNKNOWN",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20210705",
+      "market_phase": "LATE_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20210802",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20211103",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "low_risk",
+      "protection_bucket": "low",
+      "two_axis_label": "WAIT",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20211201",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20211229",
+      "market_phase": "UNKNOWN",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20220127",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20220303",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": true,
+        "future_return_gt_12": false
+      },
+      "contradictions": [
+        {
+          "type": "large_drawdown_with_non_defensive_level",
+          "severity": "medium",
+          "evidence": {
+            "exposure_level": "BALANCED",
+            "future_environment": "drawdown_stress"
+          }
+        }
+      ],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20220331",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20220505",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20220602",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20220701",
+      "market_phase": "UNKNOWN",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20220729",
+      "market_phase": "UNKNOWN",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20220826",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20220926",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20221031",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20221128",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20221226",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20230131",
+      "market_phase": "EXPANSION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "PARTICIPATE",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20230228",
+      "market_phase": "UNKNOWN",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20230426",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20230529",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20230628",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20230726",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20230920",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20231026",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20231123",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "drawdown_stress",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20231221",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20240119",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20240226",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20240325",
+      "market_phase": "UNKNOWN",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "weak_or_flat",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20240424",
+      "market_phase": "UNKNOWN",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20240723",
+      "market_phase": "UNKNOWN",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "high_volatility",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": true,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20250117",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20250224",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20250324",
+      "market_phase": "ROTATION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20250422",
+      "market_phase": "CONTRACTION",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "high_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20250523",
+      "market_phase": "UNKNOWN",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20250623",
+      "market_phase": "UNKNOWN",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20250721",
+      "market_phase": "LATE_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "strong_uptrend",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": true,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": true
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20250818",
+      "market_phase": "LATE_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20251021",
+      "market_phase": "LATE_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "high",
+      "two_axis_label": "AVOID",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20251118",
+      "market_phase": "LATE_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "range_mixed",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    },
+    {
+      "date": "20251216",
+      "market_phase": "EARLY_CYCLE",
+      "v5_1_exposure_level": "BALANCED",
+      "risk_gradient_bucket": "medium_risk",
+      "protection_bucket": "medium",
+      "two_axis_label": "WAIT",
+      "future_environment": "positive_range",
+      "future_flags": {
+        "future_window_complete": true,
+        "high_risk_event": false,
+        "strong_opportunity_event": false,
+        "future_drawdown_gt_15": false,
+        "future_return_gt_12": false
+      },
+      "contradictions": [],
+      "data_quality": {
+        "time_safe": true,
+        "time_safety_violations": [],
+        "risk_component_count": 7,
+        "opportunity_component_count": 6,
+        "future_label_not_used_for_gradient": true
+      }
+    }
+  ],
+  "time_safety": {
+    "feature_release_or_source_lte_signal_date": true,
+    "violation_count": 0,
+    "violation_examples": [],
+    "future_labels_used_for_validation_only": true
+  },
+  "data_quality": {
+    "uses_fixed_v5_1_exposure_level": true,
+    "uses_fixed_v5_10_risk_gradient": true,
+    "uses_fixed_v6_3_protection_score": true,
+    "uses_fixed_v6_5_two_axis_context": true,
+    "future_labels_used_for_validation_only": true,
+    "no_new_model": true,
+    "no_parameter_optimization": true
+  },
+  "constraints": {
+    "audit_only": true,
+    "does_not_create_new_model": true,
+    "does_not_modify_mapper": true,
+    "does_not_modify_exposure_level": true,
+    "does_not_generate_position": true,
+    "no_percentage_exposure": true,
+    "no_etf_code": true,
+    "no_asset_weight": true,
+    "no_portfolio_weight": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "no_return_optimization": true,
+    "no_parameter_optimization": true
+  }
+}

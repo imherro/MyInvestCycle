@@ -848,6 +848,38 @@ function twoAxisLabel(value) {
   return labels[value] || value || "--";
 }
 
+function contextLayerLabel(value) {
+  const labels = {
+    layer_0_v5_1_exposure_level: "V5.1 暴露等级",
+    layer_1_risk_gradient: "风险梯度",
+    layer_2_protection_score: "保护分",
+    layer_3_two_axis_context: "双轴上下文",
+  };
+  return labels[value] || value || "--";
+}
+
+function contextLayerStatusLabel(value) {
+  const labels = {
+    no_clear_incremental_value: "无清晰增量",
+    risk_value_only: "只有风险价值",
+    research_value: "研究价值",
+    weak_risk_value: "弱风险价值",
+    weak_opportunity_value: "弱机会价值",
+  };
+  return labels[value] || value || "--";
+}
+
+function contextLayerRetentionLabel(value) {
+  const labels = {
+    baseline_only_do_not_use_as_validation_axis: "仅作基线",
+    keep_as_primary_risk_axis: "保留为主风险轴",
+    keep_as_risk_confirmation_layer: "保留为确认层",
+    keep_as_research_context_map_not_policy: "保留为研究地图",
+    review: "复核",
+  };
+  return labels[value] || value || "--";
+}
+
 function decisionModeLabel(value) {
   const labels = {
     FULL_PARTICIPATION: "全参与",
@@ -1531,6 +1563,9 @@ function setResultsPanel(results) {
   const twoAxisSummary = twoAxisValidation.summary || {};
   const twoAxisMetrics = twoAxisValidation.dimension_metrics?.two_axis || {};
   const twoAxisComparison = twoAxisValidation.dimension_comparison || {};
+  const contextAttribution = results.context_information_attribution || {};
+  const contextAttributionSummary = contextAttribution.summary || {};
+  const contextAttributionLayers = contextAttribution.layer_attribution || [];
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2857,6 +2892,31 @@ function setResultsPanel(results) {
     twoAxisValidation.metadata
       ? `V6.5 双轴验证：风险区分 ${signedRatioText(twoAxisSummary.two_axis_risk_spread)}，机会区分 ${signedRatioText(twoAxisSummary.two_axis_opportunity_spread)}；参与象限机会抬升仅 ${signedRatioText(twoAxisSummary.participate_opportunity_lift)}，保护参与象限风险抬升 ${signedRatioText(twoAxisSummary.protect_but_participate_risk_lift)}。结论：风险轴可见，机会轴仍弱，不改 mapper、不改 exposure。`
       : "V6.5 风险-机会双轴验证尚未生成。"
+  );
+
+  setText("contextAttributionRows", integerText(contextAttributionSummary.joined_sample_count));
+  setText("contextAttributionRiskLeader", contextLayerLabel(contextAttributionSummary.risk_leader));
+  setText("contextAttributionRetained", integerText(contextAttributionSummary.retained_layer_count));
+  setText(
+    "contextAttributionReady",
+    contextAttributionSummary.ready_for_mapper_change === true || contextAttributionSummary.ready_for_exposure_change === true
+      ? "可变更"
+      : "不可变更"
+  );
+  setHtml("contextAttributionLayers", contextAttributionLayers
+    .map((layer) => `
+      <div class="duration-row">
+        <span>${contextLayerLabel(layer.layer_id)} · ${contextLayerStatusLabel(layer.status)}</span>
+        <strong>风险 ${signedRatioText(layer.risk_spread?.spread)} · 机会 ${signedRatioText(layer.opportunity_spread?.spread)}</strong>
+        <em>${contextLayerRetentionLabel(layer.retention_recommendation)} · ${escapeHtml(layer.top_group || "--")} 占比 ${percentText(layer.top_group_share)}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "contextAttributionConclusion",
+    contextAttribution.metadata
+      ? `V6.6 信息层归因：风险领先层为${contextLayerLabel(contextAttributionSummary.risk_leader)}，区分 ${signedRatioText(contextAttributionSummary.risk_leader_spread)}；建议保留 ${integerText(contextAttributionSummary.retained_layer_count)} 层：风险梯度、保护分、双轴上下文。V5.1 暴露等级只作基线，不改 mapper、不改 exposure。`
+      : "V6.6 上下文信息层归因尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
