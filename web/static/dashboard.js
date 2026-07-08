@@ -1678,6 +1678,10 @@ function setResultsPanel(results) {
   const allocationFinal = results.allocation_research_final_boundary || {};
   const allocationFinalSummary = allocationFinal.summary || {};
   const allocationFinalDirections = allocationFinal.directions || {};
+  const externalProtocol = results.external_validation_protocol || {};
+  const externalProtocolSummary = externalProtocol.summary || {};
+  const externalProtocolBody = externalProtocol.protocol || {};
+  const externalProtocolExcluded = externalProtocol.excluded_directions || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -3959,6 +3963,63 @@ function setResultsPanel(results) {
     allocationFinal.metadata
       ? `V10.3 固定最终研究边界：H2 只能继续外部验证，H4 仅作为研究治理保留，H1/H3 冻结且不做外部验证。allocation_ready=false，仍不生成资产、ETF、权重、配置、优化或交易。`
       : "V10.3 配置研究最终边界尚未生成。"
+  );
+
+  const externalProtocolReadyFlagsOff =
+    externalProtocolSummary.promotion_allowed === false &&
+    externalProtocolSummary.strategy_promotion === false &&
+    externalProtocolSummary.allocation_ready === false &&
+    externalProtocolSummary.investable_output === false &&
+    externalProtocolSummary.investable_output_generated === false &&
+    externalProtocolSummary.ready_for_asset_selection === false &&
+    externalProtocolSummary.ready_for_etf_mapping === false &&
+    externalProtocolSummary.ready_for_weight_generation === false &&
+    externalProtocolSummary.ready_for_optimization === false &&
+    externalProtocolSummary.ready_for_trade === false;
+  const externalWindows = Array.isArray(externalProtocolBody.validation_windows)
+    ? externalProtocolBody.validation_windows
+    : [];
+  const externalMethods = Array.isArray(externalProtocolBody.pre_registered_methods)
+    ? externalProtocolBody.pre_registered_methods
+    : [];
+  const externalStops = Array.isArray(externalProtocolBody.stop_conditions)
+    ? externalProtocolBody.stop_conditions
+    : [];
+  setText("externalProtocolStatus", externalProtocolSummary.protocol_phase_status === "defined" ? "已定义" : "--");
+  setText("externalProtocolTarget", externalProtocolSummary.target_hypothesis || "--");
+  setText("externalProtocolWindows", integerText(externalWindows.length));
+  setText("externalProtocolExcluded", integerText(Object.keys(externalProtocolExcluded).length));
+  setText("externalProtocolBoundary", externalProtocolReadyFlagsOff ? "只定协议/不验证/不配置/不交易" : "需复核");
+  setHtml("externalProtocolRows", [
+    ...externalWindows.map((row) => `
+      <div class="duration-row">
+        <span>${escapeHtml(row.window_id || "--")}</span>
+        <strong>${escapeHtml(row.result_use || "--")}</strong>
+        <em>${escapeHtml(row.role || "--")}</em>
+      </div>
+    `),
+    ...externalMethods.map((row) => `
+      <div class="duration-row">
+        <span>${escapeHtml(row.method_id || "--")}</span>
+        <strong>${escapeHtml(row.allowed_result || "--")}</strong>
+        <em>${escapeHtml(row.description || "--")}</em>
+      </div>
+    `),
+  ].join(""));
+  setHtml("externalProtocolStops", externalStops
+    .map((item) => `
+      <div class="duration-row">
+        <span>停止条件</span>
+        <strong>预注册约束</strong>
+        <em>${escapeHtml(item)}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "externalProtocolConclusion",
+    externalProtocol.metadata
+      ? `V11.1 只为 H2 定义外部验证协议：验证窗口必须预先声明，结果只能支持/失败研究方向；H4 继续作为治理门禁，H1/H3 保持冻结。该层不运行验证，不生成资产、ETF、权重、配置、优化或交易。`
+      : "V11.1 外部验证协议尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

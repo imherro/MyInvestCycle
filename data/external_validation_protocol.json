@@ -1,0 +1,276 @@
+{
+  "metadata": {
+    "engine": "V11.1 External Validation Research Protocol",
+    "generated_at": "2026-07-08T21:15:34+00:00",
+    "input_files": {
+      "v10_3_final_boundary": "data/allocation_research_final_boundary.json"
+    },
+    "input_hashes": {
+      "v10_3_final_boundary": "6121cf0be52241fd835b34748c662725736e6f7fd964d98a76b55327cd0b3b6d"
+    },
+    "purpose": "Define a pre-registered external validation protocol for H2 only without running validation or producing investable outputs."
+  },
+  "schema": {
+    "schema_version": "V11.1",
+    "name": "External Validation Research Protocol Schema",
+    "allowed_protocol_status": [
+      "pre_registered",
+      "paused",
+      "failed_boundary_check"
+    ],
+    "allowed_target_status": [
+      "continue_external_validation"
+    ],
+    "required_sections": [
+      "target_hypothesis",
+      "validation_scope",
+      "validation_windows",
+      "pre_registered_methods",
+      "failure_standards",
+      "stop_conditions",
+      "time_safety",
+      "constraints"
+    ],
+    "forbidden_outputs": [
+      "asset_selection",
+      "etf_mapping",
+      "portfolio_weight",
+      "allocation_output",
+      "optimization_result",
+      "trade_signal",
+      "broker_order"
+    ],
+    "readiness_flags_required_false": [
+      "promotion_allowed",
+      "strategy_promotion",
+      "allocation_ready",
+      "investable_output",
+      "ready_for_asset_selection",
+      "ready_for_etf_mapping",
+      "ready_for_weight_generation",
+      "ready_for_optimization",
+      "ready_for_trade"
+    ]
+  },
+  "summary": {
+    "protocol_phase_status": "defined",
+    "target_hypothesis": "H2",
+    "target_direction_count": 1,
+    "excluded_direction_count": 3,
+    "protocol_ready_for_manual_external_validation": true,
+    "promotion_allowed": false,
+    "strategy_promotion": false,
+    "allocation_ready": false,
+    "investable_output": false,
+    "investable_output_generated": false,
+    "ready_for_asset_selection": false,
+    "ready_for_etf_mapping": false,
+    "ready_for_weight_generation": false,
+    "ready_for_optimization": false,
+    "ready_for_trade": false,
+    "conclusion": "h2_external_validation_protocol_defined_no_strategy_no_allocation",
+    "key_read": "H2 can move to manual external validation protocol only; H4 remains governance-only; H1/H3 stay frozen."
+  },
+  "protocol": {
+    "hypothesis_id": "H2",
+    "source_status": "continue_external_validation",
+    "protocol_status": "pre_registered",
+    "validation_scope": {
+      "purpose": "test whether the risk-protection research direction has external stability",
+      "not_purpose": [
+        "convert H2 into a strategy",
+        "choose assets",
+        "map ETF instruments",
+        "generate portfolio weights",
+        "create trade signals"
+      ],
+      "eligible_evidence": [
+        "new time windows not used to decide V9-V10 boundaries",
+        "new market phases with different trend and breadth backgrounds",
+        "adverse periods where risk protection should matter",
+        "benign periods where false protection should be limited"
+      ]
+    },
+    "validation_windows": [
+      {
+        "window_id": "holdout_recent_window",
+        "role": "recent unseen stability check",
+        "must_be_declared_before_run": true,
+        "result_use": "external_validation_only"
+      },
+      {
+        "window_id": "regime_transition_window",
+        "role": "stress check around market-state changes",
+        "must_be_declared_before_run": true,
+        "result_use": "external_validation_only"
+      },
+      {
+        "window_id": "structural_bull_window",
+        "role": "check that risk protection does not suppress structural opportunity without evidence",
+        "must_be_declared_before_run": true,
+        "result_use": "external_validation_only"
+      },
+      {
+        "window_id": "adverse_risk_window",
+        "role": "check whether protection evidence appears when drawdown risk is actually elevated",
+        "must_be_declared_before_run": true,
+        "result_use": "external_validation_only"
+      }
+    ],
+    "pre_registered_methods": [
+      {
+        "method_id": "fixed_input_replay",
+        "description": "replay fixed H2 evidence definitions without changing thresholds after results are observed",
+        "allowed_result": "support_or_fail_research_direction_only"
+      },
+      {
+        "method_id": "risk_separation_audit",
+        "description": "compare high-risk and low-risk labels using pre-declared future validation labels",
+        "allowed_result": "risk_separation_read_only"
+      },
+      {
+        "method_id": "false_protection_audit",
+        "description": "count cases where protection blocks participation in benign environments",
+        "allowed_result": "failure_case_review_only"
+      },
+      {
+        "method_id": "stability_by_market_phase",
+        "description": "review whether H2 works across distinct market phases instead of only one period",
+        "allowed_result": "phase_stability_review_only"
+      }
+    ],
+    "failure_standards": [
+      "fail if H2 only works in one narrow window and fails in other declared windows",
+      "fail if false-protection cost dominates risk-protection evidence",
+      "fail if a result requires changing thresholds after seeing validation outcomes",
+      "fail if validation attempts to output assets, ETF mapping, weights, allocation, optimization, or trades",
+      "fail if source data coverage gaps are hidden or replaced by stale data"
+    ],
+    "stop_conditions": [
+      "stop if V10.3 final boundary input hash changes without a new protocol version",
+      "stop if market data date and artifact generation date are not separated",
+      "stop if an implementation introduces optimization or parameter search",
+      "stop if any output can be interpreted as a trading instruction"
+    ]
+  },
+  "excluded_directions": {
+    "H1": {
+      "source_status": "frozen_no_external_validation",
+      "protocol_role": "excluded_frozen_no_external_validation"
+    },
+    "H3": {
+      "source_status": "frozen_no_external_validation",
+      "protocol_role": "excluded_frozen_no_external_validation"
+    },
+    "H4": {
+      "source_status": "research_governance_only",
+      "protocol_role": "research_governance_only_not_prediction_validation"
+    }
+  },
+  "source_layer_evidence": {
+    "v10_3_summary": {
+      "research_phase_status": "completed",
+      "direction_count": 4,
+      "continue_external_validation_count": 1,
+      "research_governance_only_count": 1,
+      "frozen_no_external_validation_count": 2,
+      "promotion_allowed": false,
+      "strategy_promotion": false,
+      "allocation_ready": false,
+      "investable_output": false,
+      "investable_output_generated": false,
+      "ready_for_asset_selection": false,
+      "ready_for_etf_mapping": false,
+      "ready_for_weight_generation": false,
+      "ready_for_optimization": false,
+      "ready_for_trade": false,
+      "conclusion": "allocation_research_final_boundary_completed_no_strategy_no_allocation",
+      "key_read": "Final V9-V10 boundary: H2 may continue external validation only; H4 remains research governance only; H1/H3 stay frozen. No allocation output is ready."
+    },
+    "v10_3_h2": {
+      "hypothesis_id": "H2",
+      "status": "continue_external_validation",
+      "source_review_status": "continue_research",
+      "source_freeze_status": "inconclusive",
+      "decision_reason": "risk evidence is visible but stability is incomplete, so only external validation may continue",
+      "allowed_next_step": "external_validation_protocol_only",
+      "promotion_allowed": false,
+      "strategy_promotion": false,
+      "allocation_ready": false,
+      "investable_output": false
+    }
+  },
+  "time_safety": {
+    "uses_v10_3_final_boundary_only": true,
+    "input_hashes_recorded": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "does_not_run_market_backtest": true,
+    "does_not_run_external_validation": true,
+    "requires_pre_declared_windows_before_any_future_run": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "research_only": true,
+    "external_validation_protocol_only": true,
+    "uses_v10_3_final_boundary_only": true,
+    "does_not_run_external_validation": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_target": "H2",
+    "checked_excluded_directions": [
+      "H1",
+      "H3",
+      "H4"
+    ],
+    "checked_constraints": [
+      "research_only",
+      "external_validation_protocol_only",
+      "uses_v10_3_final_boundary_only",
+      "does_not_run_external_validation",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}
