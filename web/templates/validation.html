@@ -702,6 +702,34 @@
           <p class="result-note" id="scoreConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="固定 V6.3 保护分、V5.10 风险梯度和 V5.11 阈值，对比高保护分、高风险梯度、两者同时高时的未来高风险率、回撤事件率和矛盾率；只验证风险解释，不生成仓位或交易。">保护分稳健性验证</h2>
+            <span class="panel-kicker">V6.4</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>样本</span>
+              <strong id="protectionValidationRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>保护分风险抬升</span>
+              <strong id="protectionValidationLift">--</strong>
+            </div>
+            <div class="result-row">
+              <span>阶段一致性</span>
+              <strong id="protectionValidationConsistency">--</strong>
+            </div>
+            <div class="result-row">
+              <span>策略变更</span>
+              <strong id="protectionValidationReady">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="protectionValidationModels"></div>
+          <div class="alpha-source-list" id="protectionValidationPhases"></div>
+          <p class="result-note" id="protectionValidationConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -792,7 +820,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-context-score-1"></script>
+    <script src="/static/dashboard.js?v=20260708-protection-validation-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

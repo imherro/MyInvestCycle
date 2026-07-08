@@ -522,6 +522,14 @@ def _read_exposure_context_score_audit_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_protection_score_validation_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "protection_score_validation.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -902,6 +910,27 @@ def _compact_exposure_context_score_audit_payload(payload: dict[str, object] | N
             "participation_bucket_analysis",
             "protection_bucket_analysis",
             "separation_review",
+            "time_safety",
+            "data_quality",
+            "constraints",
+        )
+        if key in payload
+    }
+
+
+def _compact_protection_score_validation_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "model_comparison",
+            "bucket_metrics",
+            "phase_analysis",
+            "phase_consistency",
+            "threshold_audit",
             "time_safety",
             "data_quality",
             "constraints",
@@ -1732,6 +1761,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/allocation/protection-score-validation",
+                    "返回 V6.4 Protection Score Robustness & Conditional Validation，固定 V6.3 保护分、V5.10 风险梯度和 V5.11 阈值，对比未来高风险、回撤和矛盾率；不改仓位或策略。",
+                    "protection score robustness validation",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -1868,6 +1904,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/allocation/exposure-policy-validation", "description": "读取 V6.1 自适应暴露策略诊断叠加验证。"},
             {"path": "/api/allocation/exposure-decision-audit", "description": "读取 V6.2 暴露决策上下文设计审计。"},
             {"path": "/api/allocation/exposure-context-score-audit", "description": "读取 V6.3 连续暴露上下文评分审计。"},
+            {"path": "/api/allocation/protection-score-validation", "description": "读取 V6.4 保护分稳健性与条件验证。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -2832,6 +2869,17 @@ def exposure_context_score_audit() -> dict:
     return payload
 
 
+@app.get("/api/allocation/protection-score-validation")
+def protection_score_validation() -> dict:
+    payload = _read_protection_score_validation_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Protection score validation artifact missing; run scripts/run_protection_score_validation.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -2985,6 +3033,7 @@ def results_summary(
         exposure_policy_validation = _read_exposure_policy_validation_payload()
         exposure_decision_audit = _read_exposure_decision_audit_payload()
         exposure_context_score_audit = _read_exposure_context_score_audit_payload()
+        protection_score_validation = _read_protection_score_validation_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -3016,6 +3065,7 @@ def results_summary(
             exposure_policy_validation = _compact_exposure_policy_validation_payload(exposure_policy_validation)
             exposure_decision_audit = _compact_exposure_decision_audit_payload(exposure_decision_audit)
             exposure_context_score_audit = _compact_exposure_context_score_audit_payload(exposure_context_score_audit)
+            protection_score_validation = _compact_protection_score_validation_payload(protection_score_validation)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -3084,6 +3134,7 @@ def results_summary(
             "exposure_policy_validation": exposure_policy_validation,
             "exposure_decision_audit": exposure_decision_audit,
             "exposure_context_score_audit": exposure_context_score_audit,
+            "protection_score_validation": protection_score_validation,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,

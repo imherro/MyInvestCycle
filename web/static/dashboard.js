@@ -736,6 +736,7 @@ function robustnessPeriodStatusLabel(value) {
     flat: "持平",
     insufficient_total_sample: "样本不足",
     insufficient_high_risk_sample: "高风险样本不足",
+    insufficient_high_bucket_sample: "高分桶样本不足",
   };
   return labels[value] || value || "--";
 }
@@ -823,6 +824,15 @@ function policyModelLabel(value) {
     model_a_baseline_v5_1: "A 基线 V5.1",
     model_b_v5_1_plus_risk_gradient_flag: "B + 风险梯度提示",
     model_c_v5_1_plus_primary_candidate_context: "C + 主候选提示",
+  };
+  return labels[value] || value || "--";
+}
+
+function protectionValidationModelLabel(value) {
+  const labels = {
+    model_a_risk_gradient_bucket: "A 原始风险梯度",
+    model_b_protection_score_bucket: "B 保护分高桶",
+    model_c_risk_gradient_plus_protection_score: "C 风险梯度+保护分双高",
   };
   return labels[value] || value || "--";
 }
@@ -1502,6 +1512,10 @@ function setResultsPanel(results) {
   const contextScoreSeparation = contextScoreAudit.separation_review || {};
   const protectionBuckets = contextScoreAudit.protection_bucket_analysis || {};
   const participationBuckets = contextScoreAudit.participation_bucket_analysis || {};
+  const protectionValidation = results.protection_score_validation || {};
+  const protectionValidationSummary = protectionValidation.summary || {};
+  const protectionValidationModels = protectionValidation.model_comparison || {};
+  const protectionValidationPhases = protectionValidation.phase_analysis || [];
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2739,6 +2753,49 @@ function setResultsPanel(results) {
     contextScoreAudit.metadata
       ? `V6.3 连续评分审计：高保护分风险抬升 ${signedRatioText(contextScoreSeparation.high_protection_risk_lift)}，高参与分机会抬升 ${signedRatioText(contextScoreSeparation.high_participation_opportunity_lift)}。结论：保护分有可见风险分离，参与分仍弱，暂不改 mapper、不改 exposure。`
       : "V6.3 连续暴露上下文评分尚未生成。"
+  );
+
+  setText("protectionValidationRows", integerText(protectionValidationSummary.joined_sample_count));
+  setText("protectionValidationLift", signedRatioText(protectionValidationSummary.model_b_protection_high_risk_lift));
+  setText("protectionValidationConsistency", robustnessConsistencyLabel(protectionValidationSummary.protection_phase_consistency));
+  setText(
+    "protectionValidationReady",
+    protectionValidationSummary.ready_for_mapper_change === true || protectionValidationSummary.ready_for_exposure_change === true
+      ? "可变更"
+      : "不可变更"
+  );
+  setHtml("protectionValidationModels", [
+    "model_a_risk_gradient_bucket",
+    "model_b_protection_score_bucket",
+    "model_c_risk_gradient_plus_protection_score",
+  ]
+    .map((modelId) => {
+      const item = protectionValidationModels[modelId] || {};
+      return `
+        <div class="duration-row">
+          <span>${protectionValidationModelLabel(modelId)} · 高桶 ${integerText(item.high_group_sample_count)} 样本</span>
+          <strong>风险 ${percentText(item.high_group_high_risk_rate)} · 抬升 ${signedRatioText(item.high_group_high_risk_lift)}</strong>
+          <em>回撤 ${percentText(item.high_group_drawdown_event_rate)} · 误警 ${percentText(item.false_warning_rate)}</em>
+        </div>
+      `;
+    })
+    .join(""));
+  setHtml("protectionValidationPhases", protectionValidationPhases
+    .map((phase) => {
+      const item = phase.model_b_protection_score || {};
+      return `
+        <div class="alpha-source-row">
+          <span>${marketPhaseLabel(phase.market_phase)} · ${robustnessPeriodStatusLabel(item.status)}</span>
+          <strong>${integerText(phase.sample_count)} 样本 · 高保护 ${integerText(item.high_sample_count)} 个 · 风险抬升 ${signedRatioText(item.high_risk_lift)}</strong>
+        </div>
+      `;
+    })
+    .join(""));
+  setText(
+    "protectionValidationConclusion",
+    protectionValidation.metadata
+      ? `V6.4 保护分验证：保护分高桶风险抬升 ${signedRatioText(protectionValidationSummary.model_b_protection_high_risk_lift)}，阶段一致性 ${robustnessConsistencyLabel(protectionValidationSummary.protection_phase_consistency)}；原始风险梯度抬升 ${signedRatioText(protectionValidationSummary.model_a_high_risk_lift)}，双高组合抬升 ${signedRatioText(protectionValidationSummary.model_c_both_high_risk_lift)}。保护分可作为风险解释线索，但仍不可变更 mapper/exposure。`
+      : "V6.4 保护分稳健性验证尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
