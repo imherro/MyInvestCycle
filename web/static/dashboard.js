@@ -1677,6 +1677,10 @@ function setResultsPanel(results) {
   const allocationExperimentSummary = allocationExperiments.summary || {};
   const allocationExperimentSchema = allocationExperiments.schema || {};
   const allocationExperimentRows = Array.isArray(allocationExperiments.experiment_templates) ? allocationExperiments.experiment_templates : [];
+  const allocationExperimentResults = results.allocation_experiment_results || {};
+  const allocationExperimentResultSummary = allocationExperimentResults.summary || {};
+  const allocationExperimentResultRows = Array.isArray(allocationExperimentResults.experiment_results) ? allocationExperimentResults.experiment_results : [];
+  const allocationExperimentScope = allocationExperimentResults.execution_scope || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3624,6 +3628,51 @@ function setResultsPanel(results) {
     allocationExperiments.metadata
       ? `V9.4 只定义 ${integerText(allocationExperimentSummary.experiment_template_count)} 个预声明实验模板，执行数 ${integerText(allocationExperimentSummary.executed_experiment_count)}；评价标准 ${allocationExperimentCriteria.map((item) => escapeHtml(item)).join(" / ") || "--"}。禁止输出：${allocationExperimentForbidden.map((item) => escapeHtml(item)).join(" / ") || "--"}。`
       : "V9.4 配置研究实验模板尚未生成。"
+  );
+
+  const allocationExperimentResultReadyFlagsOff =
+    allocationExperimentResultSummary.ready_for_asset_selection === false &&
+    allocationExperimentResultSummary.ready_for_etf_mapping === false &&
+    allocationExperimentResultSummary.ready_for_weight_generation === false &&
+    allocationExperimentResultSummary.ready_for_backtest === false &&
+    allocationExperimentResultSummary.ready_for_optimization === false &&
+    allocationExperimentResultSummary.ready_for_trade === false &&
+    allocationExperimentResultSummary.promoted_to_candidate === false &&
+    allocationExperimentResultSummary.investable_output_generated === false;
+  setText("allocationExperimentResultStatus", allocationExperimentResultSummary.conclusion ? "Phase 0 完成" : "--");
+  setText(
+    "allocationExperimentResultExecuted",
+    allocationExperimentResultSummary.executed_experiment_count != null
+      ? `${integerText(allocationExperimentResultSummary.executed_experiment_count)} 个`
+      : "--"
+  );
+  setText(
+    "allocationExperimentResultDesignPass",
+    allocationExperimentResultSummary.design_pass_count != null
+      ? `${integerText(allocationExperimentResultSummary.design_pass_count)} 个`
+      : "--"
+  );
+  setText(
+    "allocationExperimentResultMarket",
+    allocationExperimentResultSummary.market_validation_result_count != null
+      ? `${integerText(allocationExperimentResultSummary.market_validation_result_count)} 个`
+      : "--"
+  );
+  setText("allocationExperimentResultBoundary", allocationExperimentResultReadyFlagsOff ? "不选资产/不映射ETF/不生成权重/不优化/不交易" : "需复核");
+  setHtml("allocationExperimentResultRows", allocationExperimentResultRows
+    .map((row) => `
+      <div class="duration-row">
+        <span>${escapeHtml(row.experiment_id || "--")} · ${escapeHtml(row.hypothesis_name || "--")}</span>
+        <strong>${escapeHtml(row.validation_result || "--")}</strong>
+        <em>${escapeHtml(row.out_of_sample_status || "--")} · ${escapeHtml(row.promotion_status || "--")} · ${escapeHtml(row.interpretation || "")}</em>
+      </div>
+    `)
+    .join(""));
+  setText(
+    "allocationExperimentResultConclusion",
+    allocationExperimentResults.metadata
+      ? `V9.5 Phase 0 只执行预声明模板的研究纪律检查：执行 ${integerText(allocationExperimentResultSummary.executed_experiment_count)} 个，design pass ${integerText(allocationExperimentResultSummary.design_pass_count)} 个，市场验证结果 ${integerText(allocationExperimentResultSummary.market_validation_result_count)} 个。执行范围：market_data_loaded=${allocationExperimentScope.market_data_loaded === false ? "false" : "--"}，performance_measured=${allocationExperimentScope.performance_measured === false ? "false" : "--"}；不可用于资产选择、ETF 映射、权重、优化或交易。`
+      : "V9.5 配置研究实验 Phase 0 结果尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

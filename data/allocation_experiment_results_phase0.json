@@ -1,0 +1,226 @@
+{
+  "metadata": {
+    "engine": "V9.5 Allocation Research Experiment Execution Phase 0",
+    "generated_at": "2026-07-08T20:14:03+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "v9_4_allocation_experiment_templates": "data/allocation_experiment_templates.json"
+    },
+    "purpose": "Execute predeclared research templates as Phase 0 design checks; no market data search, allocation, optimization, or trades."
+  },
+  "summary": {
+    "source_context": "risk_controlled_opportunity_watch",
+    "source_conclusion": "allocation_experiment_templates_defined_not_executed",
+    "experiment_template_count": 4,
+    "executed_experiment_count": 4,
+    "validation_result_count": 4,
+    "design_pass_count": 4,
+    "design_fail_count": 0,
+    "market_validation_result_count": 0,
+    "ready_for_asset_selection": false,
+    "ready_for_etf_mapping": false,
+    "ready_for_weight_generation": false,
+    "ready_for_backtest": false,
+    "ready_for_optimization": false,
+    "ready_for_trade": false,
+    "promoted_to_candidate": false,
+    "investable_output_generated": false,
+    "conclusion": "allocation_experiment_phase0_completed_research_only_not_investable",
+    "key_read": "Phase 0 checks predeclared experiment discipline only; all results are non-investable and cannot be used for asset selection, ETF mapping, weights, optimization, or trades."
+  },
+  "schema": {
+    "schema_version": "V9.5",
+    "purpose": "Execute predeclared experiment templates as Phase 0 research discipline checks without producing investable outputs.",
+    "allowed_input": {
+      "field": "allocation_experiment_templates",
+      "source": "V9.4 Allocation Research Experiment Template Framework",
+      "description": "Use only predeclared template fields; do not read market data to search rules or optimize outcomes."
+    },
+    "result_fields": [
+      "experiment_id",
+      "execution_status",
+      "validation_result",
+      "out_of_sample_status",
+      "drawdown_audit_status",
+      "contradiction_audit_status",
+      "regime_stability_status",
+      "time_safety_status",
+      "promotion_status",
+      "investable_output"
+    ],
+    "allowed_validation_results": [
+      "design_pass_market_not_evaluated",
+      "design_fail"
+    ],
+    "required_execution_status": "completed",
+    "required_promotion_status": "not_promoted",
+    "forbidden_outputs": [
+      "asset_selection",
+      "etf_mapping",
+      "portfolio_weight",
+      "top_n",
+      "exposure_percent",
+      "buy_signal",
+      "sell_signal",
+      "rebalance_instruction",
+      "broker_order",
+      "backtest_result",
+      "optimization"
+    ]
+  },
+  "source_layer_evidence": {
+    "v9_4_summary": {
+      "source_context": "risk_controlled_opportunity_watch",
+      "source_conclusion": "allocation_validation_plan_defined_not_executed",
+      "validation_plan_count": 4,
+      "experiment_template_count": 4,
+      "executed_experiment_count": 0,
+      "experiment_template_ready": false,
+      "experiment_executed": false,
+      "ready_for_asset_selection": false,
+      "ready_for_etf_mapping": false,
+      "ready_for_weight_generation": false,
+      "ready_for_backtest": false,
+      "ready_for_validation_result": false,
+      "ready_for_optimization": false,
+      "ready_for_trade": false,
+      "conclusion": "allocation_experiment_templates_defined_not_executed",
+      "key_read": "V9.4 defines experiment templates only; no experiment is run and no configuration, result, optimization, or trade output is produced."
+    },
+    "experiment_ids": [
+      "H1",
+      "H2",
+      "H3",
+      "H4"
+    ]
+  },
+  "execution_scope": {
+    "phase": "phase0_design_execution",
+    "market_data_loaded": false,
+    "performance_measured": false,
+    "parameter_search_performed": false,
+    "candidate_promotion_allowed": false
+  },
+  "experiment_results": [
+    {
+      "experiment_id": "H1",
+      "hypothesis_name": "risk_relief_opportunity_readiness",
+      "execution_status": "completed",
+      "validation_result": "design_pass_market_not_evaluated",
+      "out_of_sample_status": "design_declared_not_measured",
+      "drawdown_audit_status": "design_declared_not_measured",
+      "contradiction_audit_status": "design_declared_not_measured",
+      "regime_stability_status": "design_declared_not_measured",
+      "time_safety_status": "template_time_safe",
+      "promotion_status": "not_promoted",
+      "investable_output": false,
+      "interpretation": "Phase 0 executes design discipline only; market performance is not measured and no allocation candidate is promoted."
+    },
+    {
+      "experiment_id": "H2",
+      "hypothesis_name": "risk_dominant_protection_persistence",
+      "execution_status": "completed",
+      "validation_result": "design_pass_market_not_evaluated",
+      "out_of_sample_status": "design_declared_not_measured",
+      "drawdown_audit_status": "design_declared_not_measured",
+      "contradiction_audit_status": "design_declared_not_measured",
+      "regime_stability_status": "design_declared_not_measured",
+      "time_safety_status": "template_time_safe",
+      "promotion_status": "not_promoted",
+      "investable_output": false,
+      "interpretation": "Phase 0 executes design discipline only; market performance is not measured and no allocation candidate is promoted."
+    },
+    {
+      "experiment_id": "H3",
+      "hypothesis_name": "structural_opportunity_independent_confirmation",
+      "execution_status": "completed",
+      "validation_result": "design_pass_market_not_evaluated",
+      "out_of_sample_status": "design_declared_not_measured",
+      "drawdown_audit_status": "design_declared_not_measured",
+      "contradiction_audit_status": "design_declared_not_measured",
+      "regime_stability_status": "design_declared_not_measured",
+      "time_safety_status": "template_time_safe",
+      "promotion_status": "not_promoted",
+      "investable_output": false,
+      "interpretation": "Phase 0 executes design discipline only; market performance is not measured and no allocation candidate is promoted."
+    },
+    {
+      "experiment_id": "H4",
+      "hypothesis_name": "contradiction_first_promotion_gate",
+      "execution_status": "completed",
+      "validation_result": "design_pass_market_not_evaluated",
+      "out_of_sample_status": "design_declared_not_measured",
+      "drawdown_audit_status": "design_declared_not_measured",
+      "contradiction_audit_status": "design_declared_not_measured",
+      "regime_stability_status": "design_declared_not_measured",
+      "time_safety_status": "template_time_safe",
+      "promotion_status": "not_promoted",
+      "investable_output": false,
+      "interpretation": "Phase 0 executes design discipline only; market performance is not measured and no allocation candidate is promoted."
+    }
+  ],
+  "time_safety": {
+    "uses_v9_4_artifact_only": true,
+    "does_not_recompute_features": true,
+    "does_not_recompute_forward_returns": true,
+    "future_returns_not_used": true,
+    "market_data_not_loaded": true
+  },
+  "data_quality": {
+    "no_asset_data_loaded": true,
+    "no_etf_data_loaded": true,
+    "no_market_data_loaded": true,
+    "no_backtest": true,
+    "no_parameter_scan": true,
+    "no_optimization": true
+  },
+  "constraints": {
+    "research_only": true,
+    "phase0_execution_only": true,
+    "uses_predeclared_templates_only": true,
+    "does_not_load_market_data": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_exposure_percent": true,
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "no_buy_sell_signal": true,
+    "no_rebalance_instruction": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "audit": {
+    "audit_status": "passed",
+    "checked_result_count": 4,
+    "checked_constraints": [
+      "research_only",
+      "phase0_execution_only",
+      "uses_predeclared_templates_only",
+      "does_not_load_market_data",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_exposure_percent",
+      "does_not_run_backtest",
+      "does_not_optimize_parameters",
+      "no_buy_sell_signal",
+      "no_rebalance_instruction",
+      "no_order_generation",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "backtest_result",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n"
+    ]
+  }
+}
