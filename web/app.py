@@ -898,6 +898,14 @@ def _read_research_candidate_promotion_gate_payload() -> dict[str, object] | Non
     return payload if isinstance(payload, dict) else None
 
 
+def _read_research_candidate_deep_validation_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "research_candidate_deep_validation.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -1652,6 +1660,25 @@ def _compact_research_candidate_promotion_gate_payload(payload: dict[str, object
             "summary",
             "source_layer_evidence",
             "gate_results",
+            "constraints",
+            "forbidden_outputs",
+            "audit",
+        )
+        if key in payload
+    }
+
+
+def _compact_research_candidate_deep_validation_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "source_layer_evidence",
+            "deep_validation_results",
+            "time_safety",
             "constraints",
             "forbidden_outputs",
             "audit",
@@ -2615,6 +2642,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/allocation-research/research-candidate-deep-validation",
+                    "返回 V9.8 Research Candidate Deep Validation Framework，对 H2/H4 继续研究假设做更严格的场景一致性与矛盾门禁验证；仍不策略化、不配置、不优化、不交易。",
+                    "allocation research candidate deep validation",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -2770,6 +2804,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/allocation-research/experiment-results", "description": "读取 V9.5 Phase 0 研究实验执行结果：只检查预声明模板纪律，不产生可投资输出。"},
             {"path": "/api/allocation-research/experiment-phase1-validation", "description": "读取 V9.6 Phase 1 研究实验验证结果：含输入哈希和研究状态，仍不配置、不交易。"},
             {"path": "/api/allocation-research/research-candidate-gate", "description": "读取 V9.7 研究阶段门禁审计：只判断继续研究、冻结或暂拒，仍不策略化、不配置、不交易。"},
+            {"path": "/api/allocation-research/research-candidate-deep-validation", "description": "读取 V9.8 研究候选深度验证：只深化 H2/H4 的研究证据，不策略化、不配置、不交易。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -3943,6 +3978,17 @@ def research_candidate_gate() -> dict:
     return payload
 
 
+@app.get("/api/allocation-research/research-candidate-deep-validation")
+def research_candidate_deep_validation() -> dict:
+    payload = _read_research_candidate_deep_validation_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Research candidate deep validation artifact missing; run scripts/run_research_candidate_deep_validation.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -4115,6 +4161,7 @@ def results_summary(
         allocation_experiment_results = _read_allocation_experiment_results_payload()
         allocation_experiment_phase1_validation = _read_allocation_experiment_phase1_validation_payload()
         research_candidate_promotion_gate = _read_research_candidate_promotion_gate_payload()
+        research_candidate_deep_validation = _read_research_candidate_deep_validation_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -4165,6 +4212,7 @@ def results_summary(
             allocation_experiment_results = _compact_allocation_experiment_results_payload(allocation_experiment_results)
             allocation_experiment_phase1_validation = _compact_allocation_experiment_phase1_validation_payload(allocation_experiment_phase1_validation)
             research_candidate_promotion_gate = _compact_research_candidate_promotion_gate_payload(research_candidate_promotion_gate)
+            research_candidate_deep_validation = _compact_research_candidate_deep_validation_payload(research_candidate_deep_validation)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -4252,6 +4300,7 @@ def results_summary(
             "allocation_experiment_results": allocation_experiment_results,
             "allocation_experiment_phase1_validation": allocation_experiment_phase1_validation,
             "research_candidate_promotion_gate": research_candidate_promotion_gate,
+            "research_candidate_deep_validation": research_candidate_deep_validation,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,

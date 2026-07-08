@@ -1688,6 +1688,9 @@ function setResultsPanel(results) {
   const researchGate = results.research_candidate_promotion_gate || {};
   const researchGateSummary = researchGate.summary || {};
   const researchGateRows = Array.isArray(researchGate.gate_results) ? researchGate.gate_results : [];
+  const researchDeep = results.research_candidate_deep_validation || {};
+  const researchDeepSummary = researchDeep.summary || {};
+  const researchDeepRows = Array.isArray(researchDeep.deep_validation_results) ? researchDeep.deep_validation_results : [];
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -3745,6 +3748,49 @@ function setResultsPanel(results) {
     researchGate.metadata
       ? `V9.7 固定 V9.6/V9.3/V9.4 输入做研究阶段门禁：继续研究 ${integerText(researchGateSummary.continue_research_count)}、冻结 ${integerText(researchGateSummary.freeze_count)}、暂拒 ${integerText(researchGateSummary.reject_for_now_count)}。promotion_allowed=false，strategy_promotion=false，investable_output=false；不产生策略、配置、资产、ETF、权重或交易。`
       : "V9.7 研究阶段门禁审计尚未生成。"
+  );
+
+  const researchDeepReadyFlagsOff =
+    researchDeepSummary.promotion_allowed === false &&
+    researchDeepSummary.strategy_promotion === false &&
+    researchDeepSummary.allocation_promotion === false &&
+    researchDeepSummary.investable_output === false &&
+    researchDeepSummary.investable_output_generated === false &&
+    researchDeepSummary.ready_for_asset_selection === false &&
+    researchDeepSummary.ready_for_etf_mapping === false &&
+    researchDeepSummary.ready_for_weight_generation === false &&
+    researchDeepSummary.ready_for_optimization === false &&
+    researchDeepSummary.ready_for_trade === false;
+  const researchDeepStatusLabel = (status) => ({
+    supported: "支持",
+    inconclusive: "不确定",
+    unsupported: "不支持",
+  }[status] || status || "--");
+  setText("researchDeepStatus", researchDeepSummary.conclusion ? "深度验证完成" : "--");
+  setText("researchDeepSupported", integerText(researchDeepSummary.supported_count));
+  setText("researchDeepInconclusive", integerText(researchDeepSummary.inconclusive_count));
+  setText("researchDeepUnsupported", integerText(researchDeepSummary.unsupported_count));
+  setText("researchDeepBoundary", researchDeepReadyFlagsOff ? "不策略化/不配置/不优化/不交易" : "需复核");
+  setHtml("researchDeepRows", researchDeepRows
+    .map((row) => {
+      const checks = row.deep_checks || {};
+      const checkText = row.hypothesis_id === "H2"
+        ? `低一致 ${fixedText(checks.low_consistency_share, 3)} · 风险滞后 ${integerText(checks.risk_axis_lag_or_structural_rotation_missed_count)}`
+        : `归因覆盖 ${checks.attribution_coverage_pass ? "通过" : "未过"} · 门禁阻断 ${checks.promotion_blocked ? "通过" : "未过"}`;
+      return `
+        <div class="duration-row">
+          <span>${escapeHtml(row.hypothesis_id || "--")} · ${escapeHtml(row.hypothesis_name || "--")}</span>
+          <strong>${escapeHtml(researchDeepStatusLabel(row.status))}</strong>
+          <em>${escapeHtml(checkText)} · ${escapeHtml(row.next_research_step || "")}</em>
+        </div>
+      `;
+    })
+    .join(""));
+  setText(
+    "researchDeepConclusion",
+    researchDeep.metadata
+      ? `V9.8 只深化 H2/H4：supported ${integerText(researchDeepSummary.supported_count)}、inconclusive ${integerText(researchDeepSummary.inconclusive_count)}、unsupported ${integerText(researchDeepSummary.unsupported_count)}。当前读法：H2 在更严格跨场景稳定性下仍不确定；H4 作为矛盾优先研究门禁得到支持。仍不产生策略、配置、资产、ETF、权重、优化或交易。`
+      : "V9.8 研究候选深度验证尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
