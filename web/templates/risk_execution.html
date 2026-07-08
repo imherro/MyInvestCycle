@@ -150,6 +150,33 @@
           <p class="result-note" id="allocationPolicyConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="把市场拆成机会状态和风险状态两个轴：机会看宏观修复、结构牛和主线持续，风险看拥挤、涨幅延伸、宽度不足和集中度；只做解释，不输出仓位、ETF 或交易。">机会-风险二维状态</h2>
+            <span class="panel-kicker">V4.3</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>机会状态</span>
+              <strong id="opportunityRiskOpportunity">--</strong>
+            </div>
+            <div class="result-row">
+              <span>风险状态</span>
+              <strong id="opportunityRiskRisk">--</strong>
+            </div>
+            <div class="result-row">
+              <span>组合状态</span>
+              <strong id="opportunityRiskCombined">--</strong>
+            </div>
+            <div class="result-row">
+              <span>历史重放</span>
+              <strong id="opportunityRiskHistory">--</strong>
+            </div>
+          </div>
+          <div class="route-pill-list" id="opportunityRiskEvidence"></div>
+          <p class="result-note" id="opportunityRiskConclusion">--</p>
+        </article>
+
         <article class="chart-panel result-panel strategy-route-panel">
           <div class="panel-heading">
             <h2 class="help-title" tabindex="0" data-help="显示当前允许启用哪些策略、禁用哪些策略，以及资金在策略之间如何分配。">策略路由</h2>
@@ -258,7 +285,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-policy-validation-1"></script>
+    <script src="/static/dashboard.js?v=20260708-opportunity-risk-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

@@ -1,0 +1,5341 @@
+{
+  "metadata": {
+    "engine": "V4.3 Market Opportunity vs Risk State Separation Engine",
+    "generated_at": "2026-07-08T13:52:33+00:00",
+    "as_of": "20260707",
+    "window": {
+      "start": "20150101",
+      "end": "20261231"
+    },
+    "purpose": "Separate opportunity state from risk state before any adaptive allocation research.",
+    "state_separation_only": true
+  },
+  "current": {
+    "as_of": "20260707",
+    "opportunity_state": "LATE_BULL",
+    "risk_state": "CROWDED",
+    "combined_state": "LATE_BULL__CROWDED",
+    "evidence": [
+      "macro_recovery",
+      "structural_rotation",
+      "bull_divergence",
+      "trend_strong",
+      "theme_persistence_high",
+      "industry_breadth_narrow",
+      "single_theme_concentration",
+      "crowding_elevated",
+      "price_extension_high",
+      "theme_risk_medium"
+    ],
+    "metrics": {
+      "macro_state": "RECOVERY",
+      "structural_state": "STRUCTURAL_BULL_ROTATION",
+      "market_structure_state": "BULL_DIVERGENCE",
+      "theme_risk_level": "medium",
+      "trend": 78.7653,
+      "breadth": 14.59,
+      "liquidity": 45.37,
+      "theme_persistence": 82.7922,
+      "industry_breadth": 0.0968,
+      "top_industry_ratio": 0.2581,
+      "crowding_score": 56.1413,
+      "price_extension": 75.0,
+      "pressure": 0.0
+    },
+    "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation."
+  },
+  "historical_summary": {
+    "replay_count": 140,
+    "opportunity_state_distribution": {
+      "BULL_EXPANSION": {
+        "count": 9,
+        "share": 0.064286
+      },
+      "EARLY_RECOVERY": {
+        "count": 71,
+        "share": 0.507143
+      },
+      "LATE_BULL": {
+        "count": 13,
+        "share": 0.092857
+      },
+      "STRUCTURAL_ROTATION": {
+        "count": 41,
+        "share": 0.292857
+      },
+      "UNKNOWN": {
+        "count": 6,
+        "share": 0.042857
+      }
+    },
+    "risk_state_distribution": {
+      "CROWDED": {
+        "count": 107,
+        "share": 0.764286
+      },
+      "HIGH_RISK": {
+        "count": 8,
+        "share": 0.057143
+      },
+      "LOW_RISK": {
+        "count": 7,
+        "share": 0.05
+      },
+      "NORMAL": {
+        "count": 18,
+        "share": 0.128571
+      }
+    },
+    "combined_state_distribution": {
+      "BULL_EXPANSION__CROWDED": {
+        "count": 8,
+        "share": 0.057143
+      },
+      "BULL_EXPANSION__NORMAL": {
+        "count": 1,
+        "share": 0.007143
+      },
+      "EARLY_RECOVERY__CROWDED": {
+        "count": 54,
+        "share": 0.385714
+      },
+      "EARLY_RECOVERY__HIGH_RISK": {
+        "count": 2,
+        "share": 0.014286
+      },
+      "EARLY_RECOVERY__LOW_RISK": {
+        "count": 4,
+        "share": 0.028571
+      },
+      "EARLY_RECOVERY__NORMAL": {
+        "count": 11,
+        "share": 0.078571
+      },
+      "LATE_BULL__CROWDED": {
+        "count": 7,
+        "share": 0.05
+      },
+      "LATE_BULL__HIGH_RISK": {
+        "count": 6,
+        "share": 0.042857
+      },
+      "STRUCTURAL_ROTATION__CROWDED": {
+        "count": 33,
+        "share": 0.235714
+      },
+      "STRUCTURAL_ROTATION__LOW_RISK": {
+        "count": 2,
+        "share": 0.014286
+      },
+      "STRUCTURAL_ROTATION__NORMAL": {
+        "count": 6,
+        "share": 0.042857
+      },
+      "UNKNOWN__CROWDED": {
+        "count": 5,
+        "share": 0.035714
+      },
+      "UNKNOWN__LOW_RISK": {
+        "count": 1,
+        "share": 0.007143
+      }
+    },
+    "opportunity_risk_matrix": {
+      "BULL_EXPANSION": {
+        "CROWDED": 8,
+        "NORMAL": 1
+      },
+      "EARLY_RECOVERY": {
+        "CROWDED": 54,
+        "LOW_RISK": 4,
+        "NORMAL": 11,
+        "HIGH_RISK": 2
+      },
+      "LATE_BULL": {
+        "HIGH_RISK": 6,
+        "CROWDED": 7
+      },
+      "STRUCTURAL_ROTATION": {
+        "CROWDED": 33,
+        "LOW_RISK": 2,
+        "NORMAL": 6
+      },
+      "UNKNOWN": {
+        "CROWDED": 5,
+        "LOW_RISK": 1
+      }
+    },
+    "complete_structural_context_count": 79,
+    "complete_structural_context_share": 0.564286,
+    "key_read": "Replay generated 140 opportunity/risk states. Dominant combined state is EARLY_RECOVERY__CROWDED (54/140), while crowded/high-risk observations account for 115/140."
+  },
+  "historical_replay": [
+    {
+      "date": "20150105",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 0.0,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.0,
+        "crowding_score": 34.0,
+        "price_extension": 0.0,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20150105",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150202",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 0.0,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.0,
+        "crowding_score": 34.0,
+        "price_extension": 0.0,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20150202",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150309",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 0.0,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.0,
+        "crowding_score": 34.0,
+        "price_extension": 0.0,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20150309",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150407",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 97.4193,
+        "industry_breadth": 0.9677,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 2.7763,
+        "price_extension": 0.0,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20150407",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150508",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "LATE_BULL__HIGH_RISK",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 73.512,
+        "industry_breadth": 0.9355,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 36.5712,
+        "price_extension": 98.4444,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
+      "data_quality": {
+        "context_date": "20150506",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150605",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "LATE_BULL__HIGH_RISK",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 76.5248,
+        "industry_breadth": 1.0,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 37.2055,
+        "price_extension": 100.0,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
+      "data_quality": {
+        "context_date": "20150603",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150706",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "medium",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 60.9579,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 47.2073,
+        "price_extension": 33.0849,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20150702",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150803",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 50.4971,
+        "industry_breadth": 0.0968,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 51.9911,
+        "price_extension": 55.5386,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20150730",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150831",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_BREAKDOWN",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 56.4044,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 39.8226,
+        "price_extension": 16.1739,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20150827",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20150930",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 64.0455,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 36.2435,
+        "price_extension": 20.2747,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20150928",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20151104",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 44.7669,
+        "industry_breadth": 0.0323,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 45.2473,
+        "price_extension": 61.1001,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20151102",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20151202",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 55.8875,
+        "industry_breadth": 0.9032,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 27.6628,
+        "price_extension": 73.6587,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20151130",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20151230",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 62.3826,
+        "industry_breadth": 0.871,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 26.1876,
+        "price_extension": 71.2101,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20151228",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160128",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_BREAKDOWN",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 64.5117,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 38.1805,
+        "price_extension": 9.6667,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20160126",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160303",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 64.5812,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.3226,
+        "crowding_score": 37.0134,
+        "price_extension": 14.5571,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20160301",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160331",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 66.5141,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.1613,
+        "crowding_score": 40.8487,
+        "price_extension": 41.3041,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20160329",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160429",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 56.4028,
+        "industry_breadth": 0.871,
+        "top_industry_ratio": 0.3548,
+        "crowding_score": 10.3932,
+        "price_extension": 28.6611,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20160427",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160530",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_BREAKDOWN",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 65.549,
+        "industry_breadth": 0.0323,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 43.4327,
+        "price_extension": 21.1475,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20160526",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160629",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 74.2362,
+        "industry_breadth": 0.4839,
+        "top_industry_ratio": 0.3226,
+        "crowding_score": 21.5659,
+        "price_extension": 55.8918,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20160627",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160727",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "LOW_RISK",
+      "combined_state": "STRUCTURAL_ROTATION__LOW_RISK",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "theme_persistence_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BEAR_REBOUND",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 70.2884,
+        "industry_breadth": 0.8065,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 19.8433,
+        "price_extension": 50.7336,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
+      "data_quality": {
+        "context_date": "20160725",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160824",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "LOW_RISK",
+      "combined_state": "EARLY_RECOVERY__LOW_RISK",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 50.8814,
+        "industry_breadth": 0.6452,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 20.7582,
+        "price_extension": 53.3147,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20160822",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20160923",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 63.6307,
+        "industry_breadth": 0.3548,
+        "top_industry_ratio": 0.3226,
+        "crowding_score": 23.9746,
+        "price_extension": 43.63,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20160921",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20161028",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "LOW_RISK",
+      "combined_state": "EARLY_RECOVERY__LOW_RISK",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "breadth_expanding"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 66.7019,
+        "industry_breadth": 0.871,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 24.5713,
+        "price_extension": 58.1074,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20161026",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20161125",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 68.387,
+        "industry_breadth": 0.9032,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 25.3451,
+        "price_extension": 60.2821,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20161123",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20161223",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "medium",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 70.0003,
+        "industry_breadth": 0.0968,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 47.6453,
+        "price_extension": 44.4376,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20161221",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170123",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 72.3422,
+        "industry_breadth": 0.0968,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 46.2027,
+        "price_extension": 39.0747,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20170119",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170227",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "NORMAL",
+      "combined_state": "STRUCTURAL_ROTATION__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "theme_persistence_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 73.056,
+        "industry_breadth": 0.3226,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 27.5613,
+        "price_extension": 66.855,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
+      "data_quality": {
+        "context_date": "20170223",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170327",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 63.2599,
+        "industry_breadth": 0.6129,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 22.8809,
+        "price_extension": 58.255,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20170323",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170426",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "medium",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 74.7857,
+        "industry_breadth": 0.0323,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 50.1455,
+        "price_extension": 42.2886,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20170424",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170525",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "medium",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 77.2546,
+        "industry_breadth": 0.0645,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 48.8105,
+        "price_extension": 36.9065,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20170523",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170626",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "theme_persistence_high",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 73.2938,
+        "industry_breadth": 0.129,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 42.3777,
+        "price_extension": 57.7322,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20170622",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170724",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 70.0595,
+        "industry_breadth": 0.3548,
+        "top_industry_ratio": 0.3548,
+        "crowding_score": 33.974,
+        "price_extension": 79.0628,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20170720",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170821",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "NORMAL",
+      "combined_state": "BULL_EXPANSION__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "theme_persistence_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 75.9891,
+        "industry_breadth": 0.7097,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 25.065,
+        "price_extension": 65.3193,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
+      "data_quality": {
+        "context_date": "20170817",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20170918",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 74.4143,
+        "industry_breadth": 0.8065,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 28.1613,
+        "price_extension": 68.9743,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20170914",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20171023",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 60.4585,
+        "industry_breadth": 0.3871,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 32.4797,
+        "price_extension": 65.2627,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20171019",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20171120",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 72.465,
+        "industry_breadth": 0.4516,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 27.7157,
+        "price_extension": 68.0909,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20171116",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20171218",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "medium",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 69.1259,
+        "industry_breadth": 0.0323,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 52.4835,
+        "price_extension": 47.6476,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20171214",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180116",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 69.25,
+        "industry_breadth": 0.4516,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 28.4946,
+        "price_extension": 70.631,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20180112",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180213",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "medium",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 77.4082,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 46.989,
+        "price_extension": 33.8333,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20180209",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180320",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 56.8615,
+        "industry_breadth": 0.3871,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 26.0934,
+        "price_extension": 69.0842,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20180316",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180419",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "medium",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 69.9701,
+        "industry_breadth": 0.0645,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 50.8768,
+        "price_extension": 41.5206,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20180417",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180521",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "LOW_RISK",
+      "combined_state": "STRUCTURAL_ROTATION__LOW_RISK",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "theme_persistence_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BEAR_REBOUND",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 75.9304,
+        "industry_breadth": 0.5806,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 25.3646,
+        "price_extension": 59.108,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
+      "data_quality": {
+        "context_date": "20180517",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180619",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BEAR_REBOUND",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 76.5274,
+        "industry_breadth": 0.0645,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 53.2771,
+        "price_extension": 48.0183,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20180614",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180717",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 73.2132,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 50.0533,
+        "price_extension": 38.0649,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20180713",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180814",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_BREAKDOWN",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 62.5073,
+        "industry_breadth": 0.0323,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 42.0198,
+        "price_extension": 23.5073,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20180810",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20180911",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 70.4099,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 38.8512,
+        "price_extension": 9.6557,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20180907",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20181017",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 76.7937,
+        "industry_breadth": 0.0323,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 38.3757,
+        "price_extension": 5.2778,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20181015",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20181114",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BEAR_REBOUND",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 73.925,
+        "industry_breadth": 0.0645,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 36.7405,
+        "price_extension": 40.5366,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20181112",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20181212",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_BREAKDOWN",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 61.3791,
+        "industry_breadth": 0.0645,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 36.7187,
+        "price_extension": 15.9086,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20181210",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190111",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 64.8173,
+        "industry_breadth": 0.1935,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 32.7915,
+        "price_extension": 23.3716,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20190109",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190215",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 66.2672,
+        "industry_breadth": 0.6452,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 21.9136,
+        "price_extension": 55.4798,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20190213",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190315",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "LATE_BULL__HIGH_RISK",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 71.0835,
+        "industry_breadth": 1.0,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 37.3553,
+        "price_extension": 97.8333,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
+      "data_quality": {
+        "context_date": "20190313",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190415",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "EARLY_RECOVERY__HIGH_RISK",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 60.7333,
+        "industry_breadth": 0.9032,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 33.3342,
+        "price_extension": 87.5114,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20190411",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190516",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "industry_breadth_narrow",
+        "crowding_elevated",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_PULLBACK",
+        "theme_risk_level": "medium",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 65.7761,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 57.0966,
+        "price_extension": 54.0234,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20190514",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190614",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "medium",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 70.3123,
+        "industry_breadth": 0.1613,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 41.7897,
+        "price_extension": 49.006,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20190612",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190712",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "bull_divergence",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 72.8302,
+        "industry_breadth": 0.0323,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 49.4371,
+        "price_extension": 53.1983,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20190710",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190809",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 69.842,
+        "industry_breadth": 0.0645,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 46.4068,
+        "price_extension": 34.5171,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20190807",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20190906",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "LATE_BULL__HIGH_RISK",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 78.6204,
+        "industry_breadth": 0.5806,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 32.2553,
+        "price_extension": 86.7567,
+        "pressure": 0.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
+      "data_quality": {
+        "context_date": "20190904",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20191014",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 67.6608,
+        "industry_breadth": 0.2581,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 35.8849,
+        "price_extension": 52.0665,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20191010",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20191111",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "medium",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 68.9393,
+        "industry_breadth": 0.4194,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 28.9275,
+        "price_extension": 61.5273,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20191107",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20191209",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 0.0,
+        "liquidity": 0.0,
+        "theme_persistence": 66.9009,
+        "industry_breadth": 0.0968,
+        "top_industry_ratio": 0.1613,
+        "crowding_score": 48.0211,
+        "price_extension": 44.4503,
+        "pressure": 0.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20191205",
+        "context_future_safe": true,
+        "structural_features_available": false,
+        "missing_fields": [
+          "trend",
+          "breadth",
+          "liquidity",
+          "volatility",
+          "pressure"
+        ]
+      }
+    },
+    {
+      "date": "20200107",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 79.0,
+        "breadth": 45.0,
+        "liquidity": 86.0,
+        "theme_persistence": 71.2459,
+        "industry_breadth": 0.9355,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 31.1725,
+        "price_extension": 77.4506,
+        "pressure": 34.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20200103",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200212",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "medium",
+        "trend": 31.0,
+        "breadth": 69.0,
+        "liquidity": 66.0,
+        "theme_persistence": 74.093,
+        "industry_breadth": 0.1935,
+        "top_industry_ratio": 0.3226,
+        "crowding_score": 47.9355,
+        "price_extension": 63.9894,
+        "pressure": 38.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20200210",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200311",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 22.0,
+        "breadth": 18.0,
+        "liquidity": 56.0,
+        "theme_persistence": 70.795,
+        "industry_breadth": 0.7097,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 26.646,
+        "price_extension": 73.4675,
+        "pressure": 4.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20200309",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200409",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "medium",
+        "trend": 100.0,
+        "breadth": 83.0,
+        "liquidity": 38.0,
+        "theme_persistence": 60.9226,
+        "industry_breadth": 0.0968,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 52.7594,
+        "price_extension": 56.2011,
+        "pressure": 82.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20200407",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200512",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "NORMAL",
+      "combined_state": "STRUCTURAL_ROTATION__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 19.0,
+        "breadth": 59.0,
+        "liquidity": 59.0,
+        "theme_persistence": 76.3436,
+        "industry_breadth": 0.4516,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 27.4923,
+        "price_extension": 69.6704,
+        "pressure": 40.0
+      },
+      "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
+      "data_quality": {
+        "context_date": "20200508",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200609",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 72.0,
+        "breadth": 37.0,
+        "liquidity": 43.0,
+        "theme_persistence": 76.4229,
+        "industry_breadth": 0.2903,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 35.0038,
+        "price_extension": 77.936,
+        "pressure": 35.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20200605",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200709",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 93.0,
+        "breadth": 52.0,
+        "liquidity": 100.0,
+        "theme_persistence": 84.4315,
+        "industry_breadth": 0.9677,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 36.8152,
+        "price_extension": 98.5066,
+        "pressure": 41.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
+      "data_quality": {
+        "context_date": "20200707",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200806",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 86.0,
+        "breadth": 32.0,
+        "liquidity": 50.0,
+        "theme_persistence": 70.9125,
+        "industry_breadth": 0.7742,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 36.8036,
+        "price_extension": 95.6437,
+        "pressure": 54.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
+      "data_quality": {
+        "context_date": "20200804",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20200903",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 83.0,
+        "breadth": 43.0,
+        "liquidity": 6.0,
+        "theme_persistence": 66.7701,
+        "industry_breadth": 0.6129,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 33.5246,
+        "price_extension": 87.7506,
+        "pressure": 40.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20200901",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20201009",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "medium",
+        "trend": 38.0,
+        "breadth": 50.0,
+        "liquidity": 5.0,
+        "theme_persistence": 67.4293,
+        "industry_breadth": 0.0323,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 54.4468,
+        "price_extension": 47.4722,
+        "pressure": 12.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20200929",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20201106",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "bull_divergence",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 44.0,
+        "breadth": 28.0,
+        "liquidity": 44.0,
+        "theme_persistence": 72.6793,
+        "industry_breadth": 0.3226,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 34.5192,
+        "price_extension": 79.2236,
+        "pressure": 16.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20201104",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20201204",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 76.0,
+        "breadth": 39.0,
+        "liquidity": 54.0,
+        "theme_persistence": 74.2066,
+        "industry_breadth": 0.4194,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 26.9634,
+        "price_extension": 73.6221,
+        "pressure": 37.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20201202",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210104",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "trend_strong",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 74.0,
+        "breadth": 41.0,
+        "liquidity": 51.0,
+        "theme_persistence": 67.3809,
+        "industry_breadth": 0.2258,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 51.5778,
+        "price_extension": 81.2849,
+        "pressure": 33.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20201230",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210201",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "NORMAL",
+      "combined_state": "STRUCTURAL_ROTATION__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 80.0,
+        "breadth": 22.0,
+        "liquidity": 15.0,
+        "theme_persistence": 75.4636,
+        "industry_breadth": 0.5484,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 27.61,
+        "price_extension": 68.8482,
+        "pressure": 58.0
+      },
+      "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
+      "data_quality": {
+        "context_date": "20210128",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210308",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 70.0,
+        "breadth": 25.0,
+        "liquidity": 53.0,
+        "theme_persistence": 72.705,
+        "industry_breadth": 0.3871,
+        "top_industry_ratio": 0.1613,
+        "crowding_score": 28.4792,
+        "price_extension": 73.49,
+        "pressure": 45.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20210304",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210406",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "evidence": [
+        "macro_recovery"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 44.0,
+        "breadth": 41.0,
+        "liquidity": 20.0,
+        "theme_persistence": 56.0501,
+        "industry_breadth": 0.3226,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 31.0593,
+        "price_extension": 60.056,
+        "pressure": 3.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20210401",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210507",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "liquidity_supportive",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 14.0,
+        "breadth": 29.0,
+        "liquidity": 74.0,
+        "theme_persistence": 60.8579,
+        "industry_breadth": 0.3226,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 34.418,
+        "price_extension": 71.8692,
+        "pressure": 15.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20210430",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210604",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 77.0,
+        "breadth": 28.0,
+        "liquidity": 60.0,
+        "theme_persistence": 57.3017,
+        "industry_breadth": 0.5484,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 24.4014,
+        "price_extension": 62.7194,
+        "pressure": 49.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20210602",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210705",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 72.0,
+        "breadth": 23.0,
+        "liquidity": 46.0,
+        "theme_persistence": 59.9493,
+        "industry_breadth": 0.3871,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 32.5669,
+        "price_extension": 72.1088,
+        "pressure": 49.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20210701",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210802",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 10.0,
+        "breadth": 75.0,
+        "liquidity": 47.0,
+        "theme_persistence": 75.4531,
+        "industry_breadth": 0.3871,
+        "top_industry_ratio": 0.3226,
+        "crowding_score": 38.2622,
+        "price_extension": 83.9982,
+        "pressure": 65.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20210729",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210830",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "LATE_BULL__HIGH_RISK",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 45.0,
+        "breadth": 29.0,
+        "liquidity": 58.0,
+        "theme_persistence": 82.0724,
+        "industry_breadth": 0.4194,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 32.9088,
+        "price_extension": 90.133,
+        "pressure": 16.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
+      "data_quality": {
+        "context_date": "20210826",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20210929",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 73.0,
+        "breadth": 18.0,
+        "liquidity": 36.0,
+        "theme_persistence": 77.2251,
+        "industry_breadth": 0.1935,
+        "top_industry_ratio": 0.129,
+        "crowding_score": 43.11,
+        "price_extension": 72.982,
+        "pressure": 55.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
+      "data_quality": {
+        "context_date": "20210927",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20211103",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "liquidity_supportive"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 41.0,
+        "breadth": 59.0,
+        "liquidity": 73.0,
+        "theme_persistence": 52.0161,
+        "industry_breadth": 0.2258,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 41.0182,
+        "price_extension": 61.7437,
+        "pressure": 18.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20211101",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20211201",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 47.0,
+        "breadth": 32.0,
+        "liquidity": 52.0,
+        "theme_persistence": 59.4695,
+        "industry_breadth": 0.3548,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 23.4828,
+        "price_extension": 60.1707,
+        "pressure": 15.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20211129",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20211229",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 72.0,
+        "breadth": 48.0,
+        "liquidity": 19.0,
+        "theme_persistence": 47.5883,
+        "industry_breadth": 0.5806,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 22.8365,
+        "price_extension": 57.9207,
+        "pressure": 24.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20211227",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220127",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 10.0,
+        "breadth": 7.0,
+        "liquidity": 23.0,
+        "theme_persistence": 54.0683,
+        "industry_breadth": 0.0645,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 43.011,
+        "price_extension": 27.7957,
+        "pressure": 3.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20220125",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220303",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 12.0,
+        "breadth": 52.0,
+        "liquidity": 53.0,
+        "theme_persistence": 56.9883,
+        "industry_breadth": 0.3871,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 22.8408,
+        "price_extension": 60.0039,
+        "pressure": 40.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20220301",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220331",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "medium",
+        "trend": 100.0,
+        "breadth": 22.0,
+        "liquidity": 18.0,
+        "theme_persistence": 65.6285,
+        "industry_breadth": 0.0968,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 49.0531,
+        "price_extension": 44.8076,
+        "pressure": 21.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20220329",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220505",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 0.0,
+        "breadth": 24.0,
+        "liquidity": 38.0,
+        "theme_persistence": 76.6611,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.3226,
+        "crowding_score": 45.2792,
+        "price_extension": 26.6381,
+        "pressure": 24.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20220428",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220602",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 15.0,
+        "breadth": 58.0,
+        "liquidity": 63.0,
+        "theme_persistence": 54.1104,
+        "industry_breadth": 0.0323,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 47.1335,
+        "price_extension": 67.1363,
+        "pressure": 43.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20220531",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220701",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 81.0,
+        "breadth": 16.0,
+        "liquidity": 60.0,
+        "theme_persistence": 64.2601,
+        "industry_breadth": 0.5806,
+        "top_industry_ratio": 0.3226,
+        "crowding_score": 24.332,
+        "price_extension": 62.8194,
+        "pressure": 65.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20220629",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220729",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 75.0,
+        "breadth": 49.0,
+        "liquidity": 15.0,
+        "theme_persistence": 63.9044,
+        "industry_breadth": 0.3548,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 32.3054,
+        "price_extension": 66.3189,
+        "pressure": 26.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20220727",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220826",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "NORMAL",
+      "combined_state": "STRUCTURAL_ROTATION__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "liquidity_supportive",
+        "theme_persistence_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 16.0,
+        "breadth": 9.0,
+        "liquidity": 57.0,
+        "theme_persistence": 73.1471,
+        "industry_breadth": 0.2258,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 36.1385,
+        "price_extension": 44.4147,
+        "pressure": 7.0
+      },
+      "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
+      "data_quality": {
+        "context_date": "20220824",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20220926",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_BREAKDOWN",
+        "theme_risk_level": "low",
+        "trend": 5.0,
+        "breadth": 25.0,
+        "liquidity": 12.0,
+        "theme_persistence": 50.0587,
+        "industry_breadth": 0.0645,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 46.4042,
+        "price_extension": 34.9092,
+        "pressure": 20.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20220922",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20221031",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "liquidity_supportive",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "medium",
+        "trend": 5.0,
+        "breadth": 35.0,
+        "liquidity": 72.0,
+        "theme_persistence": 60.425,
+        "industry_breadth": 0.0645,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 47.7107,
+        "price_extension": 38.3528,
+        "pressure": 30.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20221027",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20221128",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 16.0,
+        "breadth": 41.0,
+        "liquidity": 12.0,
+        "theme_persistence": 64.007,
+        "industry_breadth": 0.1613,
+        "top_industry_ratio": 0.129,
+        "crowding_score": 26.3136,
+        "price_extension": 33.3223,
+        "pressure": 25.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20221124",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20221226",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 39.0,
+        "breadth": 14.0,
+        "liquidity": 6.0,
+        "theme_persistence": 55.7971,
+        "industry_breadth": 0.3871,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 26.6617,
+        "price_extension": 58.0423,
+        "pressure": 25.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20221222",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230131",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 81.0,
+        "breadth": 55.0,
+        "liquidity": 57.0,
+        "theme_persistence": 59.3172,
+        "industry_breadth": 0.9355,
+        "top_industry_ratio": 0.1613,
+        "crowding_score": 25.708,
+        "price_extension": 67.8125,
+        "pressure": 26.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20230120",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230228",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "LOW_RISK",
+      "combined_state": "EARLY_RECOVERY__LOW_RISK",
+      "evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 76.0,
+        "breadth": 26.0,
+        "liquidity": 19.0,
+        "theme_persistence": 53.399,
+        "industry_breadth": 0.6452,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 22.4988,
+        "price_extension": 56.1273,
+        "pressure": 50.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20230224",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230328",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "liquidity_supportive",
+        "industry_breadth_narrow",
+        "crowding_elevated",
+        "price_extension_high",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "medium",
+        "trend": 74.0,
+        "breadth": 35.0,
+        "liquidity": 59.0,
+        "theme_persistence": 68.8145,
+        "industry_breadth": 0.1613,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 60.6726,
+        "price_extension": 82.7453,
+        "pressure": 39.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
+      "data_quality": {
+        "context_date": "20230324",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230426",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 73.0,
+        "breadth": 31.0,
+        "liquidity": 43.0,
+        "theme_persistence": 84.1769,
+        "industry_breadth": 0.1613,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 52.1967,
+        "price_extension": 67.3183,
+        "pressure": 42.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20230424",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230529",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "medium",
+        "trend": 36.0,
+        "breadth": 32.0,
+        "liquidity": 14.0,
+        "theme_persistence": 68.4508,
+        "industry_breadth": 0.0323,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 50.5841,
+        "price_extension": 45.1009,
+        "pressure": 4.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20230525",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230628",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 12.0,
+        "breadth": 15.0,
+        "liquidity": 45.0,
+        "theme_persistence": 71.2841,
+        "industry_breadth": 0.129,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 48.4611,
+        "price_extension": 60.9528,
+        "pressure": 3.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20230626",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230726",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 11.0,
+        "breadth": 35.0,
+        "liquidity": 11.0,
+        "theme_persistence": 64.6934,
+        "industry_breadth": 0.1613,
+        "top_industry_ratio": 0.1613,
+        "crowding_score": 28.2049,
+        "price_extension": 37.343,
+        "pressure": 24.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20230724",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230823",
+      "opportunity_state": "UNKNOWN",
+      "risk_state": "CROWDED",
+      "combined_state": "UNKNOWN__CROWDED",
+      "evidence": [
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RANGE",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_BREAKDOWN",
+        "theme_risk_level": "low",
+        "trend": 37.0,
+        "breadth": 21.0,
+        "liquidity": 15.0,
+        "theme_persistence": 53.7441,
+        "industry_breadth": 0.1935,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 34.3275,
+        "price_extension": 28.6462,
+        "pressure": 16.0
+      },
+      "interpretation": "Opportunity/risk state is inconclusive and should not drive allocation.",
+      "data_quality": {
+        "context_date": "20230821",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20230920",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "LOW_RISK",
+      "combined_state": "EARLY_RECOVERY__LOW_RISK",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_BREAKDOWN",
+        "theme_risk_level": "low",
+        "trend": 14.0,
+        "breadth": 48.0,
+        "liquidity": 25.0,
+        "theme_persistence": 48.115,
+        "industry_breadth": 0.3226,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 19.8541,
+        "price_extension": 44.9022,
+        "pressure": 34.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20230918",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20231026",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 6.0,
+        "breadth": 71.0,
+        "liquidity": 61.0,
+        "theme_persistence": 61.5109,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 41.395,
+        "price_extension": 17.0,
+        "pressure": 65.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20231024",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20231123",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "evidence": [
+        "macro_recovery"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 17.0,
+        "breadth": 28.0,
+        "liquidity": 51.0,
+        "theme_persistence": 62.984,
+        "industry_breadth": 0.3226,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 24.7841,
+        "price_extension": 56.2228,
+        "pressure": 11.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20231121",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20231221",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 7.0,
+        "breadth": 39.0,
+        "liquidity": 21.0,
+        "theme_persistence": 66.6457,
+        "industry_breadth": 0.0645,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 44.8775,
+        "price_extension": 30.1161,
+        "pressure": 32.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20231219",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240119",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_BREAKDOWN",
+        "theme_risk_level": "low",
+        "trend": 10.0,
+        "breadth": 6.0,
+        "liquidity": 33.0,
+        "theme_persistence": 64.3787,
+        "industry_breadth": 0.0968,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 40.5584,
+        "price_extension": 21.7197,
+        "pressure": 4.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20240117",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240226",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BEAR_REBOUND",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 15.0,
+        "breadth": 71.0,
+        "liquidity": 33.0,
+        "theme_persistence": 77.0434,
+        "industry_breadth": 0.1613,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 45.8148,
+        "price_extension": 64.4066,
+        "pressure": 56.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20240222",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240325",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_BREAKDOWN",
+        "theme_risk_level": "low",
+        "trend": 78.0,
+        "breadth": 34.0,
+        "liquidity": 42.0,
+        "theme_persistence": 61.6578,
+        "industry_breadth": 0.4194,
+        "top_industry_ratio": 0.0968,
+        "crowding_score": 24.5491,
+        "price_extension": 64.6508,
+        "pressure": 44.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20240321",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240424",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "trend_strong"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 75.0,
+        "breadth": 30.0,
+        "liquidity": 36.0,
+        "theme_persistence": 62.8194,
+        "industry_breadth": 0.2581,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 39.0035,
+        "price_extension": 56.6979,
+        "pressure": 45.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20240422",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240527",
+      "opportunity_state": "UNKNOWN",
+      "risk_state": "LOW_RISK",
+      "combined_state": "UNKNOWN__LOW_RISK",
+      "evidence": [
+        "trend_strong",
+        "breadth_expanding"
+      ],
+      "metrics": {
+        "macro_state": "RANGE",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 76.0,
+        "breadth": 12.0,
+        "liquidity": 27.0,
+        "theme_persistence": 53.5429,
+        "industry_breadth": 0.6129,
+        "top_industry_ratio": 0.1613,
+        "crowding_score": 21.196,
+        "price_extension": 57.7362,
+        "pressure": 64.0
+      },
+      "interpretation": "Opportunity/risk state is inconclusive and should not drive allocation.",
+      "data_quality": {
+        "context_date": "20240523",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240625",
+      "opportunity_state": "UNKNOWN",
+      "risk_state": "CROWDED",
+      "combined_state": "UNKNOWN__CROWDED",
+      "evidence": [
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "BOTTOMING",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "medium",
+        "trend": 9.0,
+        "breadth": 34.0,
+        "liquidity": 23.0,
+        "theme_persistence": 63.052,
+        "industry_breadth": 0.0323,
+        "top_industry_ratio": 0.3226,
+        "crowding_score": 48.1158,
+        "price_extension": 36.8613,
+        "pressure": 25.0
+      },
+      "interpretation": "Opportunity/risk state is inconclusive and should not drive allocation.",
+      "data_quality": {
+        "context_date": "20240621",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240723",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "BOTTOMING",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_BREAKDOWN",
+        "theme_risk_level": "low",
+        "trend": 12.0,
+        "breadth": 44.0,
+        "liquidity": 56.0,
+        "theme_persistence": 73.3812,
+        "industry_breadth": 0.0968,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 47.1797,
+        "price_extension": 36.2221,
+        "pressure": 32.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20240719",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240820",
+      "opportunity_state": "UNKNOWN",
+      "risk_state": "CROWDED",
+      "combined_state": "UNKNOWN__CROWDED",
+      "evidence": [
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RANGE",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_BREAKDOWN",
+        "theme_risk_level": "low",
+        "trend": 6.0,
+        "breadth": 25.0,
+        "liquidity": 23.0,
+        "theme_persistence": 65.3849,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 43.9616,
+        "price_extension": 24.6667,
+        "pressure": 19.0
+      },
+      "interpretation": "Opportunity/risk state is inconclusive and should not drive allocation.",
+      "data_quality": {
+        "context_date": "20240816",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20240919",
+      "opportunity_state": "UNKNOWN",
+      "risk_state": "CROWDED",
+      "combined_state": "UNKNOWN__CROWDED",
+      "evidence": [
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "BOTTOMING",
+        "structural_state": "RANGE",
+        "market_structure_state": "BEAR_RALLY",
+        "theme_risk_level": "low",
+        "trend": 3.0,
+        "breadth": 17.0,
+        "liquidity": 35.0,
+        "theme_persistence": 57.581,
+        "industry_breadth": 0.0,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 41.2966,
+        "price_extension": 14.8333,
+        "pressure": 14.0
+      },
+      "interpretation": "Opportunity/risk state is inconclusive and should not drive allocation.",
+      "data_quality": {
+        "context_date": "20240913",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20241024",
+      "opportunity_state": "UNKNOWN",
+      "risk_state": "CROWDED",
+      "combined_state": "UNKNOWN__CROWDED",
+      "evidence": [
+        "trend_strong",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "BOTTOMING",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 89.0,
+        "breadth": 57.0,
+        "liquidity": 50.0,
+        "theme_persistence": 66.9228,
+        "industry_breadth": 0.9355,
+        "top_industry_ratio": 0.3226,
+        "crowding_score": 37.0731,
+        "price_extension": 99.6111,
+        "pressure": 32.0
+      },
+      "interpretation": "Opportunity/risk state is inconclusive and should not drive allocation.",
+      "data_quality": {
+        "context_date": "20241022",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20241121",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "evidence": [
+        "structural_rotation",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "BOTTOMING",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 86.0,
+        "breadth": 75.0,
+        "liquidity": 12.0,
+        "theme_persistence": 72.3595,
+        "industry_breadth": 0.8065,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 33.7884,
+        "price_extension": 90.5553,
+        "pressure": 11.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
+      "data_quality": {
+        "context_date": "20241119",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20241219",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "LATE_BULL__HIGH_RISK",
+      "evidence": [
+        "structural_rotation",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "BOTTOMING",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 89.0,
+        "breadth": 9.0,
+        "liquidity": 27.0,
+        "theme_persistence": 75.1475,
+        "industry_breadth": 0.6452,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 39.0847,
+        "price_extension": 97.8333,
+        "pressure": 80.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
+      "data_quality": {
+        "context_date": "20241217",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250117",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "medium",
+        "trend": 38.0,
+        "breadth": 26.0,
+        "liquidity": 28.0,
+        "theme_persistence": 62.182,
+        "industry_breadth": 0.0645,
+        "top_industry_ratio": 0.1613,
+        "crowding_score": 49.9599,
+        "price_extension": 45.5173,
+        "pressure": 12.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20250115",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250224",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 50.0,
+        "breadth": 51.0,
+        "liquidity": 62.0,
+        "theme_persistence": 66.9213,
+        "industry_breadth": 0.4194,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 30.7614,
+        "price_extension": 82.708,
+        "pressure": 100.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20250220",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250324",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "NORMAL",
+      "combined_state": "STRUCTURAL_ROTATION__NORMAL",
+      "evidence": [
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high"
+      ],
+      "metrics": {
+        "macro_state": "RANGE",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 73.0,
+        "breadth": 30.0,
+        "liquidity": 20.0,
+        "theme_persistence": 71.579,
+        "industry_breadth": 0.4194,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 26.8851,
+        "price_extension": 63.3631,
+        "pressure": 43.0
+      },
+      "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
+      "data_quality": {
+        "context_date": "20250320",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250422",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 12.0,
+        "breadth": 36.0,
+        "liquidity": 0.0,
+        "theme_persistence": 45.6255,
+        "industry_breadth": 0.0968,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 44.4288,
+        "price_extension": 35.4811,
+        "pressure": 24.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20250418",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250523",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "NORMAL",
+      "combined_state": "EARLY_RECOVERY__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 74.0,
+        "breadth": 25.0,
+        "liquidity": 39.0,
+        "theme_persistence": 49.9883,
+        "industry_breadth": 0.6452,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 27.2997,
+        "price_extension": 67.7562,
+        "pressure": 49.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20250521",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250623",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "industry_breadth_narrow",
+        "single_theme_concentration"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 69.0,
+        "breadth": 12.0,
+        "liquidity": 44.0,
+        "theme_persistence": 64.9322,
+        "industry_breadth": 0.0645,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 52.0165,
+        "price_extension": 46.6088,
+        "pressure": 57.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20250619",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250721",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "trend_strong",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 79.0,
+        "breadth": 51.0,
+        "liquidity": 53.0,
+        "theme_persistence": 62.7605,
+        "industry_breadth": 0.871,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 28.2396,
+        "price_extension": 72.9116,
+        "pressure": 28.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20250717",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250818",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 80.0,
+        "breadth": 13.0,
+        "liquidity": 75.0,
+        "theme_persistence": 74.5241,
+        "industry_breadth": 0.8387,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 29.0172,
+        "price_extension": 73.8799,
+        "pressure": 67.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20250814",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20250915",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 85.0,
+        "breadth": 63.0,
+        "liquidity": 33.0,
+        "theme_persistence": 79.8373,
+        "industry_breadth": 0.9032,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 36.4587,
+        "price_extension": 96.3793,
+        "pressure": 22.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
+      "data_quality": {
+        "context_date": "20250911",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20251021",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "trend_strong",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 78.0,
+        "breadth": 10.0,
+        "liquidity": 20.0,
+        "theme_persistence": 81.7126,
+        "industry_breadth": 0.2903,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 42.5428,
+        "price_extension": 71.0963,
+        "pressure": 68.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20251017",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20251118",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 80.0,
+        "breadth": 30.0,
+        "liquidity": 35.0,
+        "theme_persistence": 72.3206,
+        "industry_breadth": 0.8065,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 30.9608,
+        "price_extension": 78.1893,
+        "pressure": 50.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20251114",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20251216",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "liquidity_supportive",
+        "industry_breadth_narrow",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "medium",
+        "trend": 43.0,
+        "breadth": 41.0,
+        "liquidity": 76.0,
+        "theme_persistence": 59.1628,
+        "industry_breadth": 0.1613,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 50.3849,
+        "price_extension": 62.9515,
+        "pressure": 2.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20251212",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20260115",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "HIGH_RISK",
+      "combined_state": "EARLY_RECOVERY__HIGH_RISK",
+      "evidence": [
+        "macro_recovery",
+        "trend_strong",
+        "breadth_expanding",
+        "liquidity_supportive",
+        "single_theme_concentration",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 81.0,
+        "breadth": 26.0,
+        "liquidity": 100.0,
+        "theme_persistence": 65.1177,
+        "industry_breadth": 0.8387,
+        "top_industry_ratio": 0.2581,
+        "crowding_score": 37.3628,
+        "price_extension": 98.3237,
+        "pressure": 55.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20260113",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20260212",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "CROWDED",
+      "combined_state": "STRUCTURAL_ROTATION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "price_extension_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "low",
+        "trend": 72.0,
+        "breadth": 33.0,
+        "liquidity": 4.0,
+        "theme_persistence": 72.0317,
+        "industry_breadth": 0.5484,
+        "top_industry_ratio": 0.2258,
+        "crowding_score": 27.3875,
+        "price_extension": 74.4347,
+        "pressure": 39.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20260210",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20260320",
+      "opportunity_state": "STRUCTURAL_ROTATION",
+      "risk_state": "NORMAL",
+      "combined_state": "STRUCTURAL_ROTATION__NORMAL",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "theme_persistence_high"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "low",
+        "trend": 73.0,
+        "breadth": 52.0,
+        "liquidity": 19.0,
+        "theme_persistence": 73.3529,
+        "industry_breadth": 0.3548,
+        "top_industry_ratio": 0.1613,
+        "crowding_score": 31.2727,
+        "price_extension": 63.7647,
+        "pressure": 21.0
+      },
+      "interpretation": "Opportunity is favorable and risk is not elevated; later policy layers may study higher beta budgets.",
+      "data_quality": {
+        "context_date": "20260318",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20260420",
+      "opportunity_state": "BULL_EXPANSION",
+      "risk_state": "CROWDED",
+      "combined_state": "BULL_EXPANSION__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "broad_bull_structure",
+        "breadth_expanding",
+        "industry_breadth_narrow"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "BROAD_BULL",
+        "market_structure_state": "BULL_BROADENING",
+        "theme_risk_level": "low",
+        "trend": 42.0,
+        "breadth": 61.0,
+        "liquidity": 53.0,
+        "theme_persistence": 56.295,
+        "industry_breadth": 0.1935,
+        "top_industry_ratio": 0.1935,
+        "crowding_score": 45.811,
+        "price_extension": 63.5504,
+        "pressure": 19.0
+      },
+      "interpretation": "Opportunity exists, but crowding or extension requires risk-budget controls before any allocation layer.",
+      "data_quality": {
+        "context_date": "20260416",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20260521",
+      "opportunity_state": "EARLY_RECOVERY",
+      "risk_state": "CROWDED",
+      "combined_state": "EARLY_RECOVERY__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "bull_divergence",
+        "trend_strong",
+        "breadth_expanding",
+        "single_theme_concentration",
+        "price_extension_high",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "RANGE",
+        "market_structure_state": "BULL_DIVERGENCE",
+        "theme_risk_level": "medium",
+        "trend": 75.0,
+        "breadth": 55.0,
+        "liquidity": 46.0,
+        "theme_persistence": 68.0171,
+        "industry_breadth": 0.3226,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 37.1114,
+        "price_extension": 89.7086,
+        "pressure": 20.0
+      },
+      "interpretation": "Recovery evidence exists but has not broadened enough; future policy should require confirmation.",
+      "data_quality": {
+        "context_date": "20260519",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    },
+    {
+      "date": "20260618",
+      "opportunity_state": "LATE_BULL",
+      "risk_state": "CROWDED",
+      "combined_state": "LATE_BULL__CROWDED",
+      "evidence": [
+        "macro_recovery",
+        "structural_rotation",
+        "breadth_expanding",
+        "theme_persistence_high",
+        "industry_breadth_narrow",
+        "single_theme_concentration",
+        "crowding_elevated",
+        "price_extension_high",
+        "theme_risk_medium"
+      ],
+      "metrics": {
+        "macro_state": "RECOVERY",
+        "structural_state": "STRUCTURAL_BULL_ROTATION",
+        "market_structure_state": "RANGE_ACCUMULATION",
+        "theme_risk_level": "medium",
+        "trend": 67.0,
+        "breadth": 45.0,
+        "liquidity": 43.0,
+        "theme_persistence": 83.104,
+        "industry_breadth": 0.1613,
+        "top_industry_ratio": 0.2903,
+        "crowding_score": 59.8627,
+        "price_extension": 87.625,
+        "pressure": 22.0
+      },
+      "interpretation": "Opportunity is late-cycle or extended; future policy should prioritize top-risk controls over raw participation.",
+      "data_quality": {
+        "context_date": "20260616",
+        "context_future_safe": true,
+        "structural_features_available": true,
+        "missing_fields": []
+      }
+    }
+  ],
+  "data_quality": {
+    "uses_existing_snapshots": true,
+    "historical_context_same_day_or_prior_only": true,
+    "no_future_returns": true,
+    "no_policy_rule_change": true
+  },
+  "constraints": {
+    "state_separation_only": true,
+    "no_allocation": true,
+    "no_etf_code": true,
+    "no_asset_weight": true,
+    "no_portfolio_weight": true,
+    "no_position_sizing": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "does_not_modify_v4_1_policy": true,
+    "not_a_backtest_optimization": true
+  }
+}

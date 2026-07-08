@@ -345,6 +345,51 @@ function policyValidationInterpretationLabel(value) {
   return labels[value] || value || "--";
 }
 
+function opportunityStateLabel(value) {
+  const labels = {
+    EARLY_RECOVERY: "早期修复",
+    BULL_EXPANSION: "宽基扩张",
+    STRUCTURAL_ROTATION: "结构轮动",
+    LATE_BULL: "牛市后段/高位",
+    DEFENSIVE_REPAIR: "防守修复",
+    UNKNOWN: "未知",
+  };
+  return labels[value] || value || "--";
+}
+
+function opportunityRiskStateLabel(value) {
+  const labels = {
+    LOW_RISK: "低风险",
+    NORMAL: "正常",
+    CROWDED: "拥挤",
+    HIGH_RISK: "高风险",
+    UNKNOWN: "未知",
+  };
+  return labels[value] || value || "--";
+}
+
+function opportunityRiskEvidenceLabel(value) {
+  const labels = {
+    macro_recovery: "宏观修复",
+    broad_bull_structure: "宽基牛结构",
+    structural_rotation: "结构轮动",
+    weak_or_bear_structure: "弱市/熊市结构",
+    bull_divergence: "牛市分化",
+    trend_strong: "趋势强",
+    breadth_expanding: "宽度扩张",
+    liquidity_supportive: "流动性支持",
+    theme_persistence_high: "主线持续",
+    industry_breadth_narrow: "行业宽度窄",
+    single_theme_concentration: "单主线集中",
+    crowding_elevated: "拥挤升高",
+    price_extension_high: "涨幅延伸高",
+    theme_risk_low: "主题风险低",
+    theme_risk_medium: "主题风险中",
+    theme_risk_high: "主题风险高",
+  };
+  return labels[value] || value || "--";
+}
+
 function alphaSourceLabel(value) {
   const labels = {
     bull_support: "牛市支持",
@@ -846,7 +891,7 @@ function conclusionItemsForPage(results) {
   const items = results.conclusions || [];
   if (document.body?.dataset.page !== "validation") return items;
   return items.filter((item) =>
-    /^(S1\.|H1\.|H2\.|V4\.2)/.test(item) || /结构化|默认结构化|波动单因子|风险观察/.test(item)
+    /^(S1\.|H1\.|H2\.|V4\.2|V4\.3)/.test(item) || /结构化|默认结构化|波动单因子|风险观察/.test(item)
   );
 }
 
@@ -930,6 +975,9 @@ function setResultsPanel(results) {
   const allocationPolicyValidation = results.allocation_policy_validation || {};
   const allocationPolicyValidationSummary = allocationPolicyValidation.summary || {};
   const allocationPolicyContradictionAudit = allocationPolicyValidation.policy_contradiction_audit || {};
+  const opportunityRiskSnapshot = results.opportunity_risk_snapshot || {};
+  const opportunityRiskCurrent = opportunityRiskSnapshot.current || {};
+  const opportunityRiskHistory = opportunityRiskSnapshot.historical_summary || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -1006,6 +1054,28 @@ function setResultsPanel(results) {
     allocationPolicy.metadata
       ? `V4.1 当前为${allocationPolicyStateLabel(allocationPolicyPolicy.policy_state)}：${allocationPolicyPolicy.policy_summary || "只输出定性风险预算约束"} 该层不输出 ETF 权重、仓位或交易信号。`
       : "V4.1 Beta 风险预算约束尚未生成。"
+  );
+
+  setText("opportunityRiskOpportunity", opportunityStateLabel(opportunityRiskCurrent.opportunity_state));
+  setText("opportunityRiskRisk", opportunityRiskStateLabel(opportunityRiskCurrent.risk_state));
+  setText(
+    "opportunityRiskCombined",
+    opportunityRiskCurrent.combined_state
+      ? `${opportunityStateLabel(opportunityRiskCurrent.opportunity_state)} / ${opportunityRiskStateLabel(opportunityRiskCurrent.risk_state)}`
+      : "--"
+  );
+  setText("opportunityRiskHistory", integerText(opportunityRiskHistory.replay_count));
+  setHtml("opportunityRiskEvidence", (opportunityRiskCurrent.evidence || []).length
+    ? opportunityRiskCurrent.evidence
+        .slice(0, 8)
+        .map((item) => `<span>${opportunityRiskEvidenceLabel(item)}</span>`)
+        .join("")
+    : "<em>暂无证据链</em>");
+  setText(
+    "opportunityRiskConclusion",
+    opportunityRiskSnapshot.metadata
+      ? `V4.3 当前为${opportunityStateLabel(opportunityRiskCurrent.opportunity_state)} + ${opportunityRiskStateLabel(opportunityRiskCurrent.risk_state)}：${opportunityRiskCurrent.interpretation || "该层只拆分机会和风险状态"} 历史重放 ${integerText(opportunityRiskHistory.replay_count)} 次，不输出仓位、ETF 或交易信号。`
+      : "V4.3 机会-风险二维状态尚未生成。"
   );
 
   const enabledStrategies = route.enabled_strategies || [];
