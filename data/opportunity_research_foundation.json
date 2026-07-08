@@ -1,0 +1,496 @@
+{
+  "metadata": {
+    "engine": "V7.1 Opportunity / Asset Research Layer Foundation",
+    "generated_at": "2026-07-08T18:07:38+00:00",
+    "source_engines": {
+      "asset_registry": "V3.1.1 Asset Universe Foundation",
+      "asset_universe_audit": "V3.1.1 Asset Universe Coverage Audit",
+      "asset_proxy_registry": "V3.1.2 Asset Research Proxy Layer",
+      "asset_proxy_coverage_audit": "V3.1.2 Asset Research Proxy Coverage Audit"
+    },
+    "input_files": {
+      "asset_registry": "data/asset_registry.json",
+      "asset_universe_audit": "data/asset_universe_audit.json",
+      "asset_proxy_registry": "data/asset_proxy_registry.json",
+      "asset_proxy_coverage_audit": "data/asset_proxy_coverage_audit.json"
+    },
+    "purpose": "Foundation only: asset universe, research proxy layer, coverage, and time-safety boundaries."
+  },
+  "summary": {
+    "asset_count": 17,
+    "enabled_assets": 17,
+    "category_counts": {
+      "broad": 5,
+      "style": 2,
+      "industry": 10
+    },
+    "research_proxy_assets": 10,
+    "research_proxy_count": 8,
+    "direct_history_only_assets": 7,
+    "tradable_history_full_window": false,
+    "research_proxy_full_window": true,
+    "readiness": "research_ready_with_tradability_caveat",
+    "ready_for_scoring": false,
+    "ready_for_ranking": false,
+    "ready_for_allocation": false,
+    "ready_for_trade": false,
+    "key_read": "V7.1 establishes a research-only asset opportunity foundation. Research proxy history is usable for long-window study, while tradable ETF history has coverage caveats."
+  },
+  "coverage": {
+    "tradable_history": {
+      "coverage_start": "20210204",
+      "coverage_end": "20260625",
+      "target_window_fully_covered": false,
+      "target_blocker_count": 15,
+      "target_blockers": [
+        "159915.SZ starts at 20181029",
+        "512100.SH starts at 20181029",
+        "510050.SH starts at 20181029",
+        "510880.SH starts at 20181029",
+        "512890.SH starts at 20190118",
+        "512000.SH starts at 20181029",
+        "512800.SH starts at 20181029",
+        "512690.SH starts at 20190506",
+        "512480.SH starts at 20190612",
+        "512170.SH starts at 20190617",
+        "512660.SH starts at 20181029",
+        "515790.SH starts at 20201218",
+        "516160.SH starts at 20210204",
+        "515000.SH starts at 20190816",
+        "588000.SH starts at 20201116"
+      ]
+    },
+    "research_proxy_history": {
+      "coverage_start": "20150105",
+      "coverage_end": "20260708",
+      "target_window_fully_covered": true,
+      "missing_proxy": [],
+      "target_blockers": []
+    },
+    "readiness": "research_ready_with_tradability_caveat"
+  },
+  "asset_rows": [
+    {
+      "asset_code": "510300.SH",
+      "asset_name": "沪深300ETF",
+      "asset_type": "etf",
+      "category": "broad",
+      "theme": "价值/大盘",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20150105",
+        "end": "20260708",
+        "rows": 2796
+      },
+      "research_proxy": {
+        "mapping_method": "direct_etf_history_only",
+        "has_proxy": false,
+        "code": null,
+        "name": null,
+        "type": null,
+        "source": null
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "510500.SH",
+      "asset_name": "中证500ETF",
+      "asset_type": "etf",
+      "category": "broad",
+      "theme": "中小盘",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20150105",
+        "end": "20260708",
+        "rows": 2794
+      },
+      "research_proxy": {
+        "mapping_method": "direct_etf_history_only",
+        "has_proxy": false,
+        "code": null,
+        "name": null,
+        "type": null,
+        "source": null
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "159915.SZ",
+      "asset_name": "创业板ETF",
+      "asset_type": "etf",
+      "category": "broad",
+      "theme": "成长/科技",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20181029",
+        "end": "20260626",
+        "rows": 1857
+      },
+      "research_proxy": {
+        "mapping_method": "direct_etf_history_only",
+        "has_proxy": false,
+        "code": null,
+        "name": null,
+        "type": null,
+        "source": null
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "512100.SH",
+      "asset_name": "中证1000ETF",
+      "asset_type": "etf",
+      "category": "broad",
+      "theme": "小盘",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20181029",
+        "end": "20260625",
+        "rows": 1856
+      },
+      "research_proxy": {
+        "mapping_method": "direct_etf_history_only",
+        "has_proxy": false,
+        "code": null,
+        "name": null,
+        "type": null,
+        "source": null
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "510050.SH",
+      "asset_name": "上证50ETF",
+      "asset_type": "etf",
+      "category": "broad",
+      "theme": "超大盘",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20181029",
+        "end": "20260625",
+        "rows": 1857
+      },
+      "research_proxy": {
+        "mapping_method": "direct_etf_history_only",
+        "has_proxy": false,
+        "code": null,
+        "name": null,
+        "type": null,
+        "source": null
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "510880.SH",
+      "asset_name": "红利ETF",
+      "asset_type": "etf",
+      "category": "style",
+      "theme": "红利",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20181029",
+        "end": "20260626",
+        "rows": 1858
+      },
+      "research_proxy": {
+        "mapping_method": "direct_etf_history_only",
+        "has_proxy": false,
+        "code": null,
+        "name": null,
+        "type": null,
+        "source": null
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "512890.SH",
+      "asset_name": "红利低波ETF",
+      "asset_type": "etf",
+      "category": "style",
+      "theme": "红利低波",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20190118",
+        "end": "20260625",
+        "rows": 1799
+      },
+      "research_proxy": {
+        "mapping_method": "direct_etf_history_only",
+        "has_proxy": false,
+        "code": null,
+        "name": null,
+        "type": null,
+        "source": null
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "512000.SH",
+      "asset_name": "证券ETF",
+      "asset_type": "etf",
+      "category": "industry",
+      "theme": "证券",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20181029",
+        "end": "20260625",
+        "rows": 1857
+      },
+      "research_proxy": {
+        "mapping_method": "research_only",
+        "has_proxy": true,
+        "code": "801790.SI",
+        "name": "非银金融",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "512800.SH",
+      "asset_name": "银行ETF",
+      "asset_type": "etf",
+      "category": "industry",
+      "theme": "银行",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20181029",
+        "end": "20260625",
+        "rows": 1857
+      },
+      "research_proxy": {
+        "mapping_method": "research_only",
+        "has_proxy": true,
+        "code": "801780.SI",
+        "name": "银行",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "512690.SH",
+      "asset_name": "酒ETF",
+      "asset_type": "etf",
+      "category": "industry",
+      "theme": "消费",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20190506",
+        "end": "20260625",
+        "rows": 1732
+      },
+      "research_proxy": {
+        "mapping_method": "research_only",
+        "has_proxy": true,
+        "code": "801120.SI",
+        "name": "食品饮料",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "512480.SH",
+      "asset_name": "半导体ETF",
+      "asset_type": "etf",
+      "category": "industry",
+      "theme": "半导体",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20190612",
+        "end": "20260625",
+        "rows": 1706
+      },
+      "research_proxy": {
+        "mapping_method": "research_only",
+        "has_proxy": true,
+        "code": "801080.SI",
+        "name": "电子",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "512170.SH",
+      "asset_name": "医疗ETF",
+      "asset_type": "etf",
+      "category": "industry",
+      "theme": "医疗",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20190617",
+        "end": "20260625",
+        "rows": 1703
+      },
+      "research_proxy": {
+        "mapping_method": "research_only",
+        "has_proxy": true,
+        "code": "801150.SI",
+        "name": "医药生物",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "512660.SH",
+      "asset_name": "军工ETF",
+      "asset_type": "etf",
+      "category": "industry",
+      "theme": "军工",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20181029",
+        "end": "20260625",
+        "rows": 1857
+      },
+      "research_proxy": {
+        "mapping_method": "research_only",
+        "has_proxy": true,
+        "code": "801740.SI",
+        "name": "国防军工",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "515790.SH",
+      "asset_name": "光伏ETF",
+      "asset_type": "etf",
+      "category": "industry",
+      "theme": "光伏",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20201218",
+        "end": "20260625",
+        "rows": 1335
+      },
+      "research_proxy": {
+        "mapping_method": "research_only",
+        "has_proxy": true,
+        "code": "801730.SI",
+        "name": "电力设备",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "516160.SH",
+      "asset_name": "新能源ETF",
+      "asset_type": "etf",
+      "category": "industry",
+      "theme": "新能源",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20210204",
+        "end": "20260625",
+        "rows": 1302
+      },
+      "research_proxy": {
+        "mapping_method": "research_only",
+        "has_proxy": true,
+        "code": "801730.SI",
+        "name": "电力设备",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "515000.SH",
+      "asset_name": "科技ETF",
+      "asset_type": "etf",
+      "category": "industry",
+      "theme": "科技",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20190816",
+        "end": "20260625",
+        "rows": 1660
+      },
+      "research_proxy": {
+        "mapping_method": "research_only",
+        "has_proxy": true,
+        "code": "801750.SI",
+        "name": "计算机",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "research_only": true
+    },
+    {
+      "asset_code": "588000.SH",
+      "asset_name": "科创50ETF",
+      "asset_type": "etf",
+      "category": "industry",
+      "theme": "科创成长",
+      "enabled": true,
+      "tradable_history": {
+        "available": true,
+        "start": "20201116",
+        "end": "20260625",
+        "rows": 1359
+      },
+      "research_proxy": {
+        "mapping_method": "research_only",
+        "has_proxy": true,
+        "code": "801080.SI",
+        "name": "电子",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "research_only": true
+    }
+  ],
+  "time_safety": {
+    "uses_cache_date_bounds": true,
+    "future_labels_used": false,
+    "research_proxy_not_treated_as_tradable": true,
+    "tradable_history_and_research_proxy_are_separated": true,
+    "no_forward_fill_from_future": true
+  },
+  "data_quality": {
+    "uses_existing_asset_registry": true,
+    "uses_existing_proxy_registry": true,
+    "uses_existing_coverage_audits": true,
+    "no_scoring": true,
+    "no_ranking": true,
+    "no_allocation": true,
+    "no_backtest": true,
+    "no_parameter_optimization": true
+  },
+  "constraints": {
+    "foundation_only": true,
+    "research_only": true,
+    "does_not_create_opportunity_score": true,
+    "does_not_rank_assets": true,
+    "does_not_modify_asset_universe": true,
+    "does_not_generate_position": true,
+    "no_percentage_exposure": true,
+    "no_etf_weight": true,
+    "no_portfolio_weight": true,
+    "no_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  }
+}

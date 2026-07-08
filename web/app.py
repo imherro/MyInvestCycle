@@ -546,6 +546,14 @@ def _read_context_information_attribution_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_opportunity_research_foundation_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "opportunity_research_foundation.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_structural_style_validation_payload() -> dict[str, object] | None:
     path = DATA_DIR / "structural_style_validation.json"
     if not path.exists():
@@ -991,6 +999,27 @@ def _compact_context_information_attribution_payload(payload: dict[str, object] 
         )
         if key in payload
     }
+
+
+def _compact_opportunity_research_foundation_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    compact = {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "coverage",
+            "time_safety",
+            "data_quality",
+            "constraints",
+        )
+        if key in payload
+    }
+    rows = payload.get("asset_rows")
+    if isinstance(rows, list):
+        compact["asset_rows"] = rows
+    return compact
 
 
 def _event_summary(rows: list[dict], event_key: str = "label") -> dict[str, object]:
@@ -1836,6 +1865,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/opportunity/research-foundation",
+                    "返回 V7.1 Opportunity / Asset Research Layer Foundation，汇总 ETF 资产池、长历史研究代理、真实可交易历史覆盖率和时间安全边界；不生成评分、排名、仓位或交易信号。",
+                    "opportunity research foundation",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -1975,6 +2011,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/allocation/protection-score-validation", "description": "读取 V6.4 保护分稳健性与条件验证。"},
             {"path": "/api/allocation/two-axis-context-validation", "description": "读取 V6.5 风险-机会双轴环境验证。"},
             {"path": "/api/allocation/context-information-attribution", "description": "读取 V6.6 上下文信息层价值归因。"},
+            {"path": "/api/opportunity/research-foundation", "description": "读取 V7.1 机会研究基础层：资产池、研究代理、覆盖率和只读边界。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -2972,6 +3009,17 @@ def context_information_attribution() -> dict:
     return payload
 
 
+@app.get("/api/opportunity/research-foundation")
+def opportunity_research_foundation() -> dict:
+    payload = _read_opportunity_research_foundation_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Opportunity research foundation artifact missing; run scripts/run_opportunity_research_foundation.py first.",
+        )
+    return payload
+
+
 @app.get("/api/style/structural-bull-validation")
 def structural_style_validation() -> dict:
     payload = _read_structural_style_validation_payload()
@@ -3128,6 +3176,7 @@ def results_summary(
         protection_score_validation = _read_protection_score_validation_payload()
         two_axis_context_validation = _read_two_axis_context_validation_payload()
         context_information_attribution = _read_context_information_attribution_payload()
+        opportunity_research_foundation = _read_opportunity_research_foundation_payload()
         structural_style_validation = _read_structural_style_validation_payload()
         structural_style_failure_analysis = _read_structural_style_failure_analysis_payload()
         historical_style_context = _read_historical_style_context_payload()
@@ -3162,6 +3211,7 @@ def results_summary(
             protection_score_validation = _compact_protection_score_validation_payload(protection_score_validation)
             two_axis_context_validation = _compact_two_axis_context_validation_payload(two_axis_context_validation)
             context_information_attribution = _compact_context_information_attribution_payload(context_information_attribution)
+            opportunity_research_foundation = _compact_opportunity_research_foundation_payload(opportunity_research_foundation)
         shadow_backtest = _read_shadow_backtest_payload()
         regime_attribution = _read_regime_attribution_payload()
 
@@ -3233,6 +3283,7 @@ def results_summary(
             "protection_score_validation": protection_score_validation,
             "two_axis_context_validation": two_axis_context_validation,
             "context_information_attribution": context_information_attribution,
+            "opportunity_research_foundation": opportunity_research_foundation,
             "structural_style_validation": structural_style_validation,
             "structural_style_failure_analysis": structural_style_failure_analysis,
             "historical_style_context": historical_style_context,

@@ -880,6 +880,24 @@ function contextLayerRetentionLabel(value) {
   return labels[value] || value || "--";
 }
 
+function assetCategoryLabel(value) {
+  const labels = {
+    broad: "宽基",
+    style: "风格",
+    industry: "行业",
+  };
+  return labels[value] || value || "--";
+}
+
+function opportunityFoundationReadinessLabel(value) {
+  const labels = {
+    research_ready_with_tradability_caveat: "研究可用，交易历史有限",
+    research_ready: "研究可用",
+    not_ready: "暂不可用",
+  };
+  return labels[value] || value || "--";
+}
+
 function decisionModeLabel(value) {
   const labels = {
     FULL_PARTICIPATION: "全参与",
@@ -1566,6 +1584,10 @@ function setResultsPanel(results) {
   const contextAttribution = results.context_information_attribution || {};
   const contextAttributionSummary = contextAttribution.summary || {};
   const contextAttributionLayers = contextAttribution.layer_attribution || [];
+  const opportunityFoundation = results.opportunity_research_foundation || {};
+  const opportunityFoundationSummary = opportunityFoundation.summary || {};
+  const opportunityFoundationCoverage = opportunityFoundation.coverage || {};
+  const opportunityFoundationRows = opportunityFoundation.asset_rows || [];
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2917,6 +2939,65 @@ function setResultsPanel(results) {
     contextAttribution.metadata
       ? `V6.6 信息层归因：风险领先层为${contextLayerLabel(contextAttributionSummary.risk_leader)}，区分 ${signedRatioText(contextAttributionSummary.risk_leader_spread)}；建议保留 ${integerText(contextAttributionSummary.retained_layer_count)} 层：风险梯度、保护分、双轴上下文。V5.1 暴露等级只作基线，不改 mapper、不改 exposure。`
       : "V6.6 上下文信息层归因尚未生成。"
+  );
+
+  const opportunityCategoryCounts = opportunityFoundationSummary.category_counts || {};
+  const opportunityResearchCoverage = opportunityFoundationCoverage.research_proxy_history || {};
+  const opportunityTradableCoverage = opportunityFoundationCoverage.tradable_history || {};
+  const opportunityProxyRows = opportunityFoundationRows.filter((row) => row.research_proxy?.has_proxy);
+  const opportunityDirectRows = opportunityFoundationRows.filter((row) => !row.research_proxy?.has_proxy);
+  setText(
+    "opportunityFoundationAssets",
+    opportunityFoundationSummary.asset_count
+      ? `${integerText(opportunityFoundationSummary.asset_count)} 个 ETF`
+      : "--"
+  );
+  setText(
+    "opportunityFoundationProxy",
+    opportunityFoundationSummary.research_proxy_assets
+      ? `${integerText(opportunityFoundationSummary.research_proxy_assets)} 个资产 / ${integerText(opportunityFoundationSummary.research_proxy_count)} 个代理`
+      : "--"
+  );
+  setText(
+    "opportunityFoundationCoverage",
+    opportunityResearchCoverage.coverage_start
+      ? `${toIsoDate(opportunityResearchCoverage.coverage_start)} 起`
+      : "--"
+  );
+  setText(
+    "opportunityFoundationBoundary",
+    opportunityFoundationSummary.ready_for_scoring === false &&
+      opportunityFoundationSummary.ready_for_ranking === false &&
+      opportunityFoundationSummary.ready_for_allocation === false &&
+      opportunityFoundationSummary.ready_for_trade === false
+      ? "不可评分/排名/配置/交易"
+      : "需复核"
+  );
+  setHtml("opportunityFoundationCategories", Object.entries(opportunityCategoryCounts)
+    .map(([category, count]) => `
+      <div class="duration-row">
+        <span>${assetCategoryLabel(category)}</span>
+        <strong>${integerText(count)} 个</strong>
+        <em>${category === "industry" ? "主要承接结构性牛市主线观察" : "作为风格或宽基对照"}</em>
+      </div>
+    `)
+    .join(""));
+  setHtml("opportunityFoundationSamples", [
+    ...opportunityProxyRows.slice(0, 5).map((row) => `
+      <div>
+        <strong>${escapeHtml(row.asset_code)} ${escapeHtml(row.asset_name)}</strong>
+        <span>${assetCategoryLabel(row.category)} · 代理 ${escapeHtml(row.research_proxy?.code || "--")} ${escapeHtml(row.research_proxy?.name || "--")}</span>
+      </div>
+    `),
+    opportunityDirectRows.length
+      ? `<div><strong>直接 ETF 历史</strong><span>${integerText(opportunityDirectRows.length)} 个资产未配置长历史代理，只按真实 ETF 历史研究。</span></div>`
+      : "",
+  ].join(""));
+  setText(
+    "opportunityFoundationConclusion",
+    opportunityFoundation.metadata
+      ? `V7.1 机会研究基础层：${opportunityFoundationReadinessLabel(opportunityFoundationSummary.readiness)}。研究代理覆盖 ${toIsoDate(opportunityResearchCoverage.coverage_start)} 至 ${toIsoDate(opportunityResearchCoverage.coverage_end)}；真实 ETF 可交易历史公共覆盖 ${toIsoDate(opportunityTradableCoverage.coverage_start)} 至 ${toIsoDate(opportunityTradableCoverage.coverage_end)}，存在 ${integerText(opportunityTradableCoverage.target_blocker_count)} 个覆盖阻塞。该层只建立研究对象和数据口径，不输出机会分、排名、仓位或交易。`
+      : "V7.1 机会研究基础层尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
