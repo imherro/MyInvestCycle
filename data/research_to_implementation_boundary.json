@@ -1,0 +1,336 @@
+{
+  "metadata": {
+    "engine": "V12.1 Research-to-Implementation Boundary Design",
+    "generated_at": "2026-07-08T21:45:50+00:00",
+    "as_of": "20260707",
+    "input_files": {
+      "research_phase_closure": "data/research_phase_closure.json",
+      "allocation_research_final_boundary": "data/allocation_research_final_boundary.json",
+      "h2_external_validation_result_freeze": "data/h2_external_validation_result_freeze.json"
+    },
+    "input_hashes": {
+      "research_phase_closure": "172cc3852c63c81abda88c18c63a5473774298eb9e874e4659af6b4f89690f4a",
+      "allocation_research_final_boundary": "6121cf0be52241fd835b34748c662725736e6f7fd964d98a76b55327cd0b3b6d",
+      "h2_external_validation_result_freeze": "e045b28baeb66f36c1e569253cd3ce2b5a5ceeb49ada5b11520e549c49625376"
+    },
+    "purpose": "Define the boundary between frozen research results and any future implementation design without creating a strategy, allocation, asset selection, portfolio construction, or trading output."
+  },
+  "summary": {
+    "boundary_status": "defined",
+    "implementation_phase": "not_started",
+    "research_phase_status": "closed",
+    "implementation_candidate_count": 3,
+    "isolated_or_blocked_count": 5,
+    "global_implementation_allowed": false,
+    "investable_output": false,
+    "trade_ready": false,
+    "strategy_output_generated": false,
+    "allocation_output_generated": false,
+    "component_count": 8,
+    "conclusion": "research_to_implementation_boundary_defined_no_strategy_no_allocation",
+    "key_read": "Only read-only risk diagnostics and research-governance context can be carried forward as observation candidates; opportunity, allocation, asset selection, portfolio construction and execution remain isolated."
+  },
+  "component_boundaries": [
+    {
+      "component_id": "risk_diagnostic_layer",
+      "source_status": "validated_for_observation_only",
+      "boundary_status": "observation_only",
+      "candidate_role": "read_only_monitoring_context",
+      "implementation_allowed": false,
+      "allowed_current_outputs": [
+        "dashboard_label",
+        "audit_context",
+        "manual_observation_note"
+      ],
+      "required_before_implementation": [
+        "stable_risk_warning_effect_across_holdout_windows",
+        "false_warning_cost_bound",
+        "independent_out_of_sample_validation",
+        "pre_registered_decision_policy",
+        "live_shadow_observation_period",
+        "failure_and_rollback_criteria",
+        "manual_review_before_any_investable_use"
+      ],
+      "isolation_reason": "Risk evidence is visible but has not passed a promotion gate for allocation or execution."
+    },
+    {
+      "component_id": "protection_research_value",
+      "source_status": "research_value_supported_observation_only",
+      "boundary_status": "observation_only",
+      "candidate_role": "risk_protection_research_context",
+      "implementation_allowed": false,
+      "allowed_current_outputs": [
+        "protection_evidence_summary",
+        "audit_context"
+      ],
+      "required_before_implementation": [
+        "cross_regime_drawdown_reduction_validation",
+        "opportunity_cost_measurement",
+        "independent_out_of_sample_validation",
+        "pre_registered_decision_policy",
+        "live_shadow_observation_period",
+        "failure_and_rollback_criteria",
+        "manual_review_before_any_investable_use"
+      ],
+      "isolation_reason": "Protection value is supported only as research evidence and cannot become an allocation action."
+    },
+    {
+      "component_id": "contradiction_governance_layer",
+      "source_status": "validated_for_research_governance_only",
+      "boundary_status": "research_governance_only",
+      "candidate_role": "research_quality_gate",
+      "implementation_allowed": false,
+      "allowed_current_outputs": [
+        "contradiction_note",
+        "research_review_gate"
+      ],
+      "required_before_implementation": [
+        "governance_rule_stability_review",
+        "independent_human_audit",
+        "independent_out_of_sample_validation",
+        "pre_registered_decision_policy",
+        "live_shadow_observation_period",
+        "failure_and_rollback_criteria",
+        "manual_review_before_any_investable_use"
+      ],
+      "isolation_reason": "Contradiction governance can organize research review but cannot score assets or trigger trades."
+    },
+    {
+      "component_id": "opportunity_prediction_layer",
+      "source_status": "not_ready",
+      "boundary_status": "isolated_not_ready",
+      "candidate_role": "none",
+      "implementation_allowed": false,
+      "allowed_current_outputs": [
+        "research_archive_reference"
+      ],
+      "required_before_implementation": [
+        "positive_out_of_sample_information_coefficient",
+        "feature_stability_across_market_structures",
+        "tradable_proxy_confirmation",
+        "independent_out_of_sample_validation",
+        "pre_registered_decision_policy",
+        "live_shadow_observation_period",
+        "failure_and_rollback_criteria",
+        "manual_review_before_any_investable_use"
+      ],
+      "isolation_reason": "Opportunity prediction has not shown enough stable forward value for implementation design."
+    },
+    {
+      "component_id": "allocation_alpha_layer",
+      "source_status": "not_ready",
+      "boundary_status": "isolated_not_ready",
+      "candidate_role": "none",
+      "implementation_allowed": false,
+      "allowed_current_outputs": [
+        "research_archive_reference"
+      ],
+      "required_before_implementation": [
+        "positive_incremental_alpha_after_cost",
+        "robustness_across_research_windows",
+        "sample_split_validation",
+        "independent_out_of_sample_validation",
+        "pre_registered_decision_policy",
+        "live_shadow_observation_period",
+        "failure_and_rollback_criteria",
+        "manual_review_before_any_investable_use"
+      ],
+      "isolation_reason": "Allocation alpha is not verified and must stay outside implementation."
+    },
+    {
+      "component_id": "asset_selection_layer",
+      "source_status": "disabled",
+      "boundary_status": "disabled",
+      "candidate_role": "none",
+      "implementation_allowed": false,
+      "allowed_current_outputs": [
+        "not_available"
+      ],
+      "required_before_implementation": [
+        "separate_asset_universe_research",
+        "liquidity_and_tracking_error_audit",
+        "survivorship_bias_audit",
+        "independent_out_of_sample_validation",
+        "pre_registered_decision_policy",
+        "live_shadow_observation_period",
+        "failure_and_rollback_criteria",
+        "manual_review_before_any_investable_use"
+      ],
+      "isolation_reason": "No asset selection research has passed a gate; this layer is disabled."
+    },
+    {
+      "component_id": "portfolio_construction_layer",
+      "source_status": "not_ready",
+      "boundary_status": "not_ready",
+      "candidate_role": "none",
+      "implementation_allowed": false,
+      "allowed_current_outputs": [
+        "not_available"
+      ],
+      "required_before_implementation": [
+        "risk_budget_policy_pre_registration",
+        "turnover_and_cost_model",
+        "stress_test_and_capacity_review",
+        "independent_out_of_sample_validation",
+        "pre_registered_decision_policy",
+        "live_shadow_observation_period",
+        "failure_and_rollback_criteria",
+        "manual_review_before_any_investable_use"
+      ],
+      "isolation_reason": "Portfolio construction is not designed and cannot be inferred from research diagnostics."
+    },
+    {
+      "component_id": "execution_layer",
+      "source_status": "disabled",
+      "boundary_status": "disabled",
+      "candidate_role": "none",
+      "implementation_allowed": false,
+      "allowed_current_outputs": [
+        "not_available"
+      ],
+      "required_before_implementation": [
+        "paper_trading_only_sandbox",
+        "explicit_user_authorization",
+        "broker_write_path_security_review",
+        "independent_out_of_sample_validation",
+        "pre_registered_decision_policy",
+        "live_shadow_observation_period",
+        "failure_and_rollback_criteria",
+        "manual_review_before_any_investable_use"
+      ],
+      "isolation_reason": "Execution remains disabled; no broker, order or trade path is allowed."
+    }
+  ],
+  "implementation_entry_gate": {
+    "current_gate_result": "blocked",
+    "requires_new_evidence_before_any_implementation": true,
+    "minimum_global_requirements": [
+      "separate_v12_implementation_design_review",
+      "independent_out_of_sample_validation",
+      "pre_registered_decision_policy",
+      "cost_turnover_capacity_review",
+      "live_shadow_observation_period",
+      "human_approval_before_promotion"
+    ],
+    "blocked_reasons": [
+      "research architecture is closed but not investable",
+      "H2 external validation is inconclusive",
+      "opportunity and allocation research are not ready",
+      "no asset, portfolio or execution layer is validated"
+    ]
+  },
+  "permitted_current_outputs": [
+    "read_only_dashboard",
+    "research_audit_package",
+    "observation_status_label",
+    "manual_research_review_context"
+  ],
+  "explicitly_isolated_from_implementation": [
+    "opportunity_prediction",
+    "allocation_alpha",
+    "asset_universe_selection",
+    "portfolio_construction",
+    "automatic_allocation",
+    "execution_or_order_routing"
+  ],
+  "source_layer_evidence": {
+    "research_phase_closure": {
+      "research_phase": "closed",
+      "project_completion_status": "research_phase_closed_project_not_complete",
+      "investable_output": false
+    },
+    "v10_final_boundary": {
+      "summary": {
+        "research_phase_status": "completed",
+        "direction_count": 4,
+        "continue_external_validation_count": 1,
+        "research_governance_only_count": 1,
+        "frozen_no_external_validation_count": 2,
+        "promotion_allowed": false,
+        "strategy_promotion": false,
+        "allocation_ready": false,
+        "investable_output": false,
+        "investable_output_generated": false,
+        "ready_for_asset_selection": false,
+        "ready_for_etf_mapping": false,
+        "ready_for_weight_generation": false,
+        "ready_for_optimization": false,
+        "ready_for_trade": false,
+        "conclusion": "allocation_research_final_boundary_completed_no_strategy_no_allocation",
+        "key_read": "Final V9-V10 boundary: H2 may continue external validation only; H4 remains research governance only; H1/H3 stay frozen. No allocation output is ready."
+      }
+    },
+    "v11_h2_freeze": {
+      "h2_status": "inconclusive",
+      "research_decision": "continue_observation_only"
+    }
+  },
+  "time_safety": {
+    "uses_frozen_boundary_inputs_only": true,
+    "input_hashes_recorded": true,
+    "does_not_recompute_market_data": true,
+    "does_not_recompute_forward_returns": true,
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "does_not_change_prior_research_conclusions": true,
+    "no_result_based_parameter_change": true
+  },
+  "constraints": {
+    "boundary_design_only": true,
+    "does_not_generate_strategy": true,
+    "does_not_select_assets": true,
+    "does_not_map_etf": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "requires_future_v12_evidence_before_implementation": true
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_boundary_status": "defined",
+    "checked_gate_result": "blocked",
+    "checked_component_count": 8,
+    "checked_constraints": [
+      "boundary_design_only",
+      "does_not_generate_strategy",
+      "does_not_select_assets",
+      "does_not_map_etf",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_optimize_parameters",
+      "does_not_generate_trade_signal",
+      "no_order_generation",
+      "no_broker_connection",
+      "requires_future_v12_evidence_before_implementation"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}

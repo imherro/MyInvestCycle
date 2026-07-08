@@ -914,6 +914,14 @@ def _read_research_phase_closure_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_research_to_implementation_boundary_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "research_to_implementation_boundary.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -1766,6 +1774,28 @@ def _compact_research_phase_closure_payload(payload: dict[str, object] | None) -
             "not_verified_for_investment_use",
             "permanent_prohibitions",
             "phase_evidence",
+            "time_safety",
+            "constraints",
+            "forbidden_outputs",
+            "audit",
+        )
+        if key in payload
+    }
+
+
+def _compact_research_to_implementation_boundary_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        key: payload[key]
+        for key in (
+            "metadata",
+            "summary",
+            "component_boundaries",
+            "implementation_entry_gate",
+            "permitted_current_outputs",
+            "explicitly_isolated_from_implementation",
+            "source_layer_evidence",
             "time_safety",
             "constraints",
             "forbidden_outputs",
@@ -2928,6 +2958,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/implementation-boundary/research-to-implementation",
+                    "返回 V12.1 Research-to-Implementation Boundary Design，定义冻结研究结果进入实现层之前的隔离边界：只允许只读观察/研究治理候选，机会、配置、资产、组合、执行仍隔离；不生成策略、权重、配置或交易。",
+                    "research-to-implementation boundary",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -3092,6 +3129,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/external-validation/execution-runs", "description": "读取 V11.2 H2 外部验证执行结果：只输出窗口级 passed/failed/inconclusive，不策略化、不配置、不交易。"},
             {"path": "/api/external-validation/result-freeze", "description": "读取 V11.3 H2 外部验证结果冻结：结论为不确定、继续观察，不策略化、不配置、不交易。"},
             {"path": "/api/research-phase/closure", "description": "读取 V11.4 研究阶段关闭与最终架构冻结：V6-V11 收口，风险仅观察用，机会/配置/交易未就绪。"},
+            {"path": "/api/implementation-boundary/research-to-implementation", "description": "读取 V12.1 研究到实现隔离边界：定义可观察候选、隔离项和进入实现前的额外验证要求。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -4287,6 +4325,17 @@ def research_phase_closure() -> dict:
     return payload
 
 
+@app.get("/api/implementation-boundary/research-to-implementation")
+def research_to_implementation_boundary() -> dict:
+    payload = _read_research_to_implementation_boundary_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Research-to-implementation boundary artifact missing; run scripts/run_research_to_implementation_boundary.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -4538,6 +4587,7 @@ def results_summary(
         h2_external_validation_execution = _read_h2_external_validation_execution_payload()
         h2_external_validation_result_freeze = _read_h2_external_validation_result_freeze_payload()
         research_phase_closure = _read_research_phase_closure_payload()
+        research_to_implementation_boundary = _read_research_to_implementation_boundary_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -4597,6 +4647,7 @@ def results_summary(
             h2_external_validation_execution = _compact_h2_external_validation_execution_payload(h2_external_validation_execution)
             h2_external_validation_result_freeze = _compact_h2_external_validation_result_freeze_payload(h2_external_validation_result_freeze)
             research_phase_closure = _compact_research_phase_closure_payload(research_phase_closure)
+            research_to_implementation_boundary = _compact_research_to_implementation_boundary_payload(research_to_implementation_boundary)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -4693,6 +4744,7 @@ def results_summary(
             "h2_external_validation_execution": h2_external_validation_execution,
             "h2_external_validation_result_freeze": h2_external_validation_result_freeze,
             "research_phase_closure": research_phase_closure,
+            "research_to_implementation_boundary": research_to_implementation_boundary,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,

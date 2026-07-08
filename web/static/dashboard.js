@@ -1693,6 +1693,10 @@ function setResultsPanel(results) {
   const phaseClosureSummary = phaseClosure.summary || {};
   const phaseClosureValidated = Array.isArray(phaseClosure.validated_for_observation_only) ? phaseClosure.validated_for_observation_only : [];
   const phaseClosureNotVerified = Array.isArray(phaseClosure.not_verified_for_investment_use) ? phaseClosure.not_verified_for_investment_use : [];
+  const implementationBoundary = results.research_to_implementation_boundary || {};
+  const implementationBoundarySummary = implementationBoundary.summary || {};
+  const implementationBoundaryGate = implementationBoundary.implementation_entry_gate || {};
+  const implementationBoundaryComponents = Array.isArray(implementationBoundary.component_boundaries) ? implementationBoundary.component_boundaries : [];
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4119,6 +4123,12 @@ function setResultsPanel(results) {
     not_ready: "未就绪",
     disabled: "已禁用",
     research_phase_closed_project_not_complete: "研究阶段收口/项目未完成",
+    defined: "已定义",
+    not_started: "未启动",
+    blocked: "已阻断",
+    observation_only: "仅观察",
+    research_governance_only: "仅研究治理",
+    isolated_not_ready: "隔离/未就绪",
   }[value] || value || "--");
   setText("phaseClosureStatus", phaseStatusLabel(phaseClosureSummary.research_phase));
   setText("phaseClosureRisk", phaseStatusLabel(phaseClosureSummary.risk_research_status));
@@ -4146,6 +4156,25 @@ function setResultsPanel(results) {
     phaseClosure.metadata
       ? `V11.4 冻结 V6-V11 研究阶段：风险诊断仅限观察，保护研究和矛盾治理有研究价值；机会预测、配置 Alpha、资产选择、组合构建未验证，交易保持禁用。该结论关闭研究阶段，但不代表整个项目已完成。`
       : "V11.4 研究阶段最终冻结尚未生成。"
+  );
+
+  setText("implementationBoundaryStatus", phaseStatusLabel(implementationBoundarySummary.boundary_status));
+  setText("implementationBoundaryPhase", phaseStatusLabel(implementationBoundarySummary.implementation_phase));
+  setText("implementationBoundaryCandidates", `${integerText(implementationBoundarySummary.implementation_candidate_count)} 个`);
+  setText("implementationBoundaryBlocked", `${integerText(implementationBoundarySummary.isolated_or_blocked_count)} 个`);
+  setText("implementationBoundaryGate", phaseStatusLabel(implementationBoundaryGate.current_gate_result));
+  setHtml("implementationBoundaryRows", implementationBoundaryComponents.map((row) => `
+    <div class="duration-row">
+      <span>${escapeHtml(row.component_id || "--")}</span>
+      <strong>${escapeHtml(phaseStatusLabel(row.boundary_status))}</strong>
+      <em>${escapeHtml(row.isolation_reason || row.candidate_role || "--")}</em>
+    </div>
+  `).join(""));
+  setText(
+    "implementationBoundaryConclusion",
+    implementationBoundary.metadata
+      ? `V12.1 只定义研究到实现的隔离边界：${integerText(implementationBoundarySummary.implementation_candidate_count)} 个只读观察/治理候选，${integerText(implementationBoundarySummary.isolated_or_blocked_count)} 个组件继续隔离或禁用；全局实现门禁为${phaseStatusLabel(implementationBoundaryGate.current_gate_result)}，不输出策略、资产、ETF、权重、配置或交易。`
+      : "V12.1 研究到实现隔离边界尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
