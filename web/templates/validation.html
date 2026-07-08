@@ -675,6 +675,33 @@
           <p class="result-note" id="decisionConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="生成 participation_score 与 protection_score 两个连续研究分数，审计高保护分是否对应未来高风险、高参与分是否对应未来机会；不输出仓位或交易。">连续暴露上下文评分</h2>
+            <span class="panel-kicker">V6.3</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>样本</span>
+              <strong id="scoreRows">--</strong>
+            </div>
+            <div class="result-row">
+              <span>保护分离</span>
+              <strong id="scoreProtectionSeparation">--</strong>
+            </div>
+            <div class="result-row">
+              <span>参与分离</span>
+              <strong id="scoreParticipationSeparation">--</strong>
+            </div>
+            <div class="result-row">
+              <span>策略变更</span>
+              <strong id="scoreReady">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="scoreBucketList"></div>
+          <p class="result-note" id="scoreConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -765,7 +792,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-decision-audit-1"></script>
+    <script src="/static/dashboard.js?v=20260708-context-score-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

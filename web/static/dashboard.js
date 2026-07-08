@@ -1497,6 +1497,11 @@ function setResultsPanel(results) {
   const decisionSummary = decisionAudit.summary || {};
   const decisionSeparation = decisionAudit.separation_review || {};
   const decisionModes = decisionAudit.mode_stats || {};
+  const contextScoreAudit = results.exposure_context_score_audit || {};
+  const contextScoreSummary = contextScoreAudit.summary || {};
+  const contextScoreSeparation = contextScoreAudit.separation_review || {};
+  const protectionBuckets = contextScoreAudit.protection_bucket_analysis || {};
+  const participationBuckets = contextScoreAudit.participation_bucket_analysis || {};
   const system = results.system || {};
   const hazard = results.hazard || {};
   const survival = results.survival || {};
@@ -2705,6 +2710,35 @@ function setResultsPanel(results) {
     decisionAudit.metadata
       ? `V6.2 决策上下文审计：保护/防守/等待组相对参与组风险抬升 ${signedRatioText(decisionSeparation.caution_vs_participation_risk_lift)}，机会分离 ${signedRatioText(decisionSeparation.participation_vs_caution_opportunity_lift)}。结论：风险/机会分离均弱，不改 mapper、不改 exposure。`
       : "V6.2 暴露决策上下文审计尚未生成。"
+  );
+
+  setText("scoreRows", integerText(contextScoreSummary.joined_sample_count));
+  setText("scoreProtectionSeparation", contextStateQualityLabel(contextScoreSummary.protection_separation));
+  setText("scoreParticipationSeparation", contextStateQualityLabel(contextScoreSummary.participation_separation));
+  setText(
+    "scoreReady",
+    contextScoreSummary.ready_for_mapper_change === true || contextScoreSummary.ready_for_exposure_change === true
+      ? "可变更"
+      : "不可变更"
+  );
+  setHtml("scoreBucketList", ["high", "medium", "low"]
+    .map((bucket) => {
+      const protection = protectionBuckets[bucket] || {};
+      const participation = participationBuckets[bucket] || {};
+      return `
+        <div class="duration-row">
+          <span>${bucket === "high" ? "高分" : bucket === "medium" ? "中分" : "低分"}</span>
+          <strong>保护: ${integerText(protection.sample_count)} 样本 · 风险 ${percentText(protection.future_high_risk_rate)}</strong>
+          <em>参与: ${integerText(participation.sample_count)} 样本 · 机会 ${percentText(participation.future_opportunity_rate)}</em>
+        </div>
+      `;
+    })
+    .join(""));
+  setText(
+    "scoreConclusion",
+    contextScoreAudit.metadata
+      ? `V6.3 连续评分审计：高保护分风险抬升 ${signedRatioText(contextScoreSeparation.high_protection_risk_lift)}，高参与分机会抬升 ${signedRatioText(contextScoreSeparation.high_participation_opportunity_lift)}。结论：保护分有可见风险分离，参与分仍弱，暂不改 mapper、不改 exposure。`
+      : "V6.3 连续暴露上下文评分尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
