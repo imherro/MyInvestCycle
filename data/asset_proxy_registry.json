@@ -1,0 +1,255 @@
+{
+  "metadata": {
+    "engine": "V3.1.2 Asset Research Proxy Layer",
+    "generated_at": "2026-07-08T09:46:54+00:00",
+    "asset_registry": "C:\\Users\\kunpeng\\Documents\\MyInvestCycle\\data\\asset_registry.json",
+    "ETF_assets": 17,
+    "with_proxy": 10,
+    "proxy_count": 8,
+    "proxy_usage_counts": {
+      "801790.SI": 1,
+      "801780.SI": 1,
+      "801120.SI": 1,
+      "801080.SI": 2,
+      "801150.SI": 1,
+      "801740.SI": 1,
+      "801730.SI": 2,
+      "801750.SI": 1
+    },
+    "purpose": "Separate tradable ETF assets from long-history research proxies."
+  },
+  "mappings": [
+    {
+      "asset_code": "510300.SH",
+      "asset_name": "沪深300ETF",
+      "asset_type": "etf",
+      "asset_category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_proxy": null,
+      "enabled": true,
+      "notes": "No long-history proxy assigned in V3.1.2; use real ETF history only."
+    },
+    {
+      "asset_code": "510500.SH",
+      "asset_name": "中证500ETF",
+      "asset_type": "etf",
+      "asset_category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_proxy": null,
+      "enabled": true,
+      "notes": "No long-history proxy assigned in V3.1.2; use real ETF history only."
+    },
+    {
+      "asset_code": "159915.SZ",
+      "asset_name": "创业板ETF",
+      "asset_type": "etf",
+      "asset_category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_proxy": null,
+      "enabled": true,
+      "notes": "No long-history proxy assigned in V3.1.2; use real ETF history only."
+    },
+    {
+      "asset_code": "512100.SH",
+      "asset_name": "中证1000ETF",
+      "asset_type": "etf",
+      "asset_category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_proxy": null,
+      "enabled": true,
+      "notes": "No long-history proxy assigned in V3.1.2; use real ETF history only."
+    },
+    {
+      "asset_code": "510050.SH",
+      "asset_name": "上证50ETF",
+      "asset_type": "etf",
+      "asset_category": "broad",
+      "mapping_method": "direct_etf_history_only",
+      "research_proxy": null,
+      "enabled": true,
+      "notes": "No long-history proxy assigned in V3.1.2; use real ETF history only."
+    },
+    {
+      "asset_code": "510880.SH",
+      "asset_name": "红利ETF",
+      "asset_type": "etf",
+      "asset_category": "style",
+      "mapping_method": "direct_etf_history_only",
+      "research_proxy": null,
+      "enabled": true,
+      "notes": "No long-history proxy assigned in V3.1.2; use real ETF history only."
+    },
+    {
+      "asset_code": "512890.SH",
+      "asset_name": "红利低波ETF",
+      "asset_type": "etf",
+      "asset_category": "style",
+      "mapping_method": "direct_etf_history_only",
+      "research_proxy": null,
+      "enabled": true,
+      "notes": "No long-history proxy assigned in V3.1.2; use real ETF history only."
+    },
+    {
+      "asset_code": "512000.SH",
+      "asset_name": "证券ETF",
+      "asset_type": "etf",
+      "asset_category": "industry",
+      "mapping_method": "research_only",
+      "research_proxy": {
+        "code": "801790.SI",
+        "name": "非银金融",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "enabled": true,
+      "notes": "Research proxy is for long-history opportunity research only; it does not fabricate ETF tradability."
+    },
+    {
+      "asset_code": "512800.SH",
+      "asset_name": "银行ETF",
+      "asset_type": "etf",
+      "asset_category": "industry",
+      "mapping_method": "research_only",
+      "research_proxy": {
+        "code": "801780.SI",
+        "name": "银行",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "enabled": true,
+      "notes": "Research proxy is for long-history opportunity research only; it does not fabricate ETF tradability."
+    },
+    {
+      "asset_code": "512690.SH",
+      "asset_name": "酒ETF",
+      "asset_type": "etf",
+      "asset_category": "industry",
+      "mapping_method": "research_only",
+      "research_proxy": {
+        "code": "801120.SI",
+        "name": "食品饮料",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "enabled": true,
+      "notes": "Research proxy is for long-history opportunity research only; it does not fabricate ETF tradability."
+    },
+    {
+      "asset_code": "512480.SH",
+      "asset_name": "半导体ETF",
+      "asset_type": "etf",
+      "asset_category": "industry",
+      "mapping_method": "research_only",
+      "research_proxy": {
+        "code": "801080.SI",
+        "name": "电子",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "enabled": true,
+      "notes": "Research proxy is for long-history opportunity research only; it does not fabricate ETF tradability."
+    },
+    {
+      "asset_code": "512170.SH",
+      "asset_name": "医疗ETF",
+      "asset_type": "etf",
+      "asset_category": "industry",
+      "mapping_method": "research_only",
+      "research_proxy": {
+        "code": "801150.SI",
+        "name": "医药生物",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "enabled": true,
+      "notes": "Research proxy is for long-history opportunity research only; it does not fabricate ETF tradability."
+    },
+    {
+      "asset_code": "512660.SH",
+      "asset_name": "军工ETF",
+      "asset_type": "etf",
+      "asset_category": "industry",
+      "mapping_method": "research_only",
+      "research_proxy": {
+        "code": "801740.SI",
+        "name": "国防军工",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "enabled": true,
+      "notes": "Research proxy is for long-history opportunity research only; it does not fabricate ETF tradability."
+    },
+    {
+      "asset_code": "515790.SH",
+      "asset_name": "光伏ETF",
+      "asset_type": "etf",
+      "asset_category": "industry",
+      "mapping_method": "research_only",
+      "research_proxy": {
+        "code": "801730.SI",
+        "name": "电力设备",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "enabled": true,
+      "notes": "Research proxy is for long-history opportunity research only; it does not fabricate ETF tradability."
+    },
+    {
+      "asset_code": "516160.SH",
+      "asset_name": "新能源ETF",
+      "asset_type": "etf",
+      "asset_category": "industry",
+      "mapping_method": "research_only",
+      "research_proxy": {
+        "code": "801730.SI",
+        "name": "电力设备",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "enabled": true,
+      "notes": "Research proxy is for long-history opportunity research only; it does not fabricate ETF tradability."
+    },
+    {
+      "asset_code": "515000.SH",
+      "asset_name": "科技ETF",
+      "asset_type": "etf",
+      "asset_category": "industry",
+      "mapping_method": "research_only",
+      "research_proxy": {
+        "code": "801750.SI",
+        "name": "计算机",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "enabled": true,
+      "notes": "Research proxy is for long-history opportunity research only; it does not fabricate ETF tradability."
+    },
+    {
+      "asset_code": "588000.SH",
+      "asset_name": "科创50ETF",
+      "asset_type": "etf",
+      "asset_category": "industry",
+      "mapping_method": "research_only",
+      "research_proxy": {
+        "code": "801080.SI",
+        "name": "电子",
+        "type": "index",
+        "source": "Tushare index_daily SW2021 L1"
+      },
+      "enabled": true,
+      "notes": "Research proxy is for long-history opportunity research only; it does not fabricate ETF tradability."
+    }
+  ],
+  "constraints": {
+    "etf_and_proxy_separated": true,
+    "research_proxy_only": true,
+    "does_not_fabricate_etf_history": true,
+    "no_opportunity_score": true,
+    "no_ranking": true,
+    "no_allocation": true,
+    "no_backtest": true,
+    "no_trade_execution": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  }
+}
