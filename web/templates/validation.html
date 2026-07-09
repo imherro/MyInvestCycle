@@ -1986,6 +1986,37 @@
           <p class="result-note" id="riskShadowInputConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="汇总 shadow evidence 积累状态：事件数、待复核、已复核、误报、漏报和质量队列；只展示，不创建事件、不扫描市场、不判断风险。">风险诊断影子证据积累看板</h2>
+            <span class="panel-kicker">V14.9</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>当前事件</span>
+              <strong id="riskShadowEvidenceEvents">--</strong>
+            </div>
+            <div class="result-row">
+              <span>待复核</span>
+              <strong id="riskShadowEvidencePending">--</strong>
+            </div>
+            <div class="result-row">
+              <span>已复核</span>
+              <strong id="riskShadowEvidenceReviewed">--</strong>
+            </div>
+            <div class="result-row">
+              <span>质量队列</span>
+              <strong id="riskShadowEvidenceQueue">--</strong>
+            </div>
+            <div class="result-row">
+              <span>交易启用</span>
+              <strong id="riskShadowEvidenceTrade">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="riskShadowEvidenceRows"></div>
+          <p class="result-note" id="riskShadowEvidenceConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -2076,7 +2107,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260708-risk-shadow-event-input-1"></script>
+    <script src="/static/dashboard.js?v=20260709-risk-shadow-evidence-dashboard-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

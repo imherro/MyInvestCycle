@@ -1762,6 +1762,11 @@ function setResultsPanel(results) {
   const riskShadowInputCli = riskShadowInput.validation_cli || {};
   const riskShadowInputResult = riskShadowInput.current_submission_result || {};
   const riskShadowInputPromotion = riskShadowInput.promotion_gate || {};
+  const riskShadowEvidence = results.risk_diagnostic_shadow_evidence_dashboard || {};
+  const riskShadowEvidenceSummary = riskShadowEvidence.summary || {};
+  const riskShadowEvidenceStats = riskShadowEvidence.event_statistics || {};
+  const riskShadowEvidenceStatus = riskShadowEvidence.evidence_status || {};
+  const riskShadowEvidenceGate = riskShadowEvidence.implementation_gate || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4230,6 +4235,7 @@ function setResultsPanel(results) {
     no_event_file_supplied: "未提供事件文件",
     valid_not_submitted: "有效/未提交",
     invalid_event_file: "事件文件无效",
+    waiting_for_manual_events: "等待人工事件",
     initialized_empty: "空日志",
     defined_not_instantiated: "已定义/未实例化",
     risk_diagnostic_shadow_framework_defined_observation_only_no_trade: "只观察/不交易",
@@ -4617,6 +4623,32 @@ function setResultsPanel(results) {
     riskShadowInput.metadata
       ? `V14.8 已建立首个人工 shadow event 输入包：template=${phaseStatusLabel(riskShadowInputSummary.template_status)}，event_submitted=${riskShadowInputSummary.event_submitted === false ? "false" : "--"}，validated=${integerText(riskShadowInputSummary.validated_event_count)}，auto_event=false，trade=false；implementation_ready=false。`
       : "V14.8 风险诊断事件输入包尚未生成。"
+  );
+
+  const riskShadowEvidenceBlockers = Array.isArray(riskShadowEvidenceGate.blocking_reasons) ? riskShadowEvidenceGate.blocking_reasons : [];
+  setText("riskShadowEvidenceEvents", integerText(riskShadowEvidenceStats.event_count));
+  setText("riskShadowEvidencePending", integerText(riskShadowEvidenceStats.pending_review_count));
+  setText("riskShadowEvidenceReviewed", integerText(riskShadowEvidenceStats.reviewed_count));
+  setText("riskShadowEvidenceQueue", integerText(riskShadowEvidenceStats.quality_queue_count));
+  setText("riskShadowEvidenceTrade", riskShadowEvidenceGate.trade_enabled === false ? "否" : "--");
+  setHtml("riskShadowEvidenceRows", [
+    ["积累状态", phaseStatusLabel(riskShadowEvidenceStatus.evidence_accumulation_status), `shadow=${phaseStatusLabel(riskShadowEvidenceStatus.shadow_status)}`],
+    ["误报/漏报", `${integerText(riskShadowEvidenceStats.false_warning_count)} / ${integerText(riskShadowEvidenceStats.missed_risk_count)}`, "等待真实事件和后验复核。"],
+    ["已校验事件", integerText(riskShadowEvidenceStats.validated_event_count), "当前没有人工事件文件提交。"],
+    ["实现状态", riskShadowEvidenceGate.implementation_ready === false ? "阻塞" : "--", riskShadowEvidenceGate.trade_enabled === false ? "交易关闭" : "--"],
+    ["阻断项", `${integerText(riskShadowEvidenceBlockers.length)} 项`, riskShadowEvidenceBlockers.join("；") || "--"],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  setText(
+    "riskShadowEvidenceConclusion",
+    riskShadowEvidence.metadata
+      ? `V14.9 已建立 shadow evidence 积累看板：event_count=${integerText(riskShadowEvidenceStats.event_count)}，pending=${integerText(riskShadowEvidenceStats.pending_review_count)}，reviewed=${integerText(riskShadowEvidenceStats.reviewed_count)}，false_warning=${integerText(riskShadowEvidenceStats.false_warning_count)}，missed_risk=${integerText(riskShadowEvidenceStats.missed_risk_count)}，quality_queue=${integerText(riskShadowEvidenceStats.quality_queue_count)}；trade=false，implementation_ready=false。`
+      : "V14.9 风险诊断影子证据积累看板尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
