@@ -1,0 +1,413 @@
+{
+  "metadata": {
+    "engine": "V15.1 Outcome-Oriented Backtest Dataset Builder",
+    "generated_at": "2026-07-10T07:56:20+00:00",
+    "as_of": "20260710",
+    "v15_0_commit": "94499052273969bd4b122253afe4eef5276f9cf2",
+    "source_direction_artifact": "data/v15_strategy_direction_rebase.json",
+    "purpose": "Define the point-in-time data manifest required for V15+ outcome-oriented backtests without fetching full datasets or running strategies."
+  },
+  "phase": "V15.1",
+  "dataset_status": "manifest_ready",
+  "does_not_run_strategy": true,
+  "does_not_generate_position": true,
+  "does_not_generate_trade_signal": true,
+  "no_backtest_result": true,
+  "production_trade_enabled": false,
+  "summary": {
+    "phase": "V15.1",
+    "dataset_status": "manifest_ready",
+    "mainline_direction": "outcome_oriented_strategy_rebase",
+    "primary_objective": "maximize_return_and_alpha",
+    "secondary_objective": "control_max_drawdown",
+    "does_not_run_strategy": true,
+    "does_not_generate_position": true,
+    "does_not_generate_trade_signal": true,
+    "no_backtest_result": true,
+    "production_trade_enabled": false,
+    "broker_connection_enabled": false,
+    "real_order_generation_enabled": false,
+    "next_task": "V15.2 macro plus drawdown regime strategy backtest",
+    "conclusion": "v15_1_backtest_dataset_manifest_ready_no_strategy_no_trade"
+  },
+  "dataset_groups": {
+    "broad_indices": {
+      "dataset_group_status": "manifest_defined",
+      "purpose": "Build broad-market baselines and long-cycle drawdown context.",
+      "required_instruments": [
+        "shanghai_composite",
+        "csi_300",
+        "csi_500",
+        "csi_1000",
+        "chinext_index",
+        "star_50",
+        "csi_all_share"
+      ],
+      "fields": [
+        {
+          "name": "trade_date",
+          "purpose": "point-in-time trading date",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "close",
+          "purpose": "close level for return and drawdown calculations",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "total_return_close",
+          "purpose": "dividend-adjusted benchmark level when available",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "turnover_amount",
+          "purpose": "market liquidity and activity proxy",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "moving_average_distance",
+          "purpose": "distance to long trend anchors",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "valuation_percentile",
+          "purpose": "late-cycle high-level risk context",
+          "frequency": "weekly_or_monthly",
+          "preferred_source": "tushare_or_local_cache"
+        }
+      ]
+    },
+    "sector_indices": {
+      "dataset_group_status": "manifest_defined",
+      "purpose": "Measure sector/theme strength and structural bull rotation breadth.",
+      "required_universe": [
+        "sw_first_level_industries",
+        "major_sector_indices",
+        "theme_fund_proxy_universe",
+        "strong_mainline_candidate_pool"
+      ],
+      "fields": [
+        {
+          "name": "trade_date",
+          "purpose": "point-in-time trading date",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "sector_name",
+          "purpose": "sector or theme label",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "close",
+          "purpose": "sector index close level",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "relative_strength",
+          "purpose": "sector strength versus broad baseline",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "momentum_20d",
+          "purpose": "short-cycle mainline persistence",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "momentum_60d",
+          "purpose": "medium-cycle mainline persistence",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "breadth_score",
+          "purpose": "participation within sector/theme proxy",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "turnover_share",
+          "purpose": "activity concentration proxy",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        }
+      ]
+    },
+    "macro_cycle": {
+      "dataset_group_status": "manifest_defined",
+      "purpose": "Classify long-term macro and valuation context before interpreting drawdowns.",
+      "fields": [
+        {
+          "name": "release_date",
+          "purpose": "macro release date for point-in-time safety",
+          "frequency": "monthly",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "effective_date",
+          "purpose": "date from which the macro value is usable",
+          "frequency": "monthly",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "m1",
+          "purpose": "money supply growth proxy",
+          "frequency": "monthly",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "m2",
+          "purpose": "broad liquidity proxy",
+          "frequency": "monthly",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "social_financing",
+          "purpose": "credit impulse proxy",
+          "frequency": "monthly",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "pmi",
+          "purpose": "economic activity proxy",
+          "frequency": "monthly",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "interest_rate",
+          "purpose": "discount-rate context",
+          "frequency": "daily_or_monthly",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "credit_cycle_bucket",
+          "purpose": "derived long-cycle credit state",
+          "frequency": "monthly",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "equity_bond_value_spread",
+          "purpose": "stock-bond relative value proxy",
+          "frequency": "daily_or_weekly",
+          "preferred_source": "tushare_or_local_cache"
+        }
+      ]
+    },
+    "drawdown_context": {
+      "dataset_group_status": "manifest_defined",
+      "purpose": "Distinguish bull-market pullbacks from late-cycle or bear-market risk.",
+      "fields": [
+        {
+          "name": "trade_date",
+          "purpose": "point-in-time trading date",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "drawdown_20d",
+          "purpose": "short pullback depth",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "drawdown_60d",
+          "purpose": "medium pullback depth",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "drawdown_120d",
+          "purpose": "cycle pullback depth",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "rolling_max_drawdown",
+          "purpose": "largest drawdown from trailing peak",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "realized_volatility",
+          "purpose": "volatility pressure",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "trend_distance",
+          "purpose": "distance from moving-average trend anchor",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "market_breadth",
+          "purpose": "market participation",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "turnover_change",
+          "purpose": "liquidity stress or recovery",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        }
+      ]
+    },
+    "structural_bull": {
+      "dataset_group_status": "manifest_defined",
+      "purpose": "Detect broad-index stagnation with strong sector/theme mainlines.",
+      "fields": [
+        {
+          "name": "trade_date",
+          "purpose": "point-in-time trading date",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "sector_strength_distribution",
+          "purpose": "cross-sectional sector strength",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "sector_dispersion",
+          "purpose": "industry return dispersion",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "mainline_concentration",
+          "purpose": "activity and return concentration among leaders",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "mainline_persistence",
+          "purpose": "duration of leading sector strength",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "rising_sector_ratio",
+          "purpose": "percentage of sectors in uptrend",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "leader_diffusion",
+          "purpose": "whether leaders broaden beyond first movers",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        },
+        {
+          "name": "broad_vs_sector_divergence",
+          "purpose": "broad-index weakness versus sector strength",
+          "frequency": "daily",
+          "preferred_source": "tushare_or_local_cache"
+        }
+      ]
+    }
+  },
+  "future_backtest_targets": {
+    "macro_drawdown_strategy": true,
+    "structural_bull_rotation_strategy": true,
+    "old_strategy_baseline": true
+  },
+  "data_quality_requirements": {
+    "point_in_time_required": true,
+    "release_date_safe_required": true,
+    "survivorship_bias_check_required": true,
+    "cache_consistency_check_required": true,
+    "minimum_start_date": "20150101",
+    "preferred_latest_complete_trading_day": "latest_a_share_complete_trading_day",
+    "source_priority": [
+      "local_verified_cache",
+      "tushare_structured_data",
+      "documented_manual_cache_with_explicit_gap_disclosure"
+    ]
+  },
+  "time_safety": {
+    "manifest_only": true,
+    "does_not_fetch_full_dataset": true,
+    "does_not_use_future_data": true,
+    "requires_release_date_alignment": true,
+    "requires_t_plus_one_execution_assumption_for_future_backtests": true
+  },
+  "constraints": {
+    "dataset_builder_only": true,
+    "does_not_fetch_full_dataset": true,
+    "does_not_run_strategy": true,
+    "no_backtest_result": true,
+    "does_not_generate_position": true,
+    "does_not_generate_fund_mapping": true,
+    "does_not_generate_portfolio_weight": true,
+    "no_allocation": true,
+    "does_not_generate_trade_signal": true,
+    "no_trade": true,
+    "no_broker_connection": true,
+    "production_trade_enabled": false
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_phase": "V15.1",
+    "checked_dataset_status": "manifest_ready",
+    "checked_dataset_group_count": 5,
+    "checked_future_targets": [
+      "macro_drawdown_strategy",
+      "old_strategy_baseline",
+      "structural_bull_rotation_strategy"
+    ],
+    "checked_no_strategy": true,
+    "checked_no_position": true,
+    "checked_no_trade_signal": true,
+    "checked_trade_enabled": false,
+    "checked_constraints": [
+      "dataset_builder_only",
+      "does_not_fetch_full_dataset",
+      "does_not_run_strategy",
+      "no_backtest_result",
+      "does_not_generate_position",
+      "does_not_generate_fund_mapping",
+      "does_not_generate_portfolio_weight",
+      "no_allocation",
+      "does_not_generate_trade_signal",
+      "no_trade",
+      "no_broker_connection"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}

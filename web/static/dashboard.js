@@ -1776,6 +1776,17 @@ function setResultsPanel(results) {
   };
   const v15RebaseRoadmap = v15Rebase.v15_roadmap || { v15_1: v15Rebase.next_task };
   const v15RebaseConstraints = v15Rebase.constraints || {};
+  const v15Dataset = results.v15_backtest_dataset_manifest || {};
+  const v15DatasetSummary = v15Dataset.summary || v15Dataset;
+  const v15DatasetGroupsSource = v15Dataset.dataset_groups || [];
+  const v15DatasetGroups = Array.isArray(v15DatasetGroupsSource)
+    ? v15DatasetGroupsSource
+    : Object.keys(v15DatasetGroupsSource);
+  const v15DatasetTargetsSource = v15Dataset.future_backtest_targets || [];
+  const v15DatasetTargets = Array.isArray(v15DatasetTargetsSource)
+    ? v15DatasetTargetsSource
+    : Object.keys(v15DatasetTargetsSource).filter((key) => v15DatasetTargetsSource[key] === true);
+  const v15DatasetConstraints = v15Dataset.constraints || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4684,6 +4695,44 @@ function setResultsPanel(results) {
     v15RebaseSummary.phase
       ? "V15.0 已把主开发方向切回收益第一、最大回撤第二；V12-V14 仅保留为治理、证据和影子观察基础设施，不再包装为已验证投资策略或组合引擎。"
       : "V15.0 主线收益策略重构产物尚未生成。"
+  );
+
+  const v15DatasetGroupLabels = {
+    broad_indices: "宽基指数",
+    sector_indices: "行业/主题指数",
+    macro_cycle: "宏观周期",
+    drawdown_context: "回撤背景",
+    structural_bull: "结构性牛市",
+  };
+  const v15DatasetTargetLabels = {
+    macro_drawdown_strategy: "宏观+回撤策略",
+    structural_bull_rotation_strategy: "结构牛轮动策略",
+    old_strategy_baseline: "旧策略基线",
+  };
+  const v15DatasetNoBacktest = v15DatasetConstraints.no_backtest_result === true || v15DatasetSummary.no_backtest_result === true;
+  const v15DatasetTradeDisabled = v15DatasetSummary.production_trade_enabled === false;
+  setText("v15DatasetStatus", v15DatasetSummary.dataset_status || "--");
+  setText("v15DatasetGroups", integerText(v15DatasetSummary.dataset_group_count || v15DatasetGroups.length));
+  setText("v15DatasetNoStrategy", v15DatasetSummary.does_not_run_strategy === true ? "是" : "--");
+  setText("v15DatasetNoPosition", v15DatasetSummary.does_not_generate_position === true ? "是" : "--");
+  setText("v15DatasetTrade", v15DatasetTradeDisabled ? "否" : "--");
+  setHtml("v15DatasetRows", [
+    ["数据组", v15DatasetGroups.map((key) => v15DatasetGroupLabels[key] || key).join(" / ") || "--", "只定义字段清单，不拉取全量数据。"],
+    ["未来回测目标", v15DatasetTargets.map((key) => v15DatasetTargetLabels[key] || key).join(" / ") || "--", "后续任务才允许进入回测。"],
+    ["无回测结果", v15DatasetNoBacktest ? "是" : "--", "V15.1 不产出收益、仓位、权重或信号。"],
+    ["下一任务", v15DatasetSummary.next_task || "--", "由 ChatGPT 审核后再继续。"],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  setText(
+    "v15DatasetConclusion",
+    v15DatasetSummary.phase
+      ? "V15.1 已完成收益导向回测的数据集 manifest：宽基、行业、宏观、回撤和结构牛字段就绪；当前仍严格不回测、不生成仓位、不生成交易信号、不接券商。"
+      : "V15.1 回测数据集 manifest 尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
