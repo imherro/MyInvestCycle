@@ -1,0 +1,1729 @@
+{
+  "metadata": {
+    "engine": "V15.2 Outcome Backtest Dataset Materialization",
+    "generated_at": "2026-07-10T08:07:51+00:00",
+    "as_of": "20260710",
+    "source_manifest_hash": "840e0e21cac24225d363fd398ecd6d0d11ffa36ec1f24f88882d5ef42f969872",
+    "purpose": "Report local coverage for the V15.1 backtest dataset manifest without fetching full datasets or running strategies."
+  },
+  "phase": "V15.2",
+  "materialization_status": "coverage_report_ready",
+  "source_manifest": "data/v15_backtest_dataset_manifest.json",
+  "dataset_groups_checked": 5,
+  "full_dataset_fetched": false,
+  "strategy_run": false,
+  "backtest_result_generated": false,
+  "position_generated": false,
+  "trade_signal_generated": false,
+  "production_trade_enabled": false,
+  "summary": {
+    "phase": "V15.2",
+    "materialization_status": "coverage_report_ready",
+    "dataset_groups_checked": 5,
+    "source_count": 29,
+    "available_source_count": 29,
+    "missing_source_count": 0,
+    "coverage_ratio": 1.0,
+    "full_dataset_fetched": false,
+    "strategy_run": false,
+    "backtest_result_generated": false,
+    "position_generated": false,
+    "trade_signal_generated": false,
+    "production_trade_enabled": false,
+    "next_task": "V15.3 macro plus drawdown regime strategy backtest after dataset materialization audit passes",
+    "conclusion": "v15_2_local_coverage_report_ready_no_strategy_no_trade"
+  },
+  "data_interfaces": {
+    "tushare": {
+      "status": "placeholder_defined",
+      "live_fetch_enabled": false
+    },
+    "qmt": {
+      "status": "placeholder_defined",
+      "live_fetch_enabled": false,
+      "broker_connection_enabled": false
+    },
+    "fred": {
+      "status": "placeholder_defined",
+      "live_fetch_enabled": false
+    },
+    "yfinance": {
+      "status": "placeholder_defined",
+      "live_fetch_enabled": false
+    }
+  },
+  "coverage": {
+    "broad_indices": {
+      "dataset_group_status": "local_coverage_reported",
+      "manifest_field_count": 6,
+      "manifest_fields": [
+        "trade_date",
+        "close",
+        "total_return_close",
+        "turnover_amount",
+        "moving_average_distance",
+        "valuation_percentile"
+      ],
+      "required_source_count": 6,
+      "available_source_count": 6,
+      "missing_source_count": 0,
+      "coverage_ratio": 1.0,
+      "cache_hash_count": 6,
+      "group_cache_hash": "7ce65376ce853a4b2cffdf449e93a3abad48c982890e185819f500867d93ed44",
+      "missing_field_report": {
+        "status": "defined",
+        "unmatched_manifest_fields": [
+          "moving_average_distance",
+          "total_return_close",
+          "turnover_amount",
+          "valuation_percentile"
+        ],
+        "note": "Field names are compared to observed local cache columns/keys; semantic mapping is deferred to future backtests."
+      },
+      "sources": [
+        {
+          "source_id": "shanghai_composite",
+          "role": "broad_index",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/cache/index_daily_000001_SH.csv",
+              "exists": true,
+              "file_type": "csv",
+              "size_bytes": 817797,
+              "cache_hash": "560a6ee6875150ed95f3395816fec34a37b8ddd0885d839ad4213ad4f4fa1155",
+              "column_count": 11,
+              "columns_sample": [
+                "ts_code",
+                "trade_date",
+                "close",
+                "open",
+                "high",
+                "low",
+                "pre_close",
+                "change",
+                "pct_chg",
+                "vol",
+                "amount"
+              ],
+              "row_count": 7902,
+              "date_range": {
+                "start": "19940103",
+                "end": "20260709"
+              },
+              "point_in_time_date_column": "trade_date"
+            }
+          ]
+        },
+        {
+          "source_id": "csi_300",
+          "role": "broad_index",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/cache/index_daily_000300_SH.csv",
+              "exists": true,
+              "file_type": "csv",
+              "size_bytes": 361164,
+              "cache_hash": "c168213aa03c46ee1083438e3d52be4933f1af7ec24ca24cd4e0995183016155",
+              "column_count": 11,
+              "columns_sample": [
+                "ts_code",
+                "trade_date",
+                "close",
+                "open",
+                "high",
+                "low",
+                "pre_close",
+                "change",
+                "pct_chg",
+                "vol",
+                "amount"
+              ],
+              "row_count": 3279,
+              "date_range": {
+                "start": "20130104",
+                "end": "20260708"
+              },
+              "point_in_time_date_column": "trade_date"
+            }
+          ]
+        },
+        {
+          "source_id": "csi_500",
+          "role": "broad_index",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/cache/index_daily_000905_SH.csv",
+              "exists": true,
+              "file_type": "csv",
+              "size_bytes": 433172,
+              "cache_hash": "641a93c9892c8a42c9c66e47a2d849e10a295024a6d1092105ba865effe5cf2f",
+              "column_count": 11,
+              "columns_sample": [
+                "ts_code",
+                "trade_date",
+                "close",
+                "open",
+                "high",
+                "low",
+                "pre_close",
+                "change",
+                "pct_chg",
+                "vol",
+                "amount"
+              ],
+              "row_count": 4008,
+              "date_range": {
+                "start": "20100104",
+                "end": "20260708"
+              },
+              "point_in_time_date_column": "trade_date"
+            }
+          ]
+        },
+        {
+          "source_id": "chinext_index",
+          "role": "broad_index",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/cache/index_daily_399006_SZ.csv",
+              "exists": true,
+              "file_type": "csv",
+              "size_bytes": 38892,
+              "cache_hash": "83109620cb3aa8bae8b101e2f20a3ff8418334bc332e2a7a11915f2611141879",
+              "column_count": 11,
+              "columns_sample": [
+                "ts_code",
+                "trade_date",
+                "close",
+                "open",
+                "high",
+                "low",
+                "pre_close",
+                "change",
+                "pct_chg",
+                "vol",
+                "amount"
+              ],
+              "row_count": 356,
+              "date_range": {
+                "start": "20250102",
+                "end": "20260625"
+              },
+              "point_in_time_date_column": "trade_date"
+            }
+          ]
+        },
+        {
+          "source_id": "star_50",
+          "role": "broad_index",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/cache/index_daily_000688_SH.csv",
+              "exists": true,
+              "file_type": "csv",
+              "size_bytes": 38387,
+              "cache_hash": "a8adece3269915f435e89e6a20f899c5632436497da78a7298cb184d3b4177af",
+              "column_count": 11,
+              "columns_sample": [
+                "ts_code",
+                "trade_date",
+                "close",
+                "open",
+                "high",
+                "low",
+                "pre_close",
+                "change",
+                "pct_chg",
+                "vol",
+                "amount"
+              ],
+              "row_count": 356,
+              "date_range": {
+                "start": "20250102",
+                "end": "20260625"
+              },
+              "point_in_time_date_column": "trade_date"
+            }
+          ]
+        },
+        {
+          "source_id": "csi_all_share_proxy",
+          "role": "broad_index",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/cache/index_daily_000922_CSI.csv",
+              "exists": true,
+              "file_type": "csv",
+              "size_bytes": 39513,
+              "cache_hash": "dce5930c3399ed9feb6c0fb12051c5ebcc7f24ef713136ad14861e76b4114b28",
+              "column_count": 11,
+              "columns_sample": [
+                "ts_code",
+                "trade_date",
+                "close",
+                "open",
+                "high",
+                "low",
+                "pre_close",
+                "change",
+                "pct_chg",
+                "vol",
+                "amount"
+              ],
+              "row_count": 356,
+              "date_range": {
+                "start": "20250102",
+                "end": "20260625"
+              },
+              "point_in_time_date_column": "trade_date"
+            }
+          ]
+        }
+      ]
+    },
+    "sector_indices": {
+      "dataset_group_status": "local_coverage_reported",
+      "manifest_field_count": 8,
+      "manifest_fields": [
+        "trade_date",
+        "sector_name",
+        "close",
+        "relative_strength",
+        "momentum_20d",
+        "momentum_60d",
+        "breadth_score",
+        "turnover_share"
+      ],
+      "required_source_count": 6,
+      "available_source_count": 6,
+      "missing_source_count": 0,
+      "coverage_ratio": 1.0,
+      "cache_hash_count": 6,
+      "group_cache_hash": "7fbb9b810d6bc138c3e2d4049e269eb87f9a25a57ced736b80a49212f9ee806a",
+      "missing_field_report": {
+        "status": "defined",
+        "unmatched_manifest_fields": [
+          "breadth_score",
+          "momentum_20d",
+          "momentum_60d",
+          "relative_strength",
+          "sector_name",
+          "turnover_share"
+        ],
+        "note": "Field names are compared to observed local cache columns/keys; semantic mapping is deferred to future backtests."
+      },
+      "sources": [
+        {
+          "source_id": "sw_l1_universe",
+          "role": "industry_universe",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/industry/industry_universe_SW2021_L1.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 5736,
+              "cache_hash": "bd86a38468b816db8894d96ee634aa4387aac820349576f548e4d74899b04b4d",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "metadata",
+                "assets"
+              ],
+              "observed_key_count": 11,
+              "observed_keys_sample": [
+                "assets",
+                "code",
+                "index_daily_source",
+                "industry_count",
+                "loaded_from_cache",
+                "metadata",
+                "name",
+                "provider",
+                "source",
+                "source_type",
+                "universe"
+              ],
+              "object_count_scanned": 33,
+              "array_count_scanned": 1,
+              "date_range": {
+                "start": null,
+                "end": null
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "industry_opportunity",
+          "role": "industry_snapshot",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/industry_opportunity_snapshot.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 24102,
+              "cache_hash": "be7d319e0ce3e501ee7a4863af2dfd6faf41c464701624bd2a1964cc769637f5",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "engine",
+                "requested_as_of",
+                "as_of",
+                "generated_at",
+                "source_type",
+                "industry_opportunity_score",
+                "industry_strength",
+                "theme_persistence",
+                "top_themes",
+                "metrics",
+                "benchmark_returns",
+                "industries",
+                "persistence_by_industry",
+                "data_quality",
+                "constraints",
+                "explanation"
+              ],
+              "observed_key_count": 66,
+              "observed_keys_sample": [
+                "000300.SH",
+                "000905.SH",
+                "as_of",
+                "asset_count",
+                "available_count",
+                "average",
+                "avg_rank60",
+                "benchmark",
+                "benchmark_codes",
+                "benchmark_returns",
+                "by_code",
+                "cache_path",
+                "code",
+                "composite_score",
+                "constraints",
+                "data_quality",
+                "end_date",
+                "engine",
+                "errors",
+                "explanation",
+                "generated_at",
+                "index_daily_source",
+                "industries",
+                "industry",
+                "industry_breadth",
+                "industry_count",
+                "industry_opportunity_score",
+                "industry_or_theme_research_only",
+                "industry_strength",
+                "latest_rank",
+                "loaded_from_cache",
+                "metrics",
+                "name",
+                "no_backtest",
+                "no_etf_allocation",
+                "no_future_data",
+                "no_position_sizing",
+                "no_trade_signal",
+                "persistence",
+                "persistence_by_industry"
+              ],
+              "object_count_scanned": 86,
+              "array_count_scanned": 5,
+              "date_range": {
+                "start": "20260707",
+                "end": "20260707"
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "industry_bank",
+          "role": "sw_l1_index",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/cache/index_daily_801010_SI.csv",
+              "exists": true,
+              "file_type": "csv",
+              "size_bytes": 331689,
+              "cache_hash": "ee2a1722f290acc44ce4b463a2337f39ad03a1ee4e1ef975c1cc1dcf1fe65f8e",
+              "column_count": 11,
+              "columns_sample": [
+                "ts_code",
+                "trade_date",
+                "close",
+                "open",
+                "high",
+                "low",
+                "pre_close",
+                "change",
+                "pct_chg",
+                "vol",
+                "amount"
+              ],
+              "row_count": 3279,
+              "date_range": {
+                "start": "20130104",
+                "end": "20260708"
+              },
+              "point_in_time_date_column": "trade_date"
+            }
+          ]
+        },
+        {
+          "source_id": "industry_non_bank",
+          "role": "sw_l1_index",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/cache/index_daily_801030_SI.csv",
+              "exists": true,
+              "file_type": "csv",
+              "size_bytes": 334100,
+              "cache_hash": "ea9c625342930ee99d930d9073d1bb878630898aa9964113aee779654f4fb278",
+              "column_count": 11,
+              "columns_sample": [
+                "ts_code",
+                "trade_date",
+                "close",
+                "open",
+                "high",
+                "low",
+                "pre_close",
+                "change",
+                "pct_chg",
+                "vol",
+                "amount"
+              ],
+              "row_count": 3279,
+              "date_range": {
+                "start": "20130104",
+                "end": "20260708"
+              },
+              "point_in_time_date_column": "trade_date"
+            }
+          ]
+        },
+        {
+          "source_id": "industry_metal",
+          "role": "sw_l1_index",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/cache/index_daily_801040_SI.csv",
+              "exists": true,
+              "file_type": "csv",
+              "size_bytes": 329938,
+              "cache_hash": "bca4d63a2268c08b6da74b75b8cd9b95553fcda5dcd24b8ea6b4f0460c5b92be",
+              "column_count": 11,
+              "columns_sample": [
+                "ts_code",
+                "trade_date",
+                "close",
+                "open",
+                "high",
+                "low",
+                "pre_close",
+                "change",
+                "pct_chg",
+                "vol",
+                "amount"
+              ],
+              "row_count": 3279,
+              "date_range": {
+                "start": "20130104",
+                "end": "20260708"
+              },
+              "point_in_time_date_column": "trade_date"
+            }
+          ]
+        },
+        {
+          "source_id": "industry_power",
+          "role": "sw_l1_index",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/cache/index_daily_801050_SI.csv",
+              "exists": true,
+              "file_type": "csv",
+              "size_bytes": 334201,
+              "cache_hash": "d7de9ea3d944d077ee7256f9a7340ebfa8e1a7f5b978f088428cb7a7b35ab9c0",
+              "column_count": 11,
+              "columns_sample": [
+                "ts_code",
+                "trade_date",
+                "close",
+                "open",
+                "high",
+                "low",
+                "pre_close",
+                "change",
+                "pct_chg",
+                "vol",
+                "amount"
+              ],
+              "row_count": 3279,
+              "date_range": {
+                "start": "20130104",
+                "end": "20260708"
+              },
+              "point_in_time_date_column": "trade_date"
+            }
+          ]
+        }
+      ]
+    },
+    "macro_cycle": {
+      "dataset_group_status": "local_coverage_reported",
+      "manifest_field_count": 9,
+      "manifest_fields": [
+        "release_date",
+        "effective_date",
+        "m1",
+        "m2",
+        "social_financing",
+        "pmi",
+        "interest_rate",
+        "credit_cycle_bucket",
+        "equity_bond_value_spread"
+      ],
+      "required_source_count": 7,
+      "available_source_count": 7,
+      "missing_source_count": 0,
+      "coverage_ratio": 1.0,
+      "cache_hash_count": 7,
+      "group_cache_hash": "3b3485a63470522df1870266a6c57f5c19d6ca2ac9aec300031f0329c89bde2e",
+      "missing_field_report": {
+        "status": "defined",
+        "unmatched_manifest_fields": [
+          "credit_cycle_bucket",
+          "equity_bond_value_spread",
+          "interest_rate",
+          "m1",
+          "m2",
+          "pmi",
+          "social_financing"
+        ],
+        "note": "Field names are compared to observed local cache columns/keys; semantic mapping is deferred to future backtests."
+      },
+      "sources": [
+        {
+          "source_id": "m1_growth",
+          "role": "macro_series",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/macro/M1_growth.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 43143,
+              "cache_hash": "93bad98a9a21af956a4bffd3fa08286e72f45ea54c734edb29c08c1194270a1f",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "metadata",
+                "records"
+              ],
+              "observed_key_count": 12,
+              "observed_keys_sample": [
+                "effective_date",
+                "frequency",
+                "indicator",
+                "metadata",
+                "observation_date",
+                "quality_status",
+                "records",
+                "release_date",
+                "schema",
+                "source",
+                "updated_at",
+                "value"
+              ],
+              "object_count_scanned": 151,
+              "array_count_scanned": 1,
+              "date_range": {
+                "start": null,
+                "end": null
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "m2_growth",
+          "role": "macro_series",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/macro/M2_growth.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 43182,
+              "cache_hash": "96663c1711b5258fc50e632e62711e63d4c66b10dc09ff490ea0dc7acf5e51a5",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "metadata",
+                "records"
+              ],
+              "observed_key_count": 12,
+              "observed_keys_sample": [
+                "effective_date",
+                "frequency",
+                "indicator",
+                "metadata",
+                "observation_date",
+                "quality_status",
+                "records",
+                "release_date",
+                "schema",
+                "source",
+                "updated_at",
+                "value"
+              ],
+              "object_count_scanned": 151,
+              "array_count_scanned": 1,
+              "date_range": {
+                "start": null,
+                "end": null
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "social_financing_growth",
+          "role": "macro_series",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/macro/social_financing_growth.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 42990,
+              "cache_hash": "66bc724350b8392235fbc55d47c6a7e069a5c94ead58f9a2cf9024eb62392015",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "metadata",
+                "records"
+              ],
+              "observed_key_count": 12,
+              "observed_keys_sample": [
+                "effective_date",
+                "frequency",
+                "indicator",
+                "metadata",
+                "observation_date",
+                "quality_status",
+                "records",
+                "release_date",
+                "schema",
+                "source",
+                "updated_at",
+                "value"
+              ],
+              "object_count_scanned": 121,
+              "array_count_scanned": 1,
+              "date_range": {
+                "start": null,
+                "end": null
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "pmi",
+          "role": "macro_series",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/macro/PMI.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 43096,
+              "cache_hash": "de92d5c2641c2cc6e17c7e1e4bdd8377eff84a79dfd6b0dfb5593f549992d7e9",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "metadata",
+                "records"
+              ],
+              "observed_key_count": 12,
+              "observed_keys_sample": [
+                "effective_date",
+                "frequency",
+                "indicator",
+                "metadata",
+                "observation_date",
+                "quality_status",
+                "records",
+                "release_date",
+                "schema",
+                "source",
+                "updated_at",
+                "value"
+              ],
+              "object_count_scanned": 151,
+              "array_count_scanned": 1,
+              "date_range": {
+                "start": null,
+                "end": null
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "shibor",
+          "role": "macro_series",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/macro/SHIBOR.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 864939,
+              "cache_hash": "38381f83f4c7a2ffbc5573d2191818510cb64888fb9a2490085e716ef932b0c3",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "metadata",
+                "records"
+              ],
+              "observed_key_count": 12,
+              "observed_keys_sample": [
+                "effective_date",
+                "frequency",
+                "indicator",
+                "metadata",
+                "observation_date",
+                "quality_status",
+                "records",
+                "release_date",
+                "schema",
+                "source",
+                "updated_at",
+                "value"
+              ],
+              "object_count_scanned": 3101,
+              "array_count_scanned": 1,
+              "date_range": {
+                "start": null,
+                "end": null
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "macro_context_history",
+          "role": "macro_context",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/macro_context_history.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 2405422,
+              "cache_hash": "e5c0ad0ab0a701acf89900b1d4bc91f2adeecc025e904c522fcc71dd7bd6c9d3",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "metadata",
+                "summary",
+                "rows",
+                "data_quality",
+                "constraints"
+              ],
+              "observed_key_count": 97,
+              "observed_keys_sample": [
+                "BOTTOMING",
+                "CN10Y",
+                "CPI",
+                "ERP",
+                "M1_M2_spread",
+                "M1_growth",
+                "M2_growth",
+                "PB_percentile",
+                "PE_percentile",
+                "PMI",
+                "PPI",
+                "RANGE",
+                "RECOVERY",
+                "SHIBOR",
+                "US10Y",
+                "USD_CNH_offshore",
+                "as_of",
+                "audit_only",
+                "available",
+                "available_count",
+                "available_fields",
+                "available_weight",
+                "checked_values",
+                "component_scores",
+                "constraints",
+                "count",
+                "coverage_rate",
+                "credit",
+                "credit_score",
+                "data_quality",
+                "date",
+                "does_not_add_rules",
+                "does_not_modify_exposure_mapper",
+                "does_not_modify_v4_or_v5_state",
+                "economy",
+                "economy_score",
+                "effective_date",
+                "effective_date_lte_signal_date",
+                "engine",
+                "explanation"
+              ],
+              "object_count_scanned": 6338,
+              "array_count_scanned": 2523,
+              "date_range": {
+                "start": "20150105",
+                "end": "20260618"
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "macro_cycle_snapshot",
+          "role": "macro_snapshot",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/macro_cycle_snapshot.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 8737,
+              "cache_hash": "7f615b14c1c3429f8d45018f67d47256ec1c0854861340b27c254feb52f91ea7",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "engine",
+                "as_of",
+                "generated_at",
+                "macro_state",
+                "macro_score",
+                "confidence",
+                "components",
+                "indicator_scores",
+                "data_quality",
+                "explanation",
+                "constraints"
+              ],
+              "observed_key_count": 52,
+              "observed_keys_sample": [
+                "CN10Y",
+                "CPI",
+                "M1_growth",
+                "M2_growth",
+                "PMI",
+                "PPI",
+                "SHIBOR",
+                "US10Y",
+                "USD_CNH_offshore",
+                "as_of",
+                "available_weight",
+                "components",
+                "confidence",
+                "constraints",
+                "coverage_ratio",
+                "credit",
+                "data_quality",
+                "economy",
+                "effective_date",
+                "engine",
+                "estimated_ratio",
+                "explanation",
+                "external",
+                "generated_at",
+                "indicator",
+                "indicator_scores",
+                "latest_records",
+                "macro_score",
+                "macro_state",
+                "missing_indicators",
+                "new_loans",
+                "no_backtest",
+                "no_etf_allocation",
+                "no_position_sizing",
+                "no_trade_signal",
+                "observation_date",
+                "quality_ratio",
+                "quality_status",
+                "quality_weight",
+                "registered_available_but_unscored"
+              ],
+              "object_count_scanned": 29,
+              "array_count_scanned": 13,
+              "date_range": {
+                "start": "20260708",
+                "end": "20260708"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "drawdown_context": {
+      "dataset_group_status": "local_coverage_reported",
+      "manifest_field_count": 9,
+      "manifest_fields": [
+        "trade_date",
+        "drawdown_20d",
+        "drawdown_60d",
+        "drawdown_120d",
+        "rolling_max_drawdown",
+        "realized_volatility",
+        "trend_distance",
+        "market_breadth",
+        "turnover_change"
+      ],
+      "required_source_count": 5,
+      "available_source_count": 5,
+      "missing_source_count": 0,
+      "coverage_ratio": 1.0,
+      "cache_hash_count": 5,
+      "group_cache_hash": "03b9a5a645fda9757e14897826da5b0fc2713cdfe7c978acfcaf202e49ce3a9e",
+      "missing_field_report": {
+        "status": "defined",
+        "unmatched_manifest_fields": [
+          "drawdown_120d",
+          "drawdown_20d",
+          "drawdown_60d",
+          "market_breadth",
+          "realized_volatility",
+          "rolling_max_drawdown",
+          "trade_date",
+          "trend_distance",
+          "turnover_change"
+        ],
+        "note": "Field names are compared to observed local cache columns/keys; semantic mapping is deferred to future backtests."
+      },
+      "sources": [
+        {
+          "source_id": "market_phase_snapshot",
+          "role": "drawdown_context",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/market_phase_snapshot.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 186433,
+              "cache_hash": "282552ff9b373157861cda164cc33beee6b384d51fa6c193cdf75dda09c0afaa",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "metadata",
+                "current",
+                "historical_summary",
+                "period_validation",
+                "historical_replay",
+                "data_quality",
+                "constraints"
+              ],
+              "observed_key_count": 90,
+              "observed_keys_sample": [
+                "CONTRACTION",
+                "EARLY_CYCLE",
+                "EXPANSION",
+                "LATE_CYCLE",
+                "ROTATION",
+                "UNKNOWN",
+                "as_of",
+                "breadth",
+                "classification_no_future_returns",
+                "constraints",
+                "context_date",
+                "context_future_safe",
+                "count",
+                "crowding_score",
+                "current",
+                "data_quality",
+                "date",
+                "does_not_modify_v4_4_policy_mapping",
+                "dominant_phase",
+                "drawdown_stress",
+                "end",
+                "engine",
+                "evidence",
+                "future_environment_distribution",
+                "future_returns_used_only_for_validation_labels",
+                "future_validation",
+                "generated_at",
+                "groups",
+                "high_risk_event_rate",
+                "high_volatility",
+                "historical_replay",
+                "historical_replay_uses_v4_3_dates",
+                "historical_summary",
+                "industry_breadth",
+                "interpretation",
+                "key_read",
+                "label",
+                "liquidity",
+                "macro_state",
+                "metadata"
+              ],
+              "object_count_scanned": 498,
+              "array_count_scanned": 283,
+              "date_range": {
+                "start": "20150105",
+                "end": "20260707"
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "hazard_dataset",
+          "role": "risk_dataset",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/hazard_dataset.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 661870,
+              "cache_hash": "179c2b4ae806839e77fa0543e15baf652869ab2bca4df224bebc26c5443c4a30",
+              "top_level_type": "list",
+              "top_level_keys_sample": [],
+              "observed_key_count": 15,
+              "observed_keys_sample": [
+                "breadth",
+                "confidence",
+                "date",
+                "features",
+                "label",
+                "liquidity",
+                "liquidity_acceleration",
+                "momentum_decay",
+                "pressure",
+                "regime",
+                "regime_persistence",
+                "regime_score",
+                "trend",
+                "volatility",
+                "volatility_shock"
+              ],
+              "object_count_scanned": 3132,
+              "array_count_scanned": 1,
+              "date_range": {
+                "start": "20200102",
+                "end": "20260623"
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "survival_dataset",
+          "role": "risk_dataset",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/survival_dataset.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 903473,
+              "cache_hash": "def2c7a28dcd147559ccc1cf103046c7bc8f440810a42aff38b3bbc8c151b8fe",
+              "top_level_type": "list",
+              "top_level_keys_sample": [],
+              "observed_key_count": 20,
+              "observed_keys_sample": [
+                "breadth",
+                "confidence",
+                "date",
+                "duration",
+                "event",
+                "features",
+                "liquidity",
+                "liquidity_acceleration",
+                "liquidity_shift_20",
+                "momentum_decay",
+                "pressure",
+                "regime",
+                "regime_age",
+                "regime_persistence",
+                "regime_score",
+                "trend",
+                "trend_decay_20",
+                "volatility",
+                "volatility_acceleration_20",
+                "volatility_shock"
+              ],
+              "object_count_scanned": 3132,
+              "array_count_scanned": 1,
+              "date_range": {
+                "start": "20200102",
+                "end": "20260623"
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "structural_hazard_dataset",
+          "role": "risk_dataset",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/structural_hazard_dataset.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 780492,
+              "cache_hash": "59ee498b4529ba871446b3d41db9769a27292403ebc0baa502132e811b41d578",
+              "top_level_type": "list",
+              "top_level_keys_sample": [],
+              "observed_key_count": 17,
+              "observed_keys_sample": [
+                "breadth",
+                "confidence",
+                "date",
+                "features",
+                "label",
+                "label_type",
+                "liquidity",
+                "liquidity_acceleration",
+                "momentum_decay",
+                "pressure",
+                "regime",
+                "regime_persistence",
+                "regime_score",
+                "structural_regime",
+                "trend",
+                "volatility",
+                "volatility_shock"
+              ],
+              "object_count_scanned": 3124,
+              "array_count_scanned": 1,
+              "date_range": {
+                "start": "20200102",
+                "end": "20260616"
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "exposure_numeric_context",
+          "role": "numeric_context",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/exposure_numeric_context.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 639258,
+              "cache_hash": "a300253f1dcec129b2b54e959e91ec6f79562ac1f486caad3a5f793aba5df5e8",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "metadata",
+                "summary",
+                "rows",
+                "data_quality",
+                "constraints"
+              ],
+              "observed_key_count": 93,
+              "observed_keys_sample": [
+                "BALANCED",
+                "DEFENSIVE",
+                "LOW",
+                "as_of",
+                "audit_only",
+                "available",
+                "available_count",
+                "available_numeric_fields",
+                "breadth_score",
+                "checked_values",
+                "constraints",
+                "count",
+                "coverage_rate",
+                "crowding_score",
+                "data_quality",
+                "date",
+                "does_not_add_formal_state",
+                "does_not_modify_exposure_levels",
+                "does_not_modify_mapper",
+                "effective_date",
+                "engine",
+                "exposure",
+                "exposure_band",
+                "exposure_context",
+                "exposure_level",
+                "exposure_level_distribution",
+                "failure",
+                "feature_date_lte_signal_date",
+                "field_coverage",
+                "fully_populated_non_macro_rate",
+                "fully_populated_non_macro_rows",
+                "fully_populated_rate",
+                "fully_populated_rows",
+                "future_environment",
+                "future_label",
+                "future_label_distribution",
+                "future_window_complete",
+                "generated_at",
+                "industry_breadth",
+                "key_read"
+              ],
+              "object_count_scanned": 2408,
+              "array_count_scanned": 282,
+              "date_range": {
+                "start": "20150105",
+                "end": "20260707"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "structural_bull": {
+      "dataset_group_status": "local_coverage_reported",
+      "manifest_field_count": 8,
+      "manifest_fields": [
+        "trade_date",
+        "sector_strength_distribution",
+        "sector_dispersion",
+        "mainline_concentration",
+        "mainline_persistence",
+        "rising_sector_ratio",
+        "leader_diffusion",
+        "broad_vs_sector_divergence"
+      ],
+      "required_source_count": 5,
+      "available_source_count": 5,
+      "missing_source_count": 0,
+      "coverage_ratio": 1.0,
+      "cache_hash_count": 5,
+      "group_cache_hash": "6c5781d4334c012c17415f9893e365036f50c1177f03ecd507ddb42f8e66c717",
+      "missing_field_report": {
+        "status": "defined",
+        "unmatched_manifest_fields": [
+          "broad_vs_sector_divergence",
+          "leader_diffusion",
+          "mainline_concentration",
+          "mainline_persistence",
+          "rising_sector_ratio",
+          "sector_dispersion",
+          "sector_strength_distribution",
+          "trade_date"
+        ],
+        "note": "Field names are compared to observed local cache columns/keys; semantic mapping is deferred to future backtests."
+      },
+      "sources": [
+        {
+          "source_id": "structural_bull_snapshot",
+          "role": "structural_snapshot",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/structural_bull_snapshot.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 5344,
+              "cache_hash": "a012649610131e0fe29f35380064b35a9f0f766135522d7777bbcac254ba90c2",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "engine",
+                "requested_as_of",
+                "as_of",
+                "generated_at",
+                "structural_state",
+                "score",
+                "confidence",
+                "evidence",
+                "source_snapshots",
+                "data_quality",
+                "thresholds",
+                "explanation",
+                "constraints"
+              ],
+              "observed_key_count": 55,
+              "observed_keys_sample": [
+                "as_of",
+                "breadth",
+                "code",
+                "composite_score",
+                "confidence",
+                "constraints",
+                "data_quality",
+                "engine",
+                "evidence",
+                "explanation",
+                "generated_at",
+                "index_trend",
+                "industry_breadth",
+                "industry_opportunity",
+                "industry_opportunity_as_of",
+                "industry_opportunity_engine",
+                "industry_source_type",
+                "industry_strength",
+                "industry_strength_min",
+                "liquidity",
+                "macro",
+                "macro_as_of",
+                "macro_engine",
+                "macro_not_bear",
+                "market_structure",
+                "market_structure_as_of",
+                "market_structure_engine",
+                "market_structure_not_breakdown",
+                "name",
+                "no_backtest",
+                "no_etf_allocation",
+                "no_future_data",
+                "no_position_sizing",
+                "no_trade_signal",
+                "persistence",
+                "relative_60d",
+                "requested_as_of",
+                "return_20d",
+                "return_60d",
+                "rotation_health"
+              ],
+              "object_count_scanned": 18,
+              "array_count_scanned": 2,
+              "date_range": {
+                "start": "20260707",
+                "end": "20260708"
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "structural_style_validation",
+          "role": "style_validation",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/structural_style_validation.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 36794,
+              "cache_hash": "6bce18c28f18c4d21ac98f568ad86d84a89fe142901ba00e3c5ba9a2ded78c6e",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "metadata",
+                "summary",
+                "results",
+                "constraints"
+              ],
+              "observed_key_count": 64,
+              "observed_keys_sample": [
+                "20d",
+                "60d",
+                "baseline",
+                "baseline_codes",
+                "baseline_return",
+                "constraints",
+                "date",
+                "date_count",
+                "decision_inputs_only_use_same_day_or_prior_data",
+                "dominant_style",
+                "dominant_style_distribution",
+                "edge_status",
+                "end",
+                "engine",
+                "failure_result_is_acceptable",
+                "future_returns_used_only_for_validation_labels",
+                "generated_at",
+                "growth",
+                "hit_rate",
+                "horizons",
+                "interpretation",
+                "max_drawdown",
+                "mean_return",
+                "metadata",
+                "no_broker_connection",
+                "no_etf_allocation",
+                "no_future_function_in_signal",
+                "no_order_generation",
+                "no_parameter_optimization",
+                "no_position_sizing",
+                "no_style_weight",
+                "no_trade_signal",
+                "observation_count",
+                "positive_ic_rate",
+                "positive_rate",
+                "relative_to_baseline",
+                "research_proxy",
+                "research_validation_only",
+                "results",
+                "sample_observations"
+              ],
+              "object_count_scanned": 78,
+              "array_count_scanned": 9,
+              "date_range": {
+                "start": "20250328",
+                "end": "20260527"
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "structural_style_failure_analysis",
+          "role": "style_failure",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/structural_style_failure_analysis.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 109498,
+              "cache_hash": "228665e5168eed91e2483cc6fb467486394476331fedda02f67d404f8a861994",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "metadata",
+                "summary",
+                "results",
+                "field_coverage",
+                "constraints"
+              ],
+              "observed_key_count": 94,
+              "observed_keys_sample": [
+                "20d",
+                "60d",
+                "absolute_gap",
+                "association",
+                "available_historical_fields",
+                "baseline_style_overlap_count",
+                "baseline_style_overlap_ratio",
+                "breadth",
+                "candidate_source",
+                "case_counts",
+                "case_examples",
+                "condition_candidates",
+                "confidence",
+                "constraints",
+                "count",
+                "coverage_note",
+                "decision_inputs_only_use_same_day_or_prior_data",
+                "derived_differences",
+                "derived_means",
+                "dominant_score",
+                "dominant_style_distribution",
+                "dominant_style_forward_rank",
+                "edge_status_after_failure_attribution",
+                "end",
+                "engine",
+                "failure",
+                "failure_associations",
+                "failure_mean",
+                "failure_result_is_acceptable",
+                "feature_differences",
+                "feature_means",
+                "field",
+                "field_coverage",
+                "future_returns_used_only_for_case_labels_and_attribution",
+                "generated_at",
+                "growth",
+                "horizons",
+                "interpretation",
+                "largest_failure_spreads",
+                "largest_success_spreads"
+              ],
+              "object_count_scanned": 143,
+              "array_count_scanned": 31,
+              "date_range": {
+                "start": null,
+                "end": null
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "historical_style_context",
+          "role": "style_context",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/historical_style_context.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 372469,
+              "cache_hash": "ad171fece1c7909e3ed1f1606b7129b57ffb03af5c5d11c1f8558a3b546129f2",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "metadata",
+                "rows",
+                "coverage",
+                "constraints"
+              ],
+              "observed_key_count": 78,
+              "observed_keys_sample": [
+                "actual_window",
+                "asset_count",
+                "available",
+                "available_count",
+                "benchmark_codes",
+                "breadth",
+                "cache_only",
+                "cache_path",
+                "code",
+                "composite_score",
+                "constraints",
+                "coverage",
+                "coverage_rate",
+                "crowding_score",
+                "data_quality",
+                "date",
+                "does_not_modify_alpha_model",
+                "does_not_modify_router",
+                "does_not_modify_style_preference",
+                "end",
+                "end_date",
+                "engine",
+                "errors",
+                "field_coverage",
+                "fully_populated_rate",
+                "fully_populated_rows",
+                "future_safe",
+                "generated_at",
+                "historical_context_only",
+                "index_daily_source",
+                "industry_breadth",
+                "industry_count",
+                "industry_status",
+                "known_limitations",
+                "liquidity",
+                "loaded_from_cache",
+                "metadata",
+                "missing",
+                "missing_fields",
+                "name"
+              ],
+              "object_count_scanned": 1136,
+              "array_count_scanned": 285,
+              "date_range": {
+                "start": "20150105",
+                "end": "20260708"
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "style_incremental_analysis",
+          "role": "style_incremental",
+          "status": "available",
+          "artifacts": [
+            {
+              "path": "data/style_incremental_analysis.json",
+              "exists": true,
+              "file_type": "json",
+              "size_bytes": 1374389,
+              "cache_hash": "0bd9db431de8cbefcb2db571cdb58a09c7678a4a61a0fe2a5ed0fa9b4fc67e68",
+              "top_level_type": "dict",
+              "top_level_keys_sample": [
+                "metadata",
+                "model_definitions",
+                "validation_states",
+                "style_universe",
+                "summary",
+                "observations",
+                "sample_observations",
+                "constraints",
+                "notes"
+              ],
+              "observed_key_count": 108,
+              "observed_keys_sample": [
+                "20d",
+                "60d",
+                "BEAR",
+                "BROAD_BULL",
+                "RANGE",
+                "STRUCTURAL_BULL",
+                "alpha_model_unchanged",
+                "baseline",
+                "baseline_ic",
+                "baseline_return",
+                "baseline_selection",
+                "by_state",
+                "code",
+                "combined",
+                "combined_beats_baseline",
+                "combined_beats_style",
+                "combined_ic",
+                "combined_ic_minus_baseline_ic",
+                "combined_ic_minus_style_ic",
+                "combined_minus_baseline",
+                "combined_minus_baseline_return",
+                "combined_minus_style",
+                "combined_minus_style_return",
+                "combined_positive_incremental_rate",
+                "combined_return",
+                "combined_score",
+                "combined_selection",
+                "combined_vs_baseline_count",
+                "combined_vs_baseline_ratio",
+                "combined_vs_style_count",
+                "combined_vs_style_ratio",
+                "combined_weight_fixed_not_optimized",
+                "constraints",
+                "date",
+                "date_count",
+                "decision_inputs_only_use_same_day_or_prior_data",
+                "dominant_style",
+                "edge_read",
+                "end",
+                "engine"
+              ],
+              "object_count_scanned": 1373,
+              "array_count_scanned": 40,
+              "date_range": {
+                "start": "20200218",
+                "end": "20260527"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "data_quality": {
+    "point_in_time_check_defined": true,
+    "release_date_alignment_defined": true,
+    "survivorship_bias_check_defined": true,
+    "missing_field_report_defined": true,
+    "source_hash_recorded": true,
+    "cache_hash_recorded": true,
+    "coverage_report_only": true,
+    "no_live_fetch_attempted": true
+  },
+  "constraints": {
+    "dataset_materialization_only": true,
+    "does_not_run_strategy": true,
+    "does_not_generate_position": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true,
+    "production_trade_enabled": false
+  },
+  "known_exclusions": {
+    "data/structural_survival_dataset.json": "left out of source specs because it is an unrelated locally modified file in the working tree"
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_phase": "V15.2",
+    "checked_materialization_status": "coverage_report_ready",
+    "checked_dataset_groups": [
+      "broad_indices",
+      "drawdown_context",
+      "macro_cycle",
+      "sector_indices",
+      "structural_bull"
+    ],
+    "checked_full_dataset_fetched": false,
+    "checked_strategy_run": false,
+    "checked_position_generated": false,
+    "checked_trade_signal_generated": false,
+    "checked_production_trade_enabled": false
+  }
+}

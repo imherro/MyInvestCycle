@@ -1058,6 +1058,14 @@ def _read_v15_backtest_dataset_manifest_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_v15_backtest_dataset_materialization_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "v15_backtest_dataset_materialization_status.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -2323,6 +2331,34 @@ def _compact_v15_backtest_dataset_manifest_payload(payload: dict[str, object] | 
         "does_not_generate_trade_signal": summary.get("does_not_generate_trade_signal") or payload.get("does_not_generate_trade_signal"),
         "no_backtest_result": constraints.get("no_backtest_result"),
         "production_trade_enabled": summary.get("production_trade_enabled"),
+        "next_task": summary.get("next_task"),
+    }
+
+
+def _compact_v15_backtest_dataset_materialization_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    summary = payload.get("summary") if isinstance(payload.get("summary"), dict) else {}
+    coverage = payload.get("coverage") if isinstance(payload.get("coverage"), dict) else {}
+    quality = payload.get("data_quality") if isinstance(payload.get("data_quality"), dict) else {}
+    constraints = payload.get("constraints") if isinstance(payload.get("constraints"), dict) else {}
+    return {
+        "phase": summary.get("phase") or payload.get("phase"),
+        "materialization_status": summary.get("materialization_status") or payload.get("materialization_status"),
+        "dataset_groups_checked": summary.get("dataset_groups_checked") or payload.get("dataset_groups_checked"),
+        "source_count": summary.get("source_count"),
+        "available_source_count": summary.get("available_source_count"),
+        "missing_source_count": summary.get("missing_source_count"),
+        "coverage_ratio": summary.get("coverage_ratio"),
+        "coverage_groups": sorted(coverage.keys()),
+        "full_dataset_fetched": summary.get("full_dataset_fetched"),
+        "strategy_run": summary.get("strategy_run"),
+        "backtest_result_generated": summary.get("backtest_result_generated"),
+        "position_generated": summary.get("position_generated"),
+        "trade_signal_generated": summary.get("trade_signal_generated"),
+        "production_trade_enabled": summary.get("production_trade_enabled"),
+        "source_hash_recorded": quality.get("source_hash_recorded"),
+        "no_broker_connection": constraints.get("no_broker_connection"),
         "next_task": summary.get("next_task"),
     }
 
@@ -3606,6 +3642,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/strategy-rebase/v15-dataset-materialization",
+                    "返回 V15.2 回测数据落地覆盖率报告：只读本地缓存，记录 source/cache hash、缺失字段和时间安全要求；不跑策略、不出仓位或交易信号。",
+                    "v15 outcome backtest dataset materialization status",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -3788,6 +3831,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/implementation-readiness/risk-diagnostic-shadow-evidence-dashboard", "description": "读取 V14.9 风险诊断影子证据积累看板：当前等待人工事件，事件/复核/误报/漏报/质量队列均为 0。"},
             {"path": "/api/strategy-rebase/v15-direction", "description": "读取 V15.0 主线收益策略重构方向声明：V12-V14 冻结为基础设施，V15+ 回到收益和回撤导向。"},
             {"path": "/api/strategy-rebase/v15-backtest-dataset", "description": "读取 V15.1 收益导向回测数据集 manifest：只定义未来数据底座，不回测、不配置、不交易。"},
+            {"path": "/api/strategy-rebase/v15-dataset-materialization", "description": "读取 V15.2 回测数据落地状态：只读本地缓存，报告覆盖率和 hash，不回测、不配置、不交易。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -5181,6 +5225,17 @@ def v15_backtest_dataset_manifest() -> dict:
     return payload
 
 
+@app.get("/api/strategy-rebase/v15-dataset-materialization")
+def v15_backtest_dataset_materialization() -> dict:
+    payload = _read_v15_backtest_dataset_materialization_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V15 backtest dataset materialization artifact missing; run scripts/run_v15_backtest_dataset_materializer.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -5450,6 +5505,7 @@ def results_summary(
         risk_diagnostic_shadow_evidence_dashboard = _read_risk_diagnostic_shadow_evidence_dashboard_payload()
         v15_strategy_direction_rebase = _read_v15_strategy_direction_rebase_payload()
         v15_backtest_dataset_manifest = _read_v15_backtest_dataset_manifest_payload()
+        v15_backtest_dataset_materialization = _read_v15_backtest_dataset_materialization_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -5527,6 +5583,7 @@ def results_summary(
             risk_diagnostic_shadow_evidence_dashboard = _compact_risk_diagnostic_shadow_evidence_dashboard_payload(risk_diagnostic_shadow_evidence_dashboard)
             v15_strategy_direction_rebase = _compact_v15_strategy_direction_rebase_payload(v15_strategy_direction_rebase)
             v15_backtest_dataset_manifest = _compact_v15_backtest_dataset_manifest_payload(v15_backtest_dataset_manifest)
+            v15_backtest_dataset_materialization = _compact_v15_backtest_dataset_materialization_payload(v15_backtest_dataset_materialization)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -5641,6 +5698,7 @@ def results_summary(
             "risk_diagnostic_shadow_evidence_dashboard": risk_diagnostic_shadow_evidence_dashboard,
             "v15_strategy_direction_rebase": v15_strategy_direction_rebase,
             "v15_backtest_dataset_manifest": v15_backtest_dataset_manifest,
+            "v15_backtest_dataset_materialization": v15_backtest_dataset_materialization,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,

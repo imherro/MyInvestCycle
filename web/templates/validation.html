@@ -2079,6 +2079,37 @@
           <p class="result-note" id="v15DatasetConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="V15.2 只读本地缓存并生成回测数据覆盖率报告：记录 source/cache hash、缺失字段和时间安全检查；仍不运行策略、不生成仓位或交易信号。">V15.2 回测数据落地状态</h2>
+            <span class="panel-kicker">V15.2</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>状态</span>
+              <strong id="v15MaterializationStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>数据组</span>
+              <strong id="v15MaterializationGroups">--</strong>
+            </div>
+            <div class="result-row">
+              <span>可用源</span>
+              <strong id="v15MaterializationAvailable">--</strong>
+            </div>
+            <div class="result-row">
+              <span>缺失源</span>
+              <strong id="v15MaterializationMissing">--</strong>
+            </div>
+            <div class="result-row">
+              <span>实盘交易</span>
+              <strong id="v15MaterializationTrade">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="v15MaterializationRows"></div>
+          <p class="result-note" id="v15MaterializationConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -2169,7 +2200,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260710-v15-backtest-dataset-1"></script>
+    <script src="/static/dashboard.js?v=20260710-v15-dataset-materialization-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

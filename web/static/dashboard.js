@@ -1787,6 +1787,17 @@ function setResultsPanel(results) {
     ? v15DatasetTargetsSource
     : Object.keys(v15DatasetTargetsSource).filter((key) => v15DatasetTargetsSource[key] === true);
   const v15DatasetConstraints = v15Dataset.constraints || {};
+  const v15Materialization = results.v15_backtest_dataset_materialization || {};
+  const v15MaterializationSummary = v15Materialization.summary || v15Materialization;
+  const v15MaterializationGroups = Array.isArray(v15Materialization.coverage_groups)
+    ? v15Materialization.coverage_groups
+    : Object.keys(v15Materialization.coverage || {});
+  const v15MaterializationQuality = v15Materialization.data_quality || {
+    source_hash_recorded: v15Materialization.source_hash_recorded,
+  };
+  const v15MaterializationConstraints = v15Materialization.constraints || {
+    no_broker_connection: v15Materialization.no_broker_connection,
+  };
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4733,6 +4744,41 @@ function setResultsPanel(results) {
     v15DatasetSummary.phase
       ? "V15.1 已完成收益导向回测的数据集 manifest：宽基、行业、宏观、回撤和结构牛字段就绪；当前仍严格不回测、不生成仓位、不生成交易信号、不接券商。"
       : "V15.1 回测数据集 manifest 尚未生成。"
+  );
+
+  const v15MaterializationNoStrategy = v15MaterializationSummary.strategy_run === false;
+  const v15MaterializationNoTradeSignal = v15MaterializationSummary.trade_signal_generated === false;
+  const v15MaterializationNoBroker =
+    v15MaterializationConstraints.no_broker_connection === true ||
+    v15MaterializationSummary.production_trade_enabled === false;
+  setText("v15MaterializationStatus", v15MaterializationSummary.materialization_status || "--");
+  setText("v15MaterializationGroups", integerText(v15MaterializationSummary.dataset_groups_checked || v15MaterializationGroups.length));
+  setText(
+    "v15MaterializationAvailable",
+    v15MaterializationSummary.available_source_count != null && v15MaterializationSummary.source_count != null
+      ? `${integerText(v15MaterializationSummary.available_source_count)} / ${integerText(v15MaterializationSummary.source_count)}`
+      : "--"
+  );
+  setText("v15MaterializationMissing", integerText(v15MaterializationSummary.missing_source_count));
+  setText("v15MaterializationTrade", v15MaterializationSummary.production_trade_enabled === false ? "否" : "--");
+  setHtml("v15MaterializationRows", [
+    ["覆盖率", percentText(v15MaterializationSummary.coverage_ratio), v15MaterializationGroups.join(" / ") || "--"],
+    ["完整数据抓取", v15MaterializationSummary.full_dataset_fetched === false ? "否" : "--", "V15.2 只读本地缓存和既有报告。"],
+    ["策略/信号", v15MaterializationNoStrategy && v15MaterializationNoTradeSignal ? "未运行" : "需复核", "不生成回测收益、仓位或交易信号。"],
+    ["Hash 记录", v15MaterializationQuality.source_hash_recorded === true ? "已记录" : "--", "记录 manifest hash 与本地 cache hash。"],
+    ["券商连接", v15MaterializationNoBroker ? "关闭" : "--", "无订单、无 broker connection。"],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  setText(
+    "v15MaterializationConclusion",
+    v15MaterializationSummary.phase
+      ? "V15.2 已生成本地回测数据覆盖率报告：它说明哪些源文件已可见、哪些字段还需语义映射；这不是策略回测，也不证明任何收益结论。"
+      : "V15.2 回测数据落地状态尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
