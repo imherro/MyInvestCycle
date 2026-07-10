@@ -1,0 +1,165 @@
+{
+  "metadata": {
+    "engine": "V15.0 Mainline Outcome-Oriented Strategy Rebase",
+    "generated_at": "2026-07-10T02:46:18+00:00",
+    "as_of": "20260710",
+    "base_commit": "58b5ab83398b0f6ed2adf5b4027f782fbd4b5303",
+    "purpose": "Freeze V12-V14 as governance/evidence/shadow infrastructure and redirect mainline development toward outcome-oriented strategy backtesting."
+  },
+  "summary": {
+    "phase": "V15",
+    "mainline_direction": "outcome_oriented_strategy_rebase",
+    "direction_status": "rebase_declared",
+    "primary_objective": "maximize_return_and_alpha",
+    "secondary_objective": "control_max_drawdown",
+    "tertiary_objective": "improve_explainability",
+    "must_backtest_before_strategy_claim": true,
+    "production_trade_enabled": false,
+    "broker_connection_enabled": false,
+    "real_order_generation_enabled": false,
+    "conclusion": "v15_mainline_rebased_to_return_first_strategy_development"
+  },
+  "frozen_tracks": {
+    "v12_v14_governance_shadow": {
+      "status": "frozen_as_infrastructure",
+      "not_main_alpha_strategy": true,
+      "not_portfolio_engine": true,
+      "not_trade_engine": true,
+      "allowed_future_use": [
+        "research_governance",
+        "implementation_readiness_checks",
+        "evidence_audit",
+        "shadow_observation_recording"
+      ],
+      "disallowed_future_use": [
+        "main_alpha_claim",
+        "portfolio_allocation_driver",
+        "automatic_trade_signal",
+        "production_risk_control_without_backtest"
+      ]
+    }
+  },
+  "reason_for_rebase": {
+    "old_strategy_issue_summary": [
+      "Prior risk/diagnostic visualizations did not provide enough market guidance.",
+      "Prior alpha result was unacceptable and must not be treated as successful.",
+      "Governance infrastructure expanded faster than outcome-oriented strategy validation.",
+      "The system must refocus on return, drawdown, and robust backtest evidence."
+    ],
+    "user_original_goal_restated": "Build an A-share strategy system that improves return and controls drawdown, with practical guidance for market regime, drawdown opportunities, and structural bull markets."
+  },
+  "new_strategy_hypotheses": {
+    "macro_cycle": {
+      "hypothesis": "Long-term macro and valuation regime determines whether equity risk should be embraced or reduced.",
+      "must_backtest": true
+    },
+    "drawdown_context": {
+      "hypothesis": "Large drawdowns during early/mid bull markets may be add-position opportunities, while high-level drawdowns near late-cycle tops may be de-risking signals.",
+      "must_backtest": true
+    },
+    "structural_bull": {
+      "hypothesis": "A-shares may enter structural bull markets where broad indices stagnate but leading sectors/themes rotate upward.",
+      "must_backtest": true
+    },
+    "mainline_rotation": {
+      "hypothesis": "Sector/theme strength, breadth, concentration, and persistence should be tested as allocation signals.",
+      "must_backtest": true
+    }
+  },
+  "v15_roadmap": {
+    "v15_0": "mainline outcome-oriented strategy rebase",
+    "v15_1": "backtest dataset builder",
+    "v15_2": "macro plus drawdown regime strategy backtest",
+    "v15_3": "structural bull rotation strategy backtest",
+    "v15_4": "strategy comparison and kill criteria"
+  },
+  "future_backtest_requirements": {
+    "required_benchmarks": [
+      "deposit_or_cash_baseline",
+      "broad_index_baseline",
+      "old_strategy_baseline",
+      "macro_drawdown_strategy",
+      "macro_drawdown_structural_bull_strategy"
+    ],
+    "required_metrics": [
+      "CAGR",
+      "annual_return",
+      "annual_alpha",
+      "max_drawdown",
+      "calmar",
+      "sharpe",
+      "win_rate",
+      "turnover",
+      "longest_drawdown_recovery",
+      "yearly_returns",
+      "regime_segment_returns"
+    ],
+    "required_market_segments": [
+      "2015_bubble_and_crash",
+      "2018_bear_market",
+      "2020_recovery",
+      "2021_structural_market",
+      "2022_bear_market",
+      "2024_2026_recent_market"
+    ]
+  },
+  "constraints": {
+    "direction_rebase_only": true,
+    "does_not_run_backtest": true,
+    "does_not_generate_position": true,
+    "does_not_generate_etf_mapping": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_allocation": true,
+    "does_not_generate_trade_signal": true,
+    "does_not_create_order": true,
+    "does_not_connect_broker": true,
+    "production_trade_enabled": false
+  },
+  "forbidden_outputs": [
+    "asset_selection",
+    "broker_order",
+    "buy_signal",
+    "etf_mapping",
+    "exposure_percent",
+    "optimization_result",
+    "portfolio_weight",
+    "rebalance_instruction",
+    "sell_signal",
+    "top_n",
+    "trade_signal"
+  ],
+  "audit": {
+    "audit_status": "passed",
+    "checked_direction_rebase_only": true,
+    "checked_v12_v14_frozen": true,
+    "checked_primary_objective": "maximize_return_and_alpha",
+    "checked_secondary_objective": "control_max_drawdown",
+    "checked_trade_enabled": false,
+    "checked_broker_connection_enabled": false,
+    "checked_real_order_generation_enabled": false,
+    "checked_constraints": [
+      "direction_rebase_only",
+      "does_not_run_backtest",
+      "does_not_generate_position",
+      "does_not_generate_etf_mapping",
+      "does_not_generate_portfolio_weight",
+      "does_not_generate_allocation",
+      "does_not_generate_trade_signal",
+      "does_not_create_order",
+      "does_not_connect_broker"
+    ],
+    "checked_forbidden_outputs": [
+      "asset_selection",
+      "broker_order",
+      "buy_signal",
+      "etf_mapping",
+      "exposure_percent",
+      "optimization_result",
+      "portfolio_weight",
+      "rebalance_instruction",
+      "sell_signal",
+      "top_n",
+      "trade_signal"
+    ]
+  }
+}

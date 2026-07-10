@@ -1767,6 +1767,15 @@ function setResultsPanel(results) {
   const riskShadowEvidenceStats = riskShadowEvidence.event_statistics || {};
   const riskShadowEvidenceStatus = riskShadowEvidence.evidence_status || {};
   const riskShadowEvidenceGate = riskShadowEvidence.implementation_gate || {};
+  const v15Rebase = results.v15_strategy_direction_rebase || {};
+  const v15RebaseSummary = v15Rebase.summary || v15Rebase;
+  const v15RebaseFrozenTracks = v15Rebase.frozen_tracks || {};
+  const v15RebaseFrozen = v15RebaseFrozenTracks.v12_v14_governance_shadow || {
+    status: v15Rebase.v12_v14_status,
+    not_main_alpha_strategy: v15Rebase.not_main_alpha_strategy,
+  };
+  const v15RebaseRoadmap = v15Rebase.v15_roadmap || { v15_1: v15Rebase.next_task };
+  const v15RebaseConstraints = v15Rebase.constraints || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4649,6 +4658,32 @@ function setResultsPanel(results) {
     riskShadowEvidence.metadata
       ? `V14.9 已建立 shadow evidence 积累看板：event_count=${integerText(riskShadowEvidenceStats.event_count)}，pending=${integerText(riskShadowEvidenceStats.pending_review_count)}，reviewed=${integerText(riskShadowEvidenceStats.reviewed_count)}，false_warning=${integerText(riskShadowEvidenceStats.false_warning_count)}，missed_risk=${integerText(riskShadowEvidenceStats.missed_risk_count)}，quality_queue=${integerText(riskShadowEvidenceStats.quality_queue_count)}；trade=false，implementation_ready=false。`
       : "V14.9 风险诊断影子证据积累看板尚未生成。"
+  );
+
+  setText("v15RebasePhase", v15RebaseSummary.phase || "--");
+  setText("v15RebaseDirection", v15RebaseSummary.mainline_direction || "--");
+  setText("v15RebasePrimary", v15RebaseSummary.primary_objective || "--");
+  setText("v15RebaseSecondary", v15RebaseSummary.secondary_objective || "--");
+  setText("v15RebaseTrade", v15RebaseSummary.production_trade_enabled === false ? "否" : "--");
+  setHtml("v15RebaseRows", [
+    ["方向状态", v15RebaseSummary.direction_status || "--", "V15.0 只声明方向，不运行回测。"],
+    ["V12-V14 状态", v15RebaseFrozen.status || "--", v15RebaseFrozen.not_main_alpha_strategy === true ? "不是主 alpha 策略" : "--"],
+    ["回测前置", v15RebaseSummary.must_backtest_before_strategy_claim === true ? "必须" : "--", "没有 V15+ 回测，不得声明策略有效。"],
+    ["下一任务", v15RebaseRoadmap.v15_1 || "--", "开始构建收益导向回测数据集。"],
+    ["交易边界", v15RebaseSummary.broker_connection_enabled === false ? "券商关闭" : "--", v15RebaseSummary.real_order_generation_enabled === false ? "真实订单关闭" : "--"],
+    ["V15.0 禁止项", v15RebaseConstraints.does_not_run_backtest === true ? "不回测" : "--", v15RebaseConstraints.does_not_generate_trade_signal === true ? "不生成交易信号" : "--"],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  setText(
+    "v15RebaseConclusion",
+    v15RebaseSummary.phase
+      ? "V15.0 已把主开发方向切回收益第一、最大回撤第二；V12-V14 仅保留为治理、证据和影子观察基础设施，不再包装为已验证投资策略或组合引擎。"
+      : "V15.0 主线收益策略重构产物尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

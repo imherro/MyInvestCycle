@@ -1042,6 +1042,14 @@ def _read_risk_diagnostic_shadow_evidence_dashboard_payload() -> dict[str, objec
     return payload if isinstance(payload, dict) else None
 
 
+def _read_v15_strategy_direction_rebase_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "v15_strategy_direction_rebase.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -2263,6 +2271,29 @@ def _compact_risk_diagnostic_shadow_evidence_dashboard_payload(payload: dict[str
             "audit",
         )
         if key in payload
+    }
+
+
+def _compact_v15_strategy_direction_rebase_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    summary = payload.get("summary") if isinstance(payload.get("summary"), dict) else {}
+    frozen_tracks = payload.get("frozen_tracks") if isinstance(payload.get("frozen_tracks"), dict) else {}
+    frozen = frozen_tracks.get("v12_v14_governance_shadow") if isinstance(frozen_tracks.get("v12_v14_governance_shadow"), dict) else {}
+    roadmap = payload.get("v15_roadmap") if isinstance(payload.get("v15_roadmap"), dict) else {}
+    return {
+        "phase": summary.get("phase"),
+        "mainline_direction": summary.get("mainline_direction"),
+        "direction_status": summary.get("direction_status"),
+        "primary_objective": summary.get("primary_objective"),
+        "secondary_objective": summary.get("secondary_objective"),
+        "tertiary_objective": summary.get("tertiary_objective"),
+        "v12_v14_status": frozen.get("status"),
+        "not_main_alpha_strategy": frozen.get("not_main_alpha_strategy"),
+        "production_trade_enabled": summary.get("production_trade_enabled"),
+        "broker_connection_enabled": summary.get("broker_connection_enabled"),
+        "real_order_generation_enabled": summary.get("real_order_generation_enabled"),
+        "next_task": roadmap.get("v15_1"),
     }
 
 
@@ -3531,6 +3562,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/strategy-rebase/v15-direction",
+                    "返回 V15.0 主线收益策略重构方向声明：冻结 V12-V14 为治理/证据基础设施，V15+ 切回收益第一、回撤第二的策略回测主线；不回测、不配置、不交易。",
+                    "v15 mainline outcome strategy rebase",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -3711,6 +3749,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/implementation-readiness/risk-diagnostic-shadow-first-event-workflow", "description": "读取 V14.7 风险诊断首个人工事件流程：当前可准备首个事件，但不自动扫描、不生成事件、不交易。"},
             {"path": "/api/implementation-readiness/risk-diagnostic-shadow-event-input-package", "description": "读取 V14.8 风险诊断人工事件输入包：模板和校验 CLI 已就绪，当前未提交事件。"},
             {"path": "/api/implementation-readiness/risk-diagnostic-shadow-evidence-dashboard", "description": "读取 V14.9 风险诊断影子证据积累看板：当前等待人工事件，事件/复核/误报/漏报/质量队列均为 0。"},
+            {"path": "/api/strategy-rebase/v15-direction", "description": "读取 V15.0 主线收益策略重构方向声明：V12-V14 冻结为基础设施，V15+ 回到收益和回撤导向。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -5082,6 +5121,17 @@ def risk_diagnostic_shadow_evidence_dashboard() -> dict:
     return payload
 
 
+@app.get("/api/strategy-rebase/v15-direction")
+def v15_strategy_direction_rebase() -> dict:
+    payload = _read_v15_strategy_direction_rebase_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V15 strategy direction rebase artifact missing; run scripts/run_v15_strategy_direction_rebase.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -5349,6 +5399,7 @@ def results_summary(
         risk_diagnostic_shadow_first_event_workflow = _read_risk_diagnostic_shadow_first_event_workflow_payload()
         risk_diagnostic_shadow_event_input_package = _read_risk_diagnostic_shadow_event_input_package_payload()
         risk_diagnostic_shadow_evidence_dashboard = _read_risk_diagnostic_shadow_evidence_dashboard_payload()
+        v15_strategy_direction_rebase = _read_v15_strategy_direction_rebase_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -5424,6 +5475,7 @@ def results_summary(
             risk_diagnostic_shadow_first_event_workflow = _compact_risk_diagnostic_shadow_first_event_workflow_payload(risk_diagnostic_shadow_first_event_workflow)
             risk_diagnostic_shadow_event_input_package = _compact_risk_diagnostic_shadow_event_input_package_payload(risk_diagnostic_shadow_event_input_package)
             risk_diagnostic_shadow_evidence_dashboard = _compact_risk_diagnostic_shadow_evidence_dashboard_payload(risk_diagnostic_shadow_evidence_dashboard)
+            v15_strategy_direction_rebase = _compact_v15_strategy_direction_rebase_payload(v15_strategy_direction_rebase)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -5536,6 +5588,7 @@ def results_summary(
             "risk_diagnostic_shadow_first_event_workflow": risk_diagnostic_shadow_first_event_workflow,
             "risk_diagnostic_shadow_event_input_package": risk_diagnostic_shadow_event_input_package,
             "risk_diagnostic_shadow_evidence_dashboard": risk_diagnostic_shadow_evidence_dashboard,
+            "v15_strategy_direction_rebase": v15_strategy_direction_rebase,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,
