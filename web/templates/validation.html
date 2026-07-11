@@ -2110,6 +2110,37 @@
           <p class="result-note" id="v15MaterializationConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="V15.3 是宏观周期 + 回撤情境的历史研究回测：用沪深300作为承载资产，对比现金、沪深300、上证指数和旧策略基线；只判断研究假设，不生成交易信号、不接券商、不下单。">V15.3 宏观回撤基准回测</h2>
+            <span class="panel-kicker">V15.3</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>状态</span>
+              <strong id="v15MacroBacktestStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>年化收益</span>
+              <strong id="v15MacroBacktestCagr">--</strong>
+            </div>
+            <div class="result-row">
+              <span>年化 Alpha</span>
+              <strong id="v15MacroBacktestAlpha">--</strong>
+            </div>
+            <div class="result-row">
+              <span>最大回撤</span>
+              <strong id="v15MacroBacktestDrawdown">--</strong>
+            </div>
+            <div class="result-row">
+              <span>实盘交易</span>
+              <strong id="v15MacroBacktestTrade">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="v15MacroBacktestRows"></div>
+          <p class="result-note" id="v15MacroBacktestConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -2200,7 +2231,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260710-v15-dataset-materialization-1"></script>
+    <script src="/static/dashboard.js?v=20260710-v15-macro-drawdown-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

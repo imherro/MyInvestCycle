@@ -1066,6 +1066,14 @@ def _read_v15_backtest_dataset_materialization_payload() -> dict[str, object] | 
     return payload if isinstance(payload, dict) else None
 
 
+def _read_v15_macro_drawdown_backtest_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "v15_macro_drawdown_backtest_result.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -2363,6 +2371,66 @@ def _compact_v15_backtest_dataset_materialization_payload(payload: dict[str, obj
     }
 
 
+def _compact_v15_macro_drawdown_backtest_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    summary = payload.get("summary") if isinstance(payload.get("summary"), dict) else {}
+    benchmarks = payload.get("benchmarks") if isinstance(payload.get("benchmarks"), dict) else {}
+    strategy_results = payload.get("strategy_results") if isinstance(payload.get("strategy_results"), dict) else {}
+    strategy = strategy_results.get("macro_drawdown_strategy") if isinstance(strategy_results.get("macro_drawdown_strategy"), dict) else {}
+    comparison = payload.get("comparison") if isinstance(payload.get("comparison"), dict) else {}
+    constraints = payload.get("constraints") if isinstance(payload.get("constraints"), dict) else {}
+    curve = payload.get("equity_curve") if isinstance(payload.get("equity_curve"), list) else []
+    return {
+        "phase": summary.get("phase") or payload.get("phase"),
+        "backtest_status": summary.get("backtest_status") or payload.get("backtest_status"),
+        "strategy_scope": summary.get("strategy_scope") or payload.get("strategy_scope"),
+        "start_date": summary.get("start_date"),
+        "end_date": summary.get("end_date"),
+        "sessions": summary.get("sessions"),
+        "research_backtest_only": summary.get("research_backtest_only") or payload.get("research_backtest_only"),
+        "not_production_signal": summary.get("not_production_signal") or payload.get("not_production_signal"),
+        "no_real_trade_order": summary.get("no_real_trade_order") or payload.get("no_real_trade_order"),
+        "uses_t_plus_one_execution": payload.get("uses_t_plus_one_execution"),
+        "macro_drawdown_strategy": {
+            "CAGR": strategy.get("CAGR"),
+            "annual_return": strategy.get("annual_return"),
+            "annual_alpha": strategy.get("annual_alpha"),
+            "max_drawdown": strategy.get("max_drawdown"),
+            "calmar": strategy.get("calmar"),
+            "sharpe": strategy.get("sharpe"),
+            "drawdown_recovery_days": strategy.get("drawdown_recovery_days"),
+        },
+        "benchmarks": {
+            key: {
+                "CAGR": value.get("CAGR"),
+                "max_drawdown": value.get("max_drawdown"),
+                "calmar": value.get("calmar"),
+            }
+            for key, value in benchmarks.items()
+            if isinstance(value, dict)
+        },
+        "comparison": {
+            "beats_cash_baseline": comparison.get("beats_cash_baseline"),
+            "beats_csi_300_buy_hold": comparison.get("beats_csi_300_buy_hold"),
+            "beats_shanghai_composite_buy_hold": comparison.get("beats_shanghai_composite_buy_hold"),
+            "improves_max_drawdown_vs_csi_300": comparison.get("improves_max_drawdown_vs_csi_300"),
+            "improves_calmar_vs_csi_300": comparison.get("improves_calmar_vs_csi_300"),
+            "result_must_not_be_marketed_as_success_without_beating_core_benchmarks": comparison.get(
+                "result_must_not_be_marketed_as_success_without_beating_core_benchmarks"
+            ),
+        },
+        "constraints": {
+            "no_broker_connection": constraints.get("no_broker_connection"),
+            "no_order_generation": constraints.get("no_order_generation"),
+            "not_intraday_signal": constraints.get("not_intraday_signal"),
+            "not_production_trade_signal": constraints.get("not_production_trade_signal"),
+        },
+        "equity_curve_rows": len(curve),
+        "next_task": summary.get("next_task"),
+    }
+
+
 def _compact_allocation_research_hypotheses_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
     if not isinstance(payload, dict):
         return payload
@@ -3649,6 +3717,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/strategy-rebase/v15-macro-drawdown-backtest",
+                    "返回 V15.3 宏观周期 + 回撤情境基准研究回测：对比现金、沪深300、上证指数和旧策略基线；仅研究回测，不生成交易信号、不接券商、不下单。",
+                    "v15 macro drawdown regime baseline research backtest",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -3832,6 +3907,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/strategy-rebase/v15-direction", "description": "读取 V15.0 主线收益策略重构方向声明：V12-V14 冻结为基础设施，V15+ 回到收益和回撤导向。"},
             {"path": "/api/strategy-rebase/v15-backtest-dataset", "description": "读取 V15.1 收益导向回测数据集 manifest：只定义未来数据底座，不回测、不配置、不交易。"},
             {"path": "/api/strategy-rebase/v15-dataset-materialization", "description": "读取 V15.2 回测数据落地状态：只读本地缓存，报告覆盖率和 hash，不回测、不配置、不交易。"},
+            {"path": "/api/strategy-rebase/v15-macro-drawdown-backtest", "description": "读取 V15.3 宏观周期 + 回撤情境基准研究回测：对比现金、沪深300、上证指数和旧策略基线；不生成交易信号。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -5236,6 +5312,17 @@ def v15_backtest_dataset_materialization() -> dict:
     return payload
 
 
+@app.get("/api/strategy-rebase/v15-macro-drawdown-backtest")
+def v15_macro_drawdown_backtest() -> dict:
+    payload = _read_v15_macro_drawdown_backtest_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V15 macro drawdown backtest artifact missing; run scripts/run_v15_macro_drawdown_backtest.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -5506,6 +5593,7 @@ def results_summary(
         v15_strategy_direction_rebase = _read_v15_strategy_direction_rebase_payload()
         v15_backtest_dataset_manifest = _read_v15_backtest_dataset_manifest_payload()
         v15_backtest_dataset_materialization = _read_v15_backtest_dataset_materialization_payload()
+        v15_macro_drawdown_backtest = _read_v15_macro_drawdown_backtest_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -5584,6 +5672,7 @@ def results_summary(
             v15_strategy_direction_rebase = _compact_v15_strategy_direction_rebase_payload(v15_strategy_direction_rebase)
             v15_backtest_dataset_manifest = _compact_v15_backtest_dataset_manifest_payload(v15_backtest_dataset_manifest)
             v15_backtest_dataset_materialization = _compact_v15_backtest_dataset_materialization_payload(v15_backtest_dataset_materialization)
+            v15_macro_drawdown_backtest = _compact_v15_macro_drawdown_backtest_payload(v15_macro_drawdown_backtest)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -5699,6 +5788,7 @@ def results_summary(
             "v15_strategy_direction_rebase": v15_strategy_direction_rebase,
             "v15_backtest_dataset_manifest": v15_backtest_dataset_manifest,
             "v15_backtest_dataset_materialization": v15_backtest_dataset_materialization,
+            "v15_macro_drawdown_backtest": v15_macro_drawdown_backtest,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,

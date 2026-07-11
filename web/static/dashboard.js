@@ -1798,6 +1798,15 @@ function setResultsPanel(results) {
   const v15MaterializationConstraints = v15Materialization.constraints || {
     no_broker_connection: v15Materialization.no_broker_connection,
   };
+  const v15MacroBacktest = results.v15_macro_drawdown_backtest || {};
+  const v15MacroBacktestSummary = v15MacroBacktest.summary || v15MacroBacktest;
+  const v15MacroBacktestStrategy =
+    (v15MacroBacktest.strategy_results || {}).macro_drawdown_strategy ||
+    v15MacroBacktest.macro_drawdown_strategy ||
+    {};
+  const v15MacroBacktestBenchmarks = v15MacroBacktest.benchmarks || {};
+  const v15MacroBacktestComparison = v15MacroBacktest.comparison || {};
+  const v15MacroBacktestConstraints = v15MacroBacktest.constraints || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4779,6 +4788,70 @@ function setResultsPanel(results) {
     v15MaterializationSummary.phase
       ? "V15.2 已生成本地回测数据覆盖率报告：它说明哪些源文件已可见、哪些字段还需语义映射；这不是策略回测，也不证明任何收益结论。"
       : "V15.2 回测数据落地状态尚未生成。"
+  );
+
+  const v15MacroTradeDisabled =
+    v15MacroBacktestSummary.no_real_trade_order === true ||
+    v15MacroBacktestConstraints.no_order_generation === true ||
+    v15MacroBacktestConstraints.no_broker_connection === true;
+  const v15MacroBench = (key, field) => {
+    const row = v15MacroBacktestBenchmarks[key] || {};
+    return row[field];
+  };
+  const v15MacroCoreSuccess =
+    v15MacroBacktestComparison.beats_cash_baseline === true &&
+    v15MacroBacktestComparison.beats_csi_300_buy_hold === true &&
+    v15MacroBacktestComparison.improves_max_drawdown_vs_csi_300 === true;
+  setText("v15MacroBacktestStatus", v15MacroBacktestSummary.backtest_status || "--");
+  setText("v15MacroBacktestCagr", percentText(v15MacroBacktestStrategy.CAGR));
+  setText("v15MacroBacktestAlpha", percentText(v15MacroBacktestStrategy.annual_alpha));
+  setText("v15MacroBacktestDrawdown", percentText(v15MacroBacktestStrategy.max_drawdown));
+  setText("v15MacroBacktestTrade", v15MacroTradeDisabled ? "否" : "--");
+  setHtml("v15MacroBacktestRows", [
+    [
+      "回测区间",
+      `${v15MacroBacktestSummary.start_date || "--"} ~ ${v15MacroBacktestSummary.end_date || "--"}`,
+      `${integerText(v15MacroBacktestSummary.sessions)} 个交易日`,
+    ],
+    [
+      "策略指标",
+      `Calmar ${v15MacroBacktestStrategy.calmar ?? "--"} / Sharpe ${v15MacroBacktestStrategy.sharpe ?? "--"}`,
+      `回撤恢复 ${integerText(v15MacroBacktestStrategy.drawdown_recovery_days)} 日`,
+    ],
+    [
+      "基准年化",
+      `现金 ${percentText(v15MacroBench("cash_baseline", "CAGR"))} / 沪深300 ${percentText(v15MacroBench("csi_300_buy_hold", "CAGR"))}`,
+      `上证 ${percentText(v15MacroBench("shanghai_composite_buy_hold", "CAGR"))} / 旧策略 ${percentText(v15MacroBench("old_strategy_baseline", "CAGR"))}`,
+    ],
+    [
+      "核心对比",
+      v15MacroBacktestComparison.beats_cash_baseline === true ? "跑赢现金" : "未跑赢现金",
+      v15MacroBacktestComparison.beats_csi_300_buy_hold === true ? "跑赢沪深300" : "未跑赢沪深300",
+    ],
+    [
+      "回撤改善",
+      v15MacroBacktestComparison.improves_max_drawdown_vs_csi_300 === true ? "优于沪深300" : "未优于沪深300",
+      v15MacroBacktestComparison.improves_calmar_vs_csi_300 === true ? "Calmar 改善" : "Calmar 未改善",
+    ],
+    [
+      "交易边界",
+      v15MacroBacktestSummary.research_backtest_only === true ? "研究回测" : "--",
+      v15MacroTradeDisabled ? "不生成交易信号/不接券商/不下单" : "--",
+    ],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  setText(
+    "v15MacroBacktestConclusion",
+    v15MacroBacktestSummary.phase
+      ? (v15MacroCoreSuccess
+          ? "V15.3 对宏观周期 + 回撤情境假设给出阶段性支持，但仍只是历史研究回测；不得直接转成实盘交易信号。"
+          : "V15.3 已完成真实研究回测；若未同时跑赢现金/宽基并改善回撤，不能包装为成功策略，只能作为下一轮规则修正依据。")
+      : "V15.3 宏观回撤基准回测尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
