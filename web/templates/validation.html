@@ -2141,6 +2141,37 @@
           <p class="result-note" id="v15MacroBacktestConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="V15.4 检查 V15.3 是否只是参数偶然命中：测试 9 组邻近阈值/仓位强度、0/5/10bp 成本，以及只用历史训练数据选择下一年参数的滚动样本外结果。历史 phase 的严格发布时间链路尚未独立证实。">V15.4 参数稳健性与样本外验证</h2>
+            <span class="panel-kicker">V15.4</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>状态</span>
+              <strong id="v15MacroRobustnessStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>默认参数排名</span>
+              <strong id="v15MacroRobustnessRank">--</strong>
+            </div>
+            <div class="result-row">
+              <span>样本外年化</span>
+              <strong id="v15MacroRobustnessOosCagr">--</strong>
+            </div>
+            <div class="result-row">
+              <span>样本外回撤</span>
+              <strong id="v15MacroRobustnessOosDrawdown">--</strong>
+            </div>
+            <div class="result-row">
+              <span>策略推进</span>
+              <strong id="v15MacroRobustnessPromotion">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="v15MacroRobustnessRows"></div>
+          <p class="result-note" id="v15MacroRobustnessConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -2231,7 +2262,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260710-v15-macro-drawdown-1"></script>
+    <script src="/static/dashboard.js?v=20260720-v15-macro-robustness-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

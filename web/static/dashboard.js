@@ -1807,6 +1807,10 @@ function setResultsPanel(results) {
   const v15MacroBacktestBenchmarks = v15MacroBacktest.benchmarks || {};
   const v15MacroBacktestComparison = v15MacroBacktest.comparison || {};
   const v15MacroBacktestConstraints = v15MacroBacktest.constraints || {};
+  const v15MacroRobustness = results.v15_macro_drawdown_robustness || {};
+  const v15MacroRobustnessSummary = v15MacroRobustness.summary || v15MacroRobustness;
+  const v15MacroRobustnessWalkForward = v15MacroRobustness.walk_forward || {};
+  const v15MacroRobustnessConstraints = v15MacroRobustness.constraints || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4852,6 +4856,60 @@ function setResultsPanel(results) {
           ? "V15.3 对宏观周期 + 回撤情境假设给出阶段性支持，但仍只是历史研究回测；不得直接转成实盘交易信号。"
           : "V15.3 已完成真实研究回测；若未同时跑赢现金/宽基并改善回撤，不能包装为成功策略，只能作为下一轮规则修正依据。")
       : "V15.3 宏观回撤基准回测尚未生成。"
+  );
+
+  const v15RobustnessTradeDisabled =
+    v15MacroRobustnessSummary.no_real_trade_order === true ||
+    v15MacroRobustnessConstraints.no_order_generation === true ||
+    v15MacroRobustnessConstraints.no_broker_connection === true;
+  setText("v15MacroRobustnessStatus", v15MacroRobustnessSummary.validation_status || "--");
+  setText("v15MacroRobustnessRank", v15MacroRobustnessSummary.default_variant_rank ? `${v15MacroRobustnessSummary.default_variant_rank} / ${v15MacroRobustnessSummary.parameter_variants || 9}` : "--");
+  setText("v15MacroRobustnessOosCagr", percentText(v15MacroRobustnessSummary.walk_forward_CAGR));
+  setText("v15MacroRobustnessOosDrawdown", percentText(v15MacroRobustnessSummary.walk_forward_max_drawdown));
+  setText("v15MacroRobustnessPromotion", v15MacroRobustnessSummary.promotion_ready === true ? "可推进" : "不可推进");
+  setHtml("v15MacroRobustnessRows", [
+    [
+      "参数邻域",
+      `${integerText(v15MacroRobustnessSummary.parameter_variants)} 组 / 年化差 ${percentText(v15MacroRobustnessSummary.CAGR_range)}`,
+      v15MacroRobustnessSummary.parameter_neighborhood_stable === true ? "邻域结果接近" : "对参数较敏感",
+    ],
+    [
+      "默认参数",
+      `年化 ${percentText(v15MacroRobustnessSummary.default_CAGR)} / 排名 ${v15MacroRobustnessSummary.default_variant_rank || "--"}`,
+      v15MacroRobustnessSummary.default_parameter_preferred === true ? "默认参数位于前列" : "默认参数不占优",
+    ],
+    [
+      "滚动样本外",
+      `年化 ${percentText(v15MacroRobustnessSummary.walk_forward_CAGR)} / Calmar ${v15MacroRobustnessSummary.walk_forward_calmar ?? "--"}`,
+      `${integerText(v15MacroRobustnessSummary.walk_forward_cost_bps)}bp 成本 / ${integerText(v15MacroRobustnessSummary.walk_forward_years || (v15MacroRobustnessWalkForward.selections || []).length)} 个年度`,
+    ],
+    [
+      "样本外对比",
+      v15MacroRobustnessSummary.walk_forward_beats_csi_300 === true ? "跑赢同期沪深300" : "未跑赢同期沪深300",
+      `最大回撤 ${percentText(v15MacroRobustnessSummary.walk_forward_max_drawdown)}`,
+    ],
+    [
+      "时点边界",
+      v15MacroRobustnessSummary.strict_point_in_time_status === "unverified" ? "尚未独立证实" : v15MacroRobustnessSummary.strict_point_in_time_status || "--",
+      "历史 phase 可能为重构序列，发布时点链路仍需验证",
+    ],
+    [
+      "交易边界",
+      v15MacroRobustnessSummary.research_backtest_only === true ? "研究验证" : "--",
+      v15RobustnessTradeDisabled ? "不生成交易信号/不接券商/不下单" : "--",
+    ],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  setText(
+    "v15MacroRobustnessConclusion",
+    v15MacroRobustnessSummary.phase
+      ? "V15.4 说明参数邻域结果接近，但 V15.3 默认参数排名靠后、样本外收益有限，且历史阶段严格时点性未证实，因此不能推进为可用策略。"
+      : "V15.4 参数稳健性与滚动样本外验证尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));

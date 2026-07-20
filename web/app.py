@@ -1074,6 +1074,14 @@ def _read_v15_macro_drawdown_backtest_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_v15_macro_drawdown_robustness_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "v15_macro_drawdown_robustness_result.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -2431,6 +2439,41 @@ def _compact_v15_macro_drawdown_backtest_payload(payload: dict[str, object] | No
     }
 
 
+def _compact_v15_macro_drawdown_robustness_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    summary = payload.get("summary") if isinstance(payload.get("summary"), dict) else {}
+    walk_forward = payload.get("walk_forward") if isinstance(payload.get("walk_forward"), dict) else {}
+    constraints = payload.get("constraints") if isinstance(payload.get("constraints"), dict) else {}
+    return {
+        "phase": summary.get("phase") or payload.get("phase"),
+        "validation_status": summary.get("validation_status") or payload.get("validation_status"),
+        "parameter_variants": summary.get("parameter_variants"),
+        "default_variant_rank": summary.get("default_variant_rank"),
+        "default_CAGR": summary.get("default_CAGR"),
+        "best_CAGR": summary.get("best_CAGR"),
+        "worst_CAGR": summary.get("worst_CAGR"),
+        "CAGR_range": summary.get("CAGR_range"),
+        "calmar_range": summary.get("calmar_range"),
+        "walk_forward_cost_bps": summary.get("walk_forward_cost_bps"),
+        "walk_forward_CAGR": summary.get("walk_forward_CAGR"),
+        "walk_forward_max_drawdown": summary.get("walk_forward_max_drawdown"),
+        "walk_forward_calmar": summary.get("walk_forward_calmar"),
+        "walk_forward_beats_csi_300": summary.get("walk_forward_beats_csi_300"),
+        "parameter_neighborhood_stable": summary.get("parameter_neighborhood_stable"),
+        "default_parameter_preferred": summary.get("default_parameter_preferred"),
+        "promotion_ready": summary.get("promotion_ready"),
+        "strict_point_in_time_status": summary.get("strict_point_in_time_status"),
+        "research_backtest_only": summary.get("research_backtest_only") or payload.get("research_backtest_only"),
+        "no_real_trade_order": summary.get("no_real_trade_order") or payload.get("no_real_trade_order"),
+        "conclusion": summary.get("conclusion"),
+        "next_task": summary.get("next_task"),
+        "walk_forward_years": len(walk_forward.get("selections") or []),
+        "selected_variant_counts": walk_forward.get("selected_variant_counts"),
+        "constraints": constraints,
+    }
+
+
 def _compact_allocation_research_hypotheses_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
     if not isinstance(payload, dict):
         return payload
@@ -3724,6 +3767,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/strategy-rebase/v15-macro-drawdown-robustness",
+                    "返回 V15.4 参数邻域、交易成本和年度滚动样本外验证；明确历史阶段严格时点性仍未独立证实，不生成交易信号。",
+                    "v15 macro drawdown robustness and walk-forward validation",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -3908,6 +3958,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/strategy-rebase/v15-backtest-dataset", "description": "读取 V15.1 收益导向回测数据集 manifest：只定义未来数据底座，不回测、不配置、不交易。"},
             {"path": "/api/strategy-rebase/v15-dataset-materialization", "description": "读取 V15.2 回测数据落地状态：只读本地缓存，报告覆盖率和 hash，不回测、不配置、不交易。"},
             {"path": "/api/strategy-rebase/v15-macro-drawdown-backtest", "description": "读取 V15.3 宏观周期 + 回撤情境基准研究回测：对比现金、沪深300、上证指数和旧策略基线；不生成交易信号。"},
+            {"path": "/api/strategy-rebase/v15-macro-drawdown-robustness", "description": "读取 V15.4 参数稳健性、成本敏感性与年度滚动样本外验证；不生成交易信号。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -5323,6 +5374,17 @@ def v15_macro_drawdown_backtest() -> dict:
     return payload
 
 
+@app.get("/api/strategy-rebase/v15-macro-drawdown-robustness")
+def v15_macro_drawdown_robustness() -> dict:
+    payload = _read_v15_macro_drawdown_robustness_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V15 macro drawdown robustness artifact missing; run scripts/run_v15_macro_drawdown_robustness.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -5594,6 +5656,7 @@ def results_summary(
         v15_backtest_dataset_manifest = _read_v15_backtest_dataset_manifest_payload()
         v15_backtest_dataset_materialization = _read_v15_backtest_dataset_materialization_payload()
         v15_macro_drawdown_backtest = _read_v15_macro_drawdown_backtest_payload()
+        v15_macro_drawdown_robustness = _read_v15_macro_drawdown_robustness_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -5673,6 +5736,7 @@ def results_summary(
             v15_backtest_dataset_manifest = _compact_v15_backtest_dataset_manifest_payload(v15_backtest_dataset_manifest)
             v15_backtest_dataset_materialization = _compact_v15_backtest_dataset_materialization_payload(v15_backtest_dataset_materialization)
             v15_macro_drawdown_backtest = _compact_v15_macro_drawdown_backtest_payload(v15_macro_drawdown_backtest)
+            v15_macro_drawdown_robustness = _compact_v15_macro_drawdown_robustness_payload(v15_macro_drawdown_robustness)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -5789,6 +5853,7 @@ def results_summary(
             "v15_backtest_dataset_manifest": v15_backtest_dataset_manifest,
             "v15_backtest_dataset_materialization": v15_backtest_dataset_materialization,
             "v15_macro_drawdown_backtest": v15_macro_drawdown_backtest,
+            "v15_macro_drawdown_robustness": v15_macro_drawdown_robustness,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,
