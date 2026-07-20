@@ -1823,6 +1823,7 @@ function setResultsPanel(results) {
   const v15ForwardDecision = results.v15_forward_paper_decision || {};
   const v15ForwardReadouts = v15ForwardDecision.readouts || {};
   const v15ForwardDecisionBody = v15ForwardDecision.paper_decision || {};
+  const v15ForwardJournal = results.v15_forward_observation_journal || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -5013,10 +5014,13 @@ function setResultsPanel(results) {
   setText("v15ForwardMacro", v15ForwardReadouts.macro_cycle || "--");
   setText("v15ForwardPhase", v15ForwardReadouts.late_cycle_risk || "--");
   setText("v15ForwardDecisionStatus", v15ForwardDecisionBody.decision_status || "--");
+  setText("v15ForwardJournalRecords", integerText(v15ForwardJournal.record_count));
+  setText("v15ForwardJournalLatest", toIsoDate(v15ForwardJournal.latest_decision_date));
+  setText("v15ForwardJournalPending", integerText(v15ForwardJournal.pending_outcome_count));
   setText(
     "v15ForwardConclusion",
     v15DailySnapshot.phase
-      ? "V15.7 已从当日真实可见文件建立不可变快照并记录状态读数。估值和完整晚周期覆盖层仍未就绪，因此当前只允许前向观察，不构成仓位或交易信号。"
+      ? `V15.7 已从当日真实可见文件建立不可变快照并记录状态读数。V15.8 append-only 日志当前累计 ${integerText(v15ForwardJournal.record_count)} 条，等待未来真实结果回填；不构成仓位或交易信号。`
       : "V15.7 每日前向快照尚未生成。"
   );
 

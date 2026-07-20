@@ -1,0 +1,24 @@
+{
+  "phase": "V15.8",
+  "journal_status": "journal_ready",
+  "record_count": 1,
+  "unique_decision_date_count": 1,
+  "latest_decision_date": "20260720",
+  "latest_record_id": "20260720:093860a5cac4abb95163a91e932c04b9ea7358e260596445c298de2983fecb87",
+  "pending_outcome_count": 1,
+  "completed_outcome_count": 0,
+  "duplicate_record_count": 0,
+  "append_only_mode": true,
+  "paper_only": true,
+  "backtest_allowed": false,
+  "production_trade_enabled": false,
+  "summary": {
+    "phase": "V15.8",
+    "journal_status": "journal_ready",
+    "record_count": 1,
+    "latest_decision_date": "20260720",
+    "pending_outcome_count": 1,
+    "backtest_allowed": false,
+    "production_trade_enabled": false
+  }
+}

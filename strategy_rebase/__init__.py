@@ -32,6 +32,14 @@ from strategy_rebase.daily_snapshot_capture import (
     validate_v15_daily_snapshot_capture,
     write_v15_daily_snapshot_capture,
 )
+from strategy_rebase.forward_observation_journal import (
+    append_or_validate_forward_observation_journal,
+    build_forward_observation_journal_status,
+    build_forward_observation_record,
+    read_forward_observation_journal,
+    validate_forward_observation_journal,
+    write_v15_forward_observation_journal_status,
+)
 from strategy_rebase.point_in_time_phase_rebuilder import (
     build_v15_point_in_time_phase_rebuild_status,
     validate_v15_point_in_time_phase_rebuild_status,
@@ -50,12 +58,15 @@ from strategy_rebase.outcome_objectives import (
 )
 
 __all__ = [
+    "append_or_validate_forward_observation_journal",
     "build_v15_backtest_dataset_manifest",
     "build_v15_backtest_dataset_materialization_status",
     "build_v15_macro_drawdown_backtest_result",
     "build_v15_macro_drawdown_robustness_result",
     "build_v15_late_cycle_overlay_manifest",
     "build_v15_daily_snapshot_capture",
+    "build_forward_observation_journal_status",
+    "build_forward_observation_record",
     "build_v15_point_in_time_phase_rebuild_status",
     "build_v15_point_in_time_snapshot_ledger",
     "build_v15_strategy_direction_rebase",
@@ -68,7 +79,9 @@ __all__ = [
     "source_group_lineage_complete",
     "find_forbidden_output_keys",
     "normalized_manifest_sha256",
+    "read_forward_observation_journal",
     "validate_v15_daily_snapshot_capture",
+    "validate_forward_observation_journal",
     "validate_v15_point_in_time_snapshot_ledger",
     "validate_v15_strategy_direction_rebase",
     "write_v15_backtest_dataset_manifest",
@@ -77,6 +90,7 @@ __all__ = [
     "write_v15_macro_drawdown_robustness_result",
     "write_v15_late_cycle_overlay_manifest",
     "write_v15_daily_snapshot_capture",
+    "write_v15_forward_observation_journal_status",
     "write_v15_point_in_time_phase_rebuild_status",
     "write_v15_point_in_time_snapshot_ledger",
     "write_v15_strategy_direction_rebase",
