@@ -1,0 +1,19 @@
+{
+  "phase": "V15.9",
+  "outcome_status": "outcome_intake_ready",
+  "journal_record_count": 1,
+  "outcome_record_count": 3,
+  "completed_outcome_count": 0,
+  "pending_outcome_count": 3,
+  "benchmark": "CSI300",
+  "paper_only": true,
+  "backtest_allowed": false,
+  "production_trade_enabled": false,
+  "summary": {
+    "phase": "V15.9",
+    "outcome_status": "outcome_intake_ready",
+    "completed_outcome_count": 0,
+    "pending_outcome_count": 3,
+    "latest_decision_date": "20260720"
+  }
+}

@@ -1824,6 +1824,7 @@ function setResultsPanel(results) {
   const v15ForwardReadouts = v15ForwardDecision.readouts || {};
   const v15ForwardDecisionBody = v15ForwardDecision.paper_decision || {};
   const v15ForwardJournal = results.v15_forward_observation_journal || {};
+  const v15ForwardOutcomes = results.v15_forward_outcomes || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -5017,10 +5018,13 @@ function setResultsPanel(results) {
   setText("v15ForwardJournalRecords", integerText(v15ForwardJournal.record_count));
   setText("v15ForwardJournalLatest", toIsoDate(v15ForwardJournal.latest_decision_date));
   setText("v15ForwardJournalPending", integerText(v15ForwardJournal.pending_outcome_count));
+  setText("v15ForwardOutcomeRecords", integerText(v15ForwardOutcomes.outcome_record_count));
+  setText("v15ForwardOutcomeCompleted", integerText(v15ForwardOutcomes.completed_outcome_count));
+  setText("v15ForwardOutcomePending", integerText(v15ForwardOutcomes.pending_outcome_count));
   setText(
     "v15ForwardConclusion",
     v15DailySnapshot.phase
-      ? `V15.7 已从当日真实可见文件建立不可变快照并记录状态读数。V15.8 append-only 日志当前累计 ${integerText(v15ForwardJournal.record_count)} 条，等待未来真实结果回填；不构成仓位或交易信号。`
+      ? `V15.7 已建立不可变快照，V15.8 日志累计 ${integerText(v15ForwardJournal.record_count)} 条。V15.9 当前完成 ${integerText(v15ForwardOutcomes.completed_outcome_count)} 个沪深300前向窗口、待完成 ${integerText(v15ForwardOutcomes.pending_outcome_count)} 个；这只是市场结果，不是策略收益或交易信号。`
       : "V15.7 每日前向快照尚未生成。"
   );
 

@@ -1138,6 +1138,14 @@ def _read_v15_forward_observation_journal_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_v15_forward_outcomes_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "v15_forward_outcome_status.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -2615,6 +2623,21 @@ def _compact_v15_forward_observation_journal_payload(payload: dict[str, object] 
     return payload.get("summary") if isinstance(payload.get("summary"), dict) else payload
 
 
+def _compact_v15_forward_outcomes_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    summary = payload.get("summary") if isinstance(payload.get("summary"), dict) else {}
+    return {
+        **summary,
+        "journal_record_count": payload.get("journal_record_count"),
+        "outcome_record_count": payload.get("outcome_record_count"),
+        "benchmark": payload.get("benchmark"),
+        "paper_only": payload.get("paper_only"),
+        "backtest_allowed": payload.get("backtest_allowed"),
+        "production_trade_enabled": payload.get("production_trade_enabled"),
+    }
+
+
 def _compact_allocation_research_hypotheses_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
     if not isinstance(payload, dict):
         return payload
@@ -3964,6 +3987,13 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/strategy-rebase/v15-forward-outcomes",
+                    "返回 V15.9 沪深300 T+1/T+5/T+20 前向市场结果回填状态；不是策略收益，不回测、不出仓位或交易信号。",
+                    "v15 forward benchmark outcome intake status",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -4156,6 +4186,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/strategy-rebase/v15-daily-snapshot-capture", "description": "读取 V15.7 当日前向不可变快照状态、Manifest hash 和源覆盖；不回测不交易。"},
             {"path": "/api/strategy-rebase/v15-forward-paper-decision", "description": "读取 V15.7 仅供未来观察的纸面决策记录；不生成标的、仓位、买卖或订单。"},
             {"path": "/api/strategy-rebase/v15-forward-observation-journal", "description": "读取 V15.8 append-only 前向观察日志状态；只累计真实前向记录，不回测、不评价收益、不交易。"},
+            {"path": "/api/strategy-rebase/v15-forward-outcomes", "description": "读取 V15.9 沪深300前向市场结果回填状态；只记录 benchmark outcome，不代表策略收益或交易信号。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -5659,6 +5690,17 @@ def v15_forward_observation_journal() -> dict:
     return payload
 
 
+@app.get("/api/strategy-rebase/v15-forward-outcomes")
+def v15_forward_outcomes() -> dict:
+    payload = _read_v15_forward_outcomes_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V15 forward outcomes missing; run scripts/run_v15_forward_outcome_intake.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -5937,6 +5979,7 @@ def results_summary(
         v15_daily_snapshot_capture = _read_v15_daily_snapshot_capture_payload()
         v15_forward_paper_decision = _read_v15_forward_paper_decision_payload()
         v15_forward_observation_journal = _read_v15_forward_observation_journal_payload()
+        v15_forward_outcomes = _read_v15_forward_outcomes_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -6023,6 +6066,7 @@ def results_summary(
             v15_daily_snapshot_capture = _compact_v15_daily_snapshot_capture_payload(v15_daily_snapshot_capture)
             v15_forward_paper_decision = _compact_v15_forward_paper_decision_payload(v15_forward_paper_decision)
             v15_forward_observation_journal = _compact_v15_forward_observation_journal_payload(v15_forward_observation_journal)
+            v15_forward_outcomes = _compact_v15_forward_outcomes_payload(v15_forward_outcomes)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -6146,6 +6190,7 @@ def results_summary(
             "v15_daily_snapshot_capture": v15_daily_snapshot_capture,
             "v15_forward_paper_decision": v15_forward_paper_decision,
             "v15_forward_observation_journal": v15_forward_observation_journal,
+            "v15_forward_outcomes": v15_forward_outcomes,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,
