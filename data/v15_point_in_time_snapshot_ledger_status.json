@@ -1,7 +1,7 @@
 {
   "metadata": {
     "engine": "V15.6 Immutable Point-in-Time Snapshot Ledger Status",
-    "generated_at": "2026-07-20T07:22:53+00:00",
+    "generated_at": "2026-07-20T07:36:09+00:00",
     "as_of": "20260618",
     "source_ledger": "data/v15_point_in_time_snapshot_ledger.json"
   },

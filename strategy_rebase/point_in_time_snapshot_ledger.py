@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
+import re
 
 from config import DATA_DIR
 
@@ -28,6 +29,7 @@ REQUIRED_LINEAGE_FIELDS = (
     "source_path",
     "source_sha256",
 )
+SHA256_PATTERN = re.compile(r"^[0-9a-fA-F]{64}$")
 
 
 def _read_json(path: str | Path) -> object:
@@ -102,7 +104,21 @@ def source_group_lineage_complete(group: Mapping[str, object]) -> bool:
         return False
     if group.get("current_hash_is_historical_snapshot") is not True:
         return False
+    source_sha256 = group.get("source_sha256")
+    if not isinstance(source_sha256, str) or SHA256_PATTERN.fullmatch(source_sha256) is None:
+        return False
     return all(group.get(field) not in (None, "") for field in REQUIRED_LINEAGE_FIELDS)
+
+
+def _source_group_hash_verified(group: Mapping[str, object]) -> bool:
+    source_sha256 = group.get("source_sha256")
+    return (
+        isinstance(source_sha256, str)
+        and SHA256_PATTERN.fullmatch(source_sha256) is not None
+        and group.get("source_sha256_origin") == "historical_snapshot_file"
+        and group.get("hash_verified") is True
+        and group.get("current_hash_is_historical_snapshot") is True
+    )
 
 
 def _group(
@@ -228,18 +244,62 @@ def validate_v15_point_in_time_snapshot_ledger(
         raise AssertionError("ledger row count must match decision_date_count")
     if status.get("ledger_status") not in {"ledger_gap_report_ready", "ledger_rebuilt"}:
         raise AssertionError("ledger_status is invalid")
-    complete_count = sum(1 for row in rows if isinstance(row, Mapping) and row.get("row_lineage_complete") is True)
-    eligible_count = sum(1 for row in rows if isinstance(row, Mapping) and row.get("strict_point_in_time_eligible") is True)
+    complete_count = 0
+    eligible_count = 0
+    hash_verified_count = 0
+    valuation_snapshot_available_count = 0
+    for row_index, row in enumerate(rows):
+        if not isinstance(row, Mapping):
+            raise AssertionError(f"row {row_index} must be a mapping")
+        source_groups = row.get("source_groups")
+        if not isinstance(source_groups, Mapping) or set(source_groups) != set(SOURCE_GROUPS):
+            raise AssertionError(f"row {row_index} must contain exactly the required source groups")
+
+        computed_group_complete: dict[str, bool] = {}
+        for group_id in SOURCE_GROUPS:
+            group = source_groups.get(group_id)
+            if not isinstance(group, Mapping):
+                raise AssertionError(f"row {row_index} source group {group_id} must be a mapping")
+            computed_complete = source_group_lineage_complete(group)
+            computed_group_complete[group_id] = computed_complete
+            if group.get("lineage_complete") is not computed_complete:
+                raise AssertionError(f"row {row_index} source group {group_id} lineage_complete is forged")
+            if group.get("strict_point_in_time_eligible") is not computed_complete:
+                raise AssertionError(f"row {row_index} source group {group_id} eligibility is forged")
+            if _source_group_hash_verified(group):
+                hash_verified_count += 1
+
+        computed_row_complete = all(computed_group_complete.values())
+        computed_missing_groups = [
+            group_id for group_id in SOURCE_GROUPS if not computed_group_complete[group_id]
+        ]
+        if row.get("row_lineage_complete") is not computed_row_complete:
+            raise AssertionError(f"row {row_index} row_lineage_complete is forged")
+        if row.get("strict_point_in_time_eligible") is not computed_row_complete:
+            raise AssertionError(f"row {row_index} eligibility is forged")
+        if row.get("snapshot_available") is not computed_row_complete:
+            raise AssertionError(f"row {row_index} snapshot_available is forged")
+        if row.get("missing_source_groups") != computed_missing_groups:
+            raise AssertionError(f"row {row_index} missing_source_groups does not match computed gaps")
+
+        complete_count += int(computed_row_complete)
+        eligible_count += int(computed_row_complete)
+        valuation_snapshot_available_count += int(computed_group_complete["valuation"])
+
     if complete_count != status.get("snapshot_complete_count") or eligible_count != status.get("strict_point_in_time_eligible_count"):
         raise AssertionError("status counts must match ledger rows")
+    if hash_verified_count != status.get("hash_verified_count"):
+        raise AssertionError("hash_verified_count must match computed verified source groups")
+    if valuation_snapshot_available_count != status.get("valuation_snapshot_available_count"):
+        raise AssertionError("valuation_snapshot_available_count must match computed valuation snapshots")
     if eligible_count > complete_count:
         raise AssertionError("eligible count cannot exceed complete count")
     if status.get("ledger_status") == "ledger_gap_report_ready" and complete_count == len(rows):
         raise AssertionError("gap report cannot claim every row complete")
     if status.get("ledger_status") == "ledger_rebuilt" and complete_count != len(rows):
         raise AssertionError("rebuilt status requires every row complete")
-    if status.get("valuation_snapshot_available_count") == 0 and status.get("backtest_allowed") is not False:
-        raise AssertionError("valuation gaps must block overlay backtest")
+    if status.get("backtest_allowed") is not False:
+        raise AssertionError("V15.6 is ledger-only and cannot allow backtesting")
     if status.get("promotion_ready") is not False:
         raise AssertionError("V15.6 cannot promote a strategy")
     for key in (

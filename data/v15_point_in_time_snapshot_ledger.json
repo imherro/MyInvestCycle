@@ -1,7 +1,7 @@
 {
   "metadata": {
     "engine": "V15.6 Immutable Point-in-Time Source Snapshot Ledger",
-    "generated_at": "2026-07-20T07:22:53+00:00",
+    "generated_at": "2026-07-20T07:36:09+00:00",
     "as_of": "20260618",
     "purpose": "Record per-decision-date source lineage availability without mistaking current caches for historical immutable snapshots."
   },

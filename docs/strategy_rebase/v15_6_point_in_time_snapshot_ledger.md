@@ -52,6 +52,18 @@ V15.5 证明现有市场阶段序列不是严格 point-in-time。V15.6 将这一
 
 当前账本因此保留了当前文件 hash，但所有 `source_sha256` 均为 `null`，`hash_verified=false`。
 
+## V15.6.1 防伪校验
+
+验证器不信任账本中保存的完成标志和状态计数，而是逐日期、逐源组重新计算：
+
+- `source_sha256` 非空时必须是 64 位十六进制 SHA-256。
+- 每组 `lineage_complete` 和 `strict_point_in_time_eligible` 必须等于原始 lineage 字段的重算结果。
+- 每行完成标志、快照标志和缺失源列表必须等于五组源的重算结果。
+- status 的完整日期、严格可用日期、已验证 hash 和估值快照计数必须由账本嵌套字段重算。
+- V15.6 是账本阶段，`backtest_allowed` 和 `promotion_ready` 始终必须为 `false`。
+
+因此，单独修改 JSON 中的布尔值、计数或回测开关不能把缺失快照伪装成已验证数据。
+
 ## 缺失值与时点边界
 
 - 缺失时间、版本、估值和 hash 均保持 `null`。

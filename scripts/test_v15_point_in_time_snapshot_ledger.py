@@ -50,6 +50,14 @@ def test_current_file_hash_cannot_masquerade_as_historical_snapshot_hash() -> No
     assert source_group_lineage_complete(group) is False
 
 
+def _assert_validation_fails(ledger: dict[str, object], status: dict[str, object]) -> None:
+    try:
+        validate_v15_point_in_time_snapshot_ledger(ledger, status)
+    except AssertionError:
+        return
+    raise AssertionError("forged ledger/status must fail validation")
+
+
 def test_real_ledger_is_gap_report_only() -> None:
     ledger, status = build_v15_point_in_time_snapshot_ledger()
     assert status["ledger_status"] == "ledger_gap_report_ready"
@@ -79,12 +87,60 @@ def test_gap_status_cannot_return_rebuilt() -> None:
     ledger, status = build_v15_point_in_time_snapshot_ledger()
     invalid = deepcopy(status)
     invalid["ledger_status"] = "ledger_rebuilt"
-    try:
-        validate_v15_point_in_time_snapshot_ledger(ledger, invalid)
-    except AssertionError:
-        pass
-    else:
-        raise AssertionError("ledger_rebuilt must fail while gaps remain")
+    _assert_validation_fails(ledger, invalid)
+
+
+def test_forged_row_complete_flags_do_not_pass() -> None:
+    ledger, status = build_v15_point_in_time_snapshot_ledger()
+    forged_ledger = deepcopy(ledger)
+    forged_status = deepcopy(status)
+    row = forged_ledger["rows"][0]
+    row["row_lineage_complete"] = True
+    row["strict_point_in_time_eligible"] = True
+    row["snapshot_available"] = True
+    forged_status["snapshot_complete_count"] = 1
+    forged_status["strict_point_in_time_eligible_count"] = 1
+    _assert_validation_fails(forged_ledger, forged_status)
+
+
+def test_forged_group_lineage_flags_do_not_pass() -> None:
+    ledger, status = build_v15_point_in_time_snapshot_ledger()
+    forged_ledger = deepcopy(ledger)
+    group = forged_ledger["rows"][0]["source_groups"]["macro"]
+    assert group["source_sha256"] is None
+    group["lineage_complete"] = True
+    group["strict_point_in_time_eligible"] = True
+    _assert_validation_fails(forged_ledger, deepcopy(status))
+
+
+def test_forged_status_counts_do_not_pass() -> None:
+    ledger, status = build_v15_point_in_time_snapshot_ledger()
+    forged_status = deepcopy(status)
+    forged_status["snapshot_complete_count"] = 140
+    forged_status["strict_point_in_time_eligible_count"] = 140
+    forged_status["hash_verified_count"] = 700
+    forged_status["valuation_snapshot_available_count"] = 140
+    _assert_validation_fails(deepcopy(ledger), forged_status)
+
+
+def test_backtest_allowed_true_never_passes_v15_6() -> None:
+    ledger, status = build_v15_point_in_time_snapshot_ledger()
+    forged_status = deepcopy(status)
+    forged_status["backtest_allowed"] = True
+    _assert_validation_fails(deepcopy(ledger), forged_status)
+
+
+def test_invalid_source_sha256_format_blocks_completion() -> None:
+    group = _valid_group()
+    group["source_sha256"] = "not-a-hash"
+    assert source_group_lineage_complete(group) is False
+
+
+def test_missing_source_groups_must_match_computed_gaps() -> None:
+    ledger, status = build_v15_point_in_time_snapshot_ledger()
+    forged_ledger = deepcopy(ledger)
+    forged_ledger["rows"][0]["missing_source_groups"] = []
+    _assert_validation_fails(forged_ledger, deepcopy(status))
 
 
 def main() -> None:
@@ -92,6 +148,12 @@ def main() -> None:
     test_current_file_hash_cannot_masquerade_as_historical_snapshot_hash()
     test_real_ledger_is_gap_report_only()
     test_gap_status_cannot_return_rebuilt()
+    test_forged_row_complete_flags_do_not_pass()
+    test_forged_group_lineage_flags_do_not_pass()
+    test_forged_status_counts_do_not_pass()
+    test_backtest_allowed_true_never_passes_v15_6()
+    test_invalid_source_sha256_format_blocks_completion()
+    test_missing_source_groups_must_match_computed_gaps()
     print("test_v15_point_in_time_snapshot_ledger ok")
 
 
