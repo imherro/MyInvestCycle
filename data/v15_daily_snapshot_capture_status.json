@@ -1,0 +1,27 @@
+{
+  "phase": "V15.7",
+  "snapshot_date": "20260720",
+  "captured_at": "2026-07-20T16:01:28+08:00",
+  "snapshot_directory": "data/point_in_time_snapshots/20260720",
+  "manifest_path": "data/point_in_time_snapshots/20260720/manifest.json",
+  "manifest_sha256": "093860a5cac4abb95163a91e932c04b9ea7358e260596445c298de2983fecb87",
+  "source_count": 5,
+  "available_source_count": 5,
+  "missing_source_count": 0,
+  "immutable_snapshot_created": true,
+  "created_now": true,
+  "paper_decision_status": "insufficient_for_trade_decision",
+  "backtest_allowed": false,
+  "production_trade_enabled": false,
+  "summary": {
+    "phase": "V15.7",
+    "snapshot_date": "20260720",
+    "available_source_count": 5,
+    "missing_source_count": 0,
+    "manifest_sha256": "093860a5cac4abb95163a91e932c04b9ea7358e260596445c298de2983fecb87",
+    "paper_decision_status": "insufficient_for_trade_decision",
+    "paper_only": true,
+    "backtest_allowed": false,
+    "production_trade_enabled": false
+  }
+}

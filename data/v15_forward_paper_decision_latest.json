@@ -1,0 +1,34 @@
+{
+  "phase": "V15.7",
+  "decision_date": "20260720",
+  "paper_only": true,
+  "not_production_signal": true,
+  "snapshot_manifest": "data/point_in_time_snapshots/20260720/manifest.json",
+  "snapshot_manifest_sha256": "093860a5cac4abb95163a91e932c04b9ea7358e260596445c298de2983fecb87",
+  "data_readiness": {
+    "immutable_snapshot_created": true,
+    "valuation_available": false,
+    "late_cycle_overlay_ready": false,
+    "strict_point_in_time_ready_for_backtest": false
+  },
+  "readouts": {
+    "macro_cycle": "RECOVERY",
+    "drawdown_context": null,
+    "structural_bull": "STRUCTURAL_BULL_ROTATION",
+    "late_cycle_risk": "LATE_CYCLE"
+  },
+  "paper_decision": {
+    "decision_status": "insufficient_for_trade_decision",
+    "reason": "Forward snapshot captured, but valuation/late-cycle overlay and full PIT evidence are not ready.",
+    "allowed_use": "forward_observation_only"
+  },
+  "constraints": {
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_position": true,
+    "does_not_generate_portfolio_weight": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  }
+}

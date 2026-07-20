@@ -25,6 +25,13 @@ from strategy_rebase.late_cycle_overlay import (
     validate_v15_late_cycle_overlay_manifest,
     write_v15_late_cycle_overlay_manifest,
 )
+from strategy_rebase.daily_snapshot_capture import (
+    build_v15_daily_snapshot_capture,
+    find_forbidden_output_keys,
+    normalized_manifest_sha256,
+    validate_v15_daily_snapshot_capture,
+    write_v15_daily_snapshot_capture,
+)
 from strategy_rebase.point_in_time_phase_rebuilder import (
     build_v15_point_in_time_phase_rebuild_status,
     validate_v15_point_in_time_phase_rebuild_status,
@@ -48,6 +55,7 @@ __all__ = [
     "build_v15_macro_drawdown_backtest_result",
     "build_v15_macro_drawdown_robustness_result",
     "build_v15_late_cycle_overlay_manifest",
+    "build_v15_daily_snapshot_capture",
     "build_v15_point_in_time_phase_rebuild_status",
     "build_v15_point_in_time_snapshot_ledger",
     "build_v15_strategy_direction_rebase",
@@ -58,6 +66,9 @@ __all__ = [
     "validate_v15_late_cycle_overlay_manifest",
     "validate_v15_point_in_time_phase_rebuild_status",
     "source_group_lineage_complete",
+    "find_forbidden_output_keys",
+    "normalized_manifest_sha256",
+    "validate_v15_daily_snapshot_capture",
     "validate_v15_point_in_time_snapshot_ledger",
     "validate_v15_strategy_direction_rebase",
     "write_v15_backtest_dataset_manifest",
@@ -65,6 +76,7 @@ __all__ = [
     "write_v15_macro_drawdown_backtest_result",
     "write_v15_macro_drawdown_robustness_result",
     "write_v15_late_cycle_overlay_manifest",
+    "write_v15_daily_snapshot_capture",
     "write_v15_point_in_time_phase_rebuild_status",
     "write_v15_point_in_time_snapshot_ledger",
     "write_v15_strategy_direction_rebase",

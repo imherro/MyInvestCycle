@@ -1819,6 +1819,10 @@ function setResultsPanel(results) {
   const v15LateCycleFeatureList = Array.isArray(v15LateCycleOverlay.features) ? v15LateCycleOverlay.features : [];
   const v15SnapshotLedger = results.v15_point_in_time_snapshot_ledger_status || {};
   const v15SnapshotLedgerSummary = v15SnapshotLedger.summary || v15SnapshotLedger;
+  const v15DailySnapshot = results.v15_daily_snapshot_capture || {};
+  const v15ForwardDecision = results.v15_forward_paper_decision || {};
+  const v15ForwardReadouts = v15ForwardDecision.readouts || {};
+  const v15ForwardDecisionBody = v15ForwardDecision.paper_decision || {};
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -5001,6 +5005,19 @@ function setResultsPanel(results) {
     v15SnapshotLedgerSummary.phase
       ? "V15.6 已把五类源逐日列账，但 140 个日期都没有完整的历史抓取时间、源版本和不可变历史快照 hash，因此严格可用仍为 0/140。账本只完成缺口盘点，覆盖层回测继续禁止。"
       : "V15.6 不可变时点源快照账本尚未生成。"
+  );
+
+  setText("v15DailySnapshotDate", toIsoDate(v15DailySnapshot.snapshot_date));
+  setText("v15DailySnapshotSources", `${integerText(v15DailySnapshot.available_source_count)} / ${integerText((v15DailySnapshot.available_source_count || 0) + (v15DailySnapshot.missing_source_count || 0))}`);
+  setText("v15DailySnapshotHash", v15DailySnapshot.manifest_sha256 ? `${String(v15DailySnapshot.manifest_sha256).slice(0, 12)}...` : "--");
+  setText("v15ForwardMacro", v15ForwardReadouts.macro_cycle || "--");
+  setText("v15ForwardPhase", v15ForwardReadouts.late_cycle_risk || "--");
+  setText("v15ForwardDecisionStatus", v15ForwardDecisionBody.decision_status || "--");
+  setText(
+    "v15ForwardConclusion",
+    v15DailySnapshot.phase
+      ? "V15.7 已从当日真实可见文件建立不可变快照并记录状态读数。估值和完整晚周期覆盖层仍未就绪，因此当前只允许前向观察，不构成仓位或交易信号。"
+      : "V15.7 每日前向快照尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
