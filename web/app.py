@@ -1082,6 +1082,22 @@ def _read_v15_macro_drawdown_robustness_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_v15_point_in_time_phase_rebuild_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "v15_point_in_time_phase_rebuild_status.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
+def _read_v15_late_cycle_overlay_manifest_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "v15_late_cycle_overlay_manifest.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -2474,6 +2490,40 @@ def _compact_v15_macro_drawdown_robustness_payload(payload: dict[str, object] | 
     }
 
 
+def _compact_v15_point_in_time_phase_rebuild_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    summary = payload.get("summary") if isinstance(payload.get("summary"), dict) else {}
+    return {
+        **summary,
+        "strict_point_in_time_phase_status": payload.get("strict_point_in_time_phase_status"),
+        "release_date_alignment": payload.get("release_date_alignment"),
+        "effective_date_alignment": payload.get("effective_date_alignment"),
+        "uses_future_returns": payload.get("uses_future_returns"),
+        "uses_reconstructed_labels": payload.get("uses_reconstructed_labels"),
+        "publication_time_lineage_verified": payload.get("publication_time_lineage_verified"),
+        "gap_count": payload.get("gap_count"),
+        "promotion_ready": payload.get("promotion_ready"),
+        "gaps": payload.get("gaps"),
+        "constraints": payload.get("constraints"),
+    }
+
+
+def _compact_v15_late_cycle_overlay_manifest_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    return {
+        "phase": payload.get("phase"),
+        "manifest_status": payload.get("manifest_status"),
+        "promotion_ready": payload.get("promotion_ready"),
+        "summary": payload.get("summary"),
+        "features": payload.get("features"),
+        "intended_research_logic": payload.get("intended_research_logic"),
+        "readiness_gate": payload.get("readiness_gate"),
+        "constraints": payload.get("constraints"),
+    }
+
+
 def _compact_allocation_research_hypotheses_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
     if not isinstance(payload, dict):
         return payload
@@ -3774,6 +3824,20 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/strategy-rebase/v15-point-in-time-phase-rebuild",
+                    "返回 V15.5 严格时点阶段重建审计或缺口报告；当前不伪造已验证状态，不回测、不出仓位或交易信号。",
+                    "v15 strict point-in-time phase reconstruction audit",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
+                    "/api/strategy-rebase/v15-late-cycle-overlay-manifest",
+                    "返回 V15.5 高位估值与拥挤覆盖层六项特征的数据契约；只定义研究前置条件，不跑回测、不优化、不交易。",
+                    "v15 late-cycle overlay data contract",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -3959,6 +4023,8 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/strategy-rebase/v15-dataset-materialization", "description": "读取 V15.2 回测数据落地状态：只读本地缓存，报告覆盖率和 hash，不回测、不配置、不交易。"},
             {"path": "/api/strategy-rebase/v15-macro-drawdown-backtest", "description": "读取 V15.3 宏观周期 + 回撤情境基准研究回测：对比现金、沪深300、上证指数和旧策略基线；不生成交易信号。"},
             {"path": "/api/strategy-rebase/v15-macro-drawdown-robustness", "description": "读取 V15.4 参数稳健性、成本敏感性与年度滚动样本外验证；不生成交易信号。"},
+            {"path": "/api/strategy-rebase/v15-point-in-time-phase-rebuild", "description": "读取 V15.5 严格时点阶段重建审计或缺口报告；不伪造验证通过，不回测不交易。"},
+            {"path": "/api/strategy-rebase/v15-late-cycle-overlay-manifest", "description": "读取 V15.5 高位估值与拥挤覆盖层六项特征数据契约；不跑回测、不优化、不交易。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -5385,6 +5451,28 @@ def v15_macro_drawdown_robustness() -> dict:
     return payload
 
 
+@app.get("/api/strategy-rebase/v15-point-in-time-phase-rebuild")
+def v15_point_in_time_phase_rebuild() -> dict:
+    payload = _read_v15_point_in_time_phase_rebuild_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V15 point-in-time phase rebuild artifact missing; run scripts/run_v15_point_in_time_phase_rebuild.py first.",
+        )
+    return payload
+
+
+@app.get("/api/strategy-rebase/v15-late-cycle-overlay-manifest")
+def v15_late_cycle_overlay_manifest() -> dict:
+    payload = _read_v15_late_cycle_overlay_manifest_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V15 late-cycle overlay manifest missing; run scripts/run_v15_point_in_time_phase_rebuild.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -5657,6 +5745,8 @@ def results_summary(
         v15_backtest_dataset_materialization = _read_v15_backtest_dataset_materialization_payload()
         v15_macro_drawdown_backtest = _read_v15_macro_drawdown_backtest_payload()
         v15_macro_drawdown_robustness = _read_v15_macro_drawdown_robustness_payload()
+        v15_point_in_time_phase_rebuild = _read_v15_point_in_time_phase_rebuild_payload()
+        v15_late_cycle_overlay_manifest = _read_v15_late_cycle_overlay_manifest_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -5737,6 +5827,8 @@ def results_summary(
             v15_backtest_dataset_materialization = _compact_v15_backtest_dataset_materialization_payload(v15_backtest_dataset_materialization)
             v15_macro_drawdown_backtest = _compact_v15_macro_drawdown_backtest_payload(v15_macro_drawdown_backtest)
             v15_macro_drawdown_robustness = _compact_v15_macro_drawdown_robustness_payload(v15_macro_drawdown_robustness)
+            v15_point_in_time_phase_rebuild = _compact_v15_point_in_time_phase_rebuild_payload(v15_point_in_time_phase_rebuild)
+            v15_late_cycle_overlay_manifest = _compact_v15_late_cycle_overlay_manifest_payload(v15_late_cycle_overlay_manifest)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -5854,6 +5946,8 @@ def results_summary(
             "v15_backtest_dataset_materialization": v15_backtest_dataset_materialization,
             "v15_macro_drawdown_backtest": v15_macro_drawdown_backtest,
             "v15_macro_drawdown_robustness": v15_macro_drawdown_robustness,
+            "v15_point_in_time_phase_rebuild": v15_point_in_time_phase_rebuild,
+            "v15_late_cycle_overlay_manifest": v15_late_cycle_overlay_manifest,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,

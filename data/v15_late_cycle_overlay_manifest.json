@@ -1,0 +1,179 @@
+{
+  "metadata": {
+    "engine": "V15.5 Late-Cycle Overlay Data Contract",
+    "generated_at": "2026-07-20T06:57:08+00:00",
+    "purpose": "Define auditable late-cycle risk inputs before any overlay backtest or parameter selection."
+  },
+  "phase": "V15.5",
+  "manifest_status": "design_ready_data_blocked",
+  "promotion_ready": false,
+  "summary": {
+    "phase": "V15.5",
+    "feature_count": 6,
+    "available_feature_count": 0,
+    "partial_feature_count": 2,
+    "blocked_or_missing_feature_count": 4,
+    "backtest_allowed": false,
+    "promotion_ready": false,
+    "conclusion": "The overlay concept is defined, but historical valuation and strict point-in-time lineage are not ready; no overlay result is claimed."
+  },
+  "features": [
+    {
+      "feature_id": "valuation_percentile",
+      "definition": "Point-in-time broad-index PE/PB and equity-risk-premium percentile over an expanding historical window.",
+      "source_candidates": [
+        "Tushare index_dailybasic or equivalent licensed index valuation history",
+        "release-safe bond yield history for ERP"
+      ],
+      "current_availability": "missing",
+      "current_gap": "The current macro history has no PE percentile, PB percentile, or ERP observations.",
+      "required_lineage": [
+        "observation_date",
+        "release_date",
+        "effective_date",
+        "captured_at",
+        "source_version",
+        "source_sha256"
+      ],
+      "missing_value_policy": "null_and_ineligible; never substitute zero or a current observation",
+      "parameter_status": "not_selected_not_optimized"
+    },
+    {
+      "feature_id": "crowding_score",
+      "definition": "Cross-industry crowding derived from breadth, persistence, extension, and concentration using only data available by decision close.",
+      "source_candidates": [
+        "SW2021 L1 index daily history",
+        "historical_style_context reconstruction logic"
+      ],
+      "current_availability": "partial_unverified",
+      "current_gap": "Values exist, but immutable point-in-time universe/version hashes and capture timestamps do not.",
+      "required_lineage": [
+        "observation_date",
+        "release_date",
+        "effective_date",
+        "captured_at",
+        "source_version",
+        "source_sha256"
+      ],
+      "missing_value_policy": "null_and_ineligible; never substitute zero or a current observation",
+      "parameter_status": "not_selected_not_optimized"
+    },
+    {
+      "feature_id": "turnover_concentration",
+      "definition": "Share of market turnover concentrated in the leading industries, compared with its expanding historical distribution.",
+      "source_candidates": [
+        "Tushare daily/basic turnover",
+        "SW2021 constituent or industry turnover aggregation"
+      ],
+      "current_availability": "missing",
+      "current_gap": "top_industry_ratio is a strength-score ratio, not turnover concentration, and must not be used as a silent substitute.",
+      "required_lineage": [
+        "observation_date",
+        "release_date",
+        "effective_date",
+        "captured_at",
+        "source_version",
+        "source_sha256"
+      ],
+      "missing_value_policy": "null_and_ineligible; never substitute zero or a current observation",
+      "parameter_status": "not_selected_not_optimized"
+    },
+    {
+      "feature_id": "breadth_divergence",
+      "definition": "Divergence between broad-index trend/price highs and cross-industry or constituent participation breadth.",
+      "source_candidates": [
+        "CSI300/CSI500 index daily history",
+        "SW2021 L1 or constituent advance/decline breadth"
+      ],
+      "current_availability": "partial_unverified",
+      "current_gap": "Breadth proxies exist, but early dates are incomplete and historical source snapshots are not versioned.",
+      "required_lineage": [
+        "observation_date",
+        "release_date",
+        "effective_date",
+        "captured_at",
+        "source_version",
+        "source_sha256"
+      ],
+      "missing_value_policy": "null_and_ineligible; never substitute zero or a current observation",
+      "parameter_status": "not_selected_not_optimized"
+    },
+    {
+      "feature_id": "late_cycle_heat",
+      "definition": "Derived explanatory composite requiring a point-in-time late-cycle phase plus elevated valuation or crowding evidence.",
+      "source_candidates": [
+        "strict point-in-time phase series",
+        "valuation_percentile",
+        "crowding_score",
+        "turnover_concentration",
+        "breadth_divergence"
+      ],
+      "current_availability": "blocked_by_inputs",
+      "current_gap": "No formula or threshold may be selected until all components pass point-in-time lineage checks.",
+      "required_lineage": [
+        "observation_date",
+        "release_date",
+        "effective_date",
+        "captured_at",
+        "source_version",
+        "source_sha256"
+      ],
+      "missing_value_policy": "null_and_ineligible; never substitute zero or a current observation",
+      "parameter_status": "not_selected_not_optimized"
+    },
+    {
+      "feature_id": "high_level_drawdown_risk",
+      "definition": "Drawdown occurring from a historically high valuation/crowding state, separated from an early- or mid-cycle pullback.",
+      "source_candidates": [
+        "broad-index close history",
+        "late_cycle_heat",
+        "expanding-window peak and drawdown series"
+      ],
+      "current_availability": "blocked_by_inputs",
+      "current_gap": "Drawdown is available, but the high-level qualifier is not auditable without the late-cycle inputs.",
+      "required_lineage": [
+        "observation_date",
+        "release_date",
+        "effective_date",
+        "captured_at",
+        "source_version",
+        "source_sha256"
+      ],
+      "missing_value_policy": "null_and_ineligible; never substitute zero or a current observation",
+      "parameter_status": "not_selected_not_optimized"
+    }
+  ],
+  "intended_research_logic": {
+    "reduce_risk_only_when": [
+      "strict point-in-time phase indicates late cycle",
+      "valuation or crowding/concentration evidence is elevated",
+      "a drawdown or breadth divergence confirms deterioration"
+    ],
+    "do_not_reduce_for": "An early- or mid-bull pullback without high-level valuation/crowding evidence.",
+    "output_before_backtest": "explanatory eligibility flags only; no percentage exposure or trade action",
+    "thresholds": "unset; must be specified before preregistered out-of-sample testing"
+  },
+  "readiness_gate": {
+    "strict_point_in_time_phase_required": true,
+    "publication_time_lineage_required": true,
+    "historical_valuation_required": true,
+    "immutable_source_hash_required": true,
+    "minimum_coverage_policy": "to be preregistered; not selected in V15.5",
+    "current_gate_passed": false
+  },
+  "constraints": {
+    "design_manifest_only": true,
+    "does_not_run_backtest": true,
+    "does_not_generate_position": true,
+    "does_not_generate_trade_signal": true,
+    "no_parameter_optimization": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "audit": {
+    "audit_status": "passed",
+    "checked_phase": "V15.5",
+    "checked_feature_count": 6,
+    "checked_promotion_ready": false
+  }
+}

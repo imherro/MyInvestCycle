@@ -2172,6 +2172,38 @@
           <p class="result-note" id="v15MacroRobustnessConclusion">--</p>
         </article>
 
+        <article class="chart-panel result-panel">
+          <div class="panel-heading">
+            <h2 class="help-title" tabindex="0" data-help="V15.5 核对历史阶段标签是否保留当时可见的发布日期、生效日期、抓取时间、数据版本和文件哈希。缺一项就只输出缺口报告，绝不把事后重建标签标成严格时点数据。">V15.5 时点证据与高位风险覆盖层</h2>
+            <span class="panel-kicker">V15.5</span>
+          </div>
+          <div class="result-metrics">
+            <div class="result-row">
+              <span>时点审计</span>
+              <strong id="v15PointInTimeStatus">--</strong>
+            </div>
+            <div class="result-row">
+              <span>已验证日期</span>
+              <strong id="v15PointInTimeVerifiedDates">--</strong>
+            </div>
+            <div class="result-row">
+              <span>缺口类别</span>
+              <strong id="v15PointInTimeGaps">--</strong>
+            </div>
+            <div class="result-row">
+              <span>覆盖层特征</span>
+              <strong id="v15LateCycleFeatures">--</strong>
+            </div>
+            <div class="result-row">
+              <span>允许回测</span>
+              <strong id="v15LateCycleBacktest">--</strong>
+            </div>
+          </div>
+          <div class="duration-list" id="v15PointInTimeRows"></div>
+          <div class="alpha-source-list" id="v15LateCycleFeatureRows"></div>
+          <p class="result-note" id="v15PointInTimeConclusion">--</p>
+        </article>
+
         <div class="dashboard-section-heading">
           <div>
             <span>Model Rules</span>
@@ -2262,7 +2294,7 @@
     <div data-myinvest-footer></div>
 
     <script src="/static/charts.js?v=20260629-channels-1"></script>
-    <script src="/static/dashboard.js?v=20260720-v15-macro-robustness-1"></script>
+    <script src="/static/dashboard.js?v=20260720-v15-point-in-time-1"></script>
     <script src="https://invest.okbbc.com/header.js" data-target="[data-myinvest-header]"></script>
     <script src="https://invest.okbbc.com/footer.js" data-target="[data-myinvest-footer]"></script>
   </body>

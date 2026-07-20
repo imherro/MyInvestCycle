@@ -1811,6 +1811,12 @@ function setResultsPanel(results) {
   const v15MacroRobustnessSummary = v15MacroRobustness.summary || v15MacroRobustness;
   const v15MacroRobustnessWalkForward = v15MacroRobustness.walk_forward || {};
   const v15MacroRobustnessConstraints = v15MacroRobustness.constraints || {};
+  const v15PointInTime = results.v15_point_in_time_phase_rebuild || {};
+  const v15PointInTimeSummary = v15PointInTime.summary || v15PointInTime;
+  const v15PointInTimeGaps = Array.isArray(v15PointInTime.gaps) ? v15PointInTime.gaps : [];
+  const v15LateCycleOverlay = results.v15_late_cycle_overlay_manifest || {};
+  const v15LateCycleSummary = v15LateCycleOverlay.summary || {};
+  const v15LateCycleFeatureList = Array.isArray(v15LateCycleOverlay.features) ? v15LateCycleOverlay.features : [];
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4910,6 +4916,62 @@ function setResultsPanel(results) {
     v15MacroRobustnessSummary.phase
       ? "V15.4 说明参数邻域结果接近，但 V15.3 默认参数排名靠后、样本外收益有限，且历史阶段严格时点性未证实，因此不能推进为可用策略。"
       : "V15.4 参数稳健性与滚动样本外验证尚未生成。"
+  );
+
+  const pointInTimeStatus = v15PointInTime.strict_point_in_time_phase_status || v15PointInTimeSummary.status;
+  const pointInTimeStatusLabel = pointInTimeStatus === "rebuilt" ? "已严格重建" : pointInTimeStatus === "gap_report_ready" ? "缺口报告" : "--";
+  setText("v15PointInTimeStatus", pointInTimeStatusLabel);
+  setText("v15PointInTimeVerifiedDates", `${integerText(v15PointInTimeSummary.verified_date_count)} / ${integerText(v15PointInTimeSummary.phase_row_count)}`);
+  setText("v15PointInTimeGaps", `${integerText(v15PointInTime.gap_count ?? v15PointInTimeSummary.gap_count)} 类`);
+  setText("v15LateCycleFeatures", `${integerText(v15LateCycleSummary.feature_count)} 项`);
+  setText("v15LateCycleBacktest", v15LateCycleSummary.backtest_allowed === true ? "允许" : "不允许");
+  setHtml("v15PointInTimeRows", [
+    [
+      "宏观发布时间",
+      `${integerText(v15PointInTimeSummary.macro_release_effective_safe_count)} / ${integerText(v15PointInTimeSummary.phase_row_count)} 个日期通过`,
+      "仅证明宏观字段，不代表最终 phase 全链路通过",
+    ],
+    [
+      "阶段来源链路",
+      `${integerText(v15PointInTimeSummary.strict_lineage_count)} 个日期完整`,
+      "缺少当时快照、版本与源文件哈希",
+    ],
+    [
+      "风格上下文",
+      `${integerText(v15PointInTimeSummary.reconstructed_style_date_count)} 个日期为事后重建`,
+      `结构字段完整 ${integerText(v15PointInTimeSummary.structural_context_complete_count)} 个日期`,
+    ],
+    [
+      "历史估值",
+      `${integerText(v15PointInTimeSummary.valuation_available_count)} 个日期可用`,
+      "PE/PB 百分位与 ERP 历史缺失",
+    ],
+  ].map(([label, value, note]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <em>${escapeHtml(note)}</em>
+    </div>
+  `).join(""));
+  const lateCycleFeatureLabels = {
+    valuation_percentile: "估值百分位",
+    crowding_score: "拥挤度",
+    turnover_concentration: "成交集中度",
+    breadth_divergence: "宽度背离",
+    late_cycle_heat: "晚周期热度",
+    high_level_drawdown_risk: "高位回撤风险",
+  };
+  setHtml("v15LateCycleFeatureRows", v15LateCycleFeatureList.map((feature) => `
+    <div class="alpha-source-row">
+      <span>${escapeHtml(lateCycleFeatureLabels[feature.feature_id] || feature.feature_id || "--")}</span>
+      <strong>${escapeHtml(feature.current_availability || "--")}</strong>
+    </div>
+  `).join(""));
+  setText(
+    "v15PointInTimeConclusion",
+    v15PointInTimeSummary.phase
+      ? "V15.5 确认现有阶段序列没有使用未来收益，但 140 个日期都缺少完整发布时间链路，仍是事后重建研究数据。高位风险覆盖层只完成六项数据契约，历史估值与不可变快照补齐前不得启动 V15.6 回测。"
+      : "V15.5 严格时点阶段审计尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
