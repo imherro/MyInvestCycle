@@ -1098,6 +1098,22 @@ def _read_v15_late_cycle_overlay_manifest_payload() -> dict[str, object] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def _read_v15_point_in_time_snapshot_ledger_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "v15_point_in_time_snapshot_ledger.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
+def _read_v15_point_in_time_snapshot_ledger_status_payload() -> dict[str, object] | None:
+    path = DATA_DIR / "v15_point_in_time_snapshot_ledger_status.json"
+    if not path.exists():
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else None
+
+
 def _read_allocation_research_hypotheses_payload() -> dict[str, object] | None:
     path = DATA_DIR / "allocation_research_hypotheses.json"
     if not path.exists():
@@ -2524,6 +2540,25 @@ def _compact_v15_late_cycle_overlay_manifest_payload(payload: dict[str, object] 
     }
 
 
+def _compact_v15_point_in_time_snapshot_ledger_status_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
+    if not isinstance(payload, dict):
+        return payload
+    summary = payload.get("summary") if isinstance(payload.get("summary"), dict) else {}
+    return {
+        **summary,
+        "ledger_status": payload.get("ledger_status"),
+        "decision_date_count": payload.get("decision_date_count"),
+        "snapshot_complete_count": payload.get("snapshot_complete_count"),
+        "strict_point_in_time_eligible_count": payload.get("strict_point_in_time_eligible_count"),
+        "hash_verified_count": payload.get("hash_verified_count"),
+        "valuation_snapshot_available_count": payload.get("valuation_snapshot_available_count"),
+        "backtest_allowed": payload.get("backtest_allowed"),
+        "promotion_ready": payload.get("promotion_ready"),
+        "hash_semantics": payload.get("hash_semantics"),
+        "constraints": payload.get("constraints"),
+    }
+
+
 def _compact_allocation_research_hypotheses_payload(payload: dict[str, object] | None) -> dict[str, object] | None:
     if not isinstance(payload, dict):
         return payload
@@ -3838,6 +3873,20 @@ def _api_catalog_payload() -> dict[str, object]:
                 ),
                 _api_endpoint(
                     "GET",
+                    "/api/strategy-rebase/v15-point-in-time-snapshot-ledger",
+                    "返回 V15.6 逐日期不可变源快照账本，区分历史快照 hash 与当前文件 hash；只记录证据缺口，不回测、不优化、不交易。",
+                    "v15 immutable point-in-time source snapshot ledger",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
+                    "/api/strategy-rebase/v15-point-in-time-snapshot-ledger-status",
+                    "返回 V15.6 快照账本覆盖统计与回测门禁；缺少真实历史快照时保持 backtest_allowed=false。",
+                    "v15 point-in-time snapshot ledger status",
+                    freshness="generated artifact",
+                ),
+                _api_endpoint(
+                    "GET",
                     "/api/style/structural-bull-validation",
                     "返回 V3.5.3 结构性牛市专用风格轮动验证，限定 STRUCTURAL_BULL 样本，比较基线和风格偏好资产池的收益、风险和风格漂移；只读研究验证。",
                     "structural bull style rotation validation",
@@ -4025,6 +4074,8 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/api/strategy-rebase/v15-macro-drawdown-robustness", "description": "读取 V15.4 参数稳健性、成本敏感性与年度滚动样本外验证；不生成交易信号。"},
             {"path": "/api/strategy-rebase/v15-point-in-time-phase-rebuild", "description": "读取 V15.5 严格时点阶段重建审计或缺口报告；不伪造验证通过，不回测不交易。"},
             {"path": "/api/strategy-rebase/v15-late-cycle-overlay-manifest", "description": "读取 V15.5 高位估值与拥挤覆盖层六项特征数据契约；不跑回测、不优化、不交易。"},
+            {"path": "/api/strategy-rebase/v15-point-in-time-snapshot-ledger", "description": "读取 V15.6 逐日期不可变源快照账本；严格区分历史快照 hash 与当前文件 hash，不回测不交易。"},
+            {"path": "/api/strategy-rebase/v15-point-in-time-snapshot-ledger-status", "description": "读取 V15.6 快照账本覆盖和回测门禁状态；真实 lineage 不完整时禁止回测。"},
             {"path": "/api/style/structural-bull-validation", "description": "读取 V3.5.3 结构性牛市风格轮动验证。"},
             {"path": "/api/style/structural-bull-failure-analysis", "description": "读取 V3.5.4 结构牛风格失败归因。"},
             {"path": "/api/style/historical-context", "description": "读取 V3.5.5 历史风格上下文特征。"},
@@ -5473,6 +5524,28 @@ def v15_late_cycle_overlay_manifest() -> dict:
     return payload
 
 
+@app.get("/api/strategy-rebase/v15-point-in-time-snapshot-ledger")
+def v15_point_in_time_snapshot_ledger() -> dict:
+    payload = _read_v15_point_in_time_snapshot_ledger_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V15 point-in-time snapshot ledger missing; run scripts/run_v15_point_in_time_snapshot_ledger.py first.",
+        )
+    return payload
+
+
+@app.get("/api/strategy-rebase/v15-point-in-time-snapshot-ledger-status")
+def v15_point_in_time_snapshot_ledger_status() -> dict:
+    payload = _read_v15_point_in_time_snapshot_ledger_status_payload()
+    if payload is None:
+        raise HTTPException(
+            status_code=503,
+            detail="V15 point-in-time snapshot ledger status missing; run scripts/run_v15_point_in_time_snapshot_ledger.py first.",
+        )
+    return payload
+
+
 @app.get("/api/allocation-research/hypotheses")
 def allocation_research_hypotheses() -> dict:
     payload = _read_allocation_research_hypotheses_payload()
@@ -5747,6 +5820,7 @@ def results_summary(
         v15_macro_drawdown_robustness = _read_v15_macro_drawdown_robustness_payload()
         v15_point_in_time_phase_rebuild = _read_v15_point_in_time_phase_rebuild_payload()
         v15_late_cycle_overlay_manifest = _read_v15_late_cycle_overlay_manifest_payload()
+        v15_point_in_time_snapshot_ledger_status = _read_v15_point_in_time_snapshot_ledger_status_payload()
         allocation_research_hypotheses = _read_allocation_research_hypotheses_payload()
         allocation_validation_plan = _read_allocation_validation_plan_payload()
         allocation_experiment_templates = _read_allocation_experiment_templates_payload()
@@ -5829,6 +5903,7 @@ def results_summary(
             v15_macro_drawdown_robustness = _compact_v15_macro_drawdown_robustness_payload(v15_macro_drawdown_robustness)
             v15_point_in_time_phase_rebuild = _compact_v15_point_in_time_phase_rebuild_payload(v15_point_in_time_phase_rebuild)
             v15_late_cycle_overlay_manifest = _compact_v15_late_cycle_overlay_manifest_payload(v15_late_cycle_overlay_manifest)
+            v15_point_in_time_snapshot_ledger_status = _compact_v15_point_in_time_snapshot_ledger_status_payload(v15_point_in_time_snapshot_ledger_status)
             allocation_research_hypotheses = _compact_allocation_research_hypotheses_payload(allocation_research_hypotheses)
             allocation_validation_plan = _compact_allocation_validation_plan_payload(allocation_validation_plan)
             allocation_experiment_templates = _compact_allocation_experiment_templates_payload(allocation_experiment_templates)
@@ -5948,6 +6023,7 @@ def results_summary(
             "v15_macro_drawdown_robustness": v15_macro_drawdown_robustness,
             "v15_point_in_time_phase_rebuild": v15_point_in_time_phase_rebuild,
             "v15_late_cycle_overlay_manifest": v15_late_cycle_overlay_manifest,
+            "v15_point_in_time_snapshot_ledger_status": v15_point_in_time_snapshot_ledger_status,
             "allocation_research_hypotheses": allocation_research_hypotheses,
             "allocation_validation_plan": allocation_validation_plan,
             "allocation_experiment_templates": allocation_experiment_templates,

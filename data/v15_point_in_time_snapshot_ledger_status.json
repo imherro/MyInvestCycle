@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "engine": "V15.6 Immutable Point-in-Time Snapshot Ledger Status",
+    "generated_at": "2026-07-20T07:22:53+00:00",
+    "as_of": "20260618",
+    "source_ledger": "data/v15_point_in_time_snapshot_ledger.json"
+  },
+  "phase": "V15.6",
+  "ledger_status": "ledger_gap_report_ready",
+  "decision_date_count": 140,
+  "snapshot_complete_count": 0,
+  "strict_point_in_time_eligible_count": 0,
+  "hash_verified_count": 0,
+  "valuation_snapshot_available_count": 0,
+  "backtest_allowed": false,
+  "promotion_ready": false,
+  "summary": {
+    "phase": "V15.6",
+    "ledger_status": "ledger_gap_report_ready",
+    "decision_date_count": 140,
+    "snapshot_complete_count": 0,
+    "strict_point_in_time_eligible_count": 0,
+    "hash_verified_count": 0,
+    "valuation_snapshot_available_count": 0,
+    "observations_available_by_group": {
+      "macro": 140,
+      "broad_index": 140,
+      "style_context": 140,
+      "structural_context": 79,
+      "valuation": 0
+    },
+    "backtest_allowed": false,
+    "promotion_ready": false,
+    "conclusion": "The per-date ledger is complete as a gap inventory, but no date has immutable historical snapshot lineage; overlay backtesting remains blocked.",
+    "next_task": "Acquire or archive immutable historical source snapshots before strict phase reconstruction."
+  },
+  "hash_semantics": {
+    "historical_snapshot_sha256_field": "source_sha256",
+    "current_local_file_sha256_field": "current_file_sha256",
+    "equality_does_not_prove_historical_origin": true,
+    "required_verified_origin": "historical_snapshot_file"
+  },
+  "constraints": {
+    "ledger_only": true,
+    "does_not_run_backtest": true,
+    "does_not_optimize_parameters": true,
+    "does_not_generate_position": true,
+    "does_not_generate_trade_signal": true,
+    "no_order_generation": true,
+    "no_broker_connection": true
+  },
+  "audit": {
+    "audit_status": "passed",
+    "checked_phase": "V15.6",
+    "checked_rows": 140,
+    "checked_complete_count": 0,
+    "checked_eligible_count": 0,
+    "checked_backtest_allowed": false
+  }
+}

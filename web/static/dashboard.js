@@ -1817,6 +1817,8 @@ function setResultsPanel(results) {
   const v15LateCycleOverlay = results.v15_late_cycle_overlay_manifest || {};
   const v15LateCycleSummary = v15LateCycleOverlay.summary || {};
   const v15LateCycleFeatureList = Array.isArray(v15LateCycleOverlay.features) ? v15LateCycleOverlay.features : [];
+  const v15SnapshotLedger = results.v15_point_in_time_snapshot_ledger_status || {};
+  const v15SnapshotLedgerSummary = v15SnapshotLedger.summary || v15SnapshotLedger;
   const allocationHypotheses = results.allocation_research_hypotheses || {};
   const allocationHypothesesSummary = allocationHypotheses.summary || {};
   const allocationHypothesesSchema = allocationHypotheses.schema || {};
@@ -4972,6 +4974,33 @@ function setResultsPanel(results) {
     v15PointInTimeSummary.phase
       ? "V15.5 确认现有阶段序列没有使用未来收益，但 140 个日期都缺少完整发布时间链路，仍是事后重建研究数据。高位风险覆盖层只完成六项数据契约，历史估值与不可变快照补齐前不得启动 V15.6 回测。"
       : "V15.5 严格时点阶段审计尚未生成。"
+  );
+
+  setText("v15LedgerDates", integerText(v15SnapshotLedgerSummary.decision_date_count));
+  setText("v15LedgerComplete", `${integerText(v15SnapshotLedgerSummary.snapshot_complete_count)} / ${integerText(v15SnapshotLedgerSummary.decision_date_count)}`);
+  setText("v15LedgerEligible", `${integerText(v15SnapshotLedgerSummary.strict_point_in_time_eligible_count)} / ${integerText(v15SnapshotLedgerSummary.decision_date_count)}`);
+  setText("v15LedgerHashes", integerText(v15SnapshotLedgerSummary.hash_verified_count));
+  setText("v15LedgerBacktest", v15SnapshotLedgerSummary.backtest_allowed === true ? "允许" : "不允许");
+  const v15LedgerObservations = v15SnapshotLedgerSummary.observations_available_by_group || {};
+  const v15LedgerGroupLabels = {
+    macro: "宏观",
+    broad_index: "宽基",
+    style_context: "风格上下文",
+    structural_context: "结构上下文",
+    valuation: "历史估值",
+  };
+  setHtml("v15LedgerSourceRows", Object.entries(v15LedgerGroupLabels).map(([groupId, label]) => `
+    <div class="duration-row">
+      <span>${escapeHtml(label)}</span>
+      <strong>可定位观测 ${integerText(v15LedgerObservations[groupId])} / ${integerText(v15SnapshotLedgerSummary.decision_date_count)}</strong>
+      <em>完整历史快照 0 · 当前文件 hash 不作历史证明</em>
+    </div>
+  `).join(""));
+  setText(
+    "v15LedgerConclusion",
+    v15SnapshotLedgerSummary.phase
+      ? "V15.6 已把五类源逐日列账，但 140 个日期都没有完整的历史抓取时间、源版本和不可变历史快照 hash，因此严格可用仍为 0/140。账本只完成缺口盘点，覆盖层回测继续禁止。"
+      : "V15.6 不可变时点源快照账本尚未生成。"
   );
 
   setText("hazardRawRate", percentText(rawHazard.event_rate));
