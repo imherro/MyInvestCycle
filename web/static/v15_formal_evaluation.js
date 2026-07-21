@@ -69,6 +69,8 @@ async function loadEvaluation() {
     const formal = robustness.formal_evaluation || {};
     const oos = robustness.walk_forward?.combined_oos_metrics || {};
     const oosBenchmark = robustness.walk_forward?.combined_oos_csi_300_metrics || {};
+    const noCost = robustness.default_cost_sensitivity?.["0"] || {};
+    const formalCost = robustness.default_cost_sensitivity?.["15"] || strategy;
 
     const passed = formal.status === "passed";
     setText("formalVerdict", passed ? "通过" : "不通过");
@@ -87,6 +89,11 @@ async function loadEvaluation() {
     setText("oosCalmar", decimal(oos.calmar));
     setText("oosCost", `${robustness.summary?.walk_forward_cost_bps ?? 15}bp`);
     setText("oosConclusion", `样本外策略虽跑赢同期全收益基准，但年化仅 ${percent(oos.CAGR)}，低于2%现金假设，不能据此推进。`);
+    setText("noCostCagr", percent(noCost.CAGR));
+    setText("costDrag", percent(Number(noCost.CAGR || 0) - Number(formalCost.CAGR || 0)));
+    setText("averageExposure", percent(formalCost.average_exposure));
+    setText("annualTurnover", `${Number(formalCost.annualized_turnover || 0).toFixed(2)}倍`);
+    setText("drawdownImprovement", percent(Math.abs(Number(benchmark.max_drawdown || 0)) - Math.abs(Number(strategy.max_drawdown || 0))));
     renderChecks(formal.checks || {});
     renderChart(backtest.equity_curve || []);
   } catch (error) {

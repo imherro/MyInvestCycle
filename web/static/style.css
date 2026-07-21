@@ -2377,11 +2377,59 @@ h2 {
   line-height: 1.6;
 }
 
+.v15-eval-insight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 24px;
+}
+
+.v15-eval-insight-grid > div {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.v15-eval-insight-grid span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.v15-eval-insight-grid strong {
+  display: block;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.v15-eval-insight-grid p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.v15-eval-insight-grid b {
+  color: var(--ink);
+}
+
+.v15-eval-bottom-line {
+  margin: 18px 0 0;
+  padding: 13px 15px;
+  border-left: 4px solid #c23b32;
+  background: #fff7f6;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.65;
+}
+
 @media (max-width: 860px) {
   .v15-eval-verdict,
   .v15-eval-content,
   .v15-eval-assumptions,
-  .v15-rule-grid {
+  .v15-rule-grid,
+  .v15-eval-insight-grid {
     grid-template-columns: 1fr;
   }
 

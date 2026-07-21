@@ -50,6 +50,33 @@
           <div class="chart-box v15-eval-chart" id="formalEquityChart"></div>
         </article>
 
+        <article class="chart-panel result-panel wide-analysis-panel v15-eval-interpretation">
+          <div class="panel-heading"><h2>这项结果说明什么</h2><span class="panel-kicker">收益主线与风控定位</span></div>
+          <div class="v15-eval-insight-grid">
+            <div>
+              <span>收益判断</span>
+              <strong>长期持有宽基更适合作为收益主线</strong>
+              <p>即使不计交易成本，V15年化也只有 <b id="noCostCagr">--</b>，仍低于全收益基准。说明现有择时规则没有创造Alpha，低仓位反而损失了长期市场风险溢价。</p>
+            </div>
+            <div>
+              <span>成本归因</span>
+              <strong>调仓进一步侵蚀收益</strong>
+              <p>15bp成本令策略年化再下降 <b id="costDrag">--</b>；平均仓位 <b id="averageExposure">--</b>，年均单边换手约 <b id="annualTurnover">--</b>。问题既来自频繁调仓，也来自长期仓位不足。</p>
+            </div>
+            <div>
+              <span>风险价值</span>
+              <strong>它是回撤保护层，不是Alpha策略</strong>
+              <p>策略将最大回撤减少约 <b id="drawdownImprovement">--</b>，Calmar有所改善，但夏普仍低于全收益基准。减少回撤是它目前唯一明确的可用价值。</p>
+            </div>
+            <div>
+              <span>研究方向</span>
+              <strong>保留核心仓位，只对局部仓位低频风控</strong>
+              <p>后续应测试“长期核心宽基 + 小比例战术风控”，并要求周期后段、估值拥挤和趋势破坏共同确认后才减仓。这里是待验证的研究假设，不是当前仓位建议。</p>
+            </div>
+          </div>
+          <p class="v15-eval-bottom-line">正式结论：不支持根据短期状态频繁大幅调整全部仓位；支持把长期持有作为主线，把低频风控作为有限的辅助保护。</p>
+        </article>
+
         <article class="chart-panel result-panel">
           <div class="panel-heading"><h2>滚动样本外验证</h2><span class="panel-kicker">仅用此前年度选参</span></div>
           <div class="metric-card-grid">
