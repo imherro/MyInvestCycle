@@ -10,9 +10,12 @@ This phase is not a production strategy release. It does not create orders, conn
 
 ## Strategy Rule
 
-Carrier index:
+Signal and return indices:
 
-- `000300.SH` CSI 300 close series
+- `000300.SH` CSI 300 price index is used only for drawdown signals.
+- `H00300.CSI` CSI 300 total return index is used for strategy returns and the buy-and-hold benchmark.
+- The evaluation starts from the first common trading day in 2016.
+- Every one-way absolute exposure change is charged 15bp.
 
 Timing rule:
 
@@ -47,34 +50,31 @@ Summary page:
 
 ## Current Result
 
-Backtest window:
+Formal backtest window:
 
-- `20150105` to `20260708`
-- 2,796 sessions
+- `20160104` to `20260708`
+- 2,552 sessions
 
 Macro drawdown strategy:
 
-- Total return: 50.38%
-- CAGR / annual return: 3.75%
-- Annual alpha vs CSI 300: 1.31%
-- Max drawdown: -35.92%
-- Calmar: 0.104
-- Sharpe: 0.186
-- Longest drawdown recovery days: 1,264
+- Total return: 58.77%
+- CAGR / annual return: 4.67%
+- Annual alpha vs CSI 300 total return: -0.99%
+- Max drawdown: -26.24%
+- Calmar: 0.178
+- Sharpe: 0.265
+- Longest drawdown recovery days: 1,254
 
 Benchmarks over the same full window:
 
 - Cash baseline CAGR: 2.02%
-- CSI 300 buy hold CAGR: 2.44%, max drawdown -46.70%
-- Shanghai Composite buy hold CAGR: 1.54%, max drawdown -52.30%
+- CSI 300 total return buy hold CAGR: 5.66%, max drawdown -41.56%
 
 Old strategy baseline is only available from `20200103` to `20260626`, so it is compared separately in `common_period_comparison`.
 
 ## Interpretation
 
-The V15.3 rule beats cash, CSI 300 and Shanghai Composite on the full 2015-2026 window and improves max drawdown versus CSI 300.
-
-However, the absolute CAGR is only about 3.75%, Calmar is low, and drawdown recovery remains long. This is not strong enough to package as a finished investment strategy. It is a baseline proving that macro + drawdown context may be directionally useful, but still needs better alpha generation and structural bull handling.
+The V15.3 rule reduces maximum drawdown and improves Calmar versus CSI 300 total return, but it underperforms the dividend-reinvested benchmark by 0.99 percentage points annualized. The earlier positive alpha came from comparing against the price index and is superseded by this formal result. V15.3 fails promotion as a return strategy.
 
 ## Boundary
 

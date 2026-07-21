@@ -3085,6 +3085,7 @@ def _api_catalog_payload() -> dict[str, object]:
                 _api_endpoint("GET", "/risk-execution", "兼容旧链接；风控执行内容已合并到首页展示。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategies", "打开策略回测频道，集中查看策略信号、关键回测摘要和策略入口。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/validation", "打开验证归因频道，集中查看仓位风控回测、Regime 归因、结构事件和模型验证。", "HTML page", freshness="page"),
+                _api_endpoint("GET", "/v15-formal-evaluation", "打开V15正式评价页，使用沪深300全收益、2016起点和15bp成本展示全周期与样本外结论。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/etf-rotation", "打开 ETF 轮动策略主页，集中查看回测图、关键指标和调仓历史入口。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/macro-style", "打开 Macro-Style-ETF 分层策略主页，集中查看回测图、关键指标和调仓历史入口。", "HTML page", freshness="page"),
                 _api_endpoint("GET", "/strategy/defensive-dividend", "打开红利低波 + 现金代理防守策略主页。", "HTML page", freshness="page"),
@@ -4092,6 +4093,7 @@ def _api_catalog_payload() -> dict[str, object]:
             {"path": "/", "description": "查看宏观周期总览。"},
             {"path": "/strategies", "description": "查看策略回测频道。"},
             {"path": "/validation", "description": "查看验证归因频道。"},
+            {"path": "/v15-formal-evaluation", "description": "查看V15全收益与15bp成本正式评价。"},
             {"path": "/api/regime/current", "description": "读取当前牛熊状态与四维评分。"},
             {"path": "/api/regime/cycle/track", "description": "读取后市展望的位置和概率。"},
             {"path": "/api/macro/context-history", "description": "读取 V5.7 release-date 安全的历史宏观上下文。"},
@@ -4262,6 +4264,11 @@ def strategies_page():
 @app.get("/validation", response_class=HTMLResponse)
 def validation_page():
     return FileResponse(ROOT_DIR / "web" / "templates" / "validation.html")
+
+
+@app.get("/v15-formal-evaluation", response_class=HTMLResponse)
+def v15_formal_evaluation_page():
+    return FileResponse(ROOT_DIR / "web" / "templates" / "v15_formal_evaluation.html")
 
 
 @app.get("/strategy/etf-rotation", response_class=HTMLResponse)

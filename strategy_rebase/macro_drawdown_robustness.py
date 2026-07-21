@@ -10,6 +10,7 @@ from typing import Any
 from config import DATA_DIR
 from strategy_rebase.macro_drawdown_backtest import (
     CASH_ANNUAL_RETURN,
+    TRANSACTION_COST_BPS,
     TRADING_DAYS,
     _build_curves,
     _metrics,
@@ -20,7 +21,7 @@ DEFAULT_INPUT_PATH = DATA_DIR / "v15_macro_drawdown_backtest_result.json"
 DEFAULT_OUTPUT_PATH = DATA_DIR / "v15_macro_drawdown_robustness_result.json"
 THRESHOLD_SCALES = (0.75, 1.0, 1.25)
 EXPOSURE_SCALES = (0.75, 1.0, 1.25)
-COST_BPS_LEVELS = (0, 5, 10)
+COST_BPS_LEVELS = (0, 5, 10, TRANSACTION_COST_BPS)
 
 BASE_RULES: dict[str, tuple[float, float, float]] = {
     "EARLY_CYCLE": (0.85, 1.00, 0.08),
@@ -289,6 +290,7 @@ def build_v15_macro_drawdown_robustness_result(
             csi_equity,
             threshold_scale=threshold_scale,
             exposure_scale=exposure_scale,
+            cost_bps=TRANSACTION_COST_BPS,
         )
         grid.append(dict(_mapping(simulated["metrics"])))
     grid.sort(key=_rank_key, reverse=True)
@@ -309,17 +311,30 @@ def build_v15_macro_drawdown_robustness_result(
         result = _simulate(rows, csi_equity, threshold_scale=1.0, exposure_scale=1.0, cost_bps=cost)
         default_cost_sensitivity[str(cost)] = dict(_mapping(result["metrics"]))
 
-    primary_oos = _mapping(walk_forward_by_cost["5"]).get("combined_oos_metrics")
+    primary_cost_key = str(TRANSACTION_COST_BPS)
+    primary_oos = _mapping(walk_forward_by_cost[primary_cost_key]).get("combined_oos_metrics")
     primary_oos_metrics = _mapping(primary_oos)
-    primary_oos_csi = _mapping(_mapping(walk_forward_by_cost["5"]).get("combined_oos_csi_300_metrics"))
+    primary_oos_csi = _mapping(_mapping(walk_forward_by_cost[primary_cost_key]).get("combined_oos_csi_300_metrics"))
     stable_grid = max(cagr_values) - min(cagr_values) <= 0.02 and max(calmar_values) - min(calmar_values) <= 0.15
     default_parameter_preferred = default_rank <= 3
     oos_beats_csi = float(primary_oos_metrics.get("CAGR") or -1.0) > float(primary_oos_csi.get("CAGR") or -1.0)
+    source_strategy = _mapping(_mapping(source.get("strategy_results")).get("macro_drawdown_strategy"))
+    source_comparison = _mapping(source.get("comparison"))
+    formal_checks = {
+        "full_period_beats_total_return_benchmark": source_comparison.get("beats_csi_300_buy_hold") is True,
+        "full_period_annual_alpha_positive": float(source_strategy.get("annual_alpha") or 0.0) > 0.0,
+        "full_period_max_drawdown_within_30pct": float(source_strategy.get("max_drawdown") or -1.0) >= -0.30,
+        "out_of_sample_beats_total_return_benchmark": oos_beats_csi,
+        "out_of_sample_beats_cash": float(primary_oos_metrics.get("CAGR") or -1.0) > CASH_ANNUAL_RETURN,
+        "default_parameter_rank_in_top_three": default_parameter_preferred,
+        "strict_point_in_time_verified": False,
+    }
+    formal_evaluation_passed = all(formal_checks.values())
     strict_point_in_time_verified = False
     promotion_ready = stable_grid and default_parameter_preferred and oos_beats_csi and strict_point_in_time_verified
     conclusion = (
-        "Nearby parameters produce similar results, but the V15.3 default ranks last, out-of-sample return remains modest, "
-        "and strict point-in-time phase history is unverified; do not promote the baseline."
+        "The 2016+ total-return evaluation with 15bp one-way costs does not beat CSI300 total return over the full period, "
+        "out-of-sample CAGR remains below cash, and strict point-in-time phase history is unverified; reject promotion."
     )
 
     payload: dict[str, object] = {
@@ -348,7 +363,7 @@ def build_v15_macro_drawdown_robustness_result(
             "default_calmar": default.get("calmar"),
             "calmar_range": round(max(calmar_values) - min(calmar_values), 6),
             "default_reproduction_CAGR_error": round(reproduction_error, 8),
-            "walk_forward_cost_bps": 5,
+            "walk_forward_cost_bps": TRANSACTION_COST_BPS,
             "walk_forward_CAGR": primary_oos_metrics.get("CAGR"),
             "walk_forward_max_drawdown": primary_oos_metrics.get("max_drawdown"),
             "walk_forward_calmar": primary_oos_metrics.get("calmar"),
@@ -356,6 +371,7 @@ def build_v15_macro_drawdown_robustness_result(
             "parameter_neighborhood_stable": stable_grid,
             "default_parameter_preferred": default_parameter_preferred,
             "promotion_ready": promotion_ready,
+            "formal_evaluation_status": "passed" if formal_evaluation_passed else "failed",
             "strict_point_in_time_status": "unverified",
             "research_backtest_only": True,
             "no_real_trade_order": True,
@@ -367,12 +383,23 @@ def build_v15_macro_drawdown_robustness_result(
             "exposure_scales": list(EXPOSURE_SCALES),
             "exposure_scaling": "Scale each V15.3 exposure around neutral 0.50, clipped to [0, 1].",
             "cost_bps_levels": list(COST_BPS_LEVELS),
+            "primary_evaluation_cost_bps": TRANSACTION_COST_BPS,
             "signal_timing": "phase and drawdown observed after close on t; selected exposure applied to t+1 return",
         },
         "parameter_grid": grid,
         "default_cost_sensitivity": default_cost_sensitivity,
-        "walk_forward": walk_forward_by_cost["5"],
+        "walk_forward": walk_forward_by_cost[primary_cost_key],
         "walk_forward_cost_sensitivity": walk_forward_by_cost,
+        "formal_evaluation": {
+            "status": "passed" if formal_evaluation_passed else "failed",
+            "decision": "promote" if formal_evaluation_passed else "reject_promotion",
+            "evaluation_window": "2016 onward",
+            "signal_index": "000300.SH",
+            "return_and_benchmark_index": "H00300.CSI",
+            "transaction_cost_bps": TRANSACTION_COST_BPS,
+            "checks": formal_checks,
+            "conclusion": conclusion,
+        },
         "data_quality": {
             "source_phase": source.get("phase"),
             "source_backtest_status": source.get("backtest_status"),

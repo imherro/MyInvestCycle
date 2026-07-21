@@ -16,10 +16,13 @@ from config import DATA_DIR
 DEFAULT_MATERIALIZATION_PATH = DATA_DIR / "v15_backtest_dataset_materialization_status.json"
 DEFAULT_OUTPUT_PATH = DATA_DIR / "v15_macro_drawdown_backtest_result.json"
 CSI300_PATH = DATA_DIR / "cache" / "index_daily_000300_SH.csv"
+CSI300_TOTAL_RETURN_PATH = DATA_DIR / "cache" / "index_daily_H00300_CSI.csv"
 SHANGHAI_PATH = DATA_DIR / "cache" / "index_daily_000001_SH.csv"
 PHASE_PATH = DATA_DIR / "market_phase_snapshot.json"
 OLD_STRATEGY_PATH = DATA_DIR / "etf_rotation_backtest.json"
 CASH_ANNUAL_RETURN = 0.02
+TRANSACTION_COST_BPS = 15
+BACKTEST_START_DATE = "20160101"
 TRADING_DAYS = 252
 
 
@@ -214,13 +217,24 @@ def _old_strategy_baseline(path: Path = OLD_STRATEGY_PATH) -> tuple[dict[str, ob
 
 
 def _build_curves() -> dict[str, object]:
-    csi_rows = {str(row["date"]): float(row["close"]) for row in _read_index_csv(CSI300_PATH)}
+    csi_price_rows = {str(row["date"]): float(row["close"]) for row in _read_index_csv(CSI300_PATH)}
+    csi_total_return_rows = {
+        str(row["date"]): float(row["close"])
+        for row in _read_index_csv(CSI300_TOTAL_RETURN_PATH)
+    }
     sh_rows = {str(row["date"]): float(row["close"]) for row in _read_index_csv(SHANGHAI_PATH)}
     phase_points = _load_phase_points()
-    start_date = max("20150105", str(phase_points[0]["date"]) if phase_points else "20150105")
-    common_dates = sorted(date for date in csi_rows.keys() & sh_rows.keys() if date >= start_date)
+    start_date = max(BACKTEST_START_DATE, str(phase_points[0]["date"]) if phase_points else BACKTEST_START_DATE)
+    common_dates = sorted(
+        date
+        for date in csi_price_rows.keys() & csi_total_return_rows.keys() & sh_rows.keys()
+        if date >= start_date
+    )
+    if not common_dates:
+        raise RuntimeError("V15 formal evaluation requires overlapping CSI300 price and total-return data.")
     phase_map = _phase_for_dates(common_dates, phase_points)
     cash_daily = CASH_ANNUAL_RETURN / TRADING_DAYS
+    cost_rate = TRANSACTION_COST_BPS / 10_000
 
     strategy_equity = [1.0]
     csi_equity = [1.0]
@@ -229,11 +243,11 @@ def _build_curves() -> dict[str, object]:
     target_exposures: list[float] = []
     applied_exposures: list[float] = [0.85]
     drawdowns: list[float] = []
-    csi_peak = csi_rows[common_dates[0]]
+    csi_peak = csi_price_rows[common_dates[0]]
     curve: list[dict[str, object]] = []
 
     for index, date in enumerate(common_dates):
-        close = csi_rows[date]
+        close = csi_price_rows[date]
         csi_peak = max(csi_peak, close)
         drawdown = close / csi_peak - 1.0
         drawdowns.append(drawdown)
@@ -242,11 +256,13 @@ def _build_curves() -> dict[str, object]:
         target_exposures.append(target_exposure)
         if index > 0:
             prev = common_dates[index - 1]
-            csi_ret = csi_rows[date] / csi_rows[prev] - 1.0
+            csi_ret = csi_total_return_rows[date] / csi_total_return_rows[prev] - 1.0
             sh_ret = sh_rows[date] / sh_rows[prev] - 1.0
             applied = target_exposures[index - 1]
+            previous_applied = applied_exposures[-1]
+            turnover = abs(applied - previous_applied)
             applied_exposures.append(applied)
-            strategy_ret = applied * csi_ret + (1 - applied) * cash_daily
+            strategy_ret = applied * csi_ret + (1 - applied) * cash_daily - turnover * cost_rate
             strategy_equity.append(strategy_equity[-1] * (1 + strategy_ret))
             csi_equity.append(csi_equity[-1] * (1 + csi_ret))
             shanghai_equity.append(shanghai_equity[-1] * (1 + sh_ret))
@@ -258,8 +274,10 @@ def _build_curves() -> dict[str, object]:
                 "drawdown": round(drawdown, 6),
                 "target_exposure": round(target_exposure, 6),
                 "applied_exposure": round(applied_exposures[-1], 6),
+                "transaction_cost_bps": TRANSACTION_COST_BPS,
                 "strategy_equity": round(strategy_equity[-1], 6),
                 "csi_300_equity": round(csi_equity[-1], 6),
+                "csi_300_total_return_equity": round(csi_equity[-1], 6),
                 "shanghai_composite_equity": round(shanghai_equity[-1], 6),
                 "cash_equity": round(cash_equity[-1], 6),
             }
@@ -299,6 +317,9 @@ def validate_v15_macro_drawdown_backtest_result(payload: Mapping[str, object]) -
             raise AssertionError(f"constraints.{key} must be true")
     if summary.get("strategy_scope") != "macro_drawdown_regime_baseline":
         raise AssertionError("strategy scope mismatch")
+    rules = _mapping(payload.get("strategy_rules"))
+    if rules.get("return_index") != "H00300.CSI" or rules.get("transaction_cost_bps") != TRANSACTION_COST_BPS:
+        raise AssertionError("formal total-return and cost assumptions are required")
     return {
         "audit_status": "passed",
         "checked_phase": payload.get("phase"),
@@ -399,6 +420,8 @@ def build_v15_macro_drawdown_backtest_result(
             "macro_drawdown_CAGR": strategy_metrics["CAGR"],
             "macro_drawdown_max_drawdown": strategy_metrics["max_drawdown"],
             "macro_drawdown_calmar": strategy_metrics["calmar"],
+            "return_index": "H00300.CSI",
+            "transaction_cost_bps": TRANSACTION_COST_BPS,
             "beats_cash_baseline": comparison["beats_cash_baseline"],
             "beats_csi_300_buy_hold": comparison["beats_csi_300_buy_hold"],
             "research_backtest_only": True,
@@ -407,7 +430,14 @@ def build_v15_macro_drawdown_backtest_result(
             "next_task": "V15.4 structural bull rotation strategy backtest if ChatGPT audit approves V15.3",
         },
         "strategy_rules": {
-            "carrier_index": "000300.SH",
+            "carrier_index": "H00300.CSI",
+            "signal_index": "000300.SH",
+            "return_index": "H00300.CSI",
+            "return_index_name": "CSI 300 Total Return Index",
+            "drawdown_signal_uses_price_index": True,
+            "strategy_return_includes_dividend_reinvestment": True,
+            "transaction_cost_bps": TRANSACTION_COST_BPS,
+            "transaction_cost_definition": "15bp per one-way absolute exposure change",
             "cash_annual_return": CASH_ANNUAL_RETURN,
             "signal_timing": "phase and drawdown observed after close on t; target exposure is applied to t+1 return",
             "exposure_rules": {
@@ -421,6 +451,7 @@ def build_v15_macro_drawdown_backtest_result(
         "benchmarks": {
             "cash_baseline": cash_metrics,
             "csi_300_buy_hold": csi_metrics,
+            "csi_300_total_return_buy_hold": csi_metrics,
             "shanghai_composite_buy_hold": shanghai_metrics,
             "old_strategy_baseline": old_metrics,
         },
@@ -440,6 +471,10 @@ def build_v15_macro_drawdown_backtest_result(
             "phase_forward_fill_used": True,
             "phase_forward_fill_after_last_replay_allowed_until_current_as_of": True,
             "old_strategy_baseline_period_may_differ_from_full_backtest": True,
+            "signal_source": "data/cache/index_daily_000300_SH.csv",
+            "return_source": "data/cache/index_daily_H00300_CSI.csv",
+            "return_source_is_total_return_index": True,
+            "backtest_start_policy": "Start from the first common trading day in 2016.",
         },
         "equity_curve": curve,
         "constraints": {

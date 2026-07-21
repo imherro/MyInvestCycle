@@ -59,9 +59,19 @@ def main() -> None:
     assert set(benchmarks) == {
         "cash_baseline",
         "csi_300_buy_hold",
+        "csi_300_total_return_buy_hold",
         "shanghai_composite_buy_hold",
         "old_strategy_baseline",
     }
+    rules = payload["strategy_rules"]
+    assert summary["start_date"] >= "20160101"
+    assert summary["return_index"] == "H00300.CSI"
+    assert summary["transaction_cost_bps"] == 15
+    assert rules["signal_index"] == "000300.SH"
+    assert rules["return_index"] == "H00300.CSI"
+    assert rules["drawdown_signal_uses_price_index"] is True
+    assert rules["strategy_return_includes_dividend_reinvestment"] is True
+    assert rules["transaction_cost_bps"] == 15
     assert REQUIRED_METRICS.issubset(strategy)
     assert isinstance(strategy["yearly_returns"], dict)
     assert isinstance(strategy["regime_segment_returns"], dict)
@@ -99,6 +109,8 @@ def main() -> None:
         assert "applied_exposure" in row
         assert "strategy_equity" in row
         assert "csi_300_equity" in row
+        assert "csi_300_total_return_equity" in row
+        assert row["transaction_cost_bps"] == 15
         assert "shanghai_composite_equity" in row
         assert "cash_equity" in row
 

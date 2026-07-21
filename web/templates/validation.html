@@ -2112,8 +2112,11 @@
 
         <article class="chart-panel result-panel">
           <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="V15.3 是宏观周期 + 回撤情境的历史研究回测：用沪深300作为承载资产，对比现金、沪深300、上证指数和旧策略基线；只判断研究假设，不生成交易信号、不接券商、不下单。">V15.3 宏观回撤基准回测</h2>
-            <span class="panel-kicker">V15.3</span>
+            <h2 class="help-title" tabindex="0" data-help="V15.3 用沪深300价格指数生成回撤信号，用沪深300全收益指数计算策略与基准收益，回测从2016年开始并按单边仓位变化扣15bp；只做研究评价，不生成交易信号。">V15.3 宏观回撤基准回测</h2>
+            <div class="panel-actions">
+              <span class="panel-kicker">V15.3</span>
+              <a class="panel-link" href="/v15-formal-evaluation">正式评价</a>
+            </div>
           </div>
           <div class="result-metrics">
             <div class="result-row">
@@ -2143,7 +2146,7 @@
 
         <article class="chart-panel result-panel">
           <div class="panel-heading">
-            <h2 class="help-title" tabindex="0" data-help="V15.4 检查 V15.3 是否只是参数偶然命中：测试 9 组邻近阈值/仓位强度、0/5/10bp 成本，以及只用历史训练数据选择下一年参数的滚动样本外结果。历史 phase 的严格发布时间链路尚未独立证实。">V15.4 参数稳健性与样本外验证</h2>
+            <h2 class="help-title" tabindex="0" data-help="V15.4 检查 V15.3 是否只是参数偶然命中：测试 9 组邻近阈值/仓位强度、0/5/10/15bp 成本，并以15bp作为正式口径完成滚动样本外验证。历史 phase 的严格发布时间链路尚未独立证实。">V15.4 参数稳健性与样本外验证</h2>
             <span class="panel-kicker">V15.4</span>
           </div>
           <div class="result-metrics">

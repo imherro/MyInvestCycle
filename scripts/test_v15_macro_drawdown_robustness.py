@@ -22,6 +22,7 @@ def main() -> None:
     walk_forward = payload["walk_forward"]
     quality = payload["data_quality"]
     constraints = payload["constraints"]
+    formal = payload["formal_evaluation"]
 
     assert payload["phase"] == "V15.4"
     assert payload["validation_status"] == "completed"
@@ -41,6 +42,14 @@ def main() -> None:
     assert isinstance(summary["parameter_neighborhood_stable"], bool)
     assert isinstance(summary["default_parameter_preferred"], bool)
     assert summary["promotion_ready"] is False
+    assert summary["walk_forward_cost_bps"] == 15
+    assert summary["formal_evaluation_status"] == "failed"
+    assert formal["status"] == "failed"
+    assert formal["decision"] == "reject_promotion"
+    assert formal["return_and_benchmark_index"] == "H00300.CSI"
+    assert formal["transaction_cost_bps"] == 15
+    assert formal["checks"]["full_period_beats_total_return_benchmark"] is False
+    assert formal["checks"]["strict_point_in_time_verified"] is False
     assert quality["default_reproduction_within_tolerance"] is True
     assert quality["t_plus_one_reapplied_for_every_variant"] is True
     assert quality["training_uses_only_dates_before_test_year"] is True
@@ -48,7 +57,7 @@ def main() -> None:
     assert len(walk_forward["selections"]) >= 5
     for selection in walk_forward["selections"]:
         assert selection["training_end"] < f"{selection['test_year']}0101"
-    for cost in ("0", "5", "10"):
+    for cost in ("0", "5", "10", "15"):
         assert cost in payload["default_cost_sensitivity"]
         assert cost in payload["walk_forward_cost_sensitivity"]
     assert constraints["no_broker_connection"] is True
